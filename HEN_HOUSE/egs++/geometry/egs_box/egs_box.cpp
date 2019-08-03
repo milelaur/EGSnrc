@@ -36,6 +36,8 @@
 
 #include "egs_box.h"
 #include "egs_input.h"
+#include "egs_base_geometry.h"
+#include "egs_input_block.h"
 
 void EGS_Box::printInfo() const {
     EGS_BaseGeometry::printInfo();
@@ -53,6 +55,11 @@ static char EGS_BOX_LOCAL ebox_message4[] =
 static char EGS_BOX_LOCAL ebox_key1[] = "box size";
 
 extern "C" {
+
+    EGS_BOX_EXPORT EGS_BaseGeometry *getInputs() {
+        EGS_BaseGeometry *geom = new EGS_Box();
+        return geom;
+    }
 
     EGS_BOX_EXPORT EGS_BaseGeometry *createGeometry(EGS_Input *input) {
         if (!input) {
@@ -89,5 +96,15 @@ extern "C" {
         result->setLabels(input);
         return result;
     }
+    
+    // Build the input structure that this class will adhere to
+    // Any new input parameters should be included here
+    /*EGS_BOX_EXPORT EGS_InputBlock *getInputBlock() {
+        EGS_InputBlock *inputBlock = new EGS_InputBlock("geometry");
+        inputBlock->addSingleInput("library", true, {"egs_box"});
+        inputBlock->addSingleInput("name", true);
+    
+        return inputBlock;
+    }*/
 
 }

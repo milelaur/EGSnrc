@@ -43,6 +43,7 @@
 #define EGS_BASE_GEOMETRY_
 
 #include "egs_vector.h"
+#include "egs_input_block.h"
 
 #include <string>
 #include <vector>
@@ -729,6 +730,8 @@ public:
 
     /*! \brief Set the labels from an input string */
     int setLabels(const string &inp);
+    
+    virtual EGS_InputBlock getInputBlock() {};
 
 protected:
 
@@ -855,6 +858,8 @@ protected:
         are also useful to track region numbers upon modyfying the geometry.
      */
     vector<label> labels;
+    
+    EGS_InputBlock inputBlock;
 
 private:
 

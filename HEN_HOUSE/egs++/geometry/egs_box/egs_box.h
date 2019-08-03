@@ -109,6 +109,12 @@ class EGS_BOX_EXPORT EGS_Box : public EGS_BaseGeometry {
 
 public:
 
+    EGS_Box() : EGS_BaseGeometry("empty") {
+        inputBlock.addBlockInput("geometry", true);
+        inputBlock.addSingleInput("library", true, {"egs_box"});
+        inputBlock.addSingleInput("name", true);
+    };
+
     EGS_Box(EGS_Float a, const EGS_AffineTransform *t = 0,
             const string &Name = "") : EGS_BaseGeometry(Name),
         ax(a), ay(a), az(a), T(0)  {
@@ -132,6 +138,17 @@ public:
         if (T) {
             delete T;
         }
+    };
+    
+    // Build the input structure that this class will adhere to
+    // Any new input parameters should be included here
+    EGS_InputBlock getInputBlock() {
+        //inputBlock = new EGS_InputBlock("geometry");
+        /*inputBlock->addBlockInput("geometry", true);
+        inputBlock->addSingleInput("library", true, {"egs_box"});
+        inputBlock->addSingleInput("name", true);*/
+    
+        return inputBlock;
     };
 
     bool isInside(const EGS_Vector &x) {

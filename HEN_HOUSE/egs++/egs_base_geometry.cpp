@@ -442,6 +442,8 @@ EGS_BaseGeometry::EGS_BaseGeometry(const string &Name) : nreg(0), name(Name),
     if (egs_geometries[active_glist].addGeometry(this) < 0)
         egsFatal("EGS_BaseGeometry::EGS_BaseGeometry:\n"
                  "  a geometry with name %s already exists\n",name.c_str());
+                 
+    inputBlock = EGS_InputBlock(NULL, egs_geometries[active_glist].geom_delimeter, true);
 }
 
 EGS_BaseGeometry::~EGS_BaseGeometry() {
@@ -1170,3 +1172,5 @@ int EGS_BaseGeometry::setLabels(const string &inp) {
 
     return 1;
 }
+
+
