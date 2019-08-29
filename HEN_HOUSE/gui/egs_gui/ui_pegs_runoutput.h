@@ -1,0 +1,117 @@
+/*
+
+###############################################################################
+#
+#  EGSnrc user interface for egs_gui run output
+#  Copyright (C) 2015 National Research Council Canada
+#
+#  This file is part of EGSnrc.
+#
+#  EGSnrc is free software: you can redistribute it and/or modify it under
+#  the terms of the GNU Affero General Public License as published by the
+#  Free Software Foundation, either version 3 of the License, or (at your
+#  option) any later version.
+#
+#  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY
+#  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+#  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for
+#  more details.
+#
+#  You should have received a copy of the GNU Affero General Public License
+#  along with EGSnrc. If not, see http://www.gnu.org/licenses/.
+#
+###############################################################################
+#
+#  Author:          Iwan Kawrakow, 2003
+#
+#  Contributors:    Ernesto Mainegra-Hing
+#
+###############################################################################
+
+*/
+
+/********************************************************************************
+** Form generated from reading UI file 'pegs_runoutput.ui'
+**
+** Created by: Qt User Interface Compiler version 5.9.5
+**
+** WARNING! All changes made in this file will be lost when recompiling UI file!
+********************************************************************************/
+
+#ifndef UI_PEGS_RUNOUTPUT_H
+#define UI_PEGS_RUNOUTPUT_H
+
+#include <QtCore/QVariant>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QTextEdit>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
+
+QT_BEGIN_NAMESPACE
+
+class Ui_PEGS_RunOutput
+{
+public:
+    QVBoxLayout *vboxLayout;
+    QTextEdit *run_output;
+    QHBoxLayout *hboxLayout;
+    QSpacerItem *spacer6;
+    QPushButton *pushButton8;
+
+    void setupUi(QWidget *PEGS_RunOutput)
+    {
+        if (PEGS_RunOutput->objectName().isEmpty())
+            PEGS_RunOutput->setObjectName(QStringLiteral("PEGS_RunOutput"));
+        PEGS_RunOutput->resize(592, 663);
+        vboxLayout = new QVBoxLayout(PEGS_RunOutput);
+        vboxLayout->setSpacing(6);
+        vboxLayout->setContentsMargins(11, 11, 11, 11);
+        vboxLayout->setObjectName(QStringLiteral("vboxLayout"));
+        run_output = new QTextEdit(PEGS_RunOutput);
+        run_output->setObjectName(QStringLiteral("run_output"));
+
+        vboxLayout->addWidget(run_output);
+
+        hboxLayout = new QHBoxLayout();
+        hboxLayout->setSpacing(6);
+        hboxLayout->setObjectName(QStringLiteral("hboxLayout"));
+        spacer6 = new QSpacerItem(396, 21, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        hboxLayout->addItem(spacer6);
+
+        pushButton8 = new QPushButton(PEGS_RunOutput);
+        pushButton8->setObjectName(QStringLiteral("pushButton8"));
+
+        hboxLayout->addWidget(pushButton8);
+
+
+        vboxLayout->addLayout(hboxLayout);
+
+
+        retranslateUi(PEGS_RunOutput);
+        QObject::connect(pushButton8, SIGNAL(clicked()), PEGS_RunOutput, SLOT(hideWindow()));
+
+        QMetaObject::connectSlotsByName(PEGS_RunOutput);
+    } // setupUi
+
+    void retranslateUi(QWidget *PEGS_RunOutput)
+    {
+        PEGS_RunOutput->setWindowTitle(QApplication::translate("PEGS_RunOutput", "PEGS Output", Q_NULLPTR));
+        pushButton8->setText(QApplication::translate("PEGS_RunOutput", "&Close", Q_NULLPTR));
+    } // retranslateUi
+
+};
+
+namespace Ui {
+    class PEGS_RunOutput: public Ui_PEGS_RunOutput {};
+} // namespace Ui
+
+QT_END_NAMESPACE
+
+#endif // UI_PEGS_RUNOUTPUT_H
