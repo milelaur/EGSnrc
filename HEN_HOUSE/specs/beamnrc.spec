@@ -86,6 +86,7 @@ SOURCES = $(EGS_SOURCEDIR)egsnrc.macros \
           $(EGS_UTILS)xvgrplot.mortran \
           $(BEAM_CODE)_cm.mortran \
           $(EGS_SOURCEDIR)egs_utilities.mortran \
+          $(EGS_SOURCEDIR)rad_compton1.mortran \
           $(EGS_SOURCEDIR)get_inputs.mortran \
           $(EGS_SOURCEDIR)get_media_inputs.mortran \
           $(RANDOM).mortran \
@@ -108,6 +109,7 @@ LIB_SOURCES = $(BEAM_HOME)beam_lib.macros \
           $(BEAM_HOME)beamnrc.mortran \
           $(EGS_SOURCEDIR)egs_utilities.mortran \
           $(BEAM_CODE)_cm.mortran \
+          $(EGS_SOURCEDIR)rad_compton1.mortran \
           $(EGS_SOURCEDIR)get_inputs.mortran \
           $(EGS_SOURCEDIR)get_media_inputs.mortran \
           $(RANDOM).mortran \

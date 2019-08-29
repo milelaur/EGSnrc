@@ -62,6 +62,7 @@ SOURCES = \
 	$(EGS_UTILS)srcrz.mortran\
 	$(EGS_UTILS)ensrc.mortran\
 	$(EGS_UTILS)geomrz.mortran\
+	$(EGS_SOURCEDIR)rad_compton1.mortran \
 	$(EGS_SOURCEDIR)get_inputs.mortran\
         $(EGS_SOURCEDIR)get_media_inputs.mortran\
 	$(EGS_UTILS)grids.mortran\

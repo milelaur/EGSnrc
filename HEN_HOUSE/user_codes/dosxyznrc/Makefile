@@ -63,6 +63,7 @@ SOURCES = $(EGS_SOURCEDIR)egsnrc.macros \
           $(EGS_SOURCEDIR)pegs4_macros.mortran \
           $(EGS_UTILS)phsp_macros.mortran $(IAEA_PHSP_MACROS)\
           $(USER_CODE).mortran \
+          $(EGS_SOURCEDIR)rad_compton1.mortran \
           $(EGS_SOURCEDIR)get_inputs.mortran \
           $(EGS_SOURCEDIR)get_media_inputs.mortran $(MACHINE_MORTRAN) \
           srcxyznrc.mortran $(RANDOM).mortran \
