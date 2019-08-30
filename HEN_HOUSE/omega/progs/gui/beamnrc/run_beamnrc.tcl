@@ -1,4 +1,3 @@
-
 ###############################################################################
 #
 #  EGSnrc BEAMnrc graphical user interface: run beamnrc
@@ -84,9 +83,9 @@ proc check_and_build {} {
     if [file exists $inp_file_dir]==1 {
         set the_makefile [file join $inp_file_dir Makefile]
         if [file exists $the_makefile]==0 {
-            tk_dialog .error "Warning" "There's no $the_makefile Makefile for the accelerator\
+            tk_dialog .error "Warning" "There's no Makefile for the accelerator\
               $mod_base.  Will rebuild this accelerator, but you will lose\
-              any changes you have made to the sources.make file. HEI sina" error 0 OK
+              any changes you have made to the sources.make file." error 0 OK
         } else {
             # no need to build
             return 0
@@ -431,5 +430,3 @@ proc toggle_batch {var} {
 	$w.three.long configure -fg grey
     }
 }
-
-
