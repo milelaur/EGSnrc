@@ -1,0 +1,1952 @@
+%E
+"#############################################################################"
+"                                                                             "
+"  EGSnrc BEAMnrc macros for component modules                                "
+"  Copyright (C) 2015 National Research Council Canada                        "
+"                                                                             "
+"  This file is part of EGSnrc.                                               "
+"                                                                             "
+"  EGSnrc is free software: you can redistribute it and/or modify it under    "
+"  the terms of the GNU Affero General Public License as published by the     "
+"  Free Software Foundation, either version 3 of the License, or (at your     "
+"  option) any later version.                                                 "
+"                                                                             "
+"  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY  "
+"  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  "
+"  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for   "
+"  more details.                                                              "
+"                                                                             "
+"  You should have received a copy of the GNU Affero General Public License   "
+"  along with EGSnrc. If not, see <http://www.gnu.org/licenses/>.             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Author:          George Ding, 1992                                         "
+"                                                                             "
+"  Contributors:    Dave Rogers                                               "
+"                   Blake Walters                                             "
+"                   Iwan Kawrakow                                             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Mortran macros for the component modules of BEAM. A header for definitions "
+"  of $CM_LIST and $CM_TYPE which are added right after this by the scrips to "
+"  the .mortjob.mortran file.                                                 "
+"                                                                             "
+"#############################################################################"
+
+
+%L
+%Q1
+%C80
+!INDENT F4;
+!INDENT M4;
+;
+" **************************
+" List of component modules:
+" **************************
+"
+"  The list of identifiers of components to be included in the accelerator model
+"  is defined in the $CM_LIST replacement macro.  This must be modified prior
+"  to the MORTRAN compile step in order to generate an executable program with a
+"  different sequence and set of component modules.  The component modules must
+"  be listed in order of increasing Z.
+"
+"  The type of each component module is indicated in the $CM_TYPE macro.
+"
+"  This is the end of beam_cm_macros.hdr but the beam script will insert
+"  a couple of macros here with the required lists.
+"
+" The following is an example for a 2 CM case using CM SLABS and CHAMBER,
+"  identifiers FOILS and ION_CH
+"
+"  REPLACE{$CM_LIST} WITH {CMLIST(
+"         ION_CH,
+"         FOILS
+"     )}
+"  REPLACE{$CM_TYPE} WITH {CMTYPE(
+"         CHAMBER,
+"         SLABS
+"     )}
+"=======end of example, following this is the real thing============"
+"
+REPLACE{$CM_LIST} WITH {CMLIST(
+      XITWIN,
+      COLLIMAT,
+      SCATFOIL,
+      IONCHAM,
+      RING,
+      MIRROR,
+      MAINJAWS,
+      APPLICAT
+   )}
+REPLACE{$CM_TYPE} WITH {CMTYPE(
+      SLABS,
+      CONS3R,
+      CONESTAK,
+      CHAMBER,
+      CONESTAK,
+      MIRROR,
+      JAWS,
+      APPLICAT
+   )}
+REPLACE{$SYNC_CM_LIST} WITH {SYNCCMLIST(
+      END_SYNC_CMS
+   )}
+REPLACE{$DYN_CM_LIST} WITH {DYNCMLIST(
+      END_DYN_CMS
+   )}
+REPLACE{$CM_TYPE} WITH {CMTYPE(
+      SLABS,
+      CONS3R,
+      CONESTAK,
+      CHAMBER,
+      CONESTAK,
+      MIRROR,
+      JAWS,
+      APPLICAT
+   )}
+%C80
+"#############################################################################"
+"                                                                             "
+"  EGSnrc BEAMnrc component module macros: stacked planes                     "
+"  Copyright (C) 2015 National Research Council Canada                        "
+"                                                                             "
+"  This file is part of EGSnrc.                                               "
+"                                                                             "
+"  EGSnrc is free software: you can redistribute it and/or modify it under    "
+"  the terms of the GNU Affero General Public License as published by the     "
+"  Free Software Foundation, either version 3 of the License, or (at your     "
+"  option) any later version.                                                 "
+"                                                                             "
+"  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY  "
+"  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  "
+"  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for   "
+"  more details.                                                              "
+"                                                                             "
+"  You should have received a copy of the GNU Affero General Public License   "
+"  along with EGSnrc. If not, see <http://www.gnu.org/licenses/>.             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Author:          Blake Walters, 1995                                       "
+"                                                                             "
+"  Contributors:    Iwan Kawrakow                                             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  This code originally evolved from the SLAB component module written by     "
+"  Dave Rogers and Bruce Faddegon, starting in 1991, and subsequently edited  "
+"  by George Ding.                                                            "
+"                                                                             "
+"  The contributors named above are only those who could be identified from   "
+"  this file's revision history.                                              "
+"                                                                             "
+"  This code was originally part of the BEAM code system for Monte Carlo      "
+"  simulation of radiotherapy treatments units. It was developed at the       "
+"  National Research Council of Canada as part of the OMEGA collaborative     "
+"  research project with the University of Wisconsin. The system was          "
+"  originally described in:                                                   "
+"                                                                             "
+"  BEAM: A Monte Carlo code to simulate radiotherapy treatment units,         "
+"  DWO Rogers, BA Faddegon, GX Ding, C-M Ma, J Wei and TR Mackie,             "
+"  Medical Physics 22, 503-524 (1995).                                        "
+"                                                                             "
+"  BEAM User Manual                                                           "
+"  DWO Rogers, C-M Ma, B Walters, GX Ding, D Sheikh-Bagheri and G Zhang,      "
+"  NRC Report PIRS-509A (rev D)                                               "
+"                                                                             "
+"  As well as the authors of this paper and report, Joanne Treurniet of NRC   "
+"  made significant contributions to the code system, in particular the GUIs  "
+"  and EGS_Windows. Mark Holmes, Brian Geiser and Paul Reckwerdt of Wisconsin "
+"  played important roles in the overall OMEGA project within which the BEAM  "
+"  code system was developed.                                                 "
+"                                                                             "
+"  There have been major upgrades in the BEAM code starting in 2000 which     "
+"  have been heavily supported by Iwan Kawrakow, most notably: the port to    "
+"  EGSnrc, the inclusion of history-by-history statistics and the development "
+"  of the directional bremsstrahlung splitting variance reduction technique.  "
+"                                                                             "
+"#############################################################################"
+
+
+"-------------------------------------------------------------------------------
+"     XITWIN (SLABS) miscellaneous replacement macros
+"-------------------------------------------------------------------------------
+"
+REPLACE {$MAX_N_XITWIN} WITH {30}          "maximum number of slabs"
+;
+"-------------------------------------------------------------------------------
+"     XITWIN component module common                 ""toc:
+"-------------------------------------------------------------------------------
+"
+"V>COMMON/CM_XITWIN/
+"V>================
+"V>ICM_XITWIN          CM index, set =ICM in INPUT_XITWIN and never re-set
+"V>IRSTART_XITWIN      first region number for this CM
+"V>IREND_XITWIN        last region number for this CM
+"V>TITLE_XITWIN        title of CM
+"V>N_XITWIN            number of slabs in CM
+"V>N_GAP_XITWIN        0 if no air gap this CM, = 1 if air gap at top of CM
+"V>ZBACK_XITWIN(IRL)   Downstream Z boundary of slab IRL in SLABS
+"V>ZFRONT_XITWIN(IRL)  Upstream Z boundary of slab IRL in SLABS
+"V>ZTHICK_XITWIN(IRL)  thickness of slab IRL
+"V>IR_XITWIN           local region number
+
+REPLACE {;COMIN/CM_XITWIN/;} WITH {
+   ;COMMON/CM_XITWIN/ICM_XITWIN,IRSTART_XITWIN,IREND_XITWIN,
+   N_XITWIN,N_GAP_XITWIN,TITLE_XITWIN,ZBACK_XITWIN,ZFRONT_XITWIN,
+   ZTHICK_XITWIN,IR_XITWIN;
+   INTEGER ICM_XITWIN,IRSTART_XITWIN,IREND_XITWIN,N_XITWIN,
+           N_GAP_XITWIN,IR_XITWIN;
+   $REAL ZBACK_XITWIN($MAX_N_XITWIN),ZFRONT_XITWIN($MAX_N_XITWIN),
+         ZTHICK_XITWIN($MAX_N_XITWIN);
+   CHARACTER*1 TITLE_XITWIN(60);
+} "end of replacement defining common for this CM"
+;
+"-------------------------------------------------------------------------------
+"     XITWIN HOWNEAR replacement macro
+"     Now just calls the HOWNEAR_XITWIN subroutine
+"-------------------------------------------------------------------------------
+"
+REPLACE {XITWIN_CM_HOWNEAR(#)} WITH  {  "{P1} is DNEAR"
+CALL HOWNEAR_XITWIN({P1});
+}
+"end of SLABS_macros.mortran"
+%C80
+"#############################################################################"
+"                                                                             "
+"  EGSnrc BEAMnrc component module macros: 3-region stacked truncated cones   "
+"  Copyright (C) 2015 National Research Council Canada                        "
+"                                                                             "
+"  This file is part of EGSnrc.                                               "
+"                                                                             "
+"  EGSnrc is free software: you can redistribute it and/or modify it under    "
+"  the terms of the GNU Affero General Public License as published by the     "
+"  Free Software Foundation, either version 3 of the License, or (at your     "
+"  option) any later version.                                                 "
+"                                                                             "
+"  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY  "
+"  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  "
+"  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for   "
+"  more details.                                                              "
+"                                                                             "
+"  You should have received a copy of the GNU Affero General Public License   "
+"  along with EGSnrc. If not, see <http://www.gnu.org/licenses/>.             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Author:          Blake Walters, 1995                                       "
+"                                                                             "
+"  Contributors:    Dave Rogers                                               "
+"                   Iwan Kawrakow                                             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  The contributors named above are only those who could be identified from   "
+"  this file's revision history.                                              "
+"                                                                             "
+"  This code was originally part of the BEAM code system for Monte Carlo      "
+"  simulation of radiotherapy treatments units. It was developed at the       "
+"  National Research Council of Canada as part of the OMEGA collaborative     "
+"  research project with the University of Wisconsin. The system was          "
+"  originally described in:                                                   "
+"                                                                             "
+"  BEAM: A Monte Carlo code to simulate radiotherapy treatment units,         "
+"  DWO Rogers, BA Faddegon, GX Ding, C-M Ma, J Wei and TR Mackie,             "
+"  Medical Physics 22, 503-524 (1995).                                        "
+"                                                                             "
+"  BEAM User Manual                                                           "
+"  DWO Rogers, C-M Ma, B Walters, GX Ding, D Sheikh-Bagheri and G Zhang,      "
+"  NRC Report PIRS-509A (rev D)                                               "
+"                                                                             "
+"  As well as the authors of this paper and report, Joanne Treurniet of NRC   "
+"  made significant contributions to the code system, in particular the GUIs  "
+"  and EGS_Windows. Mark Holmes, Brian Geiser and Paul Reckwerdt of Wisconsin "
+"  played important roles in the overall OMEGA project within which the BEAM  "
+"  code system was developed.                                                 "
+"                                                                             "
+"  There have been major upgrades in the BEAM code starting in 2000 which     "
+"  have been heavily supported by Iwan Kawrakow, most notably: the port to    "
+"  EGSnrc, the inclusion of history-by-history statistics and the development "
+"  of the directional bremsstrahlung splitting variance reduction technique.  "
+"                                                                             "
+"#############################################################################"
+
+
+"-------------------------------------------------------------------------------
+"     COLLIMAT miscellaneous replacement macros
+"-------------------------------------------------------------------------------
+"
+REPLACE {$MAX_N_COLLIMAT} WITH {3}
+
+" THE MAX # OF POINTS TO BE ALLOWED IN THIS MODULE
+REPLACE {$NPOINT_COLLIMAT} WITH {15}
+
+"-------------------------------------------------------------------------------
+"     CONS3R component module common
+"-------------------------------------------------------------------------------
+"
+"V>COMMON/CM_COLLIMAT/
+"V>================
+"V>ICM_COLLIMAT        index of CM, set as ICM in INPUT_COLLIMAT, never re-set
+"V>IRSTART_COLLIMAT    first region number for this CM
+"V>IREND_COLLIMAT      last region number for this CM
+"V>N_COLLIMAT          number of regions in CM
+"V>TITLE_COLLIMAT      title of CM
+"V>ZMIN_COLLIMAT       Front of polycone
+"V>ZMAX_COLLIMAT       back of polycone
+"V>ZFRONT_COLLIMAT     Upstream Z boundary of this CM
+"V>NUM_NODE_COLLIMAT   the number of node in this module
+"V>INDEX_COLLIMAT      the index to indicates the shape
+"V>                  1: z coordinates are in the order without decrement
+"V>                  0: any order
+"V>                  this is very important for speed
+"V>ZCORNER_COLLIMAT($NPOINT_COLLIMAT)   z coordinate of points
+"V>RCORNER_COLLIMAT($NPOINT_COLLIMAT)   r coordinate of points
+"V>RCORNER2_COLLIMAT($NPOINT_COLLIMAT)
+"V>SURPARA_COLLIMAT($NPOINT_COLLIMAT-1,4)  params to describe the n-1 surfaces
+"V>            cos(theta)*R + sin(theta)* Z - p =0
+"V>            SURPARA(i,1) * R + SURPARA(i,2)*Z - SURPARA(i,3) = 0
+"V>            SURPARA(i,4): the slope of the surface.
+"V>RMIN_COLLIMAT       minimum radius
+"V>RMIN2_COLLIMAT      minimum radius square
+"V>IR_COLLIMAT         local region number
+"V>COUNT1_COLLIMAT     counter for region check
+
+REPLACE {;COMIN/CM_COLLIMAT/;} WITH {
+   ;COMMON/CM_COLLIMAT/
+      ICM_COLLIMAT,  IRSTART_COLLIMAT,  IREND_COLLIMAT,
+      N_COLLIMAT,    N_GAP_COLLIMAT, IR_COLLIMAT,
+      COUNT1_COLLIMAT,
+      TITLE_COLLIMAT,   ZMIN_COLLIMAT,     ZMAX_COLLIMAT,
+      ZFRONT_COLLIMAT,  NUM_NODE_COLLIMAT, INDEX_COLLIMAT,
+      ZCORNER_COLLIMAT, RCORNER_COLLIMAT,  RCORNER2_COLLIMAT,
+      SURPARA_COLLIMAT, RMIN_COLLIMAT,     RMIN2_COLLIMAT,
+      CRITOLD_COLLIMAT;
+   INTEGER
+      ICM_COLLIMAT,  IRSTART_COLLIMAT,  IREND_COLLIMAT,  N_COLLIMAT,
+      N_GAP_COLLIMAT, IR_COLLIMAT, COUNT1_COLLIMAT,
+      NUM_NODE_COLLIMAT,INDEX_COLLIMAT;
+   $REAL
+      ZMIN_COLLIMAT, ZMAX_COLLIMAT, ZFRONT_COLLIMAT,
+      ZCORNER_COLLIMAT($NPOINT_COLLIMAT),RCORNER_COLLIMAT($NPOINT_COLLIMAT),
+      RCORNER2_COLLIMAT($NPOINT_COLLIMAT),
+      SURPARA_COLLIMAT($NPOINT_COLLIMAT-1,4),
+      RMIN_COLLIMAT, RMIN2_COLLIMAT, CRITOLD_COLLIMAT;
+   CHARACTER*1 TITLE_COLLIMAT(60);
+} "end of replacement defining common for this CM"
+;
+"-------------------------------------------------------------------------------
+"     COLLIMAT HOWNEAR replacement macro
+"     Now just calls the HOWNEAR_COLLIMAT subroutine
+"-------------------------------------------------------------------------------
+"V>COLLIMAT_CM_HOWNEAR(#)
+"V>===================
+"V>
+"V>{P1} the dist to the nearest boundary
+;
+REPLACE {COLLIMAT_CM_HOWNEAR(#);} WITH {
+CALL HOWNEAR_COLLIMAT({P1});
+}
+
+;
+REPLACE {$GEO_SHIFT_2_(#,#)} WITH {
+;IF({P1}+1.0E-5< {P2}) [{P1}={P1}+1.0E-5;]  }
+
+
+"V>COLLIMAT_MACRO_1_IN(#,#,#);
+"V>=============
+"V> {p1} = 1, if particle is inside now, for region # change
+"V>      = 0,                outside
+"V> {P2} the z coordinate for dist calc
+"V>      if go down, ZCORNER_COLLIMAT(J+1)
+"V>            up    ZCORNER_COLLIMAT(J)
+"V> {p3} = 1, if W(NP) > 0, used to call where_am_i
+"V>      = -1,         < 0 ,  not include the w=0 case
+;
+REPLACE {COLLIMAT_MACRO_1_IN(#,#,#)} WITH {
+    CUT_COE=0.0;
+    CUT_COE1=0.0;
+    CUT_COE2=0.0;
+    DIST_TMP=({P2}-Z(NP))/W(NP);
+    DIRTMP = {P3};
+    IF(DIST_TMP>USTEP)[STEP_UNIT=USTEP;IU_D=0;]
+    ELSE[STEP_UNIT=DIST_TMP;IU_D=1;]
+    RF2_COLLIMAT=(X(NP)+STEP_UNIT*U(NP))**2
+            +(Y(NP)+STEP_UNIT*V(NP))**2;
+    IF(STEP_UNIT<1.0E-5)[;]
+    ELSEIF(SURPARA_COLLIMAT(J,4)>1.0E29)
+    [
+       IF(IU_D=1)
+       [
+          RF_COLLIMAT=SQRT(RF2_COLLIMAT);
+          IF(  RF_COLLIMAT<MAX(RCORNER_COLLIMAT(J), RCORNER_COLLIMAT(J+1))
+              & RF_COLLIMAT>MIN(RCORNER_COLLIMAT(J), RCORNER_COLLIMAT(J+1)))
+          [
+             $GEO_SHIFT_1_(STEP_UNIT);
+             USTEP=STEP_UNIT;
+             IRNEW = IRSTART_COLLIMAT + {P1};
+             RETURN;
+           ]
+        ]
+        ELSE[ USTEP=STEP_UNIT;RETURN;]
+
+     ]
+     ELSE
+     [
+         RV_COLLIMAT=RCORNER_COLLIMAT(J)+SURPARA_COLLIMAT(J,4)
+                  *(Z(NP)+STEP_UNIT*W(NP)-ZCORNER_COLLIMAT(J));
+         RV2_COLLIMAT=RV_COLLIMAT**2;
+         IF(RV2_COLLIMAT<=RF2_COLLIMAT)
+         [
+             RV_COLLIMAT=RCORNER_COLLIMAT(J)
+                      +SURPARA_COLLIMAT(J,4)*(Z(NP)-ZCORNER_COLLIMAT(J));
+             RV2_COLLIMAT=RV_COLLIMAT**2;
+             R0DELR=X(NP)*U(NP)+Y(NP)*V(NP);
+             DELRSQ=U(NP)*U(NP)+V(NP)*V(NP);
+             A=DELRSQ-(SURPARA_COLLIMAT(J,4)**2)*(W(NP)**2);
+             B=R0DELR-SURPARA_COLLIMAT(J,4)*RV_COLLIMAT*W(NP);
+             B2=B*B;
+             C=R0SQ-RV2_COLLIMAT;
+             IF(A=0.0)
+             [
+                 IF(B~=0.0)[CUT_COE=-0.5*C/B;]
+                 ELSE [ CUT_COE=-1.0E5; ]
+             ]
+             ELSE
+             [
+                 TEMP1=B2-A*C;
+                 IF(TEMP1>=0.0)
+                 [
+                     TEMP1=-(B+SIGN(one,B)*SQRT(TEMP1) );
+                     CUT_COE1=TEMP1/A;
+                     CUT_COE2=C/TEMP1;
+                     IF(CUT_COE1>STEP_UNITOLD & CUT_COE2>STEP_UNITOLD)
+                     [CUT_COE=MIN(CUT_COE1,CUT_COE2);]
+                     ELSE[ CUT_COE=MAX(CUT_COE1,CUT_COE2);]
+                 ]
+             ]
+             IF(CUT_COE>STEP_UNITOLD & CUT_COE<STEP_UNIT)
+             [
+                 $GEO_SHIFT_2_(CUT_COE,STEP_UNIT);
+                 USTEP=CUT_COE;
+                 IRNEW = IRSTART_COLLIMAT + {P1};
+                 RETURN;
+             ]
+             ELSEIF( CUT_COE = STEP_UNIT & IU_D=1 )
+             [
+                 $GEO_SHIFT_1_(CUT_COE);
+                 USTEP=CUT_COE;
+                 IF(DIRTMP=1 & J+1=NUM_NODE_COLLIMAT)
+                 [  CALL WHERE_AM_I(ICM_COLLIMAT,{P3});RETURN;]
+                 ELSEIF( DIRTMP=-1 & J=1 )
+                 [
+                    IF(N_GAP_COLLIMAT=0)
+                    [IRNEW=IREND_COLLIMAT; RETURN; ]
+                    ELSE[CALL WHERE_AM_I(ICM_COLLIMAT,{P3}); RETURN;]
+                 ]
+             ]
+             ELSE[USTEP=STEP_UNIT;IRNEW =IRSTART_COLLIMAT+{P1};RETURN;]
+         ]
+         ELSEIF(IU_D=0)[ USTEP=STEP_UNIT;RETURN;]
+    ]
+    STEP_UNITOLD=STEP_UNIT;
+
+;}
+
+
+"V>COLLIMAT_MACRO_1_OUT(#,#,#);
+"V>=============
+"V> {p1} = 1, if particle is inside now, for region # change
+"V>      = 0,                outside
+"V> {P2} the z coordinate for dist calc
+"V>      if go down, ZCORNER_COLLIMAT(J+1)
+"V>            up    ZCORNER_COLLIMAT(J)
+"V> {p3} = 1, if W(NP) > 0, used to call where_am_i
+"V>      = -1,         < 0 ,  not include the w=0 case
+;
+REPLACE {COLLIMAT_MACRO_1_OUT(#,#,#);} WITH {
+    CUT_COE=0.0;
+    CUT_COE1=0.0;
+    CUT_COE2=0.0;
+    DIST_TMP=({P2}-Z(NP))/W(NP);
+    DIRTMP={P3};
+    IF(DIST_TMP>USTEP)[STEP_UNIT=USTEP;IU_D=0;]
+    ELSE[STEP_UNIT=DIST_TMP;IU_D=1;]
+    IF(SURPARA_COLLIMAT(J,4)>1.0E29)
+    [
+        IF(IU_D=1)
+        [
+            RF2_COLLIMAT=(X(NP)+STEP_UNIT*U(NP))**2+(Y(NP)
+                    +STEP_UNIT*V(NP))**2;
+            RF_COLLIMAT=SQRT(RF2_COLLIMAT);
+            IF(  RF_COLLIMAT<MAX(RCORNER_COLLIMAT(J), RCORNER_COLLIMAT(J+1))
+              & RF_COLLIMAT>MIN(RCORNER_COLLIMAT(J), RCORNER_COLLIMAT(J+1)))
+            [
+                $GEO_SHIFT_1_(STEP_UNIT);
+                USTEP=STEP_UNIT;
+                IRNEW = IRSTART_COLLIMAT+{P1};
+                RETURN;
+            ]
+         ]
+         ELSE[USTEP=STEP_UNIT; RETURN; ]
+     ]
+     ELSE
+     [
+        RV_COLLIMAT=RCORNER_COLLIMAT(J)
+                +SURPARA_COLLIMAT(J,4)*(Z(NP)-ZCORNER_COLLIMAT(J));
+        RV2_COLLIMAT=RV_COLLIMAT**2;
+        R0DELR=X(NP)*U(NP)+Y(NP)*V(NP);
+        DELRSQ=U(NP)*U(NP)+V(NP)*V(NP);
+        A=DELRSQ-(SURPARA_COLLIMAT(J,4)**2)*(W(NP)**2);
+        B=R0DELR-SURPARA_COLLIMAT(J,4)*RV_COLLIMAT*W(NP);
+        B2=B*B;
+        C=R0SQ-RV2_COLLIMAT;
+        IF(A>0.0 & B>0.0 & C>0.0)
+        [IF(IU_D=0)[USTEP=STEP_UNIT; RETURN; ] ]
+        IF(A=0.0)
+        [
+           IF(B~=0.0)[CUT_COE=-0.5*C/B;]
+           ELSE [ CUT_COE=-1.0E5; ]
+        ]
+        ELSE
+        [
+            TEMP1=B2-A*C;
+            IF(TEMP1>=0.0)
+            [
+                TEMP1=-(B+SIGN(one,B)*SQRT(TEMP1) );
+                CUT_COE1=TEMP1/A;
+                CUT_COE2=C/TEMP1;
+                IF(CUT_COE1>STEP_UNITOLD & CUT_COE2>STEP_UNITOLD)
+                [CUT_COE=MIN(CUT_COE1,CUT_COE2);]
+                ELSE[ CUT_COE=MAX(CUT_COE1,CUT_COE2);]
+            ]
+        ]
+        IF(CUT_COE>STEP_UNITOLD & CUT_COE<STEP_UNIT)
+        [
+            $GEO_SHIFT_2_(CUT_COE,STEP_UNIT);
+            USTEP=CUT_COE;
+            IRNEW = IRSTART_COLLIMAT+{P1};
+            RETURN;
+        ]
+        ELSEIF( CUT_COE = STEP_UNIT & IU_D=1 )
+        [
+            $GEO_SHIFT_1_(CUT_COE);
+            USTEP=CUT_COE;
+            IF(DIRTMP=1 & J+1=NUM_NODE_COLLIMAT )
+            [ CALL WHERE_AM_I(ICM_COLLIMAT,{P3}); RETURN;  ]
+            ELSEIF( DIRTMP=-1 & J=1 )
+            [
+                IF(N_GAP_COLLIMAT=1)
+                [IRNEW=IREND_COLLIMAT; RETURN; ]
+                ELSE[CALL WHERE_AM_I(ICM_COLLIMAT,{P3}); RETURN;]
+            ]
+        ]
+        ELSEIF(CUT_COE = STEP_UNIT & IU_D=0 )
+        [ IRNEW=IRSTART_COLLIMAT+{P1};USTEP=STEP_UNIT; RETURN;]
+        ELSEIF(IU_D=0)[USTEP=STEP_UNIT;RETURN;]
+    ]
+    STEP_UNITOLD=STEP_UNIT;
+;}
+"End of CONS3R_macros.mortran"
+%C80
+"#############################################################################"
+"                                                                             "
+"  EGSnrc BEAMnrc component module macros: stack of conical geometries        "
+"  Copyright (C) 2015 National Research Council Canada                        "
+"                                                                             "
+"  This file is part of EGSnrc.                                               "
+"                                                                             "
+"  EGSnrc is free software: you can redistribute it and/or modify it under    "
+"  the terms of the GNU Affero General Public License as published by the     "
+"  Free Software Foundation, either version 3 of the License, or (at your     "
+"  option) any later version.                                                 "
+"                                                                             "
+"  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY  "
+"  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  "
+"  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for   "
+"  more details.                                                              "
+"                                                                             "
+"  You should have received a copy of the GNU Affero General Public License   "
+"  along with EGSnrc. If not, see <http://www.gnu.org/licenses/>.             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Author:          Blake Walters, 1995                                       "
+"                                                                             "
+"  Contributors:    Iwan Kawrakow                                             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  The contributors named above are only those who could be identified from   "
+"  this file's revision history.                                              "
+"                                                                             "
+"  This code was originally part of the BEAM code system for Monte Carlo      "
+"  simulation of radiotherapy treatments units. It was developed at the       "
+"  National Research Council of Canada as part of the OMEGA collaborative     "
+"  research project with the University of Wisconsin. The system was          "
+"  originally described in:                                                   "
+"                                                                             "
+"  BEAM: A Monte Carlo code to simulate radiotherapy treatment units,         "
+"  DWO Rogers, BA Faddegon, GX Ding, C-M Ma, J Wei and TR Mackie,             "
+"  Medical Physics 22, 503-524 (1995).                                        "
+"                                                                             "
+"  BEAM User Manual                                                           "
+"  DWO Rogers, C-M Ma, B Walters, GX Ding, D Sheikh-Bagheri and G Zhang,      "
+"  NRC Report PIRS-509A (rev D)                                               "
+"                                                                             "
+"  As well as the authors of this paper and report, Joanne Treurniet of NRC   "
+"  made significant contributions to the code system, in particular the GUIs  "
+"  and EGS_Windows. Mark Holmes, Brian Geiser and Paul Reckwerdt of Wisconsin "
+"  played important roles in the overall OMEGA project within which the BEAM  "
+"  code system was developed.                                                 "
+"                                                                             "
+"  There have been major upgrades in the BEAM code starting in 2000 which     "
+"  have been heavily supported by Iwan Kawrakow, most notably: the port to    "
+"  EGSnrc, the inclusion of history-by-history statistics and the development "
+"  of the directional bremsstrahlung splitting variance reduction technique.  "
+"                                                                             "
+"#############################################################################"
+
+
+"-------------------------------------------------------------------------------
+"     SCATFOIL miscellaneous replacement macros
+"-------------------------------------------------------------------------------
+"
+REPLACE {$MAX_N_SCATFOIL} WITH {15}
+;
+"-------------------------------------------------------------------------------
+"     SCATFOIL component module common                 ""toc:
+"-------------------------------------------------------------------------------
+"
+"V>COMMON/CM_SCATFOIL/
+"V>
+"V>ICM_SCATFOIL        = CM index, set as ICM in INPUT_SCATFOIL, not re-set
+"V>IRSTART_SCATFOIL    = first region number for this CM
+"V>IREND_SCATFOIL      = last region number for this CM
+"V>N_SCATFOIL          = number of regions in CM
+"V>TITLE_SCATFOIL      = title of CM
+"V>ZMIN_SCATFOIL       = Front of cone
+"V>ZMAX_SCATFOIL       = back of cone
+"V>ZFRONT_SCATFOIL     = Upstream Z boundary of this CM
+"V>RMIN_SCATFOIL       = radius at front
+"V>RMAX_SCATFOIL       = radius at back
+"V>RMINT_SCATFOIL(2)   = radius
+"V>RMAXT_SCATFOIL(2)   = radius
+"V>RMIN2_SCATFOIL      = squre of radius at front
+"V>RMAX2_SCATFOIL      = squre of radius at back
+"V>RMIN2T_SCATFOIL(2)  = squre of radius
+"V>RMAX2T_SCATFOIL(2)  = squre of radius
+"V>ALO_SCATFOIL        = slop of the cone
+"V>BLO_SCATFOIL        = constant of the eq. x = az + b
+"V>BLOT_SCATFOIL(2)    = constant of the eq. x = az + b
+"V>COSA_SCATFOIL       = cos of the cone
+"V>NOWALL_SCATFOIL     = is there an outer wall or not?
+"V>IR_SCATFOIL         = local region number
+;
+REPLACE {;COMIN/CM_SCATFOIL/;} WITH {
+   ;COMMON/CM_SCATFOIL/
+      ICM_SCATFOIL,    IRSTART_SCATFOIL,
+      IREND_SCATFOIL,  N_SCATFOIL,        N_GAP_SCATFOIL,
+      ISCM_SCATFOIL,   ISCM_MAX_SCATFOIL, IR_SCATFOIL,
+      ZFRONT_SCATFOIL, ZMIN_SCATFOIL,     ZMAX_SCATFOIL,
+      RMIN_SCATFOIL,   RMAX_SCATFOIL,     RBN_SCATFOIL,
+      RBNT_SCATFOIL,   RBN2_SCATFOIL,     RBN2T_SCATFOIL,
+      RMINT_SCATFOIL,  RMAXT_SCATFOIL,    RMIN2_SCATFOIL,
+      RMIN2T_SCATFOIL, RMAX2_SCATFOIL,    RMAX2T_SCATFOIL,
+      ALO_SCATFOIL,    BLO_SCATFOIL,      BLOT_SCATFOIL,
+      COSA_SCATFOIL,   NOWALL_SCATFOIL,
+      TITLE_SCATFOIL;
+   INTEGER
+      ICM_SCATFOIL,IRSTART_SCATFOIL,
+      IREND_SCATFOIL,N_SCATFOIL,N_GAP_SCATFOIL,
+      ISCM_SCATFOIL,ISCM_MAX_SCATFOIL,IR_SCATFOIL,
+      NOWALL_SCATFOIL;
+   $REAL
+      ZFRONT_SCATFOIL, ZMIN_SCATFOIL($MAX_N_SCATFOIL),
+      ZMAX_SCATFOIL($MAX_N_SCATFOIL),
+      RMIN_SCATFOIL($MAX_N_SCATFOIL),
+      RMAX_SCATFOIL($MAX_N_SCATFOIL),
+      RBN_SCATFOIL, RBNT_SCATFOIL(2), RBN2_SCATFOIL, RBN2T_SCATFOIL(2),
+      RMINT_SCATFOIL($MAX_N_SCATFOIL,2),
+      RMAXT_SCATFOIL($MAX_N_SCATFOIL,2),
+      RMIN2_SCATFOIL($MAX_N_SCATFOIL),
+      RMIN2T_SCATFOIL($MAX_N_SCATFOIL,2),
+      RMAX2_SCATFOIL($MAX_N_SCATFOIL),
+      RMAX2T_SCATFOIL($MAX_N_SCATFOIL,2),
+      ALO_SCATFOIL($MAX_N_SCATFOIL),
+      BLO_SCATFOIL($MAX_N_SCATFOIL),
+      BLOT_SCATFOIL($MAX_N_SCATFOIL,2),
+      COSA_SCATFOIL($MAX_N_SCATFOIL);
+   CHARACTER*1 TITLE_SCATFOIL(60);
+} "end of replacement defining common for this CM"
+;
+;
+"-------------------------------------------------------------------------------
+"     CONESTAK HOWNEAR replacement macro
+" Now just calls the HOWNEAR_SCATFOIL subroutine
+"-------------------------------------------------------------------------------
+"V>SCATFOIL_CM_HOWNEAR(#)
+"V>===================
+"V>
+;
+REPLACE {SCATFOIL_CM_HOWNEAR(#);} WITH  {
+CALL HOWNEAR_SCATFOIL({P1});
+}
+;
+"V>CONESTAK_CHECK_RIN(#,#);
+"V>=================
+"V>
+REPLACE {SCATFOIL_CHECK_RIN(#,#);} WITH {;
+IF(Z(NP) > ZMAX_SCATFOIL(ISCM_SCATFOIL) + $BDY_TOL |
+   Z(NP) < ZMIN_SCATFOIL(ISCM_SCATFOIL) - $BDY_TOL )[
+   I1 = I1 +1;
+   IF(I1 > 1000)[
+       OUTPUT {P1};
+      (' ***WARNING in inner cone of layer ',I4,' in SCATFOIL'/
+       ' Z of particle outside the layer.');
+   ]
+   IRNEW = 1;
+   USTEP = 0.0;
+   RETURN;
+]
+IF(X(NP)**2+Y(NP)**2 -(Z(NP)*ALO_SCATFOIL({P1})+
+   BLOT_SCATFOIL({P1},{P2}))**2 >= 0.0)[
+   IF(SQRT(X(NP)**2+Y(NP)**2)-Z(NP)*ALO_SCATFOIL({P1})-
+      BLOT_SCATFOIL({P1},{P2})>$BDY_TOL)[
+          I1 = I1 +1;
+          IF(I1 > 1000)[
+             OUTPUT {P1};
+             (' ***WARNING in inner cone of layer ',I4,' in SCATFOIL'/
+              ' Particle radius > radius of cone.');
+             IF(ABS(Z(NP)*ALO_SCATFOIL({P1})+BLO_SCATFOIL({P1})
+                - RBN_SCATFOIL) < $BDY_TOL)[
+                OUTPUT;
+                (/' Confusion could be because cone touches outer wall.');
+             ]
+          ]
+   ]
+   IRNEW = IRSTART_SCATFOIL + 3*(ISCM_SCATFOIL-1) + 1;
+   USTEP = 0.0;
+   RETURN;
+]
+}
+
+"V>CONESTAK_CHECK_ROUT(#,#);
+"V>=================
+"V>
+REPLACE {SCATFOIL_CHECK_ROUT(#,#);} WITH {;
+IF(Z(NP) > ZMAX_SCATFOIL(ISCM_SCATFOIL) + $BDY_TOL |
+   Z(NP) < ZMIN_SCATFOIL(ISCM_SCATFOIL) - $BDY_TOL )[
+   I2 = I2 +1;
+   IF(I2 > 1000)[
+       OUTPUT {P1};
+      (' ***WARNING in outer cone of layer ',I4,' in SCATFOIL'/
+       ' Z of particle outside the layer.');
+   ]
+   IRNEW = 1;
+   USTEP = 0.0;
+   RETURN;
+]
+IF(X(NP)**2+Y(NP)**2 -(Z(NP)*ALO_SCATFOIL({P1})+
+   BLOT_SCATFOIL({P1},{P2}))**2 <= 0.0)[
+   IF(Z(NP)*ALO_SCATFOIL({P1})+BLOT_SCATFOIL({P1},{P2})-
+      SQRT(X(NP)**2+Y(NP)**2)>$BDY_TOL)[
+      I2 = I2 +1;
+      IF(I2 > 1000)[
+          OUTPUT {P1};
+          (' ***WARNING in outer cone of layer ',I4,' in SCATFOIL'/
+           ' Particle radius < radius of inner cone.');
+          IF(ABS(Z(NP)*ALO_SCATFOIL({P1})+BLO_SCATFOIL({P1})
+             - RBN_SCATFOIL) < $BDY_TOL)[
+                OUTPUT;
+               (/' Confusion could be because cone touches outer wall.');
+          ]
+      ]
+   ]
+   IRNEW = IRSTART_SCATFOIL + 3*(ISCM_SCATFOIL-1);
+   USTEP = 0.0;
+   RETURN;
+]
+}
+;
+"V>CONESTAK_IN_HIT(#,#,#);
+"V>=============
+"V>
+;
+REPLACE {SCATFOIL_IN_HIT(#,#,#);} WITH {
+AUP_SCATFOIL = U(NP)**2 + V(NP)**2 - W(NP)**2*ALO_SCATFOIL({P2})**2;
+BUP_SCATFOIL = U(NP)*X(NP)+V(NP)*Y(NP)
+           - ALO_SCATFOIL({P2})**2*W(NP)*Z(NP)
+           - ALO_SCATFOIL({P2})*BLOT_SCATFOIL({P2},{P3})*W(NP);
+CUP_SCATFOIL = X(NP)**2+Y(NP)**2
+           -(Z(NP)*ALO_SCATFOIL({P2})+BLOT_SCATFOIL({P2},{P3}))**2;
+DUP_SCATFOIL = BUP_SCATFOIL*BUP_SCATFOIL - AUP_SCATFOIL*CUP_SCATFOIL;
+IF(AUP_SCATFOIL ~= 0.0 & DUP_SCATFOIL >= 0.0)[
+   TQ_SCATFOIL = -BUP_SCATFOIL - SIGN(one,BUP_SCATFOIL)*SQRT(DUP_SCATFOIL);
+   T1_SCATFOIL = TQ_SCATFOIL/AUP_SCATFOIL;
+   T2_SCATFOIL = CUP_SCATFOIL/TQ_SCATFOIL;
+   IF(T1_SCATFOIL > 0.0 &
+      T2_SCATFOIL > 0.0 )[
+      {P1} = MIN(T1_SCATFOIL, T2_SCATFOIL);
+   ]
+   ELSE[
+      {P1} = MAX(T1_SCATFOIL, T2_SCATFOIL);
+   ]
+]
+ELSE[
+      {P1}=1E5;
+  " OUTPUT AUP_SCATFOIL,DUP_SCATFOIL;"
+  "  (' ERROR in SCATFOIL_IN_HIT, AUP,DUP =',2F11.5/);"
+]
+}
+;
+
+"V>CONESTAK_IN_HIT_CYL(#,#);
+"V>=================
+"V>
+;
+REPLACE {SCATFOIL_IN_HIT_CYL(#,#);} WITH {;
+A_SCATFOIL = U(NP)**2+V(NP)**2;
+B_SCATFOIL = X(NP)*U(NP)+Y(NP)*V(NP);
+B2_SCATFOIL = B_SCATFOIL**2;
+C_SCATFOIL = X(NP)**2+Y(NP)**2;
+COUT_SCATFOIL = C_SCATFOIL - RBN2T_SCATFOIL({P2});
+IF(COUT_SCATFOIL > 0.0)[
+   IF(IWATCH > 0)[;OUTPUT COUT_SCATFOIL;(' COUT=',E11.3);]
+   COUT_SCATFOIL = 0.0;
+]
+IF(B_SCATFOIL > 0.0)[
+   IF((COUT_SCATFOIL/B2_SCATFOIL) > (-1.0E-3))[
+      {P1}=-0.5*COUT_SCATFOIL/B_SCATFOIL;
+   ]
+   ELSE[
+      {P1}=-COUT_SCATFOIL/(SQRT(B2_SCATFOIL-
+      A_SCATFOIL*COUT_SCATFOIL)+B_SCATFOIL);
+   ]
+]
+ELSEIF(B_SCATFOIL < 0.0)[
+   IF(COUT_SCATFOIL/B2_SCATFOIL > (-1.0E-3))[
+      {P1} = -2.*B_SCATFOIL/A_SCATFOIL*(1.-
+      0.25*A_SCATFOIL*COUT_SCATFOIL/B2_SCATFOIL);
+   ]
+   ELSE[
+      {P1}=(SQRT(B2_SCATFOIL-A_SCATFOIL*COUT_SCATFOIL)-
+              B_SCATFOIL)/A_SCATFOIL;
+   ]
+]
+ELSEIF(A_SCATFOIL = 0.0)[ {P1} = 1E30;]
+ELSE[{P1}=SQRT(-COUT_SCATFOIL/A_SCATFOIL);]
+}
+;
+"V>CONESTAK_OUT(#,#,#,#);
+"V>=============
+"V>
+;
+REPLACE {SCATFOIL_OUT(#,#,#,#);} WITH
+{;
+{P1}=1;
+AUP_SCATFOIL = U(NP)**2+V(NP)**2 - W(NP)*W(NP)*ALO_SCATFOIL({P3})**2;
+BUP_SCATFOIL = U(NP)*X(NP)+V(NP)*Y(NP)
+           - ALO_SCATFOIL({P3})**2*W(NP)*Z(NP)
+           - ALO_SCATFOIL({P3})*BLOT_SCATFOIL({P3},{P4})*W(NP);
+CUP_SCATFOIL = X(NP)**2+Y(NP)**2
+           -(Z(NP)*ALO_SCATFOIL({P3}) + BLOT_SCATFOIL({P3},{P4}))**2;
+DUP_SCATFOIL = BUP_SCATFOIL**2 - AUP_SCATFOIL*CUP_SCATFOIL;
+IF(DUP_SCATFOIL <= 0.0 | AUP_SCATFOIL = 0.0 ) [{P1} = 0;]
+ELSE[
+   TQ_SCATFOIL = -BUP_SCATFOIL - SIGN(one,BUP_SCATFOIL)*SQRT(DUP_SCATFOIL);
+   T1_SCATFOIL = TQ_SCATFOIL/AUP_SCATFOIL;
+   T2_SCATFOIL = CUP_SCATFOIL/TQ_SCATFOIL;
+   {P2} = MIN(T1_SCATFOIL, T2_SCATFOIL);
+   IF({P2} < 0.0) [
+      {P2} = MAX(T1_SCATFOIL, T2_SCATFOIL);
+   ]
+   IF({P2} <= 0.0) [
+       {P1} = 0;
+   ]
+]
+}
+;
+"V> $CMRM(OUT_CYL,IHIT,TCON_SCATFOIL,IB_SCATFOIL);
+"   =======================================
+"V>
+REPLACE {SCATFOIL_OUT_CYL(#,#,#);} WITH
+{;
+A_SCATFOIL  = U(NP)**2+V(NP)**2;
+B_SCATFOIL  = X(NP)*U(NP)+Y(NP)*V(NP);
+B2_SCATFOIL = B_SCATFOIL**2;
+C_SCATFOIL  = X(NP)**2+Y(NP)**2;
+IF(B_SCATFOIL.GE.0.0 | A_SCATFOIL = 0.0)[{P1}=0;{P2}=1.0E20]
+ELSE[
+   COUT_SCATFOIL = C_SCATFOIL - RBN2T_SCATFOIL({P3});
+   IF(COUT_SCATFOIL < 0.0)[
+      IF(IWATCH>0)[OUTPUT COUT_SCATFOIL;(' CIN=',E11.3);]
+      COUT_SCATFOIL=0.0;
+   ]
+   RAD_SCATFOIL = B2_SCATFOIL - A_SCATFOIL*COUT_SCATFOIL;
+   IF(RAD_SCATFOIL < 0.0)[{P1} = 0; {P2}=1E20;]
+   ELSE[
+      {P1}=1;
+      IF(COUT_SCATFOIL/B2_SCATFOIL < 1.0E-3)[
+         {P2}=-0.5*COUT_SCATFOIL/B_SCATFOIL;]
+      ELSE[
+         IF((SQRT(RAD_SCATFOIL)-B_SCATFOIL) ~= 0.0)[
+            {P2} = COUT_SCATFOIL/(SQRT(RAD_SCATFOIL)-B_SCATFOIL);
+         ]
+         ELSE[{P2} = 1.0E30;]
+      ]
+   ]
+]
+}
+
+;
+"V>$GET_SQXY(#,#);
+"V>=============
+"V>
+;
+REPLACE {SCATFOIL_GET_SQXY(#,#);} WITH
+{;
+ XF_SCATFOIL = X(NP)+{P1}*U(NP);
+ YF_SCATFOIL = Y(NP)+{P1}*V(NP);
+ {P2} = XF_SCATFOIL*XF_SCATFOIL + YF_SCATFOIL*YF_SCATFOIL;
+}
+"End of CONESTAK_macros.mortran"
+%C80
+"#############################################################################"
+"                                                                             "
+"  EGSnrc BEAMnrc component module macros: parallel plate monitor chamber     "
+"  Copyright (C) 2015 National Research Council Canada                        "
+"                                                                             "
+"  This file is part of EGSnrc.                                               "
+"                                                                             "
+"  EGSnrc is free software: you can redistribute it and/or modify it under    "
+"  the terms of the GNU Affero General Public License as published by the     "
+"  Free Software Foundation, either version 3 of the License, or (at your     "
+"  option) any later version.                                                 "
+"                                                                             "
+"  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY  "
+"  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  "
+"  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for   "
+"  more details.                                                              "
+"                                                                             "
+"  You should have received a copy of the GNU Affero General Public License   "
+"  along with EGSnrc. If not, see <http://www.gnu.org/licenses/>.             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Author:          Blake Walters, 1995                                       "
+"                                                                             "
+"  Contributors:    Iwan Kawrakow                                             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  The contributors named above are only those who could be identified from   "
+"  this file's revision history.                                              "
+"                                                                             "
+"  This code was originally part of the BEAM code system for Monte Carlo      "
+"  simulation of radiotherapy treatments units. It was developed at the       "
+"  National Research Council of Canada as part of the OMEGA collaborative     "
+"  research project with the University of Wisconsin. The system was          "
+"  originally described in:                                                   "
+"                                                                             "
+"  BEAM: A Monte Carlo code to simulate radiotherapy treatment units,         "
+"  DWO Rogers, BA Faddegon, GX Ding, C-M Ma, J Wei and TR Mackie,             "
+"  Medical Physics 22, 503-524 (1995).                                        "
+"                                                                             "
+"  BEAM User Manual                                                           "
+"  DWO Rogers, C-M Ma, B Walters, GX Ding, D Sheikh-Bagheri and G Zhang,      "
+"  NRC Report PIRS-509A (rev D)                                               "
+"                                                                             "
+"  As well as the authors of this paper and report, Joanne Treurniet of NRC   "
+"  made significant contributions to the code system, in particular the GUIs  "
+"  and EGS_Windows. Mark Holmes, Brian Geiser and Paul Reckwerdt of Wisconsin "
+"  played important roles in the overall OMEGA project within which the BEAM  "
+"  code system was developed.                                                 "
+"                                                                             "
+"  There have been major upgrades in the BEAM code starting in 2000 which     "
+"  have been heavily supported by Iwan Kawrakow, most notably: the port to    "
+"  EGSnrc, the inclusion of history-by-history statistics and the development "
+"  of the directional bremsstrahlung splitting variance reduction technique.  "
+"                                                                             "
+"#############################################################################"
+
+
+%Q1
+%C80
+!INDENT F4;
+!INDENT M4;
+;
+"-------------------------------------------------------------------------------
+"     CHAMBER miscellaneous replacement macros
+"-------------------------------------------------------------------------------
+"
+;
+REPLACE {$MAX_N_IONCHAM} WITH {200}
+"        ==========="
+;
+"-------------------------------------------------------------------------------
+"     CHAMBER component module common
+"-------------------------------------------------------------------------------
+"
+"V>COMMON/CM_IONCHAM/
+"V>================
+"V>ICM_IONCHAM        = index of CM, set as ICM in INPUT_$tag and never re-set
+"V>IRSTART_IONCHAM    = first region number for this CM
+"V>IREND_IONCHAM      = last region number for this CM
+"V>N_IONCHAM          = number of regions in CM
+"V>TITLE_IONCHAM      = title of CM
+"V>ZFRONT_IONCHAM     = Front of CM (air)
+"V>ZBACK_IONCHAM      = Front of CM (air)
+"V>ZMIN_IONCHAM       = Upstream Z boundary of first cylinder slab
+"V>ZMAX_IONCHAM       = Downstream Z boundary of this CM
+"V>Z_IONCHAM(I)
+"V>RCYS_IONCHAM(I,3)     = radius of a cylindeRS
+"V>RCYS2_IONCHAM(I,3)    = squre of radius of a cylinder
+"V>IR_IONCHAM         = local region number
+;
+REPLACE {COMIN/CM_IONCHAM/;} WITH {
+   COMMON/CM_IONCHAM/
+      Z_IONCHAM,
+      ZFRONT_IONCHAM,
+      ZBACK_IONCHAM,
+      ZMIN_IONCHAM,
+      ZMAX_IONCHAM,
+      RCYS_IONCHAM,
+      RCYS2_IONCHAM,
+      TITLE_IONCHAM,
+      ICM_IONCHAM,IRSTART_IONCHAM,IREND_IONCHAM,
+      N_IONCHAM,N_GAP_IONCHAM,
+      N_CHM_IONCHAM, N_TOP_IONCHAM,
+      N_BOT_IONCHAM,
+      IR_IONCHAM;
+   INTEGER
+      ICM_IONCHAM,IRSTART_IONCHAM,IREND_IONCHAM,
+      N_IONCHAM ,N_GAP_IONCHAM,
+      N_CHM_IONCHAM, N_TOP_IONCHAM,
+      N_BOT_IONCHAM, IR_IONCHAM;
+   $REAL
+      ZFRONT_IONCHAM,
+      ZBACK_IONCHAM,
+      ZMIN_IONCHAM,
+      ZMAX_IONCHAM,
+      RCYS_IONCHAM($MAX_N_IONCHAM,3),
+      RCYS2_IONCHAM($MAX_N_IONCHAM,3);
+   REAL*8 Z_IONCHAM(1:$MAX_N_IONCHAM+1);  "P Selvam change"
+   CHARACTER*1 TITLE_IONCHAM(60);
+} "end of replacement defining common for this CM"
+;
+;
+"-------------------------------------------------------------------------------
+"     CHAMBER HOWNEAR replacement macro
+"-------------------------------------------------------------------------------
+"V>IONCHAM_CM_HOWNEAR(#)
+"V>===================
+"V>
+;
+REPLACE {IONCHAM_CM_HOWNEAR(#);} WITH  { CALL HOWNEAR_IONCHAM({P1}); }
+;
+"End of CHAMBER_macros.mortran"
+%C80
+"#############################################################################"
+"                                                                             "
+"  EGSnrc BEAMnrc component module macros: stack of conical geometries        "
+"  Copyright (C) 2015 National Research Council Canada                        "
+"                                                                             "
+"  This file is part of EGSnrc.                                               "
+"                                                                             "
+"  EGSnrc is free software: you can redistribute it and/or modify it under    "
+"  the terms of the GNU Affero General Public License as published by the     "
+"  Free Software Foundation, either version 3 of the License, or (at your     "
+"  option) any later version.                                                 "
+"                                                                             "
+"  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY  "
+"  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  "
+"  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for   "
+"  more details.                                                              "
+"                                                                             "
+"  You should have received a copy of the GNU Affero General Public License   "
+"  along with EGSnrc. If not, see <http://www.gnu.org/licenses/>.             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Author:          Blake Walters, 1995                                       "
+"                                                                             "
+"  Contributors:    Iwan Kawrakow                                             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  The contributors named above are only those who could be identified from   "
+"  this file's revision history.                                              "
+"                                                                             "
+"  This code was originally part of the BEAM code system for Monte Carlo      "
+"  simulation of radiotherapy treatments units. It was developed at the       "
+"  National Research Council of Canada as part of the OMEGA collaborative     "
+"  research project with the University of Wisconsin. The system was          "
+"  originally described in:                                                   "
+"                                                                             "
+"  BEAM: A Monte Carlo code to simulate radiotherapy treatment units,         "
+"  DWO Rogers, BA Faddegon, GX Ding, C-M Ma, J Wei and TR Mackie,             "
+"  Medical Physics 22, 503-524 (1995).                                        "
+"                                                                             "
+"  BEAM User Manual                                                           "
+"  DWO Rogers, C-M Ma, B Walters, GX Ding, D Sheikh-Bagheri and G Zhang,      "
+"  NRC Report PIRS-509A (rev D)                                               "
+"                                                                             "
+"  As well as the authors of this paper and report, Joanne Treurniet of NRC   "
+"  made significant contributions to the code system, in particular the GUIs  "
+"  and EGS_Windows. Mark Holmes, Brian Geiser and Paul Reckwerdt of Wisconsin "
+"  played important roles in the overall OMEGA project within which the BEAM  "
+"  code system was developed.                                                 "
+"                                                                             "
+"  There have been major upgrades in the BEAM code starting in 2000 which     "
+"  have been heavily supported by Iwan Kawrakow, most notably: the port to    "
+"  EGSnrc, the inclusion of history-by-history statistics and the development "
+"  of the directional bremsstrahlung splitting variance reduction technique.  "
+"                                                                             "
+"#############################################################################"
+
+
+"-------------------------------------------------------------------------------
+"     RING miscellaneous replacement macros
+"-------------------------------------------------------------------------------
+"
+REPLACE {$MAX_N_RING} WITH {15}
+;
+"-------------------------------------------------------------------------------
+"     RING component module common                 ""toc:
+"-------------------------------------------------------------------------------
+"
+"V>COMMON/CM_RING/
+"V>
+"V>ICM_RING        = CM index, set as ICM in INPUT_RING, not re-set
+"V>IRSTART_RING    = first region number for this CM
+"V>IREND_RING      = last region number for this CM
+"V>N_RING          = number of regions in CM
+"V>TITLE_RING      = title of CM
+"V>ZMIN_RING       = Front of cone
+"V>ZMAX_RING       = back of cone
+"V>ZFRONT_RING     = Upstream Z boundary of this CM
+"V>RMIN_RING       = radius at front
+"V>RMAX_RING       = radius at back
+"V>RMINT_RING(2)   = radius
+"V>RMAXT_RING(2)   = radius
+"V>RMIN2_RING      = squre of radius at front
+"V>RMAX2_RING      = squre of radius at back
+"V>RMIN2T_RING(2)  = squre of radius
+"V>RMAX2T_RING(2)  = squre of radius
+"V>ALO_RING        = slop of the cone
+"V>BLO_RING        = constant of the eq. x = az + b
+"V>BLOT_RING(2)    = constant of the eq. x = az + b
+"V>COSA_RING       = cos of the cone
+"V>NOWALL_RING     = is there an outer wall or not?
+"V>IR_RING         = local region number
+;
+REPLACE {;COMIN/CM_RING/;} WITH {
+   ;COMMON/CM_RING/
+      ICM_RING,    IRSTART_RING,
+      IREND_RING,  N_RING,        N_GAP_RING,
+      ISCM_RING,   ISCM_MAX_RING, IR_RING,
+      ZFRONT_RING, ZMIN_RING,     ZMAX_RING,
+      RMIN_RING,   RMAX_RING,     RBN_RING,
+      RBNT_RING,   RBN2_RING,     RBN2T_RING,
+      RMINT_RING,  RMAXT_RING,    RMIN2_RING,
+      RMIN2T_RING, RMAX2_RING,    RMAX2T_RING,
+      ALO_RING,    BLO_RING,      BLOT_RING,
+      COSA_RING,   NOWALL_RING,
+      TITLE_RING;
+   INTEGER
+      ICM_RING,IRSTART_RING,
+      IREND_RING,N_RING,N_GAP_RING,
+      ISCM_RING,ISCM_MAX_RING,IR_RING,
+      NOWALL_RING;
+   $REAL
+      ZFRONT_RING, ZMIN_RING($MAX_N_RING),
+      ZMAX_RING($MAX_N_RING),
+      RMIN_RING($MAX_N_RING),
+      RMAX_RING($MAX_N_RING),
+      RBN_RING, RBNT_RING(2), RBN2_RING, RBN2T_RING(2),
+      RMINT_RING($MAX_N_RING,2),
+      RMAXT_RING($MAX_N_RING,2),
+      RMIN2_RING($MAX_N_RING),
+      RMIN2T_RING($MAX_N_RING,2),
+      RMAX2_RING($MAX_N_RING),
+      RMAX2T_RING($MAX_N_RING,2),
+      ALO_RING($MAX_N_RING),
+      BLO_RING($MAX_N_RING),
+      BLOT_RING($MAX_N_RING,2),
+      COSA_RING($MAX_N_RING);
+   CHARACTER*1 TITLE_RING(60);
+} "end of replacement defining common for this CM"
+;
+;
+"-------------------------------------------------------------------------------
+"     CONESTAK HOWNEAR replacement macro
+" Now just calls the HOWNEAR_RING subroutine
+"-------------------------------------------------------------------------------
+"V>RING_CM_HOWNEAR(#)
+"V>===================
+"V>
+;
+REPLACE {RING_CM_HOWNEAR(#);} WITH  {
+CALL HOWNEAR_RING({P1});
+}
+;
+"V>CONESTAK_CHECK_RIN(#,#);
+"V>=================
+"V>
+REPLACE {RING_CHECK_RIN(#,#);} WITH {;
+IF(Z(NP) > ZMAX_RING(ISCM_RING) + $BDY_TOL |
+   Z(NP) < ZMIN_RING(ISCM_RING) - $BDY_TOL )[
+   I1 = I1 +1;
+   IF(I1 > 1000)[
+       OUTPUT {P1};
+      (' ***WARNING in inner cone of layer ',I4,' in RING'/
+       ' Z of particle outside the layer.');
+   ]
+   IRNEW = 1;
+   USTEP = 0.0;
+   RETURN;
+]
+IF(X(NP)**2+Y(NP)**2 -(Z(NP)*ALO_RING({P1})+
+   BLOT_RING({P1},{P2}))**2 >= 0.0)[
+   IF(SQRT(X(NP)**2+Y(NP)**2)-Z(NP)*ALO_RING({P1})-
+      BLOT_RING({P1},{P2})>$BDY_TOL)[
+          I1 = I1 +1;
+          IF(I1 > 1000)[
+             OUTPUT {P1};
+             (' ***WARNING in inner cone of layer ',I4,' in RING'/
+              ' Particle radius > radius of cone.');
+             IF(ABS(Z(NP)*ALO_RING({P1})+BLO_RING({P1})
+                - RBN_RING) < $BDY_TOL)[
+                OUTPUT;
+                (/' Confusion could be because cone touches outer wall.');
+             ]
+          ]
+   ]
+   IRNEW = IRSTART_RING + 3*(ISCM_RING-1) + 1;
+   USTEP = 0.0;
+   RETURN;
+]
+}
+
+"V>CONESTAK_CHECK_ROUT(#,#);
+"V>=================
+"V>
+REPLACE {RING_CHECK_ROUT(#,#);} WITH {;
+IF(Z(NP) > ZMAX_RING(ISCM_RING) + $BDY_TOL |
+   Z(NP) < ZMIN_RING(ISCM_RING) - $BDY_TOL )[
+   I2 = I2 +1;
+   IF(I2 > 1000)[
+       OUTPUT {P1};
+      (' ***WARNING in outer cone of layer ',I4,' in RING'/
+       ' Z of particle outside the layer.');
+   ]
+   IRNEW = 1;
+   USTEP = 0.0;
+   RETURN;
+]
+IF(X(NP)**2+Y(NP)**2 -(Z(NP)*ALO_RING({P1})+
+   BLOT_RING({P1},{P2}))**2 <= 0.0)[
+   IF(Z(NP)*ALO_RING({P1})+BLOT_RING({P1},{P2})-
+      SQRT(X(NP)**2+Y(NP)**2)>$BDY_TOL)[
+      I2 = I2 +1;
+      IF(I2 > 1000)[
+          OUTPUT {P1};
+          (' ***WARNING in outer cone of layer ',I4,' in RING'/
+           ' Particle radius < radius of inner cone.');
+          IF(ABS(Z(NP)*ALO_RING({P1})+BLO_RING({P1})
+             - RBN_RING) < $BDY_TOL)[
+                OUTPUT;
+               (/' Confusion could be because cone touches outer wall.');
+          ]
+      ]
+   ]
+   IRNEW = IRSTART_RING + 3*(ISCM_RING-1);
+   USTEP = 0.0;
+   RETURN;
+]
+}
+;
+"V>CONESTAK_IN_HIT(#,#,#);
+"V>=============
+"V>
+;
+REPLACE {RING_IN_HIT(#,#,#);} WITH {
+AUP_RING = U(NP)**2 + V(NP)**2 - W(NP)**2*ALO_RING({P2})**2;
+BUP_RING = U(NP)*X(NP)+V(NP)*Y(NP)
+           - ALO_RING({P2})**2*W(NP)*Z(NP)
+           - ALO_RING({P2})*BLOT_RING({P2},{P3})*W(NP);
+CUP_RING = X(NP)**2+Y(NP)**2
+           -(Z(NP)*ALO_RING({P2})+BLOT_RING({P2},{P3}))**2;
+DUP_RING = BUP_RING*BUP_RING - AUP_RING*CUP_RING;
+IF(AUP_RING ~= 0.0 & DUP_RING >= 0.0)[
+   TQ_RING = -BUP_RING - SIGN(one,BUP_RING)*SQRT(DUP_RING);
+   T1_RING = TQ_RING/AUP_RING;
+   T2_RING = CUP_RING/TQ_RING;
+   IF(T1_RING > 0.0 &
+      T2_RING > 0.0 )[
+      {P1} = MIN(T1_RING, T2_RING);
+   ]
+   ELSE[
+      {P1} = MAX(T1_RING, T2_RING);
+   ]
+]
+ELSE[
+      {P1}=1E5;
+  " OUTPUT AUP_RING,DUP_RING;"
+  "  (' ERROR in RING_IN_HIT, AUP,DUP =',2F11.5/);"
+]
+}
+;
+
+"V>CONESTAK_IN_HIT_CYL(#,#);
+"V>=================
+"V>
+;
+REPLACE {RING_IN_HIT_CYL(#,#);} WITH {;
+A_RING = U(NP)**2+V(NP)**2;
+B_RING = X(NP)*U(NP)+Y(NP)*V(NP);
+B2_RING = B_RING**2;
+C_RING = X(NP)**2+Y(NP)**2;
+COUT_RING = C_RING - RBN2T_RING({P2});
+IF(COUT_RING > 0.0)[
+   IF(IWATCH > 0)[;OUTPUT COUT_RING;(' COUT=',E11.3);]
+   COUT_RING = 0.0;
+]
+IF(B_RING > 0.0)[
+   IF((COUT_RING/B2_RING) > (-1.0E-3))[
+      {P1}=-0.5*COUT_RING/B_RING;
+   ]
+   ELSE[
+      {P1}=-COUT_RING/(SQRT(B2_RING-
+      A_RING*COUT_RING)+B_RING);
+   ]
+]
+ELSEIF(B_RING < 0.0)[
+   IF(COUT_RING/B2_RING > (-1.0E-3))[
+      {P1} = -2.*B_RING/A_RING*(1.-
+      0.25*A_RING*COUT_RING/B2_RING);
+   ]
+   ELSE[
+      {P1}=(SQRT(B2_RING-A_RING*COUT_RING)-
+              B_RING)/A_RING;
+   ]
+]
+ELSEIF(A_RING = 0.0)[ {P1} = 1E30;]
+ELSE[{P1}=SQRT(-COUT_RING/A_RING);]
+}
+;
+"V>CONESTAK_OUT(#,#,#,#);
+"V>=============
+"V>
+;
+REPLACE {RING_OUT(#,#,#,#);} WITH
+{;
+{P1}=1;
+AUP_RING = U(NP)**2+V(NP)**2 - W(NP)*W(NP)*ALO_RING({P3})**2;
+BUP_RING = U(NP)*X(NP)+V(NP)*Y(NP)
+           - ALO_RING({P3})**2*W(NP)*Z(NP)
+           - ALO_RING({P3})*BLOT_RING({P3},{P4})*W(NP);
+CUP_RING = X(NP)**2+Y(NP)**2
+           -(Z(NP)*ALO_RING({P3}) + BLOT_RING({P3},{P4}))**2;
+DUP_RING = BUP_RING**2 - AUP_RING*CUP_RING;
+IF(DUP_RING <= 0.0 | AUP_RING = 0.0 ) [{P1} = 0;]
+ELSE[
+   TQ_RING = -BUP_RING - SIGN(one,BUP_RING)*SQRT(DUP_RING);
+   T1_RING = TQ_RING/AUP_RING;
+   T2_RING = CUP_RING/TQ_RING;
+   {P2} = MIN(T1_RING, T2_RING);
+   IF({P2} < 0.0) [
+      {P2} = MAX(T1_RING, T2_RING);
+   ]
+   IF({P2} <= 0.0) [
+       {P1} = 0;
+   ]
+]
+}
+;
+"V> $CMRM(OUT_CYL,IHIT,TCON_RING,IB_RING);
+"   =======================================
+"V>
+REPLACE {RING_OUT_CYL(#,#,#);} WITH
+{;
+A_RING  = U(NP)**2+V(NP)**2;
+B_RING  = X(NP)*U(NP)+Y(NP)*V(NP);
+B2_RING = B_RING**2;
+C_RING  = X(NP)**2+Y(NP)**2;
+IF(B_RING.GE.0.0 | A_RING = 0.0)[{P1}=0;{P2}=1.0E20]
+ELSE[
+   COUT_RING = C_RING - RBN2T_RING({P3});
+   IF(COUT_RING < 0.0)[
+      IF(IWATCH>0)[OUTPUT COUT_RING;(' CIN=',E11.3);]
+      COUT_RING=0.0;
+   ]
+   RAD_RING = B2_RING - A_RING*COUT_RING;
+   IF(RAD_RING < 0.0)[{P1} = 0; {P2}=1E20;]
+   ELSE[
+      {P1}=1;
+      IF(COUT_RING/B2_RING < 1.0E-3)[
+         {P2}=-0.5*COUT_RING/B_RING;]
+      ELSE[
+         IF((SQRT(RAD_RING)-B_RING) ~= 0.0)[
+            {P2} = COUT_RING/(SQRT(RAD_RING)-B_RING);
+         ]
+         ELSE[{P2} = 1.0E30;]
+      ]
+   ]
+]
+}
+
+;
+"V>$GET_SQXY(#,#);
+"V>=============
+"V>
+;
+REPLACE {RING_GET_SQXY(#,#);} WITH
+{;
+ XF_RING = X(NP)+{P1}*U(NP);
+ YF_RING = Y(NP)+{P1}*V(NP);
+ {P2} = XF_RING*XF_RING + YF_RING*YF_RING;
+}
+"End of CONESTAK_macros.mortran"
+%C80
+"#############################################################################"
+"                                                                             "
+"  EGSnrc BEAMnrc component module macros: mirror plane                       "
+"  Copyright (C) 2015 National Research Council Canada                        "
+"                                                                             "
+"  This file is part of EGSnrc.                                               "
+"                                                                             "
+"  EGSnrc is free software: you can redistribute it and/or modify it under    "
+"  the terms of the GNU Affero General Public License as published by the     "
+"  Free Software Foundation, either version 3 of the License, or (at your     "
+"  option) any later version.                                                 "
+"                                                                             "
+"  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY  "
+"  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  "
+"  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for   "
+"  more details.                                                              "
+"                                                                             "
+"  You should have received a copy of the GNU Affero General Public License   "
+"  along with EGSnrc. If not, see <http://www.gnu.org/licenses/>.             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Author:          Blake Walters, 1995                                       "
+"                                                                             "
+"  Contributors:    Iwan Kawrakow                                             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  This code originally evolved from the MIRR component module written by     "
+"  George Ding, starting in 1992, and subsequently edited by Charlie Ma.      "
+"                                                                             "
+"  The contributors named above are only those who could be identified from   "
+"  this file's revision history.                                              "
+"                                                                             "
+"  This code was originally part of the BEAM code system for Monte Carlo      "
+"  simulation of radiotherapy treatments units. It was developed at the       "
+"  National Research Council of Canada as part of the OMEGA collaborative     "
+"  research project with the University of Wisconsin. The system was          "
+"  originally described in:                                                   "
+"                                                                             "
+"  BEAM: A Monte Carlo code to simulate radiotherapy treatment units,         "
+"  DWO Rogers, BA Faddegon, GX Ding, C-M Ma, J Wei and TR Mackie,             "
+"  Medical Physics 22, 503-524 (1995).                                        "
+"                                                                             "
+"  BEAM User Manual                                                           "
+"  DWO Rogers, C-M Ma, B Walters, GX Ding, D Sheikh-Bagheri and G Zhang,      "
+"  NRC Report PIRS-509A (rev D)                                               "
+"                                                                             "
+"  As well as the authors of this paper and report, Joanne Treurniet of NRC   "
+"  made significant contributions to the code system, in particular the GUIs  "
+"  and EGS_Windows. Mark Holmes, Brian Geiser and Paul Reckwerdt of Wisconsin "
+"  played important roles in the overall OMEGA project within which the BEAM  "
+"  code system was developed.                                                 "
+"                                                                             "
+"  There have been major upgrades in the BEAM code starting in 2000 which     "
+"  have been heavily supported by Iwan Kawrakow, most notably: the port to    "
+"  EGSnrc, the inclusion of history-by-history statistics and the development "
+"  of the directional bremsstrahlung splitting variance reduction technique.  "
+"                                                                             "
+"#############################################################################"
+
+
+"-------------------------------------------------------------------------------
+"     MIRROR miscellaneous replacement macros
+"-------------------------------------------------------------------------------
+REPLACE {$MAX_N_MIRROR} WITH {10}
+"
+"-------------------------------------------------------------------------------
+"     MIRROR component module common
+"-------------------------------------------------------------------------------
+"V>COMMON/CM_MIRROR/
+"V>================
+"V>ICM_MIRROR        = index of CM, set as ICM in INPUT_$tag and never re-set
+"V>IRSTART_MIRROR    = first region number for this CM
+"V>IREND_MIRROR      = last region number for this CM
+"V>N_MIRROR          = number of slabs of the mirror
+"V>TITLE_MIRROR      = title of CM
+"V>ZFRONT_MIRROR     = Front of CM (air)
+"V>ZBACK_MIRROR      = Back of CM (air)
+"V>A_MIRROR          = a in X = a*Z + b
+"V>BMAX_MIRROR       = b in X = a*Z + b
+"V>BMIN_MIRROR       = b in X = a*Z + b
+"v>DTHICK_MIRROR($MAX_N_MIRROR)  thickness of mirror layers in this CM
+"V>IR_MIRROR         = local region number
+;
+REPLACE {;COMIN/CM_MIRROR/;} WITH {
+   ;COMMON/CM_MIRROR/ ICM_MIRROR,
+      IRSTART_MIRROR,IREND_MIRROR,   N_MIRROR,N_GAP_MIRROR,
+      IR_MIRROR,
+      ZFRONT_MIRROR,  ZMIN_MIRROR,
+      ZBACK_MIRROR,  A_MIRROR,       BMIN_MIRROR,
+      BMAX_MIRROR,   BMINT_MIRROR,   BMAXT_MIRROR,
+      XFMIN_MIRROR,  XFMAX_MIRROR,   XBMIN_MIRROR,
+      XBMAX_MIRROR,  XFMINT_MIRROR,  XFMAXT_MIRROR,
+      XBMINT_MIRROR, XBMAXT_MIRROR,  DTHICK_MIRROR,
+      ZTHICK_MIRROR,
+      TITLE_MIRROR;
+   INTEGER ICM_MIRROR,IRSTART_MIRROR,IREND_MIRROR,
+           N_MIRROR,N_GAP_MIRROR,IR_MIRROR;
+   $REAL
+      ZFRONT_MIRROR,   ZMIN_MIRROR,  ZBACK_MIRROR,
+      A_MIRROR,        BMIN_MIRROR($MAX_N_MIRROR),
+      BMAX_MIRROR($MAX_N_MIRROR), BMINT_MIRROR($MAX_N_MIRROR),
+      BMAXT_MIRROR($MAX_N_MIRROR), XFMIN_MIRROR($MAX_N_MIRROR),
+      XFMAX_MIRROR($MAX_N_MIRROR), XBMIN_MIRROR($MAX_N_MIRROR),
+      XBMAX_MIRROR($MAX_N_MIRROR), XFMINT_MIRROR($MAX_N_MIRROR),
+      XFMAXT_MIRROR($MAX_N_MIRROR), XBMINT_MIRROR($MAX_N_MIRROR),
+      XBMAXT_MIRROR($MAX_N_MIRROR),DTHICK_MIRROR($MAX_N_MIRROR),
+      ZTHICK_MIRROR;
+   CHARACTER*1 TITLE_MIRROR(60);
+} "end of replacement defining common for this CM"
+;
+"-------------------------------------------------------------------------------
+"     MIRROR HOWNEAR replacement macro
+"  Now just calls HOWNEAR_MIRROR subroutine
+"-------------------------------------------------------------------------------
+"V>MIRROR_CM_HOWNEAR(#)
+"V>===================
+"V>
+;
+REPLACE {MIRROR_CM_HOWNEAR(#);} WITH  {
+CALL HOWNEAR_MIRROR({P1});
+}
+"end of MIRROR_macros.mortran"
+%C80
+"#############################################################################"
+"                                                                             "
+"  EGSnrc BEAMnrc component module macros: set of paired bars                 "
+"  Copyright (C) 2015 National Research Council Canada                        "
+"                                                                             "
+"  This file is part of EGSnrc.                                               "
+"                                                                             "
+"  EGSnrc is free software: you can redistribute it and/or modify it under    "
+"  the terms of the GNU Affero General Public License as published by the     "
+"  Free Software Foundation, either version 3 of the License, or (at your     "
+"  option) any later version.                                                 "
+"                                                                             "
+"  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY  "
+"  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  "
+"  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for   "
+"  more details.                                                              "
+"                                                                             "
+"  You should have received a copy of the GNU Affero General Public License   "
+"  along with EGSnrc. If not, see <http://www.gnu.org/licenses/>.             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Author:          George Ding, 1992                                         "
+"                                                                             "
+"  Contributors:    Blake Walters                                             "
+"                   Dave Rogers                                               "
+"                   Iwan Kawrakow                                             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  The contributors named above are only those who could be identified from   "
+"  this file's revision history.                                              "
+"                                                                             "
+"  This code was originally part of the BEAM code system for Monte Carlo      "
+"  simulation of radiotherapy treatments units. It was developed at the       "
+"  National Research Council of Canada as part of the OMEGA collaborative     "
+"  research project with the University of Wisconsin. The system was          "
+"  originally described in:                                                   "
+"                                                                             "
+"  BEAM: A Monte Carlo code to simulate radiotherapy treatment units,         "
+"  DWO Rogers, BA Faddegon, GX Ding, C-M Ma, J Wei and TR Mackie,             "
+"  Medical Physics 22, 503-524 (1995).                                        "
+"                                                                             "
+"  BEAM User Manual                                                           "
+"  DWO Rogers, C-M Ma, B Walters, GX Ding, D Sheikh-Bagheri and G Zhang,      "
+"  NRC Report PIRS-509A (rev D)                                               "
+"                                                                             "
+"  As well as the authors of this paper and report, Joanne Treurniet of NRC   "
+"  made significant contributions to the code system, in particular the GUIs  "
+"  and EGS_Windows. Mark Holmes, Brian Geiser and Paul Reckwerdt of Wisconsin "
+"  played important roles in the overall OMEGA project within which the BEAM  "
+"  code system was developed.                                                 "
+"                                                                             "
+"  There have been major upgrades in the BEAM code starting in 2000 which     "
+"  have been heavily supported by Iwan Kawrakow, most notably: the port to    "
+"  EGSnrc, the inclusion of history-by-history statistics and the development "
+"  of the directional bremsstrahlung splitting variance reduction technique.  "
+"                                                                             "
+"#############################################################################"
+
+
+"-------------------------------------------------------------------------------
+"     JAWS miscellaneous replacement macros
+"-------------------------------------------------------------------------------
+REPLACE {$MAX_N_MAINJAWS} WITH {12}
+"       ==================="
+;
+"-------------------------------------------------------------------------------
+"     MAINJAWS (JAWS) component module common                  ""toc:
+"-------------------------------------------------------------------------------
+"
+"V>COMMON/CM_MAINJAWS/
+"V>================
+"V>ICM_MAINJAWS      = CM index, set as ICM in INPUT_MAINJAWS - never re-set
+"V>IRSTART_MAINJAWS  = first region number for this CM
+"V>IREND_MAINJAWS    = last region number for this CM
+"V>N_MAINJAWS        = number of regions in CM
+"V>ISCM_MAX_MAINJAWS = number of pired bars in CM
+"V>ISCM_MAINJAWS     = index of pired bars in CM
+"V>TITLE_MAINJAWS    = title of CM
+"V>XY_CHOICE_MAINJAWS = chose X or Y oringtation of the bar
+"V>ZBACK_MAINJAWS    = Back of CM
+"V>ZFRONT_MAINJAWS   = Front of CM
+"V>ZMIN_MAINJAWS(I)  = Zmin of a paired bar
+"V>ZMAX_MAINJAWS(I)  = Zmax of a paired bar
+"V>XFP_MAINJAWS(I)   = Front of positive bar in this ISCM (X or Y)
+"V>XFN_MAINJAWS(I)   = Front of negative bar in this ISCM (X or Y)
+"V>XBP_MAINJAWS(I)   = Back of positive bar in this ISCM (X or Y)
+"V>XBN_MAINJAWS(I)   = Back of negative bar in this ISCM (X or Y)
+"V>XFPT_MAINJAWS(I,2)= Front of positive bar in this ISCM (X or Y)
+"V>XFNT_MAINJAWS(I,2)= Front of negative bar in this ISCM (X or Y)
+"V>XBPT_MAINJAWS(I,2)= Back of positive bar in this ISCM (X or Y)
+"V>XBNT_MAINJAWS(I,2)= Back of negative bar in this ISCM (X or Y)
+"V>APO_MAINJAWS(I)   = Slope of positive bar in this ISCM (X or Y)
+"V>ANE_MAINJAWS(I)   = Slope of negative bar in this ISCM (X or Y)
+"V>BPO_MAINJAWS(I)   = Constant  b of positive bar in equation x = a*z + b
+"V>BNE_MAINJAWS(I)   = Constant  b of negative bar in equation x = a*z + b
+"V>BPOT_MAINJAWS(I,2)= Constant  b of positive bar in equation x = a*z + b
+"V>BNET_MAINJAWS(I,2)= Constant  b of negative bar in equation x = a*z + b
+"V>IXY_CHOICE_MAINJAWS(ISCM) = index for x or y bar direction
+"V>COSP_MAINJAWS(I)  = cos of positive bar in this ISCM
+"V>COSN_MAINJAWS(I)  = cos of negative bar in this ISCM
+"V>IR_MAINJAWS       = local region number
+"V>ISCM_MAINJAWS     = local sub-component region number
+"V>XY_MAINJAWS       = X(NP) or Y(NP)
+"V>UV_MAINJAWS       = U(NP) or V(NP)
+;
+REPLACE {;COMIN/CM_MAINJAWS/;} WITH {
+   ;COMMON/CM_MAINJAWS/
+      IXY_CHOICE_MAINJAWS,
+      APO_MAINJAWS, ANE_MAINJAWS,
+      XFP_MAINJAWS,XFPT_MAINJAWS,   XFN_MAINJAWS,XFNT_MAINJAWS,
+      XBP_MAINJAWS,XBPT_MAINJAWS,   XBN_MAINJAWS,XBNT_MAINJAWS,
+      BPO_MAINJAWS,BPOT_MAINJAWS,   BNE_MAINJAWS,BNET_MAINJAWS,
+      ZMIN_MAINJAWS, ZMAX_MAINJAWS, ZBACK_MAINJAWS,ZFRONT_MAINJAWS,
+      COSP_MAINJAWS,COSN_MAINJAWS,XY_MAINJAWS,UV_MAINJAWS,
+      ICM_MAINJAWS,
+      IRSTART_MAINJAWS,  IREND_MAINJAWS,  N_MAINJAWS,  ISCM_MAX_MAINJAWS,
+      IR_MAINJAWS, ISCM_MAINJAWS,
+      TITLE_MAINJAWS;
+   INTEGER
+      ICM_MAINJAWS,IRSTART_MAINJAWS,IREND_MAINJAWS,
+      N_MAINJAWS,ISCM_MAX_MAINJAWS, IR_MAINJAWS,
+      IXY_CHOICE_MAINJAWS($MAX_N_MAINJAWS), ISCM_MAINJAWS;
+   $REAL
+      ZMIN_MAINJAWS($MAX_N_MAINJAWS),  ZMAX_MAINJAWS($MAX_N_MAINJAWS),
+      ZBACK_MAINJAWS, ZFRONT_MAINJAWS,     XFP_MAINJAWS($MAX_N_MAINJAWS),
+      XFN_MAINJAWS($MAX_N_MAINJAWS),   XBP_MAINJAWS($MAX_N_MAINJAWS),
+      XBN_MAINJAWS($MAX_N_MAINJAWS),   XFPT_MAINJAWS($MAX_N_MAINJAWS,2),
+      XFNT_MAINJAWS($MAX_N_MAINJAWS,2),XBPT_MAINJAWS($MAX_N_MAINJAWS,2),
+      XBNT_MAINJAWS($MAX_N_MAINJAWS,2),APO_MAINJAWS($MAX_N_MAINJAWS),
+      ANE_MAINJAWS($MAX_N_MAINJAWS),   BPO_MAINJAWS($MAX_N_MAINJAWS),
+      BNE_MAINJAWS($MAX_N_MAINJAWS),   BPOT_MAINJAWS($MAX_N_MAINJAWS,2),
+      BNET_MAINJAWS($MAX_N_MAINJAWS,2),COSP_MAINJAWS($MAX_N_MAINJAWS),
+      COSN_MAINJAWS($MAX_N_MAINJAWS), XY_MAINJAWS,UV_MAINJAWS;
+   CHARACTER*1 TITLE_MAINJAWS(60);
+
+} "end of replacement defining common for this CM"
+;
+"-------------------------------------------------------------------------------
+"     MAINJAWS (JAWS) HOWNEAR replacement macro                   ""toc:
+"-------------------------------------------------------------------------------
+"
+REPLACE {MAINJAWS_CM_HOWNEAR(#)} WITH {  "{P1} is DNEAR"
+"       ==================="
+CALL HOWNEAR_MAINJAWS({P1});
+}
+;
+REPLACE {MAINJAWS_TPOSITIVE;} WITH {;
+DIST = (APO_MAINJAWS(ISCM_MAINJAWS)*Z(NP) +
+        BPOT_MAINJAWS(ISCM_MAINJAWS,IB_MAINJAWS)
+         - XY_MAINJAWS)/(UV_MAINJAWS-W(NP)*APO_MAINJAWS(ISCM_MAINJAWS));
+IF(DIST < 0.0)[
+   I_tpo = I_tpo + 1;
+   DIST = 0.0;
+   IF(Z(NP) < ZFRONT_MAINJAWS-0.1 | Z(NP) > ZBACK_MAINJAWS+0.1 )[
+      OUTPUT; (/' ***WARNING in +ve bar of JAWS'/
+            ' Particle is well above or below jaw, yet region number '/
+            ' indicates the particle is still in the jaw.'/
+            ' The particle is being discarded but this is a bug.'/
+            ' Please contact the NRC.'/);
+      IDISC=1; RETURN;
+   ]
+   ELSEIF(I_tpo > 20)[
+      OUTPUT; (/' ***WARNING in +ve bar of JAWS'/
+            ' DIST calculated to jaw opening has been -ve and reset to '/
+            ' zero for the past 20 steps.  The particle could be assigned'/
+            ' to the wrong region number.  The particle is being discarded'/
+            ' but this is a bug.  Please contact the NRC.'/);
+      IDISC = 1; I_tpo = 0; RETURN;
+   ]
+]
+ELSE[
+   I_tpo = 0;
+              "reset counter in case another particle in this history has"
+              "this problem"
+]
+}
+;
+REPLACE {MAINJAWS_TNEGATIVE;} WITH {;
+DIST = (ANE_MAINJAWS(ISCM_MAINJAWS)*Z(NP)+
+          BNET_MAINJAWS(ISCM_MAINJAWS,IB_MAINJAWS)
+        - XY_MAINJAWS)/(UV_MAINJAWS-W(NP)*ANE_MAINJAWS(ISCM_MAINJAWS));
+IF(DIST < 0.0)[
+   I_tne = I_tne + 1;
+   DIST = 0.0;
+   IF(Z(NP) < ZFRONT_MAINJAWS-0.1 | Z(NP) > ZBACK_MAINJAWS+0.1 )[
+      OUTPUT; (/' ***WARNING in -ve bar of JAWS'/
+            ' Particle is well above or below jaw, yet region number '/
+            ' indicates the particle is still in the jaw.'/
+            ' The particle is being discarded but this is a bug.'/
+            ' Please contact the NRC.'/);
+      IDISC=1; RETURN;
+   ]
+   ELSEIF(I_tne > 20)[
+      OUTPUT; (/' ***WARNING in -ve bar of JAWS'/
+            ' DIST calculated to jaw opening has been -ve and reset to '/
+            ' zero for the past 20 steps.  The particle could be assigned'/
+            ' to the wrong region number.  The particle is being discarded'/
+            ' but this is a bug.  Please contact the NRC.'/);
+      IDISC = 1; I_tne = 0; RETURN;
+   ]
+]
+ELSE[
+   I_tne = 0;
+              "reset counter in case another particle in this history has"
+              "this problem"
+]
+}
+;
+REPLACE {MAINJAWS_SET_XY_UV(#)} WITH {;
+XY_MAINJAWS = X(NP);
+UV_MAINJAWS = U(NP);
+IF(IXY_CHOICE_MAINJAWS({P1}) = 1)[
+   XY_MAINJAWS = Y(NP);
+   UV_MAINJAWS = V(NP);
+]
+}
+"End of JAWS_macros.mortran"
+%C80
+"#############################################################################"
+"                                                                             "
+"  EGSnrc BEAMnrc component module macros: set of rectangular applicators     "
+"  Copyright (C) 2015 National Research Council Canada                        "
+"                                                                             "
+"  This file is part of EGSnrc.                                               "
+"                                                                             "
+"  EGSnrc is free software: you can redistribute it and/or modify it under    "
+"  the terms of the GNU Affero General Public License as published by the     "
+"  Free Software Foundation, either version 3 of the License, or (at your     "
+"  option) any later version.                                                 "
+"                                                                             "
+"  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY  "
+"  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  "
+"  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for   "
+"  more details.                                                              "
+"                                                                             "
+"  You should have received a copy of the GNU Affero General Public License   "
+"  along with EGSnrc. If not, see <http://www.gnu.org/licenses/>.             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Author:          Blake Walters, 1995                                       "
+"                                                                             "
+"  Contributors:    Geoff Zhang                                               "
+"                   Iwan Kawrakow                                             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  The contributors named above are only those who could be identified from   "
+"  this file's revision history.                                              "
+"                                                                             "
+"  This code was originally part of the BEAM code system for Monte Carlo      "
+"  simulation of radiotherapy treatments units. It was developed at the       "
+"  National Research Council of Canada as part of the OMEGA collaborative     "
+"  research project with the University of Wisconsin. The system was          "
+"  originally described in:                                                   "
+"                                                                             "
+"  BEAM: A Monte Carlo code to simulate radiotherapy treatment units,         "
+"  DWO Rogers, BA Faddegon, GX Ding, C-M Ma, J Wei and TR Mackie,             "
+"  Medical Physics 22, 503-524 (1995).                                        "
+"                                                                             "
+"  BEAM User Manual                                                           "
+"  DWO Rogers, C-M Ma, B Walters, GX Ding, D Sheikh-Bagheri and G Zhang,      "
+"  NRC Report PIRS-509A (rev D)                                               "
+"                                                                             "
+"  As well as the authors of this paper and report, Joanne Treurniet of NRC   "
+"  made significant contributions to the code system, in particular the GUIs  "
+"  and EGS_Windows. Mark Holmes, Brian Geiser and Paul Reckwerdt of Wisconsin "
+"  played important roles in the overall OMEGA project within which the BEAM  "
+"  code system was developed.                                                 "
+"                                                                             "
+"  There have been major upgrades in the BEAM code starting in 2000 which     "
+"  have been heavily supported by Iwan Kawrakow, most notably: the port to    "
+"  EGSnrc, the inclusion of history-by-history statistics and the development "
+"  of the directional bremsstrahlung splitting variance reduction technique.  "
+"                                                                             "
+"#############################################################################"
+
+
+"-------------------------------------------------------------------------------
+"     APPLICAT miscellaneous replacement macros
+"-------------------------------------------------------------------------------
+"
+REPLACE {$MAX_N_APPLICAT} WITH {10}
+"       ==================="
+REPLACE {$GAP_F_B_AIR_MIN} WITH {0.01}
+"       ================"
+"$GAP_F_B_AIR_MIN is the thickness of the air gap in the front and the back of"
+"this component module. The air gap must be present as they are designed to"
+"easily sort out which region a particle is going into."
+
+REPLACE {APPLICAT_MAY_HIT_INSIDE(#,#,#,#,#,#,#);} WITH {;
+"        =============================";
+   {P1}=0;
+   {P2}={P7};
+   IF(ABS({P6}) > {P4} & V(NP)*{P6}<0.0)[
+      TVAR=(ABS({P6})-{P4})/ABS(V(NP));
+      IF(ABS({P5}+U(NP)*TVAR) <= {P3} & TVAR < {P7})[
+         {P1}=1;
+         {P2}=TVAR;
+         ]
+      ]
+   IF(ABS({P5}) > {P3} & U(NP)*{P5}<0.0)[
+      TVAR=(ABS({P5})-{P3})/ABS(U(NP));
+      IF(ABS({P6}+V(NP)*TVAR) <= {P4} & TVAR < {P7})[
+         {P1}=1;
+         {P2}=MIN({P2},TVAR);
+         ]
+      ]
+}
+
+REPLACE {APPLICAT_HIT_OUTSIDE(#,#,#,#,#);} WITH {;
+"        ========================";
+IF(U(NP)~=0.0)[
+   IF(U(NP) > 0.0)[TVAR=({P2}-{P4})/U(NP);]
+   ELSE [TVAR=-({P2}+{P4})/U(NP);]
+   IF(ABS({P5}+V(NP)*TVAR) <= {P3})[
+      {P1}=TVAR;
+         ]
+   ELSEIF(V(NP)>0.0) [
+      {P1}=({P3}-{P5})/V(NP);
+      ]
+   ELSEIF(V(NP)<0.0) [
+      {P1}=(-{P3}-{P5})/V(NP);
+      ]
+   ELSE [{P1}=TVAR; ]
+   ]
+ELSE [
+   IF(V(NP)>0.0) [
+      {P1}=({P3}-{P5})/V(NP);
+      ]
+   ELSEIF(V(NP)<0.0) [
+      {P1}=(-{P3}-{P5})/V(NP);
+      ]
+   ELSE [ {P1}=1.0E30; ]
+   ]
+}
+;
+"-------------------------------------------------------------------------------
+"     APPLICAT component module common
+"-------------------------------------------------------------------------------
+"
+"V>COMMON/CM_APPLICAT/
+"V>================
+"V>XMIN_APPLICAT(IRL) = minimum X of scraper IRL
+"V>YMIN_APPLICAT(IRL) = minimum Y of scraper IRL
+"V>XMAX_APPLICAT(IRL) = maximum X of scraper IRL
+"V>YMAX_APPLICAT(IRL) = maximum Y of scraper IRL
+"V>XMINT_APPLICAT(IRL,2) = minimum X of scraper IRL
+"V>YMINT_APPLICAT(IRL,2) = minimum Y of scraper IRL
+"V>XMAXT_APPLICAT(IRL,2) = maximum X of scraper IRL
+"V>YMAXT_APPLICAT(IRL,2) = maximum Y of scraper IRL
+"V>ICM_APPLICAT = index of CM, set as ICM in INPUT_$tag and never re-set
+"V>IRSTART_APPLICAT = first region number for this CM
+"V>IREND_APPLICAT = last region number for this CM
+"V>N_APPLICAT = number of slabs in CM
+"V>TITLE_APPLICAT = title of CM
+"V>ZBACK_APPLICAT = Back of CM (air)
+"V>ZFRONT_APPLICAT = Front of CM (air)
+"V>ZMIN_APPLICAT(IRL) = Upstream Z boundary of slab IRL in APPLICAT
+"V>ZMAX_APPLICAT(IRL) = Downstream Z boundary of slab IRL in APPLICAT
+"V>ZMINT_APPLICAT(IRL,2) = Upstream Z boundary of slab IRL in APPLICAT
+"V>ZMAXT_APPLICAT(IRL,2) = Downstream Z boundary of slab IRL in APPLICAT
+"V>IR_APPLICAT = local region number
+"V>ABSX_APPLICAT = abs(X(NP))
+"V>ABSY_APPLICAT = abs(Y(NP))
+"V>
+;
+REPLACE {;COMIN/CM_APPLICAT/;} WITH {
+   ;COMMON/CM_APPLICAT/
+      ICM_APPLICAT,IRSTART_APPLICAT,IREND_APPLICAT,N_APPLICAT,
+      IR_APPLICAT,
+      TITLE_APPLICAT,XMIN_APPLICAT,YMIN_APPLICAT,XMAX_APPLICAT,
+      YMAX_APPLICAT,
+      ZMIN_APPLICAT,ZMAX_APPLICAT,ZBACK_APPLICAT,ZFRONT_APPLICAT,
+      XMINT_APPLICAT,YMINT_APPLICAT,XMAXT_APPLICAT,YMAXT_APPLICAT,
+      ZMINT_APPLICAT,ZMAXT_APPLICAT,
+      AIRGAPMIN_APPLICAT,ABSX_APPLICAT,ABSY_APPLICAT;
+   INTEGER
+      ICM_APPLICAT,IRSTART_APPLICAT,IREND_APPLICAT,N_APPLICAT,
+      IR_APPLICAT;
+   $REAL
+      XMIN_APPLICAT($MAX_N_APPLICAT),
+      YMIN_APPLICAT($MAX_N_APPLICAT),
+      XMAX_APPLICAT($MAX_N_APPLICAT),
+      YMAX_APPLICAT($MAX_N_APPLICAT),
+      ZMIN_APPLICAT($MAX_N_APPLICAT),
+      ZMAX_APPLICAT($MAX_N_APPLICAT),
+      ZBACK_APPLICAT,ZFRONT_APPLICAT,
+      XMINT_APPLICAT($MAX_N_APPLICAT,2),
+      YMINT_APPLICAT($MAX_N_APPLICAT,2),
+      XMAXT_APPLICAT($MAX_N_APPLICAT,2),
+      YMAXT_APPLICAT($MAX_N_APPLICAT,2),
+      ZMINT_APPLICAT($MAX_N_APPLICAT,2),
+      ZMAXT_APPLICAT($MAX_N_APPLICAT,2),
+      AIRGAPMIN_APPLICAT,ABSX_APPLICAT,ABSY_APPLICAT;
+   CHARACTER*1 TITLE_APPLICAT(60);
+} "end of replacement defining common for this CM"
+;
+
+;
+"-------------------------------------------------------------------------------
+"     APPLICAT HOWNEAR replacement macro
+"     Now just a call to HOWNEAR subroutine.
+"-------------------------------------------------------------------------------
+"
+
+REPLACE {APPLICAT_CM_HOWNEAR(#)} WITH {   "{P1} is DNEAR"
+CALL HOWNEAR_APPLICAT({P1});
+}
+;
+"end of APPLICAT_macros.mortran"
