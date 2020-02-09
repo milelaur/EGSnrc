@@ -1,0 +1,222 @@
+%E
+"#############################################################################"
+"                                                                             "
+"  EGSnrc BEAMnrc macros for component modules                                "
+"  Copyright (C) 2015 National Research Council Canada                        "
+"                                                                             "
+"  This file is part of EGSnrc.                                               "
+"                                                                             "
+"  EGSnrc is free software: you can redistribute it and/or modify it under    "
+"  the terms of the GNU Affero General Public License as published by the     "
+"  Free Software Foundation, either version 3 of the License, or (at your     "
+"  option) any later version.                                                 "
+"                                                                             "
+"  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY  "
+"  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  "
+"  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for   "
+"  more details.                                                              "
+"                                                                             "
+"  You should have received a copy of the GNU Affero General Public License   "
+"  along with EGSnrc. If not, see <http://www.gnu.org/licenses/>.             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Author:          George Ding, 1992                                         "
+"                                                                             "
+"  Contributors:    Dave Rogers                                               "
+"                   Blake Walters                                             "
+"                   Iwan Kawrakow                                             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Mortran macros for the component modules of BEAM. A header for definitions "
+"  of $CM_LIST and $CM_TYPE which are added right after this by the scrips to "
+"  the .mortjob.mortran file.                                                 "
+"                                                                             "
+"#############################################################################"
+
+
+%L
+%Q1
+%C80
+!INDENT F4;
+!INDENT M4;
+;
+" **************************
+" List of component modules:
+" **************************
+"
+"  The list of identifiers of components to be included in the accelerator model
+"  is defined in the $CM_LIST replacement macro.  This must be modified prior
+"  to the MORTRAN compile step in order to generate an executable program with a
+"  different sequence and set of component modules.  The component modules must
+"  be listed in order of increasing Z.
+"
+"  The type of each component module is indicated in the $CM_TYPE macro.
+"
+"  This is the end of beam_cm_macros.hdr but the beam script will insert
+"  a couple of macros here with the required lists.
+"
+" The following is an example for a 2 CM case using CM SLABS and CHAMBER,
+"  identifiers FOILS and ION_CH
+"
+"  REPLACE{$CM_LIST} WITH {CMLIST(
+"         ION_CH,
+"         FOILS
+"     )}
+"  REPLACE{$CM_TYPE} WITH {CMTYPE(
+"         CHAMBER,
+"         SLABS
+"     )}
+"=======end of example, following this is the real thing============"
+"
+REPLACE{$CM_LIST} WITH {CMLIST(
+      PHANTOM
+   )}
+REPLACE{$CM_TYPE} WITH {CMTYPE(
+      CHAMBER
+   )}
+REPLACE{$SYNC_CM_LIST} WITH {SYNCCMLIST(
+      END_SYNC_CMS
+   )}
+REPLACE{$DYN_CM_LIST} WITH {DYNCMLIST(
+      END_DYN_CMS
+   )}
+REPLACE{$CM_TYPE} WITH {CMTYPE(
+      CHAMBER
+   )}
+%C80
+"#############################################################################"
+"                                                                             "
+"  EGSnrc BEAMnrc component module macros: parallel plate monitor chamber     "
+"  Copyright (C) 2015 National Research Council Canada                        "
+"                                                                             "
+"  This file is part of EGSnrc.                                               "
+"                                                                             "
+"  EGSnrc is free software: you can redistribute it and/or modify it under    "
+"  the terms of the GNU Affero General Public License as published by the     "
+"  Free Software Foundation, either version 3 of the License, or (at your     "
+"  option) any later version.                                                 "
+"                                                                             "
+"  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY  "
+"  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  "
+"  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for   "
+"  more details.                                                              "
+"                                                                             "
+"  You should have received a copy of the GNU Affero General Public License   "
+"  along with EGSnrc. If not, see <http://www.gnu.org/licenses/>.             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  Author:          Blake Walters, 1995                                       "
+"                                                                             "
+"  Contributors:    Iwan Kawrakow                                             "
+"                                                                             "
+"#############################################################################"
+"                                                                             "
+"  The contributors named above are only those who could be identified from   "
+"  this file's revision history.                                              "
+"                                                                             "
+"  This code was originally part of the BEAM code system for Monte Carlo      "
+"  simulation of radiotherapy treatments units. It was developed at the       "
+"  National Research Council of Canada as part of the OMEGA collaborative     "
+"  research project with the University of Wisconsin. The system was          "
+"  originally described in:                                                   "
+"                                                                             "
+"  BEAM: A Monte Carlo code to simulate radiotherapy treatment units,         "
+"  DWO Rogers, BA Faddegon, GX Ding, C-M Ma, J Wei and TR Mackie,             "
+"  Medical Physics 22, 503-524 (1995).                                        "
+"                                                                             "
+"  BEAM User Manual                                                           "
+"  DWO Rogers, C-M Ma, B Walters, GX Ding, D Sheikh-Bagheri and G Zhang,      "
+"  NRC Report PIRS-509A (rev D)                                               "
+"                                                                             "
+"  As well as the authors of this paper and report, Joanne Treurniet of NRC   "
+"  made significant contributions to the code system, in particular the GUIs  "
+"  and EGS_Windows. Mark Holmes, Brian Geiser and Paul Reckwerdt of Wisconsin "
+"  played important roles in the overall OMEGA project within which the BEAM  "
+"  code system was developed.                                                 "
+"                                                                             "
+"  There have been major upgrades in the BEAM code starting in 2000 which     "
+"  have been heavily supported by Iwan Kawrakow, most notably: the port to    "
+"  EGSnrc, the inclusion of history-by-history statistics and the development "
+"  of the directional bremsstrahlung splitting variance reduction technique.  "
+"                                                                             "
+"#############################################################################"
+
+
+%Q1
+%C80
+!INDENT F4;
+!INDENT M4;
+;
+"-------------------------------------------------------------------------------
+"     CHAMBER miscellaneous replacement macros
+"-------------------------------------------------------------------------------
+"
+;
+REPLACE {$MAX_N_PHANTOM} WITH {200}
+"        ==========="
+;
+"-------------------------------------------------------------------------------
+"     CHAMBER component module common
+"-------------------------------------------------------------------------------
+"
+"V>COMMON/CM_PHANTOM/
+"V>================
+"V>ICM_PHANTOM        = index of CM, set as ICM in INPUT_$tag and never re-set
+"V>IRSTART_PHANTOM    = first region number for this CM
+"V>IREND_PHANTOM      = last region number for this CM
+"V>N_PHANTOM          = number of regions in CM
+"V>TITLE_PHANTOM      = title of CM
+"V>ZFRONT_PHANTOM     = Front of CM (air)
+"V>ZBACK_PHANTOM      = Front of CM (air)
+"V>ZMIN_PHANTOM       = Upstream Z boundary of first cylinder slab
+"V>ZMAX_PHANTOM       = Downstream Z boundary of this CM
+"V>Z_PHANTOM(I)
+"V>RCYS_PHANTOM(I,3)     = radius of a cylindeRS
+"V>RCYS2_PHANTOM(I,3)    = squre of radius of a cylinder
+"V>IR_PHANTOM         = local region number
+;
+REPLACE {COMIN/CM_PHANTOM/;} WITH {
+   COMMON/CM_PHANTOM/
+      Z_PHANTOM,
+      ZFRONT_PHANTOM,
+      ZBACK_PHANTOM,
+      ZMIN_PHANTOM,
+      ZMAX_PHANTOM,
+      RCYS_PHANTOM,
+      RCYS2_PHANTOM,
+      TITLE_PHANTOM,
+      ICM_PHANTOM,IRSTART_PHANTOM,IREND_PHANTOM,
+      N_PHANTOM,N_GAP_PHANTOM,
+      N_CHM_PHANTOM, N_TOP_PHANTOM,
+      N_BOT_PHANTOM,
+      IR_PHANTOM;
+   INTEGER
+      ICM_PHANTOM,IRSTART_PHANTOM,IREND_PHANTOM,
+      N_PHANTOM ,N_GAP_PHANTOM,
+      N_CHM_PHANTOM, N_TOP_PHANTOM,
+      N_BOT_PHANTOM, IR_PHANTOM;
+   $REAL
+      ZFRONT_PHANTOM,
+      ZBACK_PHANTOM,
+      ZMIN_PHANTOM,
+      ZMAX_PHANTOM,
+      RCYS_PHANTOM($MAX_N_PHANTOM,3),
+      RCYS2_PHANTOM($MAX_N_PHANTOM,3);
+   REAL*8 Z_PHANTOM(1:$MAX_N_PHANTOM+1);  "P Selvam change"
+   CHARACTER*1 TITLE_PHANTOM(60);
+} "end of replacement defining common for this CM"
+;
+;
+"-------------------------------------------------------------------------------
+"     CHAMBER HOWNEAR replacement macro
+"-------------------------------------------------------------------------------
+"V>PHANTOM_CM_HOWNEAR(#)
+"V>===================
+"V>
+;
+REPLACE {PHANTOM_CM_HOWNEAR(#);} WITH  { CALL HOWNEAR_PHANTOM({P1}); }
+;
+"End of CHAMBER_macros.mortran"

@@ -1,0 +1,47 @@
+slabit                                                                           #!GUI1.0
+VACUUM
+0, 0, 0, 0, 0, 2, 0,  IWATCH ETC.
+100, 33, 97, 0.99, 0, 0, 0, 0,  NCASE ETC.
+0, 1, 5, 0.2, 0, 0, 0, 0, 0, , IQIN, ISOURCE + OPTIONS
+0, MONOENERGETIC
+6
+0, 0, 1, 1, 0, 0, ,  0 , ECUT,PCUT,IREJCT,ESAVE
+0, 0, 0, 0, 0,  PHOTON FORCING
+0,  SCORING INPUT
+0,  DOSE COMPONENTS
+0.0, Z TO FRONT FACE
+*********** start of CM SLABS with identifier slab  ***********
+3, RMAX
+d
+1, NSLABS
+0.3, ZMIN
+1, 1, 1, 1, 1, 0
+CERROBEND700
+*********************end of all CMs*****************************
+ #########################
+ :Start MC Transport Parameter:
+ 
+ Global ECUT= 1
+ Global PCUT= 1
+ Global SMAX= 1e10
+ ESTEPE= 0.25
+ XIMAX= 0.5
+ Boundary crossing algorithm= EXACT
+ Skin depth for BCA= 0
+ Electron-step algorithm= PRESTA-II
+ Spin effects= On
+ Brems angular sampling= KM
+ Brems cross sections= BH
+ Bound Compton scattering= Norej
+ Compton cross sections= default
+ Pair angular sampling= Simple
+ Pair cross sections= BH
+ Photoelectron angular sampling= On
+ Rayleigh scattering= On
+ Atomic relaxations= EADL
+ Electron impact ionization= Off
+ Photon cross sections= xcom
+ Photon cross-sections output= Off
+ 
+ :Stop MC Transport Parameter:
+ #########################

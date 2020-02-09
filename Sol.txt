@@ -1,0 +1,169 @@
+LAB 01
+
+100000 histories
+monoenergetic 20 MeV, electrons
+ir medium    rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+-------------------------------------------------------------------------------
+1 lead  11.350    10.0000 1.6216e+00 +/- 0.179  % 2.2888e-12 +/- 
+0.179 
+
+100000 histories
+monoenergetic 1 MeV, electrons
+ir medium    rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+-------------------------------------------------------------------------------
+1 lead  11.350    10.0000 6.3768e-01 +/- 0.189  % 9.0005e-13 +/- 0.189  
+
+10000 histories
+monoenergetic 1 MeV, electrons
+ir medium    rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+-------------------------------------------------------------------------------
+1 lead  11.350    10.0000 6.3676e-01 +/- 0.603  % 8.9875e-13 +/- 0.603 
+
+10000 histories
+monoenergetic 1 MeV, electrons
+ir medium      rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+---------------------------------------------------------------------------------
+1 tantalum  16.654    10.0000 6.6698e-01 +/- 0.560  % 6.4159e-13 +/- 0.560
+
+100000 histories
+monoenergetic 20 MeV, photons
+ir medium    rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+-------------------------------------------------------------------------------
+1 lead  11.350    10.0000 1.3232e-01 +/- 1.567  % 1.8676e-13 +/- 1.567
+
+10000 histories
+monoenergetic 20 MeV, photons
+ir medium      rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+---------------------------------------------------------------------------------
+1 tantalum  16.654    10.0000 2.6197e-01 +/- 4.254  % 2.5199e-13 +/- 4.254
+
+100000 histories
+monoenergetic 1 MeV, photons
+ir medium    rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+-------------------------------------------------------------------------------
+1 lead  11.350    10.0000 4.4075e-02 +/- 1.308  % 6.2210e-14 +/- 1.308
+
+10000 histories
+monoenergetic 1 MeV, photons
+ir medium    rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+-------------------------------------------------------------------------------
+1 lead  11.350    10.0000 4.4009e-02 +/- 4.095  % 6.2116e-14 +/- 4.095
+
+10000 histories
+monoenergetic 1 MeV, photons
+ir medium      rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+---------------------------------------------------------------------------------
+1 tantalum  16.654    10.0000 5.9245e-02 +/- 3.527  % 5.6990e-14 +/- 3.527
+
+
+
+
+LAB 02
+
+Water 521
+Minimum: 0.010 MeV for photon and electron energies
+stopping power 200keV: 2.4226 and 2 MeV: 1.4002
+mfp to disc inter 200 keV: 0.06937 and 10 MeV: 0.1145
+
+Water 700
+Minimum: 0.010 MeV for photon and 0.189 for electron energies
+stopping power 200keV: 2.7935 and 2 MeV: 1.6615
+mfp to disc inter 200 keV: 11.12 and 10 MeV: 1.531
+
+mean distance 0.5 MeV, 1 MeV and 10 MeV:
+Water 521: 0.09731, 0.1107, 0.1157
+Water 700: 3.023, 2.553, 1.623
+Lead: 0.5091, 0.3481, 0.1193
+
+e- electrons and e+ positrons
+
+electrons mpf to brem interaction 20 MeV: 3.499 cm and brem fraction 0.65202. E_brem/E_ion = 0.65202. E_ion = 20 MeV -> E_brem = 0.65202 * 20 MeV = 13.0404 MeV. photon = E_ion-E_brem = 20 MeV - 13.0404 MeV = 6.9596 MeV
+
+
+
+
+LAB 03
+
+EX10MeVe
+
+PHASE SPACE FILE OUTPUT
+***********************
+File: 1
+Score plane: 1
+Total particles: 8054
+Total photons: 5876
+Max. KE of particles (MeV): 11.7691
+Min. KE of electrons 0.1970
+Incident particles from original source: 50000.000
+
+CPUTIME per history =   0.00034 sec
+
+Modules and regions and dose zone and dose [Gy]
+exterior: 0, 		0
+XITWIN: 1-3	0 1		2.224E-12
+Energy deposited [J]: 1.884E-14
+COLLIMAT: 5-7	0 2		1.717E-15
+Energy deposited [J]: 1.105E-13
+SCATFOIL: 8-17	0 4 5 6		2.664E-14+2.490E-11+1.203E-11 = 3.695664E-11
+Energy deposited [J]: 2.368E-15+3.243E-14+2.051E-14 = 5.5308E-14
+IONCHAM: 18-36	0 7 8 9 10 11	4.327E-12+3.361E-12+2.791E-12+3.481E-12+3.879E-14 = 1.399879E-11
+Energy deposited [J]: 4.095E-16+1.076E-13+2.301E-15+4.027E-14+4.356E-15 = 1.549365E-13
+RING: 37-40	0 12		3.424E-14
+Energy deposited [J]: 8.956E-14
+MIRROR: 41-45	0 13		1.228E-12
+Energy deposited [J]: 8.305E-15
+MAINJAWS: 46-51	0 14 15		2.246E-14+8.697E-15 = 3.1157E-14
+Energy deposited [J]: 7.869E-13+2.541E-13 = 1.041E-12
+APPLICAT: 52-57	0 16 17 18 19 20	5.505E-15+2.453E-14+2.621E-14+3.655E-14+2.711E-15 = 9.5506E-14
+Energy deposited [J]: 4.198E-16+1.995E-14+2.653E-14+5.144E-14+4.161E-16 = 9.87559E-14
+
+MAINJAWS is most energy deposited
+SCATFOIL receives the largest dose
+
+
+EX16MVp
+
+PHASE SPACE FILE OUTPUT
+***********************
+File: 1
+Score plane: 1
+Total particles: 5385
+Total photons: 5374
+Max. KE of particles (MeV): 15.7991
+Min. KE of electrons 0.3601
+Incident particles from original source: 50000.000
+
+CPUTIME per history =   0.00023 sec
+
+CM id, Modules and regions and dose zone and dose [Gy]
+0 exterior: 1		0
+1 TARGET: 2	1	7.673E-12		
+Energy deposited [J]: 1.851E-12
+2 PRIMCOLL: 3-4	0 2 23	4.579E-14		
+Energy deposited [J]: 1.833E-13
+3 FLATTENF: 6-16	0 3 4 23	1.438E-13+1.924E-13 = 3.362E-13
+Energy deposited [J]: 2.793E-14+1.033E-14 = 3.826E-14
+4 CHAMBER: 17-39	0 5 6 7	1.623E-14+4.181E-14+1.885E-14 = 7.689E-14
+Energy deposited [J]: 1.655E-16+5.566E-18+7.690E-18 = 1.78756E-16
+5 MIRROR: 40-44	0 8 9 23	6.356E-15+1.312E-14 = 1.9476E-14
+Energy deposited [J]: 2.172E-19+1.283E-17 = 1.30472E-17
+6 SECJAWS: 45-50	10 11 23	2.326E-15+3.421E-16 = 2.6681E-15
+Energy deposited [J]: 1.345E-13+1.826E-14 = 1.5276E-13
+7 AIRLAB: 51-53	0 12 23	1.268E-17	
+Energy deposited [J]: 1.630E-18
+
+23 is forget beacuse it is air
+
+TARGET is most energy deposited
+TARGET receives the largest dose
+
+
+EXphantom
+
+CPUTIME per history =   0.00001 sec
+Water chamber phantom (vesiallas) and phase space file generated using EX10MeVe as a source
+
+Particles recycled 8 times
+Recycling too many times underestimates uncertainties
+
+Depth dose curve better when there is more particles

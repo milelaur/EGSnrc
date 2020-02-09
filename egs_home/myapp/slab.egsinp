@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-	ncase = 1e5 # The number of histories to simulate
+	ncase = 1e3 # The number of histories to simulate
 :stop run control:
 
 ################################
@@ -24,7 +24,7 @@
 		y-planes = -5, 5 # in cm
 		z-planes = -10, 0, 0.1, 10 # in cm
 		:start media input:
-			media = vacuum lead # Indexed as 0 1
+			media = vacuum tantalum # Indexed as 0 1
 			set medium = 1 1 # Set region 1 to medium 1 (tantalum)
 					# Other regions default to medium 0 (vacuum)
 		:stop media input:
@@ -72,7 +72,7 @@
 	:start source:
 		name = pencil_beam # This name can be anything you like
 		library = egs_parallel_beam
-		charge = 0
+		charge = -1
 		direction = 0 0 1
 		:start spectrum:
 			type = monoenergetic

@@ -1,32 +1,32 @@
 EXphantom: example depth-dose calc using a phsp source from a 10MeV e- beam      #!GUI1.0
 AIR700ICRU
-0, 0, 0, 1, 0, 0, 0,  IWATCH,ISTORE,IRESTART,etc
-70000.0, 0, 0, 0.99, 0, 0, 0, 0,  NCASE, etc
-9, 21, 1, 0.0, 0.0, 0.0, 0.0, 0.0,0.0,0.0,  Phase space source incident on CM 1
+0, 0, 0, 2, 0, 2, 0,  IWATCH ETC.
+700000.0, 0, 0, 0.99, 0, 0, 0, 0,  NCASE ETC.
+9, 21, 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,  IQIN, ISOURCE + OPTIONS
 $EGS_HOME/BEAM_EX10MeVe/EX10MeVe.egsphsp1
-0.0, 0.0, 0.521, 0.010, 0, 2, 3.0, 0, ESTEPE, ECUT, PCUT, etc.
-0, 0, 0, 0, 0,  IFORCE,NFMIN,etc
-1, 1,           Scoring plane at the back of the phantom
-5, 0,           5 circular scoring zones
-0.1, 1.0, 2.0, 5.0, 10., Radii of scoring zones
-1,        Calculate contaminant dose and other dose components
-1, 0,     Contaminant particles are photons, identified on entering the phantom
-0,        LNEXC, no exclusive bit filter
-5,        LNINC, 5 inclusive bit filters
-16,
-17,
-18,
-19,
-20,
-0.0,    Z_min_CM(1)
-**************start of phantom**************************
-20.0
+0, 0, 0.521, 0.01, 0, 0, ,  0 , ECUT,PCUT,IREJCT,ESAVE
+0, 0, 0, 0, 0,  PHOTON FORCING
+1, 1,  SCORING INPUT
+5, 0
+0.1, 0.2, 0.3, 0.4, 0.5, 
+1,  DOSE COMPONENTS
+1, 0
+0
+5
+16, 
+17, 
+18, 
+19, 
+20, 
+0.0, Z TO FRONT FACE
+*********** start of CM CHAMBER with identifier PHANTOM ***********
+20.0, RMAX
 10cm depth-dose phantom, central axis dose volumes 0.5cm thick, r=1cm
 0.0, ZMIN
-0, 20, 0, N_TOP, N_CHM, N_BOT
+0, 200, 0, N_TOP, N_CHM, N_BOT
 2.0, 20.0, 20.0, RADII FOR CENTRAL PART
-0.5, 20, ZTHICK, FLAG FOR ALL LAYERS IN CENTRAL PART
-0.521, 0.01, 1, 0,
+0.5, 200, ZTHICK, FLAG FOR ALL LAYERS IN CENTRAL PART
+0.521, 0.01, 1, 0, 
 H2O700ICRU
 0.521, 0.01, 0, 0,   chamber wall
 H2O700ICRU
@@ -38,10 +38,10 @@ H2O700ICRU
 *********************end of all CMs*****************************
  #########################
  :Start MC Transport Parameter:
-
+ 
  Global ECUT= 0.521
  Global PCUT= 0.01
- Global SMAX= 5
+ Global SMAX= 0.1
  ESTEPE= 0.25
  XIMAX= 0.5
  Boundary crossing algorithm= PRESTA-I
@@ -51,10 +51,15 @@ H2O700ICRU
  Brems angular sampling= Simple
  Brems cross sections= BH
  Bound Compton scattering= Off
+ Compton cross sections= default
  Pair angular sampling= Simple
+ Pair cross sections= BH
  Photoelectron angular sampling= Off
  Rayleigh scattering= Off
  Atomic relaxations= Off
-
+ Electron impact ionization= Off
+ Photon cross sections= xcom
+ Photon cross-sections output= Off
+ 
  :Stop MC Transport Parameter:
  #########################
