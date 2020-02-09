@@ -1,3 +1,4 @@
+
 ###############################################################################
 #
 #  EGSnrc BEAMnrc graphical user interface: run beamnrc
@@ -83,7 +84,7 @@ proc check_and_build {} {
     if [file exists $inp_file_dir]==1 {
         set the_makefile [file join $inp_file_dir Makefile]
         if [file exists $the_makefile]==0 {
-            tk_dialog .error "Warning" "There's no Makefile for the accelerator\
+            tk_dialog .error "Warning" "There's no $the_makefile Makefile for the accelerator\
               $mod_base.  Will rebuild this accelerator, but you will lose\
               any changes you have made to the sources.make file." error 0 OK
         } else {
@@ -183,15 +184,6 @@ proc compile_accel {} {
     pack $w.title $w.four -side left -padx 10
     pack $w -side top -anchor n -pady 10
 
-    frame .bot.frm
-    scrollbar .bot.frm.scroll2 -command {.bot.frm.dialg yview} -orient vertical
-    text .bot.frm.dialg -yscroll {.bot.frm.scroll2 set};
-    pack .bot.frm.scroll2 -side left -fill both
-    pack .bot.frm.dialg -side top -fill both
-    .bot.frm.dialg insert end "\n Accelerator will be built prior to compilation if accelerator directory does not exist.\n"
-    .bot.frm.dialg insert end "\n Select BUILD & COMPILE to begin.\n"
-    pack .bot.frm
-
     frame .bot.bot -relief raised -bd 2
     button .bot.bot.b -text "BUILD & COMPILE" -command {
        if {[check_and_build]==1} {
@@ -232,7 +224,16 @@ proc compile_accel {} {
     }
     button .bot.bot.c -text "CLEAR DIALOGUE" -command {.bot.frm.dialg delete 1.0 end}
     pack .bot.bot.b .bot.bot.a .bot.bot.c -side left -fill x -expand no
-    pack .bot.bot -side right -padx 10 -pady 5
+    pack .bot.bot -side right -padx 10
+
+    frame .bot.frm
+    scrollbar .bot.frm.scroll2 -command {.bot.frm.dialg yview} -orient vertical
+    text .bot.frm.dialg -yscroll {.bot.frm.scroll2 set};
+    pack .bot.frm.scroll2 -side left -fill both
+    pack .bot.frm.dialg -side top -fill both
+    .bot.frm.dialg insert end "\n Accelerator will be built prior to compilation if accelerator directory does not exist.\n"
+    .bot.frm.dialg insert end "\n Select BUILD & COMPILE to begin.\n"
+    pack .bot.frm
 
 }
 
@@ -430,3 +431,4 @@ proc toggle_batch {var} {
 	$w.three.long configure -fg grey
     }
 }
+
