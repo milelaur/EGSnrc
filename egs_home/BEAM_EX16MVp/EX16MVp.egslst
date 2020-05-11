@@ -1,15 +1,9 @@
-*********************************************
- NOTE: MIRRORs RANGE REJECTION ALGORITHM ASSUMES THE MIRROR
- INTERSECTS THE ENTIRE BEAM!!!   CHECK IT
- ***********************************************************
-
-
 
 
 EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field  
 
  NRCC CALN: BEAMnrc(EGSnrc)   
- ON linux                                                  18:30:30 Feb  9 2020
+ ON linux64                                                19:17:06 May 11 2020
  ******************************************************************************
  **                                                                          **
  **                                  BEAMnrc                                 **
@@ -29,7 +23,11 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
                    Bremsstrahlung splitting                DIRECTIONAL
                     splitting field radius                   10.000 cm
                     splitting field SSD                     100.000 cm
-                    splitting no. in field                         20
+                    splitting no. in field                        100
+                    e+/e- will be split at plane   5 in CM   3:
+                     Z of splitting plane                    11.200 cm
+                     Z of Russian Roulette plane              0.000 cm
+                     Radial redistribution of split e+/e-  OFF
                    Brem. cross section enhancement WILL NOT be used
                    Photon force interaction switch         OFF
                    SCORING PLANES:     #           CM #
@@ -37,8 +35,8 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
                                        1             7
                    Phase space files will be output at EVERY scoring plane
                    Range rejection switch                  ON 
-                   Range rejection in  52 regions
-                   Automatic ECUTRR used starting from          0.700 MeV
+                   Range rejection in  51 regions
+                             Fixed ECUT used
  Range rejection based on medium of region particle is traversing
  Maximum electron ranges for restricted stopping powers:
    kinetic            Range for media 1 through 6
@@ -83,7 +81,7 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  Atomic relaxations                                          OFF           
  Photoelectron angular sampling                              OFF           
 
- Electron transport cutoff(MeV)                               0.7000
+ Electron transport cutoff(MeV)                               1.0000
  Bremsstrahlung cross sections                              BH  
  Bremsstrahlung angular sampling                             SIM
  Spin effects                                                On
@@ -92,7 +90,7 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  Maximum fractional energy loss/step (ESTEPE)                0.2500
  Maximum 1st elastic moment/step (XIMAX)                     0.5000
  Boundary crossing algorithm                                 PRESTA-I  
- Skin-depth for boundary crossing (MFP)                      49.84    
+ Skin-depth for boundary crossing (MFP)                      133.2    
  Electron-step algorithm                                     PRESTA-II 
 
 ================================================================================
@@ -126,58 +124,58 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  abs local  # IDENTIF   ZONE   TO_  (No.&Name)   (MeV)    (cm)    (MeV)
                        (0=no)  BIT
    1   1    0 exterior   0      0    0 Vacuum
-   2   1    1 TARGET     1      1    2 W700ICRU   1.023   0.015   1.000  DNEAR
-   3   1    2 PRIMCOLL  23     23    1 AIR700ICR  1.013 131.154   3.000  DNEAR
-   4   2    2 PRIMCOLL   2      2    3 FE700ICRU  1.013   0.027   3.000  DNEAR
-   5   3    2 PRIMCOLL   0     23    1 AIR700ICR  1.013 131.154   3.000  DNEAR
-   6   1    3 FLATTENF   3      3    3 FE700ICRU  1.003   0.026   3.000  DNEAR
-   7   2    3 FLATTENF  23     23    1 AIR700ICR  1.003 126.462   3.000  DNEAR
-   8   3    3 FLATTENF   3      3    3 FE700ICRU  1.003   0.026   3.000  DNEAR
-   9   4    3 FLATTENF  23     23    1 AIR700ICR  1.003 126.462   3.000  DNEAR
-  10   5    3 FLATTENF   4      4    2 W700ICRU   1.003   0.014   3.000  DNEAR
-  11   6    3 FLATTENF   3      3    3 FE700ICRU  1.003   0.026   3.000  DNEAR
-  12   7    3 FLATTENF  23     23    1 AIR700ICR  1.003 126.462   3.000  DNEAR
-  13   8    3 FLATTENF   4      4    2 W700ICRU   1.003   0.014   3.000  DNEAR
-  14   9    3 FLATTENF   3      3    3 FE700ICRU  1.003   0.026   3.000  DNEAR
-  15  10    3 FLATTENF  23     23    1 AIR700ICR  1.003 126.462   3.000  DNEAR
-  16  11    3 FLATTENF   0     23    1 AIR700ICR  1.003 126.462   3.000  DNEAR
-  17   1    4 CHAMBER    5      5    4 MYLAR700I  0.942   0.082   3.000  DNEAR
-  18   2    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
-  19   3    4 CHAMBER    7      5    1 AIR700ICR  0.942  98.853   3.000  DNEAR
-  20   4    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
-  21   5    4 CHAMBER    5      5    4 MYLAR700I  0.942   0.082   3.000  DNEAR
-  22   6    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
-  23   7    4 CHAMBER    7      5    1 AIR700ICR  0.942  98.853   3.000  DNEAR
-  24   8    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
-  25   9    4 CHAMBER    5      5    4 MYLAR700I  0.942   0.082   3.000  DNEAR
-  26  10    4 CHAMBER    7      5    1 AIR700ICR  0.942  98.853   3.000  DNEAR
-  27  11    4 CHAMBER    5      5    4 MYLAR700I  0.942   0.082   3.000  DNEAR
-  28  12    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
-  29  13    4 CHAMBER    7      5    1 AIR700ICR  0.942  98.853   3.000  DNEAR
-  30  14    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
-  31  15    4 CHAMBER    5      5    4 MYLAR700I  0.942   0.082   3.000  DNEAR
-  32  16    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
-  33  17    4 CHAMBER    7      5    1 AIR700ICR  0.942  98.853   3.000  DNEAR
-  34  18    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
-  35  19    4 CHAMBER    5      5    4 MYLAR700I  0.942   0.082   3.000  DNEAR
-  36  20    4 CHAMBER    0      6    1 AIR700ICR  0.942  98.853   3.000  DNEAR
-  37  21    4 CHAMBER    0      6    1 AIR700ICR  0.942  98.853   3.000  DNEAR
-  38  22    4 CHAMBER    0      6    1 AIR700ICR  0.942  98.853   3.000  DNEAR
-  39  23    4 CHAMBER    0     23    1 AIR700ICR  0.942  98.853   3.000  DNEAR
-  40   1    5 MIRROR     8      8    5 AL700ICRU  0.912   0.044   3.000  DNEAR
-  41   2    5 MIRROR     9      8    6 PMMA700IC  0.912   0.079   3.000  DNEAR
-  42   3    5 MIRROR    23     23    1 AIR700ICR  0.912  85.304   3.000  DNEAR
-  43   4    5 MIRROR    23     23    1 AIR700ICR  0.912  85.304   3.000  DNEAR
-  44   5    5 MIRROR     0     23    1 AIR700ICR  0.912  85.304   3.000  DNEAR
-  45   1    6 SECJAWS   23     23    1 AIR700ICR  0.865  65.295   3.000  DNEAR
-  46   2    6 SECJAWS   10     10    2 W700ICRU   0.865   0.008   3.000  DNEAR
-  47   3    6 SECJAWS   10     10    2 W700ICRU   0.865   0.008   3.000  DNEAR
-  48   4    6 SECJAWS   23     23    1 AIR700ICR  0.865  65.295   3.000  DNEAR
-  49   5    6 SECJAWS   11     11    2 W700ICRU   0.865   0.008   3.000  DNEAR
-  50   6    6 SECJAWS   11     11    2 W700ICRU   0.865   0.008   3.000  DNEAR
-  51   1    7 AIRSLAB   12     12    6 PMMA700IC  0.700   0.000   3.000  DNEAR
-  52   2    7 AIRSLAB   23     23    1 AIR700ICR  0.700   0.000   3.000  DNEAR
-  53   3    7 AIRSLAB    0     23    1 AIR700ICR  0.700   0.000   3.000  DNEAR
+   2   1    1 TARGET     1      1    2 W700ICRU   1.000   0.014   1.000  DNEAR
+   3   1    2 PRIMCOLL  23     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+   4   2    2 PRIMCOLL   2      2    3 FE700ICRU  1.000   0.026   3.000  DNEAR
+   5   3    2 PRIMCOLL   0     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+   6   1    3 FLATTENF   3      3    3 FE700ICRU  1.000   0.026   3.000  DNEAR
+   7   2    3 FLATTENF  23     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+   8   3    3 FLATTENF   3      3    3 FE700ICRU  1.000   0.026   3.000  DNEAR
+   9   4    3 FLATTENF  23     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  10   5    3 FLATTENF   4      4    2 W700ICRU   1.000   0.014   3.000  DNEAR
+  11   6    3 FLATTENF   3      3    3 FE700ICRU  1.000   0.026   3.000  DNEAR
+  12   7    3 FLATTENF  23     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  13   8    3 FLATTENF   4      4    2 W700ICRU   1.000   0.014   3.000  DNEAR
+  14   9    3 FLATTENF   3      3    3 FE700ICRU  1.000   0.026   3.000  DNEAR
+  15  10    3 FLATTENF  23     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  16  11    3 FLATTENF   0     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  17   1    4 CHAMBER    5      5    4 MYLAR700I  1.000   0.104   3.000  DNEAR
+  18   2    4 CHAMBER    6      5    5 AL700ICRU  1.000   0.064   3.000  DNEAR
+  19   3    4 CHAMBER    7      5    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  20   4    4 CHAMBER    6      5    5 AL700ICRU  1.000   0.064   3.000  DNEAR
+  21   5    4 CHAMBER    5      5    4 MYLAR700I  1.000   0.104   3.000  DNEAR
+  22   6    4 CHAMBER    6      5    5 AL700ICRU  1.000   0.064   3.000  DNEAR
+  23   7    4 CHAMBER    7      5    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  24   8    4 CHAMBER    6      5    5 AL700ICRU  1.000   0.064   3.000  DNEAR
+  25   9    4 CHAMBER    5      5    4 MYLAR700I  1.000   0.104   3.000  DNEAR
+  26  10    4 CHAMBER    7      5    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  27  11    4 CHAMBER    5      5    4 MYLAR700I  1.000   0.104   3.000  DNEAR
+  28  12    4 CHAMBER    6      5    5 AL700ICRU  1.000   0.064   3.000  DNEAR
+  29  13    4 CHAMBER    7      5    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  30  14    4 CHAMBER    6      5    5 AL700ICRU  1.000   0.064   3.000  DNEAR
+  31  15    4 CHAMBER    5      5    4 MYLAR700I  1.000   0.104   3.000  DNEAR
+  32  16    4 CHAMBER    6      5    5 AL700ICRU  1.000   0.064   3.000  DNEAR
+  33  17    4 CHAMBER    7      5    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  34  18    4 CHAMBER    6      5    5 AL700ICRU  1.000   0.064   3.000  DNEAR
+  35  19    4 CHAMBER    5      5    4 MYLAR700I  1.000   0.104   3.000  DNEAR
+  36  20    4 CHAMBER    0      6    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  37  21    4 CHAMBER    0      6    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  38  22    4 CHAMBER    0      6    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  39  23    4 CHAMBER    0     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  40   1    5 MIRROR     8      8    5 AL700ICRU  1.000   0.064   3.000  DNEAR
+  41   2    5 MIRROR     9      8    6 PMMA700IC  1.000   0.115   3.000  DNEAR
+  42   3    5 MIRROR    23     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  43   4    5 MIRROR    23     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  44   5    5 MIRROR     0     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  45   1    6 SECJAWS   23     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  46   2    6 SECJAWS   10     10    2 W700ICRU   1.000   0.014   3.000  DNEAR
+  47   3    6 SECJAWS   10     10    2 W700ICRU   1.000   0.014   3.000  DNEAR
+  48   4    6 SECJAWS   23     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  49   5    6 SECJAWS   11     11    2 W700ICRU   1.000   0.014   3.000  DNEAR
+  50   6    6 SECJAWS   11     11    2 W700ICRU   1.000   0.014   3.000  DNEAR
+  51   1    7 AIRSLAB   12     12    6 PMMA700IC  1.000   0.115   3.000  DNEAR
+  52   2    7 AIRSLAB   23     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
+  53   3    7 AIRSLAB    0     23    1 AIR700ICR  1.000 125.237   3.000  DNEAR
 
  Component Module summary:
  *************************
@@ -219,7 +217,7 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  local  slab #  location  electron  photon  range-rejection  dose  bit  medium
  region                    cutoff   cutoff   level     max   zone  set
             (MeV)    (MeV)   (MeV)    (MeV)
-   1      1        slab     0.700    0.010   1.023    1.000    1    1  W700ICRU 
+   1      1        slab     1.000    0.010   1.000    1.000    1    1  W700ICRU 
 
 
 
@@ -244,9 +242,9 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  local  location  electron  photon  range-rejection   dose  bit  medium
  region            cutoff   cutoff   level     max    zone  set
                     (MeV)    (MeV)   (MeV)    (MeV)
-   1     inside     0.700    0.010   1.013    3.000    23   23   AIR700ICR
-   2    outside     0.700    0.010   1.013    3.000     2    2   FE700ICRU
-   3     airgap     0.700    0.010   1.013    3.000     0   23   AIR700ICR
+   1     inside     1.000    0.010   1.000    3.000    23   23   AIR700ICR
+   2    outside     1.000    0.010   1.000    3.000     2    2   FE700ICRU
+   3     airgap     1.000    0.010   1.000    3.000     0   23   AIR700ICR
          at top
 
 
@@ -276,33 +274,33 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  local  layer  cone  loc.  electron  photon  range  rejection  dose  bit  medium
  region cutoff   cutoff  level   maximum   zone  set
                   (MeV)     (MeV)  (MeV)    (MeV)
-   1      1     1     cone   0.700    0.010  1.003     3.000    3   3  FE700ICRU
-   2      1    NA  between   0.700    0.010  1.003     3.000   23  23  AIR700ICR
+   1      1     1     cone   1.000    0.010  1.000     3.000    3   3  FE700ICRU
+   2      1    NA  between   1.000    0.010  1.000     3.000   23  23  AIR700ICR
                      outer
                   cone and
                    RMAX_CM
                           
-   3      2     1     cone   0.700    0.010  1.003     3.000    3   3  FE700ICRU
-   4      2    NA  between   0.700    0.010  1.003     3.000   23  23  AIR700ICR
+   3      2     1     cone   1.000    0.010  1.000     3.000    3   3  FE700ICRU
+   4      2    NA  between   1.000    0.010  1.000     3.000   23  23  AIR700ICR
                      outer
                   cone and
                    RMAX_CM
                           
-   5      3     1     cone   0.700    0.010  1.003     3.000    4   4  W700ICRU 
-   6      3     2     cone   0.700    0.010  1.003     3.000    3   3  FE700ICRU
-   7      3    NA  between   0.700    0.010  1.003     3.000   23  23  AIR700ICR
+   5      3     1     cone   1.000    0.010  1.000     3.000    4   4  W700ICRU 
+   6      3     2     cone   1.000    0.010  1.000     3.000    3   3  FE700ICRU
+   7      3    NA  between   1.000    0.010  1.000     3.000   23  23  AIR700ICR
                      outer
                   cone and
                    RMAX_CM
                           
-   8      4     1     cone   0.700    0.010  1.003     3.000    4   4  W700ICRU 
-   9      4     2     cone   0.700    0.010  1.003     3.000    3   3  FE700ICRU
-  10      4    NA  between   0.700    0.010  1.003     3.000   23  23  AIR700ICR
+   8      4     1     cone   1.000    0.010  1.000     3.000    4   4  W700ICRU 
+   9      4     2     cone   1.000    0.010  1.000     3.000    3   3  FE700ICRU
+  10      4    NA  between   1.000    0.010  1.000     3.000   23  23  AIR700ICR
                      outer
                   cone and
                    RMAX_CM
                           
-  11     NA    NA   airgap   0.700    0.010  1.003     3.000    0  23  AIR700ICR
+  11     NA    NA   airgap   1.000    0.010  1.000     3.000    0  23  AIR700ICR
                     at top
 
 
@@ -323,7 +321,7 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  local layer loc.   Z    Zthick   rad. electr photon range-reject  dose  medium
  reg              front                cutoff cutoff level   max   zone
                    (cm) (cm)    (cm)  (MeV)  (MeV) (MeV)  (MeV)
- 23   NA  airgap  11.200  1.800 10.000  0.700  0.010  0.942  3.000  0  AIR700ICR
+ 23   NA  airgap  11.200  1.800 10.000  1.000  0.010  1.000  3.000  0  AIR700ICR
           at top
 
     CHAMBER CENTRAL PART parameters:
@@ -331,32 +329,32 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  local layer loc.   Z    Zthick  rad.  electr photon range-reject  dose  medium
  reg   front                cutoff cutoff level   max   zone
                    (cm)    (cm)  (cm)   (MeV)  (MeV) (MeV)  (MeV)
-  1    1  layer  13.000  0.0040  9.900  0.700  0.010  0.942  3.000  5  MYLAR700I
-  2    2  layer  13.004  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
-  3    3  layer  13.004  0.2500  9.900  0.700  0.010  0.942  3.000  7  AIR700ICR
-  4    4  layer  13.254  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
-  5    5  layer  13.254  0.0040  9.900  0.700  0.010  0.942  3.000  5  MYLAR700I
-  6    6  layer  13.258  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
-  7    7  layer  13.258  0.2500  9.900  0.700  0.010  0.942  3.000  7  AIR700ICR
-  8    8  layer  13.508  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
-  9    9  layer  13.508  0.0040  9.900  0.700  0.010  0.942  3.000  5  MYLAR700I
- 10   10  layer  13.512  0.1000  9.900  0.700  0.010  0.942  3.000  7  AIR700ICR
- 11   11  layer  13.612  0.0040  9.900  0.700  0.010  0.942  3.000  5  MYLAR700I
- 12   12  layer  13.616  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
- 13   13  layer  13.616  0.2500  9.900  0.700  0.010  0.942  3.000  7  AIR700ICR
- 14   14  layer  13.866  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
- 15   15  layer  13.866  0.0040  9.900  0.700  0.010  0.942  3.000  5  MYLAR700I
- 16   16  layer  13.870  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
- 17   17  layer  13.870  0.2500  9.900  0.700  0.010  0.942  3.000  7  AIR700ICR
- 18   18  layer  14.120  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
- 19   19  layer  14.120  0.0040  9.900  0.700  0.010  0.942  3.000  5  MYLAR700I
+  1    1  layer  13.000  0.0040  9.900  1.000  0.010  1.000  3.000  5  MYLAR700I
+  2    2  layer  13.004  0.0000  9.900  1.000  0.010  1.000  3.000  6  AL700ICRU
+  3    3  layer  13.004  0.2500  9.900  1.000  0.010  1.000  3.000  7  AIR700ICR
+  4    4  layer  13.254  0.0000  9.900  1.000  0.010  1.000  3.000  6  AL700ICRU
+  5    5  layer  13.254  0.0040  9.900  1.000  0.010  1.000  3.000  5  MYLAR700I
+  6    6  layer  13.258  0.0000  9.900  1.000  0.010  1.000  3.000  6  AL700ICRU
+  7    7  layer  13.258  0.2500  9.900  1.000  0.010  1.000  3.000  7  AIR700ICR
+  8    8  layer  13.508  0.0000  9.900  1.000  0.010  1.000  3.000  6  AL700ICRU
+  9    9  layer  13.508  0.0040  9.900  1.000  0.010  1.000  3.000  5  MYLAR700I
+ 10   10  layer  13.512  0.1000  9.900  1.000  0.010  1.000  3.000  7  AIR700ICR
+ 11   11  layer  13.612  0.0040  9.900  1.000  0.010  1.000  3.000  5  MYLAR700I
+ 12   12  layer  13.616  0.0000  9.900  1.000  0.010  1.000  3.000  6  AL700ICRU
+ 13   13  layer  13.616  0.2500  9.900  1.000  0.010  1.000  3.000  7  AIR700ICR
+ 14   14  layer  13.866  0.0000  9.900  1.000  0.010  1.000  3.000  6  AL700ICRU
+ 15   15  layer  13.866  0.0040  9.900  1.000  0.010  1.000  3.000  5  MYLAR700I
+ 16   16  layer  13.870  0.0000  9.900  1.000  0.010  1.000  3.000  6  AL700ICRU
+ 17   17  layer  13.870  0.2500  9.900  1.000  0.010  1.000  3.000  7  AIR700ICR
+ 18   18  layer  14.120  0.0000  9.900  1.000  0.010  1.000  3.000  6  AL700ICRU
+ 19   19  layer  14.120  0.0040  9.900  1.000  0.010  1.000  3.000  5  MYLAR700I
 
     CHAMBER WALL parameters:
     --------------------------
  local layer loc.  Z    Zthick     rad.     electr photon range-reject dose med
  reg             front  inner  outer cutoff cutoff level  max   zone
         (cm)    (cm)      (cm)      (MeV)  (MeV) (MeV) (MeV)
- 20  NA entire  13.000  1.124  9.900  9.950 0.700 0.010  0.942 3.000  0 AIR700IC
+ 20  NA entire  13.000  1.124  9.900  9.950 1.000 0.010  1.000 3.000  0 AIR700IC
           wall
 
     CHAMBER side air gap parameters:
@@ -364,7 +362,7 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  local layer loc.  Z    Zthick     rad.     electr photon range-reject dose med
  reg   front         inner  outer cutoff cutoff level  max   zone
                  (cm)    (cm)      (cm)      (MeV)  (MeV) (MeV) (MeV)
- 21  NA entire  13.000  1.124  9.950 10.000 0.700 0.010  0.942 3.000  0 AIR700IC
+ 21  NA entire  13.000  1.124  9.950 10.000 1.000 0.010  1.000 3.000  0 AIR700IC
            gap
 
     CHAMBER container wall parameters:
@@ -372,7 +370,7 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  local layer loc.  Z    Zthickrad.     electr photon range-reject dose med
  reg       front         inner  outer cutoff cutoff level  max   zone
                  (cm)    (cm)      (cm)      (MeV)  (MeV) (MeV) (MeV)
- 22  NA entire  13.000  1.124 10.000 10.000 0.700 0.010  0.942 3.000  0 AIR700IC
+ 22  NA entire  13.000  1.124 10.000 10.000 1.000 0.010  1.000 3.000  0 AIR700IC
           wall
 
  LOCAL REGION  22 IN CHAMBER HAS ZERO VOLUME!
@@ -406,13 +404,13 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  local layer  location   electron   photon  range-rejection   dose  bit  medium
  region                   cutoff    cutoff   level     max    zone  set
              (MeV)      (MeV)   (MeV)    (MeV)
-   1      1     layer      0.700    0.010    0.912    3.000    8    8  AL700ICRU
-   2      2     layer      0.700    0.010    0.912    3.000    9    8  PMMA700IC
-   3     NA    region      0.700    0.010    0.912    3.000   23   23  AIR700ICR
+   1      1     layer      1.000    0.010    1.000    3.000    8    8  AL700ICRU
+   2      2     layer      1.000    0.010    1.000    3.000    9    8  PMMA700IC
+   3     NA    region      1.000    0.010    1.000    3.000   23   23  AIR700ICR
                behind
-   4     NA    region      0.700    0.010    0.912    3.000   23   23  AIR700ICR
+   4     NA    region      1.000    0.010    1.000    3.000   23   23  AIR700ICR
              in front
-   5     NA    airgap      0.700    0.010    0.912    3.000    0   23  AIR700ICR
+   5     NA    airgap      1.000    0.010    1.000    3.000    0   23  AIR700ICR
                at top
 
 
@@ -441,17 +439,17 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  local jaw #   location  electron  photon  range-rejection   dose  bit  medium
  region                   cutoff   cutoff   level     max    zone  set
             (MeV)    (MeV)   (MeV)    (MeV)
-   1      1     airgap     0.700    0.010   0.865    3.000    23   23  AIR700ICR
+   1      1     airgap     1.000    0.010   1.000    3.000    23   23  AIR700ICR
                above &
                 centre
-   2      1    +ve jaw     0.700    0.010   0.865    3.000    10   10  W700ICRU 
-   3      1    -ve jaw     0.700    0.010   0.865    3.000    10   10  W700ICRU 
+   2      1    +ve jaw     1.000    0.010   1.000    3.000    10   10  W700ICRU 
+   3      1    -ve jaw     1.000    0.010   1.000    3.000    10   10  W700ICRU 
                       
-   4      2     airgap     0.700    0.010   0.865    3.000    23   23  AIR700ICR
+   4      2     airgap     1.000    0.010   1.000    3.000    23   23  AIR700ICR
                above &
                 centre
-   5      2    +ve jaw     0.700    0.010   0.865    3.000    11   11  W700ICRU 
-   6      2    -ve jaw     0.700    0.010   0.865    3.000    11   11  W700ICRU 
+   5      2    +ve jaw     1.000    0.010   1.000    3.000    11   11  W700ICRU 
+   6      2    -ve jaw     1.000    0.010   1.000    3.000    11   11  W700ICRU 
                       
 
 
@@ -479,9 +477,9 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  local  slab #  location  electron  photon  range-rejection  dose  bit  medium
  region                    cutoff   cutoff   level     max   zone  set
              (MeV)    (MeV)   (MeV)    (MeV)
-   1      1        slab     0.700    0.010   0.700    3.000   12   12  PMMA700IC
-   2      2        slab     0.700    0.010   0.700    3.000   23   23  AIR700ICR
-   3     NA      airgap     0.700    0.010   0.700    3.000    0   23  AIR700ICR
+   1      1        slab     1.000    0.010   1.000    3.000   12   12  PMMA700IC
+   2      2        slab     1.000    0.010   1.000    3.000   23   23  AIR700ICR
+   3     NA      airgap     1.000    0.010   1.000    3.000    0   23  AIR700ICR
                  at top
 
 
@@ -491,7 +489,7 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
 EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field  
 
  NRCC CALN: BEAMnrc(EGSnrc)   
- ON linux                                                  18:30:30 Feb  9 2020
+ ON linux64                                                19:17:06 May 11 2020
  *******************************************************************************
                    EXECUTION INFORMATION AND WARNING MESSAGES
  *******************************************************************************
@@ -499,21 +497,21 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
 ********* NEW INPUT FILE *********
 
 
- *** FINAL RANDOM NUMBER POINTERS:  ixx jxx =   26  59
+ *** FINAL RANDOM NUMBER POINTERS:  ixx jxx =   73   9
 
  FOR THIS RUN:
  ------------ 
- ELAPSED& CPU TIMEs, RATIO =      11.7      11.7s (=   0.00HR)   1.00
- CPUTIME per history =   0.00023 sec. Number of historiesper hour =   15399451.
-   On linux 
+ ELAPSED& CPU TIMEs, RATIO =      80.5      80.4s (=   0.02HR)   1.00
+ CPUTIME per history =   0.00161 sec. Number of historiesper hour =    2237908.
+   On linux64 
 
-                   TOTAL # CHARGED PARTICLE STEPS        3.999E+06 +/- 0.2%
-         # CHARGED PARTICLE STEPS/INITIAL HISTORY        7.998E+01 +/- 0.2%
- # PRESTA-II STEPS/TOTAL # CHARGED PARTICLE STEPS            0.964 +/- 0.2%
+                   TOTAL # CHARGED PARTICLE STEPS        2.247E+07 +/- 0.8%
+         # CHARGED PARTICLE STEPS/INITIAL HISTORY        4.493E+02 +/- 0.8%
+ # PRESTA-II STEPS/TOTAL # CHARGED PARTICLE STEPS            0.845 +/- 0.8%
 
         NO. OF BREMSSTRAHLUNG EVENTS IN THIS RUN:                     0
 
-                    Maximum depth of stack=      37
+                    Maximum depth of stack=     903
 
                     PHASE SPACE FILE OUTPUT
                     ***********************
@@ -522,7 +520,7 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
   #    PLANE  PARTICLES* PHOTONS*   PARTICLES        ELECTRONS   PARTICLES FROM
                                       (MeV)            (MeV)    ORIGINAL SOURCE
 
-   1      1       5385     5374      15.7991           0.3601       50000.000
+   1      1      28314    27960      15.9752           0.4888       50000.000
 
 
 
@@ -531,7 +529,7 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
 
   CM SCORE POSITION   TOTAL                    ZONE HALF-WIDTHS
      PLANE  (cm)    PARTICLES*                      (cm)
-   7    1  100.00        5385    1.0000    2.0000    3.0000    4.0000    5.0000
+   7    1  100.00       28314    1.0000    2.0000    3.0000    4.0000    5.0000
 
 
  *Includes all particles of all weights
@@ -545,21 +543,30 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  ---- ------------------ ------------------ ---------------- ----------------
                          SCORING PLANE 1, CM  7:
  ELECTRONS
-    3  1.000E-06+-99.90%  5.007E-08+-99.90%     1.476+-99.9%*     3.042+-99.9%*
-    4  2.000E-06+-70.71%  8.445E-08+-71.17%     0.856+-99.9%*    28.975+-99.9%*
-    6  2.700E-05+-74.72%  8.386E-09+-70.61%     3.619+-99.9%*    17.731+-92.0%*
+    1  1.000E-06+-44.72%  2.595E-07+-44.78%     3.310+-65.7%*    11.557+-73.4%*
+    2  1.400E-06+-37.79%  1.175E-07+-37.80%     3.217+-57.7%*     5.244+-62.2%*
+    3  1.800E-06+-33.33%  9.105E-08+-33.33%     4.109+-50.0%*     6.948+-53.3%*
+    4  3.800E-06+-22.94%  1.428E-07+-23.03%     3.144+-16.3%    12.253+-22.2%
+    5  5.000E-06+-20.78%  1.436E-07+-20.79%     3.907+-15.8%    10.404+-17.8%
+    6  4.660E-05+-11.26%  1.451E-08+-11.48%     2.688+- 7.7%    19.816+- 3.9%
    --------------------
-  Tot  3.000E-05+-67.5%
+  Tot  5.960E-05+- 9.2%
  PHOTONS
-    1  1.550E-04+- 8.02%  3.875E-05+- 8.02%     3.903+- 6.8%     0.574+- 5.7%
-    2  5.890E-04+- 4.23%  4.909E-05+- 4.23%     3.791+- 3.4%     1.108+- 1.5%
-    3  9.210E-04+- 3.41%  4.607E-05+- 3.41%     3.836+- 2.6%     1.747+- 1.0%
-    4  1.404E-03+- 2.79%  5.019E-05+- 2.79%     3.737+- 2.1%     2.396+- 0.5%
-    5  1.851E-03+- 2.46%  5.149E-05+- 2.46%     3.934+- 1.9%     3.048+- 0.4%
-    6  7.390E-04+-10.94%  2.182E-07+-11.34%     1.653+- 6.6%    11.544+- 9.9%
+    1  1.746E-04+- 3.59%  4.365E-05+- 3.59%     3.705+- 2.7%     0.536+- 2.1%
+    2  5.656E-04+- 2.14%  4.714E-05+- 2.14%     3.741+- 1.5%     1.105+- 0.7%
+    3  1.032E-03+- 1.66%  5.163E-05+- 1.66%     3.866+- 1.1%     1.761+- 0.5%
+    4  1.446E-03+- 1.44%  5.169E-05+- 1.44%     3.867+- 0.9%     2.406+- 0.4%
+    5  1.909E-03+- 1.29%  5.312E-05+- 1.29%     3.902+- 0.8%     3.063+- 0.3%
+    6  9.200E-04+-10.50%  2.742E-07+-10.88%     1.647+- 9.5%    13.307+- 8.2%
    --------------------
-  Tot  5.659E-03+- 1.9%
+  Tot  6.047E-03+- 1.7%
  POSITRONS
+    2  4.000E-07+-70.71%  3.337E-08+-70.71%     8.618+-99.9%*     2.227+-99.9%*
+    4  4.000E-07+-70.71%  1.429E-08+-70.71%     6.615+-99.9%*     1.877+-99.9%*
+    5  6.000E-07+-57.73%  1.700E-08+-57.74%     3.311+-95.6%*    10.515+-84.5%*
+    6  9.800E-06+-14.85%  3.001E-09+-14.88%     3.486+- 9.3%    17.396+- 8.4%
+   --------------------
+  Tot  1.120E-05+-13.8%
 
  *Covariance not included in uncertainty because no. of particles
   crossing scoring zone <    10
@@ -575,38 +582,33 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  POSITRONS
 
 
- MIN PARTICLE WEIGHT FOR ALL SCORING ZONES =    0.0500000
+ MIN PARTICLE WEIGHT FOR ALL SCORING ZONES =    0.0100000
  MAX PARTICLE WEIGHT FOR ALL SCORING ZONES =    1.0000000
 
 
                               DOSE RESULTS
                               ************
 
-          ***NOTE***
-         Automated range rejection is being used.
-         This implies doses will be inaccurate because
-         of changes in ECUTRR going from on CM to the next.
-
-           TOTAL # CHARGED PARTICLE STEPS in DOSE REG.   3.995E+06 +/- 0.2%
- # CHARGED PARTICLE STEPS in DOSE REG./INITIAL HISTORY   7.989E+01 +/- 0.2%
+           TOTAL # CHARGED PARTICLE STEPS in DOSE REG.   2.208E+07 +/- 0.8%
+ # CHARGED PARTICLE STEPS in DOSE REG./INITIAL HISTORY   4.416E+02 +/- 0.8%
 
               TOTAL DOSE PER INCIDENT PARTICLE
 
     DOSE     MASS           DOSE          ENERGY DEPOSITED 
     ZONE      (g)          (Gy)                 (J)
     ---- -----------  ------------------  ------------------
-      1    2.412E+02   7.673E-12+/- 0.1%   1.851E-12+/- 0.1%
-      2    4.002E+03   4.579E-14+/- 0.7%   1.833E-13+/- 0.7%
-      3    1.943E+02   1.438E-13+/- 2.2%   2.793E-14+/- 2.2%
-      4    5.368E+01   1.924E-13+/- 3.8%   1.033E-14+/- 3.8%
-      5    1.020E+01   1.623E-14+/- 5.5%   1.655E-16+/- 5.5%
-      6    1.331E-01   4.181E-14+/-43.0%   5.566E-18+/-43.0%
-      7    4.081E-01   1.885E-14+/-22.7%   7.690E-18+/-22.7%
-      8    3.418E-02   6.356E-15+/- 8.6%   2.172E-19+/- 8.6%
-      9    9.784E-01   1.312E-14+/-21.0%   1.283E-17+/-21.0%
-     10    5.784E+04   2.326E-15+/- 1.1%   1.345E-13+/- 1.1%
-     11    5.336E+04   3.421E-16+/- 3.3%   1.826E-14+/- 3.3%
-     12    1.285E+02   1.268E-17+/-42.2%   1.630E-18+/-42.2%
+      1    2.412E+02   7.648E-12+/- 0.1%   1.845E-12+/- 0.1%
+      2    4.002E+03   4.594E-14+/- 0.9%   1.839E-13+/- 0.9%
+      3    1.943E+02   1.461E-13+/- 1.8%   2.839E-14+/- 1.8%
+      4    5.368E+01   1.990E-13+/- 2.3%   1.068E-14+/- 2.3%
+      5    1.020E+01   1.528E-14+/- 3.2%   1.558E-16+/- 3.2%
+      6    1.331E-01   1.506E-13+/- 4.6%   2.004E-17+/- 4.6%
+      7    4.081E-01   2.777E-14+/- 7.5%   1.133E-17+/- 7.5%
+      8    3.418E-02   2.060E-14+/-13.6%   7.042E-19+/-13.6%
+      9    9.784E-01   9.449E-15+/-10.5%   9.245E-18+/-10.5%
+     10    5.784E+04   2.298E-15+/- 1.4%   1.329E-13+/- 1.4%
+     11    5.336E+04   3.391E-16+/- 3.8%   1.810E-14+/- 3.8%
+     12    1.285E+02   1.216E-17+/-18.6%   1.563E-18+/-18.6%
      13    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
      14    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
      15    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
@@ -617,25 +619,25 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
      20    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
      21    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
      22    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
-     23    2.186E+02   4.425E-16+/- 6.7%   9.673E-17+/- 6.7%
+     23    2.186E+02   4.859E-16+/- 3.6%   1.062E-16+/- 3.6%
 
  TOTAL DOSE EXCLUDING FAT PARTICLES PER INCIDENT PARTICLE (DBS ONLY)
 
     DOSE     MASS           DOSE          ENERGY DEPOSITED 
     ZONE      (g)           (Gy)                 (J)
     ---- -----------  ------------------  ------------------
-      1    2.412E+02   0.000E+00+/-99.9%   0.000E+00+/-99.9%
-      2    4.002E+03   1.416E-19+/-54.4%   5.666E-19+/-54.4%
-      3    1.943E+02   2.775E-17+/-28.9%   5.390E-18+/-28.9%
-      4    5.368E+01   0.000E+00+/-99.9%   0.000E+00+/-99.9%
-      5    1.020E+01   1.751E-17+/-48.5%   1.786E-19+/-48.5%
-      6    1.331E-01   9.069E-18+/-31.9%   1.207E-21+/-31.9%
-      7    4.081E-01   1.039E-17+/-31.8%   4.241E-21+/-31.8%
-      8    3.418E-02   2.494E-17+/-35.6%   8.524E-22+/-35.6%
-      9    9.784E-01   2.957E-17+/-35.4%   2.893E-20+/-35.4%
-     10    5.784E+04   2.365E-20+/-43.7%   1.368E-18+/-43.7%
-     11    5.336E+04   2.569E-20+/-56.5%   1.371E-18+/-56.5%
-     12    1.285E+02   7.820E-20+/-99.9%   1.005E-20+/-99.9%
+      1    2.412E+02   8.995E-13+/- 0.3%   2.170E-13+/- 0.3%
+      2    4.002E+03   1.989E-14+/- 0.8%   7.960E-14+/- 0.8%
+      3    1.943E+02   9.230E-14+/- 1.6%   1.793E-14+/- 1.6%
+      4    5.368E+01   1.046E-13+/- 1.5%   5.615E-15+/- 1.5%
+      5    1.020E+01   1.528E-14+/- 3.2%   1.558E-16+/- 3.2%
+      6    1.331E-01   1.506E-13+/- 4.6%   2.004E-17+/- 4.6%
+      7    4.081E-01   2.777E-14+/- 7.5%   1.133E-17+/- 7.5%
+      8    3.418E-02   2.060E-14+/-13.6%   7.042E-19+/-13.6%
+      9    9.784E-01   9.449E-15+/-10.5%   9.245E-18+/-10.5%
+     10    5.784E+04   5.777E-16+/- 1.3%   3.342E-14+/- 1.3%
+     11    5.336E+04   7.761E-17+/- 3.6%   4.142E-15+/- 3.6%
+     12    1.285E+02   1.216E-17+/-18.6%   1.563E-18+/-18.6%
      13    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
      14    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
      15    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
@@ -646,25 +648,25 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
      20    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
      21    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
      22    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
-     23    2.186E+02   4.985E-18+/-18.0%   1.090E-18+/-18.0%
+     23    2.186E+02   4.858E-16+/- 3.6%   1.062E-16+/- 3.6%
 
          CONTAMINANT DOSE/INCIDENT PARTICLE FOR CM  4
 
     DOSE     MASS           DOSE          ENERGY DEPOSITED 
     ZONE      (g)           (Gy)                 (J)
     ---- -----------  ------------------  ------------------
-      1    2.412E+02   0.000E+00+/-99.9%   0.000E+00+/-99.9%
-      2    4.002E+03   1.692E-18+/-79.6%   6.771E-18+/-79.6%
-      3    1.943E+02   3.271E-17+/-78.7%   6.354E-18+/-78.7%
-      4    5.368E+01   6.414E-18+/-21.7%   3.443E-19+/-21.7%
-      5    1.020E+01   1.308E-14+/- 5.7%   1.334E-16+/- 5.7%
-      6    1.331E-01   4.115E-14+/-43.7%   5.477E-18+/-43.7%
-      7    4.081E-01   1.162E-14+/- 4.6%   4.740E-18+/- 4.6%
-      8    3.418E-02   5.376E-15+/- 9.4%   1.837E-19+/- 9.4%
-      9    9.784E-01   7.600E-15+/-19.6%   7.436E-18+/-19.6%
-     10    5.784E+04   3.202E-17+/- 9.6%   1.852E-15+/- 9.6%
-     11    5.336E+04   1.810E-18+/-39.0%   9.661E-17+/-39.0%
-     12    1.285E+02   3.876E-18+/-73.0%   4.982E-19+/-73.0%
+      1    2.412E+02   2.553E-18+/-99.6%   6.158E-19+/-99.6%
+      2    4.002E+03   1.748E-18+/-30.4%   6.995E-18+/-30.4%
+      3    1.943E+02   3.383E-17+/- 8.5%   6.572E-18+/- 8.5%
+      4    5.368E+01   4.153E-17+/-11.8%   2.229E-18+/-11.8%
+      5    1.020E+01   1.213E-14+/- 2.6%   1.237E-16+/- 2.6%
+      6    1.331E-01   1.349E-13+/- 4.3%   1.796E-17+/- 4.3%
+      7    4.081E-01   2.246E-14+/- 3.8%   9.166E-18+/- 3.8%
+      8    3.418E-02   1.278E-14+/-15.5%   4.367E-19+/-15.5%
+      9    9.784E-01   6.104E-15+/- 3.7%   5.972E-18+/- 3.7%
+     10    5.784E+04   2.876E-17+/- 6.3%   1.664E-15+/- 6.3%
+     11    5.336E+04   2.157E-18+/-14.0%   1.151E-16+/-14.0%
+     12    1.285E+02   3.473E-18+/-11.2%   4.464E-19+/-11.2%
      13    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
      14    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
      15    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
@@ -675,7 +677,7 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
      20    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
      21    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
      22    0.000E+00   0.000E+00+/-99.9%   0.000E+00+/-99.9%
-     23    2.186E+02   1.366E-16+/- 9.5%   2.986E-17+/- 9.5%
+     23    2.186E+02   1.314E-16+/- 2.8%   2.873E-17+/- 2.8%
 
 
                       DOSE RESULTS WITH BIT FILTERS
@@ -698,18 +700,18 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
  DOSE      DOSE              DOSE                DOSE                DOSE     
  ZONE      TOTAL          COMPONENT: 1         COMPONENT: 2         COMPONENT: 3  
 
-   1  7.673E-12+/- 0.1%  7.662E-12+/- 0.1%  7.668E-12+/- 0.1%  7.663E-12+/- 0.1%
-   2  4.579E-14+/- 0.7%  2.172E-14+/- 0.7%  4.567E-14+/- 0.7%  2.175E-14+/- 0.7%
-   3  1.438E-13+/- 2.2%  4.328E-14+/- 2.0%  4.360E-14+/- 2.0%  1.370E-13+/- 2.2%
-   4  1.924E-13+/- 3.8%  2.587E-14+/- 5.2%  2.594E-14+/- 5.2%  2.693E-14+/- 5.1%
-   5  1.623E-14+/- 5.5%  1.792E-15+/-20.3%  1.842E-15+/-19.9%  1.797E-15+/-20.2%
-   6  4.181E-14+/-43.0%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
-   7  1.885E-14+/-22.7%  2.993E-15+/-85.5%  2.993E-15+/-85.5%  2.993E-15+/-85.5%
-   8  6.356E-15+/- 8.6%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
-   9  1.312E-14+/-21.0%  2.972E-15+/-63.4%  2.972E-15+/-63.4%  2.972E-15+/-63.4%
-  10  2.326E-15+/- 1.1%  5.162E-16+/- 1.4%  5.182E-16+/- 1.4%  5.178E-16+/- 1.4%
-  11  3.421E-16+/- 3.3%  3.314E-16+/- 3.3%  3.325E-16+/- 3.3%  3.330E-16+/- 3.3%
-  12  1.268E-17+/-42.2%  6.951E-18+/-60.1%  6.951E-18+/-60.1%  7.029E-18+/-59.5%
+   1  7.648E-12+/- 0.1%  7.612E-12+/- 0.1%  7.620E-12+/- 0.1%  7.621E-12+/- 0.1%
+   2  4.594E-14+/- 0.9%  4.834E-15+/- 1.8%  4.567E-14+/- 0.9%  4.861E-15+/- 1.7%
+   3  1.461E-13+/- 1.8%  6.259E-15+/- 6.8%  6.480E-15+/- 6.7%  1.313E-13+/- 1.9%
+   4  1.990E-13+/- 2.3%  9.498E-15+/- 6.9%  9.767E-15+/- 6.7%  1.485E-14+/- 6.0%
+   5  1.528E-14+/- 3.2%  1.778E-16+/-47.2%  2.307E-16+/-36.5%  2.105E-16+/-40.0%
+   6  1.506E-13+/- 4.6%  5.113E-17+/-99.9%  5.113E-17+/-99.9%  5.113E-17+/-99.9%
+   7  2.777E-14+/- 7.5%  4.693E-17+/-99.9%  4.693E-17+/-99.9%  4.693E-17+/-99.9%
+   8  2.060E-14+/-13.6%  9.119E-16+/-70.7%  9.119E-16+/-70.7%  9.119E-16+/-70.7%
+   9  9.449E-15+/-10.5%  7.273E-17+/-55.5%  7.273E-17+/-55.5%  7.273E-17+/-55.5%
+  10  2.298E-15+/- 1.4%  5.489E-16+/- 1.7%  5.600E-16+/- 1.7%  5.601E-16+/- 1.7%
+  11  3.391E-16+/- 3.8%  2.973E-16+/- 4.2%  3.011E-16+/- 4.2%  3.120E-16+/- 4.1%
+  12  1.216E-17+/-18.6%  2.876E-18+/-24.9%  3.180E-18+/-22.9%  3.764E-18+/-20.4%
   13  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
   14  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
   15  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
@@ -720,24 +722,24 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
   20  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
   21  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
   22  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
-  23  4.425E-16+/- 6.7%  1.698E-16+/-12.1%  2.663E-16+/- 9.0%  1.871E-16+/-11.7%
+  23  4.859E-16+/- 3.6%  1.678E-16+/- 8.4%  2.977E-16+/- 5.2%  1.864E-16+/- 7.8%
 
 
  DOSE      DOSE              DOSE                DOSE                DOSE     
  ZONE      TOTAL          COMPONENT: 4         COMPONENT: 5         COMPONENT: 6  
 
-   1  7.673E-12+/- 0.1%  7.663E-12+/- 0.1%  7.662E-12+/- 0.1%  7.673E-12+/- 0.1%
-   2  4.579E-14+/- 0.7%  2.173E-14+/- 0.7%  2.172E-14+/- 0.7%  4.579E-14+/- 0.7%
-   3  1.438E-13+/- 2.2%  4.385E-14+/- 2.0%  4.328E-14+/- 2.0%  1.438E-13+/- 2.2%
-   4  1.924E-13+/- 3.8%  1.733E-13+/- 4.1%  2.587E-14+/- 5.2%  1.924E-13+/- 3.8%
-   5  1.623E-14+/- 5.5%  1.916E-15+/-19.3%  6.176E-15+/- 8.6%  1.623E-14+/- 5.5%
-   6  4.181E-14+/-43.0%  0.000E+00+/-99.9%  3.415E-15+/- 7.1%  4.181E-14+/-43.0%
-   7  1.885E-14+/-22.7%  2.993E-15+/-85.5%  1.045E-14+/-40.7%  1.885E-14+/-22.7%
-   8  6.356E-15+/- 8.6%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  6.356E-15+/- 8.6%
-   9  1.312E-14+/-21.0%  2.972E-15+/-63.4%  2.972E-15+/-63.4%  1.312E-14+/-21.0%
-  10  2.326E-15+/- 1.1%  5.169E-16+/- 1.4%  5.162E-16+/- 1.4%  2.326E-15+/- 1.1%
-  11  3.421E-16+/- 3.3%  3.331E-16+/- 3.3%  3.314E-16+/- 3.3%  3.421E-16+/- 3.3%
-  12  1.268E-17+/-42.2%  6.951E-18+/-60.1%  6.951E-18+/-60.1%  1.268E-17+/-42.2%
+   1  7.648E-12+/- 0.1%  7.620E-12+/- 0.1%  7.612E-12+/- 0.1%  7.648E-12+/- 0.1%
+   2  4.594E-14+/- 0.9%  4.847E-15+/- 1.7%  4.834E-15+/- 1.8%  4.594E-14+/- 0.9%
+   3  1.461E-13+/- 1.8%  6.417E-15+/- 6.7%  6.259E-15+/- 6.8%  1.461E-13+/- 1.8%
+   4  1.990E-13+/- 2.3%  1.284E-13+/- 2.7%  9.498E-15+/- 6.9%  1.990E-13+/- 2.3%
+   5  1.528E-14+/- 3.2%  1.836E-16+/-45.7%  5.045E-15+/- 6.2%  1.528E-14+/- 3.2%
+   6  1.506E-13+/- 4.6%  5.113E-17+/-99.9%  3.252E-14+/- 8.7%  1.506E-13+/- 4.6%
+   7  2.777E-14+/- 7.5%  4.693E-17+/-99.9%  7.922E-15+/-16.1%  2.777E-14+/- 7.5%
+   8  2.060E-14+/-13.6%  9.119E-16+/-70.7%  1.369E-15+/-57.7%  2.060E-14+/-13.6%
+   9  9.449E-15+/-10.5%  7.600E-17+/-53.3%  7.273E-17+/-55.5%  9.449E-15+/-10.5%
+  10  2.298E-15+/- 1.4%  5.533E-16+/- 1.7%  5.489E-16+/- 1.7%  2.298E-15+/- 1.4%
+  11  3.391E-16+/- 3.8%  3.050E-16+/- 4.2%  2.973E-16+/- 4.2%  3.391E-16+/- 3.8%
+  12  1.216E-17+/-18.6%  3.105E-18+/-23.3%  2.876E-18+/-24.9%  1.216E-17+/-18.6%
   13  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
   14  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
   15  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
@@ -748,24 +750,24 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
   20  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
   21  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
   22  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%  0.000E+00+/-99.9%
-  23  4.425E-16+/- 6.7%  1.698E-16+/-12.1%  1.989E-16+/-10.6%  4.425E-16+/- 6.7%
+  23  4.859E-16+/- 3.6%  1.711E-16+/- 8.3%  1.938E-16+/- 7.4%  4.859E-16+/- 3.6%
 
 
  DOSE      DOSE              DOSE     
  ZONE      TOTAL          COMPONENT: 7  
 
-   1  7.673E-12+/- 0.1%  7.673E-12+/- 0.1%
-   2  4.579E-14+/- 0.7%  4.579E-14+/- 0.7%
-   3  1.438E-13+/- 2.2%  1.438E-13+/- 2.2%
-   4  1.924E-13+/- 3.8%  1.924E-13+/- 3.8%
-   5  1.623E-14+/- 5.5%  1.623E-14+/- 5.5%
-   6  4.181E-14+/-43.0%  4.181E-14+/-43.0%
-   7  1.885E-14+/-22.7%  1.885E-14+/-22.7%
-   8  6.356E-15+/- 8.6%  6.356E-15+/- 8.6%
-   9  1.312E-14+/-21.0%  1.312E-14+/-21.0%
-  10  2.326E-15+/- 1.1%  2.326E-15+/- 1.1%
-  11  3.421E-16+/- 3.3%  3.421E-16+/- 3.3%
-  12  1.268E-17+/-42.2%  1.268E-17+/-42.2%
+   1  7.648E-12+/- 0.1%  7.648E-12+/- 0.1%
+   2  4.594E-14+/- 0.9%  4.594E-14+/- 0.9%
+   3  1.461E-13+/- 1.8%  1.461E-13+/- 1.8%
+   4  1.990E-13+/- 2.3%  1.990E-13+/- 2.3%
+   5  1.528E-14+/- 3.2%  1.528E-14+/- 3.2%
+   6  1.506E-13+/- 4.6%  1.506E-13+/- 4.6%
+   7  2.777E-14+/- 7.5%  2.777E-14+/- 7.5%
+   8  2.060E-14+/-13.6%  2.060E-14+/-13.6%
+   9  9.449E-15+/-10.5%  9.449E-15+/-10.5%
+  10  2.298E-15+/- 1.4%  2.298E-15+/- 1.4%
+  11  3.391E-16+/- 3.8%  3.391E-16+/- 3.8%
+  12  1.216E-17+/-18.6%  1.216E-17+/-18.6%
   13  0.000E+00+/-99.9%  0.000E+00+/-99.9%
   14  0.000E+00+/-99.9%  0.000E+00+/-99.9%
   15  0.000E+00+/-99.9%  0.000E+00+/-99.9%
@@ -776,11 +778,11 @@ EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field
   20  0.000E+00+/-99.9%  0.000E+00+/-99.9%
   21  0.000E+00+/-99.9%  0.000E+00+/-99.9%
   22  0.000E+00+/-99.9%  0.000E+00+/-99.9%
-  23  4.425E-16+/- 6.7%  4.425E-16+/- 6.7%
+  23  4.859E-16+/- 3.6%  4.859E-16+/- 3.6%
 
 
 
 
- END OF RUN          Feb  9 2020 18:30:42
+ END OF RUN          May 11 2020 19:18:26
 
 

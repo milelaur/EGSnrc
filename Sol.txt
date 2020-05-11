@@ -167,3 +167,646 @@ Particles recycled 8 times
 Recycling too many times underestimates uncertainties
 
 Depth dose curve better when there is more particles
+
+
+
+
+LAB 04
+
+
+First done using EX16MVp
+
+CPU time with optimization is 11.3s and without 20.5s
+Results were identical.
+
+Help says: DBS greatest efficiency gain with dose 23 greater than with UBS and 160 greater than with no splitting
+
+
+4.3.1
+
+Without bremsstrahlung splitting, CPU time 9.8s. Photon fluence total uncertainty 5.9% and electron 99.9%
+efficiency e = 1/(T*s^2)
+photons e = 1/(9.8*0.059^2) = 29.31365
+electrons e = 0.102245
+
+Uniform bremsstrahlung splitting factor of 2, CPU time 13.0s. Photon fluence total uncertainty 4.2% and electron 50.0%
+efficiency e = 1/(T*s^2)
+photons e = 1/(13.0*0.042^2) = 43.607186
+electrons e = 0.307692
+
+Uniform bremsstrahlung splitting factor of 10, CPU time 38.6s. Photon fluence total uncertainty 1.9% and electron 15.8%
+efficiency e = 1/(T*s^2)
+photons e = 1/(38.6*0.019^2) = 71.76381
+electrons e = 1.0377638
+
+Uniform bremsstrahlung splitting factor of 20, CPU time 69.7s. Photon fluence total uncertainty 1.3% and electron 13.6%
+efficiency e = 1/(T*s^2)
+photons e = 1/(69.7*0.013^2) = 84.894688
+electrons e = 0.775692
+
+
+4.4.1
+
+Directional bremsstrahlung splitting r=10cm, CPU time 14.3s. Photon fluence total uncertainty 1.5% and electron 59.7%
+photons e = 1/(14.3*0.015^2) = 310.800310 // This very efficient compared to another
+electrons e = 0.196207 // This as bad as without bremsstrahlung splitting
+
+
+4.4.2
+
+Directional bremsstrahlung splitting and electron splitting at the back of the flattening filter, CPU time 169.6s. Photon fluence total uncertainty 1.7% and electron 6.6%
+photons e = 1/(169.6*0.017^2) = 20.40216
+electrons e = 1.353587
+
+
+4.4.3
+
+Directional bremsstrahlung splitting r=5cm and electron splitting at the back of the flattening filter, CPU time 167.7s. Photon fluence total uncertainty 3.4% and electron 8.2%
+photons e = 1/(167.7*0.034^2) = 5.15832
+electrons e = 0.8868276
+
+Directional bremsstrahlung splitting r=7.5cm and electron splitting at the back of the flattening filter, CPU time 166.3s. Photon fluence total uncertainty 1.9% and electron 6.9%
+photons e = 1/(166.3*0.019^2) = 16.657144
+electrons e = 1.263018
+
+Directional bremsstrahlung splitting r=30cm and electron splitting at the back of the flattening filter, CPU time 187.1s. Photon fluence total uncertainty 0.9% and electron 5.9%
+photons e = 1/(187.1*0.009^2) = 65.98438809
+electrons e = 1.5354023
+
+
+4.5.1
+
+Directional bremsstrahlung splitting r=10cm and bremsstrahlung splitting number=100 and bremsstrahlung cross section enhancement on, CPU time 14.0s. Photon fluence total uncertainty 1.5% and electron 59.7%
+photons e = 317.460317		// enhancement off (~CPU) 310.800310
+electrons e = 0.2004118		// enhancement off (~CPU) 0.196207
+
+Directional bremsstrahlung splitting r=10cm and bremsstrahlung splitting number=1000 and bremsstrahlung cross section enhancement on, CPU time 41.9s. Photon fluence total uncertainty 1.6% and electron 61.0%
+photons e = 93.2279236		// enhancement off same
+electrons e = 0.0641396		// enhancement off same
+
+Directional bremsstrahlung splitting r=10cm and bremsstrahlung splitting number=2000 which is max splitting number and bremsstrahlung cross section enhancement on, CPU time 73.5s. Photon fluence total uncertainty 1.6% and electron 60.7%
+photons e = 53.146258		// enhancement off ~CPU time
+electrons e = 0.03692625	// enhancement off ~CPU time
+
+
+
+4.5.2
+
+Calculating eqution using 4.5.1 values. And splitting number is 63.
+CPU time 12.8s. Photon fluence total uncertainty 1.7% and electron 53.8%
+photons e = 270.3287197		// it is almost as high as splitting number=100
+electrons e = 0.2699140
+Calculations should check...
+
+
+
+4.6.1
+
+Electron range rejection off, CPU time 29.3s. Photon fluence total uncertainty 1.5% and electron 61.5%
+photons e = 151.6875237
+electrons e = 0.09023648
+
+Electron range rejection on with set ECUTRR range rejection = 3.0 MeV, CPU time 13.1s. Photon fluence total uncertainty 1.7% and electron 56.5%
+photons e = 264.1379857
+electrons e = 0.239128758
+
+Electron range rejection on with set ECUTRR range rejection = 0.7 MeV, CPU time 17.4s. Photon fluence total uncertainty 1.7% and electron 39.9%
+photons e = 198.8625065
+electrons e = 0.360998136
+
+Electron range rejection on with set ECUTRR range rejection = 6.0 MeV, CPU time 13.0s. Photon fluence total uncertainty 1.6% and electron 47.9%
+photons e = 266.169816
+electrons e = 0.33526299
+
+Electron range rejection on with varying ECUTRR range rejection = 3.0 MeV, CPU time 12.7s. Photon fluence total uncertainty 1.7% and electron 53.8%
+photons e = 272.4572923
+electrons e = 0.27203934
+
+Electron range rejection on with varying ECUTRR range rejection = 0.7 MeV, CPU time 17.1s. Photon fluence total uncertainty 1.5% and electron 56.9%
+photons e = 259.9090318
+electrons e = 0.180625622
+
+Electron range rejection on with varying ECUTRR range rejection = 6.0 MeV, CPU time 12.5s. Photon fluence total uncertainty 1.6% and electron 17.4%
+photons e = 312.5
+electrons e = 2.642356982
+
+
+
+4.7.1
+
+Forcing on: CPU time 13.4 s
+The absolute number of particles in the phase space files: 29791
+MIN PARTICLE WEIGHT FOR ALL SCORING ZONES =    0.0000281
+MAX PARTICLE WEIGHT FOR ALL SCORING ZONES =    1.0000000
+
+FILE  SCORE    TOTAL     TOTAL    MAX. KE OF       MIN. KE OF     # INCIDENT
+  #    PLANE  PARTICLES* PHOTONS*   PARTICLES        ELECTRONS   PARTICLES FROM
+                                      (MeV)            (MeV)    ORIGINAL SOURCE
+
+   1      1      29791    20782      15.7883           0.1841       50000.000
+
+ELECTRONS fluence Tot 9.949E-05+-40.2%
+PHOTONS fluence Tot 5.914E-03+- 1.7%
+
+Forcing off: CPU time 12.7 s
+The absolute number of particles in the phase space files: 17605
+MIN PARTICLE WEIGHT FOR ALL SCORING ZONES =    0.0158730
+MAX PARTICLE WEIGHT FOR ALL SCORING ZONES =    1.0000000
+
+FILE  SCORE    TOTAL     TOTAL    MAX. KE OF       MIN. KE OF     # INCIDENT
+  #    PLANE  PARTICLES* PHOTONS*   PARTICLES        ELECTRONS   PARTICLES FROM
+                                      (MeV)            (MeV)    ORIGINAL SOURCE
+
+   1      1      17605    17570      15.8885           0.3252       50000.000
+
+ELECTRONS fluence Tot 5.016E-05+-56.5%
+PHOTONS fluence Tot 5.991E-03+- 1.7%
+
+
+
+4.8.1
+
+ECUT=0.8 MeV	CPU time 12.8s
+
+TOTAL # CHARGED PARTICLE STEPS        3.990E+06 +/- 0.2%
+         # CHARGED PARTICLE STEPS/INITIAL HISTORY        7.980E+01 +/- 0.2%
+ # PRESTA-II STEPS/TOTAL # CHARGED PARTICLE STEPS            0.963 +/- 0.2%
+
+        NO. OF BREMSSTRAHLUNG EVENTS IN THIS RUN:                     0
+
+                    Maximum depth of stack=     111
+
+                    PHASE SPACE FILE OUTPUT
+                    ***********************
+
+ FILE  SCORE    TOTAL     TOTAL    MAX. KE OF       MIN. KE OF     # INCIDENT
+  #    PLANE  PARTICLES* PHOTONS*   PARTICLES        ELECTRONS   PARTICLES FROM
+                                      (MeV)            (MeV)    ORIGINAL SOURCE
+
+   1      1      17640    17600      15.7854           0.2905       50000.000
+
+
+
+                    FLUENCE RESULTS
+                    ***************
+
+  CM SCORE POSITION   TOTAL                    ZONE HALF-WIDTHS
+     PLANE  (cm)    PARTICLES*                      (cm)
+   7    1  100.00       17640    1.0000    2.0000    3.0000    4.0000    5.0000
+
+
+ *Includes all particles of all weights
+
+  Lines with zero results are not printed
+
+ SPECTRAL-AVERAGED QUANTITIES FOR FIRST TIME CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  7:
+ ELECTRONS
+    2  3.175E-07+-99.90%  2.658E-08+-99.90%     3.918+-99.9%*     5.651+-99.9%*
+    3  6.349E-07+-70.71%  3.303E-08+-70.73%     1.432+-99.9%*    15.294+-99.9%*
+    4  2.857E-06+-33.33%  1.103E-07+-33.44%     2.902+-57.8%*    18.077+-51.8%*
+    5  3.175E-07+-99.90%  8.853E-09+-99.90%     3.623+-99.9%*     5.063+-99.9%*
+    6  6.730E-05+-51.52%  2.351E-08+-53.29%     2.429+-39.9%    28.297+-28.7%
+   --------------------
+  Tot  7.143E-05+-48.6%
+ PHOTONS
+    1  1.790E-04+- 4.31%  4.476E-05+- 4.31%     3.670+- 3.4%     0.544+- 2.9%
+    2  5.511E-04+- 2.67%  4.594E-05+- 2.67%     3.683+- 1.9%     1.129+- 1.7%
+    3  1.004E-03+- 1.99%  5.024E-05+- 1.99%     3.816+- 1.4%     1.773+- 0.9%
+    4  1.494E-03+- 1.68%  5.341E-05+- 1.68%     3.884+- 1.2%     2.406+- 0.4%
+    5  1.909E-03+- 1.52%  5.309E-05+- 1.52%     3.885+- 1.0%     3.053+- 0.2%
+    6  7.260E-04+-10.55%  2.116E-07+-10.79%     1.803+-10.8%     9.461+- 9.3%
+   --------------------
+  Tot  5.863E-03+- 1.5%
+ POSITRONS
+    4  3.175E-07+-99.90%  1.147E-08+-99.90%     4.957+-99.9%*     8.571+-99.9%*
+
+ *Covariance not included in uncertainty because no. of particles
+  crossing scoring zone <    10
+
+ SPECTRAL-AVERAGED QUANTITIES FOR MULTIPLE CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  7:
+ ELECTRONS
+ PHOTONS
+ POSITRONS
+
+
+ MIN PARTICLE WEIGHT FOR ALL SCORING ZONES =    0.0158730
+ MAX PARTICLE WEIGHT FOR ALL SCORING ZONES =    1.0000000
+
+
+
+ECUT=1MeV	CPU time 12.2s
+
+TOTAL # CHARGED PARTICLE STEPS        3.907E+06 +/- 0.2%
+         # CHARGED PARTICLE STEPS/INITIAL HISTORY        7.814E+01 +/- 0.2%
+ # PRESTA-II STEPS/TOTAL # CHARGED PARTICLE STEPS            0.964 +/- 0.2%
+
+        NO. OF BREMSSTRAHLUNG EVENTS IN THIS RUN:                     0
+
+                    Maximum depth of stack=     103
+
+                    PHASE SPACE FILE OUTPUT
+                    ***********************
+
+ FILE  SCORE    TOTAL     TOTAL    MAX. KE OF       MIN. KE OF     # INCIDENT
+  #    PLANE  PARTICLES* PHOTONS*   PARTICLES        ELECTRONS   PARTICLES FROM
+                                      (MeV)            (MeV)    ORIGINAL SOURCE
+
+   1      1      17507    17487      15.9598           0.4957       50000.000
+
+
+
+                    FLUENCE RESULTS
+                    ***************
+
+  CM SCORE POSITION   TOTAL                    ZONE HALF-WIDTHS
+     PLANE  (cm)    PARTICLES*                      (cm)
+   7    1  100.00       17507    1.0000    2.0000    3.0000    4.0000    5.0000
+
+
+ *Includes all particles of all weights
+
+  Lines with zero results are not printed
+
+ SPECTRAL-AVERAGED QUANTITIES FOR FIRST TIME CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  7:
+ ELECTRONS
+    2  9.524E-07+-57.73%  7.979E-08+-57.73%     5.250+-86.9%*     5.504+-84.6%*
+    3  6.349E-07+-70.71%  3.227E-08+-70.71%     2.887+-99.9%*     9.689+-99.9%*
+    4  3.175E-07+-99.90%  1.140E-08+-99.90%     3.333+-99.9%*     5.833+-99.9%*
+    6  4.349E-05+-65.08%  1.437E-08+-65.50%     0.654+-13.5%    25.259+-36.6%
+   --------------------
+  Tot  4.540E-05+-62.4%
+ PHOTONS
+    1  1.803E-04+- 4.41%  4.508E-05+- 4.41%     3.787+- 3.3%     0.553+- 2.9%
+    2  5.476E-04+- 2.61%  4.564E-05+- 2.61%     3.678+- 2.0%     1.107+- 1.0%
+    3  9.895E-04+- 2.01%  4.950E-05+- 2.01%     3.710+- 1.5%     1.745+- 0.5%
+    4  1.468E-03+- 1.67%  5.246E-05+- 1.67%     3.912+- 1.2%     2.406+- 0.4%
+    5  1.892E-03+- 1.50%  5.263E-05+- 1.50%     3.866+- 1.0%     3.058+- 0.2%
+    6  8.683E-04+-10.97%  2.569E-07+-11.30%     1.578+- 9.4%    12.038+- 8.5%
+   --------------------
+  Tot  5.945E-03+- 1.8%
+ POSITRONS
+    6  2.000E-05+-99.90%  6.505E-09+-99.90%     0.946+-99.9%*    28.548+-99.9%*
+
+ *Covariance not included in uncertainty because no. of particles
+  crossing scoring zone <    10
+
+ SPECTRAL-AVERAGED QUANTITIES FOR MULTIPLE CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  7:
+ ELECTRONS
+ PHOTONS
+ POSITRONS
+
+
+ MIN PARTICLE WEIGHT FOR ALL SCORING ZONES =    0.0158730
+ MAX PARTICLE WEIGHT FOR ALL SCORING ZONES =    1.0000000
+
+
+
+
+4.9.1
+
+Russian roulette Off
+CPU time 305.4s
+
+                   TOTAL # CHARGED PARTICLE STEPS        1.047E+08 +/- 0.2%
+         # CHARGED PARTICLE STEPS/INITIAL HISTORY        2.093E+03 +/- 0.2%
+ # PRESTA-II STEPS/TOTAL # CHARGED PARTICLE STEPS            0.966 +/- 0.2%
+
+        NO. OF BREMSSTRAHLUNG EVENTS IN THIS RUN:              50734596
+
+                    Maximum depth of stack=     106
+
+                    PHASE SPACE FILE OUTPUT
+                    ***********************
+
+ FILE  SCORE    TOTAL     TOTAL    MAX. KE OF       MIN. KE OF     # INCIDENT
+  #    PLANE  PARTICLES* PHOTONS*   PARTICLES        ELECTRONS   PARTICLES FROM
+                                      (MeV)            (MeV)    ORIGINAL SOURCE
+
+   1      1      30678    30352      15.9154           0.4925       50000.000
+
+
+
+                    FLUENCE RESULTS
+                    ***************
+
+  CM SCORE POSITION   TOTAL                    ZONE HALF-WIDTHS
+     PLANE  (cm)    PARTICLES*                      (cm)
+   7    1  100.00       30678    1.0000    2.0000    3.0000    4.0000    5.0000
+
+
+ *Includes all particles of all weights
+
+  Lines with zero results are not printed
+
+ SPECTRAL-AVERAGED QUANTITIES FOR FIRST TIME CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  7:
+ ELECTRONS
+    1  6.000E-07+-57.73%  1.534E-07+-57.75%     5.746+-89.8%*     9.359+-93.7%*
+    2  1.600E-06+-35.35%  1.340E-07+-35.35%     4.913+-52.1%*     4.973+-53.1%*
+    3  2.200E-06+-30.15%  1.126E-07+-30.18%     3.521+-17.8%     8.920+-26.4%
+    4  3.800E-06+-22.94%  1.398E-07+-22.97%     4.645+-14.2%    10.576+-18.0%
+    5  1.800E-06+-33.33%  5.032E-08+-33.33%     4.977+-51.2%*     5.877+-49.7%*
+    6  4.200E-05+- 6.95%  1.309E-08+- 7.00%     2.874+- 5.3%    19.355+- 4.0%
+   --------------------
+  Tot  5.200E-05+- 6.2%
+ PHOTONS
+    1  1.808E-04+- 3.53%  4.520E-05+- 3.53%     3.884+- 2.7%     0.568+- 2.2%
+    2  5.796E-04+- 2.12%  4.831E-05+- 2.12%     3.831+- 1.5%     1.109+- 0.8%
+    3  1.032E-03+- 1.67%  5.162E-05+- 1.67%     3.836+- 1.1%     1.754+- 0.3%
+    4  1.475E-03+- 1.43%  5.274E-05+- 1.43%     3.895+- 0.9%     2.414+- 0.3%
+    5  1.950E-03+- 1.27%  5.426E-05+- 1.27%     3.863+- 0.8%     3.063+- 0.2%
+    6  8.524E-04+- 1.59%  2.516E-07+- 1.59%     1.620+- 1.5%    11.553+- 1.1%
+   --------------------
+  Tot  6.070E-03+- 0.7%
+ POSITRONS
+    1  4.000E-07+-70.71%  1.001E-07+-70.71%     6.345+-99.9%*     2.362+-99.9%*
+    3  8.000E-07+-50.00%  4.009E-08+-50.00%     4.100+-71.2%*     3.776+-71.5%*
+    4  4.000E-07+-70.71%  1.447E-08+-70.71%     4.176+-99.9%*     7.867+-99.9%*
+    5  8.000E-07+-50.00%  2.234E-08+-50.00%     4.817+-74.6%*     5.841+-71.5%*
+    6  1.080E-05+-13.60%  3.310E-09+-13.67%     3.751+- 8.8%    16.898+- 8.8%
+   --------------------
+  Tot  1.320E-05+-12.3%
+
+ *Covariance not included in uncertainty because no. of particles
+  crossing scoring zone <    10
+
+ SPECTRAL-AVERAGED QUANTITIES FOR MULTIPLE CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  7:
+ ELECTRONS
+ PHOTONS
+ POSITRONS
+
+
+ MIN PARTICLE WEIGHT FOR ALL SCORING ZONES =    0.0100000
+ MAX PARTICLE WEIGHT FOR ALL SCORING ZONES =    0.0100000
+
+
+Russian roulette On
+CPU time 82.7s
+
+TOTAL # CHARGED PARTICLE STEPS        3.909E+06 +/- 0.2%
+         # CHARGED PARTICLE STEPS/INITIAL HISTORY        7.818E+01 +/- 0.2%
+ # PRESTA-II STEPS/TOTAL # CHARGED PARTICLE STEPS            0.965 +/- 0.2%
+
+        NO. OF BREMSSTRAHLUNG EVENTS IN THIS RUN:              50951700
+
+                    Maximum depth of stack=     465
+
+                    PHASE SPACE FILE OUTPUT
+                    ***********************
+
+ FILE  SCORE    TOTAL     TOTAL    MAX. KE OF       MIN. KE OF     # INCIDENT
+  #    PLANE  PARTICLES* PHOTONS*   PARTICLES        ELECTRONS   PARTICLES FROM
+                                      (MeV)            (MeV)    ORIGINAL SOURCE
+
+   1      1      29568    29563      15.9561           1.2155       50000.000
+
+
+
+                    FLUENCE RESULTS
+                    ***************
+
+  CM SCORE POSITION   TOTAL                    ZONE HALF-WIDTHS
+     PLANE  (cm)    PARTICLES*                      (cm)
+   7    1  100.00       29568    1.0000    2.0000    3.0000    4.0000    5.0000
+
+
+ *Includes all particles of all weights
+
+  Lines with zero results are not printed
+
+ SPECTRAL-AVERAGED QUANTITIES FOR FIRST TIME CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  7:
+ ELECTRONS
+    6  1.000E-04+-44.72%  2.958E-08+-44.75%     2.520+-64.9%*    12.954+-67.8%*
+ PHOTONS
+    1  1.650E-04+- 3.67%  4.125E-05+- 3.67%     3.831+- 2.8%     0.565+- 2.3%
+    2  5.552E-04+- 2.18%  4.631E-05+- 2.19%     3.698+- 1.5%     1.125+- 2.3%
+    3  9.984E-04+- 1.68%  4.995E-05+- 1.68%     3.799+- 1.1%     1.765+- 0.8%
+    4  1.454E-03+- 1.43%  5.199E-05+- 1.43%     3.855+- 0.9%     2.412+- 0.3%
+    5  1.917E-03+- 1.29%  5.333E-05+- 1.29%     3.884+- 0.8%     3.063+- 0.2%
+    6  8.226E-04+- 1.99%  2.431E-07+- 2.02%     1.646+- 1.7%    11.445+- 1.5%
+   --------------------
+  Tot  5.913E-03+- 0.7%
+ POSITRONS
+
+ *Covariance not included in uncertainty because no. of particles
+  crossing scoring zone <    10
+
+ SPECTRAL-AVERAGED QUANTITIES FOR MULTIPLE CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  7:
+ ELECTRONS
+ PHOTONS
+ POSITRONS
+
+
+ MIN PARTICLE WEIGHT FOR ALL SCORING ZONES =    0.0100000
+ MAX PARTICLE WEIGHT FOR ALL SCORING ZONES =    1.0000000
+
+
+
+4.9.2
+
+with augmented range rejection with directional bremsstrahlung splitting, russian roulette on 0.2cm
+CPU time 63.3s
+TOTAL # CHARGED PARTICLE STEPS        1.883E+07 +/- 0.9%
+         # CHARGED PARTICLE STEPS/INITIAL HISTORY        3.767E+02 +/- 0.9%
+ # PRESTA-II STEPS/TOTAL # CHARGED PARTICLE STEPS            0.813 +/- 0.9%
+
+        NO. OF BREMSSTRAHLUNG EVENTS IN THIS RUN:                     0
+
+                    Maximum depth of stack=     987
+
+                    PHASE SPACE FILE OUTPUT
+                    ***********************
+
+ FILE  SCORE    TOTAL     TOTAL    MAX. KE OF       MIN. KE OF     # INCIDENT
+  #    PLANE  PARTICLES* PHOTONS*   PARTICLES        ELECTRONS   PARTICLES FROM
+                                      (MeV)            (MeV)    ORIGINAL SOURCE
+
+   1      1      28043    27744      15.8712           0.5281       50000.000
+
+
+
+                    FLUENCE RESULTS
+                    ***************
+
+  CM SCORE POSITION   TOTAL                    ZONE HALF-WIDTHS
+     PLANE  (cm)    PARTICLES*                      (cm)
+   7    1  100.00       28043    1.0000    2.0000    3.0000    4.0000    5.0000
+
+
+ *Includes all particles of all weights
+
+  Lines with zero results are not printed
+
+ SPECTRAL-AVERAGED QUANTITIES FOR FIRST TIME CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  7:
+ ELECTRONS
+    1  4.000E-07+-70.71%  1.103E-07+-70.99%     1.857+-99.9%*    19.450+-99.9%*
+    2  2.000E-06+-31.62%  1.683E-07+-31.62%     3.878+-15.6%     6.012+-26.3%
+    3  2.000E-06+-31.62%  1.006E-07+-31.62%     5.228+-19.5%     5.535+-16.9%
+    4  3.400E-06+-25.64%  1.242E-07+-25.60%     4.373+-16.1%     9.593+-18.5%
+    5  2.200E-06+-30.15%  6.326E-08+-30.23%     4.253+-17.5%    10.618+-26.3%
+    6  3.800E-05+- 8.28%  1.183E-08+- 8.33%     3.189+- 6.6%    18.299+- 4.4%
+   --------------------
+  Tot  4.800E-05+- 7.2%
+ PHOTONS
+    1  1.616E-04+- 3.69%  4.040E-05+- 3.69%     3.737+- 2.8%     0.571+- 2.3%
+    2  5.604E-04+- 2.15%  4.671E-05+- 2.15%     3.794+- 1.5%     1.111+- 0.8%
+    3  1.020E-03+- 1.69%  5.102E-05+- 1.69%     3.867+- 1.1%     1.752+- 0.4%
+    4  1.461E-03+- 1.43%  5.222E-05+- 1.43%     3.850+- 0.9%     2.415+- 0.4%
+    5  1.881E-03+- 1.29%  5.233E-05+- 1.29%     3.885+- 0.8%     3.073+- 0.2%
+    6  8.808E-04+-10.53%  2.599E-07+-10.83%     1.767+- 7.8%    11.677+- 8.6%
+   --------------------
+  Tot  5.965E-03+- 1.7%
+ POSITRONS
+    1  4.000E-07+-70.71%  1.001E-07+-70.71%     4.431+-99.9%*     2.417+-99.9%*
+    2  8.000E-07+-50.00%  7.074E-08+-50.21%     4.442+-77.3%*    12.566+-88.7%*
+    3  4.000E-07+-70.71%  2.039E-08+-70.72%     3.665+-99.9%*     9.167+-99.9%*
+    4  8.000E-07+-50.00%  2.861E-08+-50.00%     5.412+-75.3%*     3.081+-70.9%*
+    5  8.000E-07+-50.00%  2.232E-08+-50.00%     4.964+-76.5%*     4.783+-74.5%*
+    6  8.600E-06+-16.60%  2.594E-09+-16.56%     3.820+- 9.0%    15.359+- 9.2%
+   --------------------
+  Tot  1.180E-05+-13.9%
+
+ *Covariance not included in uncertainty because no. of particles
+  crossing scoring zone <    10
+
+ SPECTRAL-AVERAGED QUANTITIES FOR MULTIPLE CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  7:
+ ELECTRONS
+ PHOTONS
+ POSITRONS
+
+
+ MIN PARTICLE WEIGHT FOR ALL SCORING ZONES =    0.0100000
+ MAX PARTICLE WEIGHT FOR ALL SCORING ZONES =    1.0000000
+
+
+
+with augmented range rejection with directional bremsstrahlung splitting, russian roulette 0.0cm
+CPU time 80.9s
+TOTAL # CHARGED PARTICLE STEPS        2.247E+07 +/- 0.8%
+         # CHARGED PARTICLE STEPS/INITIAL HISTORY        4.493E+02 +/- 0.8%
+ # PRESTA-II STEPS/TOTAL # CHARGED PARTICLE STEPS            0.845 +/- 0.8%
+
+        NO. OF BREMSSTRAHLUNG EVENTS IN THIS RUN:                     0
+
+                    Maximum depth of stack=     903
+
+                    PHASE SPACE FILE OUTPUT
+                    ***********************
+
+ FILE  SCORE    TOTAL     TOTAL    MAX. KE OF       MIN. KE OF     # INCIDENT
+  #    PLANE  PARTICLES* PHOTONS*   PARTICLES        ELECTRONS   PARTICLES FROM
+                                      (MeV)            (MeV)    ORIGINAL SOURCE
+
+   1      1      28314    27960      15.9752           0.4888       50000.000
+
+
+
+                    FLUENCE RESULTS
+                    ***************
+
+  CM SCORE POSITION   TOTAL                    ZONE HALF-WIDTHS
+     PLANE  (cm)    PARTICLES*                      (cm)
+   7    1  100.00       28314    1.0000    2.0000    3.0000    4.0000    5.0000
+
+
+ *Includes all particles of all weights
+
+  Lines with zero results are not printed
+
+ SPECTRAL-AVERAGED QUANTITIES FOR FIRST TIME CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  7:
+ ELECTRONS
+    1  1.000E-06+-44.72%  2.595E-07+-44.78%     3.310+-65.7%*    11.557+-73.4%*
+    2  1.400E-06+-37.79%  1.175E-07+-37.80%     3.217+-57.7%*     5.244+-62.2%*
+    3  1.800E-06+-33.33%  9.105E-08+-33.33%     4.109+-50.0%*     6.948+-53.3%*
+    4  3.800E-06+-22.94%  1.428E-07+-23.03%     3.144+-16.3%    12.253+-22.2%
+    5  5.000E-06+-20.78%  1.436E-07+-20.79%     3.907+-15.8%    10.404+-17.8%
+    6  4.660E-05+-11.26%  1.451E-08+-11.48%     2.688+- 7.7%    19.816+- 3.9%
+   --------------------
+  Tot  5.960E-05+- 9.2%
+ PHOTONS
+    1  1.746E-04+- 3.59%  4.365E-05+- 3.59%     3.705+- 2.7%     0.536+- 2.1%
+    2  5.656E-04+- 2.14%  4.714E-05+- 2.14%     3.741+- 1.5%     1.105+- 0.7%
+    3  1.032E-03+- 1.66%  5.163E-05+- 1.66%     3.866+- 1.1%     1.761+- 0.5%
+    4  1.446E-03+- 1.44%  5.169E-05+- 1.44%     3.867+- 0.9%     2.406+- 0.4%
+    5  1.909E-03+- 1.29%  5.312E-05+- 1.29%     3.902+- 0.8%     3.063+- 0.3%
+    6  9.200E-04+-10.50%  2.742E-07+-10.88%     1.647+- 9.5%    13.307+- 8.2%
+   --------------------
+  Tot  6.047E-03+- 1.7%
+ POSITRONS
+    2  4.000E-07+-70.71%  3.337E-08+-70.71%     8.618+-99.9%*     2.227+-99.9%*
+    4  4.000E-07+-70.71%  1.429E-08+-70.71%     6.615+-99.9%*     1.877+-99.9%*
+    5  6.000E-07+-57.73%  1.700E-08+-57.74%     3.311+-95.6%*    10.515+-84.5%*
+    6  9.800E-06+-14.85%  3.001E-09+-14.88%     3.486+- 9.3%    17.396+- 8.4%
+   --------------------
+  Tot  1.120E-05+-13.8%
+
+ *Covariance not included in uncertainty because no. of particles
+  crossing scoring zone <    10
+
+ SPECTRAL-AVERAGED QUANTITIES FOR MULTIPLE CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  7:
+ ELECTRONS
+ PHOTONS
+ POSITRONS
+
+
+ MIN PARTICLE WEIGHT FOR ALL SCORING ZONES =    0.0100000
+ MAX PARTICLE WEIGHT FOR ALL SCORING ZONES =    1.0000000

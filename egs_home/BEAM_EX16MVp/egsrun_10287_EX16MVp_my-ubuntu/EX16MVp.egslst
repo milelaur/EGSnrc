@@ -1,0 +1,486 @@
+
+
+ ***WARNING***
+ NBRSPL > $MAXBRSPLIT 
+ NBRSPL reduced to max =       2000 from       4000
+
+
+*********************************************
+ NOTE: MIRRORs RANGE REJECTION ALGORITHM ASSUMES THE MIRROR
+ INTERSECTS THE ENTIRE BEAM!!!   CHECK IT
+ ***********************************************************
+
+
+
+
+EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field  
+
+ NRCC CALN: BEAMnrc(EGSnrc)   
+ ON linux64                                                15:30:28 May 11 2020
+ ******************************************************************************
+ **                                                                          **
+ **                                  BEAMnrc                                 **
+ **                                                                          **
+ **      Code developed at National Research Council of Canada as part of    **
+ **           OMEGA collaboration with the University of Wisconsin.          **
+ **                                                                          **
+** This is version V1 of BEAMnrc                                             **
+ **                                                                          **
+ ******************************************************************************
+
+
+ Max # of histories: to run       50000          To analyze            50000
+                   Incident charge                            -1
+                   Incident kinetic energy                16.000 MeV
+
+                   Bremsstrahlung splitting                DIRECTIONAL
+                    splitting field radius                   10.000 cm
+                    splitting field SSD                     100.000 cm
+                    splitting no. in field                       2000
+                   Brem. cross section enhancement WILL NOT be used
+                   Photon force interaction switch         OFF
+                   SCORING PLANES:     #           CM #
+                   ---------------------           ----
+                                       1             7
+                   Phase space files will be output at EVERY scoring plane
+                   Range rejection switch                  ON 
+                   Range rejection in  52 regions
+                   Automatic ECUTRR used starting from          0.700 MeV
+ Range rejection based on medium of region particle is traversing
+ Maximum electron ranges for restricted stopping powers:
+   kinetic            Range for media 1 through 6
+   energy                          (cm)
+   (MeV)    AIR700IC  W700ICRU  FE700ICR  MYLAR700  AL700ICR  PMMA700I
+   0.200       6.072     0.002     0.002     0.005     0.004     0.006
+   0.400      84.941     0.010     0.018     0.070     0.044     0.078
+   0.600     178.342     0.020     0.036     0.148     0.091     0.164
+   1.000     383.457     0.041     0.076     0.320     0.195     0.356
+   1.500     651.119     0.069     0.129     0.547     0.331     0.610
+   2.000     921.052     0.097     0.183     0.778     0.470     0.870
+   4.000    1984.479     0.208     0.398     1.715     1.023     1.926
+   6.000    3015.167     0.317     0.610     2.650     1.572     2.982
+  10.000    5004.620     0.531     1.029     4.513     2.659     5.081
+  15.000    7402.169     0.793     1.545     6.834     4.008     7.687
+  16.000    7872.990     0.845     1.648     7.298     4.277     8.207
+                   Discard all electrons below energy:       3.000 MeV
+                        if too far from closest boundary
+                   Maximum cputime allowed                    900.00 (hrs)
+                   Initial random number seeds             31            77
+            LATCH_OPTION = 3: Latch values inherited, origin of
+                              secondary particles recorded.  For
+                              photons, region no. are recorded
+                              where they interact, not where 
+                              they just pass through.
+
+================================================================================
+
+                   Electron/Photon transport parameter
+
+================================================================================
+
+ Photon cross sections                                      xcom
+ Compton cross sections                                     default
+ Photon transport cutoff(MeV)                                    0.1000E-01
+ Pair angular sampling                                       SIM
+ Pair cross sections                                         BH 
+ Triplet production                                          Off
+ Bound Compton scattering                                    OFF           
+ Radiative Compton corrections                               Off           
+ Rayleigh scattering                                         OFF           
+ Atomic relaxations                                          OFF           
+ Photoelectron angular sampling                              OFF           
+
+ Electron transport cutoff(MeV)                               0.7000
+ Bremsstrahlung cross sections                              BH  
+ Bremsstrahlung angular sampling                             SIM
+ Spin effects                                                On
+ Electron Impact Ionization                                  Off
+ Maxium electron step in cm (SMAX)                                5.000    
+ Maximum fractional energy loss/step (ESTEPE)                0.2500
+ Maximum 1st elastic moment/step (XIMAX)                     0.5000
+ Boundary crossing algorithm                                 PRESTA-I  
+ Skin-depth for boundary crossing (MFP)                      49.84    
+ Electron-step algorithm                                     PRESTA-II 
+
+================================================================================
+
+                   Material summary   6 Materials used
+ *******************************************************************************
+  # Material           density(g/cm**3)   AE(MeV)   AP(MeV)     UE(MeV)  UP(MeV)
+ -- -----------------  ----------------   -------   -------     -------  -------
+  1 AIR700ICRU            1.205E-03        0.700     0.010      55.511    55.000
+  2 W700ICRU              1.930E+01        0.700     0.010      55.511    55.000
+  3 FE700ICRU             7.860E+00        0.700     0.010      55.511    55.000
+  4 MYLAR700ICRU          1.380E+00        0.700     0.010      55.511    55.000
+  5 AL700ICRU             2.702E+00        0.700     0.010      55.511    55.000
+  6 PMMA700ICRU           1.190E+00        0.700     0.010      55.511    55.000
+ *******************************************************************************
+                             SOURCE PARAMETERS
+
+                   INITIAL PARTICLES are Electrons
+                   PARALLEL BEAM ON FRONT FACE at Z=   0.0000 cm
+                   Beam radius=   0.0010 cm
+                 X,Y,Z DIRECTION COSINES = (   0.00000   0.00000   1.00000)
+
+                   KINETIC ENERGY OF SOURCE =    16.000 MeV
+
+ REGION and RANGE REJECTION SUMMARY:
+ **********************************
+
+ Total number of regions, including region 1 which surrounds the geometry:  53
+
+  Region    CM          Dose   IR_    Medium    ECUTRR  res_rnge  ESAVE   type
+ abs local  # IDENTIF   ZONE   TO_  (No.&Name)   (MeV)    (cm)    (MeV)
+                       (0=no)  BIT
+   1   1    0 exterior   0      0    0 Vacuum
+   2   1    1 TARGET     1      1    2 W700ICRU   1.023   0.015   1.000  DNEAR
+   3   1    2 PRIMCOLL  23     23    1 AIR700ICR  1.013 131.154   3.000  DNEAR
+   4   2    2 PRIMCOLL   2      2    3 FE700ICRU  1.013   0.027   3.000  DNEAR
+   5   3    2 PRIMCOLL   0     23    1 AIR700ICR  1.013 131.154   3.000  DNEAR
+   6   1    3 FLATTENF   3      3    3 FE700ICRU  1.003   0.026   3.000  DNEAR
+   7   2    3 FLATTENF  23     23    1 AIR700ICR  1.003 126.462   3.000  DNEAR
+   8   3    3 FLATTENF   3      3    3 FE700ICRU  1.003   0.026   3.000  DNEAR
+   9   4    3 FLATTENF  23     23    1 AIR700ICR  1.003 126.462   3.000  DNEAR
+  10   5    3 FLATTENF   4      4    2 W700ICRU   1.003   0.014   3.000  DNEAR
+  11   6    3 FLATTENF   3      3    3 FE700ICRU  1.003   0.026   3.000  DNEAR
+  12   7    3 FLATTENF  23     23    1 AIR700ICR  1.003 126.462   3.000  DNEAR
+  13   8    3 FLATTENF   4      4    2 W700ICRU   1.003   0.014   3.000  DNEAR
+  14   9    3 FLATTENF   3      3    3 FE700ICRU  1.003   0.026   3.000  DNEAR
+  15  10    3 FLATTENF  23     23    1 AIR700ICR  1.003 126.462   3.000  DNEAR
+  16  11    3 FLATTENF   0     23    1 AIR700ICR  1.003 126.462   3.000  DNEAR
+  17   1    4 CHAMBER    5      5    4 MYLAR700I  0.942   0.082   3.000  DNEAR
+  18   2    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
+  19   3    4 CHAMBER    7      5    1 AIR700ICR  0.942  98.853   3.000  DNEAR
+  20   4    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
+  21   5    4 CHAMBER    5      5    4 MYLAR700I  0.942   0.082   3.000  DNEAR
+  22   6    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
+  23   7    4 CHAMBER    7      5    1 AIR700ICR  0.942  98.853   3.000  DNEAR
+  24   8    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
+  25   9    4 CHAMBER    5      5    4 MYLAR700I  0.942   0.082   3.000  DNEAR
+  26  10    4 CHAMBER    7      5    1 AIR700ICR  0.942  98.853   3.000  DNEAR
+  27  11    4 CHAMBER    5      5    4 MYLAR700I  0.942   0.082   3.000  DNEAR
+  28  12    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
+  29  13    4 CHAMBER    7      5    1 AIR700ICR  0.942  98.853   3.000  DNEAR
+  30  14    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
+  31  15    4 CHAMBER    5      5    4 MYLAR700I  0.942   0.082   3.000  DNEAR
+  32  16    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
+  33  17    4 CHAMBER    7      5    1 AIR700ICR  0.942  98.853   3.000  DNEAR
+  34  18    4 CHAMBER    6      5    5 AL700ICRU  0.942   0.051   3.000  DNEAR
+  35  19    4 CHAMBER    5      5    4 MYLAR700I  0.942   0.082   3.000  DNEAR
+  36  20    4 CHAMBER    0      6    1 AIR700ICR  0.942  98.853   3.000  DNEAR
+  37  21    4 CHAMBER    0      6    1 AIR700ICR  0.942  98.853   3.000  DNEAR
+  38  22    4 CHAMBER    0      6    1 AIR700ICR  0.942  98.853   3.000  DNEAR
+  39  23    4 CHAMBER    0     23    1 AIR700ICR  0.942  98.853   3.000  DNEAR
+  40   1    5 MIRROR     8      8    5 AL700ICRU  0.912   0.044   3.000  DNEAR
+  41   2    5 MIRROR     9      8    6 PMMA700IC  0.912   0.079   3.000  DNEAR
+  42   3    5 MIRROR    23     23    1 AIR700ICR  0.912  85.304   3.000  DNEAR
+  43   4    5 MIRROR    23     23    1 AIR700ICR  0.912  85.304   3.000  DNEAR
+  44   5    5 MIRROR     0     23    1 AIR700ICR  0.912  85.304   3.000  DNEAR
+  45   1    6 SECJAWS   23     23    1 AIR700ICR  0.865  65.295   3.000  DNEAR
+  46   2    6 SECJAWS   10     10    2 W700ICRU   0.865   0.008   3.000  DNEAR
+  47   3    6 SECJAWS   10     10    2 W700ICRU   0.865   0.008   3.000  DNEAR
+  48   4    6 SECJAWS   23     23    1 AIR700ICR  0.865  65.295   3.000  DNEAR
+  49   5    6 SECJAWS   11     11    2 W700ICRU   0.865   0.008   3.000  DNEAR
+  50   6    6 SECJAWS   11     11    2 W700ICRU   0.865   0.008   3.000  DNEAR
+  51   1    7 AIRSLAB   12     12    6 PMMA700IC  0.700   0.000   3.000  DNEAR
+  52   2    7 AIRSLAB   23     23    1 AIR700ICR  0.700   0.000   3.000  DNEAR
+  53   3    7 AIRSLAB    0     23    1 AIR700ICR  0.700   0.000   3.000  DNEAR
+
+ Component Module summary:
+ *************************
+
+  There are  7 Component Modules.
+
+     COMPONENT MODULE  FIRST     BOUNDARY    DISTANCE FROM    AIR    SCORING
+                      REGION  (1=cyl,2=sq) REFERENCE PLANE   GAP     PLANE
+  #  TYPE  IDENTIFIERFLAG    (cm)          (cm)      (cm)   (0=none)
+
+  1 SLABS    TARGET      2     2     2.500         0.000     0.000     0
+  2 CONS3R   PRIMCOLL    3     1     6.000         0.500     0.400     0
+  3 FLATFILT FLATTENF    6     1     6.000         5.900     2.100     0
+  4 CHAMBER  CHAMBER    17     1    10.000        11.200     1.800     0
+  5 MIRROR   MIRROR     40     2    10.000        14.124     6.876     0
+  6 JAWS     SECJAWS    45     2    10.000        23.000     0.000     0
+  7 SLABS    AIRSLAB    51     2    30.000        47.300     3.700     1
+
+
+
+ -------------------------------------------------------------------------------
+  Component module  1 is one or more planar slabs  (SLABS)
+ -------------------------------------------------------------------------------
+
+    Title: Tungsten Target                                             
+
+ TARGET geometry parameters:
+ -----------------------------
+ Distance of front of CM from reference plane =         0.00000 cm
+ Half-width of outer boundary of CM =         2.50000 cm
+
+ slab #    Z front    thickness
+            face               
+            (cm)        (cm)   
+    1       0.000      0.500
+
+ TARGET region parameters:
+ ---------------------------
+ local  slab #  location  electron  photon  range-rejection  dose  bit  medium
+ region                    cutoff   cutoff   level     max   zone  set
+            (MeV)    (MeV)   (MeV)    (MeV)
+   1      1        slab     0.700    0.010   1.023    1.000    1    1  W700ICRU 
+
+
+
+ -------------------------------------------------------------------------------
+  Component module  2 - stacked truncated cones (3 regions CONS3R)
+ -------------------------------------------------------------------------------
+
+    Title: Primary Collimator                                          
+
+ PRIMCOLL geometry parameters:
+ --------------------------
+ Distance from front of CM from reference plane =        0.50000 cm
+ Radius of outer boundary of CM =         6.00000 cm
+ There is an airgap which starts at Z= 0.50000 cm and is  0.40000 cm thick.
+
+ node      Z(cm)     r(cm)
+   1      0.900     0.500
+   2      5.900     3.000
+
+ PRIMCOLL region parameters:
+ -------------------------
+ local  location  electron  photon  range-rejection   dose  bit  medium
+ region            cutoff   cutoff   level     max    zone  set
+                    (MeV)    (MeV)   (MeV)    (MeV)
+   1     inside     0.700    0.010   1.013    3.000    23   23   AIR700ICR
+   2    outside     0.700    0.010   1.013    3.000     2    2   FE700ICRU
+   3     airgap     0.700    0.010   1.013    3.000     0   23   AIR700ICR
+         at top
+
+
+
+ Component module  3 is FLATFILT
+  --------------------------------------
+
+    Title: Flattening Filter                                           
+
+ FLATTENF geometry parameters:
+ -----------------------------
+ Distance of front of CM from reference plane =         5.90000 cm
+ Radius of outer boundary of CM =         6.00000 cm
+
+ layer  Z front  thickness  cone  top radius  bottom radius
+   #     face                #
+         (cm)   (cm)            (cm)          (cm)
+   1    8.000      0.300     1      0.000         0.500
+   2    8.300      0.700     1      0.500         0.800
+   3    9.000      1.000     1      0.000         0.400
+                             2      0.800         1.700
+   4   10.000      1.200     1      0.400         1.200
+                             2      1.700         3.000
+
+ FLATTENF region parameters:
+ ---------------------------
+ local  layer  cone  loc.  electron  photon  range  rejection  dose  bit  medium
+ region cutoff   cutoff  level   maximum   zone  set
+                  (MeV)     (MeV)  (MeV)    (MeV)
+   1      1     1     cone   0.700    0.010  1.003     3.000    3   3  FE700ICRU
+   2      1    NA  between   0.700    0.010  1.003     3.000   23  23  AIR700ICR
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+   3      2     1     cone   0.700    0.010  1.003     3.000    3   3  FE700ICRU
+   4      2    NA  between   0.700    0.010  1.003     3.000   23  23  AIR700ICR
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+   5      3     1     cone   0.700    0.010  1.003     3.000    4   4  W700ICRU 
+   6      3     2     cone   0.700    0.010  1.003     3.000    3   3  FE700ICRU
+   7      3    NA  between   0.700    0.010  1.003     3.000   23  23  AIR700ICR
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+   8      4     1     cone   0.700    0.010  1.003     3.000    4   4  W700ICRU 
+   9      4     2     cone   0.700    0.010  1.003     3.000    3   3  FE700ICRU
+  10      4    NA  between   0.700    0.010  1.003     3.000   23  23  AIR700ICR
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+  11     NA    NA   airgap   0.700    0.010  1.003     3.000    0  23  AIR700ICR
+                    at top
+
+
+
+ -------------------------------------------------------------------------------
+  Component module  4 is an ion chamberor phantom (CHAMBER)
+ -------------------------------------------------------------------------------
+
+    Title: Monitor chamber, 6 layers of AIR-interspaced aluminized MYLA
+
+ CHAMBER region & geometry parameters:
+ -------------------------------------
+ Distance of front of CM from reference plane =        11.20000 cm
+ Radius of outer boundary ofCM =        10.00000 cm
+
+    Air gap parameters:
+    -------------------
+ local layer loc.   Z    Zthick   rad. electr photon range-reject  dose  medium
+ reg              front                cutoff cutoff level   max   zone
+                   (cm) (cm)    (cm)  (MeV)  (MeV) (MeV)  (MeV)
+ 23   NA  airgap  11.200  1.800 10.000  0.700  0.010  0.942  3.000  0  AIR700ICR
+          at top
+
+    CHAMBER CENTRAL PART parameters:
+    --------------------------------
+ local layer loc.   Z    Zthick  rad.  electr photon range-reject  dose  medium
+ reg   front                cutoff cutoff level   max   zone
+                   (cm)    (cm)  (cm)   (MeV)  (MeV) (MeV)  (MeV)
+  1    1  layer  13.000  0.0040  9.900  0.700  0.010  0.942  3.000  5  MYLAR700I
+  2    2  layer  13.004  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
+  3    3  layer  13.004  0.2500  9.900  0.700  0.010  0.942  3.000  7  AIR700ICR
+  4    4  layer  13.254  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
+  5    5  layer  13.254  0.0040  9.900  0.700  0.010  0.942  3.000  5  MYLAR700I
+  6    6  layer  13.258  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
+  7    7  layer  13.258  0.2500  9.900  0.700  0.010  0.942  3.000  7  AIR700ICR
+  8    8  layer  13.508  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
+  9    9  layer  13.508  0.0040  9.900  0.700  0.010  0.942  3.000  5  MYLAR700I
+ 10   10  layer  13.512  0.1000  9.900  0.700  0.010  0.942  3.000  7  AIR700ICR
+ 11   11  layer  13.612  0.0040  9.900  0.700  0.010  0.942  3.000  5  MYLAR700I
+ 12   12  layer  13.616  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
+ 13   13  layer  13.616  0.2500  9.900  0.700  0.010  0.942  3.000  7  AIR700ICR
+ 14   14  layer  13.866  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
+ 15   15  layer  13.866  0.0040  9.900  0.700  0.010  0.942  3.000  5  MYLAR700I
+ 16   16  layer  13.870  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
+ 17   17  layer  13.870  0.2500  9.900  0.700  0.010  0.942  3.000  7  AIR700ICR
+ 18   18  layer  14.120  0.0000  9.900  0.700  0.010  0.942  3.000  6  AL700ICRU
+ 19   19  layer  14.120  0.0040  9.900  0.700  0.010  0.942  3.000  5  MYLAR700I
+
+    CHAMBER WALL parameters:
+    --------------------------
+ local layer loc.  Z    Zthick     rad.     electr photon range-reject dose med
+ reg             front  inner  outer cutoff cutoff level  max   zone
+        (cm)    (cm)      (cm)      (MeV)  (MeV) (MeV) (MeV)
+ 20  NA entire  13.000  1.124  9.900  9.950 0.700 0.010  0.942 3.000  0 AIR700IC
+          wall
+
+    CHAMBER side air gap parameters:
+    ---------------------------------
+ local layer loc.  Z    Zthick     rad.     electr photon range-reject dose med
+ reg   front         inner  outer cutoff cutoff level  max   zone
+                 (cm)    (cm)      (cm)      (MeV)  (MeV) (MeV) (MeV)
+ 21  NA entire  13.000  1.124  9.950 10.000 0.700 0.010  0.942 3.000  0 AIR700IC
+           gap
+
+    CHAMBER container wall parameters:
+    -----------------------------------
+ local layer loc.  Z    Zthickrad.     electr photon range-reject dose med
+ reg       front         inner  outer cutoff cutoff level  max   zone
+                 (cm)    (cm)      (cm)      (MeV)  (MeV) (MeV) (MeV)
+ 22  NA entire  13.000  1.124 10.000 10.000 0.700 0.010  0.942 3.000  0 AIR700IC
+          wall
+
+ LOCAL REGION  22 IN CHAMBER HAS ZERO VOLUME!
+
+
+
+ -------------------------------------------------------------------------------
+  Component module  5 is a flat inclined mirror MIRROR 
+ -------------------------------------------------------------------------------
+
+ Title: Aluminized lucite mirror                                    
+
+ MIRROR geometry parameters:
+ -----------------------------
+ Z of front face of CM =        14.12416 cm
+ Half-width of outer boundary of CM =        10.00000 cm
+ Z at which mirror starts =        21.00000 cm
+ Z span of mirror =         2.00000 cm
+
+ layer #      thickness         XFMIN     XBMIN     XFMAX     XBMAX
+                (cm)   (cm)
+  airgap       6.876               NA        NA        NA        NA
+  at top
+  1(front)     0.000            3.000    -3.000     3.000    -3.000
+  2            0.006            3.000    -3.000     3.021    -2.979
+
+ Angle of mirror face wrt z-axis =        71.56505 degrees
+
+ MIRROR region parameters:
+ ---------------------------
+ local layer  location   electron   photon  range-rejection   dose  bit  medium
+ region                   cutoff    cutoff   level     max    zone  set
+             (MeV)      (MeV)   (MeV)    (MeV)
+   1      1     layer      0.700    0.010    0.912    3.000    8    8  AL700ICRU
+   2      2     layer      0.700    0.010    0.912    3.000    9    8  PMMA700IC
+   3     NA    region      0.700    0.010    0.912    3.000   23   23  AIR700ICR
+               behind
+   4     NA    region      0.700    0.010    0.912    3.000   23   23  AIR700ICR
+             in front
+   5     NA    airgap      0.700    0.010    0.912    3.000    0   23  AIR700ICR
+               at top
+
+
+
+ -------------------------------------------------------------------------------
+  Component module  6 is JAWS
+ -------------------------------------------------------------------------------
+
+    Title: Secondary collimators set to produce a 10x10 field at 100 cm
+
+ SECJAWS geometry parameters:
+ -----------------------------
+ Distance of front of CM from reference plane =       23.00000 cm
+ Half-width of outer boundary of CM =        10.00000 cm
+
+ jaw #    Z front    thickness    x or y coordinates
+           face                   jawsFP       BP       FN      BN
+           (cm)        (cm)                                (cm)
+ airgap   23.000      6.000        NA         NA       NA       NA      NA
+   1      29.000      9.000         x       1.450    1.900   -1.450   -1.900
+ airgap   38.000      0.500        NA         NA       NA       NA      NA
+   2      38.500      8.800         y       1.925    2.365   -1.925   -2.365
+
+ SECJAWS region parameters:
+ ---------------------------
+ local jaw #   location  electron  photon  range-rejection   dose  bit  medium
+ region                   cutoff   cutoff   level     max    zone  set
+            (MeV)    (MeV)   (MeV)    (MeV)
+   1      1     airgap     0.700    0.010   0.865    3.000    23   23  AIR700ICR
+               above &
+                centre
+   2      1    +ve jaw     0.700    0.010   0.865    3.000    10   10  W700ICRU 
+   3      1    -ve jaw     0.700    0.010   0.865    3.000    10   10  W700ICRU 
+                      
+   4      2     airgap     0.700    0.010   0.865    3.000    23   23  AIR700ICR
+               above &
+                centre
+   5      2    +ve jaw     0.700    0.010   0.865    3.000    11   11  W700ICRU 
+   6      2    -ve jaw     0.700    0.010   0.865    3.000    11   11  W700ICRU 
+                      
+
+
+
+ -------------------------------------------------------------------------------
+  Component module  7 is one or more planar slabs  (SLABS)
+ -------------------------------------------------------------------------------
+
+    Title: PMMA light field reticle + AIR to the patient               
+
+ AIRSLAB geometry parameters:
+ -----------------------------
+ Distance of front of CM from reference plane =       47.30000 cm
+ Half-width of outer boundary of CM =        30.00000 cm
+
+ slab #    Z front    thickness
+            face               
+            (cm)        (cm)   
+ airgap    47.300      3.700
+    1      51.000      0.030
+    2      51.030     48.970
+
+ AIRSLAB region parameters:
+ ---------------------------
+ local  slab #  location  electron  photon  range-rejection  dose  bit  medium

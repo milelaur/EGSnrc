@@ -1,12 +1,12 @@
 EX16MVp.egs4inp, 16 MV photons,SSD=100 from front face of target, 10x10 field    #!GUI1.0
 AIR700ICRU
 0, 0, 0, 0, 1, 3, 1,  IWATCH ETC.
-50000, 31, 77, 900.0, 2, 20, 0, 0,  NCASE ETC.
-10, 100, 0, 0, 0, ,  DIRECTIONAL BREM OPTIONS
+50000, 31, 77, 900.0, 2, 100, 2, 0,  NCASE ETC.
+10, 100, 3, 5, 0, 0.0,  DIRECTIONAL BREM OPTIONS
 -1, 0, 0.001, 0.0, 0.0, 1.0,  0.0, 0.0, 0.0, 0.0,  IQIN, ISOURCE + OPTIONS
 0, MONOENERGETIC
 16.00000
-0, 0, 0.7, 0.01, 0, 1, 3.0,  0 , ECUT,PCUT,IREJCT,ESAVE
+0, 0, 1.0, 0.01, 0, -2, 3.0,  0 , ECUT,PCUT,IREJCT,ESAVE
 0, 1, 1, 7, 7,  PHOTON FORCING
 1, 7,  SCORING INPUT
 5, 1
@@ -191,7 +191,7 @@ AIR700ICRU
  #########################
  :Start MC Transport Parameter:
  
- Global ECUT= 0.7
+ Global ECUT= 1.0
  Global PCUT= 0.01
  Global SMAX= 5
  ESTEPE= 0.25
@@ -214,4 +214,14 @@ AIR700ICRU
  Photon cross-sections output= Off
  
  :Stop MC Transport Parameter:
+ #########################
+ :Start BCSE:
+ 
+ Use BCSE= Off
+ Media to enhance=  
+ Enhancement constant= 20
+ Enhancement power= 0
+ Russian Roulette= off
+ 
+ :Stop BCSE:
  #########################
