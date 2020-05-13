@@ -1,0 +1,390 @@
+ *******************************************************************************
+ NRCC/UW EGSnrc user-code DOSXYZnrc
+ ON linux64                                                20:42:11 May 13 2020
+ *******************************************************************************
+ **                                                                           **
+ **                                  DOSXYZnrc                                **
+ **                              Z pronounced zed                             **
+ **                                                                           **
+ **      Code developed at the National Research Council of Canada and        **
+ **           University of Wisconsin as part of the OMEGA project            **
+ **                                                                           **
+ **                                                                           **
+ **                                                                           **
+ *******************************************************************************
+
+     The following parameters may be adjusted in dosxyz_user_macros.mortran
+ $MXMED:    Max number of media:  7
+ $MXSTACK:  Max stack size:     10000
+ $IMAX,etc: Max dose scoring regions in x,y,z directions:  128  128  128
+ $MAXDOSE:  Max dose scoring regions consistent with above:2097153
+ $DOSEZERO(=1) 1=> all doses with uncert > 50% are zeroed in .3ddose file
+
+
+ The following parameters may be adjusted in srcxyz.macros
+ $INVDIM:   number of elements in inverse CPD for input energy spectra = 1000
+ $NENSRC:   number of bins in input energy spectrum =  200
+
+ ===============================================================================
+ -------------------------------------------------------------------------------
+
+ Title:  Water_phantom                                                                   
+ -------------------------------------------------------------------------------
+ ===============================================================================
+
+
+ Number of media (min = 1, max =   7, 0 => CT data):                1
+ Medium  1:                     H2O700ICRU              
+
+ ECUTIN,PCUTIN,(ESTEPE,SMAX--DUMMY INPUTS): 
+              0.700     0.010     0.000     0.000
+
+ # regions in x (max= 128),y (max= 128),z (max= 128) directions
+ (if<0,implies # groups of reg), IPHANT (1 to output a .egsphant
+ file for dosxyz_show, 0[default] to not output this file)
+     :      -5    -5    -5     1
+
+ Input boundaries in the x-direction
+ -----------------------------------
+ Initial boundary:         0.000
+ Width in this group, number of regions in group:         1.000    1
+ Width in this group, number of regions in group:         1.000    2
+ Width in this group, number of regions in group:         1.000    3
+ Width in this group, number of regions in group:         1.000    4
+ Width in this group, number of regions in group:         1.000    5
+ Boundaries
+       0.000       1.000       2.000       3.000       4.000       5.000
+       6.000       7.000       8.000       9.000      10.000      11.000
+      12.000      13.000      14.000      15.000
+
+ Input boundaries in the y-direction
+ -----------------------------------
+ Initial boundary:         0.000
+ Width in this group, number of regions in group:         1.000    1
+ Width in this group, number of regions in group:         1.000    2
+ Width in this group, number of regions in group:         1.000    3
+ Width in this group, number of regions in group:         1.000    4
+ Width in this group, number of regions in group:         1.000    5
+ Boundaries
+       0.000       1.000       2.000       3.000       4.000       5.000
+       6.000       7.000       8.000       9.000      10.000      11.000
+      12.000      13.000      14.000      15.000
+
+ Input boundaries in the z-direction
+ -----------------------------------
+ Initial boundary:         0.000
+ Width in this group, number of regions in group:         1.000    1
+ Width in this group, number of regions in group:         1.000    2
+ Width in this group, number of regions in group:         1.000    3
+ Width in this group, number of regions in group:         1.000    4
+ Width in this group, number of regions in group:         1.000    5
+ Boundaries
+       0.000       1.000       2.000       3.000       4.000       5.000
+       6.000       7.000       8.000       9.000      10.000      11.000
+      12.000      13.000      14.000      15.000
+
+ Total # regions including exterior =      3376
+
+ Input groups of regions for which density and medium are not defaults
+ Lower,upper i, j, k,  MEDIUM, DENSITY (  1   5)(  1   5)(  1   5)   1     0.000
+ Lower,upper i, j, k,  MEDIUM, DENSITY
+    Found blank line => end of this input
+
+
+ Input groups of regions for which ECUT and PCUT are not defaults
+ NB This option is disabled, just input 8 zeros.
+ Dummy values of lower,upper i, j, k,  ECUT, PCUT
+    Found blank line => end of this input
+
+
+ Enter 8 numbers on one line
+   3 pairs defininglower,upper x,y,z indicies of dose regions
+                 for which results are to be output
+   IZSCAN:       non-zero for z-scan/page
+   MAX20:        if any one = 1, output summary of max 20 doses.
+   end signaled by first pair both zero
+   forno dose printed, MAX20 is still read from first line
+
+         1   5     1   5     1   5     0     0
+    Found blank line => end of this input
+
+
+ NCASE,IWATCH,TIMMAX,INSEED1,INSEED2,BEAM_SIZE,ISMOOTH,IRESTART,IDAT,
+ IREJECT,ESAVE_GLOBAL,NRCYCL,IPARALLEL,PARNUM,n_split,ihowfarless,i_phsp_out
+ : 
+      100000   0   0.99        33        97 100.00      0    0   0   1   2.00   0   0   0   1   0   0
+
+
+================================================================================
+
+                   Electron/Photon transport parameter
+
+================================================================================
+
+ Photon cross sections                                      xcom
+ Compton cross sections                                     default
+ Photon transport cutoff(MeV)                                    0.1000E-01
+ Pair angular sampling                                       SIM
+ Pair cross sections                                         BH 
+ Triplet production                                          Off
+ Bound Compton scattering                                    OFF           
+ Radiative Compton corrections                               Off           
+ Rayleigh scattering                                         OFF           
+ Atomic relaxations                                          OFF           
+ Photoelectron angular sampling                              OFF           
+
+ Electron transport cutoff(MeV)                               0.7000
+ Bremsstrahlung cross sections                              BH  
+ Bremsstrahlung angular sampling                             SIM
+ Spin effects                                                On
+ Electron Impact Ionization                                  Off
+ Maxium electron step in cm (SMAX)                                5.000    
+ Maximum fractional energy loss/step (ESTEPE)                0.2500
+ Maximum 1st elastic moment/step (XIMAX)                     0.5000
+ Boundary crossing algorithm                                 PRESTA-I  
+ Skin-depth for boundary crossing (MFP)                      330.8    
+ Electron-step algorithm                                     PRESTA-II 
+
+================================================================================
+
+ 
+
+ Index ranges of beam field
+ --------------------------
+
+      1.500     1.500   i index ranges over i=  2 to   2
+      1.500     1.500   j index ranges over j=  2 to   2
+
+ Angle of beam to
+  axes(in deg, 90,90,0 is normal):       90.00     90.00      0.00 deg
+
+ *******************************************************************************
+
+         Summary of source parameters (srcxyznrc)
+ *******************************************************************************
+
+                    Parallel beam incident from the front(+ve z-axis)
+
+                         Electric charge of the source:           -1
+                         x-boundaries:        1.5000 cm-    1.5000 cm
+                         y-boundaries:        1.5000 cm-    1.5000 cm
+                         Angle relative to +x:             90.0000 degrees
+                         Angle relative to +y:             90.0000 degrees
+                         Angle relative to -z:              0.0000 degrees
+
+
+ Medium                AE        AP
+ H2O700ICRU          0.700     0.010
+
+ Will perform charged-particle range rejection against voxel boundaries
+ if particle energy is below      2.00000 MeV.
+
+
+ ***************************************************************
+
+  Histories to be simulated for this run       100000
+
+  Histories to be analyzed after this run      100000
+
+ ***************************************************************
+   Elapsed wall clock time to this point=       0.197 s
+
+
+   CPU time so far for this run =       0.198 s
+
+
+ BATCH #  TIME-ELAPSED  TOTAL CPUTIME  RATIO  TIME OF DAY  RNG pointers
+
+     1          0.0            0.0      0.00    20:42:11   ixx jxx =   97  33 
+     2          0.8            0.8      1.00    20:42:12   ixx jxx =   58  91 
+     3          1.6            1.6      1.00    20:42:12   ixx jxx =   69   5 
+     4          2.4            2.4      1.00    20:42:13   ixx jxx =   12  45 
+     5          3.2            3.2      1.00    20:42:14   ixx jxx =   28  61 
+     6          4.0            4.0      1.00    20:42:15   ixx jxx =   36  69 
+     7          4.8            4.8      1.00    20:42:16   ixx jxx =   44  77 
+     8          5.6            5.6      1.00    20:42:16   ixx jxx =   81  17 
+     9          6.5            6.5      1.00    20:42:17   ixx jxx =   83  19 
+    10          7.3            7.3      1.00    20:42:18   ixx jxx =   56  89 
+
+ Total CPU time for run =     8.1 s =   0.002 hr =>   44555451. hist/hr
+   On  linux64 
+
+ Fraction of incident energy deposited in the phantom =      0.9097
+
+
+ Number of charged particle steps simulated,   N_step   =        5664254
+ Number of charged particle steps/incident fluence      =    5.66425E+01
+ No. of PRESTA-II steps/total no. of charged particle steps =        0.54370
+
+1Water_phantom                                                                   
+    Elec/positron planar energy fluence scored in a 1cm**2 circle 
+    centered at z-axis on the phantom surface =  0.000E+00(1/cm**2)
+
+    Photon planar energy fluence scored in a 1cm**2 circle 
+    centered at z-axison the phantom surface =  0.000E+00(1/cm**2)
+
+    Elec/positronplanar fluence scored in a 1cm**2 circle 
+    centered at z-axis on the phantom surface =  0.000E+00(1/cm**2)
+
+    Photon planar fluence scored in a 1cm**2 circle 
+    centered at z-axis on the phantom surface =  0.000E+00(1/cm**2)
+
+    Total number of incident particles =  1.000E+05
+
+         DOSXYZnrc Dose outputs (Dose/incident particle, Gy)
+
+
+              for z=     0.000 to     1.000     k=  1
+
+ ybounds:  0.000       1.000            2.000            3.000            4.000
+         j=        1                2                3                4
+ xbounds (     0.000)
+   1.000   1  2.608E-13- 9.9%  7.162E-13- 5.0%  2.402E-13-10.1%  7.440E-14-19.4%
+   2.000   2  6.624E-13- 5.3%  3.076E-10- 0.1%  6.966E-13- 5.1%  8.685E-14-17.5%
+   3.000   3  2.501E-13-10.1%  6.820E-13- 5.0%  2.250E-13-10.4%  7.302E-14-18.4%
+   4.000   4  9.731E-14-17.1%  6.420E-14-18.4%  6.986E-14-19.2%  3.603E-14-27.2%
+   5.000   5  4.820E-14-25.4%  3.299E-14-25.0%  3.107E-14-27.3%  2.923E-14-30.1%
+ 
+
+
+              for z=     0.000 to     1.000     k=  1
+
+ ybounds:  4.000       5.000
+         j=        5
+ xbounds (     0.000)
+   1.000   1  2.806E-14-28.3%
+   2.000   2  3.931E-14-23.4%
+   3.000   3  2.568E-14-28.7%
+   4.000   4  1.725E-14-36.2%
+   5.000   5  8.513E-15-48.7%
+ 
+
+
+              for z=     1.000 to     2.000     k=  2
+
+ ybounds:  0.000       1.000            2.000            3.000            4.000
+         j=        1                2                3                4
+ xbounds (     0.000)
+   1.000   1  2.616E-12- 3.0%  1.170E-11- 1.3%  2.598E-12- 3.0%  5.252E-13- 7.2%
+   2.000   2  1.156E-11- 1.3%  2.883E-10- 0.1%  1.174E-11- 1.3%  6.461E-13- 6.2%
+   3.000   3  2.594E-12- 3.0%  1.201E-11- 1.3%  2.587E-12- 3.0%  5.357E-13- 7.0%
+   4.000   4  5.118E-13- 6.9%  7.348E-13- 5.9%  4.742E-13- 7.2%  2.626E-13-10.0%
+   5.000   5  1.246E-13-13.7%  1.875E-13-11.3%  1.755E-13-11.9%  7.652E-14-17.6%
+ 
+
+
+              for z=     1.000 to     2.000     k=  2
+
+ ybounds:  4.000       5.000
+         j=        5
+ xbounds (     0.000)
+   1.000   1  1.396E-13-14.0%
+   2.000   2  1.558E-13-12.7%
+   3.000   3  1.355E-13-13.4%
+   4.000   4  7.122E-14-19.1%
+   5.000   5  2.479E-14-32.3%
+ 
+
+
+              for z=     2.000 to     3.000     k=  3
+
+ ybounds:  0.000       1.000            2.000            3.000            4.000
+         j=        1                2                3                4
+ xbounds (     0.000)
+   1.000   1  1.327E-11- 1.4%  3.579E-11- 0.8%  1.373E-11- 1.4%  2.618E-12- 3.2%
+   2.000   2  3.584E-11- 0.8%  1.508E-10- 0.3%  3.598E-11- 0.8%  4.113E-12- 2.5%
+   3.000   3  1.305E-11- 1.4%  3.617E-11- 0.8%  1.348E-11- 1.4%  2.633E-12- 3.1%
+   4.000   4  2.670E-12- 3.1%  4.001E-12- 2.5%  2.717E-12- 3.1%  1.021E-12- 5.1%
+   5.000   5  4.574E-13- 7.3%  7.298E-13- 5.8%  4.462E-13- 7.2%  1.630E-13-11.8%
+ 
+1Water_phantom                                                                   
+    Elec/positron planar energy fluence scored in a 1cm**2 circle 
+    centered at z-axis on the phantom surface =  0.000E+00(1/cm**2)
+
+    Photon planar energy fluence scored in a 1cm**2 circle 
+    centered at z-axis on the phantom surface =  0.000E+00(1/cm**2)
+
+    Elec/positron planar fluence scored in a 1cm**2 circle 
+    centered at z-axis on the phantom surface =  0.000E+00(1/cm**2)
+
+    Photon planar fluence scored in a 1cm**2 circle 
+    centered atz-axis on the phantom surface =  0.000E+00(1/cm**2)
+
+    Total number of incident particles =  1.000E+05
+
+         DOSXYZnrc Dose outputs (Dose/incident particle, Gy)
+
+
+              for z=     2.000 to     3.000     k=  3
+
+ ybounds:  4.000       5.000
+         j=        5
+ xbounds (     0.000)
+   1.000   1  3.996E-13- 7.6%
+   2.000   2  6.974E-13- 6.0%
+   3.000   3  4.811E-13- 7.1%
+   4.000   4  1.612E-13-11.4%
+   5.000   5  1.714E-14-34.4%
+ 
+
+
+              for z=     3.000 to     4.000     k=  4
+
+ ybounds:  0.000       1.000            2.000            3.000            4.000
+         j=        1                2                3                4
+ xbounds (     0.000)
+   1.000   1  1.803E-11- 1.2%  3.105E-11- 0.9%  1.774E-11- 1.2%  4.708E-12- 2.4%
+   2.000   2  3.070E-11- 0.9%  6.115E-11- 0.6%  3.134E-11- 0.9%  7.315E-12- 1.9%
+   3.000   3  1.794E-11- 1.2%  3.143E-11- 0.9%  1.843E-11- 1.2%  4.869E-12- 2.3%
+   4.000   4  4.919E-12- 2.3%  7.476E-12- 1.9%  5.011E-12- 2.3%  1.345E-12- 4.1%
+   5.000   5  4.704E-13- 6.6%  8.441E-13- 4.9%  4.782E-13- 6.4%  9.093E-14-13.5%
+ 
+
+
+              for z=     3.000 to     4.000     k=  4
+
+ ybounds:  4.000       5.000
+         j=        5
+ xbounds (     0.000)
+   1.000   1  5.189E-13- 6.3%
+   2.000   2  8.363E-13- 5.1%
+   3.000   3  5.360E-13- 6.2%
+   4.000   4  9.762E-14-12.5%
+   5.000   5  1.050E-15-35.1%
+ 
+
+
+              for z=     4.000 to     5.000     k=  5
+
+ ybounds:  0.000       1.000            2.000            3.000            4.000
+         j=        1                2                3                4
+ xbounds (     0.000)
+   1.000   1  7.509E-12- 1.8%  1.232E-11- 1.4%  7.593E-12- 1.8%  1.569E-12- 3.5%
+   2.000   2  1.244E-11- 1.4%  2.067E-11- 1.1%  1.246E-11- 1.4%  2.788E-12- 2.7%
+   3.000   3  7.485E-12- 1.8%  1.288E-11- 1.4%  7.589E-12- 1.8%  1.709E-12- 3.4%
+   4.000   4  1.547E-12- 3.6%  2.663E-12- 2.8%  1.602E-12- 3.5%  2.678E-13- 7.8%
+   5.000   5  5.484E-14-15.0%  1.275E-13-10.4%  5.945E-14-13.5%  1.013E-14-28.5%
+ 
+
+
+              for z=     4.000 to     5.000     k=  5
+
+ ybounds:  4.000       5.000
+         j=        5
+ xbounds (     0.000)
+   1.000   1  6.745E-14-13.6%
+   2.000   2  1.180E-13-10.1%
+   3.000   3  7.150E-14-13.5%
+   4.000   4  1.088E-14-26.4%
+   5.000   5  4.097E-15-44.6%
+ 
+1
+
+ The dose values in       2277 voxels had error > 50% and have been
+ zeroed in the .3ddose file.
+
+
+ Total CPU time for this run =     8.3 s =   0.002 hr
+
+ END OF RUN          May 13 2020 20:42:19
+
