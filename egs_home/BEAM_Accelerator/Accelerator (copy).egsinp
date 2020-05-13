@@ -1,0 +1,240 @@
+Accelerator18MV                                                                  #!GUI1.0
+AIR700ICRU
+0, 0, 0, 0, 0, 2, 0,  IWATCH ETC.
+50000, 31, 77, 900.0, 2, 350, 0, 0,  NCASE ETC.
+7.5, 100, 0, 0, 0, 0,  DIRECTIONAL BREM OPTIONS
+-1, 19, -0.2, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 0.0,  IQIN, ISOURCE + OPTIONS
+0, MONOENERGETIC
+18.0
+0, 0, 0.7, 0.01, 0, 1, 5.0,  0 , ECUT,PCUT,IREJCT,ESAVE
+0, 1, 1, 8, 8,  PHOTON FORCING
+1, 6,  SCORING INPUT
+5, 1
+1, 2, 5, 10, 15, 
+0,  DOSE COMPONENTS
+0.0, Z TO FRONT FACE
+*********** start of CM SLABS with identifier Target  ***********
+2.775, RMAX
+Target
+5, NSLABS
+0, ZMIN
+0.105, 0.7, 0.01, 1, 1, 0.7
+AU700ICRU
+0.175, 0.7, 0.01, 2, 1, 0.7
+H2O700ICRU
+0.07375, 0.7, 0.01, 0, 1, 0.7
+AIR700ICRU
+1.05, 0.7, 0.01, 3, 1, 0.7
+170C700ICRU
+0.1, 0.7, 0.01, 0, 1, 0.7
+AIR700ICRU
+*********** start of CM FLATFILT with identifier Flattening_filter  ***********
+4.05, RMAX
+FF
+1.6, ZMIN
+12, NUMBER OF LAYERS
+2, 1.25, # CONES, ZTHICK OF LAYER 1
+0.935, 1.835, 
+0.935, 1.835, 
+1, 1.23, # CONES, ZTHICK OF LAYER 2
+1.035, 
+1.035, 
+1, 0.5, # CONES, ZTHICK OF LAYER 3
+1.3534, 
+1.3534, 
+2, 0.745, # CONES, ZTHICK OF LAYER 4
+0.15, 1.3534, 
+0.366, 1.3534, 
+2, 2.705, # CONES, ZTHICK OF LAYER 5
+0.366, 1.876, 
+1.15, 1.876, 
+2, 0.88, # CONES, ZTHICK OF LAYER 6
+1.15, 2.3, 
+1.405, 2.3, 
+3, 0.015, # CONES, ZTHICK OF LAYER 7
+0.713, 0.713, 1.405, 
+0.7, 0.73, 1.408, 
+3, 0.025, # CONES, ZTHICK OF LAYER 8
+0.7, 0.73, 1.408, 
+0.5, 0.81, 1.412, 
+3, 0.038, # CONES, ZTHICK OF LAYER 9
+0.5, 0.81, 1.412, 
+0.419, 0.886, 1.434, 
+3, 0.261, # CONES, ZTHICK OF LAYER 10
+0.419, 0.886, 1.434, 
+0.225, 1.345, 1.645, 
+3, 0.1, # CONES, ZTHICK OF LAYER 11
+0.225, 1.345, 2.5, 
+0.186, 1.345, 2.5, 
+2, 0.125, # CONES, ZTHICK OF LAYER 12
+1.345, 1.831, 
+1.5, 1.781, 
+0.7, 0.01, 4, 3, 
+AL700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+0.7, 0.01, 5, 2, 
+W700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+0.7, 0.01, 5, 2, 
+W700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+0.7, 0.01, 5, 2, 
+W700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+0.7, 0.01, 5, 2, 
+W700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+0.7, 0.01, 5, 2, 
+W700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+0.7, 0.01, 5, 2, 
+W700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 5, 2, 
+W700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 5, 2, 
+W700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 5, 2, 
+W700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 5, 2, 
+W700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 5, 2, 
+W700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+0.7, 0.01, 6, 4, 
+STEEL700ICRU
+0.7, 0.01, 0, 2, 
+AIR700ICRU
+*********** start of CM CHAMBER with identifier Chamber  ***********
+20, RMAX
+Chamber
+10.6, ZMIN
+0, 7, 0, N_TOP, N_CHM, N_BOT
+2.15, 4, 10, RADII FOR CENTRAL PART
+0.0025, 0, ZTHICK, FLAG FOR LAYER 1 IN CENTRAL PART
+0, 0, 7, 6, 
+KAPTON700ICRU
+0.15, 0, ZTHICK, FLAG FOR LAYER 2 IN CENTRAL PART
+0, 0, 0, 5, 
+AIR700ICRU
+0.0025, 0, ZTHICK, FLAG FOR LAYER 3 IN CENTRAL PART
+0, 0, 7, 6, 
+KAPTON700ICRU
+0.4, 0, ZTHICK, FLAG FOR LAYER 4 IN CENTRAL PART
+0, 0, 0, 5, 
+AIR700ICRU
+0.0025, 0, ZTHICK, FLAG FOR LAYER 5 IN CENTRAL PART
+0, 0, 7, 6, 
+KAPTON700ICRU
+0.4, 0, ZTHICK, FLAG FOR LAYER 6 IN CENTRAL PART
+0, 0, 0, 5, 
+AIR700ICRU
+0.0025, 0, ZTHICK, FLAG FOR LAYER 7 IN CENTRAL PART
+0, 0, 7, 6, 
+KAPTON700ICRU
+0, 0, 8, 0,   chamber wall
+AL700ICRU
+0, 0, 0, 5,   gap
+AIR700ICRU
+0, 0, 8, 0,   container
+AL700ICRU
+1, MRNGE
+*********** start of CM MIRROR with identifier Mirror  ***********
+5, RMAX
+Mirror
+15, 5.0, ZMIN, ZTHICK
+2.5, -2.5, XFMIN, XBMIN
+2, # LAYERS
+0.0045,  thickness of layer 1
+0.0055,  thickness of layer 2
+0, 0, 9, 7, 
+MICA700
+0, 0, 10, 7, 
+AL700ICRU
+0, 0, 0, 5, 
+AIR700ICRU
+0, 0, 0, 5, 
+AIR700ICRU
+*********** start of CM JAWS with identifier Jaws ***********
+40, RMAX
+Jaws
+2, # PAIRED BARS OR JAWS
+Y
+23.49, 30.09, 1.1745, 1.5045, -1.1745, -1.5045, 
+X
+31.29, 37.89, 1.5645, 1.8945, -1.5645, -1.8945, 
+0, 0, 0, 5, 
+0, 0, 11, 8, 
+W700ICRU
+0, 0, 12, 9, 
+W700ICRU
+*********************end of all CMs*****************************
+ #########################
+ :Start MC Transport Parameter:
+ 
+ Global ECUT= 0.7
+ Global PCUT= 0.01
+ Global SMAX= 5
+ ESTEPE= 0.25
+ XIMAX= 0.5
+ Boundary crossing algorithm= PRESTA-I
+ Skin depth for BCA= 0
+ Electron-step algorithm= PRESTA-II
+ Spin effects= On
+ Brems angular sampling= Simple
+ Brems cross sections= BH
+ Bound Compton scattering= Off
+ Compton cross sections= default
+ Pair angular sampling= Simple
+ Pair cross sections= BH
+ Photoelectron angular sampling= Off
+ Rayleigh scattering= Off
+ Atomic relaxations= Off
+ Electron impact ionization= Off
+ Photon cross sections= xcom
+ Photon cross-sections output= Off
+ 
+ :Stop MC Transport Parameter:
+ #########################

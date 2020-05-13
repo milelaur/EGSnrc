@@ -1,0 +1,706 @@
+*********************************************
+ NOTE: MIRRORs RANGE REJECTION ALGORITHM ASSUMES THE MIRROR
+ INTERSECTS THE ENTIRE BEAM!!!   CHECK IT
+ ***********************************************************
+
+
+
+
+Accelerator18MV                                                                
+
+ NRCC CALN: BEAMnrc(EGSnrc)   
+ ON linux64                                                17:14:51 May 13 2020
+ ******************************************************************************
+ **                                                                          **
+ **                                  BEAMnrc                                 **
+ **                                                                          **
+ **      Code developed at National Research Council of Canada as part of    **
+ **           OMEGA collaboration with the University of Wisconsin.          **
+ **                                                                          **
+** This is version V1 of BEAMnrc                                             **
+ **                                                                          **
+ ******************************************************************************
+
+
+ Max # of histories: to run      500000          To analyze           500000
+                   Incident charge                            -1
+                   Incident kinetic energy                18.000 MeV
+
+                   Bremsstrahlung splitting                DIRECTIONAL
+                    splitting field radius                    7.500 cm
+                    splitting field SSD                     100.000 cm
+                    splitting no. in field                        350
+                   Brem. cross section enhancement WILL NOT be used
+                   Photon force interaction switch         OFF
+                   SCORING PLANES:     #           CM #
+                   ---------------------           ----
+                                       1             6
+                   Phase space files will be output at EVERY scoring plane
+                   Range rejection switch                  ON 
+                   Range rejection in  63 regions
+                   Automatic ECUTRR used starting from          0.700 MeV
+ Range rejection based on medium of region particle is traversing
+ Maximum electron ranges for restricted stopping powers:
+   kinetic            Range for media 1 through 7
+   energy                          (cm)
+   (MeV)    AIR700IC  AU700ICR  H2O700IC  170C700I  AL700ICR  W700ICRU  STEEL700
+   0.200       6.072     0.002     0.006     0.004     0.004     0.002     0.002
+   0.400      84.941     0.010     0.091     0.060     0.044     0.010     0.017
+   0.600     178.342     0.020     0.190     0.127     0.091     0.020     0.036
+   1.000     383.457     0.041     0.411     0.275     0.195     0.041     0.075
+   1.500     651.119     0.070     0.703     0.472     0.331     0.069     0.128
+   2.000     921.052     0.098     1.002     0.674     0.470     0.097     0.181
+   4.000    1984.479     0.210     2.215     1.489     1.023     0.208     0.393
+   6.000    3015.167     0.320     3.431     2.302     1.572     0.317     0.602
+  10.000    5004.620     0.535     5.850     3.914     2.659     0.531     1.014
+  15.000    7402.169     0.798     8.856     5.913     4.008     0.793     1.520
+  18.000    8807.534     0.954    10.652     7.106     4.814     0.948     1.822
+                   Discard all electrons below energy:       5.000 MeV
+                        if too far from closest boundary
+                   Maximum cputime allowed                    900.00 (hrs)
+                   Initial random number seeds             31            77
+            LATCH_OPTION = 2: Latch values inherited, origin of
+                              secondary particles recorded.
+
+================================================================================
+
+                   Electron/Photon transport parameter
+
+================================================================================
+
+ Photon cross sections                                      xcom
+ Compton cross sections                                     default
+ Photon transport cutoff(MeV)                                    0.1000E-01
+ Pair angular sampling                                       SIM
+ Pair cross sections                                         BH 
+ Triplet production                                          Off
+ Bound Compton scattering                                    OFF           
+ Radiative Compton corrections                               Off           
+ Rayleigh scattering                                         OFF           
+ Atomic relaxations                                          OFF           
+ Photoelectron angular sampling                              OFF           
+
+ Electron transport cutoff(MeV)                               0.7000
+ Bremsstrahlung cross sections                              BH  
+ Bremsstrahlung angular sampling                             SIM
+ Spin effects                                                On
+ Electron Impact Ionization                                  Off
+ Maxium electron step in cm (SMAX)                                5.000    
+ Maximum fractional energy loss/step (ESTEPE)                0.2500
+ Maximum 1st elastic moment/step (XIMAX)                     0.5000
+ Boundary crossing algorithm                                 PRESTA-I  
+ Skin-depth for boundary crossing (MFP)                      45.52    
+ Electron-step algorithm                                     PRESTA-II 
+
+================================================================================
+
+                   Material summary   9 Materials used
+ *******************************************************************************
+  # Material           density(g/cm**3)   AE(MeV)   AP(MeV)     UE(MeV)  UP(MeV)
+ -- -----------------  ----------------   -------   -------     -------  -------
+  1 AIR700ICRU            1.205E-03        0.700     0.010      55.511    55.000
+  2 AU700ICRU             1.932E+01        0.700     0.010      55.511    55.000
+  3 H2O700ICRU            1.000E+00        0.700     0.010      55.511    55.000
+  4 170C700ICRU           1.700E+00        0.700     0.010      55.511    55.000
+  5 AL700ICRU             2.702E+00        0.700     0.010      55.511    55.000
+  6 W700ICRU              1.930E+01        0.700     0.010      55.511    55.000
+  7 STEEL700ICRU          8.060E+00        0.700     0.010      55.511    55.000
+  8 KAPTON700ICRU         1.420E+00        0.700     0.010      55.511    55.000
+  9 MICA700               2.900E+00        0.700     0.010      55.511    55.000
+ *******************************************************************************
+                             SOURCE PARAMETERS
+
+                   INITIAL PARTICLES are Electrons
+                   PARALLEL BEAM WITH 2-D GAUSSIAN X-Y DISTRIBUTION
+                   ON FRONT FACE at Z=   0.0000 cm
+                   BEAM SIGMA=   0.0849 cm (FWHM=   0.2000 cm)
+                 X,Y,Z DIRECTION COSINES = (   0.00000   0.00000   1.00000)
+
+                   KINETIC ENERGY OF SOURCE =    18.000 MeV
+
+ REGION and RANGE REJECTION SUMMARY:
+ **********************************
+
+ Total number of regions, including region 1 which surrounds the geometry:  70
+
+  Region    CM          Dose   IR_    Medium    ECUTRR  res_rnge  ESAVE   type
+ abs local  # IDENTIF   ZONE   TO_  (No.&Name)   (MeV)    (cm)    (MeV)
+                       (0=no)  BIT
+   1   1    0 exterior   0      0    0 Vacuum
+   2   1    1 Target     1      1    2 AU700ICRU  0.878   0.009   0.700  DNEAR
+   3   2    1 Target     2      1    3 H2O700ICR  0.878   0.075   0.700  DNEAR
+   4   3    1 Target     0      1    1 AIR700ICR  0.878  70.655   0.700  DNEAR
+   5   4    1 Target     3      1    4 170C700IC  0.878   0.050   0.700  DNEAR
+   6   5    1 Target     0      1    1 AIR700ICR  0.878  70.655   0.700  DNEAR
+   7   1    2 FF         4      3    5 AL700ICRU  0.863   0.033   5.000  DNEAR
+   8   2    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+   9   3    2 FF         5      2    6 W700ICRU   0.863   0.008   5.000  DNEAR
+  10   4    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  11   5    2 FF         5      2    6 W700ICRU   0.863   0.008   5.000  DNEAR
+  12   6    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  13   7    2 FF         5      2    6 W700ICRU   0.863   0.008   5.000  DNEAR
+  14   8    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  15   9    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  16  10    2 FF         5      2    6 W700ICRU   0.863   0.008   5.000  DNEAR
+  17  11    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  18  12    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  19  13    2 FF         5      2    6 W700ICRU   0.863   0.008   5.000  DNEAR
+  20  14    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  21  15    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  22  16    2 FF         5      2    6 W700ICRU   0.863   0.008   5.000  DNEAR
+  23  17    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  24  18    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  25  19    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  26  20    2 FF         5      2    6 W700ICRU   0.863   0.008   5.000  DNEAR
+  27  21    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  28  22    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  29  23    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  30  24    2 FF         5      2    6 W700ICRU   0.863   0.008   5.000  DNEAR
+  31  25    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  32  26    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  33  27    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  34  28    2 FF         5      2    6 W700ICRU   0.863   0.008   5.000  DNEAR
+  35  29    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  36  30    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  37  31    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  38  32    2 FF         5      2    6 W700ICRU   0.863   0.008   5.000  DNEAR
+  39  33    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  40  34    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  41  35    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  42  36    2 FF         5      2    6 W700ICRU   0.863   0.008   5.000  DNEAR
+  43  37    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  44  38    2 FF         6      4    7 STEEL700I  0.863   0.013   5.000  DNEAR
+  45  39    2 FF         0      2    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  46  40    2 FF         0     23    1 AIR700ICR  0.863  64.178   5.000  DNEAR
+  47   1    3 Chamber    7      6    8 KAPTON700  0.835   0.043   5.000  DNEAR
+  48   2    3 Chamber    0      5    1 AIR700ICR  0.835  52.928   5.000  DNEAR
+  49   3    3 Chamber    7      6    8 KAPTON700  0.835   0.043   5.000  DNEAR
+  50   4    3 Chamber    0      5    1 AIR700ICR  0.835  52.928   5.000  DNEAR
+  51   5    3 Chamber    7      6    8 KAPTON700  0.835   0.043   5.000  DNEAR
+  52   6    3 Chamber    0      5    1 AIR700ICR  0.835  52.928   5.000  DNEAR
+  53   7    3 Chamber    7      6    8 KAPTON700  0.835   0.043   5.000  DNEAR
+  54   8    3 Chamber    8     23    5 AL700ICRU  0.835   0.028   5.000  DNEAR
+  55   9    3 Chamber    0      5    1 AIR700ICR  0.835  52.928   5.000  DNEAR
+  56  10    3 Chamber    8     23    5 AL700ICRU  0.835   0.028   5.000  DNEAR
+  57  11    3 Chamber    0     23    1 AIR700ICR  0.835  52.928   5.000  DNEAR
+  58   1    4 Mirror     9      7    9 MICA700    0.779   0.014   5.000  DNEAR
+  59   2    4 Mirror    10      7    5 AL700ICRU  0.779   0.016   5.000  DNEAR
+  60   3    4 Mirror     0      5    1 AIR700ICR  0.779  30.423   5.000  DNEAR
+  61   4    4 Mirror     0      5    1 AIR700ICR  0.779  30.423   5.000  DNEAR
+  62   5    4 Mirror     0     23    1 AIR700ICR  0.779  30.423   5.000  DNEAR
+  63   1    5 Jaws       0      5    1 AIR700ICR  0.744  17.437   5.000  DNEAR
+  64   2    5 Jaws      11      8    6 W700ICRU   0.744   0.003   5.000  DNEAR
+  65   3    5 Jaws      11      8    6 W700ICRU   0.744   0.003   5.000  DNEAR
+  66   4    5 Jaws       0      5    1 AIR700ICR  0.744  17.437   5.000  DNEAR
+  67   5    5 Jaws      12      9    6 W700ICRU   0.744   0.003   5.000  DNEAR
+  68   6    5 Jaws      12      9    6 W700ICRU   0.744   0.003   5.000  DNEAR
+  69   1    6 Air       13     10    1 AIR700ICR  0.700   0.000   0.700  DNEAR
+  70   2    6 Air        0     23    1 AIR700ICR  0.700   0.000   5.000  DNEAR
+
+ Component Module summary:
+ *************************
+
+  There are  6 Component Modules.
+
+     COMPONENT MODULE  FIRST     BOUNDARY    DISTANCE FROM    AIR    SCORING
+                      REGION  (1=cyl,2=sq) REFERENCE PLANE   GAP     PLANE
+  #  TYPE  IDENTIFIERFLAG    (cm)          (cm)      (cm)   (0=none)
+
+  1 SLABS    Target      2     2     2.775         0.000     0.000     0
+  2 FLATFILT FF          7     1     4.050         1.504     0.096     0
+  3 CHAMBER  Chamber    47     1    20.000         9.474     1.126     0
+  4 MIRROR   Mirror     58     2     5.000        11.560     3.440     0
+  5 JAWS     Jaws       63     2    40.000        20.000     0.000     0
+  6 SLABS    Air        69     2    40.000        37.890     2.110     1
+
+
+
+ -------------------------------------------------------------------------------
+  Component module  1 is one or more planar slabs  (SLABS)
+ -------------------------------------------------------------------------------
+
+    Title: Target                                                      
+
+ Target geometry parameters:
+ -----------------------------
+ Distance of front of CM from reference plane =         0.00000 cm
+ Half-width of outer boundary of CM =         2.77500 cm
+
+ slab #    Z front    thickness
+            face               
+            (cm)        (cm)   
+    1       0.000      0.105
+    2       0.105      0.175
+    3       0.280      0.074
+    4       0.354      1.050
+    5       1.404      0.100
+
+ Target region parameters:
+ ---------------------------
+ local  slab #  location  electron  photon  range-rejection  dose  bit  medium
+ region                    cutoff   cutoff   level     max   zone  set
+            (MeV)    (MeV)   (MeV)    (MeV)
+   1      1        slab     0.700    0.010   0.878    0.700    1    1  AU700ICRU
+   2      2        slab     0.700    0.010   0.878    0.700    2    1  H2O700ICR
+   3      3        slab     0.700    0.010   0.878    0.700    0    1  AIR700ICR
+   4      4        slab     0.700    0.010   0.878    0.700    3    1  170C700IC
+   5      5        slab     0.700    0.010   0.878    0.700    0    1  AIR700ICR
+
+
+
+ Component module  2 is FLATFILT
+  --------------------------------------
+
+    Title: FF                                                          
+
+ FF geometry parameters:
+ -----------------------------
+ Distance of front of CM from reference plane =         1.50375 cm
+ Radius of outer boundary of CM =         4.05000 cm
+
+ layer  Z front  thickness  cone  top radius  bottom radius
+   #     face                #
+         (cm)   (cm)            (cm)          (cm)
+   1    1.600      1.250     1      0.935         0.935
+                             2      1.835         1.835
+   2    2.850      1.230     1      1.035         1.035
+   3    4.080      0.500     1      1.353         1.353
+   4    4.580      0.745     1      0.150         0.366
+                             2      1.353         1.353
+   5    5.325      2.705     1      0.366         1.150
+                             2      1.876         1.876
+   6    8.030      0.880     1      1.150         1.405
+                             2      2.300         2.300
+   7    8.910      0.015     1      0.713         0.700
+                             2      0.713         0.730
+                             3      1.405         1.408
+   8    8.925      0.025     1      0.700         0.500
+                             2      0.730         0.810
+                             3      1.408         1.412
+   9    8.950      0.038     1      0.500         0.419
+                             2      0.810         0.886
+                             3      1.412         1.434
+  10    8.988      0.261     1      0.419         0.225
+                             2      0.886         1.345
+                             3      1.434         1.645
+  11    9.249      0.100     1      0.225         0.186
+                             2      1.345         1.345
+                             3      2.500         2.500
+  12    9.349      0.125     1      1.345         1.500
+                             2      1.831         1.781
+
+ FF region parameters:
+ ---------------------------
+ local  layer  cone  loc.  electron  photon  range  rejection  dose  bit  medium
+ region                     cutoff   cutoff  level   maximum   zone  set
+            (MeV)     (MeV)  (MeV)    (MeV)
+   1      1     1     cone   0.700    0.010  0.863     5.000    4   3  AL700ICRU
+   2      1     2     cone   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+   3      1    NA  between   0.700    0.010  0.863     5.000    5   2  W700ICRU 
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+   4      2     1     cone   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+   5      2    NA  between   0.700    0.010  0.863     5.000    5   2  W700ICRU 
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+   6      3     1     cone   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+   7      3    NA  between   0.700    0.010  0.863     5.000    5   2  W700ICRU 
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+   8      4     1     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+   9      4     2     cone   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+  10      4    NA  between   0.700    0.010  0.863     5.000    5   2  W700ICRU 
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+  11      5     1     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  12      5     2     cone   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+  13      5    NA  between   0.700    0.010  0.863     5.000    5   2  W700ICRU 
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+  14      6     1     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  15      6     2     cone   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+  16      6    NA  between   0.700    0.010  0.863     5.000    5   2  W700ICRU 
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+  17      7     1     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  18      7     2     cone   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+  19      7     3     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  20      7    NA  between   0.700    0.010  0.863     5.000    5   2  W700ICRU 
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+  21      8     1     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  22      8     2     cone   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+  23      8     3     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  24      8    NA  between   0.700    0.010  0.863     5.000    5   2  W700ICRU 
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+  25      9     1     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  26      9     2     cone   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+  27      9     3     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  28      9    NA  between   0.700    0.010  0.863     5.000    5   2  W700ICRU 
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+  29     10     1     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  30     10     2     cone   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+  31     10     3     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  32     10    NA  between   0.700    0.010  0.863     5.000    5   2  W700ICRU 
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+  33     11     1     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  34     11     2     cone   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+  35     11     3     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  36     11    NA  between   0.700    0.010  0.863     5.000    5   2  W700ICRU 
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+  37     12     1     cone   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+  38     12     2     cone   0.700    0.010  0.863     5.000    6   4  STEEL700I
+  39     12    NA  between   0.700    0.010  0.863     5.000    0   2  AIR700ICR
+                     outer
+                  cone and
+                   RMAX_CM
+                          
+  40     NA    NA   airgap   0.700    0.010  0.863     5.000    0  23  AIR700ICR
+                    at top
+
+
+
+ -------------------------------------------------------------------------------
+  Component module  3 is an ion chamberor phantom (CHAMBER)
+ -------------------------------------------------------------------------------
+
+    Title: Chamber                                                     
+
+ Chamber region & geometry parameters:
+ -------------------------------------
+ Distance of front of CM from reference plane =         9.47400 cm
+ Radius of outer boundary ofCM =        20.00000 cm
+
+    Air gap parameters:
+    -------------------
+ local layer loc.   Z    Zthick   rad. electr photon range-reject  dose  medium
+ reg              front                cutoff cutoff level   max   zone
+                   (cm) (cm)    (cm)  (MeV)  (MeV) (MeV)  (MeV)
+ 11   NA  airgap   9.474  1.126 20.000  0.700  0.010  0.835  5.000  0  AIR700ICR
+          at top
+
+    Chamber CENTRAL PART parameters:
+    --------------------------------
+ local layer loc.   Z    Zthick  rad.  electr photon range-reject  dose  medium
+ reg   front                cutoff cutoff level   max   zone
+                   (cm)    (cm)  (cm)   (MeV)  (MeV) (MeV)  (MeV)
+  1    1  layer  10.600  0.0025  2.150  0.700  0.010  0.835  5.000  7  KAPTON700
+  2    2  layer  10.602  0.1500  2.150  0.700  0.010  0.835  5.000  0  AIR700ICR
+  3    3  layer  10.752  0.0025  2.150  0.700  0.010  0.835  5.000  7  KAPTON700
+  4    4  layer  10.755  0.4000  2.150  0.700  0.010  0.835  5.000  0  AIR700ICR
+  5    5  layer  11.155  0.0025  2.150  0.700  0.010  0.835  5.000  7  KAPTON700
+  6    6  layer  11.157  0.4000  2.150  0.700  0.010  0.835  5.000  0  AIR700ICR
+  7    7  layer  11.557  0.0025  2.150  0.700  0.010  0.835  5.000  7  KAPTON700
+
+    Chamber WALL parameters:
+    --------------------------
+ local layer loc.  Z    Zthick     rad.     electr photon range-reject dose med
+ reg             front  inner  outer cutoff cutoff level  max   zone
+        (cm)    (cm)      (cm)      (MeV)  (MeV) (MeV) (MeV)
+  8  NA entire  10.600  0.960  2.150  4.000 0.700 0.010  0.835 5.000  8 AL700ICR
+          wall
+
+    Chamber side air gap parameters:
+    ---------------------------------
+ local layer loc.  Z    Zthick     rad.     electr photon range-reject dose med
+ reg   front         inner  outer cutoff cutoff level  max   zone
+                 (cm)    (cm)      (cm)      (MeV)  (MeV) (MeV) (MeV)
+  9  NA entire  10.600  0.960  4.000 10.000 0.700 0.010  0.835 5.000  0 AIR700IC
+           gap
+
+    Chamber container wall parameters:
+    -----------------------------------
+ local layer loc.  Z    Zthickrad.     electr photon range-reject dose med
+ reg       front         inner  outer cutoff cutoff level  max   zone
+                 (cm)    (cm)      (cm)      (MeV)  (MeV) (MeV) (MeV)
+ 10  NA entire  10.600  0.960 10.000 20.000 0.700 0.010  0.835 5.000  8 AL700ICR
+          wall
+
+
+
+ -------------------------------------------------------------------------------
+  Component module  4 is a flat inclined mirror MIRROR 
+ -------------------------------------------------------------------------------
+
+ Title: Mirror                                                      
+
+ Mirror geometry parameters:
+ -----------------------------
+ Z of front face of CM =        11.56000 cm
+ Half-width of outer boundary of CM =         5.00000 cm
+ Z at which mirror starts =        15.00000 cm
+ Z span of mirror =         5.00000 cm
+
+ layer #      thickness         XFMIN     XBMIN     XFMAX     XBMAX
+                (cm)   (cm)
+  airgap       3.440               NA        NA        NA        NA
+  at top
+  1(front)     0.004            2.500    -2.500     2.506    -2.494
+  2            0.005            2.506    -2.494     2.514    -2.486
+
+ Angle of mirror face wrt z-axis =        45.00000 degrees
+
+ Mirror region parameters:
+ ---------------------------
+ local layer  location   electron   photon  range-rejection   dose  bit  medium
+ region                   cutoff    cutoff   level     max    zone  set
+             (MeV)      (MeV)   (MeV)    (MeV)
+   1      1     layer      0.700    0.010    0.779    5.000    9    7  MICA700  
+   2      2     layer      0.700    0.010    0.779    5.000   10    7  AL700ICRU
+   3     NA    region      0.700    0.010    0.779    5.000    0    5  AIR700ICR
+               behind
+   4     NA    region      0.700    0.010    0.779    5.000    0    5  AIR700ICR
+             in front
+   5     NA    airgap      0.700    0.010    0.779    5.000    0   23  AIR700ICR
+               at top
+
+
+
+ -------------------------------------------------------------------------------
+  Component module  5 is JAWS
+ -------------------------------------------------------------------------------
+
+    Title: Jaws                                                        
+
+ Jaws geometry parameters:
+ -----------------------------
+ Distance of front of CM from reference plane =        20.00000 cm
+ Half-width of outer boundary of CM =        40.00000 cm
+
+ jaw #    Z front    thickness    x or y coordinates
+           face                   jawsFP       BP       FN      BN
+           (cm)        (cm)                                (cm)
+ airgap   20.000      3.490        NA         NA       NA       NA      NA
+   1      23.490      6.600         y       1.175    1.504   -1.175   -1.504
+ airgap   30.090      1.200        NA         NA       NA       NA      NA
+   2      31.290      6.600         x       1.565    1.895   -1.565   -1.895
+
+ Jaws region parameters:
+ ---------------------------
+ local jaw #   location  electron  photon  range-rejection   dose  bit  medium
+ region                   cutoff  cutoff   level     max    zone  set
+         (MeV)    (MeV)   (MeV)    (MeV)
+   1      1     airgap     0.700    0.010   0.744    5.000     0    5  AIR700ICR
+               above &
+                centre
+   2      1    +ve jaw     0.700    0.010   0.744    5.000    11    8  W700ICRU 
+   3      1    -ve jaw     0.700    0.010   0.744    5.000    11    8  W700ICRU 
+                      
+   4      2     airgap     0.700    0.010   0.744    5.000     0    5  AIR700ICR
+               above &
+                centre
+   5      2    +ve jaw     0.700    0.010   0.744    5.000    12    9  W700ICRU 
+   6      2    -ve jaw     0.700    0.010   0.744    5.000    12    9  W700ICRU 
+                      
+
+
+
+ -------------------------------------------------------------------------------
+  Component module  6 is one or more planar slabs  (SLABS)
+ -------------------------------------------------------------------------------
+
+    Title: Air                                                         
+
+ Air geometry parameters:
+ -----------------------------
+ Distance of front of CM from reference plane =        37.89000 cm
+ Half-width of outer boundary of CM =        40.00000 cm
+
+ slab #    Z front    thickness
+            face               
+            (cm)        (cm)   
+ airgap    37.890      2.110
+    1      40.000     20.000
+
+ Air region parameters:
+ ---------------------------
+ local  slab #  location  electron  photon  range-rejection  dose  bit  medium
+ region                    cutoff  cutoff   level     max   zone  set
+         (MeV)    (MeV)   (MeV)    (MeV)
+   1      1        slab     0.700    0.010   0.700    0.700   13   10  AIR700ICR
+   2     NA      airgap     0.700    0.010   0.700    5.000    0   23  AIR700ICR
+                 at top
+
+
+
+
+
+Accelerator18MV                                                                
+
+ NRCC CALN: BEAMnrc(EGSnrc)   
+ ON linux64                                                17:14:51 May 13 2020
+ *******************************************************************************
+                   EXECUTION INFORMATION AND WARNING MESSAGES
+ *******************************************************************************
+
+********* NEW INPUT FILE *********
+
+
+ *** FINAL RANDOM NUMBER POINTERS:  ixx jxx =   18  51
+
+ FOR THIS RUN:
+ ------------ 
+ ELAPSED& CPU TIMEs, RATIO =     238.8     238.6s (=   0.07HR)   1.00
+ CPUTIME per history =   0.00048 sec. Number of historiesper hour =    7544631.
+   On linux64 
+
+                   TOTAL # CHARGED PARTICLE STEPS        6.341E+07 +/- 0.1%
+         # CHARGED PARTICLE STEPS/INITIAL HISTORY        1.268E+02 +/- 0.1%
+ # PRESTA-II STEPS/TOTAL # CHARGED PARTICLE STEPS            0.845 +/- 0.1%
+
+        NO. OF BREMSSTRAHLUNG EVENTS IN THIS RUN:                     0
+
+                    Maximum depth of stack=     567
+
+                    PHASE SPACE FILE OUTPUT
+                    ***********************
+
+ FILE  SCORE    TOTAL     TOTAL    MAX. KE OF       MIN. KE OF     # INCIDENT
+  #    PLANE  PARTICLES* PHOTONS*   PARTICLES        ELECTRONS   PARTICLES FROM
+                                      (MeV)            (MeV)    ORIGINAL SOURCE
+
+   1      1    1922045  1919260      17.9938           0.1870      500000.000
+
+
+
+                    FLUENCE RESULTS
+                    ***************
+
+  CM SCORE POSITION   TOTAL                    ZONE HALF-WIDTHS
+     PLANE  (cm)    PARTICLES*                      (cm)
+   6    1   60.00     1922045    1.0000    2.0000    5.0000   10.0000   15.0000
+
+
+ *Includes all particles of all weights
+
+  Lines with zero results are not printed
+
+ SPECTRAL-AVERAGED QUANTITIES FOR FIRST TIME CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  6:
+ ELECTRONS
+    1  6.874E-06+-50.40%  1.730E-06+-50.12%     4.611+-25.7%     3.530+-18.3%
+    2  1.626E-05+-32.56%  1.369E-06+-32.30%     6.843+-16.6%     4.621+-15.1%
+    3  5.173E-05+-18.54%  6.279E-07+-18.44%     3.679+-12.5%     9.145+- 8.2%
+    4  3.128E-05+-23.93%  1.122E-07+-23.75%     1.754+-23.5%    19.165+- 9.5%
+    5  1.931E-05+-31.07%  4.575E-08+-30.96%     2.570+-16.8%    30.196+- 8.2%
+    6  3.097E-05+-25.02%  8.609E-09+-25.47%     1.548+-21.3%    46.013+- 5.2%
+   --------------------
+  Tot  1.564E-04+-10.8%
+ PHOTONS
+    1  1.377E-03+- 0.42%  3.444E-04+- 0.42%     4.772+- 0.2%     0.840+- 0.2%
+    2  3.774E-03+- 0.33%  3.147E-04+- 0.33%     4.690+- 0.1%     1.803+- 0.7%
+    3  6.292E-03+- 0.56%  7.507E-05+- 0.57%     4.333+- 0.4%     3.291+- 0.9%
+    4  5.996E-04+- 5.80%  2.088E-06+- 5.80%     2.272+- 4.5%    15.228+- 2.5%
+    5  4.740E-04+- 6.63%  1.047E-06+- 6.65%     2.143+- 5.3%    23.733+- 2.0%
+    6  5.240E-04+- 6.27%  1.305E-07+- 6.85%     1.349+- 5.1%    39.270+- 1.5%
+   --------------------
+  Tot  1.304E-02+- 0.5%
+ POSITRONS
+    1  9.714E-08+-24.25%  2.452E-08+-24.26%     4.689+-11.8%     6.286+-17.9%
+    2  1.714E-07+-18.26%  1.440E-08+-18.26%     5.284+- 9.1%     6.109+-10.7%
+    3  2.247E-05+-29.52%  2.730E-07+-29.52%     4.707+-17.7%     9.543+-18.6%
+    4  1.211E-05+-40.46%  4.233E-08+-40.44%     4.557+-21.7%    16.770+-10.9%
+    5  2.069E-06+-96.69%  4.681E-09+-95.71%     3.129+- 1.9%    27.098+- 1.4%
+    6  1.003E-05+-44.57%  2.626E-09+-45.93%     1.262+-29.4%    41.848+-12.3%
+   --------------------
+  Tot  4.695E-05+-20.4%
+
+ SPECTRAL-AVERAGED QUANTITIES FOR MULTIPLE CROSSINGS OF THE SCORING PLANE
+                   NORMALIZED per INCIDENT PARTICLE
+ ZONE        NUMBER            FLUENCE       ENERGY       ANGLE WRT Z-AXIS
+                            (/cm**2)          (MeV)           (degrees)
+ ---- ------------------ ------------------ ---------------- ----------------
+                         SCORING PLANE 1, CM  6:
+ ELECTRONS
+ PHOTONS
+ POSITRONS
+
+
+ MIN PARTICLE WEIGHT FOR ALL SCORING ZONES =    0.0028571
+ MAX PARTICLE WEIGHT FOR ALL SCORING ZONES =    1.0000000
+
+
+                              DOSE RESULTS
+                              ************
+
+          ***NOTE***
+         Automated range rejection is being used.
+         This implies doses will be inaccurate because
+         of changes in ECUTRR going from on CM to the next.
+
+           TOTAL # CHARGED PARTICLE STEPS in DOSE REG.   6.146E+07 +/- 0.1%
+ # CHARGED PARTICLE STEPS in DOSE REG./INITIAL HISTORY   1.229E+02 +/- 0.1%
+
+              TOTAL DOSE PER INCIDENT PARTICLE
+
+    DOSE     MASS           DOSE          ENERGY DEPOSITED 
+    ZONE      (g)          (Gy)                 (J)
+    ---- -----------  ------------------  ------------------
+      1    6.249E+01   9.512E-12+/- 0.1%   5.944E-13+/- 0.1%
+      2    5.390E+00   1.351E-11+/- 0.2%   7.281E-14+/- 0.2%
+      3    5.498E+01   1.139E-11+/- 0.1%   6.262E-13+/- 0.1%
+      4    9.276E+00   2.832E-11+/- 0.2%   2.627E-13+/- 0.2%
+      5    6.289E+03   1.506E-13+/- 0.1%   9.470E-13+/- 0.1%
+      6    1.073E+02   4.903E-13+/- 0.6%   5.261E-14+/- 0.6%
+      7    2.062E-01   8.778E-14+/- 3.9%   1.810E-17+/- 3.9%
+      8    2.537E+03   1.149E-15+/- 1.8%   2.915E-15+/- 1.8%
+      9    9.228E-01   1.673E-14+/- 4.4%   1.544E-17+/- 4.4%
+     10    1.051E+00   1.686E-14+/- 4.2%   1.772E-17+/- 4.2%
+     11    7.879E+05   1.092E-16+/- 0.5%   8.604E-14+/- 0.5%
+     12    7.800E+05   3.161E-17+/- 1.0%   2.466E-14+/- 1.0%
+     13    1.542E+02   1.307E-17+/-11.8%   2.016E-18+/-11.8%
+
+ TOTAL DOSE EXCLUDING FAT PARTICLES PER INCIDENT PARTICLE (DBS ONLY)
+
+    DOSE     MASS           DOSE          ENERGY DEPOSITED 
+    ZONE      (g)           (Gy)                 (J)
+    ---- -----------  ------------------  ------------------
+      1    6.249E+01   4.389E-22+/-57.7%   2.743E-23+/-57.7%
+      2    5.390E+00   9.219E-20+/-99.9%   4.969E-22+/-99.9%
+      3    5.498E+01   9.411E-19+/-22.9%   5.175E-20+/-22.9%
+      4    9.276E+00   2.375E-17+/-11.3%   2.203E-19+/-11.3%
+      5    6.289E+03   1.146E-19+/- 5.5%   7.207E-19+/- 5.5%
+      6    1.073E+02   6.232E-18+/- 6.8%   6.688E-19+/- 6.8%
+      7    2.062E-01   4.318E-17+/-12.5%   8.905E-21+/-12.5%
+      8    2.537E+03   7.726E-21+/-23.2%   1.960E-20+/-23.2%
+      9    9.228E-01   4.059E-17+/- 5.4%   3.746E-20+/- 5.4%
+     10    1.051E+00   3.553E-17+/- 5.1%   3.733E-20+/- 5.1%
+     11    7.879E+05   1.768E-21+/- 4.1%   1.393E-18+/- 4.1%
+     12    7.800E+05   1.275E-21+/- 5.1%   9.945E-19+/- 5.1%
+     13    1.542E+02   7.931E-19+/- 2.4%   1.223E-19+/- 2.4%
+
+
+
+ END OF RUN          May 13 2020 17:18:50
+
+
