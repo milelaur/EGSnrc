@@ -1,0 +1,180 @@
+################################
+### GEOMETRY
+################################
+:start geometry definition: 
+
+	### Sphere
+	:start geometry:
+		name = my_spheres
+        library = egs_spheres
+        radii = 0.3 1.8 2
+        midpoint  = 9 9 9
+		:start media input:
+			media = default shell center
+			set medium = 2 1
+			set medium = 0 2
+		:stop media input:
+    :stop geometry:
+
+	### Cubic box
+	:start geometry:
+		name = my_box
+		library = egs_box
+		box size = 10
+		:start media input:
+			media = my_medium
+		:stop media input:
+	:stop geometry:
+
+
+    ### 3C chamber
+    :start geometry:
+        name = my_conestack
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = 0 0 1.26275 0 0 -1.26275
+		:start layer:
+            thickness = 0.456
+            top radii = 1.175
+            bottom radii = 1.175
+            media = graphite
+        :stop layer:
+        :start layer:
+            thickness = 1.2002
+            top radii = 0.3352 0.7919 1.175
+            bottom radii = 0.3352 0.7919 1.175
+            media = graphite air graphite
+        :stop layer:
+		:start layer:
+            thickness = 0.4133
+            top radii = 0.7919 1.175
+            bottom radii = 0.7919 1.175
+            media = air graphite
+        :stop layer:
+		:start layer:
+            thickness = 0.456
+            top radii = 1.175
+            bottom radii = 1.175
+            media = graphite
+        :stop layer:
+    :stop geometry:
+
+    ### Combine box and conestack
+    :start geometry:
+        name            = stack
+        library         = egs_gstack
+        geometries      = my_box my_conestack
+        tolerance       = 1e-4
+    :stop geometry:
+
+    ### Add sphere
+    :start geometry:
+        library = egs_gunion
+        name    = union
+        geometries = my_spheres my_conestack
+    :stop geometry:
+
+    ### Exradin A12 chamber
+    :start geometry:
+		name = tip_chamber
+        library = egs_spheres
+        radii = 0.05 0.305 0.355
+        midpoint  = 0.935 0 0
+		:start media input:
+			media = c552 air
+			set medium = 1 1
+		:stop media input:
+    :stop geometry:
+
+    :start geometry:
+        name = end_chamber
+        library = egs_cones
+        type = EGS_ConeStack
+        # axis 0.985 if using example but then 0.935
+        axis = 0.985 0 0 -3 0 0
+		:start layer:
+            thickness = 1.98
+            top radii = 0.05 0.305 0.355
+            bottom radii = 0.05 0.305 0.355
+            media = c552 air c552
+        :stop layer:
+        :start layer:
+            thickness = 0.13
+            top radii = 0.15 0.305 0.355
+            bottom radii = 0.15 0.305 0.355
+            media = c552 air c552
+        :stop layer:
+		:start layer:
+            thickness = 0.11
+            top radii = 0.355
+            bottom radii = 0.355
+            media = c552
+        :stop layer:
+		:start layer:
+            thickness = 0.08
+            top radii = 0.355
+            bottom radii = 0.48
+            media = c552
+        :stop layer:
+        :start layer:
+            thickness = 0.48
+            top radii = 0.48
+            bottom radii = 0.48
+            media = c552
+        :stop layer:
+        :start layer:
+            thickness = 0.08
+            top radii = 0.48
+            bottom radii = 0.61
+            media = c552
+        :stop layer:
+        :start layer:
+            thickness = 2
+            top radii = 0.61
+            bottom radii = 0.61
+            media = c552
+        :stop layer:
+    :stop geometry:
+
+    ### Combine tip and end using stack
+    :start geometry:
+        name            = stacked
+        library         = egs_gstack
+        geometries      = tip_chamber end_chamber
+        tolerance       = 1e-4
+    :stop geometry:
+
+    ### Combine tip and end using union
+    :start geometry:
+        library = egs_gunion
+        name    = chamber
+        geometries = tip_chamber end_chamber
+    :stop geometry:
+
+    ### planes for cd geometry base
+    :start geometry:
+        name      = cd_planes
+        library   = egs_planes
+        type      = EGS_Xplanes
+        positions = -4 0.935 4
+    :stop geometry:
+
+    ### join tip and body
+    :start geometry:
+        name    = example
+        library = egs_cdgeometry
+        base geometry = cd_planes
+        set geometry  = 0 end_chamber
+        set geometry  = 1 tip_chamber
+    :stop geometry:
+
+
+    #-------------------------------------------------------------------------
+    # simulation geometry
+    #-------------------------------------------------------------------------
+
+    ### Use the geometry with this name for the simulation
+	simulation geometry = chamber
+
+:stop geometry definition:
+
