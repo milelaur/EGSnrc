@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-	ncase = 100000 # The number of histories to simulate
+	ncase = 1000000 # The number of histories to simulate
 :stop run control:
 
 ################################
@@ -18,11 +18,11 @@
 
 	### Air between source and x-ray window
 	:start geometry:
-        name        = air
-        library     = egs_cylinders
-        type        = EGS_ZCylinders
-        radii       = 2.45
-        midpoint    = 0
+        name = air
+        library = egs_cylinders
+        type = EGS_ZCylinders
+        radii = 2.45
+        midpoint = 0
         :start media input:
             media = air
         :stop media input:
@@ -112,44 +112,25 @@
         geometries = opening pb
     :stop geometry:
 
-	### Faceplate opening
-	:start geometry:
-        name = faceplate_opening
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-		x-planes = -1.75 1.75
-		y-planes = -1.75 1.75
-		z-planes = 5.71999999 5.920000001
-		:start media input:
-            media = air
-        :stop media input:
-    :stop geometry:
-
 	### Faceplate
 	:start geometry:
-        name = fplate
+        name = faceplate
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-		x-planes = -4 4
-		y-planes = -4 4
+		x-planes = -4 -1.75 1.75 4
+		y-planes = -4 -1.75 1.75 4
 		z-planes = 5.72 5.92
 		:start media input:
-            media = pb
+            media = pb air
+			set medium = 4 1
         :stop media input:
-    :stop geometry:
-
-	### Adding opening to faceplate
-    :start geometry:
-        name = faceplate
-        library = egs_gunion
-        geometries = faceplate_opening fplate
     :stop geometry:
 
 	### Area for primary collimator
 	:start geometry:
         library = egs_planes
         type    = EGS_Zplanes
-        positions = 5.92 8.92
+        positions = 5.92 7.92
         name    = planes1
     :stop geometry:
 
@@ -158,8 +139,8 @@
         library = egs_pyramid
         type    = EGS_PyramidZ
         name    = prim_opening
-        points  = 0.7633 0.7633  -0.7633 0.7633  -0.7633 -0.7633  0.7633 -0.7633
-        tip     = 0 0 -4.58
+        points  = 0.27 0.27  -0.27 0.27  -0.27 -0.27  0.27 -0.27
+        tip     = 0 0 -1.08
     :stop geometry:
 
 	### Primary collimator pyramid
@@ -167,8 +148,8 @@
         library = egs_pyramid
         type    = EGS_PyramidZ
         name    = prim_coll
-        points  = 1.5633 1.5633  -1.5633 1.5633  -1.5633 -1.5633  1.5633 -1.5633
-        tip     = 0 0 -9.38
+        points  = 1.07 1.07  -1.07 1.07  -1.07 -1.07  1.07 -1.07
+        tip     = 0 0 -4.28
     :stop geometry:
 
 	### Adding opening to primary collimator
@@ -178,7 +159,7 @@
         geometries = prim_opening prim_coll
     :stop geometry:
 
-	### Primary collimator opening
+	### Primary collimator (2cm thick)
 	:start geometry:
         library = egs_ndgeometry
         name    = primary_collimator
@@ -188,6 +169,96 @@
             media = air pb
             set medium = 0 0
             set medium = 1 1
+        :stop media input:
+    :stop geometry:
+
+	### Air between primary_collimator and y-blade
+	:start geometry:
+        name = prim_to_y
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -4 4
+        y-planes = -4 4
+        z-planes = 7.92 9.09
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+	### Y-blade
+	:start geometry:
+        name = y-blade
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -4 4
+        y-planes = -4 -0.89999 0.89999 4
+        z-planes = 9.09 9.39 9.59
+        :start media input:
+            media = pb steel air
+			set medium = 0 0
+            set medium = 1 2
+			set medium = 2 0
+            set medium = 3 1
+			set medium = 4 2
+            set medium = 5 1
+        :stop media input:
+    :stop geometry:
+
+	### Air between y-blade and x-blade
+	:start geometry:
+        name = y_to_x
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -4 4
+        y-planes = -4 4
+        z-planes = 9.59 10.69
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+	### X-blade
+	:start geometry:
+        name = x-blade
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes =  -4 -1.41108 1.41108 4
+        y-planes = -4 4
+        z-planes = 10.69 10.99 11.19
+        :start media input:
+            media = pb steel air
+			set medium = 0 0
+            set medium = 1 2
+			set medium = 2 0
+            set medium = 3 1
+			set medium = 4 2
+            set medium = 5 1
+        :stop media input:
+    :stop geometry:
+
+	### Air between x-blade and beam hardening filter
+	:start geometry:
+        name = x_to_hardfil
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -4 4
+        y-planes = -4 4
+        z-planes = 11.19 13.22
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+	### The beam hardening filter
+	:start geometry:
+        name = hard_filt
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -4 4
+        y-planes = -4 4
+        z-planes = 13.22 13.309
+        :start media input:
+            media = titanium
         :stop media input:
     :stop geometry:
 
@@ -216,15 +287,123 @@
         tolerance = 1e-4
     :stop geometry:
 
-	### Adding primary collimator
+	### Adding primary collimator and blades
     :start geometry:
-        name = window_and_faceplate_and_prim_coll
+        name = prim_coll_and_blades
         library = egs_gunion
-		geometries = window_and_pb_port faceplate primary_collimator
+		geometries = window_and_pb_port faceplate primary_collimator y-blade x-blade prim_to_y y_to_x
     :stop geometry:
 
+	### Adding the beam hardening filter
+    :start geometry:
+        name = obi
+        library = egs_gunion
+		geometries = prim_coll_and_blades hard_filt x_to_hardfil
+    :stop geometry:
+
+	################################
+	### TESTING GEOMETRY
+	################################
+
+	### Air between primary_collimator and detector
+	:start geometry:
+        name = air1
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -60 60
+        y-planes = -60 60
+        z-planes = 7.92 100
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+	### Testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
+	:start geometry:
+        name = air2
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -2.55 2.55
+        y-planes = -2.55 2.55
+        z-planes = 0 5.92
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+
+	### Testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
+	:start geometry:
+        name = detect
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -60 -25.2 25.2 60
+        y-planes = -60 -25.2 25.2 60
+        z-planes = 100 100.1
+        :start media input:
+            media = water
+        :stop media input:
+    :stop geometry:
+
+	### Geometry that contains only primary_collimator and detector plate + air
+    :start geometry:
+        name = air_and_window1
+        library = egs_gunion
+        geometries = window_and_pb_port faceplate primary_collimator detect air1
+    :stop geometry:
+
+	### Testing blades (air between blade and SSD)
+    :start geometry:
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+		x-planes = -20 20
+        y-planes = -20 20
+        z-planes = 11.19 100
+        name = airslab
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+	### Testing blades (air between beam hardening filter and SSD)
+    :start geometry:
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+		x-planes = -20 20
+        y-planes = -20 20
+        z-planes = 13.309 100
+        name = airslab1
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+	### Testing blades water phantom in SSD
+	:start geometry:
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+		x-planes = -20 -13.2 13.2 20
+        y-planes = -20 -9.9 9.9 20
+        z-planes = 100 100.1
+        name = slab
+        :start media input:
+            media = water
+        :stop media input:
+    :stop geometry:
+
+	### Combine source x-ray window, prim coll, blades, air and water
+	:start geometry:
+        name = test
+        library = egs_gunion
+        geometries = obi slab airslab1
+    :stop geometry:
+
+	################################
+	### SIMULATION GEOMETRY
+	################################
+
 	### Use the geometry with this name for the simulation
-	simulation geometry = window_and_faceplate_and_prim_coll
+	simulation geometry = test
 
 :stop geometry definition:
 
@@ -291,13 +470,33 @@
 
 	### Pb
 	:start pb:
-		medium=PB700ICRU
+		# medium=PB700ICRU
 		rho=1.1340E+01
 		elements=PB
 		number of atoms=1
 		bremsstrahlung correction=NRC
 		density correction file = lead
 	:stop pb:
+
+	### Titanium
+	:start titanium:
+		# medium=TI700ICRU
+		rho=4.54
+		elements=TI
+		number of atoms=1
+		bremsstrahlung correction=NRC
+		density correction file=titanium
+	:stop titanium:
+
+	### Water
+	:start water:
+		# medium=H2O700ICRU
+		rho=1.0
+		elements=H,O
+		number of atoms=2,1
+		bremsstrahlung correction=NRC
+		density correction file= water_liquid
+	:stop water:
 
 :stop media definition:
 
@@ -335,14 +534,17 @@
 	:start ausgab object:
 		name = tracks
 		library = egs_track_scoring
+		score electrons = no
+		score positrons = no
+    	stop scoring   = 1000000
 	:stop ausgab object:
 
 	### Dose scoring object
 	:start ausgab object:
 		name = dose
 		library = egs_dose_scoring
-		dose regions = 0 9 11 20 26 33 65
-		volume = 56.57 1.95 10 3 3.79 2.45 48
+		dose regions = 224
+		volume = 3.6
 	:stop ausgab object:
 :stop ausgab object definition:
 
@@ -354,9 +556,9 @@
     calculation type = dose
 
     :start calculation geometry:
-        geometry name   = xray 
-        cavity regions  = 46
-        cavity mass     = 0.0025
+        geometry name   = test 
+        cavity regions  = 224
+        cavity mass     = 1
     :stop calculation geometry:
 
 :stop scoring options:
@@ -374,4 +576,6 @@
 	set color = aluminum 0 0 255 200
 	set color = steel 0 255 0 200
 	set color = pb 255 85 0 200
+	set color = water 85 170 255 200
+	set color = titanium 0 170 127 200
 :stop view control:
