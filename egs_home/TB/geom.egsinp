@@ -1,0 +1,377 @@
+################################
+#
+# Simple slab simulation
+#
+################################
+
+################################
+### RUN CONTROL
+################################
+:start run control:
+	ncase = 100000 # The number of histories to simulate
+:stop run control:
+
+################################
+### GEOMETRY
+################################
+:start geometry definition:
+
+	### Air between source and x-ray window
+	:start geometry:
+        name        = air
+        library     = egs_cylinders
+        type        = EGS_ZCylinders
+        radii       = 2.45
+        midpoint    = 0
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+	### x-ray window
+	:start geometry:
+        name = xray_window
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = 0 0 3 0 0 4.075
+		:start layer:
+            thickness = 0.155
+            top radii = 2.0 2.45
+            bottom radii = 2.0 2.45
+            media = beryllium steel
+        :stop layer:
+        :start layer:
+            thickness = 0.6
+            top radii = 2.45
+            bottom radii = 2.45
+            media = oil
+        :stop layer:
+		:start layer:
+            thickness = 0.045
+            top radii = 2.45
+            bottom radii = 2.45
+            media = air
+        :stop layer:
+		:start layer:
+            thickness = 0.275
+            top radii = 2.45
+            bottom radii = 2.45
+            media = aluminum
+        :stop layer:
+    :stop geometry:
+
+	### The opening in the Pb port
+	:start geometry:
+        name = opening
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+		x-planes = -1.26 1.26
+		y-planes = -1.26 1.26
+		z-planes = 4.07499999999999 5.72
+		:start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+	### Pb port without opening
+	:start geometry:
+        name = pb
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = 0 0 4.075 0 0 5.8
+		:start layer:
+            thickness = 0.15
+            top radii = 2.4511
+            bottom radii = 2.4511
+            media = pb
+        :stop layer:
+        :start layer:
+            thickness = 0.5612
+            top radii = 2.1511 2.4511
+            bottom radii = 2.1511 2.4511
+            media = air pb
+        :stop layer:
+		:start layer:
+            thickness = 0.739
+            top radii = 2.1511 2.4511
+            bottom radii = 2.53591 2.83591
+            media = air pb
+        :stop layer:
+		:start layer:
+            thickness = 0.15
+            top radii = 2.83591 3.17246
+            bottom radii = 2.83591 3.17246
+            media = air pb
+        :stop layer:
+    :stop geometry:
+
+	### Adding opening to pb port
+    :start geometry:
+        name = pb_port
+        library = egs_gunion
+        geometries = opening pb
+    :stop geometry:
+
+	### Faceplate opening
+	:start geometry:
+        name = faceplate_opening
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+		x-planes = -1.75 1.75
+		y-planes = -1.75 1.75
+		z-planes = 5.71999999 5.920000001
+		:start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+	### Faceplate
+	:start geometry:
+        name = fplate
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+		x-planes = -4 4
+		y-planes = -4 4
+		z-planes = 5.72 5.92
+		:start media input:
+            media = pb
+        :stop media input:
+    :stop geometry:
+
+	### Adding opening to faceplate
+    :start geometry:
+        name = faceplate
+        library = egs_gunion
+        geometries = faceplate_opening fplate
+    :stop geometry:
+
+	### Area for primary collimator
+	:start geometry:
+        library = egs_planes
+        type    = EGS_Zplanes
+        positions = 5.92 8.92
+        name    = planes1
+    :stop geometry:
+
+	### Primary collimator opening pyramid
+	:start geometry:
+        library = egs_pyramid
+        type    = EGS_PyramidZ
+        name    = prim_opening
+        points  = 0.7633 0.7633  -0.7633 0.7633  -0.7633 -0.7633  0.7633 -0.7633
+        tip     = 0 0 -4.58
+    :stop geometry:
+
+	### Primary collimator pyramid
+	:start geometry:
+        library = egs_pyramid
+        type    = EGS_PyramidZ
+        name    = prim_coll
+        points  = 1.5633 1.5633  -1.5633 1.5633  -1.5633 -1.5633  1.5633 -1.5633
+        tip     = 0 0 -9.38
+    :stop geometry:
+
+	### Adding opening to primary collimator
+    :start geometry:
+        name = primary_coll
+        library = egs_gunion
+        geometries = prim_opening prim_coll
+    :stop geometry:
+
+	### Primary collimator opening
+	:start geometry:
+        library = egs_ndgeometry
+        name    = primary_collimator
+        hownear method = 1
+        dimensions = planes1 primary_coll
+		:start media input:
+            media = air pb
+            set medium = 0 0
+            set medium = 1 1
+        :stop media input:
+    :stop geometry:
+
+	### Combine air and x-ray window
+	:start geometry:
+        name = cd_planes
+        library = egs_planes
+        type = EGS_Zplanes
+        positions = 0 3 4.075
+    :stop geometry:
+
+	### The composite geometry air and x-ray window
+    :start geometry:
+        name = air_and_window
+        library = egs_cdgeometry
+        base geometry = cd_planes
+		set geometry = 0 air
+		set geometry = 1 xray_window
+    :stop geometry:
+
+	### Adding pb port to geometry
+	:start geometry:
+        name = window_and_pb_port
+        library = egs_gstack
+        geometries = air_and_window pb_port
+        tolerance = 1e-4
+    :stop geometry:
+
+	### Adding primary collimator
+    :start geometry:
+        name = window_and_faceplate_and_prim_coll
+        library = egs_gunion
+		geometries = window_and_pb_port faceplate primary_collimator
+    :stop geometry:
+
+	### Use the geometry with this name for the simulation
+	simulation geometry = window_and_faceplate_and_prim_coll
+
+:stop geometry definition:
+
+################################
+### MEDIA
+################################
+:start media definition: # Only 1 media definition block allowed
+	# Defining media in the input file like this is called "pegsless" mode
+
+	### Cutoff energies, in MeV
+	ae = 0.512 # lowest energy for electrons (kinetic+0.511)
+	ap = 0.01 # lowest energy for photons (kinetic)
+	ue = 50.511 # maximum energy for electrons (kinetic+0.511)
+	up = 50 # maximum energy for photons (kinetic)
+
+	### Beryllium
+	:start beryllium: # this name can be anything
+		# medium=BE700ICRU
+		rho=1.85
+		elements=BE
+		number of atoms=1
+		bremsstrahlung correction=NRC
+		density correction file = beryllium
+	:stop beryllium:
+	
+	### Air
+	:start air:
+		# medium=AIR700ICRU
+		rho=1.2048E-03
+		elements=C,N,O,AR
+		mass fractions=1.24000E-04,7.55200E-01,2.31800E-01,1.28300E-02
+		bremsstrahlung correction=NRC
+		gas pressure = 1.0
+		density correction file = air_dry_nearsealevel
+	:stop air:
+	
+	### Oil
+	:start oil:
+		elements = H, C
+		number of atoms = 10,20
+		rho=0.890550008
+		bremsstrahlung correction = NRC
+	:stop oil:
+
+	### Aluminum
+	:start aluminum:
+		# medium=AL700ICRU
+		rho=2.7020
+		elements=AL
+		number of atoms=1
+		bremsstrahlung correction=NRC
+		density correction file = aluminum
+	:stop aluminum:
+
+	### Stainless steel
+	:start steel:
+		# medium=STEEL700ICRU
+		rho=8.06
+		elements=C,SI,CR,MN,FE,NI
+		mass fractions=1.00000E-03,7.00000E-03,1.80000E-01,1.00000E-02,7.12000E-01,9.00000E-02
+		bremsstrahlung correction=NRC
+		density correction file = steel_stainless_type302
+	:stop steel:
+
+	### Pb
+	:start pb:
+		medium=PB700ICRU
+		rho=1.1340E+01
+		elements=PB
+		number of atoms=1
+		bremsstrahlung correction=NRC
+		density correction file = lead
+	:stop pb:
+
+:stop media definition:
+
+################################
+### SOURCE
+################################
+:start source definition: 
+
+	:start source:
+		name = focal_spot
+		library = egs_isotropic_source
+		charge = 0
+		direction = 0 0 1
+		:start spectrum:
+			type = monoenergetic
+			energy = 0.125 # in MeV
+		:stop spectrum:
+		:start shape:
+			library = egs_ellipse
+    		halfaxis = 0.12 0.17	# Focal spot width 1.0mm to 1.4mm -> avg 1.2 mm
+									# and length 1.4mm to 2.0mm -> avg 1.7mm
+    		midpoint = 0 0
+		:stop shape:
+	:stop source:
+
+	### Use the source by this name for the simulation
+	simulation source = focal_spot
+:stop source definition:
+
+################################
+### AUSGAB OBJECTS
+################################
+:start ausgab object definition: # Only 1 ausgab definition block allowed
+	### Particle tracks
+	:start ausgab object:
+		name = tracks
+		library = egs_track_scoring
+	:stop ausgab object:
+
+	### Dose scoring object
+	:start ausgab object:
+		name = dose
+		library = egs_dose_scoring
+		dose regions = 0 9 11 20 26 33 65
+		volume = 56.57 1.95 10 3 3.79 2.45 48
+	:stop ausgab object:
+:stop ausgab object definition:
+
+##############################################################################
+### SCORING OPTIONS
+##############################################################################
+:start scoring options:
+
+    calculation type = dose
+
+    :start calculation geometry:
+        geometry name   = xray 
+        cavity regions  = 46
+        cavity mass     = 0.0025
+    :stop calculation geometry:
+
+:stop scoring options:
+
+
+################################
+### VIEWER CONTROL
+################################
+:start view control:
+	# Here we are just assigning some colors for nice
+	# viewing in the egs_view application
+	set color = air 225 225 225 200
+	set color = beryllium 162 0 0 200
+	set color = oil 255 255 0 200
+	set color = aluminum 0 0 255 200
+	set color = steel 0 255 0 200
+	set color = pb 255 85 0 200
+:stop view control:

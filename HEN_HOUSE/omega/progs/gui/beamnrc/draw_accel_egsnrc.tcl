@@ -233,10 +233,11 @@ proc redraw_accel {} {
     if $width>$scrlwidth {
 	set width $scrlwidth
     }
-    set height [expr 1024*3./4.]
-    if $height>$scrlheight {
-	set height $scrlheight
-    }
+    set height [expr 1024*3./5.]
+    # buttons don't show
+    #if $height>$scrlheight {
+	#set height $scrlheight
+    #}
 
     canvas .accel.topw.frm.can -width $width -height $height\
 	    -yscrollcommand ".accel.topw.frm.scrlz set"\
