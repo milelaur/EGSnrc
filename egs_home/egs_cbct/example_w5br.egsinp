@@ -105,8 +105,8 @@
        :stop media input:
     :stop geometry:
 
-    #simulation geometry = phantom       # use this one for real scans
-    simulation geometry = blank_phantom # use this one first to create blank scan
+    simulation geometry = phantom       # use this one for real scans
+    #simulation geometry = blank_phantom # use this one first to create blank scan
 
 :stop geometry definition:
 
@@ -169,8 +169,8 @@
         calculation type = planar # fixed for now as only scoring at a plane
 
         :start calculation geometry:
-           geometry name = blank_phantom # use this one first to create blank scan
-           #geometry name = phantom
+           #geometry name = blank_phantom # use this one first to create blank scan
+            geometry name = phantom
         :stop calculation geometry:
 
         :start planar scoring:
@@ -183,7 +183,7 @@
               rotation = 0 1.570796326794896619 0
            :stop transformation:
             # Uses file provided in the distribution
-            muen file = /home/miia/EGSnrc/HEN_HOUSE/user_codes/egs_fac/examples/muen_air.data
+            muen file = /home/mainegra/egsnrc_mp/egs_fac/muen_air.data
         :stop planar scoring:
 
 :stop scoring options:
@@ -197,14 +197,14 @@
         ###############################################
         # Use the 2 lines below to produce a blank scan
         ###############################################
-        scan file = /home/miia/EGSnrc/egs_home/egs_cbct/blank_coll_64.scan
-	scan type = blank
+        #scan file = /home/mainegra/egsnrc_mp/egs_cbct/blank_coll_64.scan
+	#scan type = blank
         ###############################################
         # Use the 3 lines below to produce real scans
         ###############################################
-        #scan file = /home/miia/EGSnrc/egs_home/egs_cbct/scan_w5br_coll_64.scan
-        #blank scan = /home/miia/EGSnrc/egs_home/egs_cbct/blank_coll_64.scan
-	#scan type = all
+        scan file = /home/mainegra/egsnrc_mp/egs_cbct/scan_w5br_coll_64.scan
+        blank scan = /home/mainegra/egsnrc_mp/egs_cbct/blank_coll_64.scan
+	scan type = scatter
         ###############################################
     :stop scan output:
 :stop output options:
@@ -295,7 +295,7 @@
 
   Photon cross sections = xcom  # epdl (or xcom)
 
-  Bound Compton scattering = on
+  Bound Compton scattering = off
 
   Rayleigh scattering=  on
 

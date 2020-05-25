@@ -4,24 +4,26 @@
       implicit none
       COMMON/BOUNDS/ECUT,PCUT,VACDST
       real*8 ECUT,  PCUT,  VACDST
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -38,10 +40,10 @@
      * ybound_max, zbound_min, zbound_max,dsurround
       integer medsur,IMAX, JMAX, KMAX, ijmax,irmax
       logical howfarless
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -131,7 +133,8 @@
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/USEFUL/PZERO,PRM,PRMT2,RM,MEDIUM,MEDOLD
       DOUBLE PRECISION PZERO,  PRM,  PRMT2
@@ -156,7 +159,7 @@
       logical is_ch_step
       COMMON/USERPS/n_split
       integer*4 n_split
-      COMMON/USERRR/ESAVE_GLOBAL,RANGE_ECUTRR(7),IREJECT
+      COMMON/USERRR/ESAVE_GLOBAL,RANGE_ECUTRR(20),IREJECT
       real*8 ESAVE_GLOBAL,RANGE_ECUTRR
       integer*4 IREJECT
       COMMON/EPCONT/EDEP,EDEP_LOCAL,TSTEP,TUSTEP,USTEP,TVSTEP,VSTEP, RHO
@@ -220,8 +223,8 @@
      *pen_file, egs_open_datfile, ihowfarless,   i_par_temp
       real*8 xin,yin,zin,  uin,vin,win,  weight,etotin, etot,  mindelX,m
      *indelY,mindelZ
-      real amass,tcpuold,ECUTIN,PCUTIN,ESTEPM(7),width, rhotmp,ECUTL,PCU
-     *TL,TIMMAX,SMAX, timcpu,  ainflu,  minrhor,  maxrhor
+      real amass,tcpuold,ECUTIN,PCUTIN,ESTEPM(20),width, rhotmp,ECUTL,PC
+     *UTL,TIMMAX,SMAX, timcpu,  ainflu,  minrhor,  maxrhor
       character*256 PhantFileName,  parname,  phsp_out_fn
       REAL XMIN_YMIN_ZMIN,YMIN_XMIN_ZMIN,ZMIN_XMIN_YMIN, XMIN_YMAX_ZMIN,
      *YMAX_XMIN_ZMIN,ZMIN_XMIN_YMAX, XMAX_YMAX_ZMIN,YMAX_XMAX_ZMIN,ZMIN_
@@ -312,8 +315,8 @@
      *l of Canada', ' and',T79,'**'/ ' **',T15,'University of Wisconsina
      *s part of the OMEGA project', T79,'**'/ ' **',T79,'**'/ ' **',T15,
      * T79,'**'/ ' **',T79,'**'/ 1X ,79('*'))
-      WRITE(6,1050)7,10000,128,128,128, 2097153,1
-      WRITE(1,1050)7,10000,128,128,128, 2097153,1
+      WRITE(6,1050)20,10000,128,128,128, 2097153,1
+      WRITE(1,1050)20,10000,128,128,128, 2097153,1
 1050  FORMAT(/'     The following parameters may be adjusted in dosxyz_u
      *ser_macros.mortran'/' $MXMED:    Max number of media:',I3,/ ' $MXS
      *TACK:  Max stack size:',I10/ ' $IMAX,etc: Max dose scoring regions
@@ -334,12 +337,12 @@
       WRITE(6,1090)Title
       WRITE(1,1090)Title
 1090  FORMAT(' ',80a1/1x,79('-')/1x,79('=')//)
-      WRITE(6,1100)7
-      WRITE(1,1100)7
+      WRITE(6,1100)20
+      WRITE(1,1100)20
 1100  FORMAT(' Number of media (min = 1, max =',I4,', 0 => CT data): ',$
      *)
       read(5,'(I10)') NMED
-      IF ((NMED .GT. 7 )) THEN
+      IF ((NMED .GT. 20 )) THEN
           NMED= 1
       END IF
       WRITE(6,1110)NMED
@@ -3328,7 +3331,7 @@
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
       COMMON/USERPS/n_split
       integer*4 n_split
-      COMMON/USERRR/ESAVE_GLOBAL,RANGE_ECUTRR(7),IREJECT
+      COMMON/USERRR/ESAVE_GLOBAL,RANGE_ECUTRR(20),IREJECT
       real*8 ESAVE_GLOBAL,RANGE_ECUTRR
       integer*4 IREJECT
       common/randomm/ rng_array(128), urndm(97), crndm, cdrndm, cmrndm,
@@ -3406,10 +3409,10 @@
       real*8 DUNIT,  RHOR
       integer*4 KMPI,  KMPO
       integer*2 MED,  IRAYLR,  IPHOTONUCR
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -4491,11 +4494,11 @@
       subroutine write_phantom(iunit,nmed,media,estepe, iimax,jjmax,kkma
      *x,xbnd,ybnd,zbnd, rho,med)
       IMPLICIT NONE
-      Character*4 media(24,7)
+      Character*4 media(24,20)
       INTEGER iunit,  nmed,  iimax,  jjmax,  kkmax,  ii,jj,kk,  egs_open
      *_file
       integer*2 med( 2097154)
-      REAL xbnd(128+1),  ybnd(128+1),  zbnd(128+1),  estepe(7)
+      REAL xbnd(128+1),  ybnd(128+1),  zbnd(128+1),  estepe(20)
       real*8 rho( 2097154)
       iunit=egs_open_file(iunit,0,1,'.egsphant')
       WRITE(iunit,'(i2)') nmed
@@ -4602,16 +4605,17 @@
       implicit none
       COMMON/BOUNDS/ECUT,PCUT,VACDST
       real*8 ECUT,  PCUT,  VACDST
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -4620,10 +4624,10 @@
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -4730,8 +4734,8 @@
       CHARACTER*256 KEEPTEXT
       CHARACTER*256 ORIGTEXT
       CHARACTER*256 TEXTPIECE
-      CHARACTER*40 DELIM_START
-      CHARACTER*40 DELIM_END
+      CHARACTER*80 DELIM_START
+      CHARACTER*80 DELIM_END
       CHARACTER*64 VNAME
       CHARACTER*64 VNAME1
       integer*4 CURSOR
@@ -5590,16 +5594,16 @@
       integer*4 edge_number
       common/compton_data/ iz_array(1538),  be_array(1538),  Jo_array(15
      *38),  erfJo_array(1538),   ne_array(1538),  shn_array(1538),
-     *shell_array(200,7), eno_array(200,7), eno_atbin_array(200,7), n_sh
-     *ell(7), radc_flag,  ibcmp
+     *shell_array(200,20), eno_array(200,20), eno_atbin_array(200,20), n
+     *_shell(20), radc_flag,  ibcmp
       integer*4 iz_array,ne_array,shn_array,eno_atbin_array, shell_array
      *,n_shell,radc_flag
       real*8 be_array,Jo_array,erfJo_array,eno_array
       integer*2 ibcmp
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -5613,18 +5617,19 @@
       real*8 DUNIT,  RHOR
       integer*4 KMPI,  KMPO
       integer*2 MED,  IRAYLR,  IPHOTONUCR
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
       common/eii_data/ eii_xsection_a( 10000),  eii_xsection_b( 10000),
-     * eii_cons(7), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),  e
-     *ii_sh(40),  eii_nshells(100),  eii_nsh(7),  eii_first(7,50),  eii_
-     *no(7,50),  eii_flag
+     * eii_cons(20), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),
+     *eii_sh(40),  eii_nshells(100),  eii_nsh(20),  eii_first(20,50),  e
+     *ii_no(20,50),  eii_flag
       real*8 eii_xsection_a,eii_xsection_b,eii_a,eii_b,eii_cons,eii_L_fa
      *ctor
       integer*4 eii_z,eii_sh,eii_nshells
@@ -5643,7 +5648,7 @@
      *_chunk, file_units, n_files,i_input,i_log,i_incoh, i_nist_data,i_m
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch,is_pegsless
-      COMMON/rayleigh_inputs/iray_ff_media(7),iray_ff_file(7)
+      COMMON/rayleigh_inputs/iray_ff_media(20),iray_ff_file(20)
       character*24 iray_ff_media
       character*128 iray_ff_file
       common/emf_inputs/ExIN,EyIN,EzIN,  EMLMTIN,  BxIN, ByIN, BzIN,  Bx
@@ -6082,11 +6087,11 @@
                   write(i_log,'(/a)') '***************** Quiting now.'
                   call exit(1)
               END IF
-              IF ((nvalue(num_ffmed).GT.7)) THEN
+              IF ((nvalue(num_ffmed).GT.20)) THEN
                   write(i_log,'(/a)') '***************** Error: '
                   write(i_log,'(a,a,i3,a)') '***** Number of media with
-     *custom ff larger ', 'than maximum number of media $MXMED = ',7, '
-     *increase $MXMED and try again!!!'
+     *custom ff larger ', 'than maximum number of media $MXMED = ',20, '
+     * increase $MXMED and try again!!!'
                   write(i_log,'(/a)') '***************** Quiting now.'
                   call exit(1)
               END IF
@@ -6738,16 +6743,17 @@
      *ETER*64
       real*8 VALUE,DEFAULT,VALUE_MIN,VALUE_MAX
       integer*4 NVALUE,TYPE,NMIN,NMAX,ERROR_FLAG,ERROR_FLAGS,i_errors
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -6756,10 +6762,10 @@
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -6853,9 +6859,9 @@
       CHARACTER*256 KEEPTEXT
       CHARACTER*256 ORIGTEXT
       CHARACTER*256 TEXTPIECE
-      CHARACTER*40 DELIM_START
-      CHARACTER*40 DELIM_END
-      CHARACTER*40 ENDSTRING
+      CHARACTER*80 DELIM_START
+      CHARACTER*80 DELIM_END
+      CHARACTER*80 ENDSTRING
       CHARACTER*64 VNAME
       CHARACTER*64 VNAME1
       integer*4 CURSOR
@@ -7753,16 +7759,16 @@
       integer*4 edge_number
       common/compton_data/ iz_array(1538),  be_array(1538),  Jo_array(15
      *38),  erfJo_array(1538),   ne_array(1538),  shn_array(1538),
-     *shell_array(200,7), eno_array(200,7), eno_atbin_array(200,7), n_sh
-     *ell(7), radc_flag,  ibcmp
+     *shell_array(200,20), eno_array(200,20), eno_atbin_array(200,20), n
+     *_shell(20), radc_flag,  ibcmp
       integer*4 iz_array,ne_array,shn_array,eno_atbin_array, shell_array
      *,n_shell,radc_flag
       real*8 be_array,Jo_array,erfJo_array,eno_array
       integer*2 ibcmp
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -7776,18 +7782,19 @@
       real*8 DUNIT,  RHOR
       integer*4 KMPI,  KMPO
       integer*2 MED,  IRAYLR,  IPHOTONUCR
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
       common/eii_data/ eii_xsection_a( 10000),  eii_xsection_b( 10000),
-     * eii_cons(7), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),  e
-     *ii_sh(40),  eii_nshells(100),  eii_nsh(7),  eii_first(7,50),  eii_
-     *no(7,50),  eii_flag
+     * eii_cons(20), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),
+     *eii_sh(40),  eii_nshells(100),  eii_nsh(20),  eii_first(20,50),  e
+     *ii_no(20,50),  eii_flag
       real*8 eii_xsection_a,eii_xsection_b,eii_a,eii_b,eii_cons,eii_L_fa
      *ctor
       integer*4 eii_z,eii_sh,eii_nshells
@@ -7806,7 +7813,7 @@
      *_chunk, file_units, n_files,i_input,i_log,i_incoh, i_nist_data,i_m
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch,is_pegsless
-      COMMON/rayleigh_inputs/iray_ff_media(7),iray_ff_file(7)
+      COMMON/rayleigh_inputs/iray_ff_media(20),iray_ff_file(20)
       character*24 iray_ff_media
       character*128 iray_ff_file
       common/emf_inputs/ExIN,EyIN,EzIN,  EMLMTIN,  BxIN, ByIN, BzIN,  Bx
@@ -7816,21 +7823,22 @@
       logical emfield_on
       common/x_options/eadl_relax,  mcdf_pe_xsections
       logical eadl_relax, mcdf_pe_xsections
-      COMMON/MEDINP/inpdensity_file(7),inpasym(7,50), inpstrn(24,7),pz4(
-     *7,50), rhoz4(7,50),wa4(7,50),inpgasp(7)
+      COMMON/MEDINP/inpdensity_file(20),inpasym(20,50), inpstrn(24,20),p
+     *z4(20,50), rhoz4(20,50),wa4(20,50),inpgasp(20)
       character*256 inpdensity_file
       CHARACTER*4 inpasym,inpstrn
       real*4 pz4,rhoz4,wa4,inpgasp
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -7839,7 +7847,8 @@
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/ELEMTB/NET,ITBL(100),WATBL(100),RHOTBL(100),ASYMT(100)
       integer*4 NET
@@ -7858,10 +7867,10 @@
      *err,mindex,eindex, i_density,i01,length,i_outfile
       real*8 ecut_min, pcut_min
       logical medfile_specified,densityfile_specified,elements_specified
-     *, outfile_specified(7)
+     *, outfile_specified(20)
       logical iunrst_specified,stern_specified,iaprim_specified, gasp_sp
      *ecified,rho_specified,start_delim_found,end_delim_found, spec_by_p
-     *z,spec_by_rhoz,df_if_elem_mismatch(7), df_if_rho_mismatch(7)
+     *z,spec_by_rhoz,df_if_elem_mismatch(20), df_if_rho_mismatch(20)
       logical ex
       integer*4 CURSOR,Kconvert
       real*4 ZTBL
@@ -7875,9 +7884,9 @@
      */
       character*24 medium_name,med_tmp,sterncid_tmp
       character*256 density_file,material_file,tmp_string, spoutput_file
-     *(7)
+     *(20)
       character*80 text_string, text_save, title
-      character*40 delim_start,delim_end
+      character*80 delim_start,delim_end
       character*1 blank
       character*512 toUpper
       integer*4 nne_tmp,iaprim_tmp,epstfl_tmp,iunrst_tmp
@@ -10133,10 +10142,10 @@ C*****************************************************************************
       character*256 the_phsp_file
       COMMON/SOURCE_FORPARALLEL/nnphsp_max, nnphsp_min
       integer*8 nnphsp_max, nnphsp_min
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -17425,18 +17434,19 @@ C*****************************************************************************
       implicit none
       COMMON/BOUNDS/ECUT,PCUT,VACDST
       real*8 ECUT,  PCUT,  VACDST
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
       common/compton_data/ iz_array(1538),  be_array(1538),  Jo_array(15
      *38),  erfJo_array(1538),   ne_array(1538),  shn_array(1538),
-     *shell_array(200,7), eno_array(200,7), eno_atbin_array(200,7), n_sh
-     *ell(7), radc_flag,  ibcmp
+     *shell_array(200,20), eno_array(200,20), eno_atbin_array(200,20), n
+     *_shell(20), radc_flag,  ibcmp
       integer*4 iz_array,ne_array,shn_array,eno_atbin_array, shell_array
      *,n_shell,radc_flag
       real*8 be_array,Jo_array,erfJo_array,eno_array
@@ -17449,16 +17459,17 @@ C*****************************************************************************
      *dge_energies,  edge_a,edge_b,edge_c,edge_d
       integer*2 IEDGFL,  IPHTER
       integer*4 edge_number
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -17483,10 +17494,10 @@ C*****************************************************************************
       real*8 smaxir,  estepe,  ximax,      skindepth_for_bca
       integer*4 transport_algorithm, bca_algorithm
       logical exact_bca,  spin_effects
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -17500,10 +17511,11 @@ C*****************************************************************************
       real*8 DUNIT,  RHOR
       integer*4 KMPI,  KMPO
       integer*2 MED,  IRAYLR,  IPHOTONUCR
-      COMMON/PHOTIN/ EBINDA(7), GE0(7),GE1(7), GMFP0(2000,7),GMFP1(2000,
-     *7),GBR10(2000,7),GBR11(2000,7),GBR20(2000,7),GBR21(2000,7), RCO0(7
-     *),RCO1(7), RSCT0(100,7),RSCT1(100,7), COHE0(2000,7),COHE1(2000,7),
-     *  PHOTONUC0(2000,7),PHOTONUC1(2000,7), DPMFP, MPGEM(1,7), NGR(7)
+      COMMON/PHOTIN/ EBINDA(20), GE0(20),GE1(20), GMFP0(2000,20),GMFP1(2
+     *000,20),GBR10(2000,20),GBR11(2000,20),GBR20(2000,20),GBR21(2000,20
+     *), RCO0(20),RCO1(20), RSCT0(100,20),RSCT1(100,20), COHE0(2000,20),
+     *COHE1(2000,20),  PHOTONUC0(2000,20),PHOTONUC1(2000,20), DPMFP, MPG
+     *EM(1,20), NGR(20)
       real*8 EBINDA,  GE0,GE1,  GMFP0,GMFP1,  GBR10,GBR11,  GBR20,GBR21,
      *  RCO0,RCO1,  RSCT0,RSCT1,  COHE0,COHE1,   PHOTONUC0,PHOTONUC1,  D
      *PMFP
@@ -17521,7 +17533,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIIN/SINC0,SINC1,SIN0(1002),SIN1(1002)
       real*8 SINC0,SINC1,SIN0,SIN1
@@ -17552,22 +17565,22 @@ C*****************************************************************************
      *_chunk, file_units, n_files,i_input,i_log,i_incoh, i_nist_data,i_m
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch,is_pegsless
-      common/spin_data/ spin_rej(7,0:1,0: 31,0:15,0:31), espin_min,espin
-     *_max,espml,b2spin_min,b2spin_max, dbeta2,dbeta2i,dlener,dleneri,dq
-     *q1,dqq1i, fool_intel_optimizer
+      common/spin_data/ spin_rej(20,0:1,0: 31,0:15,0:31), espin_min,espi
+     *n_max,espml,b2spin_min,b2spin_max, dbeta2,dbeta2i,dlener,dleneri,d
+     *qq1,dqq1i, fool_intel_optimizer
       real*4 spin_rej,espin_min,espin_max,espml,b2spin_min,b2spin_max, d
      *beta2,dbeta2i,dlener,dleneri,dqq1,dqq1i
       logical fool_intel_optimizer
       common/eii_data/ eii_xsection_a( 10000),  eii_xsection_b( 10000),
-     * eii_cons(7), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),  e
-     *ii_sh(40),  eii_nshells(100),  eii_nsh(7),  eii_first(7,50),  eii_
-     *no(7,50),  eii_flag
+     * eii_cons(20), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),
+     *eii_sh(40),  eii_nshells(100),  eii_nsh(20),  eii_first(20,50),  e
+     *ii_no(20,50),  eii_flag
       real*8 eii_xsection_a,eii_xsection_b,eii_a,eii_b,eii_cons,eii_L_fa
      *ctor
       integer*4 eii_z,eii_sh,eii_nshells
       integer*4 eii_first,eii_no
       integer*4 eii_elements,eii_flag,eii_nsh
-      COMMON/rayleigh_inputs/iray_ff_media(7),iray_ff_file(7)
+      COMMON/rayleigh_inputs/iray_ff_media(20),iray_ff_file(20)
       character*24 iray_ff_media
       character*128 iray_ff_file
       common/emf_inputs/ExIN,EyIN,EzIN,  EMLMTIN,  BxIN, ByIN, BzIN,  Bx
@@ -17628,7 +17641,7 @@ C*****************************************************************************
      *THEN
         emfield_on=.true.
       END IF
-      DO 13501 i=1,7
+      DO 13501 i=1,20
         iraylm(i) = 0
         DO 13511 j=1,len(iray_ff_file(i))
           iray_ff_file(i)(j:j) = ' '
@@ -18325,10 +18338,10 @@ C*****************************************************************************
       integer function egs_add_medium(medname)
       implicit none
       character*(*) medname
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -18390,11 +18403,11 @@ C*****************************************************************************
 13921 CONTINUE
 13922 CONTINUE
       nmed = nmed + 1
-      IF (( nmed .GT. 7 )) THEN
+      IF (( nmed .GT. 20 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(a,/,a,i3,a)') 'In egs_add_medium: maximum number o
-     *f media exceeded ', 'Increase the macro $MXMED (currently ',7,') a
-     *nd retry'
+     *f media exceeded ', 'Increase the macro $MXMED (currently ',20,')
+     *and retry'
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -18421,10 +18434,10 @@ C*****************************************************************************
       subroutine egs_get_medium_name(imed,medname)
       implicit none
       character*(*) medname
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -18470,16 +18483,17 @@ C*****************************************************************************
       implicit none
       integer*4 imed,which
       external func
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -18488,10 +18502,10 @@ C*****************************************************************************
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -18547,20 +18561,21 @@ C*****************************************************************************
       implicit none
       integer*4 imed,which
       external func
-      COMMON/PHOTIN/ EBINDA(7), GE0(7),GE1(7), GMFP0(2000,7),GMFP1(2000,
-     *7),GBR10(2000,7),GBR11(2000,7),GBR20(2000,7),GBR21(2000,7), RCO0(7
-     *),RCO1(7), RSCT0(100,7),RSCT1(100,7), COHE0(2000,7),COHE1(2000,7),
-     *  PHOTONUC0(2000,7),PHOTONUC1(2000,7), DPMFP, MPGEM(1,7), NGR(7)
+      COMMON/PHOTIN/ EBINDA(20), GE0(20),GE1(20), GMFP0(2000,20),GMFP1(2
+     *000,20),GBR10(2000,20),GBR11(2000,20),GBR20(2000,20),GBR21(2000,20
+     *), RCO0(20),RCO1(20), RSCT0(100,20),RSCT1(100,20), COHE0(2000,20),
+     *COHE1(2000,20),  PHOTONUC0(2000,20),PHOTONUC1(2000,20), DPMFP, MPG
+     *EM(1,20), NGR(20)
       real*8 EBINDA,  GE0,GE1,  GMFP0,GMFP1,  GBR10,GBR11,  GBR20,GBR21,
      *  RCO0,RCO1,  RSCT0,RSCT1,  COHE0,COHE1,   PHOTONUC0,PHOTONUC1,  D
      *PMFP
       integer*4
      *                  MPGEM,
      *                          NGR
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -18614,10 +18629,10 @@ C*****************************************************************************
      *dge_energies,  edge_a,edge_b,edge_c,edge_d
       integer*2 IEDGFL,  IPHTER
       integer*4 edge_number
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -18662,16 +18677,17 @@ C*****************************************************************************
       implicit none
       integer*4 imed
       real*8 factor
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -18680,10 +18696,10 @@ C*****************************************************************************
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -21442,7 +21458,7 @@ C*****************************************************************************
         WT(np)=WT(ip)
         DNEAR(np)=DNEAR(ip)
         LATCH(np)=LATCH(ip)
-        COSTHE=MIN(1.0,(ESG1-RM)*POT/ESG1)
+        COSTHE=MAX(-1.0,MIN(1.0,(ESG1-RM)*POT/ESG1))
         SINTHE=SQRT(1.0-COSTHE*COSTHE)
 14901   CONTINUE
           IF((rng_seed .GT. 128))call ranmar_get
@@ -21484,7 +21500,7 @@ C*****************************************************************************
         WT(np)=WT(np-1)
         DNEAR(np)=DNEAR(np-1)
         LATCH(np)=LATCH(np-1)
-        COSTHE=MIN(1.0,(ESG2-RM)*POT/ESG2)
+        COSTHE=MAX(-1.0,MIN(1.0,(ESG2-RM)*POT/ESG2))
         SINTHE=-SQRT(1.0-COSTHE*COSTHE)
         IF (( sinpsi .GE. 1e-10 )) THEN
           us = sinthe*cphi
@@ -21627,7 +21643,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       real*8 THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5D2
@@ -21734,10 +21751,11 @@ C*****************************************************************************
       implicit none
       COMMON/QDEBUG/QDEBUG
       LOGICAL QDEBUG
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
@@ -21750,9 +21768,9 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      common/nist_brems/ nb_fdata(0:50,100,7), nb_xdata(0:50,100,7), nb_
-     *wdata(50,100,7), nb_idata(50,100,7), nb_emin(7),nb_emax(7), nb_lem
-     *in(7),nb_lemax(7), nb_dle(7),nb_dlei(7), log_ap(7)
+      common/nist_brems/ nb_fdata(0:50,100,20), nb_xdata(0:50,100,20), n
+     *b_wdata(50,100,20), nb_idata(50,100,20), nb_emin(20),nb_emax(20),
+     *nb_lemin(20),nb_lemax(20), nb_dle(20),nb_dlei(20), log_ap(20)
       real*8 nb_fdata,nb_xdata,nb_wdata,nb_emin,nb_emax,nb_lemin,nb_lema
      *x, nb_dle,nb_dlei,log_ap
       integer*4 nb_idata
@@ -21762,7 +21780,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       real*8 THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5D2
@@ -22013,8 +22032,8 @@ C*****************************************************************************
       implicit none
       common/compton_data/ iz_array(1538),  be_array(1538),  Jo_array(15
      *38),  erfJo_array(1538),   ne_array(1538),  shn_array(1538),
-     *shell_array(200,7), eno_array(200,7), eno_atbin_array(200,7), n_sh
-     *ell(7), radc_flag,  ibcmp
+     *shell_array(200,20), eno_array(200,20), eno_atbin_array(200,20), n
+     *_shell(20), radc_flag,  ibcmp
       integer*4 iz_array,ne_array,shn_array,eno_atbin_array, shell_array
      *,n_shell,radc_flag
       real*8 be_array,Jo_array,erfJo_array,eno_array
@@ -22035,7 +22054,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       real*8 THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5D2
@@ -22388,8 +22408,8 @@ C*****************************************************************************
       implicit none
       common/compton_data/ iz_array(1538),  be_array(1538),  Jo_array(15
      *38),  erfJo_array(1538),   ne_array(1538),  shn_array(1538),
-     *shell_array(200,7), eno_array(200,7), eno_atbin_array(200,7), n_sh
-     *ell(7), radc_flag,  ibcmp
+     *shell_array(200,20), eno_array(200,20), eno_atbin_array(200,20), n
+     *_shell(20), radc_flag,  ibcmp
       integer*4 iz_array,ne_array,shn_array,eno_atbin_array, shell_array
      *,n_shell,radc_flag
       real*8 be_array,Jo_array,erfJo_array,eno_array
@@ -22410,7 +22430,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       real*8 THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5D2
@@ -22668,16 +22689,17 @@ C*****************************************************************************
       LOGICAL QDEBUG
       COMMON/BOUNDS/ECUT,PCUT,VACDST
       real*8 ECUT,  PCUT,  VACDST
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -22694,10 +22716,10 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -22717,7 +22739,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIIN/SINC0,SINC1,SIN0(1002),SIN1(1002)
       real*8 SINC0,SINC1,SIN0,SIN1
@@ -22731,7 +22754,7 @@ C*****************************************************************************
      *0/
       COMMON/USERPS/n_split
       integer*4 n_split
-      COMMON/USERRR/ESAVE_GLOBAL,RANGE_ECUTRR(7),IREJECT
+      COMMON/USERRR/ESAVE_GLOBAL,RANGE_ECUTRR(20),IREJECT
       real*8 ESAVE_GLOBAL,RANGE_ECUTRR
       integer*4 IREJECT
       common/randomm/ rng_array(128), urndm(97), crndm, cdrndm, cmrndm,
@@ -22780,9 +22803,9 @@ C*****************************************************************************
       integer medsur,IMAX, JMAX, KMAX, ijmax,irmax
       logical howfarless
       common/eii_data/ eii_xsection_a( 10000),  eii_xsection_b( 10000),
-     * eii_cons(7), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),  e
-     *ii_sh(40),  eii_nshells(100),  eii_nsh(7),  eii_first(7,50),  eii_
-     *no(7,50),  eii_flag
+     * eii_cons(20), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),
+     *eii_sh(40),  eii_nshells(100),  eii_nsh(20),  eii_first(20,50),  e
+     *ii_no(20,50),  eii_flag
       real*8 eii_xsection_a,eii_xsection_b,eii_a,eii_b,eii_cons,eii_L_fa
      *ctor
       integer*4 eii_z,eii_sh,eii_nshells
@@ -22835,7 +22858,7 @@ C*****************************************************************************
             IF ((RNNE1.EQ.0.0)) THEN
               RNNE1=1.E-30
             END IF
-            DEMFP=MAX(-LOG(RNNE1),1.E-5)
+            DEMFP=MAX(-LOG(RNNE1),1.E-8)
             elke = log(eke)
             Lelke=eke1(MEDIUM)*elke+eke0(MEDIUM)
             IF (( sig_ismonotone(qel,medium) )) THEN
@@ -23506,7 +23529,7 @@ C*****************************************************************************
             IF (( total_tstep .LT. 1e-9 )) THEN
               demfp = 0
             END IF
-            IF(((demfp .LT. 1.E-5)))GO TO15202
+            IF(((demfp .LT. 1.E-8)))GO TO15202
           GO TO 15201
 15202     CONTINUE
           IF ((lelec .LT. 0)) THEN
@@ -23672,24 +23695,26 @@ C*****************************************************************************
       LOGICAL QDEBUG
       COMMON/BOUNDS/ECUT,PCUT,VACDST
       real*8 ECUT,  PCUT,  VACDST
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -23698,10 +23723,10 @@ C*****************************************************************************
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -23715,10 +23740,11 @@ C*****************************************************************************
       real*8 DUNIT,  RHOR
       integer*4 KMPI,  KMPO
       integer*2 MED,  IRAYLR,  IPHOTONUCR
-      COMMON/PHOTIN/ EBINDA(7), GE0(7),GE1(7), GMFP0(2000,7),GMFP1(2000,
-     *7),GBR10(2000,7),GBR11(2000,7),GBR20(2000,7),GBR21(2000,7), RCO0(7
-     *),RCO1(7), RSCT0(100,7),RSCT1(100,7), COHE0(2000,7),COHE1(2000,7),
-     *  PHOTONUC0(2000,7),PHOTONUC1(2000,7), DPMFP, MPGEM(1,7), NGR(7)
+      COMMON/PHOTIN/ EBINDA(20), GE0(20),GE1(20), GMFP0(2000,20),GMFP1(2
+     *000,20),GBR10(2000,20),GBR11(2000,20),GBR20(2000,20),GBR21(2000,20
+     *), RCO0(20),RCO1(20), RSCT0(100,20),RSCT1(100,20), COHE0(2000,20),
+     *COHE1(2000,20),  PHOTONUC0(2000,20),PHOTONUC1(2000,20), DPMFP, MPG
+     *EM(1,20), NGR(20)
       real*8 EBINDA,  GE0,GE1,  GMFP0,GMFP1,  GBR10,GBR11,  GBR20,GBR21,
      *  RCO0,RCO1,  RSCT0,RSCT1,  COHE0,COHE1,   PHOTONUC0,PHOTONUC1,  D
      *PMFP
@@ -23731,7 +23757,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIIN/SINC0,SINC1,SIN0(1002),SIN1(1002)
       real*8 SINC0,SINC1,SIN0,SIN1
@@ -23745,7 +23772,7 @@ C*****************************************************************************
      *0/
       COMMON/USERPS/n_split
       integer*4 n_split
-      COMMON/USERRR/ESAVE_GLOBAL,RANGE_ECUTRR(7),IREJECT
+      COMMON/USERRR/ESAVE_GLOBAL,RANGE_ECUTRR(20),IREJECT
       real*8 ESAVE_GLOBAL,RANGE_ECUTRR
       integer*4 IREJECT
       common/randomm/ rng_array(128), urndm(97), crndm, cdrndm, cmrndm,
@@ -23825,8 +23852,8 @@ C*****************************************************************************
       integer*4 NET
       real*4 ITBL,WATBL,RHOTBL
       CHARACTER*4 ASYMT
-      COMMON/MEDINP/inpdensity_file(7),inpasym(7,50), inpstrn(24,7),pz4(
-     *7,50), rhoz4(7,50),wa4(7,50),inpgasp(7)
+      COMMON/MEDINP/inpdensity_file(20),inpasym(20,50), inpstrn(24,20),p
+     *z4(20,50), rhoz4(20,50),wa4(20,50),inpgasp(20)
       character*256 inpdensity_file
       CHARACTER*4 inpasym,inpstrn
       real*4 pz4,rhoz4,wa4,inpgasp
@@ -23853,7 +23880,7 @@ C*****************************************************************************
      *,  ISTEST,  ISUB ,  ISS ,  IZ ,   IZZ ,  J ,  JR ,  LCTHET,  LMDL
      *,  LMDN ,  LTHETA,  MD ,  MXSINC,  NCMFP ,   NEKE ,   NGE ,   NGRI
      *M ,  NISUB ,  NLEKE ,    NM ,  NRANGE,    NRNA ,  NSEKE ,   NSGE ,
-     *   NSINSS,  LOK(7)
+     *   NSINSS,  LOK(20)
       character*256 tmp_string
       integer*4 lnblnk1
       DATA MDLABL/' ','M','E','D','I','U','M','='/,LMDL/8/,LMDN/24/,DUNI
@@ -24277,7 +24304,7 @@ C*****************************************************************************
         CLOSE (UNIT=KMPI)
         DUNITR=DUNIT
         IF ((DUNIT.LT.0.0)) THEN
-          ID=MAX0(1,MIN0(7,int(-DUNIT)))
+          ID=MAX0(1,MIN0(20,int(-DUNIT)))
           DUNIT=RLC(ID)
         END IF
         IF ((DUNIT.NE.1.0)) THEN
@@ -24423,7 +24450,7 @@ C*****************************************************************************
 15592   CONTINUE
         DUNITR=DUNIT
         IF ((DUNIT.LT.0.0)) THEN
-          ID=MAX0(1,MIN0(7,int(-DUNIT)))
+          ID=MAX0(1,MIN0(20,int(-DUNIT)))
           DUNIT=RLC(ID)
         END IF
         IF ((DUNIT.NE.1.0)) THEN
@@ -24560,18 +24587,19 @@ C*****************************************************************************
       END
       subroutine fix_brems
       implicit none
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -24580,13 +24608,14 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      common/nist_brems/ nb_fdata(0:50,100,7), nb_xdata(0:50,100,7), nb_
-     *wdata(50,100,7), nb_idata(50,100,7), nb_emin(7),nb_emax(7), nb_lem
-     *in(7),nb_lemax(7), nb_dle(7),nb_dlei(7), log_ap(7)
+      common/nist_brems/ nb_fdata(0:50,100,20), nb_xdata(0:50,100,20), n
+     *b_wdata(50,100,20), nb_idata(50,100,20), nb_emin(20),nb_emax(20),
+     *nb_lemin(20),nb_lemax(20), nb_dle(20),nb_dlei(20), log_ap(20)
       real*8 nb_fdata,nb_xdata,nb_wdata,nb_emin,nb_emax,nb_lemin,nb_lema
      *x, nb_dle,nb_dlei,log_ap
       integer*4 nb_idata
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       integer*4 medium,i
       real*8 Zt,Zb,Zf,Zg,Zv,fmax1,fmax2,Zi,pi,fc,xi,aux, XSIF,FCOULC
@@ -24697,16 +24726,17 @@ C*****************************************************************************
       implicit none
       common/compton_data/ iz_array(1538),  be_array(1538),  Jo_array(15
      *38),  erfJo_array(1538),   ne_array(1538),  shn_array(1538),
-     *shell_array(200,7), eno_array(200,7), eno_atbin_array(200,7), n_sh
-     *ell(7), radc_flag,  ibcmp
+     *shell_array(200,20), eno_array(200,20), eno_atbin_array(200,20), n
+     *_shell(20), radc_flag,  ibcmp
       integer*4 iz_array,ne_array,shn_array,eno_atbin_array, shell_array
      *,n_shell,radc_flag
       real*8 be_array,Jo_array,erfJo_array,eno_array
       integer*2 ibcmp
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
@@ -24719,10 +24749,10 @@ C*****************************************************************************
      *dge_energies,  edge_a,edge_b,edge_c,edge_d
       integer*2 IEDGFL,  IPHTER
       integer*4 edge_number
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -24927,7 +24957,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       real*8 THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5D2
@@ -24962,24 +24993,25 @@ C*****************************************************************************
       integer*4       nbr_split,i_play_RR,i_survived_RR,n_RR_warning
       integer*2     i_do_rr
       common/eii_data/ eii_xsection_a( 10000),  eii_xsection_b( 10000),
-     * eii_cons(7), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),  e
-     *ii_sh(40),  eii_nshells(100),  eii_nsh(7),  eii_first(7,50),  eii_
-     *no(7,50),  eii_flag
+     * eii_cons(20), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),
+     *eii_sh(40),  eii_nshells(100),  eii_nsh(20),  eii_first(20,50),  e
+     *ii_no(20,50),  eii_flag
       real*8 eii_xsection_a,eii_xsection_b,eii_a,eii_b,eii_cons,eii_L_fa
      *ctor
       integer*4 eii_z,eii_sh,eii_nshells
       integer*4 eii_first,eii_no
       integer*4 eii_elements,eii_flag,eii_nsh
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -25004,10 +25036,11 @@ C*****************************************************************************
      *dge_energies,  edge_a,edge_b,edge_c,edge_d
       integer*2 IEDGFL,  IPHTER
       integer*4 edge_number
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
@@ -25127,16 +25160,17 @@ C*****************************************************************************
       real*8 sigee,sigep,sig,sige_old,sigp_old
       COMMON/BOUNDS/ECUT,PCUT,VACDST
       real*8 ECUT,  PCUT,  VACDST
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -25145,10 +25179,10 @@ C*****************************************************************************
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -25578,9 +25612,9 @@ C*****************************************************************************
       real*8 elke,beta2,q1,cost
       integer*4 qel,medium
       logical spin_index,is_single
-      common/spin_data/ spin_rej(7,0:1,0: 31,0:15,0:31), espin_min,espin
-     *_max,espml,b2spin_min,b2spin_max, dbeta2,dbeta2i,dlener,dleneri,dq
-     *q1,dqq1i, fool_intel_optimizer
+      common/spin_data/ spin_rej(20,0:1,0: 31,0:15,0:31), espin_min,espi
+     *n_max,espml,b2spin_min,b2spin_max, dbeta2,dbeta2i,dlener,dleneri,d
+     *qq1,dqq1i, fool_intel_optimizer
       real*4 spin_rej,espin_min,espin_max,espml,b2spin_min,b2spin_max, d
      *beta2,dbeta2i,dlener,dleneri,dqq1,dqq1i
       logical fool_intel_optimizer
@@ -25721,22 +25755,23 @@ C*****************************************************************************
       end
       subroutine init_spin
       implicit none
-      common/spin_data/ spin_rej(7,0:1,0: 31,0:15,0:31), espin_min,espin
-     *_max,espml,b2spin_min,b2spin_max, dbeta2,dbeta2i,dlener,dleneri,dq
-     *q1,dqq1i, fool_intel_optimizer
+      common/spin_data/ spin_rej(20,0:1,0: 31,0:15,0:31), espin_min,espi
+     *n_max,espml,b2spin_min,b2spin_max, dbeta2,dbeta2i,dlener,dleneri,d
+     *qq1,dqq1i, fool_intel_optimizer
       real*4 spin_rej,espin_min,espin_max,espml,b2spin_min,b2spin_max, d
      *beta2,dbeta2i,dlener,dleneri,dqq1,dqq1i
       logical fool_intel_optimizer
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -25745,10 +25780,10 @@ C*****************************************************************************
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -25757,15 +25792,17 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/USEFUL/PZERO,PRM,PRMT2,RM,MEDIUM,MEDOLD
       DOUBLE PRECISION PZERO,  PRM,  PRMT2
@@ -26274,22 +26311,23 @@ C*****************************************************************************
       end
       subroutine init_spin_old
       implicit none
-      common/spin_data/ spin_rej(7,0:1,0: 31,0:15,0:31), espin_min,espin
-     *_max,espml,b2spin_min,b2spin_max, dbeta2,dbeta2i,dlener,dleneri,dq
-     *q1,dqq1i, fool_intel_optimizer
+      common/spin_data/ spin_rej(20,0:1,0: 31,0:15,0:31), espin_min,espi
+     *n_max,espml,b2spin_min,b2spin_max, dbeta2,dbeta2i,dlener,dleneri,d
+     *qq1,dqq1i, fool_intel_optimizer
       real*4 spin_rej,espin_min,espin_max,espml,b2spin_min,b2spin_max, d
      *beta2,dbeta2i,dlener,dleneri,dqq1,dqq1i
       logical fool_intel_optimizer
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -26298,10 +26336,10 @@ C*****************************************************************************
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -26310,15 +26348,17 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/USEFUL/PZERO,PRM,PRMT2,RM,MEDIUM,MEDOLD
       DOUBLE PRECISION PZERO,  PRM,  PRMT2
@@ -26704,16 +26744,17 @@ C*****************************************************************************
      *p,  u2,  v2,  ut,  vt,  wt,  xi,  xphi,  xphi2,  yphi,  yphi2
       logical find_index,  spin_index
       integer*4 lelke
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -26722,7 +26763,8 @@ C*****************************************************************************
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       real*8 THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5D2
@@ -26896,16 +26938,17 @@ C*****************************************************************************
      *phi2,  yphi,  yphi2
       logical find_index,  spin_index
       integer*4 lelke
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -26914,7 +26957,8 @@ C*****************************************************************************
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       real*8 THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5D2
@@ -27034,17 +27078,18 @@ C*****************************************************************************
       implicit none
       COMMON/QDEBUG/QDEBUG
       LOGICAL QDEBUG
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
-      common/nrc_pair/ nrcp_fdata(65,84,7), nrcp_wdata(65,84,7), nrcp_id
-     *ata(65,84,7), nrcp_xdata(65), nrcp_emin, nrcp_emax, nrcp_dle, nrcp
-     *_dlei
+      common/nrc_pair/ nrcp_fdata(65,84,20), nrcp_wdata(65,84,20), nrcp_
+     *idata(65,84,20), nrcp_xdata(65), nrcp_emin, nrcp_emax, nrcp_dle, n
+     *rcp_dlei
       real*8 nrcp_fdata,nrcp_wdata,nrcp_xdata, nrcp_emin, nrcp_emax, nrc
      *p_dle, nrcp_dlei
       integer*4 nrcp_idata
@@ -27054,7 +27099,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       real*8 THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5D2
@@ -27077,8 +27123,8 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      common/triplet_data/ a_triplet(250,7), b_triplet(250,7), dl_triple
-     *t, dli_triplet, bli_triplet, log_4rm
+      common/triplet_data/ a_triplet(250,20), b_triplet(250,20), dl_trip
+     *let, dli_triplet, bli_triplet, log_4rm
       real*8 a_triplet,b_triplet,dl_triplet, dli_triplet, bli_triplet, l
      *og_4rm
       common/egs_vr/ e_max_rr,  prob_RR,  nbr_split,  i_play_RR,      i_
@@ -27441,10 +27487,10 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -27453,7 +27499,8 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/USEFUL/PZERO,PRM,PRMT2,RM,MEDIUM,MEDOLD
       DOUBLE PRECISION PZERO,  PRM,  PRMT2
@@ -27468,7 +27515,7 @@ C*****************************************************************************
       real*4 twom24
       COMMON/USERPS/n_split
       integer*4 n_split
-      COMMON/USERRR/ESAVE_GLOBAL,RANGE_ECUTRR(7),IREJECT
+      COMMON/USERRR/ESAVE_GLOBAL,RANGE_ECUTRR(20),IREJECT
       real*8 ESAVE_GLOBAL,RANGE_ECUTRR
       integer*4 IREJECT
       common /egs_io/ file_extensions(20), file_units(20), user_code,  i
@@ -27864,10 +27911,11 @@ C*****************************************************************************
       implicit none
       COMMON/BOUNDS/ECUT,PCUT,VACDST
       real*8 ECUT,  PCUT,  VACDST
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
@@ -27890,10 +27938,10 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -27902,10 +27950,11 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      COMMON/PHOTIN/ EBINDA(7), GE0(7),GE1(7), GMFP0(2000,7),GMFP1(2000,
-     *7),GBR10(2000,7),GBR11(2000,7),GBR20(2000,7),GBR21(2000,7), RCO0(7
-     *),RCO1(7), RSCT0(100,7),RSCT1(100,7), COHE0(2000,7),COHE1(2000,7),
-     *  PHOTONUC0(2000,7),PHOTONUC1(2000,7), DPMFP, MPGEM(1,7), NGR(7)
+      COMMON/PHOTIN/ EBINDA(20), GE0(20),GE1(20), GMFP0(2000,20),GMFP1(2
+     *000,20),GBR10(2000,20),GBR11(2000,20),GBR20(2000,20),GBR21(2000,20
+     *), RCO0(20),RCO1(20), RSCT0(100,20),RSCT1(100,20), COHE0(2000,20),
+     *COHE1(2000,20),  PHOTONUC0(2000,20),PHOTONUC1(2000,20), DPMFP, MPG
+     *EM(1,20), NGR(20)
       real*8 EBINDA,  GE0,GE1,  GMFP0,GMFP1,  GBR10,GBR11,  GBR20,GBR21,
      *  RCO0,RCO1,  RSCT0,RSCT1,  COHE0,COHE1,   PHOTONUC0,PHOTONUC1,  D
      *PMFP
@@ -28174,10 +28223,11 @@ C*****************************************************************************
       implicit none
       COMMON/BOUNDS/ECUT,PCUT,VACDST
       real*8 ECUT,  PCUT,  VACDST
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
@@ -28200,10 +28250,10 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -28212,10 +28262,11 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      COMMON/PHOTIN/ EBINDA(7), GE0(7),GE1(7), GMFP0(2000,7),GMFP1(2000,
-     *7),GBR10(2000,7),GBR11(2000,7),GBR20(2000,7),GBR21(2000,7), RCO0(7
-     *),RCO1(7), RSCT0(100,7),RSCT1(100,7), COHE0(2000,7),COHE1(2000,7),
-     *  PHOTONUC0(2000,7),PHOTONUC1(2000,7), DPMFP, MPGEM(1,7), NGR(7)
+      COMMON/PHOTIN/ EBINDA(20), GE0(20),GE1(20), GMFP0(2000,20),GMFP1(2
+     *000,20),GBR10(2000,20),GBR11(2000,20),GBR20(2000,20),GBR21(2000,20
+     *), RCO0(20),RCO1(20), RSCT0(100,20),RSCT1(100,20), COHE0(2000,20),
+     *COHE1(2000,20),  PHOTONUC0(2000,20),PHOTONUC1(2000,20), DPMFP, MPG
+     *EM(1,20), NGR(20)
       real*8 EBINDA,  GE0,GE1,  GMFP0,GMFP1,  GBR10,GBR11,  GBR20,GBR21,
      *  RCO0,RCO1,  RSCT0,RSCT1,  COHE0,COHE1,   PHOTONUC0,PHOTONUC1,  D
      *PMFP
@@ -28268,8 +28319,8 @@ C*****************************************************************************
       integer*4 relax_first, relax_ntran, relax_state, relax_atbin, rela
      *x_ntot
       common/pe_shell_data/ pe_xsection(500,100,0:16),  pe_elem_prob(500
-     *,100,7),   pe_energy(500,100),  pe_zsorted(100,7), pe_be(100,16),
-     * pe_nshell(100),  pe_zpos(100),  pe_nge(100),  pe_ne
+     *,100,20),   pe_energy(500,100),  pe_zsorted(100,20), pe_be(100,16)
+     *,  pe_nshell(100),  pe_zpos(100),  pe_nge(100),  pe_ne
       real*8 pe_be, pe_energy, pe_xsection, pe_elem_prob
       integer*4 pe_zsorted, pe_nshell, pe_zpos, pe_nge, pe_ne
       real*8 EELEC,  BETA,  GAMMA,  ALPHA,  RATIO,  RNPHT,  FKAPPA, XI,
@@ -28474,10 +28525,11 @@ C*****************************************************************************
       end
       subroutine egs_read_shellwise_pe
       implicit none
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
@@ -28503,10 +28555,10 @@ C*****************************************************************************
      *_chunk, file_units, n_files,i_input,i_log,i_incoh, i_nist_data,i_m
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch,is_pegsless
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -28515,17 +28567,19 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      COMMON/PHOTIN/ EBINDA(7), GE0(7),GE1(7), GMFP0(2000,7),GMFP1(2000,
-     *7),GBR10(2000,7),GBR11(2000,7),GBR20(2000,7),GBR21(2000,7), RCO0(7
-     *),RCO1(7), RSCT0(100,7),RSCT1(100,7), COHE0(2000,7),COHE1(2000,7),
-     *  PHOTONUC0(2000,7),PHOTONUC1(2000,7), DPMFP, MPGEM(1,7), NGR(7)
+      COMMON/PHOTIN/ EBINDA(20), GE0(20),GE1(20), GMFP0(2000,20),GMFP1(2
+     *000,20),GBR10(2000,20),GBR11(2000,20),GBR20(2000,20),GBR21(2000,20
+     *), RCO0(20),RCO1(20), RSCT0(100,20),RSCT1(100,20), COHE0(2000,20),
+     *COHE1(2000,20),  PHOTONUC0(2000,20),PHOTONUC1(2000,20), DPMFP, MPG
+     *EM(1,20), NGR(20)
       real*8 EBINDA,  GE0,GE1,  GMFP0,GMFP1,  GBR10,GBR11,  GBR20,GBR21,
      *  RCO0,RCO1,  RSCT0,RSCT1,  COHE0,COHE1,   PHOTONUC0,PHOTONUC1,  D
      *PMFP
       integer*4
      *                  MPGEM,
      *                          NGR
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       common/x_options/eadl_relax,  mcdf_pe_xsections
       logical eadl_relax, mcdf_pe_xsections
@@ -28536,8 +28590,8 @@ C*****************************************************************************
       DATA RM,PRM,PRMT2,PZERO/0.5109989461,0.5109989461,1.0219978922,0.D
      *0/
       common/pe_shell_data/ pe_xsection(500,100,0:16),  pe_elem_prob(500
-     *,100,7),   pe_energy(500,100),  pe_zsorted(100,7), pe_be(100,16),
-     * pe_nshell(100),  pe_zpos(100),  pe_nge(100),  pe_ne
+     *,100,20),   pe_energy(500,100),  pe_zsorted(100,20), pe_be(100,16)
+     *,  pe_nshell(100),  pe_zpos(100),  pe_nge(100),  pe_ne
       real*8 pe_be, pe_energy, pe_xsection, pe_elem_prob
       integer*4 pe_zsorted, pe_nshell, pe_zpos, pe_nge, pe_ne
       integer*4 lnblnk1,egs_get_unit,pe_sw_unit,ounit,egs_open_file
@@ -29074,10 +29128,11 @@ C*****************************************************************************
       end
       subroutine egs_init_relax
       implicit none
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
@@ -29103,10 +29158,10 @@ C*****************************************************************************
      *_chunk, file_units, n_files,i_input,i_log,i_incoh, i_nist_data,i_m
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch,is_pegsless
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -29115,17 +29170,19 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      COMMON/PHOTIN/ EBINDA(7), GE0(7),GE1(7), GMFP0(2000,7),GMFP1(2000,
-     *7),GBR10(2000,7),GBR11(2000,7),GBR20(2000,7),GBR21(2000,7), RCO0(7
-     *),RCO1(7), RSCT0(100,7),RSCT1(100,7), COHE0(2000,7),COHE1(2000,7),
-     *  PHOTONUC0(2000,7),PHOTONUC1(2000,7), DPMFP, MPGEM(1,7), NGR(7)
+      COMMON/PHOTIN/ EBINDA(20), GE0(20),GE1(20), GMFP0(2000,20),GMFP1(2
+     *000,20),GBR10(2000,20),GBR11(2000,20),GBR20(2000,20),GBR21(2000,20
+     *), RCO0(20),RCO1(20), RSCT0(100,20),RSCT1(100,20), COHE0(2000,20),
+     *COHE1(2000,20),  PHOTONUC0(2000,20),PHOTONUC1(2000,20), DPMFP, MPG
+     *EM(1,20), NGR(20)
       real*8 EBINDA,  GE0,GE1,  GMFP0,GMFP1,  GBR10,GBR11,  GBR20,GBR21,
      *  RCO0,RCO1,  RSCT0,RSCT1,  COHE0,COHE1,   PHOTONUC0,PHOTONUC1,  D
      *PMFP
       integer*4
      *                  MPGEM,
      *                          NGR
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       common/x_options/eadl_relax,  mcdf_pe_xsections
       logical eadl_relax, mcdf_pe_xsections
@@ -29319,7 +29376,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/EPCONT/EDEP,EDEP_LOCAL,TSTEP,TUSTEP,USTEP,TVSTEP,VSTEP, RHO
      *F,EOLD,ENEW,EKE,ELKE,GLE,E_RANGE, x_final,y_final,z_final, u_final
@@ -29362,10 +29420,10 @@ C*****************************************************************************
       real*8 DUNIT,  RHOR
       integer*4 KMPI,  KMPO
       integer*2 MED,  IRAYLR,  IPHOTONUCR
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -29557,10 +29615,11 @@ C*****************************************************************************
       end
       subroutine init_triplet
       implicit none
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
@@ -29578,10 +29637,10 @@ C*****************************************************************************
      *_chunk, file_units, n_files,i_input,i_log,i_incoh, i_nist_data,i_m
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch,is_pegsless
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -29590,8 +29649,8 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      common/triplet_data/ a_triplet(250,7), b_triplet(250,7), dl_triple
-     *t, dli_triplet, bli_triplet, log_4rm
+      common/triplet_data/ a_triplet(250,20), b_triplet(250,20), dl_trip
+     *let, dli_triplet, bli_triplet, log_4rm
       real*8 a_triplet,b_triplet,dl_triplet, dli_triplet, bli_triplet, l
      *og_4rm
       COMMON/USEFUL/PZERO,PRM,PRMT2,RM,MEDIUM,MEDOLD
@@ -29831,10 +29890,10 @@ C*****************************************************************************
       LOGICAL QDEBUG
       COMMON/BOUNDS/ECUT,PCUT,VACDST
       real*8 ECUT,  PCUT,  VACDST
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -29856,10 +29915,11 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/PHOTIN/ EBINDA(7), GE0(7),GE1(7), GMFP0(2000,7),GMFP1(2000,
-     *7),GBR10(2000,7),GBR11(2000,7),GBR20(2000,7),GBR21(2000,7), RCO0(7
-     *),RCO1(7), RSCT0(100,7),RSCT1(100,7), COHE0(2000,7),COHE1(2000,7),
-     *  PHOTONUC0(2000,7),PHOTONUC1(2000,7), DPMFP, MPGEM(1,7), NGR(7)
+      COMMON/PHOTIN/ EBINDA(20), GE0(20),GE1(20), GMFP0(2000,20),GMFP1(2
+     *000,20),GBR10(2000,20),GBR11(2000,20),GBR20(2000,20),GBR21(2000,20
+     *), RCO0(20),RCO1(20), RSCT0(100,20),RSCT1(100,20), COHE0(2000,20),
+     *COHE1(2000,20),  PHOTONUC0(2000,20),PHOTONUC1(2000,20), DPMFP, MPG
+     *EM(1,20), NGR(20)
       real*8 EBINDA,  GE0,GE1,  GMFP0,GMFP1,  GBR10,GBR11,  GBR20,GBR21,
      *  RCO0,RCO1,  RSCT0,RSCT1,  COHE0,COHE1,   PHOTONUC0,PHOTONUC1,  D
      *PMFP
@@ -29872,7 +29932,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       real*8 THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5D2
@@ -29884,7 +29945,7 @@ C*****************************************************************************
      *0/
       COMMON/USERPS/n_split
       integer*4 n_split
-      COMMON/USERRR/ESAVE_GLOBAL,RANGE_ECUTRR(7),IREJECT
+      COMMON/USERRR/ESAVE_GLOBAL,RANGE_ECUTRR(20),IREJECT
       real*8 ESAVE_GLOBAL,RANGE_ECUTRR
       integer*4 IREJECT
       common/randomm/ rng_array(128), urndm(97), crndm, cdrndm, cmrndm,
@@ -30039,7 +30100,7 @@ C*****************************************************************************
                 medium = med(irl)
               END IF
               IF((IWATCH.GT.0))CALL WATCH(5,IWATCH)
-              IF(((medium .NE. 0 .AND. dpmfp .LT. 1.E-5)))GO TO17732
+              IF(((medium .NE. 0 .AND. dpmfp .LT. 1.E-8)))GO TO17732
             GO TO 17731
 17732       CONTINUE
             x_save = x(np)
@@ -30250,7 +30311,7 @@ C*****************************************************************************
             END IF
             IF((IDISC.LT.0))GO TO 17680
             IF((MEDIUM.NE.MEDOLD))GO TO 17792
-            IF ((MEDIUM.NE.0.AND.DPMFP.LE.1.E-5)) THEN
+            IF ((MEDIUM.NE.0.AND.DPMFP.LE.1.E-8)) THEN
               GO TO 17782
             END IF
           GO TO 17791
@@ -30622,10 +30683,10 @@ C*****************************************************************************
       real*8 amu
       parameter (amu = 1660.5655)
       logical ex,is_opened
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -30634,24 +30695,26 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -30660,7 +30723,8 @@ C*****************************************************************************
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/USEFUL/PZERO,PRM,PRMT2,RM,MEDIUM,MEDOLD
       DOUBLE PRECISION PZERO,  PRM,  PRMT2
@@ -30668,15 +30732,15 @@ C*****************************************************************************
       integer*4 MEDIUM,  MEDOLD
       DATA RM,PRM,PRMT2,PZERO/0.5109989461,0.5109989461,1.0219978922,0.D
      *0/
-      common/nist_brems/ nb_fdata(0:50,100,7), nb_xdata(0:50,100,7), nb_
-     *wdata(50,100,7), nb_idata(50,100,7), nb_emin(7),nb_emax(7), nb_lem
-     *in(7),nb_lemax(7), nb_dle(7),nb_dlei(7), log_ap(7)
+      common/nist_brems/ nb_fdata(0:50,100,20), nb_xdata(0:50,100,20), n
+     *b_wdata(50,100,20), nb_idata(50,100,20), nb_emin(20),nb_emax(20),
+     *nb_lemin(20),nb_lemax(20), nb_dle(20),nb_dlei(20), log_ap(20)
       real*8 nb_fdata,nb_xdata,nb_wdata,nb_emin,nb_emax,nb_lemin,nb_lema
      *x, nb_dle,nb_dlei,log_ap
       integer*4 nb_idata
-      common/spin_data/ spin_rej(7,0:1,0: 31,0:15,0:31), espin_min,espin
-     *_max,espml,b2spin_min,b2spin_max, dbeta2,dbeta2i,dlener,dleneri,dq
-     *q1,dqq1i, fool_intel_optimizer
+      common/spin_data/ spin_rej(20,0:1,0: 31,0:15,0:31), espin_min,espi
+     *n_max,espml,b2spin_min,b2spin_max, dbeta2,dbeta2i,dlener,dleneri,d
+     *qq1,dqq1i, fool_intel_optimizer
       real*4 spin_rej,espin_min,espin_max,espml,b2spin_min,b2spin_max, d
      *beta2,dbeta2i,dlener,dleneri,dqq1,dqq1i
       logical fool_intel_optimizer
@@ -31053,10 +31117,10 @@ C*****************************************************************************
       end
       subroutine init_nrc_pair
       implicit none
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -31065,24 +31129,26 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -31091,13 +31157,14 @@ C*****************************************************************************
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      common/nrc_pair/ nrcp_fdata(65,84,7), nrcp_wdata(65,84,7), nrcp_id
-     *ata(65,84,7), nrcp_xdata(65), nrcp_emin, nrcp_emax, nrcp_dle, nrcp
-     *_dlei
+      common/nrc_pair/ nrcp_fdata(65,84,20), nrcp_wdata(65,84,20), nrcp_
+     *idata(65,84,20), nrcp_xdata(65), nrcp_emin, nrcp_emax, nrcp_dle, n
+     *rcp_dlei
       real*8 nrcp_fdata,nrcp_wdata,nrcp_xdata, nrcp_emin, nrcp_emax, nrc
      *p_dle, nrcp_dlei
       integer*4 nrcp_idata
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/USEFUL/PZERO,PRM,PRMT2,RM,MEDIUM,MEDOLD
       DOUBLE PRECISION PZERO,  PRM,  PRMT2
@@ -31338,10 +31405,11 @@ C*****************************************************************************
       end
       subroutine eii_init
       implicit none
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
@@ -31368,24 +31436,25 @@ C*****************************************************************************
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch,is_pegsless
       common/eii_data/ eii_xsection_a( 10000),  eii_xsection_b( 10000),
-     * eii_cons(7), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),  e
-     *ii_sh(40),  eii_nshells(100),  eii_nsh(7),  eii_first(7,50),  eii_
-     *no(7,50),  eii_flag
+     * eii_cons(20), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),
+     *eii_sh(40),  eii_nshells(100),  eii_nsh(20),  eii_first(20,50),  e
+     *ii_no(20,50),  eii_flag
       real*8 eii_xsection_a,eii_xsection_b,eii_a,eii_b,eii_cons,eii_L_fa
      *ctor
       integer*4 eii_z,eii_sh,eii_nshells
       integer*4 eii_first,eii_no
       integer*4 eii_elements,eii_flag,eii_nsh
-      COMMON/ELECIN/ esig_e(7),psig_e(7), esige_max, psige_max, range_ep
-     *(0:1,500,7), E_array(500,7), etae_ms0(500,7),etae_ms1(500,7),etap_
-     *ms0(500,7),etap_ms1(500,7),q1ce_ms0(500,7),q1ce_ms1(500,7),q1cp_ms
-     *0(500,7),q1cp_ms1(500,7),q2ce_ms0(500,7),q2ce_ms1(500,7),q2cp_ms0(
-     *500,7),q2cp_ms1(500,7),blcce0(500,7),blcce1(500,7), EKE0(7),EKE1(7
-     *), XR0(7),TEFF0(7),BLCC(7),XCC(7), ESIG0(500,7),ESIG1(500,7),PSIG0
-     *(500,7),PSIG1(500,7),EDEDX0(500,7),EDEDX1(500,7),PDEDX0(500,7),PDE
-     *DX1(500,7),EBR10(500,7),EBR11(500,7),PBR10(500,7),PBR11(500,7),PBR
-     *20(500,7),PBR21(500,7),TMXS0(500,7),TMXS1(500,7), expeke1(7), IUNR
-     *ST(7),EPSTFL(7),IAPRIM(7), sig_ismonotone(0:1,7)
+      COMMON/ELECIN/ esig_e(20),psig_e(20), esige_max, psige_max, range_
+     *ep(0:1,500,20), E_array(500,20), etae_ms0(500,20),etae_ms1(500,20)
+     *,etap_ms0(500,20),etap_ms1(500,20),q1ce_ms0(500,20),q1ce_ms1(500,2
+     *0),q1cp_ms0(500,20),q1cp_ms1(500,20),q2ce_ms0(500,20),q2ce_ms1(500
+     *,20),q2cp_ms0(500,20),q2cp_ms1(500,20),blcce0(500,20),blcce1(500,2
+     *0), EKE0(20),EKE1(20), XR0(20),TEFF0(20),BLCC(20),XCC(20), ESIG0(5
+     *00,20),ESIG1(500,20),PSIG0(500,20),PSIG1(500,20),EDEDX0(500,20),ED
+     *EDX1(500,20),PDEDX0(500,20),PDEDX1(500,20),EBR10(500,20),EBR11(500
+     *,20),PBR10(500,20),PBR11(500,20),PBR20(500,20),PBR21(500,20),TMXS0
+     *(500,20),TMXS1(500,20), expeke1(20), IUNRST(20),EPSTFL(20),IAPRIM(
+     *20), sig_ismonotone(0:1,20)
       real*8 esig_e,   psig_e,   esige_max,  psige_max,  range_ep,  E_ar
      *ray,  etae_ms0,etae_ms1,  etap_ms0,etap_ms1,  q1ce_ms0,q1ce_ms1,
      *q1cp_ms0,q1cp_ms1,  q2ce_ms0,q2ce_ms1,  q2cp_ms0,q2cp_ms1,  blcce0
@@ -31394,10 +31463,10 @@ C*****************************************************************************
      * PBR10,PBR11,  PBR20,PBR21,  TMXS0,TMXS1
       integer*4 IUNRST,  EPSTFL,  IAPRIM
       logical sig_ismonotone
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -31406,7 +31475,8 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/USEFUL/PZERO,PRM,PRMT2,RM,MEDIUM,MEDOLD
       DOUBLE PRECISION PZERO,  PRM,  PRMT2
@@ -31441,7 +31511,7 @@ C*****************************************************************************
         eii_nshells(j) = 0
 18281 CONTINUE
 18282 CONTINUE
-      DO 18291 j=1,7
+      DO 18291 j=1,20
         eii_nsh(j) = 0
 18291 CONTINUE
 18292 CONTINUE
@@ -31803,9 +31873,9 @@ C*****************************************************************************
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
       common/eii_data/ eii_xsection_a( 10000),  eii_xsection_b( 10000),
-     * eii_cons(7), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),  e
-     *ii_sh(40),  eii_nshells(100),  eii_nsh(7),  eii_first(7,50),  eii_
-     *no(7,50),  eii_flag
+     * eii_cons(20), eii_a(40),  eii_b(40),  eii_L_factor,  eii_z(40),
+     *eii_sh(40),  eii_nshells(100),  eii_nsh(20),  eii_first(20,50),  e
+     *ii_no(20,50),  eii_flag
       real*8 eii_xsection_a,eii_xsection_b,eii_a,eii_b,eii_cons,eii_L_fa
      *ctor
       integer*4 eii_z,eii_sh,eii_nshells
@@ -31828,7 +31898,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       real*8 THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5D2
@@ -31952,10 +32023,10 @@ C*****************************************************************************
       implicit none
       integer*4 imed,which
       real*8 fac
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -31964,10 +32035,11 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      COMMON/PHOTIN/ EBINDA(7), GE0(7),GE1(7), GMFP0(2000,7),GMFP1(2000,
-     *7),GBR10(2000,7),GBR11(2000,7),GBR20(2000,7),GBR21(2000,7), RCO0(7
-     *),RCO1(7), RSCT0(100,7),RSCT1(100,7), COHE0(2000,7),COHE1(2000,7),
-     *  PHOTONUC0(2000,7),PHOTONUC1(2000,7), DPMFP, MPGEM(1,7), NGR(7)
+      COMMON/PHOTIN/ EBINDA(20), GE0(20),GE1(20), GMFP0(2000,20),GMFP1(2
+     *000,20),GBR10(2000,20),GBR11(2000,20),GBR20(2000,20),GBR21(2000,20
+     *), RCO0(20),RCO1(20), RSCT0(100,20),RSCT1(100,20), COHE0(2000,20),
+     *COHE1(2000,20),  PHOTONUC0(2000,20),PHOTONUC1(2000,20), DPMFP, MPG
+     *EM(1,20), NGR(20)
       real*8 EBINDA,  GE0,GE1,  GMFP0,GMFP1,  GBR10,GBR11,  GBR20,GBR21,
      *  RCO0,RCO1,  RSCT0,RSCT1,  COHE0,COHE1,   PHOTONUC0,PHOTONUC1,  D
      *PMFP
@@ -32081,10 +32153,11 @@ C*****************************************************************************
       implicit none
       character*(*) prefix, comp_prefix,  photonuc_prefix
       integer*4 out
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
@@ -32110,10 +32183,10 @@ C*****************************************************************************
      *_chunk, file_units, n_files,i_input,i_log,i_incoh, i_nist_data,i_m
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch,is_pegsless
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -32122,22 +32195,24 @@ C*****************************************************************************
       character*16 photon_xsections
       character*16 comp_xsections
       character*16 photonuc_xsections
-      COMMON/PHOTIN/ EBINDA(7), GE0(7),GE1(7), GMFP0(2000,7),GMFP1(2000,
-     *7),GBR10(2000,7),GBR11(2000,7),GBR20(2000,7),GBR21(2000,7), RCO0(7
-     *),RCO1(7), RSCT0(100,7),RSCT1(100,7), COHE0(2000,7),COHE1(2000,7),
-     *  PHOTONUC0(2000,7),PHOTONUC1(2000,7), DPMFP, MPGEM(1,7), NGR(7)
+      COMMON/PHOTIN/ EBINDA(20), GE0(20),GE1(20), GMFP0(2000,20),GMFP1(2
+     *000,20),GBR10(2000,20),GBR11(2000,20),GBR20(2000,20),GBR21(2000,20
+     *), RCO0(20),RCO1(20), RSCT0(100,20),RSCT1(100,20), COHE0(2000,20),
+     *COHE1(2000,20),  PHOTONUC0(2000,20),PHOTONUC1(2000,20), DPMFP, MPG
+     *EM(1,20), NGR(20)
       real*8 EBINDA,  GE0,GE1,  GMFP0,GMFP1,  GBR10,GBR11,  GBR20,GBR21,
      *  RCO0,RCO1,  RSCT0,RSCT1,  COHE0,COHE1,   PHOTONUC0,PHOTONUC1,  D
      *PMFP
       integer*4
      *                  MPGEM,
      *                          NGR
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       common/compton_data/ iz_array(1538),  be_array(1538),  Jo_array(15
      *38),  erfJo_array(1538),   ne_array(1538),  shn_array(1538),
-     *shell_array(200,7), eno_array(200,7), eno_atbin_array(200,7), n_sh
-     *ell(7), radc_flag,  ibcmp
+     *shell_array(200,20), eno_array(200,20), eno_atbin_array(200,20), n
+     *_shell(20), radc_flag,  ibcmp
       integer*4 iz_array,ne_array,shn_array,eno_atbin_array, shell_array
      *,n_shell,radc_flag
       real*8 be_array,Jo_array,erfJo_array,eno_array
@@ -32502,7 +32577,8 @@ C*****************************************************************************
       end
       subroutine egs_init_rayleigh(medium,sig_rayleigh)
       implicit none
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       common /egs_io/ file_extensions(20), file_units(20), user_code,  i
      *nput_file,  output_file, pegs_file,  hen_house,  egs_home,  work_d
@@ -32517,10 +32593,10 @@ C*****************************************************************************
      *_chunk, file_units, n_files,i_input,i_log,i_incoh, i_nist_data,i_m
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch,is_pegsless
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -32534,34 +32610,37 @@ C*****************************************************************************
       real*8 DUNIT,  RHOR
       integer*4 KMPI,  KMPO
       integer*2 MED,  IRAYLR,  IPHOTONUCR
-      COMMON/PHOTIN/ EBINDA(7), GE0(7),GE1(7), GMFP0(2000,7),GMFP1(2000,
-     *7),GBR10(2000,7),GBR11(2000,7),GBR20(2000,7),GBR21(2000,7), RCO0(7
-     *),RCO1(7), RSCT0(100,7),RSCT1(100,7), COHE0(2000,7),COHE1(2000,7),
-     *  PHOTONUC0(2000,7),PHOTONUC1(2000,7), DPMFP, MPGEM(1,7), NGR(7)
+      COMMON/PHOTIN/ EBINDA(20), GE0(20),GE1(20), GMFP0(2000,20),GMFP1(2
+     *000,20),GBR10(2000,20),GBR11(2000,20),GBR20(2000,20),GBR21(2000,20
+     *), RCO0(20),RCO1(20), RSCT0(100,20),RSCT1(100,20), COHE0(2000,20),
+     *COHE1(2000,20),  PHOTONUC0(2000,20),PHOTONUC1(2000,20), DPMFP, MPG
+     *EM(1,20), NGR(20)
       real*8 EBINDA,  GE0,GE1,  GMFP0,GMFP1,  GBR10,GBR11,  GBR20,GBR21,
      *  RCO0,RCO1,  RSCT0,RSCT1,  COHE0,COHE1,   PHOTONUC0,PHOTONUC1,  D
      *PMFP
       integer*4
      *                  MPGEM,
      *                          NGR
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
-      COMMON/rayleigh_inputs/iray_ff_media(7),iray_ff_file(7)
+      COMMON/rayleigh_inputs/iray_ff_media(20),iray_ff_file(20)
       character*24 iray_ff_media
       character*128 iray_ff_file
-      COMMON/rayleigh_sampling/xgrid(100,7), fcum(100,7), b_array(100,7)
-     *, c_array(100,7), i_array(100,7), pmax0(2000,7),pmax1(2000,7)
+      COMMON/rayleigh_sampling/xgrid(100,20), fcum(100,20), b_array(100,
+     *20), c_array(100,20), i_array(100,20), pmax0(2000,20),pmax1(2000,2
+     *0)
       real*8 xgrid, fcum, b_array, c_array,pmax0, pmax1
       integer*4 i_array
-      real*8 xval(100),aff(100,100),ff(100,7)
+      real*8 xval(100),aff(100,100),ff(100,20)
       real*8 xsc, fsc
-      real*8 sig_rayleigh(2000), pe_array(2000,7)
+      real*8 sig_rayleigh(2000), pe_array(2000,20)
       real*8 e,egs_rayleigh_sigma,gmfp,gle,conv,dle,dlei,sumA
       real*8 totRayleigh2,pzmin
       real*8 emin, emax
@@ -32574,7 +32653,7 @@ C*****************************************************************************
       ncustom=0
       write(dummy,'(24a1)')(media(j,medium),j=1,24)
       ff_file=' '
-      DO 18671 i=1,7
+      DO 18671 i=1,20
         IF ((lnblnk1(iray_ff_file(i)).NE.0)) THEN
           ncustom = ncustom + 1
         END IF
@@ -32693,7 +32772,8 @@ C*****************************************************************************
       end
       subroutine egs_init_rayleigh_sampling(medium)
       implicit none
-      COMMON/THRESH/RMT2,RMSQ, AP(7),AE(7),UP(7),UE(7),TE(7),THMOLL(7)
+      COMMON/THRESH/RMT2,RMSQ, AP(20),AE(20),UP(20),UE(20),TE(20),THMOLL
+     *(20)
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       common /egs_io/ file_extensions(20), file_units(20), user_code,  i
      *nput_file,  output_file, pegs_file,  hen_house,  egs_home,  work_d
@@ -32708,10 +32788,10 @@ C*****************************************************************************
      *_chunk, file_units, n_files,i_input,i_log,i_incoh, i_nist_data,i_m
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch,is_pegsless
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -32725,34 +32805,37 @@ C*****************************************************************************
       real*8 DUNIT,  RHOR
       integer*4 KMPI,  KMPO
       integer*2 MED,  IRAYLR,  IPHOTONUCR
-      COMMON/PHOTIN/ EBINDA(7), GE0(7),GE1(7), GMFP0(2000,7),GMFP1(2000,
-     *7),GBR10(2000,7),GBR11(2000,7),GBR20(2000,7),GBR21(2000,7), RCO0(7
-     *),RCO1(7), RSCT0(100,7),RSCT1(100,7), COHE0(2000,7),COHE1(2000,7),
-     *  PHOTONUC0(2000,7),PHOTONUC1(2000,7), DPMFP, MPGEM(1,7), NGR(7)
+      COMMON/PHOTIN/ EBINDA(20), GE0(20),GE1(20), GMFP0(2000,20),GMFP1(2
+     *000,20),GBR10(2000,20),GBR11(2000,20),GBR20(2000,20),GBR21(2000,20
+     *), RCO0(20),RCO1(20), RSCT0(100,20),RSCT1(100,20), COHE0(2000,20),
+     *COHE1(2000,20),  PHOTONUC0(2000,20),PHOTONUC1(2000,20), DPMFP, MPG
+     *EM(1,20), NGR(20)
       real*8 EBINDA,  GE0,GE1,  GMFP0,GMFP1,  GBR10,GBR11,  GBR20,GBR21,
      *  RCO0,RCO1,  RSCT0,RSCT1,  COHE0,COHE1,   PHOTONUC0,PHOTONUC1,  D
      *PMFP
       integer*4
      *                  MPGEM,
      *                          NGR
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
-      COMMON/rayleigh_inputs/iray_ff_media(7),iray_ff_file(7)
+      COMMON/rayleigh_inputs/iray_ff_media(20),iray_ff_file(20)
       character*24 iray_ff_media
       character*128 iray_ff_file
-      COMMON/rayleigh_sampling/xgrid(100,7), fcum(100,7), b_array(100,7)
-     *, c_array(100,7), i_array(100,7), pmax0(2000,7),pmax1(2000,7)
+      COMMON/rayleigh_sampling/xgrid(100,20), fcum(100,20), b_array(100,
+     *20), c_array(100,20), i_array(100,20), pmax0(2000,20),pmax1(2000,2
+     *0)
       real*8 xgrid, fcum, b_array, c_array,pmax0, pmax1
       integer*4 i_array
-      real*8 xval(100),aff(100,100),ff(100,7)
+      real*8 xval(100),aff(100,100),ff(100,20)
       real*8 xsc, fsc
-      real*8 sig_rayleigh(2000), pe_array(2000,7)
+      real*8 sig_rayleigh(2000), pe_array(2000,20)
       real*8 e,egs_rayleigh_sigma,gmfp,gle,conv,dle,dlei,sumA
       real*8 totRayleigh2,pzmin
       real*8 emin, emax
@@ -32867,8 +32950,9 @@ C*****************************************************************************
       integer*4 urndm, crndm, cdrndm, cmrndm, i4opt, ixx, jxx, fool_opti
      *mizer,rng_seed,rng_array
       real*4 twom24
-      COMMON/rayleigh_sampling/xgrid(100,7), fcum(100,7), b_array(100,7)
-     *, c_array(100,7), i_array(100,7), pmax0(2000,7),pmax1(2000,7)
+      COMMON/rayleigh_sampling/xgrid(100,20), fcum(100,20), b_array(100,
+     *20), c_array(100,20), i_array(100,20), pmax0(2000,20),pmax1(2000,2
+     *0)
       real*8 xgrid, fcum, b_array, c_array,pmax0, pmax1
       integer*4 i_array
       dwi = 100-1
@@ -33194,10 +33278,11 @@ C*****************************************************************************
      *_chunk, file_units, n_files,i_input,i_log,i_incoh, i_nist_data,i_m
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch,is_pegsless
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
@@ -33208,10 +33293,10 @@ C*****************************************************************************
       integer*4 MEDIUM,  MEDOLD
       DATA RM,PRM,PRMT2,PZERO/0.5109989461,0.5109989461,1.0219978922,0.D
      *0/
-      COMMON/MEDIA/  RLC(7),RLDU(7),RHO(7),MSGE(7),MGE(7),MSEKE(7),MEKE(
-     *7),MLEKE(7),MCMFP(7),MRANGE(7),IRAYLM(7),IPHOTONUCM(7), MEDIA(24,7
-     *), photon_xsections, comp_xsections, photonuc_xsections,eii_xfile,
-     *IPHOTONUC,NMED
+      COMMON/MEDIA/  RLC(20),RLDU(20),RHO(20),MSGE(20),MGE(20),MSEKE(20)
+     *,MEKE(20),MLEKE(20),MCMFP(20),MRANGE(20),IRAYLM(20),IPHOTONUCM(20)
+     *, MEDIA(24,20), photon_xsections, comp_xsections, photonuc_xsectio
+     *ns,eii_xfile,IPHOTONUC,NMED
       CHARACTER*4 MEDIA
       real*8 RLC,  RLDU,  RHO,  apx, upx
       integer*4 MSGE,  MGE,  MSEKE, MEKE,  MLEKE, MCMFP, MRANGE, IRAYLM,
@@ -33221,8 +33306,8 @@ C*****************************************************************************
       character*16 comp_xsections
       character*16 photonuc_xsections
       common/pe_shell_data/ pe_xsection(500,100,0:16),  pe_elem_prob(500
-     *,100,7),   pe_energy(500,100),  pe_zsorted(100,7), pe_be(100,16),
-     * pe_nshell(100),  pe_zpos(100),  pe_nge(100),  pe_ne
+     *,100,20),   pe_energy(500,100),  pe_zsorted(100,20), pe_be(100,16)
+     *,  pe_nshell(100),  pe_zpos(100),  pe_nge(100),  pe_ne
       real*8 pe_be, pe_energy, pe_xsection, pe_elem_prob
       integer*4 pe_zsorted, pe_nshell, pe_zpos, pe_nge, pe_ne
       integer*4 n,  ne,  ndat
@@ -33287,17 +33372,18 @@ C*****************************************************************************
       end
       real*8 function sigmaMedium(imed, logE)
       implicit none
-      COMMON/BREMPR/ DL1(8,7),DL2(8,7),DL3(8,7),DL4(8,7),DL5(8,7),DL6(8,
-     *7), ALPHI(2,7),BPAR(2,7),DELPOS(2,7), WA(7,50),PZ(7,50),ZELEM(7,50
-     *),RHOZ(7,50), PWR2I(50), DELCM(7),ZBRANG(7),LZBRANG(7),NNE(7), IBR
-     *DST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(7,50,2)
+      COMMON/BREMPR/ DL1(8,20),DL2(8,20),DL3(8,20),DL4(8,20),DL5(8,20),D
+     *L6(8,20), ALPHI(2,20),BPAR(2,20),DELPOS(2,20), WA(20,50),PZ(20,50)
+     *,ZELEM(20,50),RHOZ(20,50), PWR2I(50), DELCM(20),ZBRANG(20),LZBRANG
+     *(20),NNE(20), IBRDST,IPRDST,ibr_nist,pair_nrc,itriplet, ASYM(20,50
+     *,2)
       CHARACTER*4 ASYM
       real*8 DL1,DL2,DL3,DL4,DL5,DL6,   ALPHI,  BPAR,  DELPOS,  WA,  PZ,
      *  ZELEM,  RHOZ,  PWR2I,  DELCM,  ZBRANG,  LZBRANG
       integer*4 NNE,  IBRDST,  IPRDST,  ibr_nist,  itriplet,  pair_nrc
       common/pe_shell_data/ pe_xsection(500,100,0:16),  pe_elem_prob(500
-     *,100,7),   pe_energy(500,100),  pe_zsorted(100,7), pe_be(100,16),
-     * pe_nshell(100),  pe_zpos(100),  pe_nge(100),  pe_ne
+     *,100,20),   pe_energy(500,100),  pe_zsorted(100,20), pe_be(100,16)
+     *,  pe_nshell(100),  pe_zpos(100),  pe_nge(100),  pe_ne
       real*8 pe_be, pe_energy, pe_xsection, pe_elem_prob
       integer*4 pe_zsorted, pe_nshell, pe_zpos, pe_nge, pe_ne
       real*8 logE, slope, sigma

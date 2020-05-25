@@ -3,7 +3,7 @@
       Character*40 machine
       Character*256 CTFileName
       Integer nmed
-      Character*4 media(24,7)
+      Character*4 media(24,20)
       Real rhor( 2097154)
       Integer med( 2097154)
       Real xbound(128+1)
@@ -1443,11 +1443,11 @@
      *num_material, material_region, density_region, material_name)
       INTEGER*2 New_CT_Data(128,128,128)
       INTEGER new_x_dim,  new_y_dim,  new_z_dim,  material_region( 20971
-     *54),  num_material,   material_ct_upper_bound(7), material_ct_lowe
-     *r_bound,  i_material,I,J,K,  ct_low,ct_high
-      REAL density_region( 2097154),  material_density_lower_bound(7),
-     *material_density_upper_bound(7)
-      CHARACTER*4 material_name(24,7)
+     *54),  num_material,   material_ct_upper_bound(20), material_ct_low
+     *er_bound,  i_material,I,J,K,  ct_low,ct_high
+      REAL density_region( 2097154),  material_density_lower_bound(20),
+     * material_density_upper_bound(20)
+      CHARACTER*4 material_name(24,20)
       DO 2981 I=1,new_x_dim
           DO 2991 J=1,new_y_dim
               DO 3001 K=1,new_z_dim
@@ -1464,15 +1464,15 @@
       write(6,3010)
       write(1,3010)
 3010  format(/' The CT-Density Ramp'/ ' -------------------'/)
-3020  write(6,3030)7
-      write(1,3030)7
+3020  write(6,3030)20
+      write(1,3030)20
 3030  format(' Number of media (max ',I4,'), min. CT number of ramp'/ '(
      *0,0 if you want to use the hard-wired ramp function): ',$)
       READ(5,*) num_material,material_ct_lower_bound
       write(6,3040)num_material,material_ct_lower_bound
       write(1,3040)num_material,material_ct_lower_bound
 3040  format(2I10)
-      IF ((num_material.LT.0 .OR. num_material .GT. 7)) THEN
+      IF ((num_material.LT.0 .OR. num_material .GT. 20)) THEN
           write(6,3050)
           write(1,3050)
 3050      format(' Number of materials out of range. Try again. ')
@@ -1742,12 +1742,12 @@
       IMPLICIT NONE
       CHARACTER*256 fname
       CHARACTER*80 phantname
-      Character*4 media(24,7)
+      Character*4 media(24,20)
       Character*60 CTformat
       INTEGER nmed,  iimax,  jjmax,  kkmax,  med( 2097154),  lnblnk1, ri
      *ndex, ii,jj,kk
       REAL xbnd(128+1),  ybnd(128+1),  zbnd(128+1),  rho( 2097154),  est
-     *epe(7)
+     *epe(20)
       IF ((CTformat.EQ.'CADPLAN')) THEN
           phantname=fname(rindex(fname,'/')+1:lnblnk1(fname)) // '.egsph
      *ant'

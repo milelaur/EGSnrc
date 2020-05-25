@@ -672,11 +672,11 @@ REPLACE {;COMIN/RELAX-USER/;} WITH {;
 "the i'th shell of element Z in the long shell list.                       "
 "***************************************************************************"
 
-REPLACE {$MXESHLL} WITH {30}  "max. number of shells for an element"
-REPLACE {$MAXSHELL} WITH {3000}"max. number of shells"
-REPLACE {$MAXRELAX} WITH {10000}"max. number of relaxations channels"
-REPLACE {$MAXVAC} WITH {100}   "max. number of vacancies"
-REPLACE {$MAXTRANS} WITH {300}  "max. number of transitions per element"
+REPLACE {$MXESHLL} WITH {30}     "max. number of shells for an element"
+REPLACE {$MAXSHELL} WITH {3000}  "max. number of shells"
+REPLACE {$MAXRELAX} WITH {10000} "max. number of relaxations channels"
+REPLACE {$MAXVAC} WITH {100}     "max. number of vacancies"
+REPLACE {$MAXTRANS} WITH {300}   "max. number of transitions per element"
 "============================================================"
 " Set input key 'Atomic relaxations' to 'simple' to recover original
 " implementation which allows photoelectric interactions with <M> and
@@ -1396,8 +1396,8 @@ REPLACE {$ENEPS} WITH {0.0001}
             "DIFFERENCE BETWEEN ECUT AND END POINT ENERGY FOR"
             "RANGE CALCULATION"
 
-REPLACE {$EPSEMFP} WITH {1.E-5}  "SMALLEST ELECTRON MFP VALUE"
-REPLACE {$EPSGMFP} WITH {1.E-5}  "SMALLEST GAMMA MFP VALUE"
+REPLACE {$EPSEMFP} WITH {1.E-8}  "SMALLEST ELECTRON MFP VALUE"
+REPLACE {$EPSGMFP} WITH {1.E-8}  "SMALLEST GAMMA MFP VALUE"
 ;  "---------- BUFFER FLUSH SEMICOLON ----------"
 
 "THE FOLLOWING ARE UTILITY AND OTHER MACROS FOR THE USER"
@@ -3803,10 +3803,10 @@ REPLACE {$TIME_RESOLUTION} WITH {0.01}
 "*************************************************************************
 "
 " EGSnrc machine dependent macro file for
-" linux64
+" linux
 "
 " Created by :
-" EGSnrc-configure-linux version 1.0 on ma toukok. 11 2020
+" EGSnrc-configure-linux version 1.0 on ma toukok. 25 2020
 "
 " You may add your own machine dependent macros to this file,
 " but be carefull to not overwrite it if you re-run
@@ -3815,15 +3815,15 @@ REPLACE {$TIME_RESOLUTION} WITH {0.01}
 "*************************************************************************
 
 REPLACE {$MACHINE} WITH
-  {,'linux64',};
+  {,'linux',};
 REPLACE {$HEN_HOUSE} WITH
   {'/home/miia/EGSnrc/HEN_HOUSE/'};
 REPLACE {$CANONICAL_SYSTEM} WITH
   {'linux64'};
 REPLACE {$CONFIGURATION_NAME} WITH
-  {'linux64'};
+  {'linux'};
 REPLACE {$EGS_CONFIG} WITH
-  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux64.conf'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux.conf'};
 
 " System dependent stuff "
 "========================================"
@@ -4128,7 +4128,7 @@ REPLACE {$RNG-STRING-2} WITH {' 2nd initial random number seed: '}
 "
 REPLACE {$STAT}    WITH {10}  "Number of batches to use in calcn of statistics"
                               "It works with $STAT = 1 but gives no stats"
-REPLACE {$MXMED}   WITH {7}   "Maximum number of media
+REPLACE {$MXMED}   WITH {20}   "Maximum number of media
 REPLACE {$MXSTACK} WITH {10000}  "Maximum particle stack size
 REPLACE {$IMAX}    WITH {128} "Maximum number of x cells
 REPLACE {$JMAX}    WITH {128} "Maximum number of y cells
@@ -11959,9 +11959,9 @@ COMIN/GetInput,EGS-IO/;
 CHARACTER*$STRING256 TEXT;      "Used to read in each line of the input file   "
 CHARACTER*$STRING256 KEEPTEXT;  "Used to keep an old line of TEXT              "
 CHARACTER*$STRING256 ORIGTEXT;  "The text without conversion to upper case     "
-CHARACTER*$STRING256  TEXTPIECE; "Used to read a piece of TEXT                 "
-CHARACTER*$STRING40  DELIM_START;"Start of the delimeter                       "
-CHARACTER*$STRING40  DELIM_END;  "End of the delimeter                         "
+CHARACTER*$STRING256 TEXTPIECE;  "Used to read a piece of TEXT                 "
+CHARACTER*$STRING80  DELIM_START;"Start of the delimeter                       "
+CHARACTER*$STRING80  DELIM_END;  "End of the delimeter                         "
 CHARACTER*$STRING32  VNAME;      "The name of the variable being extracted.    "
 CHARACTER*$STRING32  VNAME1;     "The name of the variable being extracted.    "
 $INTEGER       CURSOR;          "Used to read one of the TEXT letters          "
@@ -13730,9 +13730,9 @@ CHARACTER*$STRING256 TEXT;      "Used to read in each line of the input file   "
 CHARACTER*$STRING256 KEEPTEXT;  "Used to keep an old line of TEXT              "
 CHARACTER*$STRING256 ORIGTEXT;  "The text without conversion to upper case     "
 CHARACTER*$STRING256 TEXTPIECE; "Used to read a piece of TEXT                  "
-CHARACTER*$STRING40  DELIM_START;"Start of the delimeter                       "
-CHARACTER*$STRING40  DELIM_END;  "End of the delimeter                         "
-CHARACTER*$STRING40  ENDSTRING;  "string at which to terminate search          "
+CHARACTER*$STRING80  DELIM_START;"Start of the delimeter                       "
+CHARACTER*$STRING80  DELIM_END;  "End of the delimeter                         "
+CHARACTER*$STRING80  ENDSTRING;  "string at which to terminate search          "
 CHARACTER*$STRING32  VNAME;      "The name of the variable being extracted.    "
 CHARACTER*$STRING32  VNAME1;     "The name of the variable being extracted.    "
 $INTEGER       CURSOR;          "Used to read one of the TEXT letters          "
@@ -14384,7 +14384,7 @@ character*24 medium_name,med_tmp,sterncid_tmp;
 character*256 density_file,material_file,tmp_string,
               spoutput_file($MXMED);
 character*80 text_string, text_save, title;
-character*40 delim_start,delim_end;
+character*80 delim_start,delim_end;
 character*1 blank;
 character*512 toUpper;
 
@@ -16382,7 +16382,7 @@ C*****************************************************************************
 
       subroutine egs_print_configuration_name(ounit)
       integer ounit
-      write(6,'(a,$)') 'linux64'
+      write(6,'(a,$)') 'linux'
       return
       end
 
@@ -16396,13 +16396,13 @@ C******************************************************************************
       subroutine egs_get_configuration_name(res)
       character*(*) res
       integer l1,l2
-      l1 = lnblnk1('linux64')
+      l1 = lnblnk1('linux')
       l2 = len(res)
       res(:l2) = ' '
       if( l2.ge.l1 ) then
-        res(:l1) = 'linux64'
+        res(:l1) = 'linux'
       else
-        res(:l2) = 'linux64'
+        res(:l2) = 'linux'
       end if
       return
       end
@@ -26906,7 +26906,7 @@ DO ibr = 1,nbr_split [  "nbr_split > 1 means we want splitting for any"
     E(NP)=PESG1; IQ(NP)=0;
     IF( ibr = 1 ) [ ip = npold; ] ELSE [ ip = np-1; ]
     $TRANSFER PROPERTIES TO (np) FROM (ip);
-    COSTHE=MIN(1.0,(ESG1-RM)*POT/ESG1);
+    COSTHE=MAX(-1.0,MIN(1.0,(ESG1-RM)*POT/ESG1));
     SINTHE=SQRT(1.0-COSTHE*COSTHE);
     $SELECT-AZIMUTHAL-ANGLE(cphi,sphi);
     IF( sinpsi >= 1e-10 ) [
@@ -26922,7 +26922,7 @@ DO ibr = 1,nbr_split [  "nbr_split > 1 means we want splitting for any"
     PESG2=PAVIP-PESG1; esg2 = pesg2;
     e(np) = pesg2; iq(np) = 0;
     $TRANSFER PROPERTIES TO (np) FROM (np-1);
-    COSTHE=MIN(1.0,(ESG2-RM)*POT/ESG2);
+    COSTHE=MAX(-1.0,MIN(1.0,(ESG2-RM)*POT/ESG2));
     SINTHE=-SQRT(1.0-COSTHE*COSTHE);
     IF( sinpsi >= 1e-10 ) [
         us = sinthe*cphi; vs = sinthe*sphi;
@@ -32909,23 +32909,22 @@ LOOP [ "from here to end of routine over all vacancies created"
     ]
     ELSE[
         new_state = relax_state(relax_first(vac)+new_state-1);
-     IF( new_state <= 64 ) [ "It was a radiative transition, i.e. fluorescence"
-        iqf = 0;
-        new_state += vac - shell_num(vac);
-        Ef = shell_be(new_state);
-        Nvac += 1;
-        vacs(Nvac) = new_state;
-        Ecc = Pc;
-     ] "end of fluorescence block"
-
-     ELSE [ "It was a non-radiative transition (Auger or Coster-Kronig)"
-        iqf = -1; new1 = new_state/64; new2 = new_state - 64*new1;
-        new1 += vac - shell_num(vac); new2 += vac - shell_num(vac);
-        Ef1 = shell_be(new1); Ef2 = shell_be(new2);
-        Nvac += 1; vacs(Nvac) = new1;
-        Nvac += 1; vacs(Nvac) = new2;
-        Ef = Ef1 + Ef2; Ecc = Ec;
-     ] "end Auger or Coster-Kronig block"
+        IF( new_state <= 64 ) [ "It was a radiative transition (fluorescence)"
+          iqf = 0;
+          new_state += vac - shell_num(vac);
+          Ef = shell_be(new_state);
+          Nvac += 1;
+          vacs(Nvac) = new_state;
+          Ecc = Pc;
+        ] "end of fluorescence block"
+        ELSE [ "It was a non-radiative transition (Auger or Coster-Kronig)"
+          iqf = -1; new1 = new_state/64; new2 = new_state - 64*new1;
+          new1 += vac - shell_num(vac); new2 += vac - shell_num(vac);
+          Ef1 = shell_be(new1); Ef2 = shell_be(new2);
+          Nvac += 1; vacs(Nvac) = new1;
+          Nvac += 1; vacs(Nvac) = new2;
+          Ef = Ef1 + Ef2; Ecc = Ec;
+        ] "end Auger or Coster-Kronig block"
     ]
     Ex = Evac - Ef;
     edep_local = 0;

@@ -672,11 +672,11 @@ REPLACE {;COMIN/RELAX-USER/;} WITH {;
 "the i'th shell of element Z in the long shell list.                       "
 "***************************************************************************"
 
-REPLACE {$MXESHLL} WITH {30}  "max. number of shells for an element"
-REPLACE {$MAXSHELL} WITH {3000}"max. number of shells"
-REPLACE {$MAXRELAX} WITH {10000}"max. number of relaxations channels"
-REPLACE {$MAXVAC} WITH {100}   "max. number of vacancies"
-REPLACE {$MAXTRANS} WITH {300}  "max. number of transitions per element"
+REPLACE {$MXESHLL} WITH {30}     "max. number of shells for an element"
+REPLACE {$MAXSHELL} WITH {3000}  "max. number of shells"
+REPLACE {$MAXRELAX} WITH {10000} "max. number of relaxations channels"
+REPLACE {$MAXVAC} WITH {100}     "max. number of vacancies"
+REPLACE {$MAXTRANS} WITH {300}   "max. number of transitions per element"
 "============================================================"
 " Set input key 'Atomic relaxations' to 'simple' to recover original
 " implementation which allows photoelectric interactions with <M> and
@@ -1396,8 +1396,8 @@ REPLACE {$ENEPS} WITH {0.0001}
             "DIFFERENCE BETWEEN ECUT AND END POINT ENERGY FOR"
             "RANGE CALCULATION"
 
-REPLACE {$EPSEMFP} WITH {1.E-5}  "SMALLEST ELECTRON MFP VALUE"
-REPLACE {$EPSGMFP} WITH {1.E-5}  "SMALLEST GAMMA MFP VALUE"
+REPLACE {$EPSEMFP} WITH {1.E-8}  "SMALLEST ELECTRON MFP VALUE"
+REPLACE {$EPSGMFP} WITH {1.E-8}  "SMALLEST GAMMA MFP VALUE"
 ;  "---------- BUFFER FLUSH SEMICOLON ----------"
 
 "THE FOLLOWING ARE UTILITY AND OTHER MACROS FOR THE USER"
@@ -4006,10 +4006,10 @@ REPLACE {$USER-AFTER-SHOWER;} WITH {;}
 "*************************************************************************
 "
 " EGSnrc machine dependent macro file for
-" linux64
+" linux
 "
 " Created by :
-" EGSnrc-configure-linux version 1.0 on ma toukok. 11 2020
+" EGSnrc-configure-linux version 1.0 on ma toukok. 25 2020
 "
 " You may add your own machine dependent macros to this file,
 " but be carefull to not overwrite it if you re-run
@@ -4018,15 +4018,15 @@ REPLACE {$USER-AFTER-SHOWER;} WITH {;}
 "*************************************************************************
 
 REPLACE {$MACHINE} WITH
-  {,'linux64',};
+  {,'linux',};
 REPLACE {$HEN_HOUSE} WITH
   {'/home/miia/EGSnrc/HEN_HOUSE/'};
 REPLACE {$CANONICAL_SYSTEM} WITH
   {'linux64'};
 REPLACE {$CONFIGURATION_NAME} WITH
-  {'linux64'};
+  {'linux'};
 REPLACE {$EGS_CONFIG} WITH
-  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux64.conf'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux.conf'};
 
 " System dependent stuff "
 "========================================"
@@ -5414,7 +5414,7 @@ C*****************************************************************************
 
       subroutine egs_print_configuration_name(ounit)
       integer ounit
-      write(6,'(a,$)') 'linux64'
+      write(6,'(a,$)') 'linux'
       return
       end
 
@@ -5428,13 +5428,13 @@ C******************************************************************************
       subroutine egs_get_configuration_name(res)
       character*(*) res
       integer l1,l2
-      l1 = lnblnk1('linux64')
+      l1 = lnblnk1('linux')
       l2 = len(res)
       res(:l2) = ' '
       if( l2.ge.l1 ) then
-        res(:l1) = 'linux64'
+        res(:l1) = 'linux'
       else
-        res(:l2) = 'linux64'
+        res(:l2) = 'linux'
       end if
       return
       end
