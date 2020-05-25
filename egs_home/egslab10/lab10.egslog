@@ -1,0 +1,148 @@
+
+
+======================== geometry =====================
+ type = EGS_EnvelopeGeometry
+ name = chamberInWater
+ number of regions = 44
+ base geometry = waterphantom (type EGS_CDGeometry)
+ inscribed geometries:
+   chamber (type EGS_CDGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Collimated source from a shape of type point onto a shape of type rectangle with monoenergetic 6 MeV, photons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 29 3873
+  numbers used so far = 1545533056
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (my_tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = YES
+ - Scoring positron tracks     = YES
+ - First event to score        = 0
+ - Last event to score         = 10000
+ - Track buffer size           = 1024
+ - Output file name            = /home/miia/EGSnrc/egs_home/egslab10/lab10_w3_w3.ptracks
+
+
+*******************************************
+Dose Scoring Object (dose)
+*******************************************
+
+ - Regions in dose calculator :3
+
+
+--------------------------------------
+medium    rho/[g/cm**3]
+--------------------------------------
+c552   1.76
+air    0.00
+water  1.00
+--------------------------------------
+
+*******************************************
+
+
+
+
+
+The following media are defined:
+================================
+
+  0  c552                     AE= 0.5210 AP= 0.0100 0
+  1  air                      AE= 0.5210 AP= 0.0100 1
+  2  water                    AE= 0.5210 AP= 0.0100 2
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             xcom            
+Compton cross sections                            default         
+Global Pcut                                       0.01
+Pair cross sections                               BH
+Pair angular sampling                             Simple
+Triplet production                                Off
+Bound Compton scattering                          norej
+Radiative Compton corrections                     Off
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          Off
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.521
+Brems cross sections                              BH
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        Off             
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 lab10_w1.egsdat                ncase=1666640        cpu=48.47      
+ 2 lab10_w2.egsdat                ncase=1666600        cpu=48.63      
+ 3 lab10_w3.egsdat                ncase=1666600        cpu=48.87      
+ 4 lab10_w4.egsdat                ncase=1666600        cpu=48.60      
+ 5 lab10_w5.egsdat                ncase=1666600        cpu=48.75      
+ 6 lab10_w6.egsdat                ncase=1666600        cpu=48.83      
+=======================================================================
+                            Total ncase=9999640        cpu=292.15     
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.00 (sec.) 0.0000(hours)
+CPU time including previous runs:       292.15 (sec.) 0.0812 (hours)
+Histories per hour:                     1.2322e+08    
+Number of random numbers used:          9262723136    
+Number of electron CH steps:            4.87097e+08   
+Number of all electron steps:           5.3986e+08    
+
+Particle Track Scoring (my_tracks)
+======================================================
+   Total events scored:     10000
+   Total tracks scored:     200567
+   Still being scored:      0
+   Output file name:        /home/miia/EGSnrc/egs_home/egslab10/lab10_w3_w3.ptracks
+
+
+======================================================
+Dose Scoring Object(dose)
+======================================================
+=> last case = 9999640 fluence = 9.99964e+06
+
+
+==> Summary of region dosimetry (per particle)
+ir medium    rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+-------------------------------------------------------------------------------
+ 3 air     0.001     0.1250 4.8041e-09 +/- 2.766  % 5.1104e-15 +/- 2.766  %
+ 6 air     0.001     1.9500 2.3257e-10 +/- 8.617  % 1.5859e-17 +/- 8.617  %
+24 air     0.001     0.1950 5.4135e-10 +/- 8.178  % 3.6914e-16 +/- 8.178  %
+-------------------------------------------------------------------------------
+
+======================================================
+
+
+End of run                                             Sat May 16 15:38:09 2020
+================================================================================

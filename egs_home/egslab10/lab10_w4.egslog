@@ -1,0 +1,496 @@
+================================================================================
+EGSnrc version 4 for linux64                           Sat May 16 15:37:19 2020
+================================================================================
+configuration........................................................linux
+user code............................................................egslab10
+pegs file............................................................
+using host...........................................................ubuntu-home
+input file...........................................................lab10
+output file(s).......................................................lab10
+number of parallel jobs.............................................. 6
+job number........................................................... 4
+================================================================================
+In initCrossSections(): spin effects = 1
+Property Photon cross-sections output: 0
+Property Photonuclear attenuation: 0
+Property Bound Compton scattering: 3
+Property Radiative Compton corrections: 0
+Property Rayleigh scattering: 1
+Property Atomic relaxations: 1
+Property Photoelectron angular sampling: 1
+Property Spin effects: 1
+Property Triplet production: 0
+Property Brems cross sections: 0
+Property Brems angular sampling: 1
+Property Pair cross sections: 0
+Property Pair angular sampling: 1
+Property Electron-step algorithm: 0
+Property Boundary crossing algorithm: 0
+ ===> Photonuclear flag:   0
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  1
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  2
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  3
+
+  PEGSLESS INPUT.  CALCULATING ELECTRON CROSS-SECTIONS.
+  density_file c-552air-equivalentplastic                                                                                                                                                                                                                                      
+  density_file air_dry_nearsealevel                                                                                                                                                                                                                                            
+  density_file water_liquid                                                                                                                                                                                                                                                    
+
+  Medium data: 
+
+ AE =    5.21000E-01 MeV,  UE =    5.05110E+01 MeV
+ AP =    1.00000E-02 MeV,  UP =    5.00000E+01 MeV
+
+  No material data file supplied.  Material data obtained from
+  .egsinp file or density correction file.
+
+   Medium: c552                    
+ Sterncid: c552                    
+     rho:    1.76000E+00 g/cm^3
+ Elements: H   C   O   F   SI  
+    rhoz:    2.46800E-02   5.01611E-01   4.52700E-03   4.65209E-01   3.97300E-03
+      pz:    2.44849E-02   4.17621E-02   2.82948E-04   2.44867E-02   1.41448E-04
+  iunrst:     0
+  iaprim:     0
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/c-552air-equivalentplastic.density
+
+   Medium: air                     
+ Sterncid: air                     
+     rho:    1.20479E-03 g/cm^3
+ Elements: C   N   O   AR  
+    rhoz:    1.24000E-04   7.55267E-01   2.31781E-01   1.28270E-02
+      pz:    1.03237E-05   5.39218E-02   1.44869E-02   3.21092E-04
+  iunrst:     0
+  iaprim:     0
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/air_dry_nearsealevel.density
+
+   Medium: water                   
+ Sterncid: water                   
+     rho:    1.00000E+00 g/cm^3
+ Elements: H   O   
+    rhoz:    1.11894E-01   8.88106E-01
+      pz:    1.11009E-01   5.55087E-02
+  iunrst:     0
+  iaprim:     0
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/water_liquid.density
+
+
+(Re)-initializing photon cross sections with files from the series: xcom
+
+ Compton cross sections: default
+ Using Compton cross sections from /home/miia/EGSnrc/HEN_HOUSE/data/compton_sigma.data
+ Working on medium   1 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   2 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   3 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+
+Reading screened Rutherford MS data ...............  done 
+
+
+Reading spin data base from /home/miia/EGSnrc/HEN_HOUSE/data/spinms.data
+EGSnrc spin data, version 2.0   
+Data generated on a machine with 1234 endianess
+The endianess of this CPU is 1234
+Ranges:      1.00   100.00  0.30054  1.00000
+
+
+  medium    1 .....................  done
+  medium    2 .....................  done
+  medium    3 .....................  done
+  
+  Medium            1  sige =    6.6007221452811962        6.3817967518765322       monotone =  F F
+  Medium            2  sige =    6.4771747413144674        6.2460034263726785       monotone =  F F
+  Medium            3  sige =    6.3995325640095873        6.1904836659459477       monotone =  F F
+  
+  Initializing tmxs for estepe =   0.25000000000000000       and ximax =   0.50000000000000000     
+  
+
+Bound Compton scattering requested, reading data ......  Done
+
+ Initializing Bound Compton scattering ......
+ Medium   1 has  18 shells: 
+   1    1   1  0.04900 0.116E+03     0.014
+   2   10   1  0.16715 0.210E+02     0.285
+   3   11   2  0.16715 0.110E+03     0.011
+   4   12   3  0.16715 0.669E+02     0.011
+   5   17   1  0.00113 0.155E+02     0.543
+   6   18   2  0.00113 0.793E+02     0.024
+   7   19   3  0.00113 0.479E+02     0.014
+   8   20   4  0.00113 0.479E+02     0.014
+   9   21   1  0.09801 0.137E+02     0.697
+  10   22   2  0.09801 0.696E+02     0.031
+  11   23   3  0.09801 0.421E+02     0.017
+  12   24   4  0.14701 0.421E+02     0.017
+  13   45   1  0.00057 0.870E+01     1.839
+  14   46   2  0.00057 0.377E+02     0.149
+  15   47   3  0.00057 0.204E+02     0.100
+  16   48   4  0.00113 0.204E+02     0.099
+  17   49   5  0.00057 0.142E+03     0.008
+  18   50   6  0.00057 0.102E+03     0.008
+ Medium   2 has  18 shells: 
+   1   10   1  0.00004 0.210E+02     0.285
+   2   11   2  0.00004 0.110E+03     0.011
+   3   12   3  0.00004 0.669E+02     0.011
+   4   13   1  0.21604 0.178E+02     0.410
+   5   14   2  0.21604 0.921E+02     0.015
+   6   15   3  0.21604 0.558E+02     0.014
+   7   16   4  0.10802 0.558E+02     0.014
+   8   17   1  0.05804 0.155E+02     0.543
+   9   18   2  0.05804 0.793E+02     0.024
+  10   19   3  0.05804 0.479E+02     0.014
+  11   20   4  0.05804 0.479E+02     0.014
+  12   72   1  0.00129 0.671E+01     3.203
+  13   73   2  0.00129 0.271E+02     0.326
+  14   74   3  0.00129 0.142E+02     0.251
+  15   75   4  0.00257 0.142E+02     0.249
+  16   76   5  0.00129 0.889E+02     0.029
+  17   77   6  0.00129 0.606E+02     0.016
+  18   78   7  0.00257 0.606E+02     0.016
+ Medium   3 has   5 shells: 
+   1    1   1  0.19999 0.116E+03     0.014
+   2   17   1  0.20000 0.155E+02     0.543
+   3   18   2  0.20000 0.793E+02     0.024
+   4   19   3  0.20000 0.479E+02     0.014
+   5   20   4  0.20000 0.479E+02     0.014
+ ...... Done.
+
+Output from subroutine EDGSET:
+==============================
+ Atomic relaxations requested! 
+
+ Reading simplified photo-absorption data ..... Done
+
+ Reading simplified relaxation data ..... Done
+
+ Reading parametrized XCOM photo cross section data ..... Done
+
+ Reading EADL relaxation data ......
+  Z =   1 has  1 shells
+  Z =   6 has  4 shells
+  Z =   8 has  4 shells
+  Z =   9 has  4 shells
+  Z =  14 has  7 shells
+  Z =   7 has  4 shells
+  Z =  18 has  7 shells
+ ...... Done.
+
+EGSnrc SUCCESSFULLY 'HATCHED' FOR     3 MEDIA.
+
+
+The following media are defined:
+================================
+
+  0  c552                     AE= 0.5210 AP= 0.0100 0
+  1  air                      AE= 0.5210 AP= 0.0100 1
+  2  water                    AE= 0.5210 AP= 0.0100 2
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             xcom            
+Compton cross sections                            default         
+Global Pcut                                       0.01
+Pair cross sections                               BH
+Pair angular sampling                             Simple
+Triplet production                                Off
+Bound Compton scattering                          norej
+Radiative Compton corrections                     Off
+Rayleigh scattering                               On
+Atomic relaxations                                eadl
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          Off
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.521
+Brems cross sections                              BH
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        Off             
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+
+======================== geometry =====================
+ type = EGS_EnvelopeGeometry
+ name = chamberInWater
+ number of regions = 44
+ base geometry = waterphantom (type EGS_CDGeometry)
+ inscribed geometries:
+   chamber (type EGS_CDGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Collimated source from a shape of type point onto a shape of type rectangle with monoenergetic 6 MeV, photons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 29 3874
+  numbers used so far = 0
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (my_tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = YES
+ - Scoring positron tracks     = YES
+ - First event to score        = 0
+ - Last event to score         = 10000
+ - Track buffer size           = 1024
+ - Output file name            = /home/miia/EGSnrc/egs_home/egslab10/lab10_w4_w4.ptracks
+
+
+*******************************************
+Dose Scoring Object (dose)
+*******************************************
+
+ - Regions in dose calculator :3
+
+
+--------------------------------------
+medium    rho/[g/cm**3]
+--------------------------------------
+c552   1.76
+air    0.00
+water  1.00
+--------------------------------------
+
+*******************************************
+
+
+
+
+
+Starting simulation on Sat May 16 15:37:19 2020
+
+    Fresh simulation of 10000000 histories
+
+
+    Parallel run with 6 jobs and 10 chunks per job
+
+
+
+Running 166666 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                0.55              0         100.00
+      2                1.04              0         100.00
+      3                1.53              0         100.00
+      4                2.01              0         100.00
+      5                2.51              0         100.00
+      6                2.99              0         100.00
+      7                3.48              0         100.00
+      8                3.96              0         100.00
+      9                4.45              0         100.00
+     10                4.94              0         100.00
+
+Running 166666 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                5.43              0         100.00
+      2                5.91              0         100.00
+      3                6.40              0         100.00
+      4                6.88              0         100.00
+      5                7.37              0         100.00
+      6                7.86              0         100.00
+      7                8.35              0         100.00
+      8                8.83              0         100.00
+      9                9.32              0         100.00
+     10                9.82              0         100.00
+
+Running 166666 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1               10.31              0         100.00
+      2               10.79              0         100.00
+      3               11.27              0         100.00
+      4               11.77              0         100.00
+      5               12.26              0         100.00
+      6               12.75              0         100.00
+      7               13.23              0         100.00
+      8               13.70              0         100.00
+      9               14.18              0         100.00
+     10               14.67              0         100.00
+
+Running 166666 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1               15.15              0         100.00
+      2               15.63              0         100.00
+      3               16.10              0         100.00
+      4               16.59              0         100.00
+      5               17.08              0         100.00
+      6               17.58              0         100.00
+      7               18.08              0         100.00
+      8               18.56              0         100.00
+      9               19.04              0         100.00
+     10               19.54              0         100.00
+
+Running 166666 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1               20.02              0         100.00
+      2               20.49              0         100.00
+      3               20.98              0         100.00
+      4               21.47              0         100.00
+      5               21.94              0         100.00
+      6               22.43              0         100.00
+      7               22.91              0         100.00
+      8               23.41              0         100.00
+      9               23.90              0         100.00
+     10               24.38              0         100.00
+
+Running 166666 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1               24.87              0         100.00
+      2               25.36              0         100.00
+      3               25.85              0         100.00
+      4               26.33              0         100.00
+      5               26.82              0         100.00
+      6               27.30              0         100.00
+      7               27.79              0         100.00
+      8               28.27              0         100.00
+      9               28.75              0         100.00
+     10               29.25              0         100.00
+
+Running 166666 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1               29.74              0         100.00
+      2               30.23              0         100.00
+      3               30.71              0         100.00
+      4               31.20              0         100.00
+      5               31.68              0         100.00
+      6               32.16              0         100.00
+      7               32.64              0         100.00
+      8               33.12              0         100.00
+      9               33.60              0         100.00
+     10               34.09              0         100.00
+
+Running 166666 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1               34.58              0         100.00
+      2               35.05              0         100.00
+      3               35.55              0         100.00
+      4               36.02              0         100.00
+      5               36.49              0         100.00
+      6               36.98              0         100.00
+      7               37.46              0         100.00
+      8               37.95              0         100.00
+      9               38.44              0         100.00
+     10               38.94              0         100.00
+
+Running 166666 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1               39.42              0         100.00
+      2               39.89              0         100.00
+      3               40.38              0         100.00
+      4               40.86              0         100.00
+      5               41.35              0         100.00
+      6               41.85              0         100.00
+      7               42.33              0         100.00
+      8               42.80              0         100.00
+      9               43.28              0         100.00
+     10               43.76              0         100.00
+
+Running 166666 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1               44.25              0         100.00
+      2               44.74              0         100.00
+      3               45.21              0         100.00
+      4               45.70              0         100.00
+      5               46.19              0         100.00
+      6               46.67              0         100.00
+      7               47.14              0         100.00
+      8               47.64              0         100.00
+      9               48.13              0         100.00
+     10               48.60              0         100.00
+
+
+Finished simulation
+
+Total cpu time for this run:            48.60 (sec.) 0.0135(hours)
+Histories per hour:                     1.23452e+08   
+Number of random numbers used:          1541180970    
+Number of electron CH steps:            8.10445e+07   
+Number of all electron steps:           8.98203e+07   
+
+Particle Track Scoring (my_tracks)
+======================================================
+   Total events scored:     10000
+   Total tracks scored:     204889
+   Still being scored:      0
+   Output file name:        /home/miia/EGSnrc/egs_home/egslab10/lab10_w4_w4.ptracks
+
+
+======================================================
+Dose Scoring Object(dose)
+======================================================
+=> last case = 1666600 fluence = 1.6666e+06
+
+
+==> Summary of region dosimetry (per particle)
+ir medium    rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+-------------------------------------------------------------------------------
+ 3 air     0.001     0.1250 4.3173e-09 +/- 6.118  % 4.5926e-15 +/- 6.118  %
+ 6 air     0.001     1.9500 2.1122e-10 +/- 11.673 % 1.4403e-17 +/- 11.673 %
+24 air     0.001     0.1950 6.9336e-10 +/- 27.243 % 4.7280e-16 +/- 27.243 %
+-------------------------------------------------------------------------------
+
+======================================================
+
+
+================================================================================
+Finished simulation
+
+  Elapsed time:                   50.0 s (  0.014 h)
+  CPU time:                       48.9 s (  0.014 h)
+  Ratio:                          1.021
+
+
+End of run                                             Sat May 16 15:38:08 2020
+================================================================================

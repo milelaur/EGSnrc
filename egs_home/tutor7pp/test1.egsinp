@@ -88,7 +88,7 @@
     ncase = 1000000
     statistical accuracy sought = 1  # this input is optional
     max cpu hours allowed = 15       # this input is optional
-    #calculation = combine   # could als be first or restart or analyze
+    calculation = combine   # could als be first or restart or analyze
                              # the input is optional and if missing, a
                              # fresh calculation will be done
 :stop run control:
@@ -109,3 +109,16 @@
                               # or the same number of inputs as pulse height
                               # regions.
 :stop scoring options:
+
+:start media definition:
+    ### cutoff energies
+    ae = 0.521
+    ap = 0.010
+    ue = 50.511
+    up = 50
+
+    :start TA:
+        density correction file = tantalum
+    :stop TA:
+    
+:stop media definition:
