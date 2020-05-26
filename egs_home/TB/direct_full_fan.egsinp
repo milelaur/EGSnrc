@@ -1,6 +1,6 @@
 ################################
 #
-# Simple slab simulation
+# TrueBeam kV imaging System, Full fan option and focal spot either small or large
 #
 ################################
 
@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-	ncase = 1000000 # The number of histories to simulate
+	ncase = 10000000 # The number of histories to simulate
 :stop run control:
 
 ################################
@@ -16,24 +16,22 @@
 ################################
 :start geometry definition:
 
-	### Air between source and x-ray window
-	:start geometry:
-        name = air
-        library = egs_cylinders
-        type = EGS_ZCylinders
-        radii = 2.45
-        midpoint = 0
-        :start media input:
-            media = air
-        :stop media input:
-    :stop geometry:
+	################################
+    ### X-ray window
+    ################################
 
-	### x-ray window
+    ### First layer air between source and x-ray window
 	:start geometry:
         name = xray_window
         library = egs_cones
         type = EGS_ConeStack
-        axis = 0 0 3 0 0 4.075
+        axis = 0 0 0 0 0 4.075
+        :start layer:
+            thickness = 3
+            top radii = 2.45
+            bottom radii = 2.45
+            media = air
+        :stop layer:
 		:start layer:
             thickness = 0.155
             top radii = 2.0 2.45
@@ -59,6 +57,10 @@
             media = aluminum
         :stop layer:
     :stop geometry:
+
+    ################################
+    ### Pb port
+    ################################
 
 	### The opening in the Pb port
 	:start geometry:
@@ -112,7 +114,9 @@
         geometries = opening pb
     :stop geometry:
 
-	### Faceplate
+	################################
+    ### Faceplate
+    ################################
 	:start geometry:
         name = faceplate
         library = egs_ndgeometry
@@ -125,6 +129,10 @@
 			set medium = 4 1
         :stop media input:
     :stop geometry:
+
+    ################################
+    ### Primary collimator
+    ################################
 
 	### Area for primary collimator
 	:start geometry:
@@ -172,20 +180,9 @@
         :stop media input:
     :stop geometry:
 
-	### Air between primary_collimator and y-blade
-	:start geometry:
-        name = prim_to_y
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -4 4
-        y-planes = -4 4
-        z-planes = 7.92 9.09
-        :start media input:
-            media = air
-        :stop media input:
-    :stop geometry:
-
-	### Y-blade
+    ################################
+    ### Y-blade
+    ################################
 	:start geometry:
         name = y-blade
         library = egs_ndgeometry
@@ -204,20 +201,9 @@
         :stop media input:
     :stop geometry:
 
-	### Air between y-blade and x-blade
-	:start geometry:
-        name = y_to_x
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -4 4
-        y-planes = -4 4
-        z-planes = 9.59 10.69
-        :start media input:
-            media = air
-        :stop media input:
-    :stop geometry:
-
-	### X-blade
+	################################
+    ### X-blade
+    ################################
 	:start geometry:
         name = x-blade
         library = egs_ndgeometry
@@ -236,20 +222,9 @@
         :stop media input:
     :stop geometry:
 
-	### Air between x-blade and beam hardening filter
-	:start geometry:
-        name = x_to_hardfil
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -4 4
-        y-planes = -4 4
-        z-planes = 11.19 13.22
-        :start media input:
-            media = air
-        :stop media input:
-    :stop geometry:
-
-	### The beam hardening filter
+	################################
+    ### Beam hardening filter
+    ################################
 	:start geometry:
         name = hard_filt
         library = egs_ndgeometry
@@ -262,28 +237,267 @@
         :stop media input:
     :stop geometry:
 
-	### Combine air and x-ray window
-	:start geometry:
-        name = cd_planes
-        library = egs_planes
-        type = EGS_Zplanes
-        positions = 0 3 4.075
+    ################################
+    ### Full fan bow tie filter
+    ################################
+
+    ### Air in filter using conestacks
+    :start geometry:
+        name = cylinder1
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = -6.98 0 0 6.98 0 0
+		:start layer:
+            thickness = 13.96
+            top radii = 0.66
+            bottom radii = 0.66
+            media = air
+        :stop layer:
     :stop geometry:
 
-	### The composite geometry air and x-ray window
+    ### Moving conestack to relevant position
     :start geometry:
-        name = air_and_window
-        library = egs_cdgeometry
-        base geometry = cd_planes
-		set geometry = 0 air
-		set geometry = 1 xray_window
+        name        = transform1
+        library     = egs_gtransformed
+        my geometry = cylinder1
+        :start transformation:
+            translation = 0 0 0.802
+        :stop transformation:
     :stop geometry:
+
+    ### Air in filter using conestacks
+    :start geometry:
+        name = cylinder2
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = -6.98 0 0 6.98 0 0
+		:start layer:
+            thickness = 13.96
+            top radii = 0.99
+            bottom radii = 0.99
+            media = air
+        :stop layer:
+    :stop geometry:
+
+    ### Moving conestack to relevant position
+    :start geometry:
+        name        = transform2
+        library     = egs_gtransformed
+        my geometry = cylinder2
+        :start transformation:
+            translation = 0 0 1.19
+        :stop transformation:
+    :stop geometry:
+
+    ### Air in filter using conestacks
+    :start geometry:
+        name = cylinder3
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = -6.98 0 0 6.98 0 0
+		:start layer:
+            thickness = 13.96
+            top radii = 1.22
+            bottom radii = 1.22
+            media = air
+        :stop layer:
+    :stop geometry:
+
+    ### Moving conestack to relevant position
+    :start geometry:
+        name        = transform3
+        library     = egs_gtransformed
+        my geometry = cylinder3
+        :start transformation:
+            translation = 0 0 1.7
+        :stop transformation:
+    :stop geometry:
+
+    ### Air in filter using conestacks
+    :start geometry:
+        name = cylinder4
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = -6.98 0 0 6.98 0 0
+		:start layer:
+            thickness = 13.96
+            top radii = 1.35
+            bottom radii = 1.35
+            media = air
+        :stop layer:
+    :stop geometry:
+
+    ### Moving conestack to relevant position
+    :start geometry:
+        name        = transform4
+        library     = egs_gtransformed
+        my geometry = cylinder4
+        :start transformation:
+            translation = 0 0 2.2
+        :stop transformation:
+    :stop geometry:
+
+    ### Air in filter using conestacks
+    :start geometry:
+        name = cylinder5
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = -6.98 0 0 6.98 0 0
+		:start layer:
+            thickness = 13.96
+            top radii = 1.55
+            bottom radii = 1.55
+            media = air
+        :stop layer:
+    :stop geometry:
+
+    ### Moving conestack to relevant position
+    :start geometry:
+        name        = transform5
+        library     = egs_gtransformed
+        my geometry = cylinder5
+        :start transformation:
+            translation = 0 0 3
+        :stop transformation:
+    :stop geometry:
+
+    ### Air in filter using conestacks
+    :start geometry:
+        name = cylinder6
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = -6.98 0 0 6.98 0 0
+		:start layer:
+            thickness = 13.96
+            top radii = 1.81
+            bottom radii = 1.81
+            media = air
+        :stop layer:
+    :stop geometry:
+
+    ### Moving conestack to relevant position
+    :start geometry:
+        name        = transform6
+        library     = egs_gtransformed
+        my geometry = cylinder6
+        :start transformation:
+            translation = 0 0 3.48
+        :stop transformation:
+    :stop geometry:
+    
+    ### Air in filter using conestacks
+    :start geometry:
+        name = cylinder7
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = -6.98 0 0 6.98 0 0
+		:start layer:
+            thickness = 13.96
+            top radii = 2.58
+            bottom radii = 2.58
+            media = air
+        :stop layer:
+    :stop geometry:
+
+    ### Moving conestack to relevant position
+    :start geometry:
+        name        = transform7
+        library     = egs_gtransformed
+        my geometry = cylinder7
+        :start transformation:
+            translation = 0 0 4.61
+        :stop transformation:
+    :stop geometry:
+
+    ### Air in filter using XYZGeometry
+    :start geometry:
+        name = air_area
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -6.9799 6.9799
+        y-planes = -1.95 1.95
+        z-planes = 2.7 2.741983
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+    ### Combine air blocks
+    :start geometry:
+        name = hole
+        library = egs_gunion
+        geometries = transform1 transform2 transform3 transform4 transform5 transform6 transform7 air_area
+    :stop geometry:
+
+    ### Area which contains air in filter
+	:start geometry:
+        name = ff_hole_area
+        library = egs_planes
+        type = EGS_Zplanes
+        positions = 0.15 2.741983
+    :stop geometry:
+
+    ### Adding air
+    :start geometry:
+        name = ff_hole
+        library = egs_cdgeometry
+        base geometry = ff_hole_area
+		set geometry = 0 hole
+    :stop geometry:
+
+    ### Full fan bowtie filter block
+    :start geometry:
+        name = ff
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -6.9799 6.9799
+        y-planes = -6.9799 6.9799
+        z-planes = 0 2.74198
+        :start media input:
+            media = aluminum
+        :stop media input:
+    :stop geometry:
+
+    ### Full fan bowtie filter (block + air)
+    :start geometry:
+        name = ff_filter
+        library = egs_gunion
+        geometries = ff_hole ff
+    :stop geometry:
+
+    :start geometry:
+        name        = ff_filter_right_pos
+        library     = egs_gtransformed
+        my geometry = ff_filter
+        :start transformation:
+            translation = 0 0 14.79
+        :stop transformation:
+    :stop geometry:
+
+    ################################
+	### Detection cover
+	################################
+    :start geometry:
+        name = cover
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -6.9799 6.9799
+        y-planes = -6.9799 6.9799
+        z-planes = 18 18.2
+        :start media input:
+            media = carbonate
+        :stop media input:
+    :stop geometry:
+
+    ################################
+	### Combining
+	################################
 
 	### Adding pb port to geometry
 	:start geometry:
         name = window_and_pb_port
         library = egs_gstack
-        geometries = air_and_window pb_port
+        geometries = xray_window pb_port
         tolerance = 1e-4
     :stop geometry:
 
@@ -291,23 +505,56 @@
     :start geometry:
         name = prim_coll_and_blades
         library = egs_gunion
-		geometries = window_and_pb_port faceplate primary_collimator y-blade x-blade prim_to_y y_to_x
+		geometries = window_and_pb_port faceplate primary_collimator y-blade x-blade
     :stop geometry:
 
-	### Adding the beam hardening filter
+	### Adding the beam hardening filter and full fan bow tie filter
     :start geometry:
-        name = obi
+        name = prim_coll_and_blades_and_ff
         library = egs_gunion
-		geometries = prim_coll_and_blades hard_filt x_to_hardfil
+		geometries = prim_coll_and_blades hard_filt ff_filter_right_pos
+    :stop geometry:
+
+    ### Air block
+    :start geometry:
+        name = air_block
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -6.9799 6.9799
+        y-planes = -6.9799 6.9799
+        z-planes = 3.1 14.8
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+    ### Air block after bow tie filter
+    :start geometry:
+        name = air_block1
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -6.9799 6.9799
+        y-planes = -6.9799 6.9799
+        z-planes = 17.5 18.5
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+    ### Geometry from source to bow tie filter + air block
+    :start geometry:
+        name    = obi
+        library = egs_gunion
+        geometries = prim_coll_and_blades_and_ff cover air_block air_block1
     :stop geometry:
 
 	################################
 	### TESTING GEOMETRY
 	################################
 
-	### Air between primary_collimator and detector
+	### Air between primary_collimator and detector to testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
 	:start geometry:
-        name = air1
+        name = air
         library = egs_ndgeometry
         type = EGS_XYZGeometry
         x-planes = -60 60
@@ -320,90 +567,56 @@
 
 	### Testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
 	:start geometry:
-        name = air2
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -2.55 2.55
-        y-planes = -2.55 2.55
-        z-planes = 0 5.92
-        :start media input:
-            media = air
-        :stop media input:
-    :stop geometry:
-
-
-	### Testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
-	:start geometry:
         name = detect
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -60 -25.2 25.2 60
-        y-planes = -60 -25.2 25.2 60
+        x-planes = -55 -25.2 25.2 55
+        y-planes = -55 -25.2 25.2 55
         z-planes = 100 100.1
         :start media input:
             media = water
         :stop media input:
     :stop geometry:
 
-	### Geometry that contains only primary_collimator and detector plate + air
+	### Geometry that contains testing geometry for
     :start geometry:
-        name = air_and_window1
+        name = prim_coll_test
         library = egs_gunion
-        geometries = window_and_pb_port faceplate primary_collimator detect air1
+        geometries = window_and_pb_port faceplate primary_collimator detect air
     :stop geometry:
 
-	### Testing blades (air between blade and SSD)
-    :start geometry:
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-		x-planes = -20 20
-        y-planes = -20 20
-        z-planes = 11.19 100
-        name = airslab
-        :start media input:
-            media = air
-        :stop media input:
-    :stop geometry:
-
-	### Testing blades (air between beam hardening filter and SSD)
-    :start geometry:
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-		x-planes = -20 20
-        y-planes = -20 20
-        z-planes = 13.309 100
-        name = airslab1
-        :start media input:
-            media = air
-        :stop media input:
-    :stop geometry:
-
-	### Testing blades water phantom in SSD
+	### Testing blades
 	:start geometry:
+        name = detect1
         library = egs_ndgeometry
         type = EGS_XYZGeometry
 		x-planes = -20 -13.2 13.2 20
         y-planes = -20 -9.9 9.9 20
         z-planes = 100 100.1
-        name = slab
         :start media input:
             media = water
         :stop media input:
     :stop geometry:
 
-	### Combine source x-ray window, prim coll, blades, air and water
+	### Testing blades geometry
 	:start geometry:
-        name = test
+        name = blades_test
         library = egs_gunion
-        geometries = obi slab airslab1
+        geometries = prim_coll_and_blades detect1 air
     :stop geometry:
 
 	################################
 	### SIMULATION GEOMETRY
 	################################
 
+    ### Use the geometry with this name for testing primary collimator
+	# simulation geometry = prim_coll_test
+
+    ### Use the geometry with this name for testing blades
+	# simulation geometry = blades_test
+
 	### Use the geometry with this name for the simulation
-	simulation geometry = test
+	simulation geometry = obi
 
 :stop geometry definition:
 
@@ -498,6 +711,13 @@
 		density correction file= water_liquid
 	:stop water:
 
+    :start carbonate:
+        rho=1.2
+        elements=C,H,O
+        number of atoms=15,16,2
+        bremsstrahlung correction=NRC
+    :stop carbonate:
+
 :stop media definition:
 
 ################################
@@ -516,8 +736,11 @@
 		:stop spectrum:
 		:start shape:
 			library = egs_ellipse
-    		halfaxis = 0.12 0.17	# Focal spot width 1.0mm to 1.4mm -> avg 1.2 mm
+    		halfaxis = 0.12 0.17	# Large focal spot width 1.0mm to 1.4mm -> avg 1.2 mm
 									# and length 1.4mm to 2.0mm -> avg 1.7mm
+            ### Small focal spot    
+            # halfaxis = 0.5 0.725  # Small focal spot width 0.4mm to 0.6mm -> avg 0.5 mm
+									# and length 0.6mm to 0.85mm -> avg 0.725mm
     		midpoint = 0 0
 		:stop shape:
 	:stop source:
@@ -543,8 +766,8 @@
 	:start ausgab object:
 		name = dose
 		library = egs_dose_scoring
-		dose regions = 224
-		volume = 3.6
+		dose regions = 480
+		volume = 38.98
 	:stop ausgab object:
 :stop ausgab object definition:
 
@@ -578,4 +801,5 @@
 	set color = pb 255 85 0 200
 	set color = water 85 170 255 200
 	set color = titanium 0 170 127 200
+    set color = carbonate 170 85 0 200
 :stop view control:
