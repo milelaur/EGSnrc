@@ -1,0 +1,120 @@
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi
+ number of regions = 1920
+ geometries:
+   prim_coll_and_blades_and_ff (type EGS_UnionGeometry)
+   cover (type EGS_XYZGeometry)
+   air_block (type EGS_XYZGeometry)
+   air_block1 (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Isotropic source from a shape of type ellipse with monoenergetic 0.125 MeV, photons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 98
+  numbers used so far = 22879104
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = NO
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 100000
+ - Track buffer size           = 1024
+ - Output file name            = /home/miia/EGSnrc/egs_home/TB/full_fan_w2_w2.ptracks
+
+
+
+
+
+The following media are defined:
+================================
+
+  0  air                      AE= 0.5120 AP= 0.0100 0
+  1  beryllium                AE= 0.5120 AP= 0.0100 1
+  2  steel                    AE= 0.5120 AP= 0.0100 2
+  3  oil                      AE= 0.5120 AP= 0.0100 3
+  4  aluminum                 AE= 0.5120 AP= 0.0100 4
+  5  pb                       AE= 0.5120 AP= 0.0100 5
+  6  titanium                 AE= 0.5120 AP= 0.0100 6
+  7  carbonate                AE= 0.5120 AP= 0.0100 7
+  8  water                    AE= 0.5120 AP= 0.0100 8
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             xcom            
+Compton cross sections                            default         
+Global Pcut                                       0.01
+Pair cross sections                               BH
+Pair angular sampling                             Simple
+Triplet production                                Off
+Bound Compton scattering                          norej
+Radiative Compton corrections                     Off
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          Off
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              BH
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        Off             
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 full_fan_w1.egsdat             ncase=36630          cpu=6.45       
+ 2 full_fan_w2.egsdat             ncase=33300          cpu=5.67       
+ 3 full_fan_w3.egsdat             ncase=29980          cpu=5.44       
+ 4 full_fan_w4.egsdat             ncase=27500          cpu=4.97       
+=======================================================================
+                            Total ncase=127410         cpu=22.53      
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.00 (sec.) 0.0000(hours)
+CPU time including previous runs:       22.53 (sec.) 0.0063 (hours)
+Histories per hour:                     2.03585e+07   
+Number of random numbers used:          89432919      
+Number of electron CH steps:            770831        
+Number of all electron steps:           1.91254e+07   
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     33300
+   Total tracks scored:     38732
+   Still being scored:      0
+   Output file name:        /home/miia/EGSnrc/egs_home/TB/full_fan_w2_w2.ptracks
+
+
+
+End of run                                             Fri May 29 11:17:07 2020
+================================================================================

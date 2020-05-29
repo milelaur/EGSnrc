@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-	ncase = 10000000 # The number of histories to simulate
+	ncase = 100000 # The number of histories to simulate
 :stop run control:
 
 ################################
@@ -69,7 +69,7 @@
         type = EGS_XYZGeometry
 		x-planes = -1.26 1.26
 		y-planes = -1.26 1.26
-		z-planes = 4.07499999999999 5.72
+		z-planes = 4.07499999999999 5.6752
 		:start media input:
             media = air
         :stop media input:
@@ -121,8 +121,8 @@
         name = faceplate
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-		x-planes = -4 -1.75 1.75 4
-		y-planes = -4 -1.75 1.75 4
+		x-planes = -6.9799 -1.75 1.75 6.9799
+		y-planes = -6.9799 -1.75 1.75 6.9799
 		z-planes = 5.72 5.92
 		:start media input:
             media = pb air
@@ -465,6 +465,7 @@
         geometries = ff_hole ff
     :stop geometry:
 
+    ### Moving full fan filter to right position
     :start geometry:
         name        = ff_filter_right_pos
         library     = egs_gtransformed
@@ -759,16 +760,16 @@
 		library = egs_track_scoring
 		score electrons = no
 		score positrons = no
-    	stop scoring   = 1000000
+    	stop scoring   = 100000
 	:stop ausgab object:
 
 	### Dose scoring object
-	:start ausgab object:
-		name = dose
-		library = egs_dose_scoring
-		dose regions = 480
-		volume = 38.98
-	:stop ausgab object:
+	#:start ausgab object:
+	#	name = dose
+	#	library = egs_dose_scoring
+	#	dose regions = 480
+	#	volume = 38.98
+	#:stop ausgab object:
 :stop ausgab object definition:
 
 ##############################################################################
@@ -780,7 +781,7 @@
 
     :start calculation geometry:
         geometry name   = test 
-        cavity regions  = 224
+        cavity regions  = 480
         cavity mass     = 1
     :stop calculation geometry:
 
