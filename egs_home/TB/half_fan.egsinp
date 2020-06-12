@@ -1,6 +1,6 @@
 ################################
 #
-# TrueBeam kV imaging System, Full fan option and focal spot either small or large
+# TrueBeam kV imaging System, Half fan option and focal spot either small or large
 #
 ################################
 
@@ -39,10 +39,16 @@
             media = beryllium steel
         :stop layer:
         :start layer:
-            thickness = 0.645
+            thickness = 0.6
             top radii = 2.45
             bottom radii = 2.45
             media = oil
+        :stop layer:
+		:start layer:
+            thickness = 0.045
+            top radii = 2.45
+            bottom radii = 2.45
+            media = air
         :stop layer:
 		:start layer:
             thickness = 0.275
@@ -202,7 +208,7 @@
         name = x-blade
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes =  -6.9799 -1.41108 1.41108 6.9799
+        x-planes =  -6.9799 -2.55491 0.27794 6.9799
         y-planes = -6.9799 6.9799
         z-planes = 10.69 10.99 11.19
         :start media input:
@@ -232,7 +238,7 @@
     :stop geometry:
 
     ################################
-    ### Full fan bow tie filter
+    ### Half fan bow tie filter
     ################################
 
     ### Air in filter using conestacks
@@ -243,8 +249,8 @@
         axis = -6.98 0 0 6.98 0 0
 		:start layer:
             thickness = 13.96
-            top radii = 0.66
-            bottom radii = 0.66
+            top radii = 1.43
+            bottom radii = 1.43
             media = air
         :stop layer:
     :stop geometry:
@@ -255,7 +261,7 @@
         library     = egs_gtransformed
         my geometry = cylinder1
         :start transformation:
-            translation = 0 0 0.802
+            translation = 0 0 1.58
         :stop transformation:
     :stop geometry:
 
@@ -267,8 +273,8 @@
         axis = -6.98 0 0 6.98 0 0
 		:start layer:
             thickness = 13.96
-            top radii = 0.99
-            bottom radii = 0.99
+            top radii = 1.6
+            bottom radii = 1.6
             media = air
         :stop layer:
     :stop geometry:
@@ -279,7 +285,7 @@
         library     = egs_gtransformed
         my geometry = cylinder2
         :start transformation:
-            translation = 0 0 1.19
+            translation = 0 0 1.65
         :stop transformation:
     :stop geometry:
 
@@ -291,8 +297,8 @@
         axis = -6.98 0 0 6.98 0 0
 		:start layer:
             thickness = 13.96
-            top radii = 1.22
-            bottom radii = 1.22
+            top radii = 1.77
+            bottom radii = 1.77
             media = air
         :stop layer:
     :stop geometry:
@@ -303,7 +309,7 @@
         library     = egs_gtransformed
         my geometry = cylinder3
         :start transformation:
-            translation = 0 0 1.7
+            translation = 0 0 1.95
         :stop transformation:
     :stop geometry:
 
@@ -315,8 +321,8 @@
         axis = -6.98 0 0 6.98 0 0
 		:start layer:
             thickness = 13.96
-            top radii = 1.35
-            bottom radii = 1.35
+            top radii = 1.91
+            bottom radii = 1.91
             media = air
         :stop layer:
     :stop geometry:
@@ -327,7 +333,7 @@
         library     = egs_gtransformed
         my geometry = cylinder4
         :start transformation:
-            translation = 0 0 2.2
+            translation = 0 0 2.3
         :stop transformation:
     :stop geometry:
 
@@ -339,8 +345,8 @@
         axis = -6.98 0 0 6.98 0 0
 		:start layer:
             thickness = 13.96
-            top radii = 1.55
-            bottom radii = 1.55
+            top radii = 2.1
+            bottom radii = 2.1
             media = air
         :stop layer:
     :stop geometry:
@@ -351,7 +357,7 @@
         library     = egs_gtransformed
         my geometry = cylinder5
         :start transformation:
-            translation = 0 0 3
+            translation = 0 0 2.8
         :stop transformation:
     :stop geometry:
 
@@ -363,8 +369,8 @@
         axis = -6.98 0 0 6.98 0 0
 		:start layer:
             thickness = 13.96
-            top radii = 1.81
-            bottom radii = 1.81
+            top radii = 2.4
+            bottom radii = 2.4
             media = air
         :stop layer:
     :stop geometry:
@@ -375,7 +381,7 @@
         library     = egs_gtransformed
         my geometry = cylinder6
         :start transformation:
-            translation = 0 0 3.48
+            translation = 0 0 3.18
         :stop transformation:
     :stop geometry:
     
@@ -387,8 +393,8 @@
         axis = -6.98 0 0 6.98 0 0
 		:start layer:
             thickness = 13.96
-            top radii = 2.58
-            bottom radii = 2.58
+            top radii = 2.6
+            bottom radii = 2.6
             media = air
         :stop layer:
     :stop geometry:
@@ -399,7 +405,7 @@
         library     = egs_gtransformed
         my geometry = cylinder7
         :start transformation:
-            translation = 0 0 4.61
+            translation = 0 0 3.35
         :stop transformation:
     :stop geometry:
 
@@ -409,8 +415,21 @@
         library = egs_ndgeometry
         type = EGS_XYZGeometry
         x-planes = -6.9799 6.9799
-        y-planes = -1.95 1.95
-        z-planes = 2.7 2.741983
+        y-planes = -2.585 2.585
+        z-planes = 2.7 2.7288169
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+    ### Air in filter using XYZGeometry
+    :start geometry:
+        name = air_area1
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -6.9799 6.9799
+        y-planes = 0 6.9799
+        z-planes = 0.152 2.728817
         :start media input:
             media = air
         :stop media input:
@@ -420,7 +439,7 @@
     :start geometry:
         name = hole
         library = egs_gunion
-        geometries = transform1 transform2 transform3 transform4 transform5 transform6 transform7 air_area
+        geometries = transform1 transform2 transform3 transform4 transform5 transform6 transform7 air_area air_area1
     :stop geometry:
 
     ### Area which contains air in filter
@@ -428,7 +447,7 @@
         name = ff_hole_area
         library = egs_planes
         type = EGS_Zplanes
-        positions = 0.15 2.741983
+        positions = 0.15 2.728817
     :stop geometry:
 
     ### Adding air
@@ -444,9 +463,9 @@
         name = ff
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -6.9799 6.9799
-        y-planes = -6.9799 6.9799
-        z-planes = 0 2.74198
+        x-planes = -6.979 6.979
+        y-planes = -6.979 6.979
+        z-planes = 0 2.7288169
         :start media input:
             media = aluminum
         :stop media input:
@@ -598,7 +617,7 @@
         name = air_prim_to_detector1
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -20 20
+        x-planes = -30 10
         y-planes = -20 20
         z-planes = 5.85 100
         :start media input:
@@ -611,7 +630,7 @@
         name = detect1
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-		x-planes = -20 -13.2 13.2 20
+		x-planes = -30 -23.9 2.6 10
         y-planes = -20 -9.9 9.9 20
         z-planes = 100 100.1
         :start media input:
@@ -650,8 +669,8 @@
 	### Cutoff energies, in MeV
 	ae = 0.512 # lowest energy for electrons (kinetic+0.511)
 	ap = 0.01 # lowest energy for photons (kinetic)
-	ue = 1.511 # maximum energy for electrons (kinetic+0.511)
-	up = 1 # maximum energy for photons (kinetic)
+	ue = 50.511 # maximum energy for electrons (kinetic+0.511)
+	up = 50 # maximum energy for photons (kinetic)
 
 	### Beryllium
 	:start beryllium: # this name can be anything
