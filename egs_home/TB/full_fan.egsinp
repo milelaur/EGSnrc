@@ -55,6 +55,9 @@
     ################################
     ### Pb port
     ################################
+    # TODO add x-ray window "hat"
+
+    # TODO pixels and check pb port and faceplate surface
 
 	### The opening in the Pb port
 	:start geometry:
@@ -63,7 +66,7 @@
         type = EGS_XYZGeometry
 		x-planes = -1.26 1.26
 		y-planes = -1.26 1.26
-		z-planes = 4.07499999999999 5.6752
+		z-planes = 4.07499999999999 5.67
 		:start media input:
             media = air
         :stop media input:
@@ -74,7 +77,7 @@
         name = pb
         library = egs_cones
         type = EGS_ConeStack
-        axis = 0 0 4.075 0 0 5.8
+        axis = 0 0 4.075 0 0 5.6752
 		:start layer:
             thickness = 0.15
             top radii = 2.4511
@@ -128,6 +131,8 @@
     ### Primary collimator
     ################################
 
+    # TODO 3cm thick
+
 	### Area for primary collimator
 	:start geometry:
         library = egs_planes
@@ -161,7 +166,7 @@
         geometries = prim_opening prim_coll
     :stop geometry:
 
-	### Primary collimator (2cm thick)
+	### Primary collimator (cm thick)
 	:start geometry:
         library = egs_ndgeometry
         name    = primary_collimator
@@ -654,7 +659,7 @@
 	up = 1 # maximum energy for photons (kinetic)
 
 	### Beryllium
-	:start beryllium: # this name can be anything
+	:start beryllium:
 		# medium=BE700ICRU
 		rho=1.85
 		elements=BE
@@ -725,18 +730,21 @@
 	### Water
 	:start water:
 		# medium=H2O700ICRU
-		rho=1.0
-		elements=H,O
-		number of atoms=2,1
+		#rho=1.0
+		#elements=H,O
+		#number of atoms=2,1
 		bremsstrahlung correction=NRC
-		density correction file= water_liquid
+		density correction file= water_icru90
 	:stop water:
 
+
+    ## check icru700
     :start carbonate:
-        rho=1.2
-        elements=C,H,O
-        number of atoms=15,16,2
+        #ho=1.2
+        #elements=C,H,O
+        #number of atoms=15,16,2
         bremsstrahlung correction=NRC
+        density correction file = polycarbonate__makrolon___lexan_
     :stop carbonate:
 
 :stop media definition:
@@ -744,6 +752,7 @@
 ################################
 ### SOURCE
 ################################
+# TODO anode cathode
 :start source definition: 
 
 	:start source:
@@ -784,12 +793,12 @@
 	:stop ausgab object:
 
 	### Dose scoring object
-	#:start ausgab object:
-	#	name = dose
-	#	library = egs_dose_scoring
-	#	dose regions = 480
-	#	volume = 38.98
-	#:stop ausgab object:
+	:start ausgab object:
+		name = dose
+		library = egs_dose_scoring
+		dose regions = 480
+		volume = 38.98
+	:stop ausgab object:
 :stop ausgab object definition:
 
 ##############################################################################
