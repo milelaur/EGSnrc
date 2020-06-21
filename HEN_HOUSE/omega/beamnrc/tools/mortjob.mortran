@@ -4006,10 +4006,10 @@ REPLACE {$USER-AFTER-SHOWER;} WITH {;}
 "*************************************************************************
 "
 " EGSnrc machine dependent macro file for
-" linux
+" linux64
 "
 " Created by :
-" EGSnrc-configure-linux version 1.0 on ma toukok. 25 2020
+" EGSnrc-configure-linux version 1.0 on su kesäk. 21 2020
 "
 " You may add your own machine dependent macros to this file,
 " but be carefull to not overwrite it if you re-run
@@ -4018,15 +4018,15 @@ REPLACE {$USER-AFTER-SHOWER;} WITH {;}
 "*************************************************************************
 
 REPLACE {$MACHINE} WITH
-  {,'linux',};
+  {,'linux64',};
 REPLACE {$HEN_HOUSE} WITH
   {'/home/miia/EGSnrc/HEN_HOUSE/'};
 REPLACE {$CANONICAL_SYSTEM} WITH
   {'linux64'};
 REPLACE {$CONFIGURATION_NAME} WITH
-  {'linux'};
+  {'linux64'};
 REPLACE {$EGS_CONFIG} WITH
-  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux.conf'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux64.conf'};
 
 " System dependent stuff "
 "========================================"
@@ -5414,7 +5414,7 @@ C*****************************************************************************
 
       subroutine egs_print_configuration_name(ounit)
       integer ounit
-      write(6,'(a,$)') 'linux'
+      write(6,'(a,$)') 'linux64'
       return
       end
 
@@ -5428,13 +5428,13 @@ C******************************************************************************
       subroutine egs_get_configuration_name(res)
       character*(*) res
       integer l1,l2
-      l1 = lnblnk1('linux')
+      l1 = lnblnk1('linux64')
       l2 = len(res)
       res(:l2) = ' '
       if( l2.ge.l1 ) then
-        res(:l1) = 'linux'
+        res(:l1) = 'linux64'
       else
-        res(:l2) = 'linux'
+        res(:l2) = 'linux64'
       end if
       return
       end

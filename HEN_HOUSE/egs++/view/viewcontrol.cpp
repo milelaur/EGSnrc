@@ -358,16 +358,16 @@ bool GeometryViewControl::loadInput(bool reloading, EGS_BaseGeometry *simGeom) {
         delete vc;
     }
 
-    // Only allow region selection for up to 1k regions
+    // Only allow region selection for up to 3k regions
     int nreg = newGeom->regions();
-    if (nreg < 1001) {
+    if (nreg < 3001) {
         allowRegionSelection = true;
         show_regions.resize(nreg,true);
     }
     else {
         allowRegionSelection = false;
         show_regions.resize(0);
-        egsInformation("Region selection tab has been disabled due to >1000 regions (for performance reasons)\n");
+        egsInformation("Region selection tab has been disabled due to >3000 regions (for performance reasons)\n");
     }
     tabWidget->setTabEnabled(2,allowRegionSelection);
 

@@ -3887,8 +3887,8 @@ C*****************************************************************************
       CHARACTER*256 KEEPTEXT
       CHARACTER*256 ORIGTEXT
       CHARACTER*256 TEXTPIECE
-      CHARACTER*40 DELIM_START
-      CHARACTER*40 DELIM_END
+      CHARACTER*80 DELIM_START
+      CHARACTER*80 DELIM_END
       CHARACTER*64 VNAME
       CHARACTER*64 VNAME1
       integer*4 CURSOR
@@ -5964,9 +5964,9 @@ C*****************************************************************************
       CHARACTER*256 KEEPTEXT
       CHARACTER*256 ORIGTEXT
       CHARACTER*256 TEXTPIECE
-      CHARACTER*40 DELIM_START
-      CHARACTER*40 DELIM_END
-      CHARACTER*40 ENDSTRING
+      CHARACTER*80 DELIM_START
+      CHARACTER*80 DELIM_END
+      CHARACTER*80 ENDSTRING
       CHARACTER*64 VNAME
       CHARACTER*64 VNAME1
       integer*4 CURSOR
@@ -6946,7 +6946,7 @@ C*****************************************************************************
       character*256 density_file,material_file,tmp_string, spoutput_file
      *(max_med)
       character*80 text_string, text_save, title
-      character*40 delim_start,delim_end
+      character*80 delim_start,delim_end
       character*1 blank
       character*512 toUpper
       integer*4 nne_tmp,iaprim_tmp,epstfl_tmp,iunrst_tmp
@@ -10074,7 +10074,7 @@ C*****************************************************************************
         WT(np)=WT(ip)
         DNEAR(np)=DNEAR(ip)
         LATCH(np)=LATCH(ip)
-        COSTHE=MIN(1.0,(ESG1-RM)*POT/ESG1)
+        COSTHE=MAX(-1.0,MIN(1.0,(ESG1-RM)*POT/ESG1))
         SINTHE=SQRT(1.0-COSTHE*COSTHE)
 4921    CONTINUE
           IF (( rng_seed .GT. 128 )) THEN
@@ -10124,7 +10124,7 @@ C*****************************************************************************
         WT(np)=WT(np-1)
         DNEAR(np)=DNEAR(np-1)
         LATCH(np)=LATCH(np-1)
-        COSTHE=MIN(1.0,(ESG2-RM)*POT/ESG2)
+        COSTHE=MAX(-1.0,MIN(1.0,(ESG2-RM)*POT/ESG2))
         SINTHE=-SQRT(1.0-COSTHE*COSTHE)
         IF (( sinpsi .GE. 1e-10 )) THEN
           us = sinthe*cphi
@@ -11647,7 +11647,7 @@ C*****************************************************************************
             IF ((RNNE1.EQ.0.0)) THEN
               RNNE1=1.E-30
             END IF
-            DEMFP=MAX(-LOG(RNNE1),1.E-5)
+            DEMFP=MAX(-LOG(RNNE1),1.E-8)
             elke = log(eke)
             Lelke=eke1(MEDIUM)*elke+eke0(MEDIUM)
             IF (( sig_ismonotone(qel,medium) )) THEN
@@ -12319,7 +12319,7 @@ C*****************************************************************************
             IF (( total_tstep .LT. 1e-9 )) THEN
               demfp = 0
             END IF
-            IF(((demfp .LT. 1.E-5)))GO TO5222
+            IF(((demfp .LT. 1.E-8)))GO TO5222
           GO TO 5221
 5222      CONTINUE
           IF ((lelec .LT. 0)) THEN
@@ -19258,7 +19258,7 @@ C*****************************************************************************
             END IF
             IF((IDISC.LT.0))GO TO 7650
             IF((MEDIUM.NE.MEDOLD))GO TO 7672
-            IF ((MEDIUM.NE.0.AND.DPMFP.LE.1.E-5)) THEN
+            IF ((MEDIUM.NE.0.AND.DPMFP.LE.1.E-8)) THEN
               GO TO 7662
             END IF
           GO TO 7671
