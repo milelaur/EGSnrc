@@ -173,6 +173,8 @@ void ImageWindow::rerender(EGS_BaseGeometry *geo) {
         }
     }
     // Determine # of pixels needed
+    nxr *= 5; // Added to make quicker render of image
+    nyr *= 5; // Added to make quicker render of image
     int nnx = nx/nxr;
     int nny = ny/nyr;
     if (nnx*nxr < nx) {
