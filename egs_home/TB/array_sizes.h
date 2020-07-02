@@ -40,6 +40,6 @@
 
 #ifndef ARRAY_SIZES_
 #define ARRAY_SIZES_
-#define MXMED 10
+#define MXMED 15
 #define MXSTACK 50
 #endif

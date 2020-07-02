@@ -100,13 +100,6 @@
             bottom radii = 2.83591 3.17246
             media = air pb
         :stop layer:
-        # Air between pb port and faceplate
-        :start layer:
-            thickness = 0.0448
-            top radii = 3.17246
-            bottom radii = 3.17246
-            media = air
-        :stop layer:
     :stop geometry:
 
     ### Aluminium surrounding rim
@@ -133,13 +126,16 @@
 	################################
     ### Faceplate
     ################################
+	### In the document distance from foacl spot to faceplate
+	### is 5.72, but recommend use 5.6752. Uncertainty in the
+	### position could be +/- 1mm. Outer surface from document
 	:start geometry:
         name = faceplate
         library = egs_ndgeometry
         type = EGS_XYZGeometry
 		x-planes = -7 -1.75 1.75 7
 		y-planes = -7 -1.75 1.75 7
-		z-planes = 5.72 5.92
+		z-planes = 5.6752 5.92
 		:start media input:
             media = pb air
 			set medium = 4 1
@@ -183,7 +179,7 @@
         geometries = prim_opening prim_coll
     :stop geometry:
 
-	### Primary collimator (cm thick)
+	### Primary collimator (3cm thick)
 	:start geometry:
         library = egs_ndgeometry
         name    = primary_collimator
@@ -10171,20 +10167,12 @@
 
 	### Beryllium
 	:start beryllium:
-		# medium=BE700ICRU
-		rho=1.85
-		elements=BE
-		number of atoms=1
 		bremsstrahlung correction=NRC
 		density correction file = beryllium
 	:stop beryllium:
 	
 	### Air
 	:start air:
-		# medium=AIR700ICRU
-		rho=1.2048E-03
-		elements=C,N,O,AR
-		mass fractions=1.24000E-04,7.55200E-01,2.31800E-01,1.28300E-02
 		bremsstrahlung correction=NRC
 		gas pressure = 1.0
 		density correction file = air_dry_nearsealevel
@@ -10200,60 +10188,36 @@
 
 	### Aluminum
 	:start aluminum:
-		# medium=AL700ICRU
-		rho=2.7020
-		elements=AL
-		number of atoms=1
 		bremsstrahlung correction=NRC
 		density correction file = aluminum
 	:stop aluminum:
 
 	### Stainless steel
 	:start steel:
-		# medium=STEEL700ICRU
-		rho=8.06
-		elements=C,SI,CR,MN,FE,NI
-		mass fractions=1.00000E-03,7.00000E-03,1.80000E-01,1.00000E-02,7.12000E-01,9.00000E-02
 		bremsstrahlung correction=NRC
 		density correction file = steel_stainless_type302
 	:stop steel:
 
 	### Pb
 	:start pb:
-		# medium=PB700ICRU
-		rho=1.1340E+01
-		elements=PB
-		number of atoms=1
 		bremsstrahlung correction=NRC
 		density correction file = lead
 	:stop pb:
 
 	### Titanium
 	:start titanium:
-		# medium=TI700ICRU
-		rho=4.54
-		elements=TI
-		number of atoms=1
 		bremsstrahlung correction=NRC
 		density correction file=titanium
 	:stop titanium:
 
 	### Water
 	:start water:
-		# medium=H2O700ICRU
-		#rho=1.0
-		#elements=H,O
-		#number of atoms=2,1
 		bremsstrahlung correction=NRC
 		density correction file= water_icru90
 	:stop water:
 
-
-    ## check icru700
+    ## carbonate
     :start carbonate:
-        #ho=1.2
-        #elements=C,H,O
-        #number of atoms=15,16,2
         bremsstrahlung correction=NRC
         density correction file = polycarbonate__makrolon___lexan_
     :stop carbonate:
