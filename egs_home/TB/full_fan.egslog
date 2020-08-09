@@ -2,27 +2,27 @@
 
 ======================== geometry =====================
  type = EGS_UnionGeometry
- name = obi
- number of regions = 1920
+ name = blades_test
+ number of regions = 1440
  geometries:
-   prim_coll_and_blades_and_ff (type EGS_UnionGeometry)
-   cover (type EGS_XYZGeometry)
-   air_block (type EGS_XYZGeometry)
-   air_block1 (type EGS_XYZGeometry)
+   prim_coll_and_blades (type EGS_UnionGeometry)
+   detect1 (type EGS_XYZGeometry)
+   air (type EGS_XYZGeometry)
+   air_prim_to_detector1 (type EGS_XYZGeometry)
 =======================================================
 
 
 The simulation uses the following source:
 =========================================
- Isotropic source from a shape of type ellipse with monoenergetic 0.125 MeV, photons
+ Transformed Parallel beam from a shape of type sphere with monoenergetic 0.125 MeV, electrons
 
 
 Random number generator:
 ============================================
   type                = ranmar
   high resolution     = no
-  initial seeds       = 33 98
-  numbers used so far = 22879104
+  initial seeds       = 33 116
+  numbers used so far = 1926909696
 
 
 The following ausgab objects are included in the simulation
@@ -35,9 +35,35 @@ Particle Track Scoring (tracks)
  - Scoring electron tracks     = NO
  - Scoring positron tracks     = NO
  - First event to score        = 0
- - Last event to score         = 100000
+ - Last event to score         = 5000000
  - Track buffer size           = 1024
- - Output file name            = /home/miia/EGSnrc/egs_home/TB/full_fan_w2_w2.ptracks
+ - Output file name            = /home/miia/EGSnrc/egs_home/TB/full_fan_w20_w20.ptracks
+
+
+*******************************************
+Dose Scoring Object (dose)
+*******************************************
+
+ - Regions in dose calculator :9
+
+
+--------------------------------------
+ medium         rho/[g/cm**3]
+--------------------------------------
+target_material 16.68
+mo_graphite      2.19
+beryllium        1.85
+steel            8.06
+oil              0.89
+aluminum         2.70
+air              0.00
+pb              11.35
+titanium         4.54
+carbonate        1.20
+water            1.00
+--------------------------------------
+
+*******************************************
 
 
 
@@ -46,15 +72,17 @@ Particle Track Scoring (tracks)
 The following media are defined:
 ================================
 
-  0  air                      AE= 0.5120 AP= 0.0100 0
-  1  beryllium                AE= 0.5120 AP= 0.0100 1
-  2  steel                    AE= 0.5120 AP= 0.0100 2
-  3  oil                      AE= 0.5120 AP= 0.0100 3
-  4  aluminum                 AE= 0.5120 AP= 0.0100 4
-  5  pb                       AE= 0.5120 AP= 0.0100 5
-  6  titanium                 AE= 0.5120 AP= 0.0100 6
-  7  carbonate                AE= 0.5120 AP= 0.0100 7
-  8  water                    AE= 0.5120 AP= 0.0100 8
+  0  target_material          AE= 0.5120 AP= 0.0100 0
+  1  mo_graphite              AE= 0.5120 AP= 0.0100 1
+  2  beryllium                AE= 0.5120 AP= 0.0100 2
+  3  steel                    AE= 0.5120 AP= 0.0100 3
+  4  oil                      AE= 0.5120 AP= 0.0100 4
+  5  aluminum                 AE= 0.5120 AP= 0.0100 5
+  6  air                      AE= 0.5120 AP= 0.0100 6
+  7  pb                       AE= 0.5120 AP= 0.0100 7
+  8  titanium                 AE= 0.5120 AP= 0.0100 8
+  9  carbonate                AE= 0.5120 AP= 0.0100 9
+ 10  water                    AE= 0.5120 AP= 0.0100 10
 
 
 Transport parameter and cross section options:
@@ -89,32 +117,69 @@ Electron-step algorithm                           EGSnrc
 
                       Suming the following .egsdat files:
 =======================================================================
- 1 full_fan_w1.egsdat             ncase=36630          cpu=6.45       
- 2 full_fan_w2.egsdat             ncase=33300          cpu=5.67       
- 3 full_fan_w3.egsdat             ncase=29980          cpu=5.44       
- 4 full_fan_w4.egsdat             ncase=27500          cpu=4.97       
+ 1 full_fan_w1.egsdat             ncase=550000         cpu=156.12     
+ 2 full_fan_w2.egsdat             ncase=450000         cpu=147.20     
+ 3 full_fan_w3.egsdat             ncase=500000         cpu=154.93     
+ 4 full_fan_w4.egsdat             ncase=500000         cpu=148.59     
+ 5 full_fan_w5.egsdat             ncase=500000         cpu=156.56     
+ 6 full_fan_w6.egsdat             ncase=450000         cpu=147.90     
+ 7 full_fan_w7.egsdat             ncase=550000         cpu=157.05     
+ 8 full_fan_w8.egsdat             ncase=450000         cpu=146.57     
+ 9 full_fan_w9.egsdat             ncase=500000         cpu=154.24     
+10 full_fan_w10.egsdat            ncase=500000         cpu=161.41     
+11 full_fan_w11.egsdat            ncase=450000         cpu=147.31     
+12 full_fan_w12.egsdat            ncase=550000         cpu=153.51     
+13 full_fan_w13.egsdat            ncase=450000         cpu=150.71     
+14 full_fan_w14.egsdat            ncase=500000         cpu=156.12     
+15 full_fan_w15.egsdat            ncase=550000         cpu=160.95     
+16 full_fan_w16.egsdat            ncase=500000         cpu=155.61     
+17 full_fan_w17.egsdat            ncase=500000         cpu=147.38     
+18 full_fan_w18.egsdat            ncase=550000         cpu=151.80     
+19 full_fan_w19.egsdat            ncase=500000         cpu=156.57     
+20 full_fan_w20.egsdat            ncase=500000         cpu=156.30     
 =======================================================================
-                            Total ncase=127410         cpu=22.53      
+                            Total ncase=10000000       cpu=3066.83    
 
 
 
 Finished simulation
 
 Total cpu time for this run:            0.00 (sec.) 0.0000(hours)
-CPU time including previous runs:       22.53 (sec.) 0.0063 (hours)
-Histories per hour:                     2.03585e+07   
-Number of random numbers used:          89432919      
-Number of electron CH steps:            770831        
-Number of all electron steps:           1.91254e+07   
+CPU time including previous runs:       3066.83 (sec.) 0.8519 (hours)
+Histories per hour:                     1.17385e+07   
+Number of random numbers used:          38524538420   
+Number of electron CH steps:            4.94081e+08   
+Number of all electron steps:           7.9236e+09    
 
 Particle Track Scoring (tracks)
 ======================================================
-   Total events scored:     33300
-   Total tracks scored:     38732
+   Total events scored:     500000
+   Total tracks scored:     16078
    Still being scored:      0
-   Output file name:        /home/miia/EGSnrc/egs_home/TB/full_fan_w2_w2.ptracks
+   Output file name:        /home/miia/EGSnrc/egs_home/TB/full_fan_w20_w20.ptracks
 
 
+======================================================
+Dose Scoring Object(dose)
+======================================================
+=> last case = 10000000 fluence = 1.6102e+06
 
-End of run                                             Fri May 29 11:17:07 2020
+==> Summary of region dosimetry (per fluence)
+ ir  medium         rho/[g/cm3]  V/cm3    Edep/[MeV*cm2]            D/[Gy*cm2]         
+---------------------------------------------------------------------------------------
+360 water             0.998     0.3000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+361 water             0.998     0.6600 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+362 water             0.998     0.3000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+363 water             0.998     0.3000 1.0871e-10 +/- 100.000% 5.8167e-20 +/- 100.000%
+364 water             0.998     0.6500 1.9223e-07 +/- 29.013 % 4.7473e-17 +/- 29.013 %
+365 water             0.998     0.3000 8.2459e-10 +/- 100.000% 4.4122e-19 +/- 100.000%
+366 water             0.998     0.3000 2.1523e-09 +/- 100.000% 1.1516e-18 +/- 100.000%
+367 water             0.998     0.6600 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+368 water             0.998     0.3000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+---------------------------------------------------------------------------------------
+
+======================================================
+
+
+End of run                                             Sun Aug  9 22:24:51 2020
 ================================================================================

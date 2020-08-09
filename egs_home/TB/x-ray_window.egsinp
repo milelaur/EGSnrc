@@ -1,0 +1,41 @@
+################################
+#
+# X-ray window of TrueBeam kV imaging System
+#
+################################
+:start geometry definition:
+	### First layer vacuum between source and x-ray window
+	:start geometry:
+        name = xray_window
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = 0 0 -1.45 0 0 4.075
+        :start layer:
+            thickness = 4.45
+            top radii = 2.7261
+            bottom radii = 2.7261
+            media = vacuum
+        :stop layer:
+		:start layer:
+            thickness = 0.155
+            top radii = 2.0 2.7261
+            bottom radii = 2.0 2.7261
+            media = beryllium steel
+        :stop layer:
+        # 22.3mm diameter plus surrounding aluminum
+        :start layer:
+            thickness = 0.645
+            top radii = 2.7261
+            bottom radii = 2.7261
+            media = oil
+        :stop layer:
+		:start layer:
+            thickness = 0.275
+            top radii = 2.7261
+            bottom radii = 2.7261
+            media = aluminum
+        :stop layer:
+    :stop geometry:
+
+    simulation geometry = xray_window
+:stop geometry definition:

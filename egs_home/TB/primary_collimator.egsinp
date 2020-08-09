@@ -1,0 +1,54 @@
+################################
+#
+# Primary collimator of TrueBeam kV imaging System
+#
+################################
+:start geometry definition:
+	### Area for primary collimator
+	:start geometry:
+        library = egs_planes
+        type    = EGS_Zplanes
+        positions = 5.92 8.92
+        name    = planes1
+    :stop geometry:
+
+	### Primary collimator opening pyramid
+	:start geometry:
+        library = egs_pyramid
+        type    = EGS_PyramidZ
+        name    = prim_opening
+        points  = 0.7633333333 0.7633333333  -0.7633333333 0.7633333333  -0.7633333333 -0.7633333333  0.7633333333 -0.7633333333
+        tip     = 0 0 -4.58
+    :stop geometry:
+
+	### Primary collimator pyramid
+	:start geometry:
+        library = egs_pyramid
+        type    = EGS_PyramidZ
+        name    = prim_coll
+        points  = 1.5633333333 1.5633333333  -1.5633333333 1.5633333333  -1.5633333333 -1.5633333333  1.5633333333 -1.5633333333
+        tip     = 0 0 -9.38
+    :stop geometry:
+
+	### Adding opening to primary collimator
+    :start geometry:
+        name = primary_coll
+        library = egs_gunion
+        geometries = prim_opening prim_coll
+    :stop geometry:
+
+	### Primary collimator (3cm thick)
+	:start geometry:
+        library = egs_ndgeometry
+        name    = primary_collimator
+        hownear method = 1
+        dimensions = planes1 primary_coll
+		:start media input:
+            media = air pb
+            set medium = 0 0
+            set medium = 1 1
+        :stop media input:
+    :stop geometry:
+
+    simulation geometry = primary_collimator
+:stop geometry definition:

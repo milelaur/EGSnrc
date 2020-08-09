@@ -1,0 +1,38 @@
+################################
+#
+# Anode of TrueBeam kV imaging System
+#
+################################
+:start geometry definition:
+	### Anode and its material definition
+    :start geometry:
+        name = anode_material
+		library = egs_cones
+		type = EGS_ConeStack
+		axis = 0 0 0 0 -0.3 0
+		:start layer:
+			thickness = 0.1
+			top radii = 1.33 1.4
+			bottom radii = 1.33 1.4
+			media = target_material mo_graphite
+		:stop layer:
+		:start layer:
+			thickness = 0.2
+			top radii = 1.4
+			bottom radii = 1.4
+			media = mo_graphite
+		:stop layer:
+    :stop geometry:
+
+	### Rotated so that angle 14 degree from z-axis
+	:start geometry:
+		name        = anode
+		library     = egs_gtransformed
+		my geometry = anode_material
+		:start transformation:
+			rotation    = -0.2419218 0.9702957 0
+		:stop transformation:
+	:stop geometry:
+
+    simulation geometry = anode
+:stop geometry definition:
