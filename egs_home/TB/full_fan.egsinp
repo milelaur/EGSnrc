@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-	ncase = 10000000 # The number of histories to simulate
+	ncase = 100000 # The number of histories to simulate
 :stop run control:
 
 ################################
@@ -49,10 +49,17 @@
 	################################
     ### Faceplate
     ################################
-	:start geometry:
+    # Old one
+	#:start geometry:
+    #    library = egs_glib
+    #    name = faceplate
+    #    include file = faceplate.egsinp
+    #:stop geometry:
+
+    :start geometry:
         library = egs_glib
         name = faceplate
-        include file = faceplate.egsinp
+        include file = faceplateReal.egsinp
     :stop geometry:
 
     ################################
@@ -71,7 +78,7 @@
 	:start geometry:
         library = egs_glib
         name = blades
-        include file = blades.egsinp
+        include file = bladesFF.egsinp
     :stop geometry:
 
 
@@ -148,7 +155,7 @@
         type = EGS_XYZGeometry
         x-planes = -7.1 7.1
         y-planes = -7.1 7.1
-        z-planes = 5.7 14.8
+        z-planes = 5.7 18.5
         :start media input:
             media = air
         :stop media input:
@@ -161,7 +168,7 @@
         type = EGS_XYZGeometry
         x-planes = -7.1 7.1
         y-planes = -7.1 7.1
-        z-planes = 17.5 18.5
+        z-planes = 17 18.5
         :start media input:
             media = air
         :stop media input:
@@ -171,7 +178,7 @@
     :start geometry:
         name    = obi
         library = egs_gunion
-        geometries = prim_coll_and_blades_and_ff air air_block air_block1
+        geometries = prim_coll_and_blades_and_ff air air_block
     :stop geometry:
 
 	################################
@@ -275,10 +282,10 @@
 	# simulation geometry = prim_coll_test
 
     ### Use the geometry with this name for testing blades
-	simulation geometry = blades_test
+	# simulation geometry = blades_test
 
 	### Use the geometry with this name for the simulation
-	# simulation geometry = obi
+	simulation geometry = obi
 
 :stop geometry definition:
 
