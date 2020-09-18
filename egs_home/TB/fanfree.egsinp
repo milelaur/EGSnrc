@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-	ncase = 10000000 # The number of histories to simulate
+	ncase = 200000 # The number of histories to simulate
 :stop run control:
 
 ################################
@@ -272,13 +272,13 @@
 	################################
 
 	### Testing source
-	simulation geometry = source_test
+	# simulation geometry = source_test
 
     ### Use the geometry with this name for testing primary collimator
 	# simulation geometry = prim_coll_test
 
     ### Use the geometry with this name for testing blades
-	# simulation geometry = blades_test
+	simulation geometry = blades_test
 
 	### Use the geometry with this name for the simulation
 	# simulation geometry = obi
@@ -293,7 +293,7 @@
 
 	### Cutoff energies, in MeV
 	ae = 0.512 # lowest energy for electrons (kinetic+0.511)
-	ap = 0.01 # lowest energy for photons (kinetic)
+	ap = 0.001 # lowest energy for photons (kinetic)
 	ue = 1.511 # maximum energy for electrons (kinetic+0.511)
 	up = 1 # maximum energy for photons (kinetic)
 
@@ -426,29 +426,61 @@
 		library = egs_track_scoring
 		score electrons = no
 		score positrons = no
-    	stop scoring   = 10000000
+    	stop scoring   = 1000000
 	:stop ausgab object:
 
 	### Dose scoring object
 	:start ausgab object:
 		name = dose
 		library = egs_dose_scoring
-		dose regions = 360
-		volume = 10
+		dose regions = 74
+		volume = 1
 	:stop ausgab object:
 :stop ausgab object definition:
+
+################################
+### MC PARAMETERS
+################################
+:Start MC Transport Parameter:
+
+    Global ECUT= 0.512
+    Global PCUT= 0.001
+    Global SMAX= 1e10
+    ESTEPE= 0.25
+    XIMAX= 0.5
+    Boundary crossing algorithm= EXACT
+    Skin depth for BCA= 3
+    Electron-step algorithm= PRESTA-II
+    Spin effects= On
+    Brems angular sampling= KM
+    Brems cross sections= NRC
+    Triplet production= On
+    Bound Compton scattering= On
+    Compton cross sections= default
+    Radiative Compton corrections= On
+    Pair angular sampling= KM
+    Pair cross sections= NRC
+    Photoelectron angular sampling= On
+    Rayleigh scattering= On
+    Atomic relaxations= On
+    Electron impact ionization= On
+    Photon cross sections= mcdf-xcom
+    Photon cross-sections output= Off
+    Photonuclear attenuation= On
+:Stop MC Transport Parameter:
+
 
 ##############################################################################
 ### SCORING OPTIONS
 ##############################################################################
 :start scoring options:
 
-    calculation type = dose
+   calculation type = dose
 
     :start calculation geometry:
         geometry name   = test 
-        cavity regions  = 360
-        cavity mass     = 10
+        cavity regions  = 74
+        cavity mass     = 1
     :stop calculation geometry:
 
 :stop scoring options:

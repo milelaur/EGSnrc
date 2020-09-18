@@ -40,7 +40,7 @@
 	### Primary collimator (3cm thick)
 	:start geometry:
         library = egs_ndgeometry
-        name    = primary_collimator
+        name    = primary_collim
         hownear method = 1
         dimensions = planes1 primary_coll
 		:start media input:
@@ -48,6 +48,16 @@
             set medium = 0 0
             set medium = 1 1
         :stop media input:
+    :stop geometry:
+
+    ### Move primary collimator 0.448 mm upstream, so that it is in contact to faceplate
+    :start geometry:
+        library  = egs_gtransformed
+        my geometry = primary_collim
+        :start transformation:
+            translation = 0 0 -0.0448
+        :stop transformation:
+        name     = primary_collimator
     :stop geometry:
 
     simulation geometry = primary_collimator
