@@ -477,10 +477,17 @@
 
    calculation type = dose
 
+    #:start calculation geometry:
+    #    geometry name   = test 
+    #    cavity regions  = 74
+    #    cavity mass     = 1
+    #:stop calculation geometry:
+
     :start calculation geometry:
-        geometry name   = test 
-        cavity regions  = 74
-        cavity mass     = 1
+        geometry name    = blades_test
+        cavity regions   = 2
+        #excluded regions = 0  # exclude particles passing through these regions
+        cavity mass      = 1  # 5 cm radius air sphere
     :stop calculation geometry:
 
 :stop scoring options:
