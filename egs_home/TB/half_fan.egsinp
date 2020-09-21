@@ -196,7 +196,7 @@
         library = egs_ndgeometry
         type = EGS_XYZGeometry
         x-planes = -1.5 1.5
-        y-planes = -0.8 2.5
+        y-planes = -1.3 2.5
         z-planes = -1.5 10
         :start media input:
             media = vacuum
@@ -370,21 +370,25 @@
         density correction file = polycarbonate__makrolon___lexan_
     :stop carbonate:
 
-	### Target material (95% W and 5% Rh)
+	### Target material (95% W (rho=19.3) and 5% Re (rho=21.02))
 	:start target_material:
-		rho=16.675
-		elements=W,Rh
+		rho=19.386
+		elements=W,Re
 		mass fractions=0.95,0.05
 		bremsstrahlung correction=NRC
     :stop target_material:
 
-	### Molybdenum(rho=2.26)/graphite(rho=2.13)
-	:start mo_graphite:
-		rho=2.195
-		elements=C,MO
-		mass fractions=0.5,0.5
+    ### Molybdenum
+	:start molybdenum:
 		bremsstrahlung correction=NRC
-    :stop mo_graphite:
+        density correction file = molybdenum
+    :stop molybdenum:
+
+    ### Graphite(rho=2.13)
+	:start graphite:
+		bremsstrahlung correction=NRC
+        density correction file = carbon_graphite_icru90_2.0g_cm3
+    :stop graphite:
 
 :stop media definition:
 
@@ -511,6 +515,7 @@
 	set color = titanium 0 170 127 250
     set color = carbonate 170 85 0 200
 	set color = target_material 85 225 127 200
-	set color = mo_graphite 170 85 127 200
+    set color = molybdenum 0 170 225 200
+	set color = graphite 170 85 127 200
 	set color = vacuum 225 225 225 50
 :stop view control:
