@@ -1,7 +1,7 @@
 
 ###############################################################################
 #
-#  EGSnrc egs++ tutor7pp application sample input file
+#  EGSnrc egs++ tutor7pp application sample input with particle tracks
 #  Copyright (C) 2015 National Research Council Canada
 #
 #  This file is part of EGSnrc.
@@ -21,13 +21,14 @@
 #
 ###############################################################################
 #
-#  Author:          Iwan Kawrakow, 2005
+#  Author:          Iwan Kawrakow, 2009
 #
 #  Contributors:
 #
 ###############################################################################
 #
-#  An example input file for tutor7pp.
+#  An example input file for tutor7pp that illustrates the generation of
+#  particle tracks
 #
 ###############################################################################
 
@@ -37,9 +38,8 @@
 #
 :start geometry definition:
     :start geometry:
-        library = egs_planes
-        type = EGS_Zplanes
-        positions = 0 0.1
+        library = egs_box
+        box size = 0.2 0.2 0.2
         name = slab
         :start media input:
             media = TA521ICRU
@@ -57,7 +57,7 @@
         name = the_source
         :start shape:
             type = point
-            position = 0 0 1e-7
+            position = 0 0 -0.1
         :stop shape:
         direction = 0 0 1
         charge = -1
@@ -77,20 +77,15 @@
 #
 :start MC transport parameter:
 
-    Global ECUT = 1.5
-    Global PCUT = 0.1
+    #Global ECUT = 1.5
+    #Global PCUT = 0.1
 
 :stop MC transport parameter:
 
 
 ######################################## Run control
 :start run control:
-    ncase = 1000000
-    statistical accuracy sought = 1  # this input is optional
-    max cpu hours allowed = 15       # this input is optional
-    #calculation = combine   # could als be first or restart or analyze
-                             # the input is optional and if missing, a
-                             # fresh calculation will be done
+    ncase = 2000
 :stop run control:
 
 ######################################### Scoring options.
@@ -100,12 +95,17 @@
 #        distribution.
 #
 :start scoring options:
-    pulse height regions = 1  # a list of regions to score pulse height
-                              # distributions
-    pulse height bins = 100   # how many bins to use for each pulse height
-                              # distribution. This must be either a single
-                              # input, in which case all pulse height
-                              # distributions will use this number of bins,
-                              # or the same number of inputs as pulse height
-                              # regions.
 :stop scoring options:
+
+:start ausgab object definition:
+
+    :start ausgab object:
+
+        library = egs_track_scoring
+        score photons   = yes
+        score electrons = yes
+        score positrons = yes
+
+    :stop ausgab object:
+
+:stop ausgab object definition:

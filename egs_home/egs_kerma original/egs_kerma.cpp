@@ -1,3 +1,74 @@
+/*
+###############################################################################
+#
+#  EGSnrc egs++ egs_kerma application
+#  Copyright (C) 2016 National Research Council Canada
+#
+#  This file is part of EGSnrc.
+#
+#  EGSnrc is free software: you can redistribute it and/or modify it under
+#  the terms of the GNU Affero General Public License as published by the
+#  Free Software Foundation, either version 3 of the License, or (at your
+#  option) any later version.
+#
+#  EGSnrc is distributed in the hope that it will be useful, but WITHOUT ANY
+#  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+#  FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for
+#  more details.
+#
+#  You should have received a copy of the GNU Affero General Public License
+#  along with EGSnrc. If not, see <http://www.gnu.org/licenses/>.
+#
+###############################################################################
+#
+#  Author:        Ernesto Mainegra-Hing, 2016
+#
+#  Contributors:
+#
+###############################################################################
+#
+#  C++ user code for estimating the quantity kerma in a volume.
+#
+#  Additionally, the fluence in the volume can be also calculated if
+#  requested in the scoring options input block. Two calculation options
+#  are available:
+#
+#  - If a cavity geometry provided, a forced detection scoring technique
+#    can be used to score kerma and fluence for photons reaching the geometry
+#    that haven't been in any of the exclusion regions. Photons interacting
+#    inside the cavity are NOT included.
+#
+#  - If no geometry provided, an analog TL scoring 'a la FLURZnrc' is used
+#    for kerma and fluence.
+#
+#  Required: E*muen or E*mutr file for scoring either collision or total kerma
+#  --------  for the cavity medium
+#
+#  Calculations for multiple geometries.
+#
+#  Kerma ratios can be calculated using a correlated scoring technique.
+#
+#  Exclusion of user specified regions.
+#
+#  Scoring volume regions must be provided (consider using labels).
+#
+#  Fluence scoring must be specifically requested.
+#
+#  Dose calculation in the cavity can be done using a dose scoring ausgab
+#  object.This is useful to check the validity of the kerma-approximation.
+#
+#  NOTE 1 : Dose calculation with very high ECUT produces an estimate of
+#           total kerma, not collision kerma.
+#
+#  NOTE 2 : dose scoring ONLY makes sense for ONE calculation geometry.
+#           If more than one geometry defined, dose scoring should NOT
+#           be used as it would score dose for all geometries in one
+#           scoring array.
+#
+###############################################################################
+*/
+
+
 #include <cstdlib>
 // We derive from EGS_AdvancedApplication => need the header file.
 #include "egs_advanced_application.h"
@@ -86,6 +157,25 @@ public:
             delete [] scg;
         }
     };
+
+    /*! Describe the application.  */
+    void describeUserCode() const {
+        egsInformation(
+            "\n               *************************************************"
+            "\n               *                                               *"
+            "\n               *                  egs_kerma                    *"
+            "\n               *                                               *"
+            "\n               *************************************************"
+            "\n\n");
+        egsInformation("This is EGS_KermaApplication %s based on\n"
+                       "      EGS_AdvancedApplication %s\n\n",
+                       egsSimplifyCVSKey(revision).c_str(),
+                       egsSimplifyCVSKey(base_revision).c_str());
+
+    };
+
+    /*! Describe the simulation */
+    void describeSimulation();
 
     /*! Initialize scoring.  */
     int initScoring();
@@ -661,6 +751,8 @@ private:
     static string revision;
 };
 
+string EGS_KermaApplication::revision = "$Revision: 1.0 $";
+
 extern __extc__  void
 F77_OBJ_(select_photon_mfp,SELECT_PHOTON_MFP)(EGS_Float *dpmfp) {
     EGS_Application *a = EGS_Application::activeApplication();
@@ -879,7 +971,13 @@ int EGS_KermaApplication::initScoring() {
             scale.push_back("linear");
             scale.push_back("logarithmic");
             flu_s = aux->getInput("scale",scale,0);
-            
+            /* Checks to ensure no scoring outside array bounds */
+            /*            EGS_Float Emax = source ? source->getEmax() : 0;
+                        //egsInformation("\n=> Emax = %g MeV\n\n",Emax);
+                        if ( flu_Emax <= Emax ) {
+                           flu_Emax = Emax + 2*(flu_Emax - flu_Emin)/flu_nbin;
+                           flu_nbin += 2;
+                        }*/
             if (!er1 && !er2 && !er3) {
                 flug  = new EGS_ScoringArray * [ngeom];
                 flugT = new EGS_ScoringArray(ngeom);
@@ -951,6 +1049,28 @@ int EGS_KermaApplication::initScoring() {
             egsWarning("\n\n********** No cavity geometry entry found!\n"
                        " This is required for track-length Kerma estimation using forced detection!\n");
         }
+        /* No ausgab call if using forced detection */
+//         for(int call=BeforeTransport; call<=UnknownCall; ++call)
+//             setAusgabCall((AusgabCall)call,false);
+//         if (!cgeom)
+        /* Ausgab call before trasnporting particle for analog kerma scoring */
+//             setAusgabCall(BeforeTransport,true);
+        /* ******************************************************
+         * Enable all ausgab calls for energy deposition scoring
+         *
+         * Only possible for one calculation geometry. Implement
+         * dose scoring in the ausgab routine if needed for all
+         * geometries.
+         *
+         *********************************************************/
+//         if (ngeom == 1){
+//            vector<string> allow_dose;
+//            allow_dose.push_back("no"); allow_dose.push_back("yes");
+//            int score_dose = options->getInput("allow dose scoring",allow_dose,0);
+//            if( score_dose )
+//              for(int call=BeforeTransport; call<=ExtraEnergy; ++call)
+//                  setAusgabCall((AusgabCall)call,true);
+//         }
 
         delete options;
     }
@@ -960,6 +1080,48 @@ int EGS_KermaApplication::initScoring() {
     }
 
     return 0;
+}
+
+void EGS_KermaApplication::describeSimulation() {
+    EGS_AdvancedApplication::describeSimulation();
+    egsInformation("**********************************************\n"
+                   "   Volumetric Track-length Kerma estimation \n"
+                   "**********************************************\n\n");
+    if (cgeom)
+        egsInformation("---> Scoring using forced detection (FD)\n"
+                       "     for photons aimed at geometry %s\n\n",
+                       cgeom->getName().c_str());
+    else
+        egsInformation("---> Scoring only when photon enters volume\n"
+                       "     including those scattered inside the geometry.\n"
+                       "     Fluence is equivalent to FLURZ total fluence!\n\n");
+    egsInformation("\n\n");
+    for (int j=0; j<ngeom; j++) {
+        egsInformation("Calculation geometry: %s\n",
+                       geoms[j]->getName().c_str());
+        geoms[j]->printInfo();
+        for (int i=0; i<geoms[j]->regions(); i++) {
+            if (is_cavity[j][i]) {
+                egsInformation("  cavity region %d, medium = %d\n\n",
+                               i,geoms[j]->medium(i));
+            }
+        }
+    }
+    for (int i=0; i<ngeom; i++) {
+        egsInformation("excluded regions for geometry %s :",
+                       geoms[i]->getName().c_str());
+        int nexcl = 0;
+        for (int j=0; j<geoms[i]->regions(); j++) {
+            if (is_excluded[i][j]) {
+                egsInformation(" %d",j);
+                nexcl++;
+            }
+        }
+        if (!nexcl) {
+            egsInformation(" NONE");
+        }
+        egsInformation("\n");
+    }
 }
 
 #ifdef BUILD_APP_LIB

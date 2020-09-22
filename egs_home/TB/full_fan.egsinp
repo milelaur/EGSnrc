@@ -445,7 +445,6 @@
 ### MC PARAMETERS
 ################################
 :Start MC Transport Parameter:
-
     Global ECUT= 0.512
     Global PCUT= 0.001
     Global SMAX= 1e10
@@ -476,17 +475,17 @@
 ##############################################################################
 ### SCORING OPTIONS
 ##############################################################################
-#:start scoring options:
+:start scoring options:
 
-#    calculation type = dose
+    calculation type = dose
 
-#    :start calculation geometry:
-#        geometry name   = test 
-#        cavity regions  = 292
-#        cavity mass     = 1
-#    :stop calculation geometry:
+    :start calculation geometry:
+        geometry name   = beryllium 
+        cavity regions  = 74
+        cavity mass     = 1
+    :stop calculation geometry:
 
-#:stop scoring options:
+:stop scoring options:
 
 
 ################################

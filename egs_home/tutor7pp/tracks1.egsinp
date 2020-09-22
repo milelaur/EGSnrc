@@ -42,7 +42,7 @@
         box size = 0.2 0.2 0.2
         name = slab
         :start media input:
-            media = TA
+            media = TA521ICRU
         :stop media input:
     :stop geometry:
     simulation geometry = slab
@@ -77,15 +77,15 @@
 #
 :start MC transport parameter:
 
-    #Global ECUT = 1.5
-    #Global PCUT = 0.1
+    Global ECUT = 1.5
+    Global PCUT = 0.1
 
 :stop MC transport parameter:
 
 
 ######################################## Run control
 :start run control:
-    ncase = 2000
+    ncase = 20000
 :stop run control:
 
 ######################################### Scoring options.
