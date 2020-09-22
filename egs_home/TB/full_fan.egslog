@@ -1,0 +1,190 @@
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = prim_coll_test
+ number of regions = 504
+ geometries:
+   anode (type EGS_XYZGeometryT)
+   window_and_pb_port (type EGS_StackGeometry)
+   faceplate (type EGS_XYZGeometry)
+   primary_collimator (type EGS_NDGeometryT)
+   detect (type EGS_XYZGeometry)
+   air (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Transformed Parallel beam from a shape of type sphere with monoenergetic 0.125 MeV, electrons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 115
+  numbers used so far = 3691392
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = NO
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 1
+ - Track buffer size           = 1024
+ - Output file name            = /home/miia/EGSnrc/egs_home/TB/full_fan_w19_w19.ptracks
+
+
+*******************************************
+Dose Scoring Object (dose)
+*******************************************
+
+ - Regions in dose calculator :9
+
+
+--------------------------------------
+ medium         rho/[g/cm**3]
+--------------------------------------
+graphite         2.00
+target_material 19.39
+molybdenum      10.22
+beryllium        1.85
+steel            8.06
+oil              0.89
+aluminum         2.70
+air              0.00
+pb              11.35
+titanium         4.54
+carbonate        1.20
+water            1.00
+--------------------------------------
+
+*******************************************
+
+
+
+
+
+The following media are defined:
+================================
+
+  0  graphite                 AE= 0.5120 AP= 0.0010 0
+  1  target_material          AE= 0.5120 AP= 0.0010 1
+  2  molybdenum               AE= 0.5120 AP= 0.0010 2
+  3  beryllium                AE= 0.5120 AP= 0.0010 3
+  4  steel                    AE= 0.5120 AP= 0.0010 4
+  5  oil                      AE= 0.5120 AP= 0.0010 5
+  6  aluminum                 AE= 0.5120 AP= 0.0010 6
+  7  air                      AE= 0.5120 AP= 0.0010 7
+  8  pb                       AE= 0.5120 AP= 0.0010 8
+  9  titanium                 AE= 0.5120 AP= 0.0010 9
+ 10  carbonate                AE= 0.5120 AP= 0.0010 10
+ 11  water                    AE= 0.5120 AP= 0.0010 11
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     Off
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          On
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 full_fan_w1.egsdat             ncase=10500          cpu=2.81       
+ 2 full_fan_w2.egsdat             ncase=8000           cpu=2.32       
+ 3 full_fan_w3.egsdat             ncase=7500           cpu=2.32       
+ 4 full_fan_w4.egsdat             ncase=5000000        cpu=1322.93    
+ 5 full_fan_w5.egsdat             ncase=8000           cpu=2.46       
+ 6 full_fan_w6.egsdat             ncase=5000000        cpu=1352.59    
+ 7 full_fan_w7.egsdat             ncase=5000000        cpu=1344.39    
+ 8 full_fan_w8.egsdat             ncase=8000           cpu=2.30       
+ 9 full_fan_w9.egsdat             ncase=6000           cpu=1.58       
+10 full_fan_w10.egsdat            ncase=10000          cpu=2.62       
+11 full_fan_w11.egsdat            ncase=5000000        cpu=1346.60    
+12 full_fan_w12.egsdat            ncase=5000000        cpu=1340.85    
+13 full_fan_w13.egsdat            ncase=5000000        cpu=1321.88    
+14 full_fan_w14.egsdat            ncase=5000000        cpu=1349.30    
+15 full_fan_w15.egsdat            ncase=10000          cpu=2.40       
+16 full_fan_w16.egsdat            ncase=5000           cpu=1.36       
+17 full_fan_w17.egsdat            ncase=8500           cpu=2.57       
+18 full_fan_w18.egsdat            ncase=9500           cpu=2.72       
+19 full_fan_w19.egsdat            ncase=1000           cpu=0.26       
+20 full_fan_w20.egsdat            ncase=8000           cpu=2.40       
+=======================================================================
+                            Total ncase=35100000       cpu=9406.66    
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.00 (sec.) 0.0000(hours)
+CPU time including previous runs:       9406.66 (sec.) 2.6130 (hours)
+Histories per hour:                     1.3433e+07    
+Number of random numbers used:          131442625485  
+Number of electron CH steps:            1.73809e+09   
+Number of all electron steps:           2.67503e+10   
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     1
+   Total tracks scored:     1
+   Still being scored:      0
+   Output file name:        /home/miia/EGSnrc/egs_home/TB/full_fan_w19_w19.ptracks
+
+
+======================================================
+Dose Scoring Object(dose)
+======================================================
+=> last case = 35100000 fluence = 5.6518e+06
+
+==> Summary of region dosimetry (per fluence)
+ ir  medium         rho/[g/cm3]  V/cm3    Edep/[MeV*cm2]            D/[Gy*cm2]         
+---------------------------------------------------------------------------------------
+288 water             0.998     1.0000 6.7479e-09 +/- 100.000% 1.0832e-18 +/- 100.000%
+289 water             0.998     1.0000 2.8382e-08 +/- 40.807 % 4.5559e-18 +/- 40.807 %
+290 water             0.998     1.0000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+291 water             0.998     1.0000 1.4835e-08 +/- 41.185 % 2.3813e-18 +/- 41.185 %
+292 water             0.998     1.0000 8.7399e-07 +/- 7.767  % 1.4029e-16 +/- 7.767  %
+293 water             0.998     1.0000 3.6816e-08 +/- 37.261 % 5.9098e-18 +/- 37.261 %
+294 water             0.998     1.0000 9.9228e-09 +/- 100.000% 1.5928e-18 +/- 100.000%
+295 water             0.998     1.0000 1.5298e-08 +/- 51.730 % 2.4556e-18 +/- 51.730 %
+296 water             0.998     1.0000 1.4180e-08 +/- 59.328 % 2.2762e-18 +/- 59.328 %
+---------------------------------------------------------------------------------------
+
+======================================================
+
+
+End of run                                             Tue Sep 22 09:51:29 2020
+================================================================================

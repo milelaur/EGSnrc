@@ -1,0 +1,1052 @@
+================================================================================
+EGSnrc version 4 for linux64                           Tue Sep 22 09:51:19 2020
+================================================================================
+configuration........................................................linux
+user code............................................................TB
+pegs file............................................................
+using host...........................................................ubuntu-home
+input file...........................................................full_fan
+output file(s).......................................................full_fan
+number of parallel jobs..............................................20
+job number........................................................... 3
+================================================================================
+In initCrossSections(): spin effects = 1
+Property Photon cross-sections output: 0
+Property Photonuclear attenuation: 1
+Property Bound Compton scattering: 1
+Property Radiative Compton corrections: 1
+Property Rayleigh scattering: 1
+Property Atomic relaxations: 1
+Property Photoelectron angular sampling: 1
+Property Spin effects: 1
+Property Triplet production: 1
+Property Brems cross sections: 2
+Property Brems angular sampling: 1
+Property Pair cross sections: 1
+Property Pair angular sampling: 2
+Property Electron-step algorithm: 2
+Property Boundary crossing algorithm: 0
+ ===> Photonuclear flag:   1
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  1
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  2
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  3
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  4
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  5
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  6
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  7
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  8
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  9
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER 10
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER 11
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER 12
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  1
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  2
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  3
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  4
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  5
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  6
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  7
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  8
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  9
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER 10
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER 11
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER 12
+
+  PEGSLESS INPUT.  CALCULATING ELECTRON CROSS-SECTIONS.
+  density_file carbon_graphite_icru90_2.0g_cm3                                                                                                                                                                                                                                 
+  density_file molybdenum                                                                                                                                                                                                                                                      
+  density_file beryllium                                                                                                                                                                                                                                                       
+  density_file steel_stainless_type302                                                                                                                                                                                                                                         
+  density_file aluminum                                                                                                                                                                                                                                                        
+  density_file air_dry_nearsealevel                                                                                                                                                                                                                                            
+  density_file lead                                                                                                                                                                                                                                                            
+  density_file titanium                                                                                                                                                                                                                                                        
+  density_file polycarbonate__makrolon___lexan_                                                                                                                                                                                                                                
+  density_file water_icru90                                                                                                                                                                                                                                                    
+
+  Medium data: 
+
+ AE =    5.12000E-01 MeV,  UE =    1.51100E+00 MeV
+ AP =    1.00000E-03 MeV,  UP =    1.00000E+00 MeV
+
+  No material data file supplied.  Material data obtained from
+  .egsinp file or density correction file.
+
+   Medium: graphite                
+ Sterncid: graphite                
+     rho:    2.00000E+00 g/cm^3
+ Elements: C   
+    rhoz:    1.00000E+00
+      pz:    8.32560E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/carbon_graphite_icru90_2.0g_cm3.density
+
+   Medium: target_material         
+ Sterncid: target_material         
+     rho:    1.93860E+01 g/cm^3
+ Elements: W   RE  
+    rhoz:    9.50000E-01   5.00000E-02
+      pz:    5.16726E-03   2.68528E-04
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+
+   Medium: molybdenum              
+ Sterncid: molybdenum              
+     rho:    1.02200E+01 g/cm^3
+ Elements: MO  
+    rhoz:    1.00000E+00
+      pz:    1.04232E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/molybdenum.density
+
+   Medium: beryllium               
+ Sterncid: beryllium               
+     rho:    1.84800E+00 g/cm^3
+ Elements: BE  
+    rhoz:    1.00000E+00
+      pz:    1.10961E-01
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/beryllium.density
+
+   Medium: steel                   
+ Sterncid: steel                   
+     rho:    8.06000E+00 g/cm^3
+ Elements: C   SI  CR  MN  FE  NI  
+    rhoz:    1.00000E-03   7.00000E-03   1.80000E-01   1.00000E-02   7.12000E-01   9.00000E-02
+      pz:    8.32560E-05   2.49217E-04   3.46167E-03   1.82023E-04   1.27491E-02   1.53296E-03
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/steel_stainless_type302.density
+
+   Medium: oil                     
+ Sterncid: oil                     
+     rho:    8.90550E-01 g/cm^3
+ Elements: H   C   
+    rhoz:    1.00797E+01   2.40223E+02
+      pz:    1.00000E+01   2.00000E+01
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+
+   Medium: aluminum                
+ Sterncid: aluminum                
+     rho:    2.69890E+00 g/cm^3
+ Elements: AL  
+    rhoz:    1.00000E+00
+      pz:    3.70624E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/aluminum.density
+
+   Medium: air                     
+ Sterncid: air                     
+     rho:    1.20479E-03 g/cm^3
+ Elements: C   N   O   AR  
+    rhoz:    1.24000E-04   7.55267E-01   2.31781E-01   1.28270E-02
+      pz:    1.03237E-05   5.39218E-02   1.44869E-02   3.21092E-04
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/air_dry_nearsealevel.density
+
+   Medium: pb                      
+ Sterncid: pb                      
+     rho:    1.13500E+01 g/cm^3
+ Elements: PB  
+    rhoz:    1.00000E+00
+      pz:    4.82649E-03
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/lead.density
+
+   Medium: titanium                
+ Sterncid: titanium                
+     rho:    4.54000E+00 g/cm^3
+ Elements: TI  
+    rhoz:    1.00000E+00
+      pz:    2.08768E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/titanium.density
+
+   Medium: carbonate               
+ Sterncid: carbonate               
+     rho:    1.20000E+00 g/cm^3
+ Elements: H   C   O   
+    rhoz:    5.54910E-02   7.55751E-01   1.88758E-01
+      pz:    5.50522E-02   6.29208E-02   1.17978E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/polycarbonate__makrolon___lexan_.density
+
+   Medium: water                   
+ Sterncid: water                   
+     rho:    9.98000E-01 g/cm^3
+ Elements: H   O   
+    rhoz:    1.11894E-01   8.88106E-01
+      pz:    1.11009E-01   5.55087E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/miia/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/water_icru90.density
+
+
+(Re)-initializing photon cross sections with files from the series: xcom
+
+ Compton cross sections: default
+ Photonuclear cross sections: default
+ Using Compton cross sections from /home/miia/EGSnrc/HEN_HOUSE/data/compton_sigma.data
+ Using photonuclear cross sections from /home/miia/EGSnrc/HEN_HOUSE/data/iaea_photonuc.data
+
+ Reading renormalized photoelectric cross sections ...... done
+
+ Working on medium   1 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   2 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   3 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   4 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   5 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   6 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   7 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   8 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   9 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium  10 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium  11 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium  12 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+
+Reading screened Rutherford MS data ...............  done 
+
+
+Reading spin data base from /home/miia/EGSnrc/HEN_HOUSE/data/spinms.data
+EGSnrc spin data, version 2.0   
+Data generated on a machine with 1234 endianess
+The endianess of this CPU is 1234
+Ranges:      1.00   100.00  0.30054  1.00000
+
+
+  medium    1 .....................  done
+  medium    2 .....................  done
+  medium    3 .....................  done
+  medium    4 .....................  done
+  medium    5 .....................  done
+  medium    6 .....................  done
+  medium    7 .....................  done
+  medium    8 .....................  done
+  medium    9 .....................  done
+  medium   10 .....................  done
+  medium   11 .....................  done
+  medium   12 .....................  done
+  
+  Medium            1  sige =    88.732676887657149        101.89662531002678       monotone =  F F
+  Medium            2  sige =    172.57741978179737        235.40232772540153       monotone =  F F
+  Medium            3  sige =    134.22848806796372        168.69238010014359       monotone =  F F
+  Medium            4  sige =    84.646856620002538        96.504529959621067       monotone =  F F
+  Medium            5  sige =    123.18338032147462        151.05228366131078       monotone =  F F
+  Medium            6  sige =    86.692154941040002        99.318871403923396       monotone =  F F
+  Medium            7  sige =    103.50638592200082        122.48736559039948       monotone =  F F
+  Medium            8  sige =    89.591859601344183        103.21541676401796       monotone =  F F
+  Medium            9  sige =    172.75604562338430        235.60337980532134       monotone =  F F
+  Medium           10  sige =    112.76898329888181        135.76033158188804       monotone =  F F
+  Medium           11  sige =    86.836083862407349        99.513199841636677       monotone =  F F
+  Medium           12  sige =    87.939904387337236        100.98937333497683       monotone =  F F
+  
+  Initializing tmxs for estepe =   0.25000000000000000       and ximax =   0.50000000000000000     
+  
+
+***************** Warning: 
+ You are trying to use radiative Compton corrections
+ without having included rad_compton1.mortran
+Turning radiative Compton corrections OFF ...
+
+
+
+Bound Compton scattering requested, reading data ......  Done
+
+ Initializing Bound Compton scattering ......
+ Medium   1 has   3 shells: 
+   1   10   1  0.33333 0.210E+02     0.285
+   2   11   2  0.33333 0.110E+03     0.011
+   3   12   3  0.33333 0.669E+02     0.011
+ Medium   2 has  42 shells: 
+   1  882   1  0.02567 0.138E+01    69.525
+   2  883   2  0.02567 0.495E+01    12.100
+   3  884   3  0.02567 0.242E+01    11.544
+   4  885   4  0.05135 0.267E+01    10.207
+   5  886   5  0.02567 0.109E+02     2.820
+   6  887   6  0.02567 0.640E+01     2.575
+   7  888   7  0.05135 0.684E+01     2.281
+   8  889   8  0.05135 0.444E+01     1.872
+   9  890   9  0.07702 0.453E+01     1.809
+  10  891  10  0.02567 0.229E+02     0.592
+  11  892  11  0.02567 0.144E+02     0.489
+  12  893  12  0.05135 0.155E+02     0.423
+  13  894  13  0.05135 0.118E+02     0.255
+  14  895  14  0.07702 0.121E+02     0.243
+  15  896  15  0.02567 0.585E+02     0.074
+  16  897  16  0.02567 0.399E+02     0.044
+  17  898  17  0.05135 0.426E+02     0.034
+  18  899  18  0.07702 0.111E+02     0.034
+  19  900  19  0.10270 0.112E+02     0.032
+  20  901  20  0.05135 0.482E+02     0.008
+  21  902  21  0.02567 0.212E+03     0.008
+  22  903   1  0.00133 0.137E+01    71.677
+  23  904   2  0.00133 0.485E+01    12.527
+  24  905   3  0.00133 0.237E+01    11.959
+  25  906   4  0.00267 0.263E+01    10.535
+  26  907   5  0.00133 0.107E+02     2.932
+  27  908   6  0.00133 0.627E+01     2.682
+  28  909   7  0.00267 0.673E+01     2.367
+  29  910   8  0.00267 0.436E+01     1.949
+  30  911   9  0.00400 0.445E+01     1.822
+  31  912  10  0.00133 0.223E+02     0.625
+  32  913  11  0.00133 0.141E+02     0.518
+  33  914  12  0.00267 0.151E+02     0.445
+  34  915  13  0.00267 0.115E+02     0.274
+  35  916  14  0.00400 0.118E+02     0.260
+  36  917  15  0.00133 0.564E+02     0.083
+  37  918  16  0.00133 0.382E+02     0.046
+  38  919  17  0.00267 0.411E+02     0.035
+  39  920  18  0.00400 0.106E+02     0.043
+  40  921  19  0.00534 0.107E+02     0.040
+  41  922  20  0.00267 0.448E+02     0.008
+  42  923  21  0.00200 0.152E+03     0.008
+ Medium   3 has  14 shells: 
+   1  321   1  0.04762 0.271E+01    19.999
+   2  322   2  0.04762 0.986E+01     2.866
+   3  323   3  0.04762 0.493E+01     2.625
+   4  324   4  0.09524 0.508E+01     2.520
+   5  325   5  0.04762 0.241E+02     0.505
+   6  326   6  0.04762 0.144E+02     0.410
+   7  327   7  0.09524 0.148E+02     0.393
+   8  328   8  0.09524 0.102E+02     0.230
+   9  329   9  0.14286 0.103E+02     0.226
+  10  330  10  0.04762 0.625E+02     0.062
+  11  331  11  0.04762 0.419E+02     0.035
+  12  332  12  0.09524 0.423E+02     0.035
+  13  333  13  0.09524 0.475E+02     0.007
+  14  334  14  0.04762 0.149E+03     0.007
+ Medium   4 has   2 shells: 
+   1    5   1  0.50000 0.325E+02     0.112
+   2    6   2  0.50000 0.184E+03     0.009
+ Medium   5 has  45 shells: 
+   1   10   1  0.00036 0.210E+02     0.285
+   2   11   2  0.00036 0.110E+03     0.011
+   3   12   3  0.00036 0.669E+02     0.011
+   4   45   1  0.00107 0.870E+01     1.839
+   5   46   2  0.00107 0.377E+02     0.149
+   6   47   3  0.00107 0.204E+02     0.100
+   7   48   4  0.00214 0.204E+02     0.099
+   8   49   5  0.00107 0.142E+03     0.008
+   9   50   6  0.00107 0.102E+03     0.008
+  10  120   1  0.01486 0.500E+01     5.989
+  11  121   2  0.01486 0.192E+02     0.698
+  12  122   3  0.01486 0.981E+01     0.585
+  13  123   4  0.02971 0.981E+01     0.576
+  14  124   5  0.01486 0.545E+02     0.075
+  15  125   6  0.01486 0.347E+02     0.043
+  16  126   7  0.02971 0.347E+02     0.043
+  17  127   8  0.02971 0.721E+02     0.007
+  18  128   9  0.01486 0.721E+02     0.007
+  19  129   1  0.00078 0.480E+01     6.539
+  20  130   2  0.00078 0.182E+02     0.769
+  21  131   3  0.00078 0.933E+01     0.651
+  22  132   4  0.00156 0.933E+01     0.639
+  23  133   5  0.00078 0.511E+02     0.082
+  24  134   6  0.00078 0.322E+02     0.047
+  25  135   7  0.00156 0.322E+02     0.047
+  26  136   8  0.00156 0.833E+02     0.007
+  27  137   9  0.00117 0.833E+02     0.007
+  28  138   1  0.05471 0.460E+01     7.112
+  29  139   2  0.05471 0.174E+02     0.848
+  30  140   3  0.05471 0.891E+01     0.721
+  31  141   4  0.10943 0.891E+01     0.708
+  32  142   5  0.05471 0.486E+02     0.092
+  33  143   6  0.05471 0.306E+02     0.053
+  34  144   7  0.10943 0.306E+02     0.053
+  35  145   8  0.10943 0.737E+02     0.008
+  36  146   9  0.10943 0.737E+02     0.008
+  37  156   1  0.00658 0.426E+01     8.333
+  38  157   2  0.00658 0.160E+02     1.008
+  39  158   3  0.00658 0.815E+01     0.871
+  40  159   4  0.01316 0.815E+01     0.854
+  41  160   5  0.00658 0.445E+02     0.111
+  42  161   6  0.00658 0.277E+02     0.067
+  43  162   7  0.01316 0.277E+02     0.067
+  44  163   8  0.01316 0.599E+02     0.008
+  45  164   9  0.01974 0.599E+02     0.008
+ Medium   6 has   4 shells: 
+   1    1   1  0.07692 0.116E+03     0.014
+   2   10   1  0.30769 0.210E+02     0.285
+   3   11   2  0.30769 0.110E+03     0.011
+   4   12   3  0.30769 0.669E+02     0.011
+ Medium   7 has   6 shells: 
+   1   39   1  0.15385 0.940E+01     1.560
+   2   40   2  0.15385 0.418E+02     0.118
+   3   41   3  0.15385 0.230E+02     0.073
+   4   42   4  0.30769 0.230E+02     0.073
+   5   43   5  0.15385 0.170E+03     0.006
+   6   44   6  0.07692 0.126E+03     0.006
+ Medium   8 has  18 shells: 
+   1   10   1  0.00004 0.210E+02     0.285
+   2   11   2  0.00004 0.110E+03     0.011
+   3   12   3  0.00004 0.669E+02     0.011
+   4   13   1  0.21604 0.178E+02     0.410
+   5   14   2  0.21604 0.921E+02     0.015
+   6   15   3  0.21604 0.558E+02     0.014
+   7   16   4  0.10802 0.558E+02     0.014
+   8   17   1  0.05804 0.155E+02     0.543
+   9   18   2  0.05804 0.793E+02     0.024
+  10   19   3  0.05804 0.479E+02     0.014
+  11   20   4  0.05804 0.479E+02     0.014
+  12   72   1  0.00129 0.671E+01     3.203
+  13   73   2  0.00129 0.271E+02     0.326
+  14   74   3  0.00129 0.142E+02     0.251
+  15   75   4  0.00257 0.142E+02     0.249
+  16   76   5  0.00129 0.889E+02     0.029
+  17   77   6  0.00129 0.606E+02     0.016
+  18   78   7  0.00257 0.606E+02     0.016
+ Medium   9 has  23 shells: 
+   1 1054   1  0.02439 0.121E+01    88.004
+   2 1055   2  0.02439 0.430E+01    15.861
+   3 1056   3  0.02439 0.210E+01    15.200
+   4 1057   4  0.04878 0.238E+01    13.035
+   5 1058   5  0.02439 0.944E+01     3.851
+   6 1059   6  0.02439 0.552E+01     3.554
+   7 1060   7  0.04878 0.600E+01     3.066
+   8 1061   8  0.04878 0.388E+01     2.586
+   9 1062   9  0.07317 0.397E+01     2.484
+  10 1063  10  0.02439 0.193E+02     0.894
+  11 1064  11  0.02439 0.121E+02     0.764
+  12 1065  12  0.04878 0.131E+02     0.645
+  13 1066  13  0.04878 0.984E+01     0.434
+  14 1067  14  0.07317 0.101E+02     0.412
+  15 1068  15  0.02439 0.445E+02     0.148
+  16 1069  16  0.02439 0.295E+02     0.105
+  17 1070  17  0.04878 0.325E+02     0.086
+  18 1071  18  0.07317 0.830E+01     0.141
+  19 1072  19  0.09756 0.841E+01     0.136
+  20 1073  20  0.04878 0.303E+02     0.020
+  21 1074  21  0.07317 0.311E+02     0.018
+  22 1075  22  0.02439 0.142E+03     0.007
+  23 1076  23  0.02439 0.111E+03     0.007
+ Medium  10 has   8 shells: 
+   1  103   1  0.09091 0.547E+01     4.966
+   2  104   2  0.09091 0.212E+02     0.561
+   3  105   3  0.09091 0.109E+02     0.461
+   4  106   4  0.18182 0.109E+02     0.455
+   5  107   5  0.09091 0.604E+02     0.058
+   6  108   6  0.09091 0.386E+02     0.033
+   7  109   7  0.18182 0.386E+02     0.033
+   8  110   8  0.18182 0.140E+03     0.007
+ Medium  11 has   8 shells: 
+   1    1   1  0.10447 0.116E+03     0.014
+   2   10   1  0.23881 0.210E+02     0.285
+   3   11   2  0.23881 0.110E+03     0.011
+   4   12   3  0.23881 0.669E+02     0.011
+   5   17   1  0.04478 0.155E+02     0.543
+   6   18   2  0.04478 0.793E+02     0.024
+   7   19   3  0.04478 0.479E+02     0.014
+   8   20   4  0.04478 0.479E+02     0.014
+ Medium  12 has   5 shells: 
+   1    1   1  0.19999 0.116E+03     0.014
+   2   17   1  0.20000 0.155E+02     0.543
+   3   18   2  0.20000 0.793E+02     0.024
+   4   19   3  0.20000 0.479E+02     0.014
+   5   20   4  0.20000 0.479E+02     0.014
+ ...... Done.
+
+Output from subroutine EDGSET:
+==============================
+ Atomic relaxations requested! 
+
+ Reading simplified photo-absorption data ..... Done
+
+ Reading simplified relaxation data ..... Done
+
+ Reading parametrized XCOM photo cross section data ..... Done
+
+ Reading EADL relaxation data ......
+  Z =   6 has  4 shells
+  Z =  74 has 22 shells
+  Z =  75 has 22 shells
+  Z =  42 has 15 shells
+  Z =   4 has  2 shells
+  Z =  14 has  7 shells
+  Z =  24 has 10 shells
+  Z =  25 has 10 shells
+  Z =  26 has 10 shells
+  Z =  28 has 10 shells
+  Z =   1 has  1 shells
+  Z =  13 has  7 shells
+  Z =   7 has  4 shells
+  Z =   8 has  4 shells
+  Z =  18 has  7 shells
+  Z =  82 has 24 shells
+  Z =  22 has 10 shells
+ ...... Done.
+
+  
+ Using NRC brems cross sections! 
+  
+  Initializing brems data for medium            1 ...
+  Max. new cross sections per energy loss:    88.744082483347924        101.89876751445045     
+  Initializing brems data for medium            2 ...
+  Max. new cross sections per energy loss:    172.54018784839718        235.40667168839906     
+  Initializing brems data for medium            3 ...
+  Max. new cross sections per energy loss:    134.21977259920902        168.69128398047008     
+  Initializing brems data for medium            4 ...
+  Max. new cross sections per energy loss:    84.655508271298302        96.506529836044180     
+  Initializing brems data for medium            5 ...
+  Max. new cross sections per energy loss:    123.18746932258490        151.05333992476235     
+  Initializing brems data for medium            6 ...
+  Max. new cross sections per energy loss:    86.702570264406774        99.320914375223566     
+  Initializing brems data for medium            7 ...
+  Max. new cross sections per energy loss:    103.51799954025240        122.48985642658717     
+  Initializing brems data for medium            8 ...
+  Max. new cross sections per energy loss:    89.603753795943703        103.21767115908033     
+  Initializing brems data for medium            9 ...
+  Max. new cross sections per energy loss:    172.71375768187906        235.60728196646150     
+  Initializing brems data for medium           10 ...
+  Max. new cross sections per energy loss:    112.77539527104179        135.76228950899880     
+  Initializing brems data for medium           11 ...
+  Max. new cross sections per energy loss:    86.846628823912425        99.515203635775620     
+  Initializing brems data for medium           12 ...
+  Max. new cross sections per energy loss:    87.950316993311802        100.99125248516133     
+  
+  
+
+
+Reading NRC pair data base from /home/miia/EGSnrc/HEN_HOUSE/data/pair_nrc1.data
+Data generated on a machine with 1234 endianess
+The endianess of this CPU is 1234
+Energy range of the data:     2.010  168.603
+  medium    1 .....................  done
+  medium    2 .....................  done
+  medium    3 .....................  done
+  medium    4 .....................  done
+  medium    5 .....................  done
+  medium    6 .....................  done
+  medium    7 .....................  done
+  medium    8 .....................  done
+  medium    9 .....................  done
+  medium   10 .....................  done
+  medium   11 .....................  done
+  medium   12 .....................  done
+  
+  
+ eii_init: minimum threshold energy found:    1.0000000000000000E-003
+ eii_init: number of shells to simulate EII:           25
+
+
+Opened EII data file /home/miia/EGSnrc/HEN_HOUSE/data/eii_ik.data
+ eii_init: reading EII data ...   OK 
+  
+ eii_init: for medium            2  adjusted sige =    169.85507115684098       monotone =  F
+ eii_init: for medium            3  adjusted sige =    126.89945183808570       monotone =  F
+ eii_init: for medium            5  adjusted sige =    114.88681191816330       monotone =  F
+ eii_init: for medium            7  adjusted sige =    120.50583977411063       monotone =  F
+ eii_init: for medium            8  adjusted sige =    89.565860648723145       monotone =  F
+ eii_init: for medium            9  adjusted sige =    172.18788716669485       monotone =  F
+ eii_init: for medium           10  adjusted sige =    104.96938784355201       monotone =  F
+ init_triplet: reading triplet data ...  OK
+   Preparing triplet fraction data for medium   1 ...  OK
+   Preparing triplet fraction data for medium   2 ...  OK
+   Preparing triplet fraction data for medium   3 ...  OK
+   Preparing triplet fraction data for medium   4 ...  OK
+   Preparing triplet fraction data for medium   5 ...  OK
+   Preparing triplet fraction data for medium   6 ...  OK
+   Preparing triplet fraction data for medium   7 ...  OK
+   Preparing triplet fraction data for medium   8 ...  OK
+   Preparing triplet fraction data for medium   9 ...  OK
+   Preparing triplet fraction data for medium  10 ...  OK
+   Preparing triplet fraction data for medium  11 ...  OK
+   Preparing triplet fraction data for medium  12 ...  OK
+EGSnrc SUCCESSFULLY 'HATCHED' FOR    12 MEDIA.
+
+
+The following media are defined:
+================================
+
+  0  graphite                 AE= 0.5120 AP= 0.0010 0
+  1  target_material          AE= 0.5120 AP= 0.0010 1
+  2  molybdenum               AE= 0.5120 AP= 0.0010 2
+  3  beryllium                AE= 0.5120 AP= 0.0010 3
+  4  steel                    AE= 0.5120 AP= 0.0010 4
+  5  oil                      AE= 0.5120 AP= 0.0010 5
+  6  aluminum                 AE= 0.5120 AP= 0.0010 6
+  7  air                      AE= 0.5120 AP= 0.0010 7
+  8  pb                       AE= 0.5120 AP= 0.0010 8
+  9  titanium                 AE= 0.5120 AP= 0.0010 9
+ 10  carbonate                AE= 0.5120 AP= 0.0010 10
+ 11  water                    AE= 0.5120 AP= 0.0010 11
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     Off
+Rayleigh scattering                               On
+Atomic relaxations                                eadl
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          On
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = prim_coll_test
+ number of regions = 504
+ geometries:
+   anode (type EGS_XYZGeometryT)
+   window_and_pb_port (type EGS_StackGeometry)
+   faceplate (type EGS_XYZGeometry)
+   primary_collimator (type EGS_NDGeometryT)
+   detect (type EGS_XYZGeometry)
+   air (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Transformed Parallel beam from a shape of type sphere with monoenergetic 0.125 MeV, electrons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 99
+  numbers used so far = 0
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = NO
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 1
+ - Track buffer size           = 1024
+ - Output file name            = /home/miia/EGSnrc/egs_home/TB/full_fan_w3_w3.ptracks
+
+
+*******************************************
+Dose Scoring Object (dose)
+*******************************************
+
+ - Regions in dose calculator :9
+
+
+--------------------------------------
+ medium         rho/[g/cm**3]
+--------------------------------------
+graphite         2.00
+target_material 19.39
+molybdenum      10.22
+beryllium        1.85
+steel            8.06
+oil              0.89
+aluminum         2.70
+air              0.00
+pb              11.35
+titanium         4.54
+carbonate        1.20
+water            1.00
+--------------------------------------
+
+*******************************************
+
+
+
+
+
+Starting simulation on Tue Sep 22 09:51:22 2020
+
+    Fresh simulation of 100000 histories
+
+
+    Parallel run with 20 jobs and 10 chunks per job
+
+
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                0.02              0         100.00
+      2                0.03              0         100.00
+      3                0.05              0         100.00
+      4                0.06              0         100.00
+      5                0.08              0         100.00
+      6                0.09              0         100.00
+      7                0.11              0         100.00
+      8                0.12              0         100.00
+      9                0.14              0         100.00
+     10                0.16              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                0.17              0         100.00
+      2                0.19              0         100.00
+      3                0.21              0         100.00
+      4                0.22              0         100.00
+      5                0.24              0         100.00
+      6                0.25              0         100.00
+      7                0.27              0         100.00
+      8                0.28              0         100.00
+      9                0.30              0         100.00
+     10                0.31              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                0.33              0         100.00
+      2                0.35              0         100.00
+      3                0.36              0         100.00
+      4                0.37              0         100.00
+      5                0.39              0         100.00
+      6                0.40              0         100.00
+      7                0.42              0         100.00
+      8                0.44              0         100.00
+      9                0.46              0         100.00
+     10                0.47              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                0.49              0         100.00
+      2                0.50              0         100.00
+      3                0.51              0         100.00
+      4                0.53              0         100.00
+      5                0.55              0         100.00
+      6                0.56              0         100.00
+      7                0.58              0         100.00
+      8                0.59              0         100.00
+      9                0.60              0         100.00
+     10                0.62              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                0.63              0         100.00
+      2                0.65              0         100.00
+      3                0.66              0         100.00
+      4                0.68              0         100.00
+      5                0.69              0         100.00
+      6                0.71              0         100.00
+      7                0.73              0         100.00
+      8                0.74              0         100.00
+      9                0.76              0         100.00
+     10                0.77              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                0.78              0         100.00
+      2                0.80              0         100.00
+      3                0.81              0         100.00
+      4                0.83              0         100.00
+      5                0.84              0         100.00
+      6                0.86              0         100.00
+      7                0.87              0         100.00
+      8                0.89              0         100.00
+      9                0.91              0         100.00
+     10                0.92              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                0.94              0         100.00
+      2                0.95              0         100.00
+      3                0.97              0         100.00
+      4                0.99              0         100.00
+      5                1.00              0         100.00
+      6                1.02              0         100.00
+      7                1.04              0         100.00
+      8                1.05              0         100.00
+      9                1.06              0         100.00
+     10                1.07              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                1.09              0         100.00
+      2                1.10              0         100.00
+      3                1.12              0         100.00
+      4                1.13              0         100.00
+      5                1.15              0         100.00
+      6                1.17              0         100.00
+      7                1.18              0         100.00
+      8                1.20              0         100.00
+      9                1.22              0         100.00
+     10                1.23              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                1.25              0         100.00
+      2                1.26              0         100.00
+      3                1.28              0         100.00
+      4                1.29              0         100.00
+      5                1.31              0         100.00
+      6                1.32              0         100.00
+      7                1.34              0         100.00
+      8                1.35              0         100.00
+      9                1.37              0         100.00
+     10                1.38              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                1.40              0         100.00
+      2                1.41              0         100.00
+      3                1.43              0         100.00
+      4                1.44              0         100.00
+      5                1.46              0         100.00
+      6                1.48              0         100.00
+      7                1.49              0         100.00
+      8                1.51              0         100.00
+      9                1.52              0         100.00
+     10                1.54              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                1.55              0         100.00
+      2                1.57              0         100.00
+      3                1.59              0         100.00
+      4                1.60              0         100.00
+      5                1.61              0         100.00
+      6                1.63              0         100.00
+      7                1.64              0         100.00
+      8                1.66              0         100.00
+      9                1.68              0         100.00
+     10                1.69              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                1.71              0         100.00
+      2                1.72              0         100.00
+      3                1.74              0         100.00
+      4                1.75              0         100.00
+      5                1.77              0         100.00
+      6                1.79              0         100.00
+      7                1.80              0         100.00
+      8                1.82              0         100.00
+      9                1.83              0         100.00
+     10                1.85              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                1.87              0         100.00
+      2                1.88              0         100.00
+      3                1.90              0         100.00
+      4                1.91              0         100.00
+      5                1.92              0         100.00
+      6                1.94              0         100.00
+      7                1.96              0         100.00
+      8                1.98              0         100.00
+      9                1.99              0         100.00
+     10                2.01              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                2.03              0         100.00
+      2                2.04              0         100.00
+      3                2.06              0         100.00
+      4                2.07              0         100.00
+      5                2.09              0         100.00
+      6                2.10              0         100.00
+      7                2.12              0         100.00
+      8                2.13              0         100.00
+      9                2.15              0         100.00
+     10                2.16              0         100.00
+
+Running 500 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1                2.18              0         100.00
+      2                2.19              0         100.00
+      3                2.21              0         100.00
+      4                2.23              0         100.00
+      5                2.24              0         100.00
+      6                2.26              0         100.00
+      7                2.28              0         100.00
+      8                2.29              0         100.00
+      9                2.31              0         100.00
+     10                2.32              0         100.00
+
+
+Finished simulation
+
+Total cpu time for this run:            2.32 (sec.) 0.0006(hours)
+Histories per hour:                     1.16379e+07   
+Number of random numbers used:          28228637      
+Number of electron CH steps:            369957        
+Number of all electron steps:           5.7496e+06    
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     1
+   Total tracks scored:     0
+   Still being scored:      0
+   Output file name:        /home/miia/EGSnrc/egs_home/TB/full_fan_w3_w3.ptracks
+
+
+======================================================
+Dose Scoring Object(dose)
+======================================================
+=> last case = 7500 fluence = 1207.65
+
+==> Summary of region dosimetry (per fluence)
+ ir  medium         rho/[g/cm3]  V/cm3    Edep/[MeV*cm2]            D/[Gy*cm2]         
+---------------------------------------------------------------------------------------
+288 water             0.998     1.0000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+289 water             0.998     1.0000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+290 water             0.998     1.0000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+291 water             0.998     1.0000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+292 water             0.998     1.0000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+293 water             0.998     1.0000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+294 water             0.998     1.0000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+295 water             0.998     1.0000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+296 water             0.998     1.0000 0.0000e+00 +/- 100.000% 0.0000e+00 +/- 100.000%
+---------------------------------------------------------------------------------------
+
+======================================================
+
+
+================================================================================
+Finished simulation
+
+  Elapsed time:                    9.5 s (  0.003 h)
+  CPU time:                        4.5 s (  0.001 h)
+  Ratio:                          2.115
+
+
+End of run                                             Tue Sep 22 09:51:29 2020
+================================================================================

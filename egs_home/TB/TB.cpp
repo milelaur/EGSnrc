@@ -18,4 +18,19 @@
 // Interpolators
 #include "egs_interpolator.h"
 
-APP_MAIN ( EGS_AdvancedApplication );
+//class APP_EXPORT TB : public EGS_AdvancedApplication {
+//    public:
+//        TB(int argc, char **argv) :
+//            EGS_AdvancedApplication(argc,argv) {}
+        // int initScoring();
+        // int ausgab(int iarg);
+//};
+
+
+//#ifdef BUILD_APP_LIB
+//APP_LIB(TB);
+//#else
+//APP_MAIN(TB);
+//#endif
+
+APP_MAIN(EGS_AdvancedApplication);
