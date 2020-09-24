@@ -23,15 +23,13 @@ class APP_EXPORT TB : public EGS_AdvancedApplication {
     EGS_ScoringArray *score;    // scoring array with energies deposited
     int              nreg;      // number of regions in the geometry
     int              nph;       // number of pulse height objects.
-    double           Etot;      // total energy that has entered the geometry
     int              *ph_regions; // region indeces of the ph-dsitributions
-
 
 
     public:
         TB(int argc, char **argv) :
             EGS_AdvancedApplication(argc,argv), score(0),
-            nreg(0), nph(0), Etot(0) { };
+            nreg(0), nph(0) { };
 
         /*! Destructor.
             Deallocate memory
@@ -48,7 +46,7 @@ class APP_EXPORT TB : public EGS_AdvancedApplication {
         /*! Initialize scoring.
         This function is called from within initSimulation() after the
         geometry and the particle source have been initialized.
-        In our case we simple construct a scoring array with nreg+2 regions
+        In our case we simple construct a scoring array with nreg regions
         to collect the deposited energy in the nreg geometry regions and
         the reflected and transmitted energies, and if the user has
         requested it, initialize scoring array objects for pulse height
@@ -64,6 +62,9 @@ class APP_EXPORT TB : public EGS_AdvancedApplication {
         the scoring array object to accumulate the deposited energy.
         */
         int ausgab(int iarg);
+
+        /*! simulate a shower */
+        int shower();
 
         /*! Get the current simulation result.
         This function is called from the run control object in parallel runs
@@ -98,18 +99,51 @@ class APP_EXPORT TB : public EGS_AdvancedApplication {
         */
         int startNewShower();
 
+    private:
+
+        int              ncg;       // number of correlated geometry pairs.
+        int              *gind1,
+                        *gind2;    // indeces of correlated geometries
+        double           *scg;      // sum(dose(gind1[j])*dose(gind2[j]);
+        int              csplit;    // radiative splitting number
+        int              ngeom;     // number of geometries to calculate
+                                    // quantities of interest
+        int              ir;        // current geometry index
+        EGS_BaseGeometry **geoms;   // geometries for which to calculate the
+                                    // quantites of interest.
+        int nsmall_step;
+
 };
 
 
 int TB::initScoring() {
-    // Get the numner of regions in the geometry.
+    EGS_Input *options = input->takeInputItem("scoring options");
+
+    if( options ) {
+        vector<EGS_BaseGeometry *> geometries;
+        EGS_Input *aux;
+        ngeom = geometries.size();
+        geoms = new EGS_BaseGeometry* [ngeom];
+
+        for(int j=0; j<ngeom; j++) {
+            geoms[j] = geometries[j];
+        }
+        delete options;
+    }
+    // Get the number of regions in the geometry.
     nreg = geometry->regions();
-    score = new EGS_ScoringArray(nreg+2);
+    score = new EGS_ScoringArray(nreg);
+    // Ausgab calls
+    int call;
+    for(call=BeforeTransport; call<=ExtraEnergy; ++call)
+        setAusgabCall((AusgabCall)call,true);
+    for(call=AfterTransport; call<UnknownCall; ++call)
+        setAusgabCall((AusgabCall)call,false);
     return 0;
 }
 
 int TB::ausgab(int iarg) {
-    if (iarg <= 4) {
+    if (iarg <= ExtraEnergy) {
         int np = the_stack->np - 1;
 
         // Note: ir is the region number+1
@@ -120,7 +154,7 @@ int TB::ausgab(int iarg) {
         // Note: This is only valid for certain source/geometry conditions!
         // If those conditions are not met, the reflected and transmitted
         // energy fractions will be wrong
-        if (ir == 0 && the_stack->w[np] > 0) {
+        if (ir >= 0 && the_stack->w[np] > 0) {
             ir = nreg+1;
         }
 
@@ -131,19 +165,21 @@ int TB::ausgab(int iarg) {
         return 0;
     }
     return 0;
-}
+};
 
-
+int TB::shower() {
+    return EGS_AdvancedApplication::shower();
+};
 
 void TB::getCurrentResult(double &sum, double &sum2,
         double &norm, double &count) {
     count = current_case;
-    norm = Etot > 0 ? count/Etot : 0;
+    double flu = source->getFluence();
+    norm = flu > 0 ? 1.602e-10*count/(flu) : 0;
     score->currentScore(0,sum,sum2);
 }
 
 int TB::startNewShower() {
-    Etot += p.E*p.wt;
     int res = EGS_Application::startNewShower();
     if (res) {
         return res;

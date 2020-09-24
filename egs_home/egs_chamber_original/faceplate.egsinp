@@ -1,0 +1,24 @@
+################################
+#
+# Faceplate of TrueBeam kV imaging System
+#
+################################
+:start geometry definition:
+	### In the document distance from foacl spot to faceplate
+	### is 5.72, but recommend use 5.6752. Uncertainty in the
+	### position could be +/- 1mm. Thickness from document (2mm)
+	:start geometry:
+        name = faceplate
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+		x-planes = -7 -1.75 1.75 7
+		y-planes = -7 -1.75 1.75 7
+		z-planes = 5.6752 5.8752
+		:start media input:
+            media = pb air
+			set medium = 4 1
+        :stop media input:
+    :stop geometry:
+
+    simulation geometry = faceplate
+:stop geometry definition:

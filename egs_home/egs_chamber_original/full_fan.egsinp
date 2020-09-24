@@ -1,0 +1,513 @@
+################################
+#
+# TrueBeam kV imaging System, Full fan option and focal spot either small or large
+#
+################################
+
+################################
+### RUN CONTROL
+################################
+:start run control:
+	ncase = 1E5 # The number of histories to simulate
+:stop run control:
+
+################################
+### GEOMETRY
+################################
+:start geometry definition:
+
+	################################
+    ### Anode target
+    ################################
+	:start geometry:
+        library = egs_glib
+        name = anode
+        include file = anode.egsinp
+    :stop geometry:
+
+
+	################################
+    ### X-ray window
+    ################################
+	:start geometry:
+        library = egs_glib
+        name = xray_window
+        include file = x-ray_window.egsinp
+    :stop geometry:
+    
+
+    ################################
+    ### Pb port
+    ################################
+	:start geometry:
+        library = egs_glib
+        name = pb_port
+        include file = pb_port.egsinp
+    :stop geometry:
+	
+
+	################################
+    ### Faceplate
+    ################################
+    # Old one
+	#:start geometry:
+    #    library = egs_glib
+    #    name = faceplate
+    #    include file = faceplate.egsinp
+    #:stop geometry:
+
+    :start geometry:
+        library = egs_glib
+        name = faceplate
+        include file = faceplateReal.egsinp
+    :stop geometry:
+
+    ################################
+    ### Primary collimator
+    ################################
+	:start geometry:
+        library = egs_glib
+        name = primary_collimator
+        include file = primary_collimator.egsinp
+    :stop geometry:
+	
+
+    ################################
+    ### Blades
+    ################################
+	:start geometry:
+        library = egs_glib
+        name = blades
+        include file = bladesFF.egsinp
+    :stop geometry:
+
+
+	################################
+    ### Beam hardening filter
+    ################################
+	:start geometry:
+        library = egs_glib
+        name = hard_filt
+        include file = hardening_filter.egsinp
+    :stop geometry:
+
+    ################################
+    ### Full fan bow tie filter
+    ################################
+    :start geometry:
+        library = egs_glib
+        name = ff
+        include file = bow_tie_ff.egsinp
+    :stop geometry:
+
+    ################################
+	### Detection cover
+	################################
+    :start geometry:
+        library = egs_glib
+        name = cover
+        include file = cover.egsinp
+    :stop geometry:
+
+    ################################
+	### Combining
+	################################
+
+	### Adding x-ray window and pb port
+	:start geometry:
+        name = window_and_pb_port
+        library = egs_gstack
+        geometries = xray_window pb_port
+        tolerance = 1e-4
+    :stop geometry:
+
+	### Adding anode, x-ray window, pb port, primary collimator and blades
+    :start geometry:
+        name = prim_coll_and_blades
+        library = egs_gunion
+		geometries = anode window_and_pb_port faceplate primary_collimator blades
+    :stop geometry:
+
+	### Adding the beam hardening filter, full fan bow tie filter and cover
+    :start geometry:
+        name = prim_coll_and_blades_and_ff
+        library = egs_gunion
+		geometries = prim_coll_and_blades ff hard_filt cover
+    :stop geometry:
+
+    ### Air between x-ray window and faceplate
+    :start geometry:
+        name = air
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -5.5 5.5
+        y-planes = -3.5 3.5
+        z-planes = 3.0 5.7
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+    ### Air block between faceplate and bow tie filter
+    :start geometry:
+        name = air_block
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -7.1 7.1
+        y-planes = -7.1 7.1
+        z-planes = 5.7 18.5
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+    ### Air block after bow tie filter
+    :start geometry:
+        name = air_block1
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -7.1 7.1
+        y-planes = -7.1 7.1
+        z-planes = 17 18.5
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+    ### Geometry from source to bow tie filter + air block
+    :start geometry:
+        name    = obi
+        library = egs_gunion
+        geometries = prim_coll_and_blades_and_ff air air_block
+    :stop geometry:
+
+	################################
+	### TESTING GEOMETRY
+	################################
+
+	### Testing cathode anode
+	:start geometry:
+        name = src
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -1.5 1.5
+        y-planes = -1.3 2.5
+        z-planes = -1.5 10
+        :start media input:
+            media = vacuum
+        :stop media input:
+    :stop geometry:
+
+	### Geometry that contains testing geometry for source
+    :start geometry:
+        name = source_test
+        library = egs_gunion
+        geometries = anode src
+    :stop geometry:
+
+	### Air between primary_collimator and detector to testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
+    :start geometry:
+        name = air_prim_to_detector
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -55 55
+        y-planes = -55 55
+        z-planes = 6 100.1
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+	### Testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
+	:start geometry:
+        name = detect
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -55 -25.2 25.2 55
+        y-planes = -55 -25.2 25.2 55
+        z-planes = 100 100.5
+        :start media input:
+            media = water
+        :stop media input:
+    :stop geometry:
+
+	### Geometry that contains testing geometry for primary collimator
+    :start geometry:
+        name = prim_coll_test
+        library = egs_gunion
+        geometries = anode window_and_pb_port faceplate primary_collimator detect air air_prim_to_detector
+    :stop geometry:
+
+    ### Air between primary_collimator and detector to testing blades so that 26.4 x 19.8 cm x-ray field at 1m from the focal spot
+    :start geometry:
+        name = air_prim_to_detector1
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -20 20
+        y-planes = -20 20
+        z-planes = 5.7 100.1
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+	### Testing blades
+	:start geometry:
+        name = detect1
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+		x-planes = -20 -13.2 13.2 20
+        y-planes = -20 -9.9 9.9 20
+        z-planes = 100 100.5
+        :start media input:
+            media = water
+        :stop media input:
+    :stop geometry:
+
+	### Testing blades geometry
+	:start geometry:
+        name = blades_test
+        library = egs_gunion
+        geometries = prim_coll_and_blades detect1 air air_prim_to_detector1
+    :stop geometry:
+
+	################################
+	### SIMULATION GEOMETRY
+	################################
+
+	### Testing source
+	# simulation geometry = source_test
+
+    ### Use the geometry with this name for testing primary collimator
+	 simulation geometry = prim_coll_test
+
+    ### Use the geometry with this name for testing blades
+	# simulation geometry = blades_test
+
+	### Use the geometry with this name for the simulation
+	# simulation geometry = obi
+
+:stop geometry definition:
+
+################################
+### MEDIA
+################################
+:start media definition: # Only 1 media definition block allowed
+	# Defining media in the input file like this is called "pegsless" mode
+
+	### Cutoff energies, in MeV
+	ae = 0.512 # lowest energy for electrons (kinetic+0.511)
+	ap = 0.001 # lowest energy for photons (kinetic)
+	ue = 1.511 # maximum energy for electrons (kinetic+0.511)
+	up = 1 # maximum energy for photons (kinetic)
+
+	### Beryllium
+	:start beryllium:
+		bremsstrahlung correction=NRC
+		density correction file = beryllium
+	:stop beryllium:
+	
+	### Air
+	:start air:
+		bremsstrahlung correction=NRC
+		gas pressure = 1.0
+		density correction file = air_dry_nearsealevel
+	:stop air:
+	
+	### Oil
+	:start oil:
+		elements = H, C
+		number of atoms = 10,20
+		rho=0.890550008
+		bremsstrahlung correction = NRC
+	:stop oil:
+
+	### Aluminum
+	:start aluminum:
+		bremsstrahlung correction=NRC
+		density correction file = aluminum
+	:stop aluminum:
+
+	### Stainless steel
+	:start steel:
+		bremsstrahlung correction=NRC
+		density correction file = steel_stainless_type302
+	:stop steel:
+
+	### Pb
+	:start pb:
+		bremsstrahlung correction=NRC
+		density correction file = lead
+	:stop pb:
+
+	### Titanium
+	:start titanium:
+		bremsstrahlung correction=NRC
+		density correction file=titanium
+	:stop titanium:
+
+	### Water
+	:start water:
+		bremsstrahlung correction=NRC
+		density correction file= water_icru90
+	:stop water:
+
+    ### Carbonate
+    :start carbonate:
+        bremsstrahlung correction=NRC
+        density correction file = polycarbonate__makrolon___lexan_
+    :stop carbonate:
+
+	### Target material (95% W (rho=19.3) and 5% Re (rho=21.02))
+	:start target_material:
+		rho=19.386
+		elements=W,Re
+		mass fractions=0.95,0.05
+		bremsstrahlung correction=NRC
+    :stop target_material:
+
+	### Molybdenum
+	:start molybdenum:
+		bremsstrahlung correction=NRC
+        density correction file = molybdenum
+    :stop molybdenum:
+
+    ### Graphite(rho=2.13)
+	:start graphite:
+		bremsstrahlung correction=NRC
+        density correction file = carbon_graphite_icru90_2.0g_cm3
+    :stop graphite:
+
+:stop media definition:
+
+################################
+### SOURCE
+################################
+:start source definition: 
+
+	:start source:
+		name = cathode_src
+		library = egs_parallel_beam
+		charge = -1
+		direction = 0 -1 0
+		:start spectrum:
+			type = monoenergetic
+			energy = 0.125 # in MeV
+		:stop spectrum:
+		:start shape:
+			type = sphere
+			### Large electron spot on the target ranges between 5.78699mm and 8.26713 mm -> avg. 0.703 cm
+    		radius = 0.703
+			## Small electron spot between 2.48014mm and 3.51353mm -> avg 0.30 cm
+     		# radius = 0.3
+			midpoint = 0 0
+		:stop shape:
+	:stop source:
+
+	:start source:
+        library = egs_transformed_source
+        name = cathode
+        source name = cathode_src
+        :start transformation:
+            rotation vector = 1.9405 -0.483843 0
+			translation = 0 2 0.49865600
+        :stop transformation:
+    :stop source:
+
+	### Use the source by this name for the simulation
+	simulation source = cathode
+:stop source definition:
+
+################################
+### AUSGAB OBJECTS
+################################
+:start ausgab object definition: # Only 1 ausgab definition block allowed
+	### Particle tracks
+	:start ausgab object:
+		name = tracks
+		library = egs_track_scoring
+		score electrons = no
+		score positrons = no
+    	stop scoring   = 1E5
+	:stop ausgab object:
+
+	### Dose scoring object
+	:start ausgab object:
+		name = dose
+		library = egs_dose_scoring
+		dose regions = 74
+		volume = 1
+	:stop ausgab object:
+:stop ausgab object definition:
+
+
+################################
+### MC PARAMETERS
+################################
+:Start MC Transport Parameter:
+    Global ECUT= 0.512
+    Global PCUT= 0.001
+    Global SMAX= 1e10
+    ESTEPE= 0.25
+    XIMAX= 0.5
+    Boundary crossing algorithm= EXACT
+    Skin depth for BCA= 3
+    Electron-step algorithm= PRESTA-II
+    Spin effects= On
+    Brems angular sampling= KM
+    Brems cross sections= NRC
+    Triplet production= On
+    Bound Compton scattering= On
+    Compton cross sections= default
+    Radiative Compton corrections= On
+    Pair angular sampling= KM
+    Pair cross sections= NRC
+    Photoelectron angular sampling= On
+    Rayleigh scattering= On
+    Atomic relaxations= On
+    Electron impact ionization= On
+    Photon cross sections= mcdf-xcom
+    Photon cross-sections output= Off
+    Photonuclear attenuation= On
+:Stop MC Transport Parameter:
+
+
+##############################################################################
+### SCORING OPTIONS
+##############################################################################
+:start scoring options:
+
+    calculation type = dose
+
+    :start calculation geometry:
+        geometry name   = anode 
+        cavity regions  = 16
+        cavity mass     = 1
+        cavity geometry = anode
+        enhance regions = 16
+        enhancement     = 128
+    :stop calculation geometry:
+
+:stop scoring options:
+
+
+################################
+### VIEWER CONTROL
+################################
+:start view control:
+	# Here we are just assigning some colors for nice
+	# viewing in the egs_view application
+	set color = air 225 225 225 200
+	set color = beryllium 162 0 0 200
+	set color = oil 255 255 0 200
+	set color = aluminum 0 0 255 200
+	set color = steel 0 255 0 200
+	set color = pb 255 85 0 200
+	set color = water 85 170 255 200
+	set color = titanium 0 170 127 250
+    set color = carbonate 170 85 0 200
+	set color = target_material 85 225 127 200
+    set color = molybdenum 0 170 225 200
+	set color = graphite 170 85 127 200
+	set color = vacuum 225 225 225 50
+:stop view control:
