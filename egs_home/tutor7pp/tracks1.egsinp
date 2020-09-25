@@ -45,7 +45,27 @@
             media = TA521ICRU
         :stop media input:
     :stop geometry:
-    simulation geometry = slab
+
+    ### Air between x-ray window and faceplate
+    :start geometry:
+        name = air
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -0.1 0.1
+        y-planes = -0.1 0.1
+        z-planes = 0.1 0.15
+        :start media input:
+            media = AIR521ICRU
+        :stop media input:
+    :stop geometry:
+
+    :start geometry:
+        name = test
+        library = egs_gunion
+        geometries = slab air
+    :stop geometry:
+
+    simulation geometry = test
 :stop geometry definition:
 
 ######################################## Define the source:
@@ -107,5 +127,13 @@
         score positrons = yes
 
     :stop ausgab object:
+
+    ### Dose scoring object
+	:start ausgab object:
+		name = dose
+		library = egs_dose_scoring
+		dose regions = 1
+		volume = 1
+	:stop ausgab object:
 
 :stop ausgab object definition:

@@ -17,13 +17,13 @@
 #include "egs_transformations.h"
 // Interpolators
 #include "egs_interpolator.h"
+#include <cstdio>
 
 class APP_EXPORT TB : public EGS_AdvancedApplication {
 
     EGS_ScoringArray *score;    // scoring array with energies deposited
     int              nreg;      // number of regions in the geometry
     int              nph;       // number of pulse height objects.
-    int              *ph_regions; // region indeces of the ph-dsitributions
 
 
     public:
@@ -38,8 +38,9 @@ class APP_EXPORT TB : public EGS_AdvancedApplication {
             if (score) {
                 delete score;
             }
-            if (nph > 0) {
-                delete [] ph_regions;
+            if(ngeom > 0) {
+                delete[] mass;
+                delete[] geoms;
             }
         };
 
@@ -112,6 +113,8 @@ class APP_EXPORT TB : public EGS_AdvancedApplication {
         EGS_BaseGeometry **geoms;   // geometries for which to calculate the
                                     // quantites of interest.
         int nsmall_step;
+        EGS_Float        *mass;     // mass of the material in the cavity.
+        double           Etot;      // total energy that has entered the geometry
 
 };
 
@@ -121,18 +124,34 @@ int TB::initScoring() {
 
     if( options ) {
         vector<EGS_BaseGeometry *> geometries;
+        vector<EGS_Float> cavity_masses;
         EGS_Input *aux;
+        while( (aux = options->takeInputItem("calculation geometry")) ) {
+            EGS_Float cmass;
+            string gname;
+            int err2 = aux->getInput("cavity mass",cmass);
+            if( err2 ) {
+                egsWarning("initScoring: missing/wrong 'cavity mass' "
+                    "input\n"); cmass = 1;
+            }
+            EGS_BaseGeometry::setActiveGeometryList(app_index);
+            EGS_BaseGeometry *g = EGS_BaseGeometry::getGeometry(gname);
+            cavity_masses.push_back(cmass);
+            geometries.push_back(g);
+            delete aux;
+        }
         ngeom = geometries.size();
         geoms = new EGS_BaseGeometry* [ngeom];
-
+        mass = new EGS_Float [ngeom];
         for(int j=0; j<ngeom; j++) {
             geoms[j] = geometries[j];
-        }
+            mass[j] = cavity_masses[j];
+        }  
         delete options;
     }
     // Get the number of regions in the geometry.
     nreg = geometry->regions();
-    score = new EGS_ScoringArray(nreg);
+    score = new EGS_ScoringArray(nreg+2);
     // Ausgab calls
     int call;
     for(call=BeforeTransport; call<=ExtraEnergy; ++call)
@@ -144,7 +163,7 @@ int TB::initScoring() {
 
 int TB::ausgab(int iarg) {
     if (iarg <= ExtraEnergy) {
-        int np = the_stack->np - 1;
+        int np = the_stack->np-1;
 
         // Note: ir is the region number+1
         int ir = the_stack->ir[np]-1;
@@ -175,7 +194,7 @@ void TB::getCurrentResult(double &sum, double &sum2,
         double &norm, double &count) {
     count = current_case;
     double flu = source->getFluence();
-    norm = flu > 0 ? 1.602e-10*count/(flu) : 0;
+    norm = flu > 0 ? 1.602e-10*count/(flu*mass[0]) : 0;
     score->currentScore(0,sum,sum2);
 }
 
