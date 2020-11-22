@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-	ncase = 6E7 # The number of histories to simulate
+	ncase = 5E8 # The number of histories to simulate
 :stop run control:
 
 ################################
@@ -446,13 +446,13 @@
 ################################
 :start ausgab object definition: # Only 1 ausgab definition block allowed
 	### Particle tracks
-	:start ausgab object:
-		name = tracks
-		library = egs_track_scoring
-		score electrons = no
-		score positrons = no
-    	stop scoring   = 1000000
-	:stop ausgab object:
+	#:start ausgab object:
+	#	name = tracks
+	#	library = egs_track_scoring
+	#	score electrons = no
+	#	score positrons = no
+    #	stop scoring   = 1000000
+	#:stop ausgab object:
 
 	### Dose scoring object
 	:start ausgab object:
