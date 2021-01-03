@@ -43,8 +43,6 @@ class APP_EXPORT TB : public EGS_AdvancedApplication {
                 delete[] geoms;
             }
             int j;
-            for(j=0; j<ngeom; j++) delete [] is_cavity[j];
-            delete [] is_cavity;
         };
 
         /*! Initialize scoring.
@@ -83,7 +81,7 @@ class APP_EXPORT TB : public EGS_AdvancedApplication {
         */
         void getCurrentResult(double &sum, double &sum2, double &norm,
                             double &count);
-        
+
         int rangeDiscard(EGS_Float tperp, EGS_Float range) const {
             // we can be sure that when this function is called
             // range rejection/RR is on.
@@ -203,8 +201,13 @@ class APP_EXPORT TB : public EGS_AdvancedApplication {
         /*! Range interpolators */
         EGS_Interpolator rr_erange;
         EGS_Interpolator rr_prange;
-
 };
+
+extern __extc__ void F77_OBJ_(range_discard,RANGE_DISCARD)(const EGS_Float *tperp, const EGS_Float *range) {
+    TB *app = dynamic_cast<TB *>(
+            EGS_Application::activeApplication());
+    the_epcont->idisc = app->rangeDiscard(*tperp,*range);
+}
 
 
 int TB::initScoring() {

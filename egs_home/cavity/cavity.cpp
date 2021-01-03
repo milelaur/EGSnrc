@@ -2055,6 +2055,7 @@ egsInformation("=> norm = %g \n",current_case/source->getFluence());
     };
 
     int rangeDiscard(EGS_Float tperp, EGS_Float range) const {
+        egsInformation("HELLO MAN!");
         // we can be sure that when this function is called
         // range rejection/RR is on.
         //
@@ -2357,8 +2358,7 @@ F77_OBJ_(select_photon_mfp,SELECT_PHOTON_MFP)(EGS_Float *dpmfp) {
     app->selectPhotonMFP(*dpmfp);
 }
 
-extern __extc__ void F77_OBJ_(range_discard,RANGE_DISCARD)(
-        const EGS_Float *tperp, const EGS_Float *range) {
+extern __extc__ void F77_OBJ_(range_discard,RANGE_DISCARD)(const EGS_Float *tperp, const EGS_Float *range) {
     Cavity_Application *app = dynamic_cast<Cavity_Application *>(
             EGS_Application::activeApplication());
     the_epcont->idisc = app->rangeDiscard(*tperp,*range);
