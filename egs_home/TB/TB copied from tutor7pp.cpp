@@ -148,7 +148,7 @@
 #include <cstdlib>
 using namespace std;
 
-class APP_EXPORT Tutor7_Application : public EGS_AdvancedApplication {
+class APP_EXPORT TB : public EGS_AdvancedApplication {
 
     EGS_ScoringArray *score;    // scoring array with energies deposited
     EGS_ScoringArray *eflu;     // scoring array for electron fluence at back of geometry
@@ -173,14 +173,14 @@ public:
      contructor, which determines the input file, the pegs file, if the
      simulation is a parallel run, etc.
     */
-    Tutor7_Application(int argc, char **argv) :
+    TB(int argc, char **argv) :
         EGS_AdvancedApplication(argc,argv), score(0), eflu(0), gflu(0), pheight(0),
         nreg(0), nph(0), Etot(0), rr_flag(0), current_weight(1), deflect_brems(false) { };
 
     /*! Destructor.
      Deallocate memory
      */
-    ~Tutor7_Application() {
+    ~TB() {
         if (score) {
             delete score;
         }
@@ -292,12 +292,11 @@ protected:
 
 };
 
-string Tutor7_Application::revision = " ";
+string TB::revision = " ";
 
 extern "C" void F77_OBJ_(egs_scale_xcc,EGS_SCALE_XCC)(const int *,const EGS_Float *);
-extern "C" void F77_OBJ_(egs_scale_bc,EGS_SCALE_BC)(const int *,const EGS_Float *);
 
-void Tutor7_Application::describeUserCode() const {
+void TB::describeUserCode() const {
     egsInformation(
         "\n               ***************************************************"
         "\n               *                                                 *"
@@ -305,13 +304,13 @@ void Tutor7_Application::describeUserCode() const {
         "\n               *                                                 *"
         "\n               ***************************************************"
         "\n\n");
-    egsInformation("This is Tutor7_Application %s based on\n"
+    egsInformation("This is TB %s based on\n"
                    "      EGS_AdvancedApplication %s\n\n",
                    egsSimplifyCVSKey(revision).c_str(),
                    egsSimplifyCVSKey(base_revision).c_str());
 }
 
-int Tutor7_Application::initScoring() {
+int TB::initScoring() {
     // Get the numner of regions in the geometry.
     nreg = geometry->regions();
     score = new EGS_ScoringArray(nreg+2);
@@ -349,7 +348,6 @@ int Tutor7_Application::initScoring() {
                 if (imed > 0) {
                     EGS_Float fac = atof(tmp[1].c_str());
                     egsInformation("\n ***** Scaling bc of medium %d with %g\n",imed,fac);
-                    F77_OBJ_(egs_scale_bc,EGS_SCALE_BC)(&imed,&fac);
                 }
             }
             delete scale;
@@ -437,7 +435,7 @@ int Tutor7_Application::initScoring() {
     return 0;
 }
 
-int Tutor7_Application::ausgab(int iarg) {
+int TB::ausgab(int iarg) {
     if (iarg <= 4) {
         int np = the_stack->np - 1;
 
@@ -536,7 +534,7 @@ int Tutor7_Application::ausgab(int iarg) {
     return 0;
 }
 
-int Tutor7_Application::outputData() {
+int TB::outputData() {
     // We first call the outputData() function of our base class.
     // This takes care of saving data related to the source, the random
     // number generator, CPU time used, number of histories, etc.
@@ -565,7 +563,7 @@ int Tutor7_Application::outputData() {
     return 0;
 }
 
-int Tutor7_Application::readData() {
+int TB::readData() {
     // We first call the readData() function of our base class.
     // This takes care of reading data related to the source, the random
     // number generator, CPU time used, number of histories, etc.
@@ -595,7 +593,7 @@ int Tutor7_Application::readData() {
     return 0;
 }
 
-void Tutor7_Application::resetCounter() {
+void TB::resetCounter() {
     // Reset everything in the base class
     EGS_AdvancedApplication::resetCounter();
     // Reset our own data to zero.
@@ -608,7 +606,7 @@ void Tutor7_Application::resetCounter() {
     gflu->reset();
 }
 
-int Tutor7_Application::addState(istream &data) {
+int TB::addState(istream &data) {
     // Call first the base class addState() function to read and add
     // all data related to source, RNG, CPU time, etc.
     int err = EGS_AdvancedApplication::addState(data);
@@ -644,7 +642,7 @@ int Tutor7_Application::addState(istream &data) {
     return 0;
 }
 
-void Tutor7_Application::outputResults() {
+void TB::outputResults() {
     egsInformation("\n\n last case = %d Etot = %g\n",
                    (int)current_case,Etot);
     double norm = ((double)current_case)/Etot;
@@ -694,14 +692,14 @@ void Tutor7_Application::outputResults() {
     */
 }
 
-void Tutor7_Application::getCurrentResult(double &sum, double &sum2,
+void TB::getCurrentResult(double &sum, double &sum2,
         double &norm, double &count) {
     count = current_case;
     norm = Etot > 0 ? count/Etot : 0;
     score->currentScore(0,sum,sum2);
 }
 
-int Tutor7_Application::startNewShower() {
+int TB::startNewShower() {
     Etot += p.E*p.wt;
     int res = EGS_Application::startNewShower();
     if (res) {
@@ -736,7 +734,7 @@ int Tutor7_Application::startNewShower() {
 }
 
 #ifdef BUILD_APP_LIB
-APP_LIB(Tutor7_Application);
+APP_LIB(TB);
 #else
-APP_MAIN(Tutor7_Application);
+APP_MAIN(TB);
 #endif

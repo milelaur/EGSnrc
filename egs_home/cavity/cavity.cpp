@@ -2055,7 +2055,6 @@ egsInformation("=> norm = %g \n",current_case/source->getFluence());
     };
 
     int rangeDiscard(EGS_Float tperp, EGS_Float range) const {
-        egsInformation("HELLO MAN!");
         // we can be sure that when this function is called
         // range rejection/RR is on.
         //
