@@ -72,7 +72,6 @@ EGSnrc repository to your current working directory:
 ```bash
 git clone https://github.com/nrc-cnrc/EGSnrc.git
 ```
-<<<<<<< HEAD
 
 Alternatively, you can download a
 [zip archive](https://github.com/nrc-cnrc/EGSnrc/archive/master.zip) of the EGSnrc
@@ -83,18 +82,6 @@ for your computer. Please read the full
 for more details on how to download and configure EGSnrc.
 
 
-=======
-
-Alternatively, you can download a
-[zip archive](https://github.com/nrc-cnrc/EGSnrc/archive/master.zip) of the EGSnrc
-directory. Once you have downloaded the source code, you need to run a
-configuration GUI or script to set up and compile EGSnrc software components
-for your computer. Please read the full
-[installation instructions](https://github.com/nrc-cnrc/EGSnrc/wiki/Installation-overview)
-for more details on how to download and configure EGSnrc.
-
-
->>>>>>> b735e209236878963c2133f08a77c10c79f12308
 ## Support
 
 For technical support, consider the
