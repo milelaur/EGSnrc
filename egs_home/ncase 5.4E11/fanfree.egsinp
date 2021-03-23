@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 5.4E5
+    ncase = 5.4E11
 #    calculation = combine
     nchunk = 30000
     nbatch = 6
@@ -491,12 +491,6 @@
 	#	score positrons = no
     #	stop scoring   = 1000000
 	#:stop ausgab object:
-
-    :start ausgab object:
-        library = egs_radiative_splitting
-        name = splitting
-        splitting = 1000
-    :stop ausgab object:
 
 	### Dose scoring object
 	:start ausgab object:
