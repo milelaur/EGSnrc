@@ -1,0 +1,67 @@
+################################
+#
+# Blades of TrueBeam kV imaging System Full Fan set up
+#
+################################
+:start geometry definition:
+    ### Y-blade
+	:start geometry:
+        name = y-blade
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -7 7
+        y-planes = -7 -0.89999 0.89999 7
+        z-planes = 9.09 9.39 9.59
+        :start media input:
+            media = pb steel air
+			set medium = 0 0
+            set medium = 1 2
+			set medium = 2 0
+            set medium = 3 1
+			set medium = 4 2
+            set medium = 5 1
+        :stop media input:
+    :stop geometry:
+
+    ### X-blade
+	:start geometry:
+        name = x-blade
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes =  -7 -1.41108 1.41108 7
+        y-planes = -7 7
+        z-planes = 10.69 10.99 11.19
+        :start media input:
+            media = pb steel air
+			set medium = 0 0
+            set medium = 1 2
+			set medium = 2 0
+            set medium = 3 1
+			set medium = 4 2
+            set medium = 5 1
+        :stop media input:
+    :stop geometry:
+
+    ### Plate between Y and X blades
+    :start geometry:
+        name = plate
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -7 -3 3 7
+        y-planes = -7 -3 3 7
+        z-planes = 10.09 10.49
+        :start media input:
+            media = steel air
+	        set medium = 4 1
+        :stop media input:
+    :stop geometry:
+
+	### Blades
+    :start geometry:
+        name = blades
+        library = egs_gunion
+		geometries = y-blade x-blade plate
+    :stop geometry:
+
+    simulation geometry = blades
+:stop geometry definition:
