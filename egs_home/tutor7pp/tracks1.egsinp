@@ -42,30 +42,10 @@
         box size = 0.2 0.2 0.2
         name = slab
         :start media input:
-            media = TA521ICRU
+            media = TA
         :stop media input:
     :stop geometry:
-
-    ### Air between x-ray window and faceplate
-    :start geometry:
-        name = air
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -0.1 0.1
-        y-planes = -0.1 0.1
-        z-planes = 0.1 0.15
-        :start media input:
-            media = AIR521ICRU
-        :stop media input:
-    :stop geometry:
-
-    :start geometry:
-        name = test
-        library = egs_gunion
-        geometries = slab air
-    :stop geometry:
-
-    simulation geometry = test
+    simulation geometry = slab
 :stop geometry definition:
 
 ######################################## Define the source:
@@ -97,15 +77,15 @@
 #
 :start MC transport parameter:
 
-    Global ECUT = 1.5
-    Global PCUT = 0.1
+    #Global ECUT = 1.5
+    #Global PCUT = 0.1
 
 :stop MC transport parameter:
 
 
 ######################################## Run control
 :start run control:
-    ncase = 20000
+    ncase = 2000
 :stop run control:
 
 ######################################### Scoring options.
@@ -127,13 +107,5 @@
         score positrons = yes
 
     :stop ausgab object:
-
-    ### Dose scoring object
-	:start ausgab object:
-		name = dose
-		library = egs_dose_scoring
-		dose regions = 1
-		volume = 1
-	:stop ausgab object:
 
 :stop ausgab object definition:
