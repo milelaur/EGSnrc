@@ -1779,14 +1779,14 @@
       WRITE(15,*) (zbnd(kk),kk=1,kkmax+1)
       DO 3331 kk=1,kkmax
           DO 3341 jj=1,jjmax
-              WRITE(15,1399) (med((1 + ii + (jj-1)*iimax + (kk-1)*iimax*
-     *        jjmax)),ii=1,iimax)
+              WRITE(15,1399) (achar(MOD((med((1 + ii + (jj-1)*iimax + (k
+     *        k-1)*iimax*jjmax))+16),95) + 32),ii=1,iimax)
 3341      CONTINUE
 3342      CONTINUE
           WRITE(15,*)
 3331  CONTINUE
 3332  CONTINUE
-1399  FORMAT(128i1)
+1399  FORMAT(128a1)
       DO 3351 kk=1,kkmax
           DO 3361 jj=1,jjmax
               WRITE(15,*) (rho((1 + ii + (jj-1)*iimax + (kk-1)*iimax*jjm

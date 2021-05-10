@@ -2187,50 +2187,6 @@
           GOTO 5110
         END IF
         IF ((i_iaea_in.EQ.1)) THEN
-          NPASSI=0
-          call iaea_get_particle(i_unit_in,iaea_n_stat,iaea_q_index,ESHO
-     *    RT,WT_PHSP_SHORT, X_PHSP_SHORT,Y_PHSP_SHORT,Z_PHSP_SHORT,U_PHS
-     *    P_SHORT, V_PHSP_SHORT,W_PHSP_SHORT,iaea_extra_floats,iaea_extr
-     *    a_ints)
-          IF ((iaea_n_stat.EQ.-1)) THEN
-            WRITE(i_log,*)' Error getting particle data from IAEA phsp f
-     *ile.'
-            call exit(1)
-          ELSE IF((iaea_n_stat.EQ.-2)) THEN
-            WRITE(i_log,*)' WARNING: Reached end of IAEA phsp file.  Fil
-     *e restarted.'
-          ELSE IF((iaea_n_stat.GE.0)) THEN
-            NHSTRY=NHSTRY+iaea_n_stat
-            IF ((iaea_i_latch.EQ.-99)) THEN
-              LATCHI=0
-            ELSE
-              LATCHI=iaea_extra_ints(iaea_i_latch)
-            END IF
-            IQ=iaea_typ_q(iaea_q_index)
-            IF (( (IQ.EQ.1) .OR. (IQ.EQ.-1) )) THEN
-              ESHORT = ESHORT + 0.5109989461
-            END IF
-            EI=ESHORT
-            IF ((iaea_i_zlast.EQ.-99)) THEN
-              ZLAST_PHSP_SHORT=0
-            ELSE
-              ZLAST_PHSP_SHORT= iaea_extra_floats(iaea_i_zlast)
-            END IF
-            IF ((iaea_i_muidx.EQ.-99)) THEN
-              MUIDX_PHSP_SHORT=0
-            ELSE
-              MUIDX_PHSP_SHORT= iaea_extra_floats(iaea_i_muidx)
-            END IF
-            WEIGHT=WT_PHSP_SHORT
-            XIN=X_PHSP_SHORT
-            YIN=Y_PHSP_SHORT
-            ZIN=Z_PHSP_SHORT
-            UIN=U_PHSP_SHORT
-            VIN=V_PHSP_SHORT
-            WIN=W_PHSP_SHORT
-            ZLAST=ZLAST_PHSP_SHORT
-            MUIDX=MUIDX_PHSP_SHORT
-          END IF
         ELSE
           IZLAST1=0
           IF((MODE_RW.EQ.'MODE2'))IZLAST1=1
@@ -3014,96 +2970,27 @@
       IZSCORE1=0
       IF ((i_iaea_in.EQ.1)) THEN
         i_unit_in=2
-        call iaea_new_source(i_unit_in,OLDNAM,1,iaea_result)
-        IF ((iaea_result.LT.0)) THEN
-          WRITE(i_log,*)' Error opening IAEA phase space source.'
-        END IF
-        call iaea_get_max_particles(i_unit_in,-1,iaea_dummy_long)
-        PARANOT1=iaea_dummy_long
-        call iaea_get_max_particles(i_unit_in,1,iaea_dummy_long)
-        PARANOP1=iaea_dummy_long
-        call iaea_get_total_original_particles(i_unit_in,iaea_dummy_long
-     *  )
-        LPARANINC1=iaea_dummy_long
-        call iaea_get_maximum_energy(i_unit_in,EKMAX_PHSP_SHORT)
-        PARAEMAX1=EKMAX_PHSP_SHORT
-        call iaea_get_constant_variable(i_unit_in,2,Z_PHSP_SHORT,iaea_re
-     *  sult)
-        IF ((iaea_result.EQ.-3)) THEN
-          write(i_log,*) ' Z positions of each particle will be read fro
-     *m phase space data.'
-          Z_SCORE=999.
-          IZSCORE1=1
-        ELSE IF((iaea_result.LT.0)) THEN
-          write(i_log,*)' Error reading Z position where IAEA phsp was s
-     *cored.'
-          IZSCORE1=0
-        ELSE
-          Z_SCORE=Z_PHSP_SHORT
-          IZSCORE1=0
-        END IF
-        call iaea_get_extra_numbers(i_unit_in,iaea_n_extra_floats,iaea_n
-     *  _extra_ints)
-        IF ((iaea_n_extra_floats .EQ. -1 .OR. iaea_n_extra_ints .EQ. -1)
-     *  ) THEN
-          write(i_log,*)' Error reading number of extra variables stored
-     * in IAEA phsp'
-        END IF
-        call iaea_get_type_extra_variables(i_unit_in,iaea_result,iaea_ex
-     *  tra_int_types, iaea_extra_float_types)
-        IF ((iaea_result.EQ.-1)) THEN
-          write(i_log,*)' Error getting types of extra variables stored
-     *in IAEA phsp'
-        END IF
-        DO 3081 I_PHSP=1,iaea_n_extra_ints
-          IF ((iaea_extra_int_types(I_PHSP).EQ.2)) THEN
-            iaea_i_latch=I_PHSP
-            GO TO3082
-          END IF
-3081    CONTINUE
-3082    CONTINUE
-        IF ((iaea_i_latch.EQ.-99)) THEN
-          write(i_log,*)' Warning: IAEA format phsp file does not store
-     *LATCH'
-        END IF
-        DO 3091 I_PHSP=1,iaea_n_extra_floats
-          IF ((iaea_extra_float_types(I_PHSP).EQ.3)) THEN
-            iaea_i_zlast=I_PHSP
-            GO TO3092
-          END IF
-3091    CONTINUE
-3092    CONTINUE
-        IF ((iaea_i_zlast.EQ.-99)) THEN
-          IZLAST1=0
-        ELSE
-          IZLAST1=1
-        END IF
-        iaea_i_muidx=MAX(1,iaea_i_zlast+1)
-        IF ((iaea_i_muidx.GT.iaea_n_extra_floats .OR. iaea_extra_float_t
-     *  ypes(iaea_i_muidx).NE.0)) THEN
-          iaea_i_muidx=-99
-          IMUIDX1=0
-        ELSE
-          IMUIDX1=1
-        END IF
-        WRITE(6,3100)PARANOT1,PARANOP1,PARAEMAX1,LPARANINC1
-3100    FORMAT(/'            Total number of particles in file:',I13/ ' 
+        WRITE(6,3080)
+3080    FORMAT(//' Sorry, this code has not been compiled with the IAEAp
+     *hase'/ ' space handling macros.'//)
+        WRITE(6,3090)PARANOT1,PARANOP1,PARAEMAX1,LPARANINC1
+3090    FORMAT(/'            Total number of particles in file:',I13/ ' 
      *                    Total number of photons:',I13/ 'The rest are e
      *lectrons/positrons.'/ ' '/ '      Maximum kinetic energy of the pa
      *rticles:',F13.3,' MeV'/ ' # of incident particles from original so
      *urce:',I13)
         IF ((IZSCORE1.EQ.0)) THEN
-          WRITE(6,3110)Z_SCORE
-3110      FORMAT('                     Z where phsp file scored:',F13.3,
+          WRITE(6,3100)Z_SCORE
+3100      FORMAT('                     Z where phsp file scored:',F13.3,
      *' cm')
         END IF
         IF ((IZLAST1.NE.0)) THEN
-          WRITE(6,3120)
-3120      FORMAT(' ZLAST scored in this file.')
+          WRITE(6,3110)
+3110      FORMAT(' ZLAST scored in this file.')
         END IF
         IF ((IMUIDX1.NE.0)) THEN
-          WRITE(6,3130)
-3130      FORMAT(' Fractional MU index scored in this file.')
+          WRITE(6,3120)
+3120      FORMAT(' Fractional MU index scored in this file.')
         END IF
       ELSE
         itmp=-1
@@ -3112,15 +2999,15 @@
           OPEN(UNIT=2,FILE=OLDNAM,FORM='UNFORMATTED',ACCESS='DIRECT', RE
      *    CL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,3140)
-3140        FORMAT(/' ***error opening file as MODE2 ****' /' *** THE FI
+            WRITE(6,3130)
+3130        FORMAT(/' ***error opening file as MODE2 ****' /' *** THE FI
      *LE FORMAT MAY BE WRONG (I.E., NOT A MODE2 FILE) ***'/ /' *** WE NO
      *W TRY TO OPEN IT AS A MODE3 FILE ***'//)
             OPEN(UNIT=2,STATUS='OLD',FILE=OLDNAM, FORM='UNFORMATTED', IO
      *      STAT=IERR_PHSP)
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,3150)
-3150          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
+              WRITE(6,3140)
+3140          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
               STOP
             END IF
             READ(2,REC=1,IOSTAT=IERR_PHSP)MODE_RW1,NUM_PHSP_TOT,PHOT_PHS
@@ -3131,21 +3018,21 @@
             PARAEMNE1=EKMINE_PHSP_SHORT
             PARANINC1=NINC_PHSP_SHORT
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,3160)
-3160          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
+              WRITE(6,3150)
+3150          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
      *//)
               STOP
             END IF
             IF ((MODE_RW1 .NE. 'MODE3')) THEN
-              WRITE(6,3170)
-3170          FORMAT(//' That file does not start with MODE3,', ' as all
+              WRITE(6,3160)
+3160          FORMAT(//' That file does not start with MODE3,', ' as all
      * old compressed files (with ZLAST) must'/ '  Check it out and trya
      *gain!'///)
               IERR_PHSP=1
               STOP
             ELSE
-              WRITE(6,3180)
-3180          FORMAT(//' This is a MODE3 file! '/ ' Please convert it in
+              WRITE(6,3170)
+3170          FORMAT(//' This is a MODE3 file! '/ ' Please convert it in
      *to a MODE2 file using [readphsp] ', ' and try again!'///)
               IERR_PHSP=1
               STOP
@@ -3159,14 +3046,14 @@
           PARAEMNE1=EKMINE_PHSP_SHORT
           PARANINC1=NINC_PHSP_SHORT
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,3190)
-3190        FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE*** '/
+            WRITE(6,3180)
+3180        FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE*** '/
      */)
             STOP
           END IF
           IF ((MODE_RW1 .NE. 'MODE2')) THEN
-            WRITE(6,3200)
-3200        FORMAT(//' That file does not start with MODE2,', ' as stand
+            WRITE(6,3190)
+3190        FORMAT(//' That file does not start with MODE2,', ' as stand
      *ard compressed files with ZLAST must'/ '  Check it out and try aga
      *in!'///)
             IERR_PHSP=1
@@ -3177,15 +3064,15 @@
           OPEN(UNIT=2,FILE=OLDNAM,FORM='UNFORMATTED',ACCESS='DIRECT', RE
      *    CL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,3210)
-3210        FORMAT(/' ***ERROR opening file as MODE0****' /' *** THE FIL
+            WRITE(6,3200)
+3200        FORMAT(/' ***ERROR opening file as MODE0****' /' *** THE FIL
      *E FORMAT MAY BE WRONG (I.E., NOT A MODE0 FILE) ***'/ /' *** WE NOW
      * TRY TO OPEN IT AS A MODE1 FILE ***'//)
             OPEN(UNIT=2,STATUS='OLD',FILE=OLDNAM, FORM='UNFORMATTED', IO
      *      STAT=IERR_PHSP)
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,3220)
-3220          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
+              WRITE(6,3210)
+3210          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
               STOP
             END IF
             READ(2,REC=1,IOSTAT=IERR_PHSP)MODE_RW1,NUM_PHSP_TOT,PHOT_PHS
@@ -3196,20 +3083,20 @@
             PARAEMNE1=EKMINE_PHSP_SHORT
             PARANINC1=NINC_PHSP_SHORT
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,3230)
-3230          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
+              WRITE(6,3220)
+3220          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
      *//)
               STOP
             END IF
             IF ((MODE_RW1 .NE. 'MODE1')) THEN
-              WRITE(6,3240)
-3240          FORMAT(//' That file does not start with MODE1,', ' as all
+              WRITE(6,3230)
+3230          FORMAT(//' That file does not start with MODE1,', ' as all
      * old compressed files must'/ '  Check it out and try again!'///)
               IERR_PHSP=1
               STOP
             ELSE
-              WRITE(6,3250)
-3250          FORMAT(//' This is a MODE1 file! '/ ' Please convert it in
+              WRITE(6,3240)
+3240          FORMAT(//' This is a MODE1 file! '/ ' Please convert it in
      *to a MODE0 file using [readphsp] ', 'and try again!'///)
               IERR_PHSP=1
               STOP
@@ -3223,34 +3110,34 @@
           PARAEMNE1=EKMINE_PHSP_SHORT
           PARANINC1=NINC_PHSP_SHORT
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,3260)
-3260        FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE*** '/
+            WRITE(6,3250)
+3250        FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE*** '/
      */)
             STOP
           END IF
           IF ((MODE_RW1 .NE. 'MODE0')) THEN
-            WRITE(6,3270)
-3270        FORMAT(/' Does not start with MODE0 as files without ZLAST m
+            WRITE(6,3260)
+3260        FORMAT(/' Does not start with MODE0 as files without ZLAST m
      *ust'/ '  Try again!'//)
             IERR_PHSP=1
             STOP
           END IF
         ELSE IF((itmp.LT.0)) THEN
-          WRITE(6,3280)
-3280      FORMAT(/' First, try to open it as a MODE0 file')
+          WRITE(6,3270)
+3270      FORMAT(/' First, try to open it as a MODE0 file')
           PHSP_RECL=4*7
           OPEN(UNIT=2,FILE=OLDNAM,FORM='UNFORMATTED',ACCESS='DIRECT', RE
      *    CL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,3290)
-3290        FORMAT(/' Now try to open it as a MODE2 file')
+            WRITE(6,3280)
+3280        FORMAT(/' Now try to open it as a MODE2 file')
             itmp=1
             PHSP_RECL=4*8
             OPEN(UNIT=2,FILE=OLDNAM,FORM='UNFORMATTED',ACCESS='DIRECT',
      *      RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,3300)
-3300          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
+              WRITE(6,3290)
+3290          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
             ELSE
               READ(2,REC=1,IOSTAT=IERR_PHSP)MODE_RW1,NUM_PHSP_TOT,PHOT_P
      *        HSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP_SHORT,NINC_PHSP_SHOR
@@ -3261,14 +3148,14 @@
               PARAEMNE1=EKMINE_PHSP_SHORT
               PARANINC1=NINC_PHSP_SHORT
               IF ((IERR_PHSP.NE.0)) THEN
-                WRITE(6,3310)
-3310            FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE**
+                WRITE(6,3300)
+3300            FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE**
      ** '//)
                 STOP
               END IF
               IF ((MODE_RW1.NE.'MODE2')) THEN
-                WRITE(6,3320)
-3320            FORMAT(//' That file does not start with MODE2,', ' as s
+                WRITE(6,3310)
+3310            FORMAT(//' That file does not start with MODE2,', ' as s
      *tandard compressed files with ZLAST must'/ '  Check it out and try
      * again!'///)
                 CLOSE(2)
@@ -3284,26 +3171,26 @@
             PARAEMNE1=EKMINE_PHSP_SHORT
             PARANINC1=NINC_PHSP_SHORT
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,3330)
-3330          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
+              WRITE(6,3320)
+3320          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
      *//)
               STOP
             END IF
             itmp=0
             IF ((MODE_RW1.NE.'MODE0')) THEN
-              WRITE(6,3340)
-3340          FORMAT(/' The file does not start with MODE0 as it suppose
+              WRITE(6,3330)
+3330          FORMAT(/' The file does not start with MODE0 as it suppose
      *d to')
               CLOSE(2)
-              WRITE(6,3350)
-3350          FORMAT(/' Now try to open it as a MODE2 file')
+              WRITE(6,3340)
+3340          FORMAT(/' Now try to open it as a MODE2 file')
               itmp=1
               PHSP_RECL=4*8
               OPEN(UNIT=2,FILE=OLDNAM,FORM='UNFORMATTED',ACCESS='DIRECT'
      *        , RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
               IF ((IERR_PHSP.NE.0)) THEN
-                WRITE(6,3360)
-3360            FORMAT(//' *** PHASE SPACE FILE CANNOT BE OPENED. ***')
+                WRITE(6,3350)
+3350            FORMAT(//' *** PHASE SPACE FILE CANNOT BE OPENED. ***')
               ELSE
                 READ(2,REC=1,IOSTAT=IERR_PHSP)MODE_RW1,NUM_PHSP_TOT,PHOT
      *          _PHSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP_SHORT,NINC_PHSP_
@@ -3314,14 +3201,14 @@
                 PARAEMNE1=EKMINE_PHSP_SHORT
                 PARANINC1=NINC_PHSP_SHORT
                 IF ((IERR_PHSP.NE.0)) THEN
-                  WRITE(6,3370)
-3370              FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE
+                  WRITE(6,3360)
+3360              FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE
      **** '//)
                   STOP
                 END IF
                 IF ((MODE_RW1.NE.'MODE2')) THEN
-                  WRITE(6,3380)
-3380              FORMAT(//' That file does not start with MODE2,', ' as
+                  WRITE(6,3370)
+3370              FORMAT(//' That file does not start with MODE2,', ' as
      * standard compressed files with ZLAST must'/ '  Check it out and t
      *ry again!'///)
                   CLOSE(2)
@@ -3331,42 +3218,42 @@
             END IF
           END IF
         END IF
-        IF((IERR_PHSP.NE.0))GOTO 3390
-        WRITE(6,3400)PARANOT1,PARANOP1,PARAEMAX1,PARAEMNE1
-3400    FORMAT(/'            Total number of particles in file:',I13/ ' 
+        IF((IERR_PHSP.NE.0))GOTO 3380
+        WRITE(6,3390)PARANOT1,PARANOP1,PARAEMAX1,PARAEMNE1
+3390    FORMAT(/'            Total number of particles in file:',I13/ ' 
      *                    Total number of photons:',I13/ 'The rest are e
      *lectrons/positrons.'/ ' '/ '      Maximum kinetic energy of the pa
      *rticles:',F13.3,' MeV'/ '      Minimum kinetic energy of the elect
      *rons:',F13.3,' MeV')
         PARANOT=PARANOT1
         IF ((PARANINC1 .LT. 2.)) THEN
-          WRITE(6,3410)PARANINC1
-3410      FORMAT('        Minimum kinetic energy of the photons:',F13.3,
+          WRITE(6,3400)PARANINC1
+3400      FORMAT('        Minimum kinetic energy of the photons:',F13.3,
      *' MeV')
         ELSE
-          WRITE(6,3420)PARANINC1
-3420      FORMAT(' # of incident particles from original source:',F13.1)
+          WRITE(6,3410)PARANINC1
+3410      FORMAT(' # of incident particles from original source:',F13.1)
         END IF
       END IF
-3430  CONTINUE
-      WRITE(6,3440)
-3440  FORMAT(/' Name of the old ph-sp file 2: '/' ',$)
-      READ(5,3450)SPCNAM
-3450  FORMAT(A80)
+3420  CONTINUE
+      WRITE(6,3430)
+3430  FORMAT(/' Name of the old ph-sp file 2: '/' ',$)
+      READ(5,3440)SPCNAM
+3440  FORMAT(A80)
       IF ((SPCNAM .EQ. ' ')) THEN
-        GOTO 3430
+        GOTO 3420
       END IF
       i_iaea_out=0
       len=lnblnk1(SPCNAM)
       IF ((SPCNAM(len-8:len).EQ.'.IAEAphsp')) THEN
         i_iaea_out=1
         SPCNAM=SPCNAM(:len-9)
-        WRITE(6,3460)
-3460    FORMAT(/' Data is in IAEA format.'/)
+        WRITE(6,3450)
+3450    FORMAT(/' Data is in IAEA format.'/)
       END IF
       IF ((i_iaea_in.NE.i_iaea_out)) THEN
-        WRITE(6,3470)
-3470    FORMAT(//' *****ERROR*****'/ ' Both phase space files must havet
+        WRITE(6,3460)
+3460    FORMAT(//' *****ERROR*****'/ ' Both phase space files must havet
      *he same format'/ ' (IAEA or standard BEAMnrc).  Try again.'//)
         STOP
       END IF
@@ -3382,122 +3269,27 @@
       IZSCORE2=0
       IF ((i_iaea_out.EQ.1)) THEN
         i_unit_out=3
-        call iaea_new_source(i_unit_out,SPCNAM,1+2,iaea_result)
-        IF ((iaea_result.LT.0)) THEN
-          WRITE(i_log,*)' Error opening IAEA phase space file for write.
-     *'
-          call exit(1)
-        END IF
-        i_iaea_open_for_write=1
-        IF ((1.EQ.0)) THEN
-          IF((IZSCORE2.NE.1))call iaea_set_constant_variable(i_unit_out,
-     *    2,Z_SCORE)
-          IF ((IZLAST2.NE.0)) THEN
-            IF ((IMUIDX2.NE.0)) THEN
-              call iaea_set_extra_numbers(i_unit_out,2,1)
-              call iaea_set_type_extrafloat_variable(i_unit_out,1,0)
-              iaea_i_muidx_out=2
-            ELSE
-              call iaea_set_extra_numbers(i_unit_out,1,1)
-            END IF
-            call iaea_set_type_extrafloat_variable(i_unit_out,0,3)
-            iaea_i_zlast_out=1
-          ELSE IF((IMUIDX2.NE.0)) THEN
-            call iaea_set_extra_numbers(i_unit_out,1,1)
-            call iaea_set_type_extrafloat_variable(i_unit_out,0,0)
-            iaea_i_muidx_out=1
-          ELSE
-            call iaea_set_extra_numbers(i_unit_out,0,1)
-          END IF
-          call iaea_set_type_extralong_variable(i_unit_out,0,2)
-          iaea_i_latch_out=1
-        END IF
-        call iaea_get_max_particles(i_unit_out,-1,iaea_dummy_long)
-        PARANOT2=iaea_dummy_long
-        call iaea_get_max_particles(i_unit_out,1,iaea_dummy_long)
-        PARANOP2=iaea_dummy_long
-        call iaea_get_total_original_particles(i_unit_out,iaea_dummy_lon
-     *  g)
-        LPARANINC2=iaea_dummy_long
-        call iaea_get_maximum_energy(i_unit_out,EKMAX_PHSP_SHORT)
-        PARAEMAX2=EKMAX_PHSP_SHORT
-        call iaea_get_constant_variable(i_unit_out,2,Z_PHSP_SHORT,iaea_r
-     *  esult)
-        IF ((iaea_result.EQ.-3)) THEN
-          write(i_log,*) ' Z positions of each particle will be read fro
-     *m phase space data.'
-          Z_SCORE=999.
-          IZSCORE2=1
-        ELSE IF((iaea_result.LT.0)) THEN
-          write(i_log,*)' Error reading Z position where IAEA phsp was s
-     *cored.'
-          IZSCORE2=0
-        ELSE
-          Z_SCORE=Z_PHSP_SHORT
-          IZSCORE2=0
-        END IF
-        call iaea_get_extra_numbers(i_unit_out,iaea_n_extra_floats,iaea_
-     *  n_extra_ints)
-        IF ((iaea_n_extra_floats .EQ. -1 .OR. iaea_n_extra_ints .EQ. -1)
-     *  ) THEN
-          write(i_log,*)' Error reading number of extra variables stored
-     * in IAEA phsp'
-        END IF
-        call iaea_get_type_extra_variables(i_unit_out,iaea_result,iaea_e
-     *  xtra_int_types, iaea_extra_float_types)
-        IF ((iaea_result.EQ.-1)) THEN
-          write(i_log,*)' Error getting types of extra variables stored
-     *in IAEA phsp'
-        END IF
-        DO 3481 I_PHSP=1,iaea_n_extra_ints
-          IF ((iaea_extra_int_types(I_PHSP).EQ.2)) THEN
-            iaea_i_latch=I_PHSP
-            GO TO3482
-          END IF
-3481    CONTINUE
-3482    CONTINUE
-        IF ((iaea_i_latch.EQ.-99)) THEN
-          write(i_log,*)' Warning: IAEA format phsp file does not store
-     *LATCH'
-        END IF
-        DO 3491 I_PHSP=1,iaea_n_extra_floats
-          IF ((iaea_extra_float_types(I_PHSP).EQ.3)) THEN
-            iaea_i_zlast=I_PHSP
-            GO TO3492
-          END IF
-3491    CONTINUE
-3492    CONTINUE
-        IF ((iaea_i_zlast.EQ.-99)) THEN
-          IZLAST2=0
-        ELSE
-          IZLAST2=1
-        END IF
-        iaea_i_muidx=MAX(1,iaea_i_zlast+1)
-        IF ((iaea_i_muidx.GT.iaea_n_extra_floats .OR. iaea_extra_float_t
-     *  ypes(iaea_i_muidx).NE.0)) THEN
-          iaea_i_muidx=-99
-          IMUIDX2=0
-        ELSE
-          IMUIDX2=1
-        END IF
-        WRITE(6,3500)PARANOT2,PARANOP2,PARAEMAX2,LPARANINC2
-3500    FORMAT(/'            Total number of particles in file:',I13/ ' 
+        WRITE(6,3470)
+3470    FORMAT(//' Sorry, this code has not been compiled with the IAEAp
+     *hase'/ ' space handling macros.'//)
+        WRITE(6,3480)PARANOT2,PARANOP2,PARAEMAX2,LPARANINC2
+3480    FORMAT(/'            Total number of particles in file:',I13/ ' 
      *                    Total number of photons:',I13/ 'The rest are e
      *lectrons/positrons.'/ ' '/ '      Maximum kinetic energy of the pa
      *rticles:',F13.3,' MeV'/ ' # of incident particles from original so
      *urce:',I13)
         IF ((IZSCORE2.EQ.1)) THEN
-          WRITE(6,3510)Z_SCORE
-3510      FORMAT('                     Z where phsp file scored:',F13.3,
+          WRITE(6,3490)Z_SCORE
+3490      FORMAT('                     Z where phsp file scored:',F13.3,
      *' cm')
         END IF
         IF ((IZLAST2.NE.0)) THEN
-          WRITE(6,3520)
-3520      FORMAT(' ZLAST scored in phase space data.')
+          WRITE(6,3500)
+3500      FORMAT(' ZLAST scored in phase space data.')
         END IF
         IF ((IMUIDX2.NE.0)) THEN
-          WRITE(6,3530)
-3530      FORMAT(' Fractional MU index scored in phase space data.')
+          WRITE(6,3510)
+3510      FORMAT(' Fractional MU index scored in phase space data.')
         END IF
       ELSE
         itmp=-1
@@ -3506,15 +3298,15 @@
           OPEN(UNIT=3,FILE=SPCNAM,FORM='UNFORMATTED',ACCESS='DIRECT', RE
      *    CL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,3540)
-3540        FORMAT(/' ***error opening file as MODE2 ****' /' *** THE FI
+            WRITE(6,3520)
+3520        FORMAT(/' ***error opening file as MODE2 ****' /' *** THE FI
      *LE FORMAT MAY BE WRONG (I.E., NOT A MODE2 FILE) ***'/ /' *** WE NO
      *W TRY TO OPEN IT AS A MODE3 FILE ***'//)
             OPEN(UNIT=3,STATUS='OLD',FILE=SPCNAM, FORM='UNFORMATTED', IO
      *      STAT=IERR_PHSP)
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,3550)
-3550          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
+              WRITE(6,3530)
+3530          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
               STOP
             END IF
             READ(3,REC=1,IOSTAT=IERR_PHSP)MODE_RW2,NUM_PHSP_TOT,PHOT_PHS
@@ -3525,21 +3317,21 @@
             PARAEMNE2=EKMINE_PHSP_SHORT
             PARANINC2=NINC_PHSP_SHORT
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,3560)
-3560          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
+              WRITE(6,3540)
+3540          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
      *//)
               STOP
             END IF
             IF ((MODE_RW2 .NE. 'MODE3')) THEN
-              WRITE(6,3570)
-3570          FORMAT(//' That file does not start with MODE3,', ' as all
+              WRITE(6,3550)
+3550          FORMAT(//' That file does not start with MODE3,', ' as all
      * old compressed files (with ZLAST) must'/ '  Check it out and trya
      *gain!'///)
               IERR_PHSP=1
               STOP
             ELSE
-              WRITE(6,3580)
-3580          FORMAT(//' This is a MODE3 file! '/ ' Please convert it in
+              WRITE(6,3560)
+3560          FORMAT(//' This is a MODE3 file! '/ ' Please convert it in
      *to a MODE2 file using [readphsp] ', ' and try again!'///)
               IERR_PHSP=1
               STOP
@@ -3553,14 +3345,14 @@
           PARAEMNE2=EKMINE_PHSP_SHORT
           PARANINC2=NINC_PHSP_SHORT
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,3590)
-3590        FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE*** '/
+            WRITE(6,3570)
+3570        FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE*** '/
      */)
             STOP
           END IF
           IF ((MODE_RW2 .NE. 'MODE2')) THEN
-            WRITE(6,3600)
-3600        FORMAT(//' That file does not start with MODE2,', ' as stand
+            WRITE(6,3580)
+3580        FORMAT(//' That file does not start with MODE2,', ' as stand
      *ard compressed files with ZLAST must'/ '  Check it out and try aga
      *in!'///)
             IERR_PHSP=1
@@ -3571,15 +3363,15 @@
           OPEN(UNIT=3,FILE=SPCNAM,FORM='UNFORMATTED',ACCESS='DIRECT', RE
      *    CL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,3610)
-3610        FORMAT(/' ***ERROR opening file as MODE0****' /' *** THE FIL
+            WRITE(6,3590)
+3590        FORMAT(/' ***ERROR opening file as MODE0****' /' *** THE FIL
      *E FORMAT MAY BE WRONG (I.E., NOT A MODE0 FILE) ***'/ /' *** WE NOW
      * TRY TO OPEN IT AS A MODE1 FILE ***'//)
             OPEN(UNIT=3,STATUS='OLD',FILE=SPCNAM, FORM='UNFORMATTED', IO
      *      STAT=IERR_PHSP)
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,3620)
-3620          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
+              WRITE(6,3600)
+3600          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
               STOP
             END IF
             READ(3,REC=1,IOSTAT=IERR_PHSP)MODE_RW2,NUM_PHSP_TOT,PHOT_PHS
@@ -3590,20 +3382,20 @@
             PARAEMNE2=EKMINE_PHSP_SHORT
             PARANINC2=NINC_PHSP_SHORT
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,3630)
-3630          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
+              WRITE(6,3610)
+3610          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
      *//)
               STOP
             END IF
             IF ((MODE_RW2 .NE. 'MODE1')) THEN
-              WRITE(6,3640)
-3640          FORMAT(//' That file does not start with MODE1,', ' as all
+              WRITE(6,3620)
+3620          FORMAT(//' That file does not start with MODE1,', ' as all
      * old compressed files must'/ '  Check it out and try again!'///)
               IERR_PHSP=1
               STOP
             ELSE
-              WRITE(6,3650)
-3650          FORMAT(//' This is a MODE1 file! '/ ' Please convert it in
+              WRITE(6,3630)
+3630          FORMAT(//' This is a MODE1 file! '/ ' Please convert it in
      *to a MODE0 file using [readphsp] ', 'and try again!'///)
               IERR_PHSP=1
               STOP
@@ -3617,34 +3409,34 @@
           PARAEMNE2=EKMINE_PHSP_SHORT
           PARANINC2=NINC_PHSP_SHORT
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,3660)
-3660        FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE*** '/
+            WRITE(6,3640)
+3640        FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE*** '/
      */)
             STOP
           END IF
           IF ((MODE_RW2 .NE. 'MODE0')) THEN
-            WRITE(6,3670)
-3670        FORMAT(/' Does not start with MODE0 as files without ZLAST m
+            WRITE(6,3650)
+3650        FORMAT(/' Does not start with MODE0 as files without ZLAST m
      *ust'/ '  Try again!'//)
             IERR_PHSP=1
             STOP
           END IF
         ELSE IF((itmp.LT.0)) THEN
-          WRITE(6,3680)
-3680      FORMAT(/' First, try to open it as a MODE0 file')
+          WRITE(6,3660)
+3660      FORMAT(/' First, try to open it as a MODE0 file')
           PHSP_RECL=4*7
           OPEN(UNIT=3,FILE=SPCNAM,FORM='UNFORMATTED',ACCESS='DIRECT', RE
      *    CL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,3690)
-3690        FORMAT(/' Now try to open it as a MODE2 file')
+            WRITE(6,3670)
+3670        FORMAT(/' Now try to open it as a MODE2 file')
             itmp=1
             PHSP_RECL=4*8
             OPEN(UNIT=3,FILE=SPCNAM,FORM='UNFORMATTED',ACCESS='DIRECT',
      *      RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,3700)
-3700          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
+              WRITE(6,3680)
+3680          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
             ELSE
               READ(3,REC=1,IOSTAT=IERR_PHSP)MODE_RW2,NUM_PHSP_TOT,PHOT_P
      *        HSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP_SHORT,NINC_PHSP_SHOR
@@ -3655,14 +3447,14 @@
               PARAEMNE2=EKMINE_PHSP_SHORT
               PARANINC2=NINC_PHSP_SHORT
               IF ((IERR_PHSP.NE.0)) THEN
-                WRITE(6,3710)
-3710            FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE**
+                WRITE(6,3690)
+3690            FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE**
      ** '//)
                 STOP
               END IF
               IF ((MODE_RW2.NE.'MODE2')) THEN
-                WRITE(6,3720)
-3720            FORMAT(//' That file does not start with MODE2,', ' as s
+                WRITE(6,3700)
+3700            FORMAT(//' That file does not start with MODE2,', ' as s
      *tandard compressed files with ZLAST must'/ '  Check it out and try
      * again!'///)
                 CLOSE(3)
@@ -3678,26 +3470,26 @@
             PARAEMNE2=EKMINE_PHSP_SHORT
             PARANINC2=NINC_PHSP_SHORT
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,3730)
-3730          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
+              WRITE(6,3710)
+3710          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
      *//)
               STOP
             END IF
             itmp=0
             IF ((MODE_RW2.NE.'MODE0')) THEN
-              WRITE(6,3740)
-3740          FORMAT(/' The file does not start with MODE0 as it suppose
+              WRITE(6,3720)
+3720          FORMAT(/' The file does not start with MODE0 as it suppose
      *d to')
               CLOSE(3)
-              WRITE(6,3750)
-3750          FORMAT(/' Now try to open it as a MODE2 file')
+              WRITE(6,3730)
+3730          FORMAT(/' Now try to open it as a MODE2 file')
               itmp=1
               PHSP_RECL=4*8
               OPEN(UNIT=3,FILE=SPCNAM,FORM='UNFORMATTED',ACCESS='DIRECT'
      *        , RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
               IF ((IERR_PHSP.NE.0)) THEN
-                WRITE(6,3760)
-3760            FORMAT(//' *** PHASE SPACE FILE CANNOT BE OPENED. ***')
+                WRITE(6,3740)
+3740            FORMAT(//' *** PHASE SPACE FILE CANNOT BE OPENED. ***')
               ELSE
                 READ(3,REC=1,IOSTAT=IERR_PHSP)MODE_RW2,NUM_PHSP_TOT,PHOT
      *          _PHSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP_SHORT,NINC_PHSP_
@@ -3708,14 +3500,14 @@
                 PARAEMNE2=EKMINE_PHSP_SHORT
                 PARANINC2=NINC_PHSP_SHORT
                 IF ((IERR_PHSP.NE.0)) THEN
-                  WRITE(6,3770)
-3770              FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE
+                  WRITE(6,3750)
+3750              FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE
      **** '//)
                   STOP
                 END IF
                 IF ((MODE_RW2.NE.'MODE2')) THEN
-                  WRITE(6,3780)
-3780              FORMAT(//' That file does not start with MODE2,', ' as
+                  WRITE(6,3760)
+3760              FORMAT(//' That file does not start with MODE2,', ' as
      * standard compressed files with ZLAST must'/ '  Check it out and t
      *ry again!'///)
                   CLOSE(3)
@@ -3725,190 +3517,73 @@
             END IF
           END IF
         END IF
-        IF((IERR_PHSP.NE.0))GOTO 3790
-        WRITE(6,3800)PARANOT2,PARANOP2,PARAEMAX2,PARAEMNE2
-3800    FORMAT(/'            Total number of particles in file:',I13/ ' 
+        IF((IERR_PHSP.NE.0))GOTO 3770
+        WRITE(6,3780)PARANOT2,PARANOP2,PARAEMAX2,PARAEMNE2
+3780    FORMAT(/'            Total number of particles in file:',I13/ ' 
      *                     Total number of photons:',I13/ ' The rest are
      * electrons/positrons.'/ ' '/ '      Maximum kinetic energy of the 
      *particles:',F13.3,' MeV'/ '      Minimum kinetic energy of the ele
      *ctrons:',F13.3,' MeV')
         IF ((PARANINC2 .LT. 2.)) THEN
-          WRITE(6,3810)PARANINC2
-3810      FORMAT('        Minimum kinetic energy of the photons:',F13.3,
+          WRITE(6,3790)PARANINC2
+3790      FORMAT('        Minimum kinetic energy of the photons:',F13.3,
      *' MeV')
         ELSE
-          WRITE(6,3820)PARANINC2
-3820      FORMAT(' # of incident particles from original source:',F13.1)
+          WRITE(6,3800)PARANINC2
+3800      FORMAT(' # of incident particles from original source:',F13.1)
         END IF
       END IF
       IF ((i_iaea_in.NE.i_iaea_out)) THEN
-        WRITE(6,3830)
-3830    FORMAT(//' *****ERROR*****'/ ' Both phase space files must havet
+        WRITE(6,3810)
+3810    FORMAT(//' *****ERROR*****'/ ' Both phase space files must havet
      *he same format'/ ' (IAEA or standard BEAMnrc).  Try again.'//)
         IF ((i_iaea_in.EQ.1)) THEN
-          call iaea_destroy_source(i_unit_in,iaea_result)
-          IF ((iaea_result.LT.0)) THEN
-            WRITE(i_log,*)' Error closing IAEA phase space ID ',i_unit_i
-     *      n
-          END IF
         ELSE
           CLOSE(2)
         END IF
         IF ((i_iaea_out.EQ.1)) THEN
-          call iaea_destroy_source(i_unit_out,iaea_result)
-          IF ((iaea_result.LT.0)) THEN
-            WRITE(i_log,*)' Error closing IAEA phase space ID ',i_unit_o
-     *      ut
-          END IF
         ELSE
           CLOSE(3)
         END IF
         RETURN
       ELSE IF(((i_iaea_in.EQ.0 .AND. MODE_RW2 .NE. MODE_RW1) .OR. (i_iae
      *a_in.EQ.1 .AND. IZLAST1 .NE. IZLAST2))) THEN
-        WRITE(6,3840)
-3840    FORMAT(/' SORRY, CANNOT COMBINE FILES OF DIFFERENT MODES!!! '/)
-        WRITE(6,3850)
-3850    FORMAT(/' PLEASE CONVERT FILES INTO EITHER MODE0 OR 2, THEN TRYA
+        WRITE(6,3820)
+3820    FORMAT(/' SORRY, CANNOT COMBINE FILES OF DIFFERENT MODES!!! '/)
+        WRITE(6,3830)
+3830    FORMAT(/' PLEASE CONVERT FILES INTO EITHER MODE0 OR 2, THEN TRYA
      *GAIN.'/)
         IF ((i_iaea_in.EQ.1)) THEN
-          call iaea_destroy_source(i_unit_in,iaea_result)
-          IF ((iaea_result.LT.0)) THEN
-            WRITE(i_log,*)' Error closing IAEA phase space ID ',i_unit_i
-     *      n
-          END IF
-          call iaea_destroy_source(i_unit_out,iaea_result)
-          IF ((iaea_result.LT.0)) THEN
-            WRITE(i_log,*)' Error closing IAEA phase space ID ',i_unit_o
-     *      ut
-          END IF
         ELSE
           CLOSE(2)
           CLOSE(3)
         END IF
         RETURN
       ELSE IF((i_iaea_in.EQ.1 .AND. IZSCORE1 .NE. IZSCORE2)) THEN
-        WRITE(6,3860)
-3860    FORMAT(/' Error: One IAEA phase space file scores particle Z, wh
+        WRITE(6,3840)
+3840    FORMAT(/' Error: One IAEA phase space file scores particle Z, wh
      *ile the'/ ' other does not.  Cannot combine.'/)
-        call iaea_destroy_source(i_unit_in,iaea_result)
-        IF ((iaea_result.LT.0)) THEN
-          WRITE(i_log,*)' Error closing IAEA phase space ID ',i_unit_in
-        END IF
-        call iaea_destroy_source(i_unit_out,iaea_result)
-        IF ((iaea_result.LT.0)) THEN
-          WRITE(i_log,*)' Error closing IAEA phase space ID ',i_unit_out
-        END IF
         RETURN
       ELSE IF((i_iaea_in.EQ.1 .AND. IMUIDX1 .NE. IMUIDX2)) THEN
-        WRITE(6,3870)
-3870    FORMAT(/' Warning: One IAEA phase space file scores fractional M
+        WRITE(6,3850)
+3850    FORMAT(/' Warning: One IAEA phase space file scores fractional M
      *U index,'/ ' while the other does not.  Combined file will lose th
      *is '/ ' information.'/)
       END IF
-      WRITE(6,3880)
-3880  FORMAT(/' The contents of file 1 will be appended to file 2.'/)
-      WRITE(6,3890)
-3890  FORMAT(/' BEGIN READING/WRITING PH-SP DATA .....'/)
+      WRITE(6,3860)
+3860  FORMAT(/' The contents of file 1 will be appended to file 2.'/)
+      WRITE(6,3870)
+3870  FORMAT(/' BEGIN READING/WRITING PH-SP DATA .....'/)
       IPARANOT2=PARANOT2+1
       IF((i_iaea_in.EQ.0 .AND. MODE_RW1.EQ.'MODE2'))IZLAST1=1
       NHSTRY=0
       IF ((i_iaea_in.EQ.1)) THEN
-        DO 3901 IPARANOT1=1,PARANOT1
-          NPASSI=0
-          call iaea_get_particle(i_unit_in,iaea_n_stat,iaea_q_index,ESHO
-     *    RT,WT_PHSP_SHORT, X_PHSP_SHORT,Y_PHSP_SHORT,Z_PHSP_SHORT,U_PHS
-     *    P_SHORT, V_PHSP_SHORT,W_PHSP_SHORT,iaea_extra_floats,iaea_extr
-     *    a_ints)
-          IF ((iaea_n_stat.EQ.-1)) THEN
-            WRITE(i_log,*)' Error getting particle data from IAEA phsp f
-     *ile.'
-            call exit(1)
-          ELSE IF((iaea_n_stat.EQ.-2)) THEN
-            WRITE(i_log,*)' WARNING: Reached end of IAEA phsp file.  Fil
-     *e restarted.'
-          ELSE IF((iaea_n_stat.GE.0)) THEN
-            NHSTRY=NHSTRY+iaea_n_stat
-            IF ((iaea_i_latch.EQ.-99)) THEN
-              LATCHI=0
-            ELSE
-              LATCHI=iaea_extra_ints(iaea_i_latch)
-            END IF
-            IQ=iaea_typ_q(iaea_q_index)
-            IF (( (IQ.EQ.1) .OR. (IQ.EQ.-1) )) THEN
-              ESHORT = ESHORT + 0.5109989461
-            END IF
-            EREAD=ESHORT
-            IF ((iaea_i_zlast.EQ.-99)) THEN
-              ZLAST_PHSP_SHORT=0
-            ELSE
-              ZLAST_PHSP_SHORT= iaea_extra_floats(iaea_i_zlast)
-            END IF
-            IF ((iaea_i_muidx.EQ.-99)) THEN
-              MUIDX_PHSP_SHORT=0
-            ELSE
-              MUIDX_PHSP_SHORT= iaea_extra_floats(iaea_i_muidx)
-            END IF
-            WEIGHT=WT_PHSP_SHORT
-            XIN=X_PHSP_SHORT
-            YIN=Y_PHSP_SHORT
-            ZIN=Z_PHSP_SHORT
-            UIN=U_PHSP_SHORT
-            VIN=V_PHSP_SHORT
-            WIN=W_PHSP_SHORT
-            ZLAST=ZLAST_PHSP_SHORT
-            MUIDX=MUIDX_PHSP_SHORT
-          END IF
-          IF ((NPASSI.EQ.0)) THEN
-            ESHORT=EREAD
-            iaea_n_stat=NHSTRY-IHSTRY_PHSP(1)
-            IHSTRY_PHSP(1)=NHSTRY
-            IF (( (IQ.EQ.1) .OR. (IQ.EQ.-1) )) THEN
-              ESHORT = ESHORT - 0.5109989461
-            END IF
-            WT_PHSP_SHORT=WEIGHT
-            X_PHSP_SHORT=XIN
-            Y_PHSP_SHORT=YIN
-            Z_PHSP_SHORT=ZIN
-            U_PHSP_SHORT=UIN
-            V_PHSP_SHORT=VIN
-            W_PHSP_SHORT=WIN
-            ZLAST_PHSP_SHORT=ZLAST
-            MUIDX_PHSP_SHORT=MUIDX
-            IF ((i_iaea_open_for_write.EQ.1)) THEN
-              iaea_extra_ints(iaea_i_latch_out)=LATCHI
-              IF((iaea_i_zlast_out.GT.0))iaea_extra_floats(iaea_i_zlast_
-     *        out)=ZLAST_PHSP_SHORT
-              IF((iaea_i_muidx_out.GT.0))iaea_extra_floats(iaea_i_muidx_
-     *        out)=MUIDX_PHSP_SHORT
-            ELSE
-              iaea_extra_ints(iaea_i_latch)=LATCHI
-              IF((iaea_i_zlast.GT.0))iaea_extra_floats(iaea_i_zlast)=ZLA
-     *        ST_PHSP_SHORT
-              IF((iaea_i_muidx.GT.0))iaea_extra_floats(iaea_i_muidx)=MUI
-     *        DX_PHSP_SHORT
-            END IF
-            call iaea_write_particle(i_unit_out,iaea_n_stat,iaea_q_typ(I
-     *      Q+2),ESHORT, WT_PHSP_SHORT,X_PHSP_SHORT,Y_PHSP_SHORT,Z_PHSP_
-     *      SHORT,U_PHSP_SHORT, V_PHSP_SHORT,W_PHSP_SHORT,iaea_extra_flo
-     *      ats,iaea_extra_ints)
-          END IF
-3901    CONTINUE
-3902    CONTINUE
-        iaea_dummy_long=LPARANINC1+LPARANINC2
-        call iaea_set_total_original_particles(i_unit_out,iaea_dummy_lon
-     *  g)
-        call iaea_destroy_source(i_unit_in,iaea_result)
-        IF ((iaea_result.LT.0)) THEN
-          WRITE(i_log,*)' Error closing IAEA phase space ID ',i_unit_in
-        END IF
-        call iaea_destroy_source(i_unit_out,iaea_result)
-        IF ((iaea_result.LT.0)) THEN
-          WRITE(i_log,*)' Error closing IAEA phase space ID ',i_unit_out
-        END IF
+        DO 3881 IPARANOT1=1,PARANOT1
+3881    CONTINUE
+3882    CONTINUE
       ELSE
         PARANOP1=0
-        DO 3911 IPARANOT1=2,PARANOT1+1
+        DO 3891 IPARANOT1=2,PARANOT1+1
           IF ((IZLAST1.NE.0)) THEN
             READ(2,REC=IPARANOT1,IOSTAT=IERR_PHSP) LATCHI,ESHORT,X_PHSP_
      *      SHORT,Y_PHSP_SHORT, U_PHSP_SHORT,V_PHSP_SHORT,WT_PHSP_SHORT,
@@ -3942,11 +3617,11 @@
                 PHSP_RECL=4*8
                 OPEN(UNIT=3,FILE=SPCNAM,ACCESS='DIRECT',RECL=PHSP_RECL,
      *          FORM='UNFORMATTED',STATUS='UNKNOWN')
-                DO 3921 I_PHSP=1,(IPARANOT2-1)-1000*((IPARANOT2-1)/1000)
+                DO 3901 I_PHSP=1,(IPARANOT2-1)-1000*((IPARANOT2-1)/1000)
                   READ(3,REC=1000*INT(dble(IPARANOT2-1)/1000)+I_PHSP) ST
      *            RING_TEMP_ZLAST_OUT(1)(32*(I_PHSP-1)+1:32*I_PHSP)
-3921            CONTINUE
-3922            CONTINUE
+3901            CONTINUE
+3902            CONTINUE
                 CLOSE(3)
                 PHSP_RECL=4*8000
                 OPEN(UNIT=3,FILE=SPCNAM,ACCESS='DIRECT',RECL=PHSP_RECL,
@@ -3955,11 +3630,11 @@
                 PHSP_RECL=4*7
                 OPEN(UNIT=3,FILE=SPCNAM,ACCESS='DIRECT',RECL=PHSP_RECL,
      *          FORM='UNFORMATTED',STATUS='UNKNOWN')
-                DO 3931 I_PHSP=1,(IPARANOT2-1)-1000*((IPARANOT2-1)/1000)
+                DO 3911 I_PHSP=1,(IPARANOT2-1)-1000*((IPARANOT2-1)/1000)
                   READ(3,REC=1000*INT(dble(IPARANOT2-1)/1000)+I_PHSP) ST
      *            RING_TEMP_OUT(1)(28*(I_PHSP-1)+1:28*I_PHSP)
-3931            CONTINUE
-3932            CONTINUE
+3911            CONTINUE
+3912            CONTINUE
                 CLOSE(3)
                 PHSP_RECL=4*7000
                 OPEN(UNIT=3,FILE=SPCNAM,ACCESS='DIRECT',RECL=PHSP_RECL,
@@ -4035,9 +3710,9 @@
             WRITE_PHSP_COUNTER(1)=0
             WRITE_PHSP_SOFAR(1)=WRITE_PHSP_SOFAR(1)+1000
           END IF
-3911    CONTINUE
-3912    CONTINUE
-3940    CONTINUE
+3891    CONTINUE
+3892    CONTINUE
+3920    CONTINUE
         TEMP_PHSP_COUNTER=0
         NUM_PHSP_TOFLUSH=WRITE_PHSP_COUNTER(1)
         IF ((NUM_PHSP_TOFLUSH.GT.0)) THEN
@@ -4045,14 +3720,14 @@
             WRITE_PHSP_COUNTER(1)=WRITE_PHSP_COUNTER(1)+1
             NUM_PHSP_TOFLUSH=NUM_PHSP_TOFLUSH+1
           END IF
-3951      CONTINUE
+3931      CONTINUE
             TEMP_PHSP_COUNTER=NUM_PHSP_TOFLUSH+1
-3961        CONTINUE
+3941        CONTINUE
               TEMP_PHSP_COUNTER=TEMP_PHSP_COUNTER-1
               REM_PHSP=MOD(WRITE_PHSP_SOFAR(1),TEMP_PHSP_COUNTER)
-              IF(((REM_PHSP.EQ.0)))GO TO3962
-            GO TO 3961
-3962        CONTINUE
+              IF(((REM_PHSP.EQ.0)))GO TO3942
+            GO TO 3941
+3942        CONTINUE
             CLOSE(3)
             IF ((IZLAST1.NE.0)) THEN
               PHSP_RECL=4*8*TEMP_PHSP_COUNTER
@@ -4073,9 +3748,9 @@
             END IF
             WRITE_PHSP_SOFAR(1)=WRITE_PHSP_SOFAR(1)+TEMP_PHSP_COUNTER
             NUM_PHSP_TOFLUSH=NUM_PHSP_TOFLUSH-TEMP_PHSP_COUNTER
-            IF(((NUM_PHSP_TOFLUSH.EQ.0)))GO TO3952
-          GO TO 3951
-3952      CONTINUE
+            IF(((NUM_PHSP_TOFLUSH.EQ.0)))GO TO3932
+          GO TO 3931
+3932      CONTINUE
           WRITE_PHSP_COUNTER(1)=0
           WRITE_PHSP_SOFAR(1)=0
         END IF
@@ -4089,8 +3764,8 @@
         END IF
         NINC = (PARANOT1/PARANOT)*PARANINC1 + PARANINC2
         IF (((PARANINC1 .LT. 2.).OR.(PARANINC2 .LT. 2.))) THEN
-          WRITE(6,3970)
-3970      FORMAT(/' FILE 1 AND/OR 2 IS AN OLDER FILE WHICH STORED',/ ' M
+          WRITE(6,3950)
+3950      FORMAT(/' FILE 1 AND/OR 2 IS AN OLDER FILE WHICH STORED',/ ' M
      *IN. PHOTON ENERGY INSTEAD OF # OF INCIDENT PARTICLES',/ ' NUMBER O
      *F INCIDENT PARTICLES SET TO 1 IN COMBINED FILE')
           NINC = 1
@@ -4127,16 +3802,16 @@
         CLOSE(UNIT=2)
         CLOSE(UNIT=3)
       END IF
-      WRITE(6,3980)
-3980  FORMAT(/' Finished reading/writing ph-sp data .....'/)
+      WRITE(6,3960)
+3960  FORMAT(/' Finished reading/writing ph-sp data .....'/)
       RETURN
-3790  CONTINUE
-      WRITE(6,3990)
-3990  FORMAT(//' CANNOT FIND/OPEN THE PH-SP FILE!!!'///)
+3770  CONTINUE
+      WRITE(6,3970)
+3970  FORMAT(//' CANNOT FIND/OPEN THE PH-SP FILE!!!'///)
       CALL HELP_MESSAGE(22)
-      GOTO 3430
-3390  WRITE(6,4000)
-4000  FORMAT(//' CANNOT FIND/OPEN THE PH-SP FILE!!!'///)
+      GOTO 3420
+3380  WRITE(6,3980)
+3980  FORMAT(//' CANNOT FIND/OPEN THE PH-SP FILE!!!'///)
       GOTO 3050
       END
       SUBROUTINE BEAMDP1
@@ -6272,50 +5947,6 @@
           GOTO 7140
         END IF
         IF ((i_iaea_in.EQ.1)) THEN
-          NPASSI=0
-          call iaea_get_particle(i_unit_in,iaea_n_stat,iaea_q_index,ESHO
-     *    RT,WT_PHSP_SHORT, X_PHSP_SHORT,Y_PHSP_SHORT,Z_PHSP_SHORT,U_PHS
-     *    P_SHORT, V_PHSP_SHORT,W_PHSP_SHORT,iaea_extra_floats,iaea_extr
-     *    a_ints)
-          IF ((iaea_n_stat.EQ.-1)) THEN
-            WRITE(i_log,*)' Error getting particle data from IAEA phsp f
-     *ile.'
-            call exit(1)
-          ELSE IF((iaea_n_stat.EQ.-2)) THEN
-            WRITE(i_log,*)' WARNING: Reached end of IAEA phsp file.  Fil
-     *e restarted.'
-          ELSE IF((iaea_n_stat.GE.0)) THEN
-            NHSTRY=NHSTRY+iaea_n_stat
-            IF ((iaea_i_latch.EQ.-99)) THEN
-              LATCHI=0
-            ELSE
-              LATCHI=iaea_extra_ints(iaea_i_latch)
-            END IF
-            IQ=iaea_typ_q(iaea_q_index)
-            IF (( (IQ.EQ.1) .OR. (IQ.EQ.-1) )) THEN
-              ESHORT = ESHORT + 0.5109989461
-            END IF
-            EI=ESHORT
-            IF ((iaea_i_zlast.EQ.-99)) THEN
-              ZLAST_PHSP_SHORT=0
-            ELSE
-              ZLAST_PHSP_SHORT= iaea_extra_floats(iaea_i_zlast)
-            END IF
-            IF ((iaea_i_muidx.EQ.-99)) THEN
-              MUIDX_PHSP_SHORT=0
-            ELSE
-              MUIDX_PHSP_SHORT= iaea_extra_floats(iaea_i_muidx)
-            END IF
-            WEIGHT=WT_PHSP_SHORT
-            XIN=X_PHSP_SHORT
-            YIN=Y_PHSP_SHORT
-            ZIN=Z_PHSP_SHORT
-            UIN=U_PHSP_SHORT
-            VIN=V_PHSP_SHORT
-            WIN=W_PHSP_SHORT
-            ZLAST=ZLAST_PHSP_SHORT
-            MUIDX=MUIDX_PHSP_SHORT
-          END IF
         ELSE
           IZLAST1=0
           IF((MODE_RW.EQ.'MODE2'))IZLAST1=1
@@ -6795,80 +6426,11 @@
 1010  CONTINUE
       IF ((i_iaea_in.EQ.1)) THEN
         i_unit_in=2
-        call iaea_new_source(i_unit_in,PSDNAM,1,iaea_result)
-        IF ((iaea_result.LT.0)) THEN
-          WRITE(i_log,*)' Error opening IAEA phase space source.'
-        END IF
-        call iaea_get_max_particles(i_unit_in,-1,iaea_dummy_long)
-        PARANOT=iaea_dummy_long
-        call iaea_get_max_particles(i_unit_in,1,iaea_dummy_long)
-        PARANOP=iaea_dummy_long
-        call iaea_get_total_original_particles(i_unit_in,iaea_dummy_long
-     *  )
-        LPARANINC=iaea_dummy_long
-        call iaea_get_maximum_energy(i_unit_in,EKMAX_PHSP_SHORT)
-        PARAEMAX=EKMAX_PHSP_SHORT
-        call iaea_get_constant_variable(i_unit_in,2,Z_PHSP_SHORT,iaea_re
-     *  sult)
-        IF ((iaea_result.EQ.-3)) THEN
-          write(i_log,*) ' Z positions of each particle will be read fro
-     *m phase space data.'
-          Z_SCORE=999.
-          IZSCORE1=1
-        ELSE IF((iaea_result.LT.0)) THEN
-          write(i_log,*)' Error reading Z position where IAEA phsp was s
-     *cored.'
-          IZSCORE1=0
-        ELSE
-          Z_SCORE=Z_PHSP_SHORT
-          IZSCORE1=0
-        END IF
-        call iaea_get_extra_numbers(i_unit_in,iaea_n_extra_floats,iaea_n
-     *  _extra_ints)
-        IF ((iaea_n_extra_floats .EQ. -1 .OR. iaea_n_extra_ints .EQ. -1)
-     *  ) THEN
-          write(i_log,*)' Error reading number of extra variables stored
-     * in IAEA phsp'
-        END IF
-        call iaea_get_type_extra_variables(i_unit_in,iaea_result,iaea_ex
-     *  tra_int_types, iaea_extra_float_types)
-        IF ((iaea_result.EQ.-1)) THEN
-          write(i_log,*)' Error getting types of extra variables stored
-     *in IAEA phsp'
-        END IF
-        DO 1021 I_PHSP=1,iaea_n_extra_ints
-          IF ((iaea_extra_int_types(I_PHSP).EQ.2)) THEN
-            iaea_i_latch=I_PHSP
-            GO TO1022
-          END IF
-1021    CONTINUE
-1022    CONTINUE
-        IF ((iaea_i_latch.EQ.-99)) THEN
-          write(i_log,*)' Warning: IAEA format phsp file does not store
-     *LATCH'
-        END IF
-        DO 1031 I_PHSP=1,iaea_n_extra_floats
-          IF ((iaea_extra_float_types(I_PHSP).EQ.3)) THEN
-            iaea_i_zlast=I_PHSP
-            GO TO1032
-          END IF
-1031    CONTINUE
-1032    CONTINUE
-        IF ((iaea_i_zlast.EQ.-99)) THEN
-          IZLAST1=0
-        ELSE
-          IZLAST1=1
-        END IF
-        iaea_i_muidx=MAX(1,iaea_i_zlast+1)
-        IF ((iaea_i_muidx.GT.iaea_n_extra_floats .OR. iaea_extra_float_t
-     *  ypes(iaea_i_muidx).NE.0)) THEN
-          iaea_i_muidx=-99
-          IMUIDX1=0
-        ELSE
-          IMUIDX1=1
-        END IF
-        WRITE(6,1040)PARANOT,PARANOP,PARAEMAX,LPARANINC
-1040    FORMAT(/'            Total number of particles in file:',I13/ ' 
+        WRITE(6,1020)
+1020    FORMAT(//' Sorry, this code has not been compiled with the IAEAp
+     *hase'/ ' space handling macros.'//)
+        WRITE(6,1030)PARANOT,PARANOP,PARAEMAX,LPARANINC
+1030    FORMAT(/'            Total number of particles in file:',I13/ ' 
      *                    Total number of photons:',I13/ 'The rest are e
      *lectrons/positrons.'/ ' '/ '      Maximum kinetic energy of the pa
      *rticles:',F13.3,' MeV'/ ' # of incident particles from original so
@@ -6879,13 +6441,13 @@
           MODE_RW='MODE0'
         END IF
         IF ((IZSCORE1.EQ.0)) THEN
-          WRITE(6,1050)Z_SCORE
-1050      FORMAT('                       Z at which phsp scored:',F13.3,
+          WRITE(6,1040)Z_SCORE
+1040      FORMAT('                       Z at which phsp scored:',F13.3,
      *' cm')
         END IF
         IF ((IMUIDX1.NE.0)) THEN
-          WRITE(6,1060)
-1060      FORMAT(' Fractional MU index also scored in phase space data.'
+          WRITE(6,1050)
+1050      FORMAT(' Fractional MU index also scored in phase space data.'
      */)
         END IF
         NINC=LPARANINC
@@ -6896,15 +6458,15 @@
           OPEN(UNIT=2,FILE=PSDNAM,FORM='UNFORMATTED',ACCESS='DIRECT', RE
      *    CL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,1070)
-1070        FORMAT(/' ***error opening file as MODE2 ****' /' *** THE FI
+            WRITE(6,1060)
+1060        FORMAT(/' ***error opening file as MODE2 ****' /' *** THE FI
      *LE FORMAT MAY BE WRONG (I.E., NOT A MODE2 FILE) ***'/ /' *** WE NO
      *W TRY TO OPEN IT AS A MODE3 FILE ***'//)
             OPEN(UNIT=2,STATUS='OLD',FILE=PSDNAM, FORM='UNFORMATTED', IO
      *      STAT=IERR_PHSP)
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,1080)
-1080          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
+              WRITE(6,1070)
+1070          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
               STOP
             END IF
             READ(2,REC=1,IOSTAT=IERR_PHSP)MODE_RW,NUM_PHSP_TOT,PHOT_PHSP
@@ -6915,21 +6477,21 @@
             PARAEMNE=EKMINE_PHSP_SHORT
             PARANINC=NINC_PHSP_SHORT
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,1090)
-1090          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
+              WRITE(6,1080)
+1080          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
      *//)
               STOP
             END IF
             IF ((MODE_RW .NE. 'MODE3')) THEN
-              WRITE(6,1100)
-1100          FORMAT(//' That file does not start with MODE3,', ' as all
+              WRITE(6,1090)
+1090          FORMAT(//' That file does not start with MODE3,', ' as all
      * old compressed files (with ZLAST) must'/ '  Check it out and trya
      *gain!'///)
               IERR_PHSP=1
               STOP
             ELSE
-              WRITE(6,1110)
-1110          FORMAT(//' This is a MODE3 file! '/ ' Please convert it in
+              WRITE(6,1100)
+1100          FORMAT(//' This is a MODE3 file! '/ ' Please convert it in
      *to a MODE2 file using [readphsp] ', ' and try again!'///)
               IERR_PHSP=1
               STOP
@@ -6943,14 +6505,14 @@
           PARAEMNE=EKMINE_PHSP_SHORT
           PARANINC=NINC_PHSP_SHORT
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,1120)
-1120        FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE*** '/
+            WRITE(6,1110)
+1110        FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE*** '/
      */)
             STOP
           END IF
           IF ((MODE_RW .NE. 'MODE2')) THEN
-            WRITE(6,1130)
-1130        FORMAT(//' That file does not start with MODE2,', ' as stand
+            WRITE(6,1120)
+1120        FORMAT(//' That file does not start with MODE2,', ' as stand
      *ard compressed files with ZLAST must'/ '  Check it out and try aga
      *in!'///)
             IERR_PHSP=1
@@ -6961,15 +6523,15 @@
           OPEN(UNIT=2,FILE=PSDNAM,FORM='UNFORMATTED',ACCESS='DIRECT', RE
      *    CL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,1140)
-1140        FORMAT(/' ***ERROR opening file as MODE0****' /' *** THE FIL
+            WRITE(6,1130)
+1130        FORMAT(/' ***ERROR opening file as MODE0****' /' *** THE FIL
      *E FORMAT MAY BE WRONG (I.E., NOT A MODE0 FILE) ***'/ /' *** WE NOW
      * TRY TO OPEN IT AS A MODE1 FILE ***'//)
             OPEN(UNIT=2,STATUS='OLD',FILE=PSDNAM, FORM='UNFORMATTED', IO
      *      STAT=IERR_PHSP)
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,1150)
-1150          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
+              WRITE(6,1140)
+1140          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
               STOP
             END IF
             READ(2,REC=1,IOSTAT=IERR_PHSP)MODE_RW,NUM_PHSP_TOT,PHOT_PHSP
@@ -6980,20 +6542,20 @@
             PARAEMNE=EKMINE_PHSP_SHORT
             PARANINC=NINC_PHSP_SHORT
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,1160)
-1160          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
+              WRITE(6,1150)
+1150          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
      *//)
               STOP
             END IF
             IF ((MODE_RW .NE. 'MODE1')) THEN
-              WRITE(6,1170)
-1170          FORMAT(//' That file does not start with MODE1,', ' as all
+              WRITE(6,1160)
+1160          FORMAT(//' That file does not start with MODE1,', ' as all
      * old compressed files must'/ '  Check it out and try again!'///)
               IERR_PHSP=1
               STOP
             ELSE
-              WRITE(6,1180)
-1180          FORMAT(//' This is a MODE1 file! '/ ' Please convert it in
+              WRITE(6,1170)
+1170          FORMAT(//' This is a MODE1 file! '/ ' Please convert it in
      *to a MODE0 file using [readphsp] ', 'and try again!'///)
               IERR_PHSP=1
               STOP
@@ -7007,34 +6569,34 @@
           PARAEMNE=EKMINE_PHSP_SHORT
           PARANINC=NINC_PHSP_SHORT
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,1190)
-1190        FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE*** '/
+            WRITE(6,1180)
+1180        FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE*** '/
      */)
             STOP
           END IF
           IF ((MODE_RW .NE. 'MODE0')) THEN
-            WRITE(6,1200)
-1200        FORMAT(/' Does not start with MODE0 as files without ZLAST m
+            WRITE(6,1190)
+1190        FORMAT(/' Does not start with MODE0 as files without ZLAST m
      *ust'/ '  Try again!'//)
             IERR_PHSP=1
             STOP
           END IF
         ELSE IF((itmp.LT.0)) THEN
-          WRITE(6,1210)
-1210      FORMAT(/' First, try to open it as a MODE0 file')
+          WRITE(6,1200)
+1200      FORMAT(/' First, try to open it as a MODE0 file')
           PHSP_RECL=4*7
           OPEN(UNIT=2,FILE=PSDNAM,FORM='UNFORMATTED',ACCESS='DIRECT', RE
      *    CL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
           IF ((IERR_PHSP.NE.0)) THEN
-            WRITE(6,1220)
-1220        FORMAT(/' Now try to open it as a MODE2 file')
+            WRITE(6,1210)
+1210        FORMAT(/' Now try to open it as a MODE2 file')
             itmp=1
             PHSP_RECL=4*8
             OPEN(UNIT=2,FILE=PSDNAM,FORM='UNFORMATTED',ACCESS='DIRECT',
      *      RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,1230)
-1230          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
+              WRITE(6,1220)
+1220          FORMAT(//' *** PHASE SPACE FILE CANNOT BE FOUND. ***')
             ELSE
               READ(2,REC=1,IOSTAT=IERR_PHSP)MODE_RW,NUM_PHSP_TOT,PHOT_PH
      *        SP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP_SHORT,NINC_PHSP_SHORT
@@ -7044,14 +6606,14 @@
               PARAEMNE=EKMINE_PHSP_SHORT
               PARANINC=NINC_PHSP_SHORT
               IF ((IERR_PHSP.NE.0)) THEN
-                WRITE(6,1240)
-1240            FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE**
+                WRITE(6,1230)
+1230            FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE**
      ** '//)
                 STOP
               END IF
               IF ((MODE_RW.NE.'MODE2')) THEN
-                WRITE(6,1250)
-1250            FORMAT(//' That file does not start with MODE2,', ' as s
+                WRITE(6,1240)
+1240            FORMAT(//' That file does not start with MODE2,', ' as s
      *tandard compressed files with ZLAST must'/ '  Check it out and try
      * again!'///)
                 CLOSE(2)
@@ -7067,26 +6629,26 @@
             PARAEMNE=EKMINE_PHSP_SHORT
             PARANINC=NINC_PHSP_SHORT
             IF ((IERR_PHSP.NE.0)) THEN
-              WRITE(6,1260)
-1260          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
+              WRITE(6,1250)
+1250          FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE***'
      *//)
               STOP
             END IF
             itmp=0
             IF ((MODE_RW.NE.'MODE0')) THEN
-              WRITE(6,1270)
-1270          FORMAT(/' The file does not start with MODE0 as it suppose
+              WRITE(6,1260)
+1260          FORMAT(/' The file does not start with MODE0 as it suppose
      *d to')
               CLOSE(2)
-              WRITE(6,1280)
-1280          FORMAT(/' Now try to open it as a MODE2 file')
+              WRITE(6,1270)
+1270          FORMAT(/' Now try to open it as a MODE2 file')
               itmp=1
               PHSP_RECL=4*8
               OPEN(UNIT=2,FILE=PSDNAM,FORM='UNFORMATTED',ACCESS='DIRECT'
      *        , RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
               IF ((IERR_PHSP.NE.0)) THEN
-                WRITE(6,1290)
-1290            FORMAT(//' *** PHASE SPACE FILE CANNOT BE OPENED. ***')
+                WRITE(6,1280)
+1280            FORMAT(//' *** PHASE SPACE FILE CANNOT BE OPENED. ***')
               ELSE
                 READ(2,REC=1,IOSTAT=IERR_PHSP)MODE_RW,NUM_PHSP_TOT,PHOT_
      *          PHSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP_SHORT,NINC_PHSP_S
@@ -7097,14 +6659,14 @@
                 PARAEMNE=EKMINE_PHSP_SHORT
                 PARANINC=NINC_PHSP_SHORT
                 IF ((IERR_PHSP.NE.0)) THEN
-                  WRITE(6,1300)
-1300              FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE
+                  WRITE(6,1290)
+1290              FORMAT(//' ***ERROR READING HEADER OF PHASE SPACE FILE
      **** '//)
                   STOP
                 END IF
                 IF ((MODE_RW.NE.'MODE2')) THEN
-                  WRITE(6,1310)
-1310              FORMAT(//' That file does not start with MODE2,', ' as
+                  WRITE(6,1300)
+1300              FORMAT(//' That file does not start with MODE2,', ' as
      * standard compressed files with ZLAST must'/ '  Check it out and t
      *ry again!'///)
                   CLOSE(2)
@@ -7114,27 +6676,27 @@
             END IF
           END IF
         END IF
-        IF((IERR_PHSP.NE.0))GOTO 1320
-        WRITE(6,1330)PARANOT,PARANOP,PARAEMAX,PARAEMNE
-1330    FORMAT(/'            Total number of particles in file:',I13/ ' 
+        IF((IERR_PHSP.NE.0))GOTO 1310
+        WRITE(6,1320)PARANOT,PARANOP,PARAEMAX,PARAEMNE
+1320    FORMAT(/'            Total number of particles in file:',I13/ ' 
      *                     Total number of photons:',I13/ ' The rest are
      * electrons/positrons.'/ ' '/ '      Maximum kinetic energy of the 
      *particles:',F13.3,' MeV'/ '      Minimum kinetic energy of the ele
      *ctrons:',F13.3,' MeV')
         IF ((PARANINC .LT. 2.)) THEN
-          WRITE(6,1340)PARANINC
-1340      FORMAT('        Minimum kinetic energy of the photons:',F13.3,
+          WRITE(6,1330)PARANINC
+1330      FORMAT('        Minimum kinetic energy of the photons:',F13.3,
      *' MeV')
           NINC=1
         ELSE
-          WRITE(6,1350)PARANINC
-1350      FORMAT(' # of incident particles from original source:',F13.1)
+          WRITE(6,1340)PARANINC
+1340      FORMAT(' # of incident particles from original source:',F13.1)
           NINC=PARANINC
         END IF
       END IF
       RETURN
-1320  WRITE(6,1360)
-1360  FORMAT(//' CANNOT FIND/OPEN THE PH-SP FILE!!!'///)
+1310  WRITE(6,1350)
+1350  FORMAT(//' CANNOT FIND/OPEN THE PH-SP FILE!!!'///)
       IF (EGSPERT) THEN
         CALL HELP_MESSAGE(61)
       END IF

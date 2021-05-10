@@ -111,10 +111,10 @@ proc edit_parameters {} {
 
     # Add a separator
     frame $top.topsep -bd 4 -width 100 -height 2 -relief groove
-    pack $top.topsep -fill x
+    pack $top.topsep -fill x -pady [expr 2*$ypad]
 
     label $top.phantomlabel -text "Phantom definition" -font $helvfont
-    pack $top.phantomlabel
+    pack $top.phantomlabel -pady [expr 2*$ypad]
     # frame to hold phantom definition stuff:
 
     set w $top.pdef
@@ -177,9 +177,9 @@ proc edit_parameters {} {
 	    -command define_phantom
     pack $left.frm.help -side left
     pack $left.frm.phdef.phb $left.frm.phdef.ct -side left -padx 5
-    pack $left.frm.phdef
+    pack $left.frm.phdef -pady $ypad
 
-    pack $left.warn $left.frm -side top
+    pack $left.warn $left.frm -side top -pady $ypad
 
     pack $left -side left -anchor w -fill x -padx 5
     pack $right -side right -fill x -padx 5 -expand true
@@ -191,10 +191,10 @@ proc edit_parameters {} {
 
     # Add a separator
     frame $top.sep0 -bd 4 -width 100 -height 2 -relief groove
-    pack $top.sep0 -fill x
+    pack $top.sep0 -fill x -pady [expr 2*$ypad]
 
     label $top.srclabel -text "Source parameters" -font $helvfont
-    pack $top.srclabel
+    pack $top.srclabel -pady $ypad
 
     # Incident particle
     frame $top.inp3 -bd 4
@@ -245,10 +245,10 @@ proc edit_parameters {} {
 
     # Add a separator
     frame $top.sep1 -bd 4 -width 100 -height 2 -relief groove
-    pack $top.sep1 -fill x
+    pack $top.sep1 -fill x -pady [expr 2*$ypad]
 
     label $top.simlabel -text "Simulation parameters" -font $helvfont
-    pack $top.simlabel
+    pack $top.simlabel -pady $ypad
     # main simulation parameters on a frame $w with subframes $w.left, $w.right
     set w $top.sim
     set w1 $top.sim.left
@@ -413,7 +413,7 @@ proc edit_parameters {} {
 
     # Add a separator
     frame $top.sep2 -bd 4 -width 100 -height 2 -relief groove
-    pack $top.sep2 -fill x
+    pack $top.sep2 -fill x -pady [expr 2*$ypad]
 
     #put in the "Done" button and an option to edit the EGSnrc parameters
     frame .main_w.button

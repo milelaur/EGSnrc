@@ -4,41 +4,38 @@
 !INDENT F2;
 %C80
 %Q1
-"*************************************************************************
-"
-" EGSnrc machine dependent macro file for
-" linux
-"
-" Created by :
-" EGSnrc-configure-linux version 1.0 on ma toukok. 10 2021
-"
-" You may add your own machine dependent macros to this file,
-" but be carefull to not overwrite it if you re-run
-" EGSnrc-configure-linux
-"
-"*************************************************************************
+"#############################################################################"
+"                                                                             "
+" EGSnrc machine dependent macro file for linux                               "
+"                                                                             "
+" Created by configure version 2.0 on ma 10.5.2021 22.46.21 +0300             "
+"                                                                             "
+" You may add your own machine dependent macros to this file,                 "
+" but be carefull to not overwrite it if you re-run configure.                "
+"                                                                             "
+"#############################################################################"
 
 REPLACE {$MACHINE} WITH
   {,'linux',};
 REPLACE {$HEN_HOUSE} WITH
-  {'/home/miia/EGSnrc/HEN_HOUSE/'};
+  {'/home/rsmina/EGSnrc/HEN_HOUSE/'};
 REPLACE {$CANONICAL_SYSTEM} WITH
-  {'linux64'};
+  {'x86_64-unknown-linux-gnu'};
 REPLACE {$CONFIGURATION_NAME} WITH
   {'linux'};
 REPLACE {$EGS_CONFIG} WITH
-  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux.conf'};
+  {'/home/rsmina/EGSnrc/HEN_HOUSE/specs/linux.conf'};
 
 " System dependent stuff "
 "========================================"
 " Unfortunately, there appears to be no reliable way of copying files "
 " under Fortran => we use a system call for this"
-REPLACE {$copy_file} WITH {'cp  '};
+REPLACE {$copy_file} WITH {'cp '};
 
 " Although one can move files using Fortran's intrinsic rename, "
 " we don't know whether the user has not created additional files in "
 " the temporary working directory => it is easiest to use a system call "
-" to move all files from the temporary working directory to the user code "
+" to move all files from the temporary working directory to the user-code "
 " directory. "
 REPLACE {$move_file} WITH {'mv -f '};
 
@@ -55,13 +52,12 @@ REPLACE {$SHORT_INT} WITH { integer*2 };
 "The machine byte order"
 REPLACE {$BYTE_ORDER} WITH {'1234'};
 ;
-" Record Length for unformatted I/O "
 REPLACE {$RECL-FACTOR} WITH {4};
 ;
 REPLACE {$FLUSH_UNIT(#);} WITH {call flush({P1});}
 ;
-" If you want your user code to return an exit status, use the
-" following macro to terminate execution
+" If you want your user-code to return an exit status, use the "
+" following macro to terminate execution"
 REPLACE {$CALL_EXIT(#);} WITH {call exit({P1});}
 ;
 " mortran3 gets confused by the # char => we need to pass it as an "
@@ -160,7 +156,7 @@ REPLACE {$HAVE_LOAD_DSO(#);} WITH {{EMIT;{P1}define HAVE_LOAD_DSO};}
 REPLACE {$STAT}    WITH {10}  "Number of batches to use in calcn of statistics"
                               "It works with $STAT = 1 but gives no stats"
 REPLACE {$MXMED}   WITH {20}   "Maximum number of media
-REPLACE {$MXSTACK} WITH {10000}  "Maximum particle stack size
+REPLACE {$MXSTACK} WITH {900000}  "Maximum particle stack size
 REPLACE {$IMAX}    WITH {128} "Maximum number of x cells
 REPLACE {$JMAX}    WITH {128} "Maximum number of y cells
 REPLACE {$KMAX}    WITH {128} "Maximum number of z cells
@@ -2305,11 +2301,11 @@ WRITE(15,*) (ybnd(jj),jj=1,jjmax+1);
 WRITE(15,*) (zbnd(kk),kk=1,kkmax+1);
 DO kk=1,kkmax[
     DO jj=1,jjmax[
-        WRITE(15,1399) (med($IR(ii,jj,kk)),ii=1,iimax);
+        WRITE(15,1399) (achar(MOD((med($IR(ii,jj,kk))+16),95) + 32),ii=1,iimax);
     ]
     WRITE(15,*);
 ]
-1399 FORMAT($IMAXi1);
+1399 FORMAT($IMAXa1);
 DO kk=1,kkmax[
     DO jj=1,jjmax[
         WRITE(15,*) (rho($IR(ii,jj,kk)),ii=1,iimax);

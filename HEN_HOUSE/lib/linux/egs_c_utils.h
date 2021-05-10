@@ -1,7 +1,7 @@
 /*
 ###############################################################################
 #
-#  EGSnrc C utility functions
+#  EGSnrc parallel processing C functions
 #  Copyright (C) 2015 National Research Council Canada
 #
 #  This file is part of EGSnrc.
@@ -21,14 +21,9 @@
 #
 ###############################################################################
 #
-#  Author:          Iwan Kawrakow, 2004
+#  Author:          Iwan Kawrakow, 2003
 #
-#  Contributors:
-#
-###############################################################################
-#
-#  Various C functions needed for the implementation of parallel processing
-#  in EGSnrc.
+#  Contributors:    Ernesto Mainegra-Hing
 #
 ###############################################################################
 */
@@ -37,7 +32,19 @@
 #ifndef EGS_C_UTILS_H_
 #define EGS_C_UTILS_H_
 
+#ifdef MAKE_WIN_DISTRIBUTION
+#ifdef MY_STDCALL
+#define F77_OBJ(fname,FNAME) __stdcall fname
+#define F77_OBJ_(fname,FNAME) __stdcall fname
+#define C_CONVENTION __stdcall
+#else
+#define F77_OBJ(fname,FNAME) fname
+#define F77_OBJ_(fname,FNAME) fname
+#define C_CONVENTION
+#endif
+#else
 #include "egs_config1.h"
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -59,17 +66,38 @@ extern "C" {
  */
 #define egsCreateControlFile F77_OBJ_(egs_create_control_file,EGS_CREATE_CONTROL_FILE)
 void egsCreateControlFile(const char *fname, int *status, int len);
+#ifdef MAKE_WIN_DISTRIBUTION
+void C_CONVENTION egs_create_control_file_(const char *fname, int *status, int len);
+void C_CONVENTION egs_create_control_file__(const char *fname, int *status, int len);
+void C_CONVENTION EGS_CREATE_CONTROL_FILE(const char *fname, int *status, int len);
+void C_CONVENTION EGS_CREATE_CONTROL_FILE_(const char *fname, int *status, int len);
+void C_CONVENTION EGS_CREATE_CONTROL_FILE__(const char *fname, int *status, int len);
+#endif
 
 /*! Open the job control file.
     This function is to be called from all other jobs
  */
 #define egsOpenControlFile F77_OBJ_(egs_open_control_file,EGS_OPEN_CONTROL_FILE)
 void egsOpenControlFile(const char *fname, int *status, int len);
+#ifdef MAKE_WIN_DISTRIBUTION
+void C_CONVENTION egs_open_control_file_(const char *fname, int *status, int len);
+void C_CONVENTION egs_open_control_file__(const char *fname, int *status, int len);
+void C_CONVENTION EGS_OPEN_CONTROL_FILE(const char *fname, int *status, int len);
+void C_CONVENTION EGS_OPEN_CONTROL_FILE_(const char *fname, int *status, int len);
+void C_CONVENTION EGS_OPEN_CONTROL_FILE__(const char *fname, int *status, int len);
+#endif
 
 /*! Close the job control file.
  */
 #define egsCloseControlFile F77_OBJ_(egs_close_control_file,EGS_CLOSE_CONTROL_FILE)
 void egsCloseControlFile(int *status);
+#ifdef MAKE_WIN_DISTRIBUTION
+void C_CONVENTION egs_close_control_file_(int *status);
+void C_CONVENTION egs_close_control_file__(int *status);
+void C_CONVENTION EGS_CLOSE_CONTROL_FILE(int *status);
+void C_CONVENTION EGS_CLOSE_CONTROL_FILE_(int *status);
+void C_CONVENTION EGS_CLOSE_CONTROL_FILE__(int *status);
+#endif
 
 /*! Lock the control file.
     This function is to be called before performing I/O
@@ -77,6 +105,13 @@ void egsCloseControlFile(int *status);
  */
 #define egsLockControlFile F77_OBJ_(egs_lock_control_file,EGS_LOCK_CONTROL_FILE)
 void egsLockControlFile(int *status);
+#ifdef MAKE_WIN_DISTRIBUTION
+void C_CONVENTION egs_lock_control_file_(int *status);
+void C_CONVENTION egs_lock_control_file__(int *status);
+void C_CONVENTION EGS_LOCK_CONTROL_FILE(int *status);
+void C_CONVENTION EGS_LOCK_CONTROL_FILE_(int *status);
+void C_CONVENTION EGS_LOCK_CONTROL_FILE__(int *status);
+#endif
 
 /*! Unlock the control file.
     This function is to be called after I/O operations
@@ -84,13 +119,25 @@ void egsLockControlFile(int *status);
  */
 #define egsUnlockControlFile F77_OBJ_(egs_unlock_control_file,EGS_UNLOCK_CONTROL_FILE)
 void egsUnlockControlFile(int *status);
-
+#ifdef MAKE_WIN_DISTRIBUTION
+void C_CONVENTION egs_unlock_control_file_(int *status);
+void C_CONVENTION egs_unlock_control_file__(int *status);
+void C_CONVENTION EGS_UNLOCK_CONTROL_FILE(int *status);
+void C_CONVENTION EGS_UNLOCK_CONTROL_FILE_(int *status);
+void C_CONVENTION EGS_UNLOCK_CONTROL_FILE__(int *status);
+#endif
 /*! Rewind the job control file
     If the file is not locked, lock it first
  */
 #define egsRewindControlFile F77_OBJ_(egs_rewind_control_file,EGS_REWIND_CONTROL_FILE)
 void egsRewindControlFile(int *status);
-
+#ifdef MAKE_WIN_DISTRIBUTION
+void C_CONVENTION egs_rewind_control_file_(int *status);
+void C_CONVENTION egs_rewind_control_file__(int *status);
+void C_CONVENTION EGS_REWIND_CONTROL_FILE(int *status);
+void C_CONVENTION EGS_REWIND_CONTROL_FILE_(int *status);
+void C_CONVENTION EGS_REWIND_CONTROL_FILE__(int *status);
+#endif
 /*! Write to the job control file.
     File should be locked prior to using this function.
     buf points to a char buffer to be written to the file, n to an integer
@@ -99,28 +146,71 @@ void egsRewindControlFile(int *status);
 #define egsWriteControlFile F77_OBJ_(egs_write_control_file,EGS_WRITE_CONTROL_FILE)
 void egsWriteControlFile(const char *buf, const int *n,
                                             int *status, int len);
+#ifdef MAKE_WIN_DISTRIBUTION
+void C_CONVENTION egs_write_control_file_(const char *buf, const int *n, int *status, int len);
+void C_CONVENTION egs_write_control_file__(const char *buf, const int *n, int *status, int len);
+void C_CONVENTION EGS_WRITE_CONTROL_FILE(const char *buf, const int *n, int *status, int len);
+void C_CONVENTION EGS_WRITE_CONTROL_FILE_(const char *buf, const int *n, int *status, int len);
+void C_CONVENTION EGS_WRITE_CONTROL_FILE__(const char *buf, const int *n, int *status, int len);
+#endif
+
 /*! Read from the job control file *n bytes into buf.
  */
 #define egsReadControlFile F77_OBJ_(egs_read_control_file,EGS_READ_CONTROL_FILE)
 void egsReadControlFile(char *buf, const int *n, int *status, int len);
+#ifdef MAKE_WIN_DISTRIBUTION
+void C_CONVENTION egs_read_control_file_(char *buf, const int *n, int *status, int len);
+void C_CONVENTION egs_read_control_file__(char *buf, const int *n, int *status, int len);
+void C_CONVENTION EGS_READ_CONTROL_FILE(char *buf, const int *n, int *status, int len);
+void C_CONVENTION EGS_READ_CONTROL_FILE_(char *buf, const int *n, int *status, int len);
+void C_CONVENTION EGS_READ_CONTROL_FILE__(char *buf, const int *n, int *status, int len);
+#endif
 
 /*! Remove a file */
 #define egsRemoveFile F77_OBJ_(egs_remove_file,EGS_REMOVE_FILE)
 void egsRemoveFile(const char *fname, int *status, int len);
+#ifdef MAKE_WIN_DISTRIBUTION
+void C_CONVENTION egs_remove_file_(const char *fname, int *status, int len);
+void C_CONVENTION egs_remove_file__(const char *fname, int *status, int len);
+void C_CONVENTION EGS_REMOVE_FILE(const char *fname, int *status, int len);
+void C_CONVENTION EGS_REMOVE_FILE_(const char *fname, int *status, int len);
+void C_CONVENTION EGS_REMOVE_FILE__(const char *fname, int *status, int len);
+#endif
 
 /*! Sleep for *secs seconds */
 #define egsSleep F77_OBJ_(egs_sleep,EGS_SLEEP)
 void egsSleep(const int *secs);
+#ifdef MAKE_WIN_DISTRIBUTION
+void C_CONVENTION egs_sleep_(const int *secs);
+void C_CONVENTION egs_sleep__(const int *secs);
+void C_CONVENTION EGS_SLEEP(const int *secs);
+void C_CONVENTION EGS_SLEEP_(const int *secs);
+void C_CONVENTION EGS_SLEEP__(const int *secs);
+#endif
 
 /*! Print last error to stderr (just calls perror) */
 #define egsPerror F77_OBJ_(egs_perror,EGS_PERROR)
 void egsPerror(const char *msg, int len);
+#ifdef MAKE_WIN_DISTRIBUTION
+void C_CONVENTION egs_perror_(const char *msg, int len );
+void C_CONVENTION egs_perror__(const char *msg, int len );
+void C_CONVENTION EGS_PERROR(const char *msg, int len );
+void C_CONVENTION EGS_PERROR_(const char *msg, int len );
+void C_CONVENTION EGS_PERROR__(const char *msg, int len );
+#endif
 
 /**************************** other stuff **********************************/
 
 /*! Convert float to ASCII string */
 #define egsFtoString F77_OBJ_(egs_ftostring,EGS_FTOSTRING)
 void egsFtoString(const int *size, int *n, char *str,void *a, int len);
+#ifdef MAKE_WIN_DISTRIBUTION
+void C_CONVENTION egs_ftostring_(const int *size, int *n, char *str,void *a, int len);
+void C_CONVENTION egs_ftostring__(const int *size, int *n, char *str,void *a, int len);
+void C_CONVENTION EGS_FTOSTRING(const int *size, int *n, char *str,void *a, int len);
+void C_CONVENTION EGS_FTOSTRING_(const int *size, int *n, char *str,void *a, int len);
+void C_CONVENTION EGS_FTOSTRING__(const int *size, int *n, char *str,void *a, int len);
+#endif
 
 #ifdef __cplusplus
 }
