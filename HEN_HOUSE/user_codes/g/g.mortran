@@ -123,6 +123,14 @@ REPLACE {$DEBUGIT} WITH {.false.} "that can be used for debugging purposes"
 
 REPLACE {$MXGE} WITH {2000}
 
+"Round-off errors produce wrong results for a 1 keV energy value."
+"The quick fix is to add an epsilon equal to or larger than 1.0D-12 eV."
+"Using here a slightly larger epsilon of 1.0D-4 eV to account for "
+"machine precision differences. This should still be negligible in "
+"the keV energy range."
+REPLACE {$E_THRESHOLD} WITH {1.0D-3}; "Minimum energy in EGSnrc"
+REPLACE {$E_EPS}       WITH {1.0D-10};"Shifted by small epsilon"
+
 "Replace the $CALL-HOWNEAR macro for an infinite homogeneous geometry"
 REPLACE {$CALL-HOWNEAR(#);} WITH {;
   {P1} = 1e10;
@@ -260,6 +268,26 @@ IF(ecut_ask < ae(1)   | pcut_ask < ap(1) )[
    STOP;
 ]
 
+"Also, check that max. energy of particle source is not > ue, up"
+call source_get_emax(iqin,ekmax);
+IF((iqin~=0 & ekmax+rm > ue(1)) | (iqin=0 & ekmax > up(1)))[
+   OUTPUT ekmax+abs(iqin)*rm;
+   (//'**************************************************************'/
+'The max. total energy of source particles exceeds that of cross-section data '/
+'Max. E of source particles = ',F10.4,' MeV');
+   IF(iqin ~=0)[
+      OUTPUT ue(1);('UE = ',F10.4,' MeV');
+   ]
+   ELSE[
+      OUTPUT up(1);('UP = ',F10.4,' MeV');
+   ]
+   OUTPUT;('**************************************************************'/);
+   STOP;
+]
+
+"Increase minimum energy by small epsilon to prevent round-off errors"
+"at 1 keV and below"
+call source_check_emin();
 
 "---------------------------------------------------------------------"
 "STEP 7   SHOWER-CALL                                                 "
@@ -313,11 +341,37 @@ call source_switch_energy(itimes);
 "above gets initial energy from those we loop over"
 "returns ei"
 
-IF( calc_type = 1 ) [  "will seek a given accuracy -- default does not do this"
+IF( calc_type = 1 ) [  "will seek a given precision -- default does not do this"
 
-    write(6,*); write(6,*) '=> First calculating mutr only'; write(6,*);
-    /x(1),y(1),z(1)/=0; wt(1)=1; ir(1)=1; medium=1;
-    DO icase=1,ncase [
+   /*********************************************************************
+       Precision balancing can be used to speed up calculations
+       for energies above 1 MeV. Most times the kerma approximation
+       is used for energies under 100 keV where the original
+       implementation is more efficient. An exception would be Ir-192.
+    **********************************************************************/
+    IF (itimes = 1) ["Only do this on 1st energy"
+       accu0 = accu; m = m_balance;
+    ]"end itimes = 1 block"
+
+    "Update for each energy since accu "
+    "changes in the 1-g calculation block"
+    IF (m > 1)[
+       accu = accu0/sqrt(m);
+    ]
+    ELSE[
+       accu = accu0/sqrt(4./3.);
+    ]
+    write(6,*);
+    write(6,'(a,0Pf7.4,a)') '=> First calculating mutr to <= ',accu*100.,
+                             '% statistical precision';
+    write(6,*);
+    /x(1),y(1),z(1)/=0; wt(1) = 1; ir(1) = 1; medium = 1;
+    ibatch = 1; icase = 1;
+    "initiate mutr timer"
+    t_mutr = etime(time_array);
+    "DO icase=1,ncase ["
+    LOOP [
+        icase += 1;
         call source_sample(iqin,irin,ein,xin,yin,zin,uin,vin,win,wtin);
         IF( iqin ~= 0 ) [
             write(6,*) 'type=1 calculation only works for photons!';
@@ -918,7 +972,7 @@ $INTEGER mono;
 $INTEGER nensrc,mode,iqi;
 $REAL    ensrcd(0:$NENSRC),srcpdf($NENSRC),srcpdf_at($NENSRC);
 $INTEGER srcbin_at($NENSRC);
-$INTEGER i;
+$INTEGER i,j;
 $REAL    ei,eave,sum,ui,vi,wi;
 real*8   esum,esum2,ecount,aux,aux2;
 
@@ -1138,6 +1192,34 @@ IF( mono = 0 | mono = 2  | mono = 3 ) [
 ]
 ELSE [
     emax = ensrcd(nensrc);
+]
+return;
+
+entry source_check_emin();
+"=========================="
+"Set to 1 keV plus a small epsilon"
+"if minimum energy is 1 keV or less"
+IF( mono = 0 ) [
+  j = 1;
+  DO i=2,neis[
+     IF( eis(i) < eis(j) ) [
+       j = i;
+     ]
+  ]
+  IF ( eis(j) - abs(iqi)*rm <= $E_THRESHOLD)[
+       eis(j) = $E_THRESHOLD + $E_EPS + abs(iqi)*rm;
+  ]
+]
+ELSE IF( mono = 2 | mono = 3 ) [
+  IF ( eis(1) - abs(iqi)*rm <= $E_THRESHOLD)[
+       eis(1) = $E_THRESHOLD + $E_EPS + abs(iqi)*rm;
+  ]
+]
+ELSE [
+    emax = ensrcd(nensrc);
+  IF ( ensrcd(0) - abs(iqi)*rm <= $E_THRESHOLD)[
+       ensrcd(0) = $E_THRESHOLD + $E_EPS + abs(iqi)*rm;
+  ]
 ]
 return;
 

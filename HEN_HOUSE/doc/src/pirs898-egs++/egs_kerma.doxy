@@ -189,7 +189,10 @@ K_m=\sum_{i=1}^{N} w_i \cdot \frac{l_i}{V} \cdot E_i \cdot
 \left(\frac{\mu_\mathrm{en}}{\rho}\right)_i^m
 \f]
 
-The example file <em>emuen_icru90_1.5MeV.data</em> contains \f$ E \times \frac{\mu_{en}}{\rho} \f$
+with \f$l_i\f$ the path crossed by the \f$ i^\mathrm{th}\f$ photon of statistical weight \f$w_i\f$
+through the scoring region.
+
+The example file <em>emuen_rho_air_1keV-1.5MeV.data</em> contains \f$ E \times \frac{\mu_{en}}{\rho} \f$
 values for air on a logarithmic energy scale from 1 keV up to 1.5 MeV. These values
 were calculated with the <em>g</em> application using the following (non-default)
 transport parameters:
