@@ -772,7 +772,7 @@ X-OPTIONS/;
 " use the a lower threshold.
 "***************************************************************************"
 "============================================================"
-REPLACE {$RELAX-CUTOFF} WITH {0.001"threshold energy for outer shells"}
+REPLACE {$RELAX-CUTOFF} WITH {0.001D0"threshold energy for outer shells"}
 REPLACE {$MXPESHELL} WITH {16} "K,L1..L3,M1..M5,N1..N7 + outer shell"
 REPLACE {$MXNE} WITH {500}     "number of energy points per shell "
 "============================================================"
@@ -2313,6 +2313,15 @@ REPLACE {$COMP-XDATA-DEFAULT} WITH {'default'}
 "EADL relaxation is now the default"
 REPLACE {$EADL-RELAX-DEFAULT} WITH {.true.}
 ;
+"Uniform Run Control (URC) is false by default"
+REPLACE {$URC-DEFAULT} WITH {.false.}
+;
+"SLEEP INTERVAL for URC (1 s by default)"
+"Time to wait for jobs to complete after last job finished"
+REPLACE {$URC-SLEEP} WITH {1}
+"Times to check for jobs to complete after last job finished"
+REPLACE {$URC-INTERVALS} WITH {1}
+;
 "Sabbatucci and Salvat PE xsections not the default yet"
 REPLACE {$MCDF-PE-DEFAULT} WITH {.false.}
 ;
@@ -3573,7 +3582,30 @@ REPLACE {$egs_warning(#,#);} WITH {
 REPLACE {$warning(#,#);} WITH { write(i_log,{P1}) {P2}; };
 REPLACE {$egs_info(#,#);} WITH { write(i_log,{P1}) {P2}; };
 REPLACE {$declare_write_buffer;} WITH {;};
-
+"****************************************************************"
+" Useful output macros that do not rely on standard output unit. "
+" Useful for debugging code after egs_finish call which closes   "
+" all open units (for instance after a parallel job finishes).   "
+"****************************************************************"
+REPLACE {$egs_track2(#,#,#,#);} WITH {
+      open({P1},file={P2},action='write',position='append');
+      write({P1},{P3}) {P4};
+      $FLUSH_UNIT({P1});
+      close({P1});
+};
+REPLACE {$egs_track1(#,#,#);} WITH {
+      open(666,file={P1},action='write',position='append');
+      write(666,{P2}) {P3};
+      $FLUSH_UNIT(666);
+      close(666);
+};
+REPLACE {$egs_track0(#,#);} WITH {
+      open(666,file='track.log',action='write',position='append');
+      write(666,{P1}) {P2};
+      $FLUSH_UNIT(666);
+      close(666);
+};
+"************************************************************"
 
 " Common block containing various directories, file names, etc. "
 REPLACE {$mx_units} WITH {20};
@@ -3601,10 +3633,11 @@ REPLACE {;COMIN/EGS-IO/;} WITH {;
                   i_nist_data, "unit no. for NIST data"
                   i_mscat,     "unit no. for multiple scattering data"
                   i_photo_cs,  "unit no. for photon cross-section data"
-                  i_photo_relax, "unit no. for photon relaxation data"
-                  xsec_out,     "switches on/off xsection file output"
-                  is_batch,   "True for batch mode"
-                  is_pegsless; "true if you are running without pegs file"
+                  i_photo_relax,  "unit no. for photon relaxation data"
+                  xsec_out,       "switches on/off xsection file output"
+                  is_batch,       "True for batch mode"
+                  is_uniform_run, "True for uniform parallel run control"
+                  is_pegsless;    "true if you are running without pegs file"
   character input_file*256, output_file*256, pegs_file*256,
             file_extensions*$max_extension_length,
             hen_house*128, egs_home*128, work_dir*128, user_code*64,
@@ -3612,7 +3645,7 @@ REPLACE {;COMIN/EGS-IO/;} WITH {;
   $INTEGER  n_parallel, i_parallel, first_parallel,n_max_parallel,
             n_chunk, file_units, n_files,i_input,i_log,i_incoh,
             i_nist_data,i_mscat,i_photo_cs,i_photo_relax, xsec_out;
-  $LOGICAL  is_batch,is_pegsless;
+  $LOGICAL  is_batch, is_pegsless, is_uniform_run;
 };
 
 "The following macro sets the EGS_HOME directory               "
@@ -4003,38 +4036,41 @@ REPLACE {$USER-AFTER-SHOWER;} WITH {;}
 !INDENT F2;
 %C80
 %Q1
-"#############################################################################"
-"                                                                             "
-" EGSnrc machine dependent macro file for linux                               "
-"                                                                             "
-" Created by configure version 2.0 on ti 2.3.2021 20.42.40 +0200              "
-"                                                                             "
-" You may add your own machine dependent macros to this file,                 "
-" but be carefull to not overwrite it if you re-run configure.                "
-"                                                                             "
-"#############################################################################"
+"*************************************************************************
+"
+" EGSnrc machine dependent macro file for
+" linux
+"
+" Created by :
+" EGSnrc-configure-linux version 1.0 on ma toukok. 10 2021
+"
+" You may add your own machine dependent macros to this file,
+" but be carefull to not overwrite it if you re-run
+" EGSnrc-configure-linux
+"
+"*************************************************************************
 
 REPLACE {$MACHINE} WITH
   {,'linux',};
 REPLACE {$HEN_HOUSE} WITH
-  {'/home/rsmina/EGSnrc/HEN_HOUSE/'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/'};
 REPLACE {$CANONICAL_SYSTEM} WITH
-  {'x86_64-unknown-linux-gnu'};
+  {'linux64'};
 REPLACE {$CONFIGURATION_NAME} WITH
   {'linux'};
 REPLACE {$EGS_CONFIG} WITH
-  {'/home/rsmina/EGSnrc/HEN_HOUSE/specs/linux.conf'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux.conf'};
 
 " System dependent stuff "
 "========================================"
 " Unfortunately, there appears to be no reliable way of copying files "
 " under Fortran => we use a system call for this"
-REPLACE {$copy_file} WITH {'cp '};
+REPLACE {$copy_file} WITH {'cp  '};
 
 " Although one can move files using Fortran's intrinsic rename, "
 " we don't know whether the user has not created additional files in "
 " the temporary working directory => it is easiest to use a system call "
-" to move all files from the temporary working directory to the user-code "
+" to move all files from the temporary working directory to the user code "
 " directory. "
 REPLACE {$move_file} WITH {'mv -f '};
 
@@ -4051,12 +4087,13 @@ REPLACE {$SHORT_INT} WITH { integer*2 };
 "The machine byte order"
 REPLACE {$BYTE_ORDER} WITH {'1234'};
 ;
+" Record Length for unformatted I/O "
 REPLACE {$RECL-FACTOR} WITH {4};
 ;
 REPLACE {$FLUSH_UNIT(#);} WITH {call flush({P1});}
 ;
-" If you want your user-code to return an exit status, use the "
-" following macro to terminate execution"
+" If you want your user code to return an exit status, use the
+" following macro to terminate execution
 REPLACE {$CALL_EXIT(#);} WITH {call exit({P1});}
 ;
 " mortran3 gets confused by the # char => we need to pass it as an "
@@ -4670,16 +4707,17 @@ $CALL_EXIT(1);
 return; end;
 ;
 %F
-C##############################################################################
+C***************************************************************************
 C
-C   This file was automatically generated by configure version 2.0
+C   This file was automatically generated by:
+C   EGSnrc-configure-linux version 1.0
 C   It contains various subroutines and functions for date, time,
 C   CPU time, host name, etc.
 C
-C   Attention: all changes will be lost the next time you run configure!
+C   Attention: all changes will be lost the next time you run
+C   EGSnrc-configure-linux.
 C
-C##############################################################################
-
+C***************************************************************************
 
 C##############################################################################
 C
@@ -5345,7 +5383,7 @@ C*****************************************************************************
 
       subroutine egs_print_canonical_system(ounit)
       integer ounit
-      write(6,'(a,$)') 'x86_64-unknown-linux-gnu'
+      write(6,'(a,$)') 'linux64'
       return
       end
 
@@ -5359,13 +5397,13 @@ C******************************************************************************
       subroutine egs_get_canonical_system(res)
       character*(*) res
       integer l1,l2
-      l1 = lnblnk1('x86_64-unknown-linux-gnu')
+      l1 = lnblnk1('linux64')
       l2 = len(res)
       res(:l2) = ' '
       if( l2.ge.l1 ) then
-        res(:l1) = 'x86_64-unknown-linux-gnu'
+        res(:l1) = 'linux64'
       else
-        res(:l2) = 'x86_64-unknown-linux-gnu'
+        res(:l2) = 'linux64'
       end if
       return
       end

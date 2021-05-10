@@ -3,38 +3,41 @@
 !INDENT F2;
 %C80
 %Q1
-"#############################################################################"
-"                                                                             "
-" EGSnrc machine dependent macro file for linux                               "
-"                                                                             "
-" Created by configure version 2.0 on ti 2.3.2021 20.42.40 +0200              "
-"                                                                             "
-" You may add your own machine dependent macros to this file,                 "
-" but be carefull to not overwrite it if you re-run configure.                "
-"                                                                             "
-"#############################################################################"
+"*************************************************************************
+"
+" EGSnrc machine dependent macro file for 
+" linux
+"
+" Created by :
+" EGSnrc-configure-linux version 1.0 on ma toukok. 10 2021
+"
+" You may add your own machine dependent macros to this file,
+" but be carefull to not overwrite it if you re-run
+" EGSnrc-configure-linux
+"
+"*************************************************************************
 
-REPLACE {$MACHINE} WITH
+REPLACE {$MACHINE} WITH 
   {,'linux',};
-REPLACE {$HEN_HOUSE} WITH
-  {'/home/rsmina/EGSnrc/HEN_HOUSE/'};
-REPLACE {$CANONICAL_SYSTEM} WITH
-  {'x86_64-unknown-linux-gnu'};
-REPLACE {$CONFIGURATION_NAME} WITH
+REPLACE {$HEN_HOUSE} WITH 
+  {'/home/miia/EGSnrc/HEN_HOUSE/'};
+REPLACE {$CANONICAL_SYSTEM} WITH 
+  {'linux64'};
+REPLACE {$CONFIGURATION_NAME} WITH 
   {'linux'};
-REPLACE {$EGS_CONFIG} WITH
-  {'/home/rsmina/EGSnrc/HEN_HOUSE/specs/linux.conf'};
+REPLACE {$EGS_CONFIG} WITH 
+  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux.conf'};
 
 " System dependent stuff "
 "========================================"
 " Unfortunately, there appears to be no reliable way of copying files "
-" under Fortran => we use a system call for this"
-REPLACE {$copy_file} WITH {'cp '};
+" under Fortran => we use a system call for this" 
+REPLACE {$copy_file} WITH {'cp  '};
 
 " Although one can move files using Fortran's intrinsic rename, "
 " we don't know whether the user has not created additional files in "
 " the temporary working directory => it is easiest to use a system call "
-" to move all files from the temporary working directory to the user-code "
+" to move all files from the temporary working directory to the user code "
 " directory. "
 REPLACE {$move_file} WITH {'mv -f '};
 
@@ -51,12 +54,13 @@ REPLACE {$SHORT_INT} WITH { integer*2 };
 "The machine byte order"
 REPLACE {$BYTE_ORDER} WITH {'1234'};
 ;
+" Record Length for unformatted I/O "
 REPLACE {$RECL-FACTOR} WITH {4};
 ;
 REPLACE {$FLUSH_UNIT(#);} WITH {call flush({P1});}
 ;
-" If you want your user-code to return an exit status, use the "
-" following macro to terminate execution"
+" If you want your user code to return an exit status, use the 
+" following macro to terminate execution
 REPLACE {$CALL_EXIT(#);} WITH {call exit({P1});}
 ;
 " mortran3 gets confused by the # char => we need to pass it as an "

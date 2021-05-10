@@ -1,7 +1,7 @@
 /*
 ###############################################################################
 #
-#  EGSnrc file locking functions for unix
+#  EGSnrc C utility functions
 #  Copyright (C) 2015 National Research Council Canada
 #
 #  This file is part of EGSnrc.
@@ -21,9 +21,14 @@
 #
 ###############################################################################
 #
-#  Author:          Iwan Kawrakow, 2003
+#  Author:          Iwan Kawrakow, 2004
 #
-#  Contributors:    Ernesto Mainegra-Hing
+#  Contributors:
+#
+###############################################################################
+#
+#  Various C functions needed for the implementation of parallel processing
+#  in EGSnrc.
 #
 ###############################################################################
 */
@@ -31,6 +36,14 @@
 
 #include "egs_c_utils.h"
 
+#ifdef WIN32
+#include <io.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/locking.h>
+#else
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
@@ -38,9 +51,116 @@
 #include <errno.h>
 #include <string.h>
 #include <stdio.h>
+#endif
 
 static int __my_fd = -1;
 static int __is_locked = 0;
+
+#ifdef WIN32
+
+void  egsCreateControlFile(const char *fname, int *status, int len) {
+  if( __my_fd > 0 ) { _close(__my_fd); __my_fd = -1; }
+  __my_fd = _open(fname,_O_CREAT | _O_EXCL | _O_RDWR, _S_IREAD | _S_IWRITE);
+  if( __my_fd < 0 ) {
+    *status = __my_fd;
+    perror("egs_create_control_file: _open failed ");
+  } else *status = 0;
+}
+
+void  egsOpenControlFile(const char *fname, int *status, int len) {
+  int t; *status = 0;
+  if( __my_fd > 0 ) { _close(__my_fd); __my_fd = -1; }
+  for(t=0; t<15; t++) {
+    __my_fd = _open(fname,_O_RDWR,_S_IREAD | _S_IWRITE);
+    if( __my_fd > 0 ) break;
+    _sleep(1000);
+  }
+  if( __my_fd < 0 ) {
+    *status = __my_fd;
+    perror("egs_open_control_file: _open failed ");
+  } else *status = 0;
+}
+
+void  egsCloseControlFile(int *status) {
+  if( __my_fd > 0 ) *status = _close(__my_fd); else *status = 0;
+}
+
+void  egsLockControlFile(int *status) {
+  long np;
+  /*fprintf(stderr,"egs_lock_control_file: %d\n",__is_locked);*/
+  if( __is_locked == 1 ) { *status = 0; return; }
+  if( __my_fd < 0 ) { *status = -1; return; }
+  np = _lseek(__my_fd,0L,SEEK_SET);
+  if( np ) {
+    fprintf(stderr,"egs_lock_control_file: lseek returned %d\n",np);
+    *status = -1; perror("perror: ");
+    return;
+  }
+  *status = _locking(__my_fd,_LK_LOCK,1000000L);
+  if( *status = 0 ) __is_locked = 1;
+  else {
+    fprintf(stderr,"_locking returned %d\n",*status);
+    perror("perror: ");
+  }
+}
+
+void  egsUnlockControlFile(int *status) {
+  long np;
+  if( __is_locked == 0 ) { *status = 0; return; }
+  if( __my_fd < 0 ) { *status = -1; return; }
+  np = _lseek(__my_fd,0L,SEEK_SET);
+  if( np ) {
+    *status = -1; perror("egs_unlock_control_file: failed to rewind file ");
+    return;
+  }
+  *status = _locking(__my_fd,_LK_UNLCK,1000000L);
+  if( *status == 0 ) __is_locked = 0;
+  else {
+    fprintf(stderr,"egs_unlock: _locking returned %d\n",*status);
+    perror("perror: ");
+  }
+}
+
+void egsRewindControlFile(int *status) {
+  long np;
+  fprintf(stderr,"egs_rewind_control_file: %d\n",__is_locked);
+  if( __my_fd < 0 ) { *status = -1; return; }
+  np = _lseek(__my_fd,0L,SEEK_SET);
+  if( np ) {
+    fprintf(stderr,"failed to rewind file: np = %d\n",np);
+    *status = -1; perror("perror: ");
+    return;
+  }
+  if( __is_locked == 0 ) {
+    *status = _locking(__my_fd,_LK_LOCK,1000000L);
+    if( *status == 0 ) __is_locked = 1;
+    else perror("_locking failed: ");
+  } else *status = 0;
+}
+
+void egsWriteControlFile(const char *buf, const int *n, int *status, int len) {
+  unsigned int count = *n;
+  if( __my_fd < 0 ) { *status = 0; return; }
+  *status = _write(__my_fd,buf,count);
+}
+
+void egsReadControlFile(char *buf, const int *n, int *status, int len) {
+  unsigned int count = *n;
+  if( __my_fd < 0 ) { *status = 0; return; }
+  *status = _read(__my_fd,buf,count);
+}
+
+void egsSleep(const int *secs) {
+  unsigned int msecs = *secs * 1000; _sleep(msecs);
+}
+void egsPerror(const char *str, int len) { perror(str); }
+
+void egsRemoveFile(const char *fname, int *status, int len) {
+  *status = _unlink(fname);
+}
+
+#else
+
 static int __is_initialized = 0;
 struct flock fl_write, fl_unlock;
 
@@ -185,3 +305,5 @@ void egsPerror(const char *str, int len) { perror(str); }
 void egsRemoveFile(const char *fname, int *status, int len) {
    *status = unlink(fname);
 }
+
+#endif

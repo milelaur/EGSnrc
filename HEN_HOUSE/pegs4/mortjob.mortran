@@ -4,38 +4,41 @@
 !INDENT F2;
 %C80
 %Q1
-"#############################################################################"
-"                                                                             "
-" EGSnrc machine dependent macro file for linux                               "
-"                                                                             "
-" Created by configure version 2.0 on ti 2.3.2021 20.42.40 +0200              "
-"                                                                             "
-" You may add your own machine dependent macros to this file,                 "
-" but be carefull to not overwrite it if you re-run configure.                "
-"                                                                             "
-"#############################################################################"
+"*************************************************************************
+"
+" EGSnrc machine dependent macro file for
+" linux
+"
+" Created by :
+" EGSnrc-configure-linux version 1.0 on ma toukok. 10 2021
+"
+" You may add your own machine dependent macros to this file,
+" but be carefull to not overwrite it if you re-run
+" EGSnrc-configure-linux
+"
+"*************************************************************************
 
 REPLACE {$MACHINE} WITH
   {,'linux',};
 REPLACE {$HEN_HOUSE} WITH
-  {'/home/rsmina/EGSnrc/HEN_HOUSE/'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/'};
 REPLACE {$CANONICAL_SYSTEM} WITH
-  {'x86_64-unknown-linux-gnu'};
+  {'linux64'};
 REPLACE {$CONFIGURATION_NAME} WITH
   {'linux'};
 REPLACE {$EGS_CONFIG} WITH
-  {'/home/rsmina/EGSnrc/HEN_HOUSE/specs/linux.conf'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux.conf'};
 
 " System dependent stuff "
 "========================================"
 " Unfortunately, there appears to be no reliable way of copying files "
 " under Fortran => we use a system call for this"
-REPLACE {$copy_file} WITH {'cp '};
+REPLACE {$copy_file} WITH {'cp  '};
 
 " Although one can move files using Fortran's intrinsic rename, "
 " we don't know whether the user has not created additional files in "
 " the temporary working directory => it is easiest to use a system call "
-" to move all files from the temporary working directory to the user-code "
+" to move all files from the temporary working directory to the user code "
 " directory. "
 REPLACE {$move_file} WITH {'mv -f '};
 
@@ -52,12 +55,13 @@ REPLACE {$SHORT_INT} WITH { integer*2 };
 "The machine byte order"
 REPLACE {$BYTE_ORDER} WITH {'1234'};
 ;
+" Record Length for unformatted I/O "
 REPLACE {$RECL-FACTOR} WITH {4};
 ;
 REPLACE {$FLUSH_UNIT(#);} WITH {call flush({P1});}
 ;
-" If you want your user-code to return an exit status, use the "
-" following macro to terminate execution"
+" If you want your user code to return an exit status, use the
+" following macro to terminate execution
 REPLACE {$CALL_EXIT(#);} WITH {call exit({P1});}
 ;
 " mortran3 gets confused by the # char => we need to pass it as an "
@@ -745,7 +749,12 @@ LOGICAL MEDSET,ENGSET;
 $TYPE OPTION(4,$MXOPT),OPT(4),BLKW,NAME(6);
 $TYPE NAMESB(12),IDFNAM(6);
 $INTEGER NH(200);
+"*************************"
+"Fix errors for gcc > 10.0"
+"*************************"
+$REAL ALKE,ALKEI,ALIN,ALINI,AFFACT;
 EXTERNAL ALKE,ALKEI,EFUNS,GFUNS,RFUNS,ALIN,ALINI,AFFACT;
+"*************************"
 $EXTERNAL ALOG,EXP;
 
 $INTEGER NOPT,NPTS,IDF,EPSTFL_old,IUNRST_old,IAPRIM_old;
@@ -2664,7 +2673,13 @@ implicit none;
 
 $INTEGER NI,NIMX,NIP,NALM,NFUN;
 $REAL    XL,XU,XR,EP,AX,BX;
+
+"*************************"
+"Fix errors for gcc > 10.0"
+"*************************"
+$REAL XFUN,XFI;
 EXTERNAL XFUN,XFI,VFUNS;
+"*************************"
 $REAL AF(NALM,NFUN),BF(NALM,NFUN),ZTHR(NFUN),ZEP(NFUN);
 "   QFIT IS A LOGICAL FUNCTION WHICH IS TRUE IF THE STATED NUMBER    "
 "   OF INTERVALS GIVES A SUFFICIENTLY CLOSE FIT.                     "
@@ -3635,7 +3650,12 @@ $REAL FUNCTION BREMRR(E,K1,K2);
 
 implicit none;
 $REAL E,K1,K2;
+"*************************"
+"Fix errors for gcc > 10.0"
+"*************************"
+$REAL BREMFR;
 EXTERNAL BREMFR;
+"*************************"
 $REAL    DUMMY,QD,BREMDR;
 "     INITIALIZE BREMFR                                                "
 
@@ -3682,7 +3702,12 @@ $REAL FUNCTION BREMRZ(Z,E,K1,K2);
 
 implicit none;
 $REAL Z,E,K1,K2;
+"*************************"
+"Fix errors for gcc > 10.0"
+"*************************"
+$REAL BREMFZ;
 EXTERNAL BREMFZ;
+"*************************"
 $REAL  DUMMY,BREMDZ,QD;
 "     INITIALIZE BREMFZ                                                "
 
@@ -3808,7 +3833,12 @@ $REAL FUNCTION BRMSRZ(Z,E,K1,K2);
 
 implicit none;
 $REAL Z,E,K1,K2;
+"*************************"
+"Fix errors for gcc > 10.0"
+"*************************"
+$REAL BRMSFZ;
 EXTERNAL BRMSFZ;
+"*************************"
 $REAL DUMMY,BRMSDZ,QD;
 "     INITIALIZE BRMSFZ                                                "
 
@@ -4058,8 +4088,12 @@ implicit none;
 "EXTERNAL F;"
 "FOR SUN AFB 89/12/27"
 
+"*************************"
+"Fix errors for gcc > 10.0"
+"*************************"
+$REAL F;
 EXTERNAL F;
-
+"*************************"
 DIMENSION T(10,10),R(10),AIT(10),DIF(10),RN(4),TS(2049);
 DIMENSION IBEGS(30),BEGIN(30),FINIS(30),EST(30);
 DIMENSION REGLSV(30);
@@ -4086,7 +4120,8 @@ DOUBLE PRECISION ERRET,H2TFEX,FI;
 "REAL RVAL,F;"
 "FOR SUN AFB 89/12/27"
 
-REAL RVAL,F;
+"REAL RVAL,F;"
+REAL RVAL;
 
 $INTEGER IBEGS,IER,ISTAGE,IBEG,IEND,L,N,LM1,N2,ISTEP,II,III,I,ISTEP2,IT,NNLEFT;
 $INTEGER MAXTS,MAXTBL,MXSTGE;
@@ -4897,7 +4932,14 @@ $REAL FUNCTION PAIRRR(K,E1,E2);
 
 implicit none;
 $REAL K,E1,E2;
-EXTERNAL PAIRFR;
+"EXTERNAL PAIRFR;"
+%F
+      INTERFACE
+      REAL FUNCTION PAIRFR(X)
+      REAL, INTENT(IN) :: X
+      END FUNCTION PAIRFR
+      END INTERFACE
+%M
 $REAL DUMMY,PAIRDR,QD;
 "     INITIALIZE PAIRFR                                                "
 
@@ -4927,7 +4969,15 @@ $REAL FUNCTION PAIRRZ(Z,K,E1,E2);
 implicit none;
 $REAL Z,K,E1,E2;
 $REAL DUMMY,PAIRDZ,QD;
-EXTERNAL PAIRFZ;
+"EXTERNAL PAIRFZ;"
+%F
+      INTERFACE
+      REAL FUNCTION PAIRFZ(X)
+      REAL, INTENT(IN) :: X
+      END FUNCTION PAIRFZ
+      END INTERFACE
+%M
+
 "     INITIALIZE PAIRFZ                                                "
 
 "    CHANGED"
@@ -5155,7 +5205,14 @@ $REAL FUNCTION QD(F,A,B,MSG);
 implicit none;
 ;COMIN/FileNames/;
 " QD appears to be the only place where it is being written to unit 10"
-EXTERNAL F;
+"EXTERNAL F;"
+%F
+      INTERFACE
+      REAL FUNCTION F(X)
+      REAL, INTENT(IN) :: X
+      END FUNCTION F
+      END INTERFACE
+%M
 "$REAL    F;"
 $REAL    A,B;
 CHARACTER*6 MSG;
@@ -5906,16 +5963,17 @@ write(*,*) '-h or --help     => print this help screen';
 return; end;
 ;
 %F
-C##############################################################################
+C***************************************************************************
 C
-C   This file was automatically generated by configure version 2.0
+C   This file was automatically generated by:
+C   EGSnrc-configure-linux version 1.0
 C   It contains various subroutines and functions for date, time,
 C   CPU time, host name, etc.
 C
-C   Attention: all changes will be lost the next time you run configure!
+C   Attention: all changes will be lost the next time you run
+C   EGSnrc-configure-linux.
 C
-C##############################################################################
-
+C***************************************************************************
 
 C##############################################################################
 C
@@ -6581,7 +6639,7 @@ C*****************************************************************************
 
       subroutine egs_print_canonical_system(ounit)
       integer ounit
-      write(6,'(a,$)') 'x86_64-unknown-linux-gnu'
+      write(6,'(a,$)') 'linux64'
       return
       end
 
@@ -6595,13 +6653,13 @@ C******************************************************************************
       subroutine egs_get_canonical_system(res)
       character*(*) res
       integer l1,l2
-      l1 = lnblnk1('x86_64-unknown-linux-gnu')
+      l1 = lnblnk1('linux64')
       l2 = len(res)
       res(:l2) = ' '
       if( l2.ge.l1 ) then
-        res(:l1) = 'x86_64-unknown-linux-gnu'
+        res(:l1) = 'linux64'
       else
-        res(:l2) = 'x86_64-unknown-linux-gnu'
+        res(:l2) = 'linux64'
       end if
       return
       end

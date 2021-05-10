@@ -772,7 +772,7 @@ X-OPTIONS/;
 " use the a lower threshold.
 "***************************************************************************"
 "============================================================"
-REPLACE {$RELAX-CUTOFF} WITH {0.001"threshold energy for outer shells"}
+REPLACE {$RELAX-CUTOFF} WITH {0.001D0"threshold energy for outer shells"}
 REPLACE {$MXPESHELL} WITH {16} "K,L1..L3,M1..M5,N1..N7 + outer shell"
 REPLACE {$MXNE} WITH {500}     "number of energy points per shell "
 "============================================================"
@@ -2313,6 +2313,15 @@ REPLACE {$COMP-XDATA-DEFAULT} WITH {'default'}
 "EADL relaxation is now the default"
 REPLACE {$EADL-RELAX-DEFAULT} WITH {.true.}
 ;
+"Uniform Run Control (URC) is false by default"
+REPLACE {$URC-DEFAULT} WITH {.false.}
+;
+"SLEEP INTERVAL for URC (1 s by default)"
+"Time to wait for jobs to complete after last job finished"
+REPLACE {$URC-SLEEP} WITH {1}
+"Times to check for jobs to complete after last job finished"
+REPLACE {$URC-INTERVALS} WITH {1}
+;
 "Sabbatucci and Salvat PE xsections not the default yet"
 REPLACE {$MCDF-PE-DEFAULT} WITH {.false.}
 ;
@@ -3573,7 +3582,30 @@ REPLACE {$egs_warning(#,#);} WITH {
 REPLACE {$warning(#,#);} WITH { write(i_log,{P1}) {P2}; };
 REPLACE {$egs_info(#,#);} WITH { write(i_log,{P1}) {P2}; };
 REPLACE {$declare_write_buffer;} WITH {;};
-
+"****************************************************************"
+" Useful output macros that do not rely on standard output unit. "
+" Useful for debugging code after egs_finish call which closes   "
+" all open units (for instance after a parallel job finishes).   "
+"****************************************************************"
+REPLACE {$egs_track2(#,#,#,#);} WITH {
+      open({P1},file={P2},action='write',position='append');
+      write({P1},{P3}) {P4};
+      $FLUSH_UNIT({P1});
+      close({P1});
+};
+REPLACE {$egs_track1(#,#,#);} WITH {
+      open(666,file={P1},action='write',position='append');
+      write(666,{P2}) {P3};
+      $FLUSH_UNIT(666);
+      close(666);
+};
+REPLACE {$egs_track0(#,#);} WITH {
+      open(666,file='track.log',action='write',position='append');
+      write(666,{P1}) {P2};
+      $FLUSH_UNIT(666);
+      close(666);
+};
+"************************************************************"
 
 " Common block containing various directories, file names, etc. "
 REPLACE {$mx_units} WITH {20};
@@ -3601,10 +3633,11 @@ REPLACE {;COMIN/EGS-IO/;} WITH {;
                   i_nist_data, "unit no. for NIST data"
                   i_mscat,     "unit no. for multiple scattering data"
                   i_photo_cs,  "unit no. for photon cross-section data"
-                  i_photo_relax, "unit no. for photon relaxation data"
-                  xsec_out,     "switches on/off xsection file output"
-                  is_batch,   "True for batch mode"
-                  is_pegsless; "true if you are running without pegs file"
+                  i_photo_relax,  "unit no. for photon relaxation data"
+                  xsec_out,       "switches on/off xsection file output"
+                  is_batch,       "True for batch mode"
+                  is_uniform_run, "True for uniform parallel run control"
+                  is_pegsless;    "true if you are running without pegs file"
   character input_file*256, output_file*256, pegs_file*256,
             file_extensions*$max_extension_length,
             hen_house*128, egs_home*128, work_dir*128, user_code*64,
@@ -3612,7 +3645,7 @@ REPLACE {;COMIN/EGS-IO/;} WITH {;
   $INTEGER  n_parallel, i_parallel, first_parallel,n_max_parallel,
             n_chunk, file_units, n_files,i_input,i_log,i_incoh,
             i_nist_data,i_mscat,i_photo_cs,i_photo_relax, xsec_out;
-  $LOGICAL  is_batch,is_pegsless;
+  $LOGICAL  is_batch, is_pegsless, is_uniform_run;
 };
 
 "The following macro sets the EGS_HOME directory               "
@@ -3806,7 +3839,7 @@ REPLACE {$TIME_RESOLUTION} WITH {0.01}
 " linux
 "
 " Created by :
-" EGSnrc-configure-linux version 1.0 on ma toukok. 3 2021
+" EGSnrc-configure-linux version 1.0 on ma toukok. 10 2021
 "
 " You may add your own machine dependent macros to this file,
 " but be carefull to not overwrite it if you re-run
@@ -7461,8 +7494,9 @@ ELSEIF(iaea_result=-2)[
 "                      histories by this number.
 "
 "        The n_split algorithm works as follows:
-"         * dpmfp_i = -log(1 - (eta+i)/n_split)
+"         * dpmfp_i = -log(1 - (eta+i-1)/n_split)
 "           where dpmfp_i is MFP to the next interaction for the i-th sub-photon
+"           (i=1,2,...n_split)
 "           eta is a random number (the same for all n_split sub-photons)
 "         * Once at the interaction site, the i'th sub-photon produces
 "           electrons and/or scattered photons. Scattered photons are
@@ -7910,9 +7944,11 @@ IF( n_split > 1 ) [  "we use photon splitting"
               ]
               IF( medium ~= 0 ) dpmfp = dpmfp - ustep/gmfp;
               IF( irnew ~= irold ) [
-                  ir(np) = irnew; irl = irnew; irold = irnew;
+                  ir(np) = irnew; irl = irnew;
                   medium = med(irl);
               ]
+              $AUSCALL($TRANAUSA);
+              irold = ir(np);
               IF (IWATCH>0) CALL WATCH($TRANAUSA,IWATCH);
           ] UNTIL (medium ~= 0 & dpmfp < $EPSGMFP);
           x_save = x(np); y_save = y(np); z_save = z(np);
@@ -10439,6 +10475,8 @@ IF( n_parallel > 0 & ~is_finished ) [
         ainflu=temp2; "need to define this because it is used to normalize dose"
         IF((isource = 0 | isource = 1 | isource = 3 | isource = 7) &
            beamarea>0.) ainflu=ainflu/beamarea;
+        call show_transport_parameter(iout);
+        call srcout;
         goto :ANALYZE-PARALLEL:;
     ]
 ]
@@ -21850,7 +21888,7 @@ REPLACE {;COMIN/my_times/;} WITH {;
 "       -b or --batch                Specify a 'batch' run. The difference
 "                                    between a 'batch' run and an interactive
 "                                    run is that in 'batch' mode unit 6 is
-"                                    connected to a file, whereas in intarctive
+"                                    connected to a file, whereas in interactive
 "                                    mode unit 6 goes to the standard output.
 "                                    The file name in batch run is determined
 "                                    as follows:
@@ -22208,6 +22246,12 @@ IF( n_parallel > 0 ) [
 ]
 $egs_info('(a)',line);
 
+IF (is_uniform_run)[
+   $egs_info('(//a,i0,a,i0,a//)',
+   '-> User requests uniform run control. I am job # ',
+   i_parallel,' of ',n_parallel,' jobs');
+]
+
 return;
 
 " Errors "
@@ -22336,6 +22380,10 @@ IF( n_parallel > 0 | i_parallel > 0 ) [
         first_parallel = i_parallel;
     ]
 ]
+
+" Check for run control option "
+$check_argument('-u','--urc',arg);
+IF( have_arg ) is_uniform_run = .true.;
 
 $egs_debug('(a,a)','HEN_HOUSE is ',$cstring(hen_house));
 
@@ -22743,6 +22791,7 @@ $set_string(pegs_file,' ');
 $set_string(host_name,' ');
 n_parallel = 0; i_parallel = 0; n_chunk = 0; is_batch = .false.;
 first_parallel = 1;
+is_uniform_run = $URC-DEFAULT;
 return; end;
 
 "*****************************************************************************
@@ -22760,9 +22809,13 @@ character*1024 tmp_string,base,command,outfile,parfile_name,base1,
            text_string;
 integer  lnblnk1,istat,ipar,egs_system,egs_open_file;
 $INTEGER i,k,j,numparfiles,textindex;
+integer urcSleep, urcCheckIntervals;
 $LOGICAL ex,iwin;
 
 iwin=.false.; "start off assuming a non-Windows system"
+
+urcSleep          = $URC-SLEEP;    "Set to 1 s in egsnrc.macros"
+urcCheckIntervals = $URC-INTERVALS;"Set to 1 in egsnrc.macros"
 
 $set_string(base,' ');
 base = $cstring(egs_home) // $cstring(user_code) // $file_sep //
@@ -22776,6 +22829,8 @@ base1 = $cstring(egs_home) // $cstring(user_code) // $file_sep //
 $set_string(outfile,' ');
 outfile = $cstring(egs_home) // $cstring(user_code) // $file_sep //
        'parfiles_tmp';
+
+:check-output-files:;
 "try Unix/Linux first"
 $set_string(command,' ');
 command = 'ls ' // $cstring(base1) // ' | wc -l > ' // $cstring(outfile);
@@ -22785,7 +22840,8 @@ IF(istat~=0)["now assume a Windows system"
    $cstring(outfile);
    istat = egs_system($cstring(command));
    IF(istat~=0)[
-$egs_fatal(*,' Failed to write number of output files from parallel runs.');
+     $egs_fatal(*,
+     ' Failed to write number of output files from parallel runs.');
    ]
    ELSE [
      iwin=.true.;
@@ -22807,6 +22863,14 @@ ELSE[
   read(ipar,'(i256)',err=:end_of_parfile:,end=:end_of_parfile:) numparfiles;
 ]
 close(ipar);
+
+#ifdef HAVE_C_COMPILER;
+IF ( is_uniform_run & numparfiles < n_parallel & urcCheckIntervals > 0 ) [
+   call egs_sleep(urcSleep);"sleep for urcSleep seconds"
+   urcCheckIntervals -= 1;
+   goto :check-output-files:;
+]
+#endif;
 
 "now remove parfiles_tmp"
 $set_string(command,' ');
@@ -24077,6 +24141,7 @@ $INTEGER function ibsearch(a, nsh, b);
 "                                                                             "
 "  Contributors:    Blake Walters                                             "
 "                   Frederic Tessier                                          "
+"                   Ernesto Mainegra-Hing                                     "
 "                                                                             "
 "#############################################################################"
 "                                                                             "
@@ -24168,7 +24233,7 @@ subroutine egs_pjob_control(ncase,n_run,n_left,n_tot,sum,sum2,res,dres);
 " n_left  no. of histories left to run after current job has been submitted
 " n_tot:  should be set to number of histories from previous runs (if any)
 "         for first call from job number 1. For all other jobs and for all
-"         other calls from job 1, it is set by egs_pjob_control to the the
+"         other calls from job 1, it is set by egs_pjob_control to the
 "         number of histories run so far (including previous runs and other
 "         parallel jobs).
 "         Note: n_case, n_run and n_tot are $LONG_INT
@@ -24227,6 +24292,21 @@ $LOGICAL first_time;
 character control_string*256;
 data first_time/.true./;
 save first_time,n_last;
+
+/*********************************/
+/* Option to not use a lock file */
+/*********************************/
+IF( is_uniform_run ) [
+    IF (first_time)[
+       n_run = ncase/n_parallel;
+       first_time = .false.;
+    ]
+    ELSE[
+       n_run = 0;
+    ]
+    n_left = 0;
+    return;
+]
 
 IF( n_parallel <= 0 ) [
     n_run = ncase; return;
@@ -24371,6 +24451,20 @@ $REAL     tmp,tmp2,res,dres,t_run;
 real      egs_time_diff;
 character control_string*256;
 
+/****************************/
+/* Option without lock file */
+/****************************/
+IF( is_uniform_run )[
+    IF( i_parallel = n_parallel )[
+      n_job = 0;"I am the last job!!!"
+      goto :complete_calculation:;
+    ]
+    ELSE ["nothing to do here"
+      n_job = 1;"Only last job allowed to finish!"
+      return;
+    ]
+]
+
 " Lock and rewind the job control file "
 call egs_rewind_control_file(istat);
 IF( istat ~= 0 ) [
@@ -24411,15 +24505,25 @@ IF( n_job > 0 ) [  " Other jobs still running "
 /* call egs_unlock_control_file(istat); */
 call egs_close_control_file(istat);
 call egs_remove_lockfile(istat);
+
+:complete_calculation:;
 i_parallel = 0; call egs_open_units(.false.);
-call egs_date_and_time(t_end);
-t_run = egs_time_diff(t_start,t_end);
-$egs_info('(/a/,a,t55,i3/,a,t55,i3/,a,f9.1,a,f9.4,a/,a//)',
-'**************** finished parallel execution ******************',
-' number of parallel jobs requested: ',n_parallel,
-' max. number of jobs executing simultaneously: ',n_max_parallel,
-' elapsed time since first job started: ',t_run,' s (',t_run/3600,' h)',
-'***************************************************************');
+IF ( is_uniform_run )[
+   $egs_info('(/a/,a,t55,i3/,a//)',
+   '**************** finished parallel execution ******************',
+   ' number of parallel jobs requested: ',n_parallel,
+   '***************************************************************');
+]
+ELSE[
+  call egs_date_and_time(t_end);
+  t_run = egs_time_diff(t_start,t_end);
+  $egs_info('(/a/,a,t55,i3/,a,t55,i3/,a,f9.1,a,f9.4,a/,a//)',
+  '**************** finished parallel execution ******************',
+  ' number of parallel jobs requested: ',n_parallel,
+  ' max. number of jobs executing simultaneously: ',n_max_parallel,
+  ' elapsed time since first job started: ',t_run,' s (',t_run/3600,' h)',
+  '***************************************************************');
+]
 return;
 
 :error2_lockfile_read:;
