@@ -1,6 +1,6 @@
 ################################
 #
-# TrueBeam kV imaging System, Full fan option and focal spot either small or large
+# TrueBeam kV imaging System, Half fan option and focal spot either small or large
 #
 ################################
 
@@ -8,10 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 9E9
-    #calculation = combine
-    nchunk = 50000
-    nbatch = 10
+	ncase = 1000000 # The number of histories to simulate
 :stop run control:
 
 ################################
@@ -22,32 +19,32 @@
 	################################
     ### Anode target
     ################################
-	:start geometry:
+
+    :start geometry:
         library = egs_glib
         name = anode
         include file = anode.egsinp
     :stop geometry:
 
-
 	################################
     ### X-ray window
     ################################
+
 	:start geometry:
         library = egs_glib
         name = xray_window
         include file = x-ray_window.egsinp
     :stop geometry:
-    
 
     ################################
     ### Pb port
     ################################
-	:start geometry:
+
+    :start geometry:
         library = egs_glib
         name = pb_port
         include file = pb_port.egsinp
     :stop geometry:
-	
 
 	################################
     ### Faceplate
@@ -65,37 +62,52 @@
         include file = faceplateReal.egsinp
     :stop geometry:
 
+
     ################################
     ### Primary collimator
     ################################
-	:start geometry:
+
+    :start geometry:
         library = egs_glib
         name = primary_collimator
         include file = primary_collimator.egsinp
     :stop geometry:
 
+
     ################################
     ### Blades
     ################################
-	:start geometry:
+
+    :start geometry:
         library = egs_glib
         name = blades
-        include file = blades50x50.egsinp
+        include file = bladesHF.egsinp
     :stop geometry:
-
 
 	################################
     ### Beam hardening filter
     ################################
-	:start geometry:
+
+    :start geometry:
         library = egs_glib
         name = hard_filt
         include file = hardening_filter.egsinp
     :stop geometry:
 
-    ################################
-	### Detection cover
 	################################
+    ### Half fan bow tie filter
+    ################################
+
+    :start geometry:
+        library = egs_glib
+        name = hf
+        include file = bow_tie_hf.egsinp
+    :stop geometry:
+    
+    ################################
+    ### Detection cover
+    ################################
+    
     :start geometry:
         library = egs_glib
         name = cover
@@ -103,29 +115,29 @@
     :stop geometry:
 
     ################################
-	### Combining
-	################################
+    ### Combining
+    ################################
 
-	### Adding x-ray window and pb port
-	:start geometry:
+    ### Adding pb port to geometry
+    :start geometry:
         name = window_and_pb_port
         library = egs_gstack
         geometries = xray_window pb_port
         tolerance = 1e-4
     :stop geometry:
 
-	### Adding anode, x-ray window, pb port, primary collimator and blades
+    ### Adding anode, x-ray window, pb port, primary collimator and blades
     :start geometry:
         name = prim_coll_and_blades
         library = egs_gunion
-		geometries = anode window_and_pb_port primary_collimator faceplate blades
+	geometries = anode window_and_pb_port faceplate primary_collimator blades
     :stop geometry:
 
-	### Adding the beam hardening filter and cover
+    ### Adding the beam hardening filter, full fan bow tie filter and cover
     :start geometry:
-        name = prim_coll_and_blades_and_hard
+        name = prim_coll_and_blades_and_hf
         library = egs_gunion
-		geometries = prim_coll_and_blades hard_filt cover
+	geometries = prim_coll_and_blades hf hard_filt cover
     :stop geometry:
 
     ### Air between x-ray window and faceplate
@@ -141,14 +153,27 @@
         :stop media input:
     :stop geometry:
 
-    ### Air block from faceplate to end
+    ### Air block between faceplate and bow tie filter
     :start geometry:
         name = air_block
         library = egs_ndgeometry
         type = EGS_XYZGeometry
         x-planes = -7.1 7.1
         y-planes = -7.1 7.1
-        z-planes = 5.7 18.5
+        z-planes = 5.7 14.8
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+    ### Air block after bow tie filter
+    :start geometry:
+        name = air_block1
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -7.1 7.1
+        y-planes = -7.1 7.1
+        z-planes = 17.5 18.5
         :start media input:
             media = air
         :stop media input:
@@ -158,15 +183,15 @@
     :start geometry:
         name    = obi
         library = egs_gunion
-        geometries = prim_coll_and_blades_and_hard air air_block
+        geometries = prim_coll_and_blades_and_hf air air_block air_block1
     :stop geometry:
 
 	################################
-	### TESTING GEOMETRY
-	################################
+    ### TESTING GEOMETRY
+    ################################
 
-	### Testing cathode anode
-	:start geometry:
+    ### Testing cathode anode
+    :start geometry:
         name = src
         library = egs_ndgeometry
         type = EGS_XYZGeometry
@@ -178,14 +203,16 @@
         :stop media input:
     :stop geometry:
 
-	### Geometry that contains testing geometry for source
+
+    ### Geometry that contains testing geometry for source
     :start geometry:
         name = source_test
         library = egs_gunion
         geometries = anode src
     :stop geometry:
 
-	### Air between primary_collimator and detector to testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
+
+    ### Air between primary_collimator and detector to testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
     :start geometry:
         name = air_prim_to_detector
         library = egs_ndgeometry
@@ -198,8 +225,9 @@
         :stop media input:
     :stop geometry:
 
-	### Testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
-	:start geometry:
+
+    ### Testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
+    :start geometry:
         name = detect
         library = egs_ndgeometry
         type = EGS_XYZGeometry
@@ -211,125 +239,48 @@
         :stop media input:
     :stop geometry:
 
-	### Geometry that contains testing geometry for blades
+
+    ### Geometry that contains testing geometry for blades
     :start geometry:
         name = prim_coll_test
         library = egs_gunion
-        geometries = anode window_and_pb_port primary_collimator faceplate detect air air_prim_to_detector
+        geometries = anode window_and_pb_port faceplate primary_collimator air air_prim_to_detector detect
     :stop geometry:
 
-    ### Air between primary_collimator and detector to testing blades so that 26.4 x 19.8 cm x-ray field at 1m from the focal spot
+
+    ### Air between primary_collimator and detector to testing blades so that 26.5 x 19.8 cm x-ray field at 1m from the focal spot
     :start geometry:
         name = air_prim_to_detector1
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -50 50
-        y-planes = -50 50
+        x-planes = -20 30
+        y-planes = -20 20
         z-planes = 5.7 100.1
         :start media input:
             media = air
         :stop media input:
     :stop geometry:
 
-	### water tank
-	:start geometry:
-        name = tank
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-		x-planes = -50 50
-        y-planes = -50 50
-        z-planes = 100 121
-        :start media input:
-            media = water
-        :stop media input:
-    :stop geometry:
 
-    ### Profile x direction
+    ### Testing blades
     :start geometry:
-        name = profilex
+        name = detect1
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -40 -39.5 -39 -38.5 -38 -37.5 -37 -36.5 -36 -35.5 -35 -34.5 -34 -33.5 -33 -32.5 -32 -31.5 -31 -30.5 -30 -29.5 -29 -28.5 -28 -27.5 -27 -26.5 -26 -25.5 -25 -24.5 -24 -23.5 -23 -22.5 -22 -21.5 -21 -20.5 -20 -19.5 -19 -18.5 -18 -17.5 -17 -16.5 -16 -15.5 -15 -14.5 -14 -13.5 -13 -12.5 -12 -11.5 -11 -10.5 -10 -9.5 -9 -8.5 -8 -7.5 -7 -6.5 -6 -5.5 -5 -4.5 -4 -3.5 -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6 6.5 7 7.5 8 8.5 9 9.5 10 10.5 11 11.5 12 12.5 13 13.5 14 14.5 15 15.5 16 16.5 17 17.5 18 18.5 19 19.5 20 20.5 21 21.5 22 22.5 23 23.5 24 24.5 25 25.5 26 26.5 27 27.5 28 28.5 29 29.5 30 30.5 31 31.5 32 32.5 33 33.5 34 34.5 35 35.5 36 36.5 37 37.5 38 38.5 39 39.5 40
-        y-planes = -0.5 0.5
-        z-planes = 100.9 101.1
+	x-planes = -20 -2.6 23.9 30
+        y-planes = -20 -9.9 9.9 20
+        z-planes = 100 100.5
         :start media input:
             media = water
         :stop media input:
     :stop geometry:
 
-    ### Profile y direction
+
+    ### Testing blades geometry
     :start geometry:
-        name = profiley
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -0.5 0.5
-        y-planes = -40 -39.5 -39 -38.5 -38 -37.5 -37 -36.5 -36 -35.5 -35 -34.5 -34 -33.5 -33 -32.5 -32 -31.5 -31 -30.5 -30 -29.5 -29 -28.5 -28 -27.5 -27 -26.5 -26 -25.5 -25 -24.5 -24 -23.5 -23 -22.5 -22 -21.5 -21 -20.5 -20 -19.5 -19 -18.5 -18 -17.5 -17 -16.5 -16 -15.5 -15 -14.5 -14 -13.5 -13 -12.5 -12 -11.5 -11 -10.5 -10 -9.5 -9 -8.5 -8 -7.5 -7 -6.5 -6 -5.5 -5 -4.5 -4 -3.5 -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6 6.5 7 7.5 8 8.5 9 9.5 10 10.5 11 11.5 12 12.5 13 13.5 14 14.5 15 15.5 16 16.5 17 17.5 18 18.5 19 19.5 20 20.5 21 21.5 22 22.5 23 23.5 24 24.5 25 25.5 26 26.5 27 27.5 28 28.5 29 29.5 30 30.5 31 31.5 32 32.5 33 33.5 34 34.5 35 35.5 36 36.5 37 37.5 38 38.5 39 39.5 40
-        z-planes = 100.9 101.1
-        :start media input:
-            media = water
-        :stop media input:
-    :stop geometry:
-
-    ### PDD
-    :start geometry:
-        name = pdd
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -0.5 0.5
-        y-planes = -0.5 0.5
-        z-planes = 100.1  100.3  100.5  100.7  100.9  101.1  101.3  101.5  101.7  101.9  102.1  102.3  102.5  102.7  102.9  103.1  103.3  103.5  103.7  103.9  104.1  104.3  104.5  104.7  104.9  105.1  105.3  105.5  105.7  105.9  106.1  106.3  106.5  106.7  106.9  107.1  107.3  107.5  107.7  107.9  108.1  108.3  108.5  108.7  108.9  109.1  109.3  109.5  109.7  109.9  110.1  110.3  110.5  110.7  110.9  111.1  111.3  111.5  111.7  111.9  112.1  112.3  112.5  112.7  112.9  113.1  113.3  113.5  113.7  113.9  114.1  114.3  114.5  114.7  114.9  115.1  115.3  115.5  115.7  115.9  116.1  116.3  116.5  116.7  116.9  117.1  117.3  117.5  117.7  117.9  118.1  118.3  118.5  118.7  118.9  119.1  119.3  119.5  119.7  119.9  120.1
-        :start media input:
-            media = water
-        :stop media input:
-    :stop geometry:
-
-	### Testing blades geometry
-	:start geometry:
         name = blades_test
         library = egs_gunion
-        geometries = prim_coll_and_blades tank air air_prim_to_detector1
-    :stop geometry:
-
-    ### Testing all System
-    :start geometry:
-        name = obi_test
-        library = egs_gunion
-        geometries = obi profilex profiley pdd tank air_prim_to_detector1
-    :stop geometry:
-
-    ### Geometry for Russian Roulette
-
-	:start geometry:
-        name = pddRR
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -1 1
-        y-planes = -1 1
-        z-planes = 100 120
-    :stop geometry:
-
-    :start geometry:
-        name = profileyRR
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -1 1
-        y-planes = -41 41
-        z-planes = 100 102
-    :stop geometry:
-
-    :start geometry:
-        name = profilexRR
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -41 41
-        y-planes = -1 1
-        z-planes = 100 102
-    :stop geometry:
-
-    :start geometry:
-        name = cavity
-        library = egs_gunion
-        geometries = profilexRR profileyRR pddRR
+        geometries = prim_coll_and_blades detect1 air air_prim_to_detector1
     :stop geometry:
 
 	################################
@@ -346,7 +297,7 @@
 	# simulation geometry = blades_test
 
 	### Use the geometry with this name for the simulation
-	simulation geometry = obi_test
+	simulation geometry = obi
 
 :stop geometry definition:
 
@@ -427,7 +378,7 @@
 		bremsstrahlung correction=NRC
     :stop target_material:
 
-	### Molybdenum
+    ### Molybdenum
 	:start molybdenum:
 		bremsstrahlung correction=NRC
         density correction file = molybdenum
@@ -453,7 +404,7 @@
 		direction = 0 -1 0
 		:start spectrum:
 			type = monoenergetic
-			energy = 0.120 # in MeV
+			energy = 0.125 # in MeV
 		:stop spectrum:
 		:start shape:
 			type = sphere
@@ -484,66 +435,21 @@
 ################################
 :start ausgab object definition: # Only 1 ausgab definition block allowed
 	### Particle tracks
-	#:start ausgab object:
-	#	name = tracks
-	#	library = egs_track_scoring
-	#	score electrons = no
-	#	score positrons = no
-    #	stop scoring   = 1000000
-	#:stop ausgab object:
-
-    :start ausgab object:
-        library = egs_radiative_splitting
-        name = splitting
-        splitting = 1000
-    :stop ausgab object:
+	:start ausgab object:
+		name = tracks
+		library = egs_track_scoring
+		score electrons = no
+		score positrons = no
+    	stop scoring   = 200000
+	:stop ausgab object:
 
 	### Dose scoring object
 	:start ausgab object:
 		name = dose
 		library = egs_dose_scoring
-		medium dose = no
-		region dose = yes
-		volume = 0.1  0.1  0.2
-		dose start region = 3240 6480 9720
-		dose stop region = 3399 6639 9819
+		dose regions = 360 361 362 363 364 365 366 367 368
+		volume = 1 1 1 1 1 1 1 1 1
 	:stop ausgab object:
-
-    ### Dose scoring object to x profile
-	:start ausgab object:
-        library = egs_dose_scoring
-        name = profilexScor
-        medium dose = no
-        region dose = yes
-        :start output dose file:
-            geometry name = profilex
-            file type = 3ddose
-        :stop output dose file:
-    :stop ausgab object:
-
-    ### Dose scoring object to y profile
-	:start ausgab object:
-        library = egs_dose_scoring
-        name = profileyScor
-        medium dose = no
-        region dose = yes
-        :start output dose file:
-            geometry name = profiley
-            file type = 3ddose
-        :stop output dose file:
-    :stop ausgab object:
-
-    ### Dose scoring object to pdd
-	:start ausgab object:
-        library = egs_dose_scoring
-        name = pddScor
-        medium dose = no
-        region dose = yes
-        :start output dose file:
-            geometry name = pdd
-            file type = 3ddose
-        :stop output dose file:
-    :stop ausgab object:
 :stop ausgab object definition:
 
 ################################
@@ -577,7 +483,6 @@
     Photonuclear attenuation= On
 :Stop MC Transport Parameter:
 
-
 ##############################################################################
 ### SCORING OPTIONS
 ##############################################################################
@@ -586,28 +491,12 @@
     calculation type = dose
 
     :start calculation geometry:
-        geometry name    = obi_test
-        cavity regions   = 74
-        #excluded regions = 0  # exclude particles passing through these regions
-        cavity mass      = 1  # 5 cm radius air sphere
+        geometry name   = test 
+        cavity regions  = 480
+        cavity mass     = 1
     :stop calculation geometry:
 
 :stop scoring options:
-
-##############################################################################
-### VARIANCE REDUCTION
-##############################################################################
-:start variance reduction:
-    split brem photons = 100
-    bcse medium = anode 100
-    photon splitting = 100
-    :start range rejection:
-        rejection = 100
-        Esave     = 1
-        cavity geometry = cavity
-        rejection range medium = water
-    :stop range rejection:
-:stop variance reduction:
 
 
 ################################

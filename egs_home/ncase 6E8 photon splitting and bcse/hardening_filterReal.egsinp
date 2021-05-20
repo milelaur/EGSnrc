@@ -1,0 +1,21 @@
+################################
+#
+# Hardening filter of TrueBeam kV imaging System Full Fan set up
+#
+################################
+:start geometry definition:
+    :start geometry:
+        name = hard_filt
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -15 -4.15 4.15 15
+        y-planes = -15 -4.15 4.15 15
+        z-planes = 13.22 13.309
+        :start media input:
+            media = steel titanium
+            set medium = 4 1
+        :stop media input:
+    :stop geometry:
+
+    simulation geometry = hard_filt
+:stop geometry definition:

@@ -1,0 +1,74 @@
+################################
+#
+# Pb port of TrueBeam kV imaging System
+#
+################################
+:start geometry definition:
+	### The opening in the Pb port
+	:start geometry:
+        name = opening
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+		x-planes = -1.26 1.26
+		y-planes = -1.26 1.26
+		z-planes = 4.07499999999999 5.67
+		:start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+	### Pb port without opening and surrounded x-ray window
+	:start geometry:
+        name = pb
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = 0 0 4.075 0 0 5.72
+		:start layer:
+            thickness = 0.15
+            top radii = 2.4511 2.7261
+            bottom radii = 2.4511 2.7261
+            media = pb aluminum
+        :stop layer:
+        :start layer:
+            thickness = 0.5612
+            top radii = 2.1511 2.4511 2.7261
+            bottom radii = 2.1511 2.4511 2.7261
+            media = air pb aluminum
+        :stop layer:
+		:start layer:
+            thickness = 0.739
+            top radii = 2.1511 2.4511 2.7261
+            bottom radii = 2.53591 2.83591 3.11091
+            media = air pb aluminum
+        :stop layer:
+		:start layer:
+            thickness = 0.15
+            top radii = 2.83591 3.17246
+            bottom radii = 2.83591 3.17246
+            media = air pb
+        :stop layer:
+    :stop geometry:
+
+    ### Aluminium surrounding rim
+    :start geometry:
+        name = aluminum_hat
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = 0 0 5.2502 0 0 5.5252
+		:start layer:
+            thickness = 0.275
+            top radii = 3.17246
+            bottom radii = 3.17246
+            media = aluminum
+        :stop layer:
+    :stop geometry:
+
+	### Adding opening to pb port
+    :start geometry:
+        name = pb_port
+        library = egs_gunion
+        geometries = opening pb aluminum_hat
+    :stop geometry:
+
+    simulation geometry = pb_port
+:stop geometry definition:
