@@ -8,10 +8,10 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 9E9
+    ncase = 2E3
     #calculation = combine
-    nchunk = 50000
-    nbatch = 10
+    #nchunk = 50000
+    #nbatch = 10
 :stop run control:
 
 ################################
@@ -153,7 +153,7 @@
             media = air
         :stop media input:
     :stop geometry:
-
+    
     ### Geometry from source to bow tie filter + air block
     :start geometry:
         name    = obi

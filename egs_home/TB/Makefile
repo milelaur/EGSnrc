@@ -66,14 +66,8 @@ CPP_SOURCES = $(C_ADVANCED_SOURCES)
 #
 other_dep_user_code = $(ABS_EGSPP)egs_scoring.h
 
-include $(HEN_HOUSE)makefiles$(DSEP)cpp_makefile
+# User code defines
+#
+DEF_USER = -g
 
-#test_sources:
-#	@echo "$(C_SOURCES)"
-#
-#test_objects:
-#	@echo "egs_objects: $(egs_objects)"
-#	@echo "user_objects: $(user_objects)"
-#
-#c_sources:
-#	@echo "C_SOURCES: $(CPP_SOURCES)"
+include $(HEN_HOUSE)makefiles$(DSEP)cpp_makefile

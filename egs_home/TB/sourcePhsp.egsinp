@@ -48,15 +48,10 @@
         include file = pb_port.egsinp
     :stop geometry:
 	
+
 	################################
     ### Faceplate
     ################################
-    # Old one
-	#:start geometry:
-    #    library = egs_glib
-    #    name = faceplate
-    #    include file = faceplate.egsinp
-    #:stop geometry:
 
     :start geometry:
         library = egs_glib
@@ -100,19 +95,62 @@
         tolerance = 1e-4
     :stop geometry:
 
-	### Adding anode, x-ray window, pb port, primary collimator and blades
+	### Adding anode, x-ray window, pb port, primary collimator and faceplate
     :start geometry:
         name = to_primary_collimator
         library = egs_gunion
 		geometries = anode window_and_pb_port primary_collimator faceplate phsp_plate
     :stop geometry:
 
+    ### Air between x-ray window and faceplate
+    :start geometry:
+        name = air
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -6 6
+        y-planes = -4 4
+        z-planes = 3.0 8.9
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+    :start geometry:
+        name = sourcePhsp
+        library = egs_gunion
+        geometries = to_primary_collimator air
+    :stop geometry:
+
+	################################
+	### TESTING GEOMETRY
+	################################
+
+	### Testing cathode anode
+	:start geometry:
+        name = src
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -1.5 1.5
+        y-planes = -1.3 2.5
+        z-planes = -1.5 10
+        :start media input:
+            media = vacuum
+        :stop media input:
+    :stop geometry:
+
+	### Geometry that contains testing geometry for source
+    :start geometry:
+        name = source_test
+        library = egs_gunion
+        geometries = anode src
+    :stop geometry:
+
 	################################
 	### SIMULATION GEOMETRY
 	################################
 
-	### Use the geometry with this name for the simulation
-	simulation geometry = to_primary_collimator
+	### Testing source
+	simulation geometry = sourcePhsp
 
 :stop geometry definition:
 
@@ -249,6 +287,14 @@
 ### AUSGAB OBJECTS
 ################################
 :start ausgab object definition: # Only 1 ausgab definition block allowed
+	### Particle tracks
+	#:start ausgab object:
+	#	name = tracks
+	#	library = egs_track_scoring
+	#	score electrons = no
+	#	score positrons = no
+    #	stop scoring   = 1000000
+	#:stop ausgab object:
 
     :start ausgab object:
         library = egs_radiative_splitting
@@ -259,11 +305,9 @@
     :start ausgab object:
           library                  = egs_phsp_scoring
           name                     = phsp
-          output format            = EGSnrc
+          output format            = IAEA
           particle type            = all
-          score multiple crossers  = no
           #output directory         =
-
           phase space geometry     = phsp_plate
           score particles on       = entry
     :stop ausgab object:
@@ -274,8 +318,8 @@
 		library = egs_dose_scoring
 		medium dose = no
 		region dose = yes
-		volume = 0.922808
-		dose regions = 288
+		volume = 1
+		dose regions = 360
 	:stop ausgab object:
 
 :stop ausgab object definition:
@@ -310,6 +354,23 @@
     Photon cross-sections output= Off
     Photonuclear attenuation= On
 :Stop MC Transport Parameter:
+
+
+##############################################################################
+### SCORING OPTIONS
+##############################################################################
+:start scoring options:
+
+    calculation type = dose
+
+    :start calculation geometry:
+        geometry name    = sourcePhsp
+        cavity regions   = 360
+        #excluded regions = 0  # exclude particles passing through these regions
+        cavity mass      = 1  # 5 cm radius air sphere
+    :stop calculation geometry:
+
+:stop scoring options:
 
 ##############################################################################
 ### VARIANCE REDUCTION
