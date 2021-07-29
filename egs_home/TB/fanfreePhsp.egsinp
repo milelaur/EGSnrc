@@ -81,14 +81,14 @@
 	### TESTING GEOMETRY
 	################################
 
-	### Air between primary_collimator and detector to testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
+	### Air between primary_collimator and detector
     :start geometry:
         name = air_prim_to_detector
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -55 55
-        y-planes = -55 55
-        z-planes = 5.7 100.1
+        x-planes = -50 50
+        y-planes = -50 50
+        z-planes = 8.752 100.1
         :start media input:
             media = air
         :stop media input:
@@ -104,19 +104,6 @@
         z-planes = 100 100.5
         :start media input:
             media = water
-        :stop media input:
-    :stop geometry:
-
-    ### Air between primary_collimator and detector to testing blades so that 26.4 x 19.8 cm x-ray field at 1m from the focal spot
-    :start geometry:
-        name = air_prim_to_detector1
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -50 50
-        y-planes = -50 50
-        z-planes = 5.7 100.1
-        :start media input:
-            media = air
         :stop media input:
     :stop geometry:
 
@@ -174,9 +161,20 @@
 
     ### Testing all System
     :start geometry:
-        name = obi_test
+        name = obi_system
         library = egs_gunion
-        geometries = obi profilex profiley pdd tank air_prim_to_detector1
+        geometries = obi profilex profiley pdd tank air_prim_to_detector
+    :stop geometry:
+
+    ### Moving system so that phsp is at z=0
+    :start geometry:
+        name = obi_transformed
+        library = egs_gtransformed
+        my geometry = obi_system
+        :start transformation:
+            translation = 0 0 -8.752
+            rotation = 0 0 0
+        :stop transformation:
     :stop geometry:
 
     ### Geometry for Russian Roulette
@@ -219,7 +217,7 @@
 	################################
 
 	### Use the geometry with this name for the simulation
-	simulation geometry = obi_test
+	simulation geometry = obi_transformed
 
 :stop geometry definition:
 
@@ -358,9 +356,9 @@
 		library = egs_dose_scoring
 		medium dose = no
 		region dose = yes
-		volume = 0.1  0.1  0.2
-		dose start region = 3240 6480 9720
-		dose stop region = 3399 6639 9819
+		volume = 0.1  0.1  0.1  0.1  0.1  0.2  0.2
+		dose start region = 162 241 243 324 405 486 491
+		dose stop region = 240 242 321 402 483 489 585
 	:stop ausgab object:
 
     ### Dose scoring object to x profile
@@ -440,7 +438,7 @@
     calculation type = dose
 
     :start calculation geometry:
-        geometry name    = obi_test
+        geometry name    = obi_transformed
         cavity regions   = 74
         #excluded regions = 0  # exclude particles passing through these regions
         cavity mass      = 1  # 5 cm radius air sphere
