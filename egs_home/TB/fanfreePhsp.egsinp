@@ -318,13 +318,13 @@
 :start source definition: 
 
 	:start source:
-        library = egs_phsp_source
+        library = iaea_phsp_source
         name = my_source
-        phase space file = phsp.egsphsp1
+        iaea phase space file = Miian_phsp.1.IAEAphsp
         particle type = all
-        #cutout = x1 x2 y1 y2  (optional)
-        #weight window = wmin wmax, the min and max particle weights to use. If the particle weight is not in this range, it is rejected. (optional)
-        #recycle photons = 100
+        #cutout = x1 x2 y1 y2
+        weight window = 0.99 1.01
+        #recycle photons = 5
         #recycle electrons = 100
     :stop source:
 
