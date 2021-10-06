@@ -8,10 +8,10 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 6E8
+    ncase = 7E9
     #calculation = combine
-    nchunk = 50000
-    nbatch = 10
+    #nchunk = 50000
+    #nbatch = 10
 :stop run control:
 
 ################################
@@ -22,24 +22,24 @@
     ################################
     ### Blades
     ################################
-	:start geometry:
+    :start geometry:
         library = egs_glib
         name = blades
         include file = blades50x50.egsinp
     :stop geometry:
 
-	################################
+    ################################
     ### Beam hardening filter
     ################################
-	:start geometry:
+    :start geometry:
         library = egs_glib
         name = hard_filt
         include file = hardening_filter.egsinp
     :stop geometry:
 
     ################################
-	### Detection cover
-	################################
+    ### Detection cover
+    ################################
     :start geometry:
         library = egs_glib
         name = cover
@@ -47,14 +47,14 @@
     :stop geometry:
 
     ################################
-	### Combining
-	################################
+    ### Combining
+    ################################
 
-	### Adding the beam hardening filter and cover
+    ### Adding the beam hardening filter and cover
     :start geometry:
         name = prim_coll_and_blades_and_hard
         library = egs_gunion
-		geometries = blades hard_filt cover
+	geometries = blades hard_filt cover
     :stop geometry:
 
     ### Air block from faceplate to end
@@ -77,11 +77,11 @@
         geometries = prim_coll_and_blades_and_hard air_block
     :stop geometry:
 
-	################################
-	### TESTING GEOMETRY
-	################################
+    ################################
+    ### TESTING GEOMETRY
+    ################################
 
-	### Air between primary_collimator and detector
+    ### Air between source and water
     :start geometry:
         name = air_prim_to_detector
         library = egs_ndgeometry
@@ -94,25 +94,12 @@
         :stop media input:
     :stop geometry:
 
-	### Testing primary collimator so that 504x504 mm x-ray field at 1m from the focal spot
-	:start geometry:
-        name = detect
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -55 -25.2 25.2 55
-        y-planes = -55 -25.2 25.2 55
-        z-planes = 100 100.5
-        :start media input:
-            media = water
-        :stop media input:
-    :stop geometry:
-
-	### water tank
-	:start geometry:
+    ### water tank
+    :start geometry:
         name = tank
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-		x-planes = -50 50
+	x-planes = -50 50
         y-planes = -50 50
         z-planes = 100 121
         :start media input:
@@ -166,17 +153,6 @@
         geometries = obi profilex profiley pdd tank air_prim_to_detector
     :stop geometry:
 
-    ### Moving system so that phsp is at z=0
-    :start geometry:
-        name = obi_transformed
-        library = egs_gtransformed
-        my geometry = obi_system
-        :start transformation:
-            translation = 0 0 -8.752
-            rotation = 0 0 0
-        :stop transformation:
-    :stop geometry:
-
     ### Geometry for Russian Roulette
 
 	:start geometry:
@@ -217,7 +193,7 @@
 	################################
 
 	### Use the geometry with this name for the simulation
-	simulation geometry = obi_transformed
+	simulation geometry = obi_system
 
 :stop geometry definition:
 
@@ -317,15 +293,15 @@
 ################################
 :start source definition: 
 
-	:start source:
+   :start source:
         library = iaea_phsp_source
         name = my_source
-        iaea phase space file = Miian_phsp.1.IAEAphsp
+        iaea phase space file = pikaPhsp.1
         particle type = all
         #cutout = x1 x2 y1 y2
-        weight window = 0.99 1.01
-        #recycle photons = 5
-        #recycle electrons = 100
+        #weight window = 0.99 1.01
+        recycle photons = 10
+        #recycle electrons = 10
     :stop source:
 
     simulation source = my_source
@@ -335,14 +311,14 @@
 ### AUSGAB OBJECTS
 ################################
 :start ausgab object definition: # Only 1 ausgab definition block allowed
-	### Particle tracks
-	#:start ausgab object:
-	#	name = tracks
-	#	library = egs_track_scoring
-	#	score electrons = no
-	#	score positrons = no
-    #	stop scoring   = 1000000
-	#:stop ausgab object:
+    ### Particle tracks
+    #:start ausgab object:
+	#name = tracks
+	#library = egs_track_scoring
+	#score electrons = no
+	#score positrons = no
+	#stop scoring   = 1000000
+    #:stop ausgab object:
 
     :start ausgab object:
         library = egs_radiative_splitting
@@ -350,19 +326,19 @@
         splitting = 1000
     :stop ausgab object:
 
-	### Dose scoring object
-	:start ausgab object:
-		name = dose
-		library = egs_dose_scoring
-		medium dose = no
-		region dose = yes
-		volume = 0.1  0.1  0.1  0.1  0.1  0.2  0.2
-		dose start region = 162 241 243 324 405 486 491
-		dose stop region = 240 242 321 402 483 489 585
-	:stop ausgab object:
+    ### Dose scoring object
+    :start ausgab object:
+	name = dose
+	library = egs_dose_scoring
+	medium dose = no
+	region dose = yes
+	volume = 0.1  0.1  0.1  0.1  0.1  0.2  0.2
+	dose start region = 162 241 243 324 405 486 491
+	dose stop region = 240 242 321 402 483 489 585
+    :stop ausgab object:
 
     ### Dose scoring object to x profile
-	:start ausgab object:
+    :start ausgab object:
         library = egs_dose_scoring
         name = profilexScor
         medium dose = no
@@ -374,7 +350,7 @@
     :stop ausgab object:
 
     ### Dose scoring object to y profile
-	:start ausgab object:
+    :start ausgab object:
         library = egs_dose_scoring
         name = profileyScor
         medium dose = no
@@ -386,7 +362,7 @@
     :stop ausgab object:
 
     ### Dose scoring object to pdd
-	:start ausgab object:
+    :start ausgab object:
         library = egs_dose_scoring
         name = pddScor
         medium dose = no
@@ -396,6 +372,7 @@
             file type = 3ddose
         :stop output dose file:
     :stop ausgab object:
+
 :stop ausgab object definition:
 
 ################################
@@ -438,8 +415,8 @@
     calculation type = dose
 
     :start calculation geometry:
-        geometry name    = obi_transformed
-        cavity regions   = 74
+        geometry name    = obi_system
+        cavity regions   = 800
         #excluded regions = 0  # exclude particles passing through these regions
         cavity mass      = 1  # 5 cm radius air sphere
     :stop calculation geometry:
@@ -476,9 +453,9 @@
 	set color = pb 255 85 0 200
 	set color = water 85 170 255 200
 	set color = titanium 0 170 127 250
-    set color = carbonate 170 85 0 200
+        set color = carbonate 170 85 0 200
 	set color = target_material 85 225 127 200
-    set color = molybdenum 0 170 225 200
+        set color = molybdenum 0 170 225 200
 	set color = graphite 170 85 127 200
 	set color = vacuum 225 225 225 50
 :stop view control:

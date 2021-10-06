@@ -8,10 +8,10 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 9E9
+    ncase = 7E9
     #calculation = combine
-    nchunk = 50000
-    nbatch = 10
+    #nchunk = 50000
+    #nbatch = 10
 :stop run control:
 
 ################################
@@ -293,8 +293,8 @@
 	#	library = egs_track_scoring
 	#	score electrons = no
 	#	score positrons = no
-    #	stop scoring   = 1000000
-	#:stop ausgab object:
+    	#	stop scoring   = 1000000
+	#stop ausgab object:
 
     :start ausgab object:
         library = egs_radiative_splitting
@@ -309,8 +309,8 @@
           particle type            = all
           #output directory         =
           phase space geometry     = phsp_plate
-          score particles on       = exit
-          constant Z               = 8.9
+          score particles on       = entry
+          constant Z               = 8.8752
     :stop ausgab object:
 
     ### Dose scoring object
