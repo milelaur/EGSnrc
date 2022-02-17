@@ -8,10 +8,10 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 7E9
+    ncase = 4.8E10
     #calculation = combine
-    #nchunk = 50000
-    #nbatch = 10
+    nchunk = 50
+    nbatch = 3
 :stop run control:
 
 ################################
@@ -25,7 +25,7 @@
     :start geometry:
         library = egs_glib
         name = blades
-        include file = blades50x50.egsinp
+        include file = blades13_3x10.egsinp
     :stop geometry:
 
     ################################
@@ -86,37 +86,37 @@
         name = air_prim_to_detector
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -50 50
-        y-planes = -50 50
-        z-planes = 8.752 100.1
+        x-planes = -30 30
+        y-planes = -30 30
+        z-planes = 8.752 120
         :start media input:
             media = air
         :stop media input:
     :stop geometry:
 
     ### water tank
-    :start geometry:
-        name = tank
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-	x-planes = -50 50
-        y-planes = -50 50
-        z-planes = 100 121
-        :start media input:
-            media = water
-        :stop media input:
-    :stop geometry:
+    #:start geometry:
+    #    name = tank
+    #    library = egs_ndgeometry
+    #    type = EGS_XYZGeometry
+    #    x-planes = -50 50
+    #    y-planes = -50 50
+    #    z-planes = 100 121
+    #    :start media input:
+    #        media = water
+    #    :stop media input:
+    #:stop geometry:
 
     ### Profile x direction
     :start geometry:
         name = profilex
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -40 -39.5 -39 -38.5 -38 -37.5 -37 -36.5 -36 -35.5 -35 -34.5 -34 -33.5 -33 -32.5 -32 -31.5 -31 -30.5 -30 -29.5 -29 -28.5 -28 -27.5 -27 -26.5 -26 -25.5 -25 -24.5 -24 -23.5 -23 -22.5 -22 -21.5 -21 -20.5 -20 -19.5 -19 -18.5 -18 -17.5 -17 -16.5 -16 -15.5 -15 -14.5 -14 -13.5 -13 -12.5 -12 -11.5 -11 -10.5 -10 -9.5 -9 -8.5 -8 -7.5 -7 -6.5 -6 -5.5 -5 -4.5 -4 -3.5 -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6 6.5 7 7.5 8 8.5 9 9.5 10 10.5 11 11.5 12 12.5 13 13.5 14 14.5 15 15.5 16 16.5 17 17.5 18 18.5 19 19.5 20 20.5 21 21.5 22 22.5 23 23.5 24 24.5 25 25.5 26 26.5 27 27.5 28 28.5 29 29.5 30 30.5 31 31.5 32 32.5 33 33.5 34 34.5 35 35.5 36 36.5 37 37.5 38 38.5 39 39.5 40
+        x-planes = -20 -19 -18 -17 -16 -15 -14 -13 -12 -11 -10 -9 -8 -7 -6 -5 -4 -3 -2 -1 0 1 2 3 4 5 6	7 8 9 10 11 12 13 14 15	16 17 18 19 20
         y-planes = -0.5 0.5
-        z-planes = 100.9 101.1
+        z-planes = 100 101
         :start media input:
-            media = water
+            media = air
         :stop media input:
     :stop geometry:
 
@@ -126,10 +126,10 @@
         library = egs_ndgeometry
         type = EGS_XYZGeometry
         x-planes = -0.5 0.5
-        y-planes = -40 -39.5 -39 -38.5 -38 -37.5 -37 -36.5 -36 -35.5 -35 -34.5 -34 -33.5 -33 -32.5 -32 -31.5 -31 -30.5 -30 -29.5 -29 -28.5 -28 -27.5 -27 -26.5 -26 -25.5 -25 -24.5 -24 -23.5 -23 -22.5 -22 -21.5 -21 -20.5 -20 -19.5 -19 -18.5 -18 -17.5 -17 -16.5 -16 -15.5 -15 -14.5 -14 -13.5 -13 -12.5 -12 -11.5 -11 -10.5 -10 -9.5 -9 -8.5 -8 -7.5 -7 -6.5 -6 -5.5 -5 -4.5 -4 -3.5 -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6 6.5 7 7.5 8 8.5 9 9.5 10 10.5 11 11.5 12 12.5 13 13.5 14 14.5 15 15.5 16 16.5 17 17.5 18 18.5 19 19.5 20 20.5 21 21.5 22 22.5 23 23.5 24 24.5 25 25.5 26 26.5 27 27.5 28 28.5 29 29.5 30 30.5 31 31.5 32 32.5 33 33.5 34 34.5 35 35.5 36 36.5 37 37.5 38 38.5 39 39.5 40
-        z-planes = 100.9 101.1
+        y-planes = -20 -19 -18 -17 -16 -15 -14 -13 -12 -11 -10 -9 -8 -7 -6 -5 -4 -3 -2 -1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+        z-planes = 100 101
         :start media input:
-            media = water
+            media = air
         :stop media input:
     :stop geometry:
 
@@ -140,9 +140,9 @@
         type = EGS_XYZGeometry
         x-planes = -0.5 0.5
         y-planes = -0.5 0.5
-        z-planes = 100.1  100.3  100.5  100.7  100.9  101.1  101.3  101.5  101.7  101.9  102.1  102.3  102.5  102.7  102.9  103.1  103.3  103.5  103.7  103.9  104.1  104.3  104.5  104.7  104.9  105.1  105.3  105.5  105.7  105.9  106.1  106.3  106.5  106.7  106.9  107.1  107.3  107.5  107.7  107.9  108.1  108.3  108.5  108.7  108.9  109.1  109.3  109.5  109.7  109.9  110.1  110.3  110.5  110.7  110.9  111.1  111.3  111.5  111.7  111.9  112.1  112.3  112.5  112.7  112.9  113.1  113.3  113.5  113.7  113.9  114.1  114.3  114.5  114.7  114.9  115.1  115.3  115.5  115.7  115.9  116.1  116.3  116.5  116.7  116.9  117.1  117.3  117.5  117.7  117.9  118.1  118.3  118.5  118.7  118.9  119.1  119.3  119.5  119.7  119.9  120.1
+        z-planes = 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120
         :start media input:
-            media = water
+            media = air
         :stop media input:
     :stop geometry:
 
@@ -150,7 +150,8 @@
     :start geometry:
         name = obi_system
         library = egs_gunion
-        geometries = obi profilex profiley pdd tank air_prim_to_detector
+	### Add profilex, profiley or pdd
+        geometries = obi profilex air_prim_to_detector
     :stop geometry:
 
     ### Geometry for Russian Roulette
@@ -161,7 +162,7 @@
         type = EGS_XYZGeometry
         x-planes = -1 1
         y-planes = -1 1
-        z-planes = 100 120
+        z-planes = 99.5 120.5
     :stop geometry:
 
     :start geometry:
@@ -169,23 +170,23 @@
         library = egs_ndgeometry
         type = EGS_XYZGeometry
         x-planes = -1 1
-        y-planes = -41 41
-        z-planes = 100 102
+        y-planes = -20.5 20.5
+        z-planes = 99.5 101.5
     :stop geometry:
 
     :start geometry:
         name = profilexRR
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -41 41
+        x-planes = -20.5 20.5
         y-planes = -1 1
-        z-planes = 100 102
+        z-planes = 99.5 101.5
     :stop geometry:
 
     :start geometry:
         name = cavity
         library = egs_gunion
-        geometries = profilexRR profileyRR pddRR
+        geometries = pddRR profileyRR profilexRR
     :stop geometry:
 
 	################################
@@ -296,12 +297,14 @@
    :start source:
         library = iaea_phsp_source
         name = my_source
-        iaea phase space file = pikaPhsp.1
+        iaea phase space file = sourcePhsp100kv.1
         particle type = all
         #cutout = x1 x2 y1 y2
         #weight window = 0.99 1.01
-        recycle photons = 10
-        #recycle electrons = 10
+        recycle photons = 6
+        recycle electrons = 6
+	reuse photons = 2
+	reuse electrons = 2
     :stop source:
 
     simulation source = my_source
@@ -326,21 +329,10 @@
         splitting = 1000
     :stop ausgab object:
 
-    ### Dose scoring object
-    :start ausgab object:
-	name = dose
-	library = egs_dose_scoring
-	medium dose = no
-	region dose = yes
-	volume = 0.1  0.1  0.1  0.1  0.1  0.2  0.2
-	dose start region = 162 241 243 324 405 486 491
-	dose stop region = 240 242 321 402 483 489 585
-    :stop ausgab object:
-
     ### Dose scoring object to x profile
     :start ausgab object:
         library = egs_dose_scoring
-        name = profilexScor
+        name = profilexScorReuse
         medium dose = no
         region dose = yes
         :start output dose file:
@@ -350,28 +342,28 @@
     :stop ausgab object:
 
     ### Dose scoring object to y profile
-    :start ausgab object:
-        library = egs_dose_scoring
-        name = profileyScor
-        medium dose = no
-        region dose = yes
-        :start output dose file:
-            geometry name = profiley
-            file type = 3ddose
-        :stop output dose file:
-    :stop ausgab object:
+    #:start ausgab object:
+    #    library = egs_dose_scoring
+    #    name = profileyScorReuse
+    #    medium dose = no
+    #    region dose = yes
+    #    :start output dose file:
+    #        geometry name = profiley
+    #       file type = 3ddose
+    #    :stop output dose file:
+    #:stop ausgab object:
 
     ### Dose scoring object to pdd
-    :start ausgab object:
-        library = egs_dose_scoring
-        name = pddScor
-        medium dose = no
-        region dose = yes
-        :start output dose file:
-            geometry name = pdd
-            file type = 3ddose
-        :stop output dose file:
-    :stop ausgab object:
+    #:start ausgab object:
+    #    library = egs_dose_scoring
+    #    name = pddScorReuse
+    #    medium dose = no
+    #    region dose = yes
+    #    :start output dose file:
+    #        geometry name = pdd
+    #        file type = 3ddose
+    #    :stop output dose file:
+    #:stop ausgab object:
 
 :stop ausgab object definition:
 
@@ -433,8 +425,8 @@
     :start range rejection:
         rejection = 100
         Esave     = 1
-        cavity geometry = cavity
-        rejection range medium = water
+        cavity geometry = profilexRR
+        rejection range medium = air
     :stop range rejection:
 :stop variance reduction:
 

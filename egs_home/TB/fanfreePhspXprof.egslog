@@ -1,0 +1,1042 @@
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   obi (type EGS_UnionGeometry)
+   profilex (type EGS_XYZGeometry)
+   tank (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ IAEA phase space source from sourcePhsp.1
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 460
+  numbers used so far = 298378665728
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+===========================================
+Radiative splitting Object (splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Dose Scoring Object (dose)
+*******************************************
+
+ - Regions in dose calculator :417
+
+
+--------------------------------------
+medium      rho/[g/cm**3]
+--------------------------------------
+pb        11.35
+steel      8.06
+air        0.00
+titanium   4.54
+carbonate  1.20
+water      1.00
+--------------------------------------
+
+*******************************************
+
+
+*******************************************
+Dose Scoring Object (profilexScorNoRecycle)
+*******************************************
+
+ - Regions in dose calculator :648
+
+
+--------------------------------------
+medium      rho/[g/cm**3]
+--------------------------------------
+pb        11.35
+steel      8.06
+air        0.00
+titanium   4.54
+carbonate  1.20
+water      1.00
+--------------------------------------
+
+*******************************************
+
+
+ Will output dose to file:
+ EGS_XYZGeometry: profilex
+ file format:  3ddose
+ file name: /home/rsmina/EGSnrc/egs_home/TB/profilexScorNoRecycle.3ddose
+
+
+
+The following media are defined:
+================================
+
+  0  pb                       AE= 0.5120 AP= 0.0010 0
+  1  steel                    AE= 0.5120 AP= 0.0010 1
+  2  air                      AE= 0.5120 AP= 0.0010 2
+  3  titanium                 AE= 0.5120 AP= 0.0010 3
+  4  carbonate                AE= 0.5120 AP= 0.0010 4
+  5  water                    AE= 0.5120 AP= 0.0010 5
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          On
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 fanfreePhsp_w1.egsdat          ncase=15038980       cpu=40286.40   
+ 2 fanfreePhsp_w2.egsdat          ncase=16406160       cpu=42261.10   
+ 3 fanfreePhsp_w3.egsdat          ncase=13671800       cpu=42119.10   
+ 4 fanfreePhsp_w4.egsdat          ncase=13671800       cpu=40820.20   
+ 5 fanfreePhsp_w5.egsdat          ncase=13671800       cpu=41891.30   
+ 6 fanfreePhsp_w6.egsdat          ncase=13671800       cpu=39878.00   
+ 7 fanfreePhsp_w7.egsdat          ncase=13671800       cpu=39983.50   
+ 8 fanfreePhsp_w8.egsdat          ncase=15038980       cpu=41979.40   
+ 9 fanfreePhsp_w9.egsdat          ncase=13671800       cpu=40745.60   
+10 fanfreePhsp_w10.egsdat         ncase=13671800       cpu=39761.00   
+11 fanfreePhsp_w11.egsdat         ncase=15038980       cpu=42882.20   
+12 fanfreePhsp_w12.egsdat         ncase=15038980       cpu=42793.70   
+13 fanfreePhsp_w13.egsdat         ncase=15038980       cpu=43069.70   
+14 fanfreePhsp_w14.egsdat         ncase=13671800       cpu=42056.70   
+15 fanfreePhsp_w15.egsdat         ncase=13671800       cpu=40537.80   
+16 fanfreePhsp_w16.egsdat         ncase=15038980       cpu=43242.70   
+17 fanfreePhsp_w17.egsdat         ncase=13671800       cpu=40739.70   
+18 fanfreePhsp_w18.egsdat         ncase=13671800       cpu=40334.10   
+19 fanfreePhsp_w19.egsdat         ncase=13671800       cpu=42075.60   
+20 fanfreePhsp_w20.egsdat         ncase=13671800       cpu=40566.70   
+21 fanfreePhsp_w21.egsdat         ncase=15038980       cpu=40939.50   
+22 fanfreePhsp_w22.egsdat         ncase=13671800       cpu=40380.50   
+23 fanfreePhsp_w23.egsdat         ncase=13671800       cpu=42415.10   
+24 fanfreePhsp_w24.egsdat         ncase=15038980       cpu=40537.80   
+25 fanfreePhsp_w25.egsdat         ncase=13671800       cpu=42514.10   
+26 fanfreePhsp_w26.egsdat         ncase=13671800       cpu=40905.50   
+27 fanfreePhsp_w27.egsdat         ncase=13671800       cpu=40491.00   
+28 fanfreePhsp_w28.egsdat         ncase=13671800       cpu=40489.50   
+29 fanfreePhsp_w29.egsdat         ncase=15038980       cpu=40906.10   
+30 fanfreePhsp_w30.egsdat         ncase=13671800       cpu=41000.30   
+31 fanfreePhsp_w31.egsdat         ncase=15038980       cpu=42424.70   
+32 fanfreePhsp_w32.egsdat         ncase=13671800       cpu=40478.80   
+33 fanfreePhsp_w33.egsdat         ncase=13671800       cpu=42887.20   
+34 fanfreePhsp_w34.egsdat         ncase=15038980       cpu=43241.80   
+35 fanfreePhsp_w35.egsdat         ncase=13671800       cpu=41949.80   
+36 fanfreePhsp_w36.egsdat         ncase=13671800       cpu=41666.00   
+37 fanfreePhsp_w37.egsdat         ncase=15038980       cpu=43373.10   
+38 fanfreePhsp_w38.egsdat         ncase=15038980       cpu=42084.50   
+39 fanfreePhsp_w39.egsdat         ncase=13671800       cpu=39629.60   
+40 fanfreePhsp_w40.egsdat         ncase=13671800       cpu=42122.90   
+41 fanfreePhsp_w41.egsdat         ncase=13671800       cpu=41356.90   
+42 fanfreePhsp_w42.egsdat         ncase=13671800       cpu=41757.20   
+43 fanfreePhsp_w43.egsdat         ncase=13671800       cpu=42553.70   
+44 fanfreePhsp_w44.egsdat         ncase=15038980       cpu=42923.90   
+45 fanfreePhsp_w45.egsdat         ncase=13671800       cpu=40361.40   
+46 fanfreePhsp_w46.egsdat         ncase=15038980       cpu=42771.80   
+47 fanfreePhsp_w47.egsdat         ncase=15038980       cpu=43036.80   
+48 fanfreePhsp_w48.egsdat         ncase=13671800       cpu=41361.80   
+49 fanfreePhsp_w49.egsdat         ncase=13671800       cpu=43179.20   
+50 fanfreePhsp_w50.egsdat         ncase=13671800       cpu=41111.80   
+51 fanfreePhsp_w51.egsdat         ncase=13671800       cpu=40961.10   
+52 fanfreePhsp_w52.egsdat         ncase=13671800       cpu=40202.30   
+53 fanfreePhsp_w53.egsdat         ncase=13671800       cpu=40510.60   
+54 fanfreePhsp_w54.egsdat         ncase=16406160       cpu=42805.40   
+55 fanfreePhsp_w55.egsdat         ncase=13671800       cpu=40858.80   
+56 fanfreePhsp_w56.egsdat         ncase=15038980       cpu=41777.80   
+57 fanfreePhsp_w57.egsdat         ncase=13671800       cpu=42763.00   
+58 fanfreePhsp_w58.egsdat         ncase=15038980       cpu=43294.70   
+59 fanfreePhsp_w59.egsdat         ncase=15038980       cpu=43354.20   
+60 fanfreePhsp_w60.egsdat         ncase=15038980       cpu=42389.70   
+61 fanfreePhsp_w61.egsdat         ncase=13671800       cpu=39568.00   
+62 fanfreePhsp_w62.egsdat         ncase=13671800       cpu=40590.30   
+63 fanfreePhsp_w63.egsdat         ncase=13671800       cpu=39952.80   
+64 fanfreePhsp_w64.egsdat         ncase=15038980       cpu=43404.50   
+65 fanfreePhsp_w65.egsdat         ncase=13671800       cpu=41815.10   
+66 fanfreePhsp_w66.egsdat         ncase=15038980       cpu=41291.90   
+67 fanfreePhsp_w67.egsdat         ncase=13671800       cpu=42992.80   
+68 fanfreePhsp_w68.egsdat         ncase=13671800       cpu=40517.60   
+69 fanfreePhsp_w69.egsdat         ncase=15038980       cpu=41567.10   
+70 fanfreePhsp_w70.egsdat         ncase=13671800       cpu=43063.10   
+71 fanfreePhsp_w71.egsdat         ncase=12304620       cpu=39581.80   
+72 fanfreePhsp_w72.egsdat         ncase=13671800       cpu=39726.20   
+73 fanfreePhsp_w73.egsdat         ncase=13671800       cpu=39723.10   
+74 fanfreePhsp_w74.egsdat         ncase=13671800       cpu=41886.20   
+75 fanfreePhsp_w75.egsdat         ncase=13671800       cpu=41915.10   
+76 fanfreePhsp_w76.egsdat         ncase=13671800       cpu=40225.40   
+77 fanfreePhsp_w77.egsdat         ncase=13671800       cpu=41423.40   
+78 fanfreePhsp_w78.egsdat         ncase=13671800       cpu=41074.20   
+79 fanfreePhsp_w79.egsdat         ncase=13671800       cpu=42229.20   
+80 fanfreePhsp_w80.egsdat         ncase=15038980       cpu=41549.00   
+81 fanfreePhsp_w81.egsdat         ncase=15038980       cpu=41736.30   
+82 fanfreePhsp_w82.egsdat         ncase=15038980       cpu=43343.20   
+83 fanfreePhsp_w83.egsdat         ncase=15038980       cpu=42912.90   
+84 fanfreePhsp_w84.egsdat         ncase=13671800       cpu=39379.70   
+85 fanfreePhsp_w85.egsdat         ncase=15038980       cpu=42202.80   
+86 fanfreePhsp_w86.egsdat         ncase=13671800       cpu=40730.70   
+87 fanfreePhsp_w87.egsdat         ncase=15038980       cpu=42735.00   
+88 fanfreePhsp_w88.egsdat         ncase=15038980       cpu=42709.90   
+89 fanfreePhsp_w89.egsdat         ncase=13671800       cpu=42030.70   
+90 fanfreePhsp_w90.egsdat         ncase=15038980       cpu=43178.40   
+91 fanfreePhsp_w91.egsdat         ncase=13671800       cpu=42076.00   
+92 fanfreePhsp_w92.egsdat         ncase=13671800       cpu=40907.20   
+93 fanfreePhsp_w93.egsdat         ncase=13671800       cpu=40325.40   
+94 fanfreePhsp_w94.egsdat         ncase=13671800       cpu=41256.00   
+95 fanfreePhsp_w95.egsdat         ncase=15038980       cpu=41506.80   
+96 fanfreePhsp_w96.egsdat         ncase=15038980       cpu=42664.80   
+97 fanfreePhsp_w97.egsdat         ncase=13671800       cpu=40816.80   
+98 fanfreePhsp_w98.egsdat         ncase=15038980       cpu=43130.50   
+99 fanfreePhsp_w99.egsdat         ncase=13671800       cpu=40079.10   
+100 fanfreePhsp_w100.egsdat        ncase=15038980       cpu=40932.70   
+101 fanfreePhsp_w101.egsdat        ncase=13671800       cpu=41135.60   
+102 fanfreePhsp_w102.egsdat        ncase=13671800       cpu=41676.20   
+103 fanfreePhsp_w103.egsdat        ncase=15038980       cpu=43319.90   
+104 fanfreePhsp_w104.egsdat        ncase=13671800       cpu=40704.10   
+105 fanfreePhsp_w105.egsdat        ncase=13671800       cpu=41099.70   
+106 fanfreePhsp_w106.egsdat        ncase=15038980       cpu=40419.00   
+107 fanfreePhsp_w107.egsdat        ncase=15038980       cpu=42917.90   
+108 fanfreePhsp_w108.egsdat        ncase=13671800       cpu=40256.10   
+109 fanfreePhsp_w109.egsdat        ncase=13671800       cpu=39592.90   
+110 fanfreePhsp_w110.egsdat        ncase=15038980       cpu=43510.70   
+111 fanfreePhsp_w111.egsdat        ncase=13671800       cpu=40150.00   
+112 fanfreePhsp_w112.egsdat        ncase=13671800       cpu=40748.90   
+113 fanfreePhsp_w113.egsdat        ncase=15038980       cpu=42767.60   
+114 fanfreePhsp_w114.egsdat        ncase=13671800       cpu=41517.50   
+115 fanfreePhsp_w115.egsdat        ncase=13671800       cpu=42628.70   
+116 fanfreePhsp_w116.egsdat        ncase=15038980       cpu=40395.50   
+117 fanfreePhsp_w117.egsdat        ncase=15038980       cpu=41988.90   
+118 fanfreePhsp_w118.egsdat        ncase=15038980       cpu=42805.90   
+119 fanfreePhsp_w119.egsdat        ncase=13671800       cpu=40519.90   
+120 fanfreePhsp_w120.egsdat        ncase=13671800       cpu=40618.20   
+121 fanfreePhsp_w121.egsdat        ncase=13671800       cpu=40165.60   
+122 fanfreePhsp_w122.egsdat        ncase=15038980       cpu=41566.10   
+123 fanfreePhsp_w123.egsdat        ncase=13671800       cpu=40573.50   
+124 fanfreePhsp_w124.egsdat        ncase=15038980       cpu=41611.60   
+125 fanfreePhsp_w125.egsdat        ncase=13671800       cpu=41337.00   
+126 fanfreePhsp_w126.egsdat        ncase=15038980       cpu=39469.20   
+127 fanfreePhsp_w127.egsdat        ncase=15038980       cpu=40546.10   
+128 fanfreePhsp_w128.egsdat        ncase=13671800       cpu=39657.50   
+129 fanfreePhsp_w129.egsdat        ncase=13671800       cpu=39837.90   
+130 fanfreePhsp_w130.egsdat        ncase=15038980       cpu=42256.50   
+131 fanfreePhsp_w131.egsdat        ncase=15038980       cpu=43205.10   
+132 fanfreePhsp_w132.egsdat        ncase=15038980       cpu=41712.50   
+133 fanfreePhsp_w133.egsdat        ncase=15038980       cpu=39990.10   
+134 fanfreePhsp_w134.egsdat        ncase=13671800       cpu=40630.30   
+135 fanfreePhsp_w135.egsdat        ncase=15038980       cpu=41356.70   
+136 fanfreePhsp_w136.egsdat        ncase=13671800       cpu=41588.60   
+137 fanfreePhsp_w137.egsdat        ncase=13671800       cpu=39421.00   
+138 fanfreePhsp_w138.egsdat        ncase=13671800       cpu=40597.40   
+139 fanfreePhsp_w139.egsdat        ncase=13671800       cpu=41140.20   
+140 fanfreePhsp_w140.egsdat        ncase=13671800       cpu=40507.60   
+141 fanfreePhsp_w141.egsdat        ncase=13671800       cpu=43623.70   
+142 fanfreePhsp_w142.egsdat        ncase=13671800       cpu=39939.60   
+143 fanfreePhsp_w143.egsdat        ncase=16406160       cpu=43783.30   
+144 fanfreePhsp_w144.egsdat        ncase=13671800       cpu=41791.70   
+145 fanfreePhsp_w145.egsdat        ncase=13671800       cpu=40406.40   
+146 fanfreePhsp_w146.egsdat        ncase=13671800       cpu=43552.60   
+147 fanfreePhsp_w147.egsdat        ncase=13671800       cpu=40420.20   
+148 fanfreePhsp_w148.egsdat        ncase=13671800       cpu=42131.00   
+149 fanfreePhsp_w149.egsdat        ncase=13671800       cpu=42751.60   
+150 fanfreePhsp_w150.egsdat        ncase=13671800       cpu=39742.00   
+151 fanfreePhsp_w151.egsdat        ncase=13671800       cpu=42661.80   
+152 fanfreePhsp_w152.egsdat        ncase=15038980       cpu=43603.60   
+153 fanfreePhsp_w153.egsdat        ncase=13671800       cpu=40084.10   
+154 fanfreePhsp_w154.egsdat        ncase=13671800       cpu=40192.40   
+155 fanfreePhsp_w155.egsdat        ncase=15038980       cpu=42975.60   
+156 fanfreePhsp_w156.egsdat        ncase=13671800       cpu=39782.30   
+157 fanfreePhsp_w157.egsdat        ncase=13671800       cpu=40383.60   
+158 fanfreePhsp_w158.egsdat        ncase=13671800       cpu=39280.50   
+159 fanfreePhsp_w159.egsdat        ncase=13671800       cpu=39590.30   
+160 fanfreePhsp_w160.egsdat        ncase=13671800       cpu=39660.40   
+161 fanfreePhsp_w161.egsdat        ncase=13671800       cpu=39984.40   
+162 fanfreePhsp_w162.egsdat        ncase=13671800       cpu=40228.30   
+163 fanfreePhsp_w163.egsdat        ncase=13671800       cpu=43716.50   
+164 fanfreePhsp_w164.egsdat        ncase=15038980       cpu=41881.10   
+165 fanfreePhsp_w165.egsdat        ncase=15038980       cpu=40367.70   
+166 fanfreePhsp_w166.egsdat        ncase=15038980       cpu=42784.70   
+167 fanfreePhsp_w167.egsdat        ncase=15038980       cpu=42583.50   
+168 fanfreePhsp_w168.egsdat        ncase=13671800       cpu=41030.00   
+169 fanfreePhsp_w169.egsdat        ncase=15038980       cpu=41093.40   
+170 fanfreePhsp_w170.egsdat        ncase=13671800       cpu=40441.70   
+171 fanfreePhsp_w171.egsdat        ncase=13671800       cpu=39991.50   
+172 fanfreePhsp_w172.egsdat        ncase=13671800       cpu=40339.20   
+173 fanfreePhsp_w173.egsdat        ncase=15038980       cpu=41290.90   
+174 fanfreePhsp_w174.egsdat        ncase=13671800       cpu=39807.50   
+175 fanfreePhsp_w175.egsdat        ncase=13671800       cpu=41453.30   
+176 fanfreePhsp_w176.egsdat        ncase=15038980       cpu=41227.30   
+177 fanfreePhsp_w177.egsdat        ncase=15038980       cpu=43387.70   
+178 fanfreePhsp_w178.egsdat        ncase=15038980       cpu=42505.10   
+179 fanfreePhsp_w179.egsdat        ncase=13671800       cpu=40476.40   
+180 fanfreePhsp_w180.egsdat        ncase=13671800       cpu=41197.20   
+181 fanfreePhsp_w181.egsdat        ncase=15038980       cpu=43396.90   
+182 fanfreePhsp_w182.egsdat        ncase=15038980       cpu=41934.10   
+183 fanfreePhsp_w183.egsdat        ncase=13671800       cpu=40797.30   
+184 fanfreePhsp_w184.egsdat        ncase=13671800       cpu=39501.50   
+185 fanfreePhsp_w185.egsdat        ncase=15038980       cpu=40932.60   
+186 fanfreePhsp_w186.egsdat        ncase=15038980       cpu=42042.70   
+187 fanfreePhsp_w187.egsdat        ncase=13671800       cpu=40516.10   
+188 fanfreePhsp_w188.egsdat        ncase=13671800       cpu=40579.70   
+189 fanfreePhsp_w189.egsdat        ncase=15038980       cpu=42991.10   
+190 fanfreePhsp_w190.egsdat        ncase=15038980       cpu=42113.50   
+191 fanfreePhsp_w191.egsdat        ncase=15038980       cpu=42630.10   
+192 fanfreePhsp_w192.egsdat        ncase=15038980       cpu=39597.00   
+193 fanfreePhsp_w193.egsdat        ncase=13671800       cpu=39477.00   
+194 fanfreePhsp_w194.egsdat        ncase=13671800       cpu=41582.70   
+195 fanfreePhsp_w195.egsdat        ncase=13671800       cpu=40126.00   
+196 fanfreePhsp_w196.egsdat        ncase=13671800       cpu=41736.30   
+197 fanfreePhsp_w197.egsdat        ncase=13671800       cpu=43091.10   
+198 fanfreePhsp_w198.egsdat        ncase=13671800       cpu=43296.60   
+199 fanfreePhsp_w199.egsdat        ncase=15038980       cpu=42225.70   
+200 fanfreePhsp_w200.egsdat        ncase=13671800       cpu=42735.60   
+201 fanfreePhsp_w201.egsdat        ncase=13671800       cpu=39379.40   
+202 fanfreePhsp_w202.egsdat        ncase=13671800       cpu=41182.10   
+203 fanfreePhsp_w203.egsdat        ncase=13671800       cpu=40583.50   
+204 fanfreePhsp_w204.egsdat        ncase=13671800       cpu=39883.50   
+205 fanfreePhsp_w205.egsdat        ncase=15038980       cpu=43578.70   
+206 fanfreePhsp_w206.egsdat        ncase=15038980       cpu=43500.40   
+207 fanfreePhsp_w207.egsdat        ncase=15038980       cpu=42131.40   
+208 fanfreePhsp_w208.egsdat        ncase=12304620       cpu=38873.60   
+209 fanfreePhsp_w209.egsdat        ncase=15038980       cpu=40560.20   
+210 fanfreePhsp_w210.egsdat        ncase=13671800       cpu=39448.70   
+211 fanfreePhsp_w211.egsdat        ncase=13671800       cpu=39040.20   
+212 fanfreePhsp_w212.egsdat        ncase=15038980       cpu=41844.00   
+213 fanfreePhsp_w213.egsdat        ncase=15038980       cpu=42120.60   
+214 fanfreePhsp_w214.egsdat        ncase=15038980       cpu=42523.00   
+215 fanfreePhsp_w215.egsdat        ncase=15038980       cpu=40456.00   
+216 fanfreePhsp_w216.egsdat        ncase=15038980       cpu=42928.60   
+217 fanfreePhsp_w217.egsdat        ncase=13671800       cpu=41394.00   
+218 fanfreePhsp_w218.egsdat        ncase=13671800       cpu=38224.20   
+219 fanfreePhsp_w219.egsdat        ncase=13671800       cpu=40852.60   
+220 fanfreePhsp_w220.egsdat        ncase=13671800       cpu=42905.20   
+221 fanfreePhsp_w221.egsdat        ncase=13671800       cpu=41673.60   
+222 fanfreePhsp_w222.egsdat        ncase=15038980       cpu=42568.50   
+223 fanfreePhsp_w223.egsdat        ncase=15038980       cpu=40536.20   
+224 fanfreePhsp_w224.egsdat        ncase=13671800       cpu=41607.20   
+225 fanfreePhsp_w225.egsdat        ncase=13671800       cpu=40608.60   
+226 fanfreePhsp_w226.egsdat        ncase=13671800       cpu=40441.60   
+227 fanfreePhsp_w227.egsdat        ncase=13671800       cpu=40764.40   
+228 fanfreePhsp_w228.egsdat        ncase=13671800       cpu=41639.20   
+229 fanfreePhsp_w229.egsdat        ncase=13671800       cpu=39673.50   
+230 fanfreePhsp_w230.egsdat        ncase=13671800       cpu=40981.40   
+231 fanfreePhsp_w231.egsdat        ncase=13671800       cpu=39169.90   
+232 fanfreePhsp_w232.egsdat        ncase=15038980       cpu=42070.70   
+233 fanfreePhsp_w233.egsdat        ncase=15038980       cpu=42729.20   
+234 fanfreePhsp_w234.egsdat        ncase=13671800       cpu=40914.60   
+235 fanfreePhsp_w235.egsdat        ncase=13671800       cpu=39929.20   
+236 fanfreePhsp_w236.egsdat        ncase=13671800       cpu=41029.00   
+237 fanfreePhsp_w237.egsdat        ncase=13671800       cpu=41934.90   
+238 fanfreePhsp_w238.egsdat        ncase=15038980       cpu=43717.70   
+239 fanfreePhsp_w239.egsdat        ncase=13671800       cpu=39375.20   
+240 fanfreePhsp_w240.egsdat        ncase=15038980       cpu=41721.00   
+241 fanfreePhsp_w241.egsdat        ncase=13671800       cpu=41586.60   
+242 fanfreePhsp_w242.egsdat        ncase=15038980       cpu=41165.50   
+243 fanfreePhsp_w243.egsdat        ncase=13671800       cpu=39896.30   
+244 fanfreePhsp_w244.egsdat        ncase=15038980       cpu=41872.70   
+245 fanfreePhsp_w245.egsdat        ncase=15038980       cpu=43285.70   
+246 fanfreePhsp_w246.egsdat        ncase=13671800       cpu=39224.70   
+247 fanfreePhsp_w247.egsdat        ncase=15038980       cpu=39723.70   
+248 fanfreePhsp_w248.egsdat        ncase=13671800       cpu=41751.40   
+249 fanfreePhsp_w249.egsdat        ncase=15038980       cpu=43600.00   
+250 fanfreePhsp_w250.egsdat        ncase=13671800       cpu=41411.60   
+251 fanfreePhsp_w251.egsdat        ncase=13671800       cpu=42902.60   
+252 fanfreePhsp_w252.egsdat        ncase=15038980       cpu=41351.10   
+253 fanfreePhsp_w253.egsdat        ncase=13671800       cpu=41027.60   
+254 fanfreePhsp_w254.egsdat        ncase=13671800       cpu=39932.90   
+255 fanfreePhsp_w255.egsdat        ncase=13671800       cpu=40523.40   
+256 fanfreePhsp_w256.egsdat        ncase=13671800       cpu=39577.20   
+257 fanfreePhsp_w257.egsdat        ncase=13671800       cpu=39596.70   
+258 fanfreePhsp_w258.egsdat        ncase=15038980       cpu=42488.90   
+259 fanfreePhsp_w259.egsdat        ncase=13671800       cpu=39809.30   
+260 fanfreePhsp_w260.egsdat        ncase=13671800       cpu=40202.40   
+261 fanfreePhsp_w261.egsdat        ncase=13671800       cpu=41251.90   
+262 fanfreePhsp_w262.egsdat        ncase=13671800       cpu=41590.60   
+263 fanfreePhsp_w263.egsdat        ncase=13671800       cpu=39151.60   
+264 fanfreePhsp_w264.egsdat        ncase=13671800       cpu=40465.60   
+265 fanfreePhsp_w265.egsdat        ncase=13671800       cpu=39321.00   
+266 fanfreePhsp_w266.egsdat        ncase=15038980       cpu=41215.50   
+267 fanfreePhsp_w267.egsdat        ncase=13671800       cpu=39848.00   
+268 fanfreePhsp_w268.egsdat        ncase=15038980       cpu=42151.90   
+269 fanfreePhsp_w269.egsdat        ncase=12304620       cpu=39051.80   
+270 fanfreePhsp_w270.egsdat        ncase=13671800       cpu=41314.40   
+271 fanfreePhsp_w271.egsdat        ncase=13671800       cpu=40334.70   
+272 fanfreePhsp_w272.egsdat        ncase=13671800       cpu=39478.80   
+273 fanfreePhsp_w273.egsdat        ncase=15038980       cpu=41843.20   
+274 fanfreePhsp_w274.egsdat        ncase=13671800       cpu=40347.60   
+275 fanfreePhsp_w275.egsdat        ncase=15038980       cpu=42150.00   
+276 fanfreePhsp_w276.egsdat        ncase=13671800       cpu=39224.10   
+277 fanfreePhsp_w277.egsdat        ncase=15038980       cpu=41283.00   
+278 fanfreePhsp_w278.egsdat        ncase=13671800       cpu=41461.80   
+279 fanfreePhsp_w279.egsdat        ncase=15038980       cpu=40904.70   
+280 fanfreePhsp_w280.egsdat        ncase=13671800       cpu=39726.20   
+281 fanfreePhsp_w281.egsdat        ncase=13671800       cpu=39301.60   
+282 fanfreePhsp_w282.egsdat        ncase=15038980       cpu=42051.90   
+283 fanfreePhsp_w283.egsdat        ncase=13671800       cpu=40116.10   
+284 fanfreePhsp_w284.egsdat        ncase=13671800       cpu=39321.60   
+285 fanfreePhsp_w285.egsdat        ncase=13671800       cpu=40291.40   
+286 fanfreePhsp_w286.egsdat        ncase=13671800       cpu=40199.70   
+287 fanfreePhsp_w287.egsdat        ncase=13671800       cpu=43843.30   
+288 fanfreePhsp_w288.egsdat        ncase=15038980       cpu=40473.30   
+289 fanfreePhsp_w289.egsdat        ncase=13671800       cpu=41531.50   
+290 fanfreePhsp_w290.egsdat        ncase=15038980       cpu=42362.00   
+291 fanfreePhsp_w291.egsdat        ncase=13671800       cpu=39369.90   
+292 fanfreePhsp_w292.egsdat        ncase=13671800       cpu=43607.00   
+293 fanfreePhsp_w293.egsdat        ncase=13671800       cpu=39784.90   
+294 fanfreePhsp_w294.egsdat        ncase=15038980       cpu=41655.10   
+295 fanfreePhsp_w295.egsdat        ncase=13671800       cpu=41908.50   
+296 fanfreePhsp_w296.egsdat        ncase=15038980       cpu=43175.80   
+297 fanfreePhsp_w297.egsdat        ncase=13671800       cpu=40839.70   
+298 fanfreePhsp_w298.egsdat        ncase=13671800       cpu=39784.80   
+299 fanfreePhsp_w299.egsdat        ncase=13671800       cpu=39498.70   
+300 fanfreePhsp_w300.egsdat        ncase=13671800       cpu=39402.60   
+301 fanfreePhsp_w301.egsdat        ncase=13671800       cpu=40698.00   
+302 fanfreePhsp_w302.egsdat        ncase=15038980       cpu=42365.20   
+303 fanfreePhsp_w303.egsdat        ncase=15038980       cpu=42698.30   
+304 fanfreePhsp_w304.egsdat        ncase=15038980       cpu=41194.10   
+305 fanfreePhsp_w305.egsdat        ncase=15038980       cpu=42295.20   
+306 fanfreePhsp_w306.egsdat        ncase=15038980       cpu=42886.10   
+307 fanfreePhsp_w307.egsdat        ncase=13671800       cpu=42064.40   
+308 fanfreePhsp_w308.egsdat        ncase=13671800       cpu=41144.40   
+309 fanfreePhsp_w309.egsdat        ncase=13671800       cpu=39143.60   
+310 fanfreePhsp_w310.egsdat        ncase=15038980       cpu=40199.30   
+311 fanfreePhsp_w311.egsdat        ncase=13671800       cpu=39044.10   
+312 fanfreePhsp_w312.egsdat        ncase=15038980       cpu=41475.20   
+313 fanfreePhsp_w313.egsdat        ncase=15038980       cpu=41781.30   
+314 fanfreePhsp_w314.egsdat        ncase=13671800       cpu=41953.10   
+315 fanfreePhsp_w315.egsdat        ncase=12304620       cpu=39977.20   
+316 fanfreePhsp_w316.egsdat        ncase=13671800       cpu=39168.80   
+317 fanfreePhsp_w317.egsdat        ncase=13671800       cpu=40269.80   
+318 fanfreePhsp_w318.egsdat        ncase=13671800       cpu=42161.20   
+319 fanfreePhsp_w319.egsdat        ncase=15038980       cpu=39815.10   
+320 fanfreePhsp_w320.egsdat        ncase=13671800       cpu=41164.70   
+321 fanfreePhsp_w321.egsdat        ncase=13671800       cpu=40540.60   
+322 fanfreePhsp_w322.egsdat        ncase=13671800       cpu=41557.30   
+323 fanfreePhsp_w323.egsdat        ncase=15038980       cpu=43422.40   
+324 fanfreePhsp_w324.egsdat        ncase=13671800       cpu=39114.20   
+325 fanfreePhsp_w325.egsdat        ncase=13671800       cpu=41747.80   
+326 fanfreePhsp_w326.egsdat        ncase=13671800       cpu=40476.00   
+327 fanfreePhsp_w327.egsdat        ncase=13671800       cpu=40440.90   
+328 fanfreePhsp_w328.egsdat        ncase=13671800       cpu=39275.80   
+329 fanfreePhsp_w329.egsdat        ncase=13671800       cpu=39487.30   
+330 fanfreePhsp_w330.egsdat        ncase=13671800       cpu=39361.90   
+331 fanfreePhsp_w331.egsdat        ncase=15038980       cpu=42526.40   
+332 fanfreePhsp_w332.egsdat        ncase=13671800       cpu=41160.50   
+333 fanfreePhsp_w333.egsdat        ncase=15038980       cpu=42905.10   
+334 fanfreePhsp_w334.egsdat        ncase=15038980       cpu=42385.40   
+335 fanfreePhsp_w335.egsdat        ncase=15038980       cpu=40630.00   
+336 fanfreePhsp_w336.egsdat        ncase=13671800       cpu=40097.30   
+337 fanfreePhsp_w337.egsdat        ncase=13671800       cpu=39760.50   
+338 fanfreePhsp_w338.egsdat        ncase=13671800       cpu=39641.40   
+339 fanfreePhsp_w339.egsdat        ncase=13671800       cpu=39981.10   
+340 fanfreePhsp_w340.egsdat        ncase=15038980       cpu=42096.10   
+341 fanfreePhsp_w341.egsdat        ncase=13671800       cpu=39793.70   
+342 fanfreePhsp_w342.egsdat        ncase=13671800       cpu=39879.30   
+343 fanfreePhsp_w343.egsdat        ncase=13671800       cpu=40239.10   
+344 fanfreePhsp_w344.egsdat        ncase=13671800       cpu=39323.00   
+345 fanfreePhsp_w345.egsdat        ncase=13671800       cpu=40791.50   
+346 fanfreePhsp_w346.egsdat        ncase=15038980       cpu=42607.10   
+347 fanfreePhsp_w347.egsdat        ncase=13671800       cpu=39996.00   
+348 fanfreePhsp_w348.egsdat        ncase=15038980       cpu=42902.50   
+349 fanfreePhsp_w349.egsdat        ncase=13671800       cpu=41478.30   
+350 fanfreePhsp_w350.egsdat        ncase=13671800       cpu=40419.20   
+351 fanfreePhsp_w351.egsdat        ncase=13671800       cpu=41825.70   
+352 fanfreePhsp_w352.egsdat        ncase=15038980       cpu=41938.20   
+353 fanfreePhsp_w353.egsdat        ncase=13671800       cpu=40480.60   
+354 fanfreePhsp_w354.egsdat        ncase=13671800       cpu=42766.60   
+355 fanfreePhsp_w355.egsdat        ncase=13671800       cpu=40589.80   
+356 fanfreePhsp_w356.egsdat        ncase=12304620       cpu=39485.70   
+357 fanfreePhsp_w357.egsdat        ncase=13671800       cpu=39258.10   
+358 fanfreePhsp_w358.egsdat        ncase=13671800       cpu=42216.20   
+359 fanfreePhsp_w359.egsdat        ncase=13671800       cpu=40782.50   
+360 fanfreePhsp_w360.egsdat        ncase=13671800       cpu=40624.10   
+361 fanfreePhsp_w361.egsdat        ncase=13671800       cpu=41136.60   
+362 fanfreePhsp_w362.egsdat        ncase=13671800       cpu=41199.70   
+363 fanfreePhsp_w363.egsdat        ncase=12304620       cpu=40073.20   
+364 fanfreePhsp_w364.egsdat        ncase=12304620       cpu=44395.10   
+365 fanfreePhsp_w365.egsdat        ncase=13671800       cpu=42437.00   
+366 fanfreePhsp_w366.egsdat        ncase=12304620       cpu=41188.10   
+367 fanfreePhsp_w367.egsdat        ncase=12304620       cpu=40865.30   
+368 fanfreePhsp_w368.egsdat        ncase=12304620       cpu=40693.20   
+369 fanfreePhsp_w369.egsdat        ncase=12304620       cpu=40161.20   
+370 fanfreePhsp_w370.egsdat        ncase=12304620       cpu=40967.20   
+371 fanfreePhsp_w371.egsdat        ncase=12304620       cpu=39627.70   
+372 fanfreePhsp_w372.egsdat        ncase=12304620       cpu=42060.00   
+373 fanfreePhsp_w373.egsdat        ncase=12304620       cpu=43696.70   
+374 fanfreePhsp_w374.egsdat        ncase=13671800       cpu=43250.40   
+375 fanfreePhsp_w375.egsdat        ncase=10937440       cpu=39686.20   
+376 fanfreePhsp_w376.egsdat        ncase=12304620       cpu=40413.30   
+377 fanfreePhsp_w377.egsdat        ncase=12304620       cpu=39408.90   
+378 fanfreePhsp_w378.egsdat        ncase=12304620       cpu=43087.00   
+379 fanfreePhsp_w379.egsdat        ncase=13671800       cpu=41376.20   
+380 fanfreePhsp_w380.egsdat        ncase=13671800       cpu=42738.90   
+381 fanfreePhsp_w381.egsdat        ncase=12304620       cpu=41256.40   
+382 fanfreePhsp_w382.egsdat        ncase=13671800       cpu=42351.90   
+383 fanfreePhsp_w383.egsdat        ncase=10937440       cpu=38991.80   
+384 fanfreePhsp_w384.egsdat        ncase=12304620       cpu=39768.50   
+385 fanfreePhsp_w385.egsdat        ncase=12304620       cpu=42061.50   
+386 fanfreePhsp_w386.egsdat        ncase=13671800       cpu=42324.40   
+387 fanfreePhsp_w387.egsdat        ncase=12304620       cpu=41402.90   
+388 fanfreePhsp_w388.egsdat        ncase=12304620       cpu=42453.50   
+389 fanfreePhsp_w389.egsdat        ncase=13671800       cpu=41860.60   
+390 fanfreePhsp_w390.egsdat        ncase=12304620       cpu=42052.60   
+391 fanfreePhsp_w391.egsdat        ncase=12304620       cpu=40780.60   
+392 fanfreePhsp_w392.egsdat        ncase=12304620       cpu=39291.60   
+393 fanfreePhsp_w393.egsdat        ncase=12304620       cpu=41785.90   
+394 fanfreePhsp_w394.egsdat        ncase=12304620       cpu=41603.70   
+395 fanfreePhsp_w395.egsdat        ncase=12304620       cpu=39900.70   
+396 fanfreePhsp_w396.egsdat        ncase=12304620       cpu=39719.30   
+397 fanfreePhsp_w397.egsdat        ncase=10937440       cpu=39144.50   
+398 fanfreePhsp_w398.egsdat        ncase=12304620       cpu=41469.80   
+399 fanfreePhsp_w399.egsdat        ncase=12304620       cpu=41203.70   
+400 fanfreePhsp_w400.egsdat        ncase=13671800       cpu=42961.40   
+401 fanfreePhsp_w401.egsdat        ncase=12304620       cpu=38863.70   
+402 fanfreePhsp_w402.egsdat        ncase=12304620       cpu=41102.60   
+403 fanfreePhsp_w403.egsdat        ncase=12304620       cpu=40287.60   
+404 fanfreePhsp_w404.egsdat        ncase=13671800       cpu=42718.30   
+405 fanfreePhsp_w405.egsdat        ncase=13671800       cpu=41644.40   
+406 fanfreePhsp_w406.egsdat        ncase=12304620       cpu=42394.40   
+407 fanfreePhsp_w407.egsdat        ncase=12304620       cpu=38941.00   
+408 fanfreePhsp_w408.egsdat        ncase=12304620       cpu=41034.60   
+409 fanfreePhsp_w409.egsdat        ncase=13671800       cpu=43540.10   
+410 fanfreePhsp_w410.egsdat        ncase=12304620       cpu=42765.60   
+411 fanfreePhsp_w411.egsdat        ncase=13671800       cpu=43058.40   
+412 fanfreePhsp_w412.egsdat        ncase=12304620       cpu=42885.80   
+413 fanfreePhsp_w413.egsdat        ncase=12304620       cpu=40194.20   
+414 fanfreePhsp_w414.egsdat        ncase=13671800       cpu=44320.00   
+415 fanfreePhsp_w415.egsdat        ncase=12304620       cpu=40590.60   
+416 fanfreePhsp_w416.egsdat        ncase=12304620       cpu=40701.30   
+417 fanfreePhsp_w417.egsdat        ncase=13671800       cpu=42130.20   
+418 fanfreePhsp_w418.egsdat        ncase=12304620       cpu=41097.40   
+419 fanfreePhsp_w419.egsdat        ncase=13671800       cpu=43707.50   
+420 fanfreePhsp_w420.egsdat        ncase=12304620       cpu=42423.80   
+421 fanfreePhsp_w421.egsdat        ncase=12304620       cpu=39234.20   
+422 fanfreePhsp_w422.egsdat        ncase=12304620       cpu=39541.00   
+423 fanfreePhsp_w423.egsdat        ncase=12304620       cpu=40325.20   
+424 fanfreePhsp_w424.egsdat        ncase=12304620       cpu=39325.30   
+425 fanfreePhsp_w425.egsdat        ncase=12304620       cpu=38978.10   
+426 fanfreePhsp_w426.egsdat        ncase=10937440       cpu=39567.10   
+427 fanfreePhsp_w427.egsdat        ncase=12304620       cpu=38851.30   
+428 fanfreePhsp_w428.egsdat        ncase=12304620       cpu=40156.00   
+429 fanfreePhsp_w429.egsdat        ncase=12304620       cpu=42689.10   
+430 fanfreePhsp_w430.egsdat        ncase=13671800       cpu=42160.90   
+431 fanfreePhsp_w431.egsdat        ncase=12304620       cpu=42920.50   
+432 fanfreePhsp_w432.egsdat        ncase=12304620       cpu=39787.10   
+433 fanfreePhsp_w433.egsdat        ncase=12304620       cpu=41236.40   
+434 fanfreePhsp_w434.egsdat        ncase=12304620       cpu=41205.80   
+435 fanfreePhsp_w435.egsdat        ncase=13671800       cpu=42033.00   
+436 fanfreePhsp_w436.egsdat        ncase=13671800       cpu=42214.50   
+437 fanfreePhsp_w437.egsdat        ncase=12304620       cpu=40599.50   
+438 fanfreePhsp_w438.egsdat        ncase=12304620       cpu=42694.70   
+439 fanfreePhsp_w439.egsdat        ncase=12304620       cpu=40020.70   
+440 fanfreePhsp_w440.egsdat        ncase=12304620       cpu=40018.70   
+441 fanfreePhsp_w441.egsdat        ncase=12304620       cpu=40378.60   
+442 fanfreePhsp_w442.egsdat        ncase=12304620       cpu=40853.00   
+443 fanfreePhsp_w443.egsdat        ncase=12304620       cpu=42804.80   
+444 fanfreePhsp_w444.egsdat        ncase=12304620       cpu=39151.50   
+445 fanfreePhsp_w445.egsdat        ncase=12304620       cpu=41101.80   
+446 fanfreePhsp_w446.egsdat        ncase=12304620       cpu=41205.20   
+447 fanfreePhsp_w447.egsdat        ncase=12304620       cpu=42024.30   
+448 fanfreePhsp_w448.egsdat        ncase=12304620       cpu=42083.10   
+449 fanfreePhsp_w449.egsdat        ncase=12304620       cpu=41481.00   
+450 fanfreePhsp_w450.egsdat        ncase=12304620       cpu=39726.80   
+451 fanfreePhsp_w451.egsdat        ncase=12304620       cpu=40596.00   
+452 fanfreePhsp_w452.egsdat        ncase=12304620       cpu=42713.20   
+453 fanfreePhsp_w453.egsdat        ncase=12304620       cpu=40596.20   
+454 fanfreePhsp_w454.egsdat        ncase=12304620       cpu=40025.20   
+455 fanfreePhsp_w455.egsdat        ncase=12304620       cpu=41102.40   
+456 fanfreePhsp_w456.egsdat        ncase=12304620       cpu=38949.70   
+457 fanfreePhsp_w457.egsdat        ncase=12304620       cpu=42454.50   
+458 fanfreePhsp_w458.egsdat        ncase=12304620       cpu=42212.30   
+459 fanfreePhsp_w459.egsdat        ncase=12304620       cpu=41761.00   
+460 fanfreePhsp_w460.egsdat        ncase=12304620       cpu=39058.90   
+461 fanfreePhsp_w461.egsdat        ncase=10937440       cpu=40127.60   
+462 fanfreePhsp_w462.egsdat        ncase=12304620       cpu=41061.90   
+463 fanfreePhsp_w463.egsdat        ncase=13671800       cpu=42571.60   
+464 fanfreePhsp_w464.egsdat        ncase=12304620       cpu=40708.90   
+465 fanfreePhsp_w465.egsdat        ncase=13671800       cpu=39337.20   
+466 fanfreePhsp_w466.egsdat        ncase=12304620       cpu=41478.50   
+467 fanfreePhsp_w467.egsdat        ncase=12304620       cpu=39030.00   
+468 fanfreePhsp_w468.egsdat        ncase=13671800       cpu=43142.70   
+469 fanfreePhsp_w469.egsdat        ncase=13671800       cpu=42021.00   
+470 fanfreePhsp_w470.egsdat        ncase=12304620       cpu=39006.10   
+471 fanfreePhsp_w471.egsdat        ncase=12304620       cpu=42898.50   
+472 fanfreePhsp_w472.egsdat        ncase=12304620       cpu=42829.70   
+473 fanfreePhsp_w473.egsdat        ncase=13671800       cpu=42919.90   
+474 fanfreePhsp_w474.egsdat        ncase=12304620       cpu=39016.60   
+475 fanfreePhsp_w475.egsdat        ncase=12304620       cpu=41133.50   
+476 fanfreePhsp_w476.egsdat        ncase=12304620       cpu=41860.50   
+477 fanfreePhsp_w477.egsdat        ncase=13671800       cpu=40365.20   
+478 fanfreePhsp_w478.egsdat        ncase=13671800       cpu=42867.00   
+479 fanfreePhsp_w479.egsdat        ncase=12304620       cpu=39470.80   
+480 fanfreePhsp_w480.egsdat        ncase=12304620       cpu=41940.50   
+481 fanfreePhsp_w481.egsdat        ncase=12304620       cpu=42966.10   
+482 fanfreePhsp_w482.egsdat        ncase=10937440       cpu=40813.50   
+483 fanfreePhsp_w483.egsdat        ncase=12304620       cpu=39925.00   
+484 fanfreePhsp_w484.egsdat        ncase=12304620       cpu=39626.90   
+485 fanfreePhsp_w485.egsdat        ncase=10937440       cpu=40611.70   
+486 fanfreePhsp_w486.egsdat        ncase=12304620       cpu=40838.70   
+487 fanfreePhsp_w487.egsdat        ncase=13671800       cpu=42050.50   
+488 fanfreePhsp_w488.egsdat        ncase=12304620       cpu=42626.50   
+489 fanfreePhsp_w489.egsdat        ncase=12304620       cpu=38893.50   
+490 fanfreePhsp_w490.egsdat        ncase=12304620       cpu=39972.70   
+491 fanfreePhsp_w491.egsdat        ncase=12304620       cpu=40261.80   
+492 fanfreePhsp_w492.egsdat        ncase=12304620       cpu=41764.00   
+493 fanfreePhsp_w493.egsdat        ncase=12304620       cpu=38724.90   
+494 fanfreePhsp_w494.egsdat        ncase=12304620       cpu=40134.00   
+495 fanfreePhsp_w495.egsdat        ncase=13671800       cpu=42652.70   
+496 fanfreePhsp_w496.egsdat        ncase=12304620       cpu=40936.00   
+497 fanfreePhsp_w497.egsdat        ncase=13671800       cpu=42510.80   
+498 fanfreePhsp_w498.egsdat        ncase=13671800       cpu=42886.30   
+499 fanfreePhsp_w499.egsdat        ncase=12304620       cpu=40426.50   
+500 fanfreePhsp_w500.egsdat        ncase=12304620       cpu=41583.30   
+501 fanfreePhsp_w501.egsdat        ncase=13671800       cpu=41889.10   
+502 fanfreePhsp_w502.egsdat        ncase=12304620       cpu=42333.40   
+503 fanfreePhsp_w503.egsdat        ncase=10940000       cpu=38762.10   
+504 fanfreePhsp_w504.egsdat        ncase=10937440       cpu=40155.50   
+505 fanfreePhsp_w505.egsdat        ncase=13671800       cpu=41203.10   
+506 fanfreePhsp_w506.egsdat        ncase=13671800       cpu=42472.30   
+507 fanfreePhsp_w507.egsdat        ncase=13671800       cpu=41736.60   
+508 fanfreePhsp_w508.egsdat        ncase=12304620       cpu=41892.00   
+509 fanfreePhsp_w509.egsdat        ncase=13671800       cpu=42446.50   
+510 fanfreePhsp_w510.egsdat        ncase=12304620       cpu=42113.00   
+511 fanfreePhsp_w511.egsdat        ncase=13671800       cpu=42758.90   
+512 fanfreePhsp_w512.egsdat        ncase=12304620       cpu=38950.00   
+=======================================================================
+                            Total ncase=6999964160     cpu=21097296.30
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.45 (sec.) 0.0001(hours)
+CPU time including previous runs:       21097296.75 (sec.) 5860.3602 (hours)
+Histories per hour:                     1.19446e+06   
+Number of random numbers used:          153473269126019
+Number of electron CH steps:            4.55899e+11   
+Number of all electron steps:           4.24701e+13   
+
+======================================================
+Dose Scoring Object(dose)
+======================================================
+=> last case = 2173083549 fluence = 5.09066e+10
+
+==> Summary of region dosimetry (per fluence)
+ ir medium      rho/[g/cm3]  V/cm3    Edep/[MeV*cm2]            D/[Gy*cm2]         
+-----------------------------------------------------------------------------------
+162 water       0.998     0.1000 2.0917e-13 +/- 5.541  % 3.3576e-22 +/- 5.541  %
+163 water       0.998     0.1000 2.2099e-13 +/- 5.234  % 3.5474e-22 +/- 5.234  %
+164 water       0.998     0.1000 2.4385e-13 +/- 5.168  % 3.9143e-22 +/- 5.168  %
+165 water       0.998     0.1000 3.4633e-13 +/- 22.688 % 5.5593e-22 +/- 22.688 %
+166 water       0.998     0.1000 2.4139e-13 +/- 4.894  % 3.8749e-22 +/- 4.894  %
+167 water       0.998     0.1000 3.0311e-13 +/- 4.599  % 4.8655e-22 +/- 4.599  %
+168 water       0.998     0.1000 3.0712e-13 +/- 4.543  % 4.9300e-22 +/- 4.543  %
+169 water       0.998     0.1000 3.3568e-13 +/- 4.364  % 5.3883e-22 +/- 4.364  %
+170 water       0.998     0.1000 3.5043e-13 +/- 4.248  % 5.6251e-22 +/- 4.248  %
+171 water       0.998     0.1000 3.8119e-13 +/- 4.099  % 6.1189e-22 +/- 4.099  %
+172 water       0.998     0.1000 3.8543e-13 +/- 3.951  % 6.1869e-22 +/- 3.951  %
+173 water       0.998     0.1000 3.9185e-13 +/- 3.979  % 6.2900e-22 +/- 3.979  %
+174 water       0.998     0.1000 4.5333e-13 +/- 3.754  % 7.2768e-22 +/- 3.754  %
+175 water       0.998     0.1000 4.5485e-13 +/- 3.654  % 7.3013e-22 +/- 3.654  %
+176 water       0.998     0.1000 5.3014e-13 +/- 3.401  % 8.5098e-22 +/- 3.401  %
+177 water       0.998     0.1000 5.9000e-13 +/- 3.273  % 9.4707e-22 +/- 3.273  %
+178 water       0.998     0.1000 6.0935e-13 +/- 3.187  % 9.7814e-22 +/- 3.187  %
+179 water       0.998     0.1000 6.7168e-13 +/- 3.036  % 1.0782e-21 +/- 3.036  %
+180 water       0.998     0.1000 7.4051e-13 +/- 2.916  % 1.1887e-21 +/- 2.916  %
+181 water       0.998     0.1000 8.2426e-13 +/- 2.779  % 1.3231e-21 +/- 2.779  %
+182 water       0.998     0.1000 9.2351e-13 +/- 2.607  % 1.4824e-21 +/- 2.607  %
+183 water       0.998     0.1000 1.1148e-12 +/- 2.356  % 1.7895e-21 +/- 2.356  %
+184 water       0.998     0.1000 1.3233e-12 +/- 2.175  % 2.1242e-21 +/- 2.175  %
+185 water       0.998     0.1000 1.5393e-12 +/- 1.991  % 2.4709e-21 +/- 1.991  %
+186 water       0.998     0.1000 1.8339e-12 +/- 1.838  % 2.9437e-21 +/- 1.838  %
+187 water       0.998     0.1000 2.9645e-12 +/- 23.442 % 4.7587e-21 +/- 23.442 %
+188 water       0.998     0.1000 2.6577e-12 +/- 1.531  % 4.2662e-21 +/- 1.531  %
+189 water       0.998     0.1000 3.1293e-12 +/- 1.406  % 5.0232e-21 +/- 1.406  %
+190 water       0.998     0.1000 3.6174e-12 +/- 1.327  % 5.8066e-21 +/- 1.327  %
+191 water       0.998     0.1000 4.1007e-12 +/- 1.235  % 6.5824e-21 +/- 1.235  %
+192 water       0.998     0.1000 4.5440e-12 +/- 1.338  % 7.2941e-21 +/- 1.338  %
+193 water       0.998     0.1000 5.8355e-12 +/- 11.904 % 9.3673e-21 +/- 11.904 %
+194 water       0.998     0.1000 5.4049e-12 +/- 1.068  % 8.6761e-21 +/- 1.068  %
+195 water       0.998     0.1000 7.2935e-12 +/- 16.077 % 1.1708e-20 +/- 16.077 %
+196 water       0.998     0.1000 6.5292e-12 +/- 2.192  % 1.0481e-20 +/- 2.192  %
+197 water       0.998     0.1000 7.1160e-12 +/- 0.936  % 1.1423e-20 +/- 0.936  %
+198 water       0.998     0.1000 7.4206e-12 +/- 0.911  % 1.1912e-20 +/- 0.911  %
+199 water       0.998     0.1000 7.7781e-12 +/- 0.889  % 1.2485e-20 +/- 0.889  %
+200 water       0.998     0.1000 8.1479e-12 +/- 1.143  % 1.3079e-20 +/- 1.143  %
+201 water       0.998     0.1000 8.4687e-12 +/- 1.908  % 1.3594e-20 +/- 1.908  %
+202 water       0.998     0.1000 8.7634e-12 +/- 1.165  % 1.4067e-20 +/- 1.165  %
+203 water       0.998     0.1000 9.5843e-12 +/- 9.892  % 1.5385e-20 +/- 9.892  %
+204 water       0.998     0.1000 8.8699e-12 +/- 0.889  % 1.4238e-20 +/- 0.889  %
+205 water       0.998     0.1000 1.0262e-11 +/- 11.202 % 1.6473e-20 +/- 11.202 %
+206 water       0.998     0.1000 1.0220e-11 +/- 11.426 % 1.6406e-20 +/- 11.426 %
+207 water       0.998     0.1000 9.5632e-12 +/- 1.262  % 1.5351e-20 +/- 1.262  %
+208 water       0.998     0.1000 9.6089e-12 +/- 1.328  % 1.5424e-20 +/- 1.328  %
+209 water       0.998     0.1000 9.4997e-12 +/- 0.809  % 1.5249e-20 +/- 0.809  %
+210 water       0.998     0.1000 9.9525e-12 +/- 2.773  % 1.5976e-20 +/- 2.773  %
+211 water       0.998     0.1000 9.7322e-12 +/- 1.812  % 1.5622e-20 +/- 1.812  %
+212 water       0.998     0.1000 9.9248e-12 +/- 1.896  % 1.5931e-20 +/- 1.896  %
+213 water       0.998     0.1000 1.0068e-11 +/- 2.158  % 1.6161e-20 +/- 2.158  %
+214 water       0.998     0.1000 1.0173e-11 +/- 1.859  % 1.6329e-20 +/- 1.859  %
+215 water       0.998     0.1000 9.9365e-12 +/- 0.846  % 1.5950e-20 +/- 0.846  %
+216 water       0.998     0.1000 1.0292e-11 +/- 2.248  % 1.6521e-20 +/- 2.248  %
+217 water       0.998     0.1000 1.0157e-11 +/- 2.318  % 1.6305e-20 +/- 2.318  %
+218 water       0.998     0.1000 1.0039e-11 +/- 0.831  % 1.6115e-20 +/- 0.831  %
+219 water       0.998     0.1000 1.1699e-11 +/- 10.088 % 1.8779e-20 +/- 10.088 %
+220 water       0.998     0.1000 1.1111e-11 +/- 9.240  % 1.7836e-20 +/- 9.240  %
+221 water       0.998     0.1000 1.0212e-11 +/- 0.858  % 1.6392e-20 +/- 0.858  %
+222 water       0.998     0.1000 1.1031e-11 +/- 8.111  % 1.7708e-20 +/- 8.111  %
+223 water       0.998     0.1000 1.0409e-11 +/- 1.557  % 1.6708e-20 +/- 1.557  %
+224 water       0.998     0.1000 1.1274e-11 +/- 9.885  % 1.8096e-20 +/- 9.885  %
+225 water       0.998     0.1000 1.0382e-11 +/- 1.412  % 1.6665e-20 +/- 1.412  %
+226 water       0.998     0.1000 1.0319e-11 +/- 1.576  % 1.6564e-20 +/- 1.576  %
+227 water       0.998     0.1000 1.0355e-11 +/- 2.612  % 1.6622e-20 +/- 2.612  %
+228 water       0.998     0.1000 1.0591e-11 +/- 2.185  % 1.7000e-20 +/- 2.185  %
+229 water       0.998     0.1000 1.0549e-11 +/- 2.211  % 1.6933e-20 +/- 2.211  %
+230 water       0.998     0.1000 1.1798e-11 +/- 9.936  % 1.8939e-20 +/- 9.936  %
+231 water       0.998     0.1000 1.0447e-11 +/- 1.074  % 1.6769e-20 +/- 1.074  %
+232 water       0.998     0.1000 1.0426e-11 +/- 1.913  % 1.6735e-20 +/- 1.913  %
+233 water       0.998     0.1000 1.0388e-11 +/- 1.329  % 1.6674e-20 +/- 1.329  %
+234 water       0.998     0.1000 1.1246e-11 +/- 8.859  % 1.8052e-20 +/- 8.859  %
+235 water       0.998     0.1000 1.1653e-11 +/- 9.269  % 1.8705e-20 +/- 9.269  %
+236 water       0.998     0.1000 1.0434e-11 +/- 1.464  % 1.6748e-20 +/- 1.464  %
+237 water       0.998     0.1000 1.1808e-11 +/- 10.090 % 1.8954e-20 +/- 10.090 %
+238 water       0.998     0.1000 1.0446e-11 +/- 0.772  % 1.6768e-20 +/- 0.772  %
+239 water       0.998     0.1000 1.0554e-11 +/- 1.699  % 1.6942e-20 +/- 1.699  %
+240 water       0.998     0.1000 1.0799e-11 +/- 2.876  % 1.7335e-20 +/- 2.876  %
+241 water       0.998     0.1000 1.0286e-11 +/- 0.775  % 1.6511e-20 +/- 0.775  %
+242 water       0.998     0.1000 1.0625e-11 +/- 1.942  % 1.7055e-20 +/- 1.942  %
+243 water       0.998     0.1000 1.1465e-11 +/- 10.187 % 1.8403e-20 +/- 10.187 %
+244 water       0.998     0.1000 1.0304e-11 +/- 1.276  % 1.6540e-20 +/- 1.276  %
+245 water       0.998     0.1000 1.0371e-11 +/- 0.934  % 1.6648e-20 +/- 0.934  %
+246 water       0.998     0.1000 1.0297e-11 +/- 0.843  % 1.6528e-20 +/- 0.843  %
+247 water       0.998     0.1000 1.0592e-11 +/- 1.738  % 1.7002e-20 +/- 1.738  %
+248 water       0.998     0.1000 1.0587e-11 +/- 2.220  % 1.6995e-20 +/- 2.220  %
+249 water       0.998     0.1000 1.0321e-11 +/- 0.775  % 1.6568e-20 +/- 0.775  %
+250 water       0.998     0.1000 1.0332e-11 +/- 1.115  % 1.6585e-20 +/- 1.115  %
+251 water       0.998     0.1000 1.1576e-11 +/- 6.608  % 1.8581e-20 +/- 6.608  %
+252 water       0.998     0.1000 1.0607e-11 +/- 2.497  % 1.7026e-20 +/- 2.497  %
+253 water       0.998     0.1000 1.0432e-11 +/- 1.533  % 1.6746e-20 +/- 1.533  %
+254 water       0.998     0.1000 1.0391e-11 +/- 1.856  % 1.6680e-20 +/- 1.856  %
+255 water       0.998     0.1000 1.0224e-11 +/- 0.779  % 1.6412e-20 +/- 0.779  %
+256 water       0.998     0.1000 1.0829e-11 +/- 6.794  % 1.7383e-20 +/- 6.794  %
+257 water       0.998     0.1000 1.1309e-11 +/- 8.021  % 1.8154e-20 +/- 8.021  %
+258 water       0.998     0.1000 1.0399e-11 +/- 1.549  % 1.6692e-20 +/- 1.549  %
+259 water       0.998     0.1000 1.0220e-11 +/- 0.782  % 1.6405e-20 +/- 0.782  %
+260 water       0.998     0.1000 1.0320e-11 +/- 1.632  % 1.6566e-20 +/- 1.632  %
+261 water       0.998     0.1000 1.1100e-11 +/- 9.348  % 1.7818e-20 +/- 9.348  %
+262 water       0.998     0.1000 1.0552e-11 +/- 2.745  % 1.6938e-20 +/- 2.745  %
+263 water       0.998     0.1000 1.0659e-11 +/- 3.401  % 1.7110e-20 +/- 3.401  %
+264 water       0.998     0.1000 1.0169e-11 +/- 1.606  % 1.6323e-20 +/- 1.606  %
+265 water       0.998     0.1000 1.0099e-11 +/- 1.761  % 1.6210e-20 +/- 1.761  %
+266 water       0.998     0.1000 1.0952e-11 +/- 8.080  % 1.7580e-20 +/- 8.080  %
+267 water       0.998     0.1000 1.0011e-11 +/- 1.176  % 1.6071e-20 +/- 1.176  %
+268 water       0.998     0.1000 1.0666e-11 +/- 7.558  % 1.7122e-20 +/- 7.558  %
+269 water       0.998     0.1000 1.0261e-11 +/- 2.625  % 1.6471e-20 +/- 2.625  %
+270 water       0.998     0.1000 1.0524e-11 +/- 3.585  % 1.6893e-20 +/- 3.585  %
+271 water       0.998     0.1000 1.0060e-11 +/- 2.186  % 1.6149e-20 +/- 2.186  %
+272 water       0.998     0.1000 9.6440e-12 +/- 0.799  % 1.5481e-20 +/- 0.799  %
+273 water       0.998     0.1000 9.8202e-12 +/- 1.756  % 1.5764e-20 +/- 1.756  %
+274 water       0.998     0.1000 9.8096e-12 +/- 2.058  % 1.5747e-20 +/- 2.058  %
+275 water       0.998     0.1000 9.4787e-12 +/- 0.811  % 1.5215e-20 +/- 0.811  %
+276 water       0.998     0.1000 9.3811e-12 +/- 1.256  % 1.5059e-20 +/- 1.256  %
+277 water       0.998     0.1000 8.9993e-12 +/- 0.830  % 1.4446e-20 +/- 0.830  %
+278 water       0.998     0.1000 9.4235e-12 +/- 2.336  % 1.5127e-20 +/- 2.336  %
+279 water       0.998     0.1000 9.1535e-12 +/- 2.170  % 1.4693e-20 +/- 2.170  %
+280 water       0.998     0.1000 8.8334e-12 +/- 1.010  % 1.4179e-20 +/- 1.010  %
+281 water       0.998     0.1000 8.7059e-12 +/- 2.437  % 1.3975e-20 +/- 2.437  %
+282 water       0.998     0.1000 8.3824e-12 +/- 0.861  % 1.3455e-20 +/- 0.861  %
+283 water       0.998     0.1000 8.2238e-12 +/- 1.014  % 1.3201e-20 +/- 1.014  %
+284 water       0.998     0.1000 7.7697e-12 +/- 0.898  % 1.2472e-20 +/- 0.898  %
+285 water       0.998     0.1000 8.8313e-12 +/- 12.086 % 1.4176e-20 +/- 12.086 %
+286 water       0.998     0.1000 7.0996e-12 +/- 2.712  % 1.1396e-20 +/- 2.712  %
+287 water       0.998     0.1000 6.5728e-12 +/- 1.059  % 1.0551e-20 +/- 1.059  %
+288 water       0.998     0.1000 6.0612e-12 +/- 1.015  % 9.7295e-21 +/- 1.015  %
+289 water       0.998     0.1000 5.5370e-12 +/- 1.054  % 8.8881e-21 +/- 1.054  %
+290 water       0.998     0.1000 5.1541e-12 +/- 1.286  % 8.2734e-21 +/- 1.286  %
+291 water       0.998     0.1000 4.4891e-12 +/- 1.169  % 7.2060e-21 +/- 1.169  %
+292 water       0.998     0.1000 4.0902e-12 +/- 1.265  % 6.5656e-21 +/- 1.265  %
+293 water       0.998     0.1000 4.2024e-12 +/- 15.518 % 6.7458e-21 +/- 15.518 %
+294 water       0.998     0.1000 3.1073e-12 +/- 1.605  % 4.9879e-21 +/- 1.605  %
+295 water       0.998     0.1000 2.7105e-12 +/- 4.471  % 4.3510e-21 +/- 4.471  %
+296 water       0.998     0.1000 2.2160e-12 +/- 1.677  % 3.5572e-21 +/- 1.677  %
+297 water       0.998     0.1000 1.8858e-12 +/- 1.810  % 3.0271e-21 +/- 1.810  %
+298 water       0.998     0.1000 1.6003e-12 +/- 1.980  % 2.5689e-21 +/- 1.980  %
+299 water       0.998     0.1000 1.3994e-12 +/- 3.008  % 2.2463e-21 +/- 3.008  %
+300 water       0.998     0.1000 1.1051e-12 +/- 2.395  % 1.7739e-21 +/- 2.395  %
+301 water       0.998     0.1000 9.6342e-13 +/- 2.583  % 1.5465e-21 +/- 2.583  %
+302 water       0.998     0.1000 8.0558e-13 +/- 2.766  % 1.2931e-21 +/- 2.766  %
+303 water       0.998     0.1000 6.8728e-13 +/- 2.958  % 1.1032e-21 +/- 2.958  %
+304 water       0.998     0.1000 7.0074e-13 +/- 2.994  % 1.1248e-21 +/- 2.994  %
+305 water       0.998     0.1000 6.0662e-13 +/- 3.223  % 9.7375e-22 +/- 3.223  %
+306 water       0.998     0.1000 5.4806e-13 +/- 3.398  % 8.7976e-22 +/- 3.398  %
+307 water       0.998     0.1000 5.2747e-13 +/- 3.416  % 8.4670e-22 +/- 3.416  %
+308 water       0.998     0.1000 4.6979e-13 +/- 3.678  % 7.5411e-22 +/- 3.678  %
+309 water       0.998     0.1000 4.6340e-13 +/- 3.712  % 7.4385e-22 +/- 3.712  %
+310 water       0.998     0.1000 4.0339e-13 +/- 3.892  % 6.4753e-22 +/- 3.892  %
+311 water       0.998     0.1000 3.6418e-13 +/- 4.061  % 5.8458e-22 +/- 4.061  %
+312 water       0.998     0.1000 3.5710e-13 +/- 4.182  % 5.7322e-22 +/- 4.182  %
+313 water       0.998     0.1000 3.3867e-13 +/- 4.292  % 5.4363e-22 +/- 4.292  %
+314 water       0.998     0.1000 2.9779e-13 +/- 4.469  % 4.7802e-22 +/- 4.469  %
+315 water       0.998     0.1000 2.8356e-13 +/- 4.648  % 4.5517e-22 +/- 4.648  %
+316 water       0.998     0.1000 2.7785e-13 +/- 4.659  % 4.4601e-22 +/- 4.659  %
+317 water       0.998     0.1000 3.8252e-13 +/- 29.347 % 6.1402e-22 +/- 29.347 %
+318 water       0.998     0.1000 2.4771e-13 +/- 5.027  % 3.9763e-22 +/- 5.027  %
+319 water       0.998     0.1000 2.1708e-13 +/- 5.309  % 3.4846e-22 +/- 5.309  %
+320 water       0.998     0.1000 2.1292e-13 +/- 5.257  % 3.4178e-22 +/- 5.257  %
+321 water       0.998     0.1000 2.0475e-13 +/- 5.428  % 3.2867e-22 +/- 5.428  %
+324 water       0.998     0.1000 2.4869e-06 +/- 0.014  % 3.9921e-15 +/- 0.014  %
+486 air         0.001     0.2000 1.8523e-08 +/- 0.150  % 1.2315e-14 +/- 0.150  %
+-----------------------------------------------------------------------------------
+
+======================================================
+
+======================================================
+Dose Scoring Object(profilexScorNoRecycle)
+======================================================
+=> last case = 2173083549 fluence = 5.09066e+10
+
+==> Summary of region dosimetry (per fluence)
+ ir medium      rho/[g/cm3]  V/cm3    Edep/[MeV*cm2]            D/[Gy*cm2]         
+-----------------------------------------------------------------------------------
+  0 pb         11.350     1.0000 1.7136e-08 +/- 0.223  % 2.4187e-19 +/- 0.223  %
+  1 air         0.001     1.0000 6.8827e-10 +/- 0.249  % 9.1519e-17 +/- 0.249  %
+  2 pb         11.350     1.0000 1.4665e-07 +/- 0.060  % 2.0698e-18 +/- 0.060  %
+  3 steel       8.060     1.0000 1.3758e-08 +/- 0.196  % 2.7345e-19 +/- 0.196  %
+  4 air         0.001     1.0000 3.8354e-10 +/- 0.319  % 5.0999e-17 +/- 0.319  %
+  5 steel       8.060     1.0000 4.6607e-08 +/- 0.101  % 9.2635e-19 +/- 0.101  %
+  9 pb         11.350     1.0000 1.2334e-07 +/- 0.062  % 1.7408e-18 +/- 0.062  %
+ 10 air         0.001     1.0000 7.1749e-10 +/- 0.301  % 9.5404e-17 +/- 0.301  %
+ 11 pb         11.350     1.0000 1.2348e-07 +/- 0.069  % 1.7428e-18 +/- 0.069  %
+ 12 steel       8.060     1.0000 4.1953e-08 +/- 0.114  % 8.3386e-19 +/- 0.114  %
+ 13 air         0.001     1.0000 3.8902e-10 +/- 0.369  % 5.1728e-17 +/- 0.369  %
+ 14 steel       8.060     1.0000 4.2056e-08 +/- 0.114  % 8.3590e-19 +/- 0.114  %
+ 18 steel       8.060     1.0000 2.2500e-10 +/- 0.436  % 4.4721e-21 +/- 0.436  %
+ 19 steel       8.060     1.0000 1.0786e-08 +/- 0.199  % 2.1438e-19 +/- 0.199  %
+ 20 steel       8.060     1.0000 2.3396e-10 +/- 4.403  % 4.6502e-21 +/- 4.403  %
+ 21 steel       8.060     1.0000 8.0170e-09 +/- 0.319  % 1.5934e-19 +/- 0.319  %
+ 22 air         0.001     1.0000 6.2388e-10 +/- 0.333  % 8.2957e-17 +/- 0.333  %
+ 23 steel       8.060     1.0000 8.0684e-09 +/- 0.549  % 1.6037e-19 +/- 0.549  %
+ 24 steel       8.060     1.0000 1.3112e-10 +/- 1.117  % 2.6061e-21 +/- 1.117  %
+ 25 steel       8.060     1.0000 1.0919e-08 +/- 0.221  % 2.1703e-19 +/- 0.221  %
+ 26 steel       8.060     1.0000 1.2876e-10 +/- 0.881  % 2.5593e-21 +/- 0.881  %
+ 27 titanium    4.540     1.0000 1.7397e-06 +/- 0.015  % 6.1386e-17 +/- 0.015  %
+ 54 carbonate   1.200     1.0000 2.6425e-08 +/- 0.082  % 3.5277e-18 +/- 0.082  %
+ 81 air         0.001     1.0000 8.7881e-09 +/- 0.160  % 1.1685e-15 +/- 0.160  %
+162 water       0.998     1.0000 2.0917e-13 +/- 5.541  % 3.3576e-23 +/- 5.541  %
+163 water       0.998     1.0000 2.2099e-13 +/- 5.234  % 3.5474e-23 +/- 5.234  %
+164 water       0.998     1.0000 2.4385e-13 +/- 5.168  % 3.9143e-23 +/- 5.168  %
+165 water       0.998     1.0000 3.4633e-13 +/- 22.688 % 5.5593e-23 +/- 22.688 %
+166 water       0.998     1.0000 2.4139e-13 +/- 4.894  % 3.8749e-23 +/- 4.894  %
+167 water       0.998     1.0000 3.0311e-13 +/- 4.599  % 4.8655e-23 +/- 4.599  %
+168 water       0.998     1.0000 3.0712e-13 +/- 4.543  % 4.9300e-23 +/- 4.543  %
+169 water       0.998     1.0000 3.3568e-13 +/- 4.364  % 5.3883e-23 +/- 4.364  %
+170 water       0.998     1.0000 3.5043e-13 +/- 4.248  % 5.6251e-23 +/- 4.248  %
+171 water       0.998     1.0000 3.8119e-13 +/- 4.099  % 6.1189e-23 +/- 4.099  %
+172 water       0.998     1.0000 3.8543e-13 +/- 3.951  % 6.1869e-23 +/- 3.951  %
+173 water       0.998     1.0000 3.9185e-13 +/- 3.979  % 6.2900e-23 +/- 3.979  %
+174 water       0.998     1.0000 4.5333e-13 +/- 3.754  % 7.2768e-23 +/- 3.754  %
+175 water       0.998     1.0000 4.5485e-13 +/- 3.654  % 7.3013e-23 +/- 3.654  %
+176 water       0.998     1.0000 5.3014e-13 +/- 3.401  % 8.5098e-23 +/- 3.401  %
+177 water       0.998     1.0000 5.9000e-13 +/- 3.273  % 9.4707e-23 +/- 3.273  %
+178 water       0.998     1.0000 6.0935e-13 +/- 3.187  % 9.7814e-23 +/- 3.187  %
+179 water       0.998     1.0000 6.7168e-13 +/- 3.036  % 1.0782e-22 +/- 3.036  %
+180 water       0.998     1.0000 7.4051e-13 +/- 2.916  % 1.1887e-22 +/- 2.916  %
+181 water       0.998     1.0000 8.2426e-13 +/- 2.779  % 1.3231e-22 +/- 2.779  %
+182 water       0.998     1.0000 9.2351e-13 +/- 2.607  % 1.4824e-22 +/- 2.607  %
+183 water       0.998     1.0000 1.1148e-12 +/- 2.356  % 1.7895e-22 +/- 2.356  %
+184 water       0.998     1.0000 1.3233e-12 +/- 2.175  % 2.1242e-22 +/- 2.175  %
+185 water       0.998     1.0000 1.5393e-12 +/- 1.991  % 2.4709e-22 +/- 1.991  %
+186 water       0.998     1.0000 1.8339e-12 +/- 1.838  % 2.9437e-22 +/- 1.838  %
+187 water       0.998     1.0000 2.9645e-12 +/- 23.442 % 4.7587e-22 +/- 23.442 %
+188 water       0.998     1.0000 2.6577e-12 +/- 1.531  % 4.2662e-22 +/- 1.531  %
+189 water       0.998     1.0000 3.1293e-12 +/- 1.406  % 5.0232e-22 +/- 1.406  %
+190 water       0.998     1.0000 3.6174e-12 +/- 1.327  % 5.8066e-22 +/- 1.327  %
+191 water       0.998     1.0000 4.1007e-12 +/- 1.235  % 6.5824e-22 +/- 1.235  %
+192 water       0.998     1.0000 4.5440e-12 +/- 1.338  % 7.2941e-22 +/- 1.338  %
+193 water       0.998     1.0000 5.8355e-12 +/- 11.904 % 9.3673e-22 +/- 11.904 %
+194 water       0.998     1.0000 5.4049e-12 +/- 1.068  % 8.6761e-22 +/- 1.068  %
+195 water       0.998     1.0000 7.2935e-12 +/- 16.077 % 1.1708e-21 +/- 16.077 %
+196 water       0.998     1.0000 6.5292e-12 +/- 2.192  % 1.0481e-21 +/- 2.192  %
+197 water       0.998     1.0000 7.1160e-12 +/- 0.936  % 1.1423e-21 +/- 0.936  %
+198 water       0.998     1.0000 7.4206e-12 +/- 0.911  % 1.1912e-21 +/- 0.911  %
+199 water       0.998     1.0000 7.7781e-12 +/- 0.889  % 1.2485e-21 +/- 0.889  %
+200 water       0.998     1.0000 8.1479e-12 +/- 1.143  % 1.3079e-21 +/- 1.143  %
+201 water       0.998     1.0000 8.4687e-12 +/- 1.908  % 1.3594e-21 +/- 1.908  %
+202 water       0.998     1.0000 8.7634e-12 +/- 1.165  % 1.4067e-21 +/- 1.165  %
+203 water       0.998     1.0000 9.5843e-12 +/- 9.892  % 1.5385e-21 +/- 9.892  %
+204 water       0.998     1.0000 8.8699e-12 +/- 0.889  % 1.4238e-21 +/- 0.889  %
+205 water       0.998     1.0000 1.0262e-11 +/- 11.202 % 1.6473e-21 +/- 11.202 %
+206 water       0.998     1.0000 1.0220e-11 +/- 11.426 % 1.6406e-21 +/- 11.426 %
+207 water       0.998     1.0000 9.5632e-12 +/- 1.262  % 1.5351e-21 +/- 1.262  %
+208 water       0.998     1.0000 9.6089e-12 +/- 1.328  % 1.5424e-21 +/- 1.328  %
+209 water       0.998     1.0000 9.4997e-12 +/- 0.809  % 1.5249e-21 +/- 0.809  %
+210 water       0.998     1.0000 9.9525e-12 +/- 2.773  % 1.5976e-21 +/- 2.773  %
+211 water       0.998     1.0000 9.7322e-12 +/- 1.812  % 1.5622e-21 +/- 1.812  %
+212 water       0.998     1.0000 9.9248e-12 +/- 1.896  % 1.5931e-21 +/- 1.896  %
+213 water       0.998     1.0000 1.0068e-11 +/- 2.158  % 1.6161e-21 +/- 2.158  %
+214 water       0.998     1.0000 1.0173e-11 +/- 1.859  % 1.6329e-21 +/- 1.859  %
+215 water       0.998     1.0000 9.9365e-12 +/- 0.846  % 1.5950e-21 +/- 0.846  %
+216 water       0.998     1.0000 1.0292e-11 +/- 2.248  % 1.6521e-21 +/- 2.248  %
+217 water       0.998     1.0000 1.0157e-11 +/- 2.318  % 1.6305e-21 +/- 2.318  %
+218 water       0.998     1.0000 1.0039e-11 +/- 0.831  % 1.6115e-21 +/- 0.831  %
+219 water       0.998     1.0000 1.1699e-11 +/- 10.088 % 1.8779e-21 +/- 10.088 %
+220 water       0.998     1.0000 1.1111e-11 +/- 9.240  % 1.7836e-21 +/- 9.240  %
+221 water       0.998     1.0000 1.0212e-11 +/- 0.858  % 1.6392e-21 +/- 0.858  %
+222 water       0.998     1.0000 1.1031e-11 +/- 8.111  % 1.7708e-21 +/- 8.111  %
+223 water       0.998     1.0000 1.0409e-11 +/- 1.557  % 1.6708e-21 +/- 1.557  %
+224 water       0.998     1.0000 1.1274e-11 +/- 9.885  % 1.8096e-21 +/- 9.885  %
+225 water       0.998     1.0000 1.0382e-11 +/- 1.412  % 1.6665e-21 +/- 1.412  %
+226 water       0.998     1.0000 1.0319e-11 +/- 1.576  % 1.6564e-21 +/- 1.576  %
+227 water       0.998     1.0000 1.0355e-11 +/- 2.612  % 1.6622e-21 +/- 2.612  %
+228 water       0.998     1.0000 1.0591e-11 +/- 2.185  % 1.7000e-21 +/- 2.185  %
+229 water       0.998     1.0000 1.0549e-11 +/- 2.211  % 1.6933e-21 +/- 2.211  %
+230 water       0.998     1.0000 1.1798e-11 +/- 9.936  % 1.8939e-21 +/- 9.936  %
+231 water       0.998     1.0000 1.0447e-11 +/- 1.074  % 1.6769e-21 +/- 1.074  %
+232 water       0.998     1.0000 1.0426e-11 +/- 1.913  % 1.6735e-21 +/- 1.913  %
+233 water       0.998     1.0000 1.0388e-11 +/- 1.329  % 1.6674e-21 +/- 1.329  %
+234 water       0.998     1.0000 1.1246e-11 +/- 8.859  % 1.8052e-21 +/- 8.859  %
+235 water       0.998     1.0000 1.1653e-11 +/- 9.269  % 1.8705e-21 +/- 9.269  %
+236 water       0.998     1.0000 1.0434e-11 +/- 1.464  % 1.6748e-21 +/- 1.464  %
+237 water       0.998     1.0000 1.1808e-11 +/- 10.090 % 1.8954e-21 +/- 10.090 %
+238 water       0.998     1.0000 1.0446e-11 +/- 0.772  % 1.6768e-21 +/- 0.772  %
+239 water       0.998     1.0000 1.0554e-11 +/- 1.699  % 1.6942e-21 +/- 1.699  %
+240 water       0.998     1.0000 1.0799e-11 +/- 2.876  % 1.7335e-21 +/- 2.876  %
+241 water       0.998     1.0000 1.0286e-11 +/- 0.775  % 1.6511e-21 +/- 0.775  %
+242 water       0.998     1.0000 1.0625e-11 +/- 1.942  % 1.7055e-21 +/- 1.942  %
+243 water       0.998     1.0000 1.1465e-11 +/- 10.187 % 1.8403e-21 +/- 10.187 %
+244 water       0.998     1.0000 1.0304e-11 +/- 1.276  % 1.6540e-21 +/- 1.276  %
+245 water       0.998     1.0000 1.0371e-11 +/- 0.934  % 1.6648e-21 +/- 0.934  %
+246 water       0.998     1.0000 1.0297e-11 +/- 0.843  % 1.6528e-21 +/- 0.843  %
+247 water       0.998     1.0000 1.0592e-11 +/- 1.738  % 1.7002e-21 +/- 1.738  %
+248 water       0.998     1.0000 1.0587e-11 +/- 2.220  % 1.6995e-21 +/- 2.220  %
+249 water       0.998     1.0000 1.0321e-11 +/- 0.775  % 1.6568e-21 +/- 0.775  %
+250 water       0.998     1.0000 1.0332e-11 +/- 1.115  % 1.6585e-21 +/- 1.115  %
+251 water       0.998     1.0000 1.1576e-11 +/- 6.608  % 1.8581e-21 +/- 6.608  %
+252 water       0.998     1.0000 1.0607e-11 +/- 2.497  % 1.7026e-21 +/- 2.497  %
+253 water       0.998     1.0000 1.0432e-11 +/- 1.533  % 1.6746e-21 +/- 1.533  %
+254 water       0.998     1.0000 1.0391e-11 +/- 1.856  % 1.6680e-21 +/- 1.856  %
+255 water       0.998     1.0000 1.0224e-11 +/- 0.779  % 1.6412e-21 +/- 0.779  %
+256 water       0.998     1.0000 1.0829e-11 +/- 6.794  % 1.7383e-21 +/- 6.794  %
+257 water       0.998     1.0000 1.1309e-11 +/- 8.021  % 1.8154e-21 +/- 8.021  %
+258 water       0.998     1.0000 1.0399e-11 +/- 1.549  % 1.6692e-21 +/- 1.549  %
+259 water       0.998     1.0000 1.0220e-11 +/- 0.782  % 1.6405e-21 +/- 0.782  %
+260 water       0.998     1.0000 1.0320e-11 +/- 1.632  % 1.6566e-21 +/- 1.632  %
+261 water       0.998     1.0000 1.1100e-11 +/- 9.348  % 1.7818e-21 +/- 9.348  %
+262 water       0.998     1.0000 1.0552e-11 +/- 2.745  % 1.6938e-21 +/- 2.745  %
+263 water       0.998     1.0000 1.0659e-11 +/- 3.401  % 1.7110e-21 +/- 3.401  %
+264 water       0.998     1.0000 1.0169e-11 +/- 1.606  % 1.6323e-21 +/- 1.606  %
+265 water       0.998     1.0000 1.0099e-11 +/- 1.761  % 1.6210e-21 +/- 1.761  %
+266 water       0.998     1.0000 1.0952e-11 +/- 8.080  % 1.7580e-21 +/- 8.080  %
+267 water       0.998     1.0000 1.0011e-11 +/- 1.176  % 1.6071e-21 +/- 1.176  %
+268 water       0.998     1.0000 1.0666e-11 +/- 7.558  % 1.7122e-21 +/- 7.558  %
+269 water       0.998     1.0000 1.0261e-11 +/- 2.625  % 1.6471e-21 +/- 2.625  %
+270 water       0.998     1.0000 1.0524e-11 +/- 3.585  % 1.6893e-21 +/- 3.585  %
+271 water       0.998     1.0000 1.0060e-11 +/- 2.186  % 1.6149e-21 +/- 2.186  %
+272 water       0.998     1.0000 9.6440e-12 +/- 0.799  % 1.5481e-21 +/- 0.799  %
+273 water       0.998     1.0000 9.8202e-12 +/- 1.756  % 1.5764e-21 +/- 1.756  %
+274 water       0.998     1.0000 9.8096e-12 +/- 2.058  % 1.5747e-21 +/- 2.058  %
+275 water       0.998     1.0000 9.4787e-12 +/- 0.811  % 1.5215e-21 +/- 0.811  %
+276 water       0.998     1.0000 9.3811e-12 +/- 1.256  % 1.5059e-21 +/- 1.256  %
+277 water       0.998     1.0000 8.9993e-12 +/- 0.830  % 1.4446e-21 +/- 0.830  %
+278 water       0.998     1.0000 9.4235e-12 +/- 2.336  % 1.5127e-21 +/- 2.336  %
+279 water       0.998     1.0000 9.1535e-12 +/- 2.170  % 1.4693e-21 +/- 2.170  %
+280 water       0.998     1.0000 8.8334e-12 +/- 1.010  % 1.4179e-21 +/- 1.010  %
+281 water       0.998     1.0000 8.7059e-12 +/- 2.437  % 1.3975e-21 +/- 2.437  %
+282 water       0.998     1.0000 8.3824e-12 +/- 0.861  % 1.3455e-21 +/- 0.861  %
+283 water       0.998     1.0000 8.2238e-12 +/- 1.014  % 1.3201e-21 +/- 1.014  %
+284 water       0.998     1.0000 7.7697e-12 +/- 0.898  % 1.2472e-21 +/- 0.898  %
+285 water       0.998     1.0000 8.8313e-12 +/- 12.086 % 1.4176e-21 +/- 12.086 %
+286 water       0.998     1.0000 7.0996e-12 +/- 2.712  % 1.1396e-21 +/- 2.712  %
+287 water       0.998     1.0000 6.5728e-12 +/- 1.059  % 1.0551e-21 +/- 1.059  %
+288 water       0.998     1.0000 6.0612e-12 +/- 1.015  % 9.7295e-22 +/- 1.015  %
+289 water       0.998     1.0000 5.5370e-12 +/- 1.054  % 8.8881e-22 +/- 1.054  %
+290 water       0.998     1.0000 5.1541e-12 +/- 1.286  % 8.2734e-22 +/- 1.286  %
+291 water       0.998     1.0000 4.4891e-12 +/- 1.169  % 7.2060e-22 +/- 1.169  %
+292 water       0.998     1.0000 4.0902e-12 +/- 1.265  % 6.5656e-22 +/- 1.265  %
+293 water       0.998     1.0000 4.2024e-12 +/- 15.518 % 6.7458e-22 +/- 15.518 %
+294 water       0.998     1.0000 3.1073e-12 +/- 1.605  % 4.9879e-22 +/- 1.605  %
+295 water       0.998     1.0000 2.7105e-12 +/- 4.471  % 4.3510e-22 +/- 4.471  %
+296 water       0.998     1.0000 2.2160e-12 +/- 1.677  % 3.5572e-22 +/- 1.677  %
+297 water       0.998     1.0000 1.8858e-12 +/- 1.810  % 3.0271e-22 +/- 1.810  %
+298 water       0.998     1.0000 1.6003e-12 +/- 1.980  % 2.5689e-22 +/- 1.980  %
+299 water       0.998     1.0000 1.3994e-12 +/- 3.008  % 2.2463e-22 +/- 3.008  %
+300 water       0.998     1.0000 1.1051e-12 +/- 2.395  % 1.7739e-22 +/- 2.395  %
+301 water       0.998     1.0000 9.6342e-13 +/- 2.583  % 1.5465e-22 +/- 2.583  %
+302 water       0.998     1.0000 8.0558e-13 +/- 2.766  % 1.2931e-22 +/- 2.766  %
+303 water       0.998     1.0000 6.8728e-13 +/- 2.958  % 1.1032e-22 +/- 2.958  %
+304 water       0.998     1.0000 7.0074e-13 +/- 2.994  % 1.1248e-22 +/- 2.994  %
+305 water       0.998     1.0000 6.0662e-13 +/- 3.223  % 9.7375e-23 +/- 3.223  %
+306 water       0.998     1.0000 5.4806e-13 +/- 3.398  % 8.7976e-23 +/- 3.398  %
+307 water       0.998     1.0000 5.2747e-13 +/- 3.416  % 8.4670e-23 +/- 3.416  %
+308 water       0.998     1.0000 4.6979e-13 +/- 3.678  % 7.5411e-23 +/- 3.678  %
+309 water       0.998     1.0000 4.6340e-13 +/- 3.712  % 7.4385e-23 +/- 3.712  %
+310 water       0.998     1.0000 4.0339e-13 +/- 3.892  % 6.4753e-23 +/- 3.892  %
+311 water       0.998     1.0000 3.6418e-13 +/- 4.061  % 5.8458e-23 +/- 4.061  %
+312 water       0.998     1.0000 3.5710e-13 +/- 4.182  % 5.7322e-23 +/- 4.182  %
+313 water       0.998     1.0000 3.3867e-13 +/- 4.292  % 5.4363e-23 +/- 4.292  %
+314 water       0.998     1.0000 2.9779e-13 +/- 4.469  % 4.7802e-23 +/- 4.469  %
+315 water       0.998     1.0000 2.8356e-13 +/- 4.648  % 4.5517e-23 +/- 4.648  %
+316 water       0.998     1.0000 2.7785e-13 +/- 4.659  % 4.4601e-23 +/- 4.659  %
+317 water       0.998     1.0000 3.8252e-13 +/- 29.347 % 6.1402e-23 +/- 29.347 %
+318 water       0.998     1.0000 2.4771e-13 +/- 5.027  % 3.9763e-23 +/- 5.027  %
+319 water       0.998     1.0000 2.1708e-13 +/- 5.309  % 3.4846e-23 +/- 5.309  %
+320 water       0.998     1.0000 2.1292e-13 +/- 5.257  % 3.4178e-23 +/- 5.257  %
+321 water       0.998     1.0000 2.0475e-13 +/- 5.428  % 3.2867e-23 +/- 5.428  %
+324 water       0.998     1.0000 2.4869e-06 +/- 0.014  % 3.9921e-16 +/- 0.014  %
+486 air         0.001     1.0000 1.8523e-08 +/- 0.150  % 2.4629e-15 +/- 0.150  %
+-----------------------------------------------------------------------------------
+
+ EGS_DoseScoring: Writing dose data for EGS_XYZGeometry profilex... 
+ Output file name: /home/rsmina/EGSnrc/egs_home/TB/profilexScorNoRecycle.3ddose
+
+======================================================
+
+
+End of run                                             Thu Oct  7 01:40:14 2021
+================================================================================

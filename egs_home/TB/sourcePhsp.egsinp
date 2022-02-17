@@ -9,7 +9,7 @@
 ################################
 :start run control:
     ncase = 9E9
-    #calculation = combine
+    calculation = combine
     nchunk = 50000
     nbatch = 10
 :stop run control:
@@ -257,7 +257,7 @@
 		direction = 0 -1 0
 		:start spectrum:
 			type = monoenergetic
-			energy = 0.120 # in MeV
+			energy = 0.100 # in MeV
 		:stop spectrum:
 		:start shape:
 			type = sphere
@@ -304,7 +304,7 @@
 
     :start ausgab object:
           library                  = egs_phsp_scoring
-          name                     = phsp
+          name                     = phsp100kv
           output format            = IAEA
           particle type            = all
           #output directory         =

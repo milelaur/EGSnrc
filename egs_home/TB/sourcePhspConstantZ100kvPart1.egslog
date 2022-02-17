@@ -1,0 +1,1494 @@
+In EGS_Application::initSimulation()
+================================================================================
+EGSnrc version 4 for x86_64-unknown-linux-gnu          Wed Nov 17 17:46:49 2021
+================================================================================
+configuration................................................linux
+user code....................................................TB
+pegs file....................................................
+using host...................................................narvi.cc.tut.fi
+input file...................................................sourcePhspConstantZ
+output file(s)...............................................sourcePhspConstantZ
+================================================================================
+In initCrossSections(): spin effects = 1
+Property Photon cross-sections output: 0
+Property Photonuclear attenuation: 1
+Property Bound Compton scattering: 1
+Property Radiative Compton corrections: 1
+Property Rayleigh scattering: 1
+Property Atomic relaxations: 1
+Property Photoelectron angular sampling: 1
+Property Spin effects: 1
+Property Triplet production: 1
+Property Brems cross sections: 2
+Property Brems angular sampling: 1
+Property Pair cross sections: 1
+Property Pair angular sampling: 2
+Property Electron-step algorithm: 2
+Property Boundary crossing algorithm: 0
+ ===> Photonuclear flag:   1
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  1
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  2
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  3
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  4
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  5
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  6
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  7
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  8
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  9
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  1
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  2
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  3
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  4
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  5
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  6
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  7
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  8
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  9
+
+  PEGSLESS INPUT.  CALCULATING ELECTRON CROSS-SECTIONS.
+  density_file carbon_graphite_icru90_2.0g_cm3                                                                                                                                                                                                                                 
+  density_file molybdenum                                                                                                                                                                                                                                                      
+  density_file beryllium                                                                                                                                                                                                                                                       
+  density_file steel_stainless_type302                                                                                                                                                                                                                                         
+  density_file aluminum                                                                                                                                                                                                                                                        
+  density_file air_dry_nearsealevel                                                                                                                                                                                                                                            
+  density_file lead                                                                                                                                                                                                                                                            
+
+  Medium data: 
+
+ AE =    5.12000E-01 MeV,  UE =    1.51100E+00 MeV
+ AP =    1.00000E-03 MeV,  UP =    1.00000E+00 MeV
+
+  No material data file supplied.  Material data obtained from
+  .egsinp file or density correction file.
+
+   Medium: graphite                
+ Sterncid: graphite                
+     rho:    2.00000E+00 g/cm^3
+ Elements: C   
+    rhoz:    1.00000E+00
+      pz:    8.32560E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/carbon_graphite_icru90_2.0g_cm3.density
+
+   Medium: target_material         
+ Sterncid: target_material         
+     rho:    1.93860E+01 g/cm^3
+ Elements: W   RE  
+    rhoz:    9.50000E-01   5.00000E-02
+      pz:    5.16726E-03   2.68528E-04
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+
+   Medium: molybdenum              
+ Sterncid: molybdenum              
+     rho:    1.02200E+01 g/cm^3
+ Elements: MO  
+    rhoz:    1.00000E+00
+      pz:    1.04232E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/molybdenum.density
+
+   Medium: beryllium               
+ Sterncid: beryllium               
+     rho:    1.84800E+00 g/cm^3
+ Elements: BE  
+    rhoz:    1.00000E+00
+      pz:    1.10961E-01
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/beryllium.density
+
+   Medium: steel                   
+ Sterncid: steel                   
+     rho:    8.06000E+00 g/cm^3
+ Elements: C   SI  CR  MN  FE  NI  
+    rhoz:    1.00000E-03   7.00000E-03   1.80000E-01   1.00000E-02   7.12000E-01   9.00000E-02
+      pz:    8.32560E-05   2.49217E-04   3.46167E-03   1.82023E-04   1.27491E-02   1.53296E-03
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/steel_stainless_type302.density
+
+   Medium: oil                     
+ Sterncid: oil                     
+     rho:    8.90550E-01 g/cm^3
+ Elements: H   C   
+    rhoz:    1.00797E+01   2.40223E+02
+      pz:    1.00000E+01   2.00000E+01
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+
+   Medium: aluminum                
+ Sterncid: aluminum                
+     rho:    2.69890E+00 g/cm^3
+ Elements: AL  
+    rhoz:    1.00000E+00
+      pz:    3.70624E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/aluminum.density
+
+   Medium: air                     
+ Sterncid: air                     
+     rho:    1.20479E-03 g/cm^3
+ Elements: C   N   O   AR  
+    rhoz:    1.24000E-04   7.55267E-01   2.31781E-01   1.28270E-02
+      pz:    1.03237E-05   5.39218E-02   1.44869E-02   3.21092E-04
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/air_dry_nearsealevel.density
+
+   Medium: pb                      
+ Sterncid: pb                      
+     rho:    1.13500E+01 g/cm^3
+ Elements: PB  
+    rhoz:    1.00000E+00
+      pz:    4.82649E-03
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/lead.density
+
+
+(Re)-initializing photon cross sections with files from the series: xcom
+
+ Compton cross sections: default
+ Photonuclear cross sections: default
+ Using Compton cross sections from /home/rsmina/EGSnrc/HEN_HOUSE/data/compton_sigma.data
+ Using photonuclear cross sections from /home/rsmina/EGSnrc/HEN_HOUSE/data/iaea_photonuc.data
+
+ Reading renormalized photoelectric cross sections ...... done
+
+ Working on medium   1 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   2 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   3 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   4 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   5 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   6 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   7 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   8 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   9 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+
+Reading screened Rutherford MS data ...............  done 
+
+
+Reading spin data base from /home/rsmina/EGSnrc/HEN_HOUSE/data/spinms.data
+EGSnrc spin data, version 2.0   
+Data generated on a machine with 1234 endianess
+The endianess of this CPU is 1234
+Ranges:      1.00   100.00  0.30054  1.00000
+
+
+  medium    1 .....................  done
+  medium    2 .....................  done
+  medium    3 .....................  done
+  medium    4 .....................  done
+  medium    5 .....................  done
+  medium    6 .....................  done
+  medium    7 .....................  done
+  medium    8 .....................  done
+  medium    9 .....................  done
+  
+  Medium            1  sige =    88.732676887657149        101.89662531002678       monotone =  F F
+  Medium            2  sige =    172.57741978179737        235.40232772540153       monotone =  F F
+  Medium            3  sige =    134.22848806796372        168.69238010014359       monotone =  F F
+  Medium            4  sige =    84.646856620002538        96.504529959621067       monotone =  F F
+  Medium            5  sige =    123.18338032147462        151.05228366131078       monotone =  F F
+  Medium            6  sige =    86.692154941040002        99.318871403923396       monotone =  F F
+  Medium            7  sige =    103.50638592200082        122.48736559039948       monotone =  F F
+  Medium            8  sige =    89.591859601344183        103.21541676401796       monotone =  F F
+  Medium            9  sige =    172.75604562338430        235.60337980532134       monotone =  F F
+  
+  Initializing tmxs for estepe =   0.25000000000000000       and ximax =   0.50000000000000000     
+  
+  
+ Radiative Compton corrections requested:
+    Reading radiative Compton data ...  OK
+    Modifying cross sections and branching ratios ... OK
+
+Bound Compton scattering requested, reading data ......  Done
+
+ Initializing Bound Compton scattering ......
+ Medium   1 has   3 shells: 
+   1   10   1  0.33333 0.210E+02     0.285
+   2   11   2  0.33333 0.110E+03     0.011
+   3   12   3  0.33333 0.669E+02     0.011
+ Medium   2 has  42 shells: 
+   1  882   1  0.02567 0.138E+01    69.525
+   2  883   2  0.02567 0.495E+01    12.100
+   3  884   3  0.02567 0.242E+01    11.544
+   4  885   4  0.05135 0.267E+01    10.207
+   5  886   5  0.02567 0.109E+02     2.820
+   6  887   6  0.02567 0.640E+01     2.575
+   7  888   7  0.05135 0.684E+01     2.281
+   8  889   8  0.05135 0.444E+01     1.872
+   9  890   9  0.07702 0.453E+01     1.809
+  10  891  10  0.02567 0.229E+02     0.592
+  11  892  11  0.02567 0.144E+02     0.489
+  12  893  12  0.05135 0.155E+02     0.423
+  13  894  13  0.05135 0.118E+02     0.255
+  14  895  14  0.07702 0.121E+02     0.243
+  15  896  15  0.02567 0.585E+02     0.074
+  16  897  16  0.02567 0.399E+02     0.044
+  17  898  17  0.05135 0.426E+02     0.034
+  18  899  18  0.07702 0.111E+02     0.034
+  19  900  19  0.10270 0.112E+02     0.032
+  20  901  20  0.05135 0.482E+02     0.008
+  21  902  21  0.02567 0.212E+03     0.008
+  22  903   1  0.00133 0.137E+01    71.677
+  23  904   2  0.00133 0.485E+01    12.527
+  24  905   3  0.00133 0.237E+01    11.959
+  25  906   4  0.00267 0.263E+01    10.535
+  26  907   5  0.00133 0.107E+02     2.932
+  27  908   6  0.00133 0.627E+01     2.682
+  28  909   7  0.00267 0.673E+01     2.367
+  29  910   8  0.00267 0.436E+01     1.949
+  30  911   9  0.00400 0.445E+01     1.822
+  31  912  10  0.00133 0.223E+02     0.625
+  32  913  11  0.00133 0.141E+02     0.518
+  33  914  12  0.00267 0.151E+02     0.445
+  34  915  13  0.00267 0.115E+02     0.274
+  35  916  14  0.00400 0.118E+02     0.260
+  36  917  15  0.00133 0.564E+02     0.083
+  37  918  16  0.00133 0.382E+02     0.046
+  38  919  17  0.00267 0.411E+02     0.035
+  39  920  18  0.00400 0.106E+02     0.043
+  40  921  19  0.00534 0.107E+02     0.040
+  41  922  20  0.00267 0.448E+02     0.008
+  42  923  21  0.00200 0.152E+03     0.008
+ Medium   3 has  14 shells: 
+   1  321   1  0.04762 0.271E+01    19.999
+   2  322   2  0.04762 0.986E+01     2.866
+   3  323   3  0.04762 0.493E+01     2.625
+   4  324   4  0.09524 0.508E+01     2.520
+   5  325   5  0.04762 0.241E+02     0.505
+   6  326   6  0.04762 0.144E+02     0.410
+   7  327   7  0.09524 0.148E+02     0.393
+   8  328   8  0.09524 0.102E+02     0.230
+   9  329   9  0.14286 0.103E+02     0.226
+  10  330  10  0.04762 0.625E+02     0.062
+  11  331  11  0.04762 0.419E+02     0.035
+  12  332  12  0.09524 0.423E+02     0.035
+  13  333  13  0.09524 0.475E+02     0.007
+  14  334  14  0.04762 0.149E+03     0.007
+ Medium   4 has   2 shells: 
+   1    5   1  0.50000 0.325E+02     0.112
+   2    6   2  0.50000 0.184E+03     0.009
+ Medium   5 has  45 shells: 
+   1   10   1  0.00036 0.210E+02     0.285
+   2   11   2  0.00036 0.110E+03     0.011
+   3   12   3  0.00036 0.669E+02     0.011
+   4   45   1  0.00107 0.870E+01     1.839
+   5   46   2  0.00107 0.377E+02     0.149
+   6   47   3  0.00107 0.204E+02     0.100
+   7   48   4  0.00214 0.204E+02     0.099
+   8   49   5  0.00107 0.142E+03     0.008
+   9   50   6  0.00107 0.102E+03     0.008
+  10  120   1  0.01486 0.500E+01     5.989
+  11  121   2  0.01486 0.192E+02     0.698
+  12  122   3  0.01486 0.981E+01     0.585
+  13  123   4  0.02971 0.981E+01     0.576
+  14  124   5  0.01486 0.545E+02     0.075
+  15  125   6  0.01486 0.347E+02     0.043
+  16  126   7  0.02971 0.347E+02     0.043
+  17  127   8  0.02971 0.721E+02     0.007
+  18  128   9  0.01486 0.721E+02     0.007
+  19  129   1  0.00078 0.480E+01     6.539
+  20  130   2  0.00078 0.182E+02     0.769
+  21  131   3  0.00078 0.933E+01     0.651
+  22  132   4  0.00156 0.933E+01     0.639
+  23  133   5  0.00078 0.511E+02     0.082
+  24  134   6  0.00078 0.322E+02     0.047
+  25  135   7  0.00156 0.322E+02     0.047
+  26  136   8  0.00156 0.833E+02     0.007
+  27  137   9  0.00117 0.833E+02     0.007
+  28  138   1  0.05471 0.460E+01     7.112
+  29  139   2  0.05471 0.174E+02     0.848
+  30  140   3  0.05471 0.891E+01     0.721
+  31  141   4  0.10943 0.891E+01     0.708
+  32  142   5  0.05471 0.486E+02     0.092
+  33  143   6  0.05471 0.306E+02     0.053
+  34  144   7  0.10943 0.306E+02     0.053
+  35  145   8  0.10943 0.737E+02     0.008
+  36  146   9  0.10943 0.737E+02     0.008
+  37  156   1  0.00658 0.426E+01     8.333
+  38  157   2  0.00658 0.160E+02     1.008
+  39  158   3  0.00658 0.815E+01     0.871
+  40  159   4  0.01316 0.815E+01     0.854
+  41  160   5  0.00658 0.445E+02     0.111
+  42  161   6  0.00658 0.277E+02     0.067
+  43  162   7  0.01316 0.277E+02     0.067
+  44  163   8  0.01316 0.599E+02     0.008
+  45  164   9  0.01974 0.599E+02     0.008
+ Medium   6 has   4 shells: 
+   1    1   1  0.07692 0.116E+03     0.014
+   2   10   1  0.30769 0.210E+02     0.285
+   3   11   2  0.30769 0.110E+03     0.011
+   4   12   3  0.30769 0.669E+02     0.011
+ Medium   7 has   6 shells: 
+   1   39   1  0.15385 0.940E+01     1.560
+   2   40   2  0.15385 0.418E+02     0.118
+   3   41   3  0.15385 0.230E+02     0.073
+   4   42   4  0.30769 0.230E+02     0.073
+   5   43   5  0.15385 0.170E+03     0.006
+   6   44   6  0.07692 0.126E+03     0.006
+ Medium   8 has  18 shells: 
+   1   10   1  0.00004 0.210E+02     0.285
+   2   11   2  0.00004 0.110E+03     0.011
+   3   12   3  0.00004 0.669E+02     0.011
+   4   13   1  0.21604 0.178E+02     0.410
+   5   14   2  0.21604 0.921E+02     0.015
+   6   15   3  0.21604 0.558E+02     0.014
+   7   16   4  0.10802 0.558E+02     0.014
+   8   17   1  0.05804 0.155E+02     0.543
+   9   18   2  0.05804 0.793E+02     0.024
+  10   19   3  0.05804 0.479E+02     0.014
+  11   20   4  0.05804 0.479E+02     0.014
+  12   72   1  0.00129 0.671E+01     3.203
+  13   73   2  0.00129 0.271E+02     0.326
+  14   74   3  0.00129 0.142E+02     0.251
+  15   75   4  0.00257 0.142E+02     0.249
+  16   76   5  0.00129 0.889E+02     0.029
+  17   77   6  0.00129 0.606E+02     0.016
+  18   78   7  0.00257 0.606E+02     0.016
+ Medium   9 has  23 shells: 
+   1 1054   1  0.02439 0.121E+01    88.004
+   2 1055   2  0.02439 0.430E+01    15.861
+   3 1056   3  0.02439 0.210E+01    15.200
+   4 1057   4  0.04878 0.238E+01    13.035
+   5 1058   5  0.02439 0.944E+01     3.851
+   6 1059   6  0.02439 0.552E+01     3.554
+   7 1060   7  0.04878 0.600E+01     3.066
+   8 1061   8  0.04878 0.388E+01     2.586
+   9 1062   9  0.07317 0.397E+01     2.484
+  10 1063  10  0.02439 0.193E+02     0.894
+  11 1064  11  0.02439 0.121E+02     0.764
+  12 1065  12  0.04878 0.131E+02     0.645
+  13 1066  13  0.04878 0.984E+01     0.434
+  14 1067  14  0.07317 0.101E+02     0.412
+  15 1068  15  0.02439 0.445E+02     0.148
+  16 1069  16  0.02439 0.295E+02     0.105
+  17 1070  17  0.04878 0.325E+02     0.086
+  18 1071  18  0.07317 0.830E+01     0.141
+  19 1072  19  0.09756 0.841E+01     0.136
+  20 1073  20  0.04878 0.303E+02     0.020
+  21 1074  21  0.07317 0.311E+02     0.018
+  22 1075  22  0.02439 0.142E+03     0.007
+  23 1076  23  0.02439 0.111E+03     0.007
+ ...... Done.
+
+Output from subroutine EDGSET:
+==============================
+ Atomic relaxations requested! 
+
+ Reading simplified photo-absorption data ..... Done
+
+ Reading simplified relaxation data ..... Done
+
+ Reading parametrized XCOM photo cross section data ..... Done
+
+ Reading EADL relaxation data ......
+  Z =   6 has  4 shells
+  Z =  74 has 22 shells
+  Z =  75 has 22 shells
+  Z =  42 has 15 shells
+  Z =   4 has  2 shells
+  Z =  14 has  7 shells
+  Z =  24 has 10 shells
+  Z =  25 has 10 shells
+  Z =  26 has 10 shells
+  Z =  28 has 10 shells
+  Z =   1 has  1 shells
+  Z =  13 has  7 shells
+  Z =   7 has  4 shells
+  Z =   8 has  4 shells
+  Z =  18 has  7 shells
+  Z =  82 has 24 shells
+ ...... Done.
+
+  
+ Using NRC brems cross sections! 
+  
+  Initializing brems data for medium            1 ...
+  Max. new cross sections per energy loss:    88.744082483347924        101.89876751445045     
+  Initializing brems data for medium            2 ...
+  Max. new cross sections per energy loss:    172.54018784839718        235.40667168839906     
+  Initializing brems data for medium            3 ...
+  Max. new cross sections per energy loss:    134.21977259920902        168.69128398047008     
+  Initializing brems data for medium            4 ...
+  Max. new cross sections per energy loss:    84.655508271298302        96.506529836044180     
+  Initializing brems data for medium            5 ...
+  Max. new cross sections per energy loss:    123.18746932258490        151.05333992476235     
+  Initializing brems data for medium            6 ...
+  Max. new cross sections per energy loss:    86.702570264406774        99.320914375223566     
+  Initializing brems data for medium            7 ...
+  Max. new cross sections per energy loss:    103.51799954025240        122.48985642658717     
+  Initializing brems data for medium            8 ...
+  Max. new cross sections per energy loss:    89.603753795943703        103.21767115908033     
+  Initializing brems data for medium            9 ...
+  Max. new cross sections per energy loss:    172.71375768187906        235.60728196646150     
+  
+  
+
+
+Reading NRC pair data base from /home/rsmina/EGSnrc/HEN_HOUSE/data/pair_nrc1.data
+Data generated on a machine with 1234 endianess
+The endianess of this CPU is 1234
+Energy range of the data:     2.010  168.603
+  medium    1 .....................  done
+  medium    2 .....................  done
+  medium    3 .....................  done
+  medium    4 .....................  done
+  medium    5 .....................  done
+  medium    6 .....................  done
+  medium    7 .....................  done
+  medium    8 .....................  done
+  medium    9 .....................  done
+  
+  
+ eii_init: minimum threshold energy found:    1.0000000000000000E-003
+ eii_init: number of shells to simulate EII:           24
+
+
+Opened EII data file /home/rsmina/EGSnrc/HEN_HOUSE/data/eii_ik.data
+ eii_init: reading EII data ...   OK 
+  
+ eii_init: for medium            2  adjusted sige =    169.85507115684098       monotone =  F
+ eii_init: for medium            3  adjusted sige =    128.83320327206374       monotone =  F
+ eii_init: for medium            5  adjusted sige =    114.88681191816330       monotone =  F
+ eii_init: for medium            7  adjusted sige =    120.50583977411063       monotone =  F
+ eii_init: for medium            8  adjusted sige =    89.565860648723145       monotone =  F
+ eii_init: for medium            9  adjusted sige =    172.18788716669485       monotone =  F
+ init_triplet: reading triplet data ...  OK
+   Preparing triplet fraction data for medium   1 ...  OK
+   Preparing triplet fraction data for medium   2 ...  OK
+   Preparing triplet fraction data for medium   3 ...  OK
+   Preparing triplet fraction data for medium   4 ...  OK
+   Preparing triplet fraction data for medium   5 ...  OK
+   Preparing triplet fraction data for medium   6 ...  OK
+   Preparing triplet fraction data for medium   7 ...  OK
+   Preparing triplet fraction data for medium   8 ...  OK
+   Preparing triplet fraction data for medium   9 ...  OK
+EGSnrc SUCCESSFULLY 'HATCHED' FOR     9 MEDIA.
+
+
+The following media are defined:
+================================
+
+  0  graphite                 AE= 0.5120 AP= 0.0010 0
+  1  target_material          AE= 0.5120 AP= 0.0010 1
+  2  molybdenum               AE= 0.5120 AP= 0.0010 2
+  3  beryllium                AE= 0.5120 AP= 0.0010 3
+  4  steel                    AE= 0.5120 AP= 0.0010 4
+  5  oil                      AE= 0.5120 AP= 0.0010 5
+  6  aluminum                 AE= 0.5120 AP= 0.0010 6
+  7  air                      AE= 0.5120 AP= 0.0010 7
+  8  pb                       AE= 0.5120 AP= 0.0010 8
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                eadl
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          On
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = sourcePhsp
+ number of regions = 720
+ geometries:
+   to_primary_collimator (type EGS_UnionGeometry)
+   air (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Transformed Parallel beam from a shape of type sphere with monoenergetic 0.1 MeV, electrons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 97
+  numbers used so far = 0
+
+
+Run Control Object (RCO):
+=========================
+  type = simple
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+===========================================
+Radiative splitting Object (splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Phase Space Scoring Object (sourcePhsp100kv)
+*******************************************
+
+ Will output phase space for particles crossing surfaces of geometry:
+phsp_plate
+ Particles scored on: entering phase space geometry
+ Data will be output in IAEA format.
+
+ Phase space file names:
+  Header file: /home/rsmina/EGSnrc/egs_home/TB/sourcePhsp100kv.1.IAEAheader
+  Data file: /home/rsmina/EGSnrc/egs_home/TB/sourcePhsp100kv.1.IAEAphsp
+ Data scored at constant Z = 8.8752 cm
+ Particles scored: all
+*******************************************
+Dose Scoring Object (dose)
+*******************************************
+
+ - Regions in dose calculator :1
+
+
+--------------------------------------
+ medium         rho/[g/cm**3]
+--------------------------------------
+graphite         2.00
+target_material 19.39
+molybdenum      10.22
+beryllium        1.85
+steel            8.06
+oil              0.89
+aluminum         2.70
+air              0.00
+pb              11.35
+--------------------------------------
+
+*******************************************
+
+
+
+
+
+Combine results only
+
+calling combineResults()
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 sourcePhspConstantZ_w1.egsdat  ncase=26562492       cpu=438921.00  
+ 2 sourcePhspConstantZ_w2.egsdat  ncase=26562492       cpu=451551.00  
+ 3 sourcePhspConstantZ_w3.egsdat  ncase=26562492       cpu=452237.00  
+ 4 sourcePhspConstantZ_w4.egsdat  ncase=26562492       cpu=444827.00  
+ 5 sourcePhspConstantZ_w5.egsdat  ncase=26562492       cpu=447958.00  
+ 6 sourcePhspConstantZ_w6.egsdat  ncase=26562492       cpu=461495.00  
+ 7 sourcePhspConstantZ_w7.egsdat  ncase=26562492       cpu=445348.00  
+ 8 sourcePhspConstantZ_w8.egsdat  ncase=26562492       cpu=452227.00  
+ 9 sourcePhspConstantZ_w9.egsdat  ncase=26562492       cpu=443693.00  
+10 sourcePhspConstantZ_w10.egsdat ncase=26562492       cpu=443626.00  
+11 sourcePhspConstantZ_w11.egsdat ncase=26562492       cpu=446405.00  
+12 sourcePhspConstantZ_w12.egsdat ncase=24348951       cpu=443356.00  
+13 sourcePhspConstantZ_w13.egsdat ncase=24348951       cpu=442219.00  
+14 sourcePhspConstantZ_w14.egsdat ncase=24348951       cpu=438356.00  
+15 sourcePhspConstantZ_w15.egsdat ncase=24348951       cpu=436737.00  
+16 sourcePhspConstantZ_w16.egsdat ncase=24348951       cpu=437333.00  
+17 sourcePhspConstantZ_w17.egsdat ncase=24348951       cpu=437331.00  
+18 sourcePhspConstantZ_w18.egsdat ncase=24348951       cpu=436202.00  
+19 sourcePhspConstantZ_w19.egsdat ncase=24348951       cpu=441842.00  
+20 sourcePhspConstantZ_w20.egsdat ncase=24348951       cpu=435422.00  
+21 sourcePhspConstantZ_w21.egsdat ncase=24348951       cpu=437738.00  
+22 sourcePhspConstantZ_w22.egsdat ncase=24348951       cpu=435382.00  
+23 sourcePhspConstantZ_w23.egsdat ncase=24348951       cpu=437163.00  
+24 sourcePhspConstantZ_w24.egsdat ncase=24348951       cpu=434965.00  
+25 sourcePhspConstantZ_w25.egsdat ncase=24348951       cpu=456388.00  
+26 sourcePhspConstantZ_w26.egsdat ncase=24348951       cpu=459409.00  
+27 sourcePhspConstantZ_w27.egsdat ncase=24348951       cpu=452279.00  
+28 sourcePhspConstantZ_w28.egsdat ncase=24348951       cpu=455620.00  
+29 sourcePhspConstantZ_w29.egsdat ncase=24348951       cpu=452814.00  
+30 sourcePhspConstantZ_w30.egsdat ncase=24348951       cpu=453080.00  
+31 sourcePhspConstantZ_w31.egsdat ncase=24348951       cpu=435150.00  
+32 sourcePhspConstantZ_w32.egsdat ncase=24348951       cpu=431216.00  
+33 sourcePhspConstantZ_w33.egsdat ncase=24348951       cpu=433554.00  
+34 sourcePhspConstantZ_w34.egsdat ncase=24348951       cpu=434735.00  
+35 sourcePhspConstantZ_w35.egsdat ncase=24348951       cpu=434100.00  
+36 sourcePhspConstantZ_w36.egsdat ncase=26562492       cpu=464616.00  
+37 sourcePhspConstantZ_w37.egsdat ncase=26562492       cpu=464968.00  
+38 sourcePhspConstantZ_w38.egsdat ncase=24348951       cpu=434584.00  
+39 sourcePhspConstantZ_w39.egsdat ncase=26562492       cpu=466027.00  
+40 sourcePhspConstantZ_w40.egsdat ncase=26562492       cpu=465291.00  
+41 sourcePhspConstantZ_w41.egsdat ncase=24353559       cpu=429713.00  
+42 sourcePhspConstantZ_w42.egsdat ncase=24348951       cpu=433610.00  
+43 sourcePhspConstantZ_w43.egsdat ncase=26562492       cpu=466161.00  
+44 sourcePhspConstantZ_w44.egsdat ncase=26562492       cpu=465858.00  
+45 sourcePhspConstantZ_w45.egsdat ncase=24348951       cpu=439498.00  
+46 sourcePhspConstantZ_w46.egsdat ncase=24348951       cpu=434355.00  
+47 sourcePhspConstantZ_w47.egsdat ncase=24348951       cpu=432823.00  
+48 sourcePhspConstantZ_w48.egsdat ncase=24348951       cpu=440116.00  
+49 sourcePhspConstantZ_w49.egsdat ncase=24348951       cpu=434434.00  
+50 sourcePhspConstantZ_w50.egsdat ncase=24348951       cpu=434291.00  
+51 sourcePhspConstantZ_w51.egsdat ncase=24348951       cpu=438093.00  
+52 sourcePhspConstantZ_w52.egsdat ncase=24348951       cpu=432126.00  
+53 sourcePhspConstantZ_w53.egsdat ncase=26562492       cpu=463356.00  
+54 sourcePhspConstantZ_w54.egsdat ncase=26562492       cpu=464491.00  
+55 sourcePhspConstantZ_w55.egsdat ncase=24348951       cpu=430599.00  
+56 sourcePhspConstantZ_w56.egsdat ncase=26562492       cpu=462387.00  
+57 sourcePhspConstantZ_w57.egsdat ncase=26562492       cpu=463344.00  
+58 sourcePhspConstantZ_w58.egsdat ncase=24348951       cpu=431447.00  
+59 sourcePhspConstantZ_w59.egsdat ncase=24348951       cpu=439334.00  
+60 sourcePhspConstantZ_w60.egsdat ncase=24348951       cpu=447143.00  
+61 sourcePhspConstantZ_w61.egsdat ncase=24348951       cpu=441033.00  
+62 sourcePhspConstantZ_w62.egsdat ncase=24348951       cpu=445442.00  
+63 sourcePhspConstantZ_w63.egsdat ncase=24348951       cpu=444989.00  
+64 sourcePhspConstantZ_w64.egsdat ncase=24348951       cpu=448557.00  
+65 sourcePhspConstantZ_w65.egsdat ncase=24348951       cpu=445247.00  
+66 sourcePhspConstantZ_w66.egsdat ncase=24348951       cpu=445898.00  
+67 sourcePhspConstantZ_w67.egsdat ncase=24348951       cpu=447494.00  
+68 sourcePhspConstantZ_w68.egsdat ncase=24348951       cpu=446802.00  
+69 sourcePhspConstantZ_w69.egsdat ncase=24348951       cpu=442084.00  
+70 sourcePhspConstantZ_w70.egsdat ncase=24348951       cpu=443987.00  
+71 sourcePhspConstantZ_w71.egsdat ncase=24348951       cpu=446719.00  
+72 sourcePhspConstantZ_w72.egsdat ncase=24348951       cpu=442151.00  
+73 sourcePhspConstantZ_w73.egsdat ncase=24348951       cpu=448916.00  
+74 sourcePhspConstantZ_w74.egsdat ncase=24348951       cpu=440061.00  
+75 sourcePhspConstantZ_w75.egsdat ncase=24348951       cpu=447259.00  
+76 sourcePhspConstantZ_w76.egsdat ncase=24348951       cpu=443815.00  
+77 sourcePhspConstantZ_w77.egsdat ncase=24348951       cpu=433411.00  
+78 sourcePhspConstantZ_w78.egsdat ncase=24348951       cpu=438988.00  
+79 sourcePhspConstantZ_w79.egsdat ncase=24348951       cpu=434647.00  
+80 sourcePhspConstantZ_w80.egsdat ncase=24348951       cpu=431419.00  
+81 sourcePhspConstantZ_w81.egsdat ncase=24348951       cpu=431967.00  
+82 sourcePhspConstantZ_w82.egsdat ncase=24348951       cpu=434089.00  
+83 sourcePhspConstantZ_w83.egsdat ncase=24348951       cpu=430795.00  
+84 sourcePhspConstantZ_w84.egsdat ncase=24348951       cpu=433028.00  
+85 sourcePhspConstantZ_w85.egsdat ncase=24348951       cpu=429851.00  
+86 sourcePhspConstantZ_w86.egsdat ncase=24348951       cpu=436708.00  
+87 sourcePhspConstantZ_w87.egsdat ncase=24348951       cpu=432513.00  
+88 sourcePhspConstantZ_w88.egsdat ncase=24348951       cpu=437260.00  
+89 sourcePhspConstantZ_w89.egsdat ncase=26562492       cpu=460337.00  
+90 sourcePhspConstantZ_w90.egsdat ncase=24348951       cpu=433330.00  
+91 sourcePhspConstantZ_w91.egsdat ncase=26562492       cpu=459614.00  
+92 sourcePhspConstantZ_w92.egsdat ncase=26562492       cpu=459641.00  
+93 sourcePhspConstantZ_w93.egsdat ncase=26562492       cpu=461389.00  
+94 sourcePhspConstantZ_w94.egsdat ncase=24348951       cpu=429789.00  
+95 sourcePhspConstantZ_w95.egsdat ncase=26562492       cpu=464376.00  
+96 sourcePhspConstantZ_w96.egsdat ncase=26562492       cpu=466220.00  
+97 sourcePhspConstantZ_w97.egsdat ncase=26562492       cpu=463264.00  
+98 sourcePhspConstantZ_w98.egsdat ncase=24348951       cpu=429895.00  
+99 sourcePhspConstantZ_w99.egsdat ncase=24348951       cpu=449255.00  
+100 sourcePhspConstantZ_w100.egsdat ncase=24348951       cpu=451119.00  
+101 sourcePhspConstantZ_w101.egsdat ncase=24348951       cpu=460685.00  
+102 sourcePhspConstantZ_w102.egsdat ncase=24348951       cpu=446726.00  
+103 sourcePhspConstantZ_w103.egsdat ncase=24348951       cpu=445596.00  
+104 sourcePhspConstantZ_w104.egsdat ncase=24348951       cpu=445095.00  
+105 sourcePhspConstantZ_w105.egsdat ncase=24348951       cpu=446005.00  
+106 sourcePhspConstantZ_w106.egsdat ncase=24348951       cpu=446493.00  
+107 sourcePhspConstantZ_w107.egsdat ncase=24348951       cpu=454899.00  
+108 sourcePhspConstantZ_w108.egsdat ncase=24348951       cpu=444690.00  
+109 sourcePhspConstantZ_w109.egsdat ncase=24348951       cpu=451491.00  
+110 sourcePhspConstantZ_w110.egsdat ncase=24348951       cpu=449255.00  
+111 sourcePhspConstantZ_w111.egsdat ncase=24348951       cpu=444963.00  
+112 sourcePhspConstantZ_w112.egsdat ncase=24348951       cpu=446587.00  
+113 sourcePhspConstantZ_w113.egsdat ncase=24348951       cpu=446881.00  
+114 sourcePhspConstantZ_w114.egsdat ncase=24348951       cpu=446249.00  
+115 sourcePhspConstantZ_w115.egsdat ncase=24348951       cpu=446009.00  
+116 sourcePhspConstantZ_w116.egsdat ncase=24348951       cpu=449956.00  
+117 sourcePhspConstantZ_w117.egsdat ncase=8854164        cpu=148522.00  
+118 sourcePhspConstantZ_w118.egsdat ncase=8854164        cpu=149866.00  
+119 sourcePhspConstantZ_w119.egsdat ncase=8854164        cpu=148750.00  
+120 sourcePhspConstantZ_w120.egsdat ncase=8854164        cpu=148977.00  
+121 sourcePhspConstantZ_w121.egsdat ncase=8854164        cpu=146976.00  
+122 sourcePhspConstantZ_w122.egsdat ncase=8854164        cpu=148344.00  
+123 sourcePhspConstantZ_w123.egsdat ncase=8854164        cpu=149124.00  
+124 sourcePhspConstantZ_w124.egsdat ncase=8854164        cpu=150081.00  
+125 sourcePhspConstantZ_w125.egsdat ncase=22135410       cpu=471624.00  
+126 sourcePhspConstantZ_w126.egsdat ncase=22135410       cpu=469516.00  
+127 sourcePhspConstantZ_w127.egsdat ncase=19921869       cpu=438603.00  
+128 sourcePhspConstantZ_w128.egsdat ncase=22135410       cpu=471483.00  
+129 sourcePhspConstantZ_w129.egsdat ncase=22135410       cpu=467887.00  
+130 sourcePhspConstantZ_w130.egsdat ncase=19921869       cpu=434340.00  
+131 sourcePhspConstantZ_w131.egsdat ncase=22135410       cpu=472429.00  
+132 sourcePhspConstantZ_w132.egsdat ncase=22135410       cpu=469704.00  
+133 sourcePhspConstantZ_w133.egsdat ncase=22135410       cpu=466682.00  
+134 sourcePhspConstantZ_w134.egsdat ncase=22135410       cpu=468163.00  
+135 sourcePhspConstantZ_w135.egsdat ncase=22135410       cpu=469478.00  
+136 sourcePhspConstantZ_w136.egsdat ncase=22135410       cpu=470521.00  
+137 sourcePhspConstantZ_w137.egsdat ncase=22135410       cpu=468654.00  
+138 sourcePhspConstantZ_w138.egsdat ncase=19921869       cpu=431020.00  
+139 sourcePhspConstantZ_w139.egsdat ncase=22135410       cpu=472574.00  
+140 sourcePhspConstantZ_w140.egsdat ncase=22135410       cpu=465614.00  
+141 sourcePhspConstantZ_w141.egsdat ncase=22135410       cpu=474614.00  
+142 sourcePhspConstantZ_w142.egsdat ncase=22135410       cpu=472208.00  
+143 sourcePhspConstantZ_w143.egsdat ncase=22135410       cpu=468738.00  
+144 sourcePhspConstantZ_w144.egsdat ncase=22135410       cpu=469638.00  
+145 sourcePhspConstantZ_w145.egsdat ncase=22135410       cpu=467964.00  
+146 sourcePhspConstantZ_w146.egsdat ncase=22135410       cpu=467258.00  
+147 sourcePhspConstantZ_w147.egsdat ncase=22135410       cpu=465939.00  
+148 sourcePhspConstantZ_w148.egsdat ncase=22135410       cpu=469085.00  
+149 sourcePhspConstantZ_w149.egsdat ncase=22135410       cpu=471042.00  
+150 sourcePhspConstantZ_w150.egsdat ncase=22135410       cpu=468604.00  
+151 sourcePhspConstantZ_w151.egsdat ncase=22135410       cpu=468060.00  
+152 sourcePhspConstantZ_w152.egsdat ncase=22135410       cpu=470522.00  
+153 sourcePhspConstantZ_w153.egsdat ncase=22135410       cpu=475269.00  
+154 sourcePhspConstantZ_w154.egsdat ncase=22135410       cpu=466968.00  
+155 sourcePhspConstantZ_w155.egsdat ncase=22135410       cpu=473581.00  
+156 sourcePhspConstantZ_w156.egsdat ncase=22135410       cpu=466336.00  
+157 sourcePhspConstantZ_w157.egsdat ncase=22135410       cpu=470311.00  
+158 sourcePhspConstantZ_w158.egsdat ncase=22135410       cpu=470242.00  
+159 sourcePhspConstantZ_w159.egsdat ncase=22135410       cpu=472095.00  
+160 sourcePhspConstantZ_w160.egsdat ncase=22135410       cpu=474164.00  
+161 sourcePhspConstantZ_w161.egsdat ncase=22135410       cpu=466048.00  
+162 sourcePhspConstantZ_w162.egsdat ncase=22135410       cpu=466197.00  
+163 sourcePhspConstantZ_w163.egsdat ncase=22135410       cpu=469108.00  
+164 sourcePhspConstantZ_w164.egsdat ncase=22135410       cpu=477538.00  
+165 sourcePhspConstantZ_w165.egsdat ncase=22135410       cpu=468618.00  
+166 sourcePhspConstantZ_w166.egsdat ncase=22135410       cpu=470750.00  
+167 sourcePhspConstantZ_w167.egsdat ncase=22135410       cpu=475408.00  
+168 sourcePhspConstantZ_w168.egsdat ncase=22135410       cpu=469928.00  
+169 sourcePhspConstantZ_w169.egsdat ncase=22135410       cpu=468372.00  
+170 sourcePhspConstantZ_w170.egsdat ncase=22135410       cpu=467496.00  
+171 sourcePhspConstantZ_w171.egsdat ncase=19921869       cpu=428565.00  
+172 sourcePhspConstantZ_w172.egsdat ncase=22135410       cpu=467437.00  
+173 sourcePhspConstantZ_w173.egsdat ncase=19921869       cpu=433186.00  
+174 sourcePhspConstantZ_w174.egsdat ncase=22135410       cpu=473114.00  
+175 sourcePhspConstantZ_w175.egsdat ncase=22135410       cpu=472480.00  
+176 sourcePhspConstantZ_w176.egsdat ncase=22135410       cpu=471196.00  
+177 sourcePhspConstantZ_w177.egsdat ncase=19921869       cpu=431492.00  
+178 sourcePhspConstantZ_w178.egsdat ncase=22135410       cpu=469528.00  
+179 sourcePhspConstantZ_w179.egsdat ncase=22135410       cpu=467644.00  
+180 sourcePhspConstantZ_w180.egsdat ncase=22135410       cpu=475564.00  
+181 sourcePhspConstantZ_w181.egsdat ncase=22135410       cpu=469866.00  
+182 sourcePhspConstantZ_w182.egsdat ncase=22135410       cpu=467591.00  
+183 sourcePhspConstantZ_w183.egsdat ncase=19921869       cpu=434082.00  
+184 sourcePhspConstantZ_w184.egsdat ncase=19921869       cpu=438128.00  
+185 sourcePhspConstantZ_w185.egsdat ncase=19921869       cpu=438990.00  
+186 sourcePhspConstantZ_w186.egsdat ncase=19921869       cpu=449292.00  
+187 sourcePhspConstantZ_w187.egsdat ncase=22135410       cpu=447739.00  
+188 sourcePhspConstantZ_w188.egsdat ncase=22135410       cpu=447856.00  
+189 sourcePhspConstantZ_w189.egsdat ncase=22135410       cpu=468215.00  
+190 sourcePhspConstantZ_w190.egsdat ncase=22135410       cpu=471981.00  
+191 sourcePhspConstantZ_w191.egsdat ncase=22135410       cpu=470248.00  
+192 sourcePhspConstantZ_w192.egsdat ncase=22135410       cpu=469539.00  
+193 sourcePhspConstantZ_w193.egsdat ncase=22135410       cpu=470698.00  
+194 sourcePhspConstantZ_w194.egsdat ncase=22135410       cpu=469529.00  
+195 sourcePhspConstantZ_w195.egsdat ncase=22135410       cpu=467745.00  
+196 sourcePhspConstantZ_w196.egsdat ncase=22135410       cpu=469608.00  
+197 sourcePhspConstantZ_w197.egsdat ncase=22135410       cpu=472007.00  
+198 sourcePhspConstantZ_w198.egsdat ncase=22135410       cpu=469879.00  
+199 sourcePhspConstantZ_w199.egsdat ncase=22135410       cpu=466986.00  
+200 sourcePhspConstantZ_w200.egsdat ncase=22135410       cpu=470663.00  
+201 sourcePhspConstantZ_w201.egsdat ncase=22135410       cpu=474016.00  
+202 sourcePhspConstantZ_w202.egsdat ncase=22135410       cpu=470378.00  
+203 sourcePhspConstantZ_w203.egsdat ncase=22135410       cpu=468113.00  
+204 sourcePhspConstantZ_w204.egsdat ncase=22135410       cpu=469440.00  
+205 sourcePhspConstantZ_w205.egsdat ncase=22135410       cpu=472396.00  
+206 sourcePhspConstantZ_w206.egsdat ncase=22135410       cpu=468795.00  
+207 sourcePhspConstantZ_w207.egsdat ncase=22135410       cpu=467980.00  
+208 sourcePhspConstantZ_w208.egsdat ncase=22135410       cpu=476078.00  
+209 sourcePhspConstantZ_w209.egsdat ncase=19921869       cpu=433869.00  
+210 sourcePhspConstantZ_w210.egsdat ncase=19921869       cpu=429751.00  
+211 sourcePhspConstantZ_w211.egsdat ncase=19921869       cpu=430056.00  
+212 sourcePhspConstantZ_w212.egsdat ncase=22135410       cpu=468754.00  
+213 sourcePhspConstantZ_w213.egsdat ncase=19921869       cpu=441522.00  
+214 sourcePhspConstantZ_w214.egsdat ncase=19921869       cpu=438283.00  
+215 sourcePhspConstantZ_w215.egsdat ncase=19921869       cpu=441273.00  
+216 sourcePhspConstantZ_w216.egsdat ncase=19921869       cpu=439759.00  
+217 sourcePhspConstantZ_w217.egsdat ncase=19921869       cpu=432525.00  
+218 sourcePhspConstantZ_w218.egsdat ncase=19921869       cpu=439532.00  
+219 sourcePhspConstantZ_w219.egsdat ncase=19921869       cpu=441984.00  
+220 sourcePhspConstantZ_w220.egsdat ncase=19921869       cpu=441602.00  
+221 sourcePhspConstantZ_w221.egsdat ncase=19921869       cpu=435698.00  
+222 sourcePhspConstantZ_w222.egsdat ncase=19921869       cpu=443787.00  
+223 sourcePhspConstantZ_w223.egsdat ncase=19921869       cpu=433818.00  
+224 sourcePhspConstantZ_w224.egsdat ncase=19921869       cpu=439008.00  
+225 sourcePhspConstantZ_w225.egsdat ncase=22135410       cpu=474594.00  
+226 sourcePhspConstantZ_w226.egsdat ncase=22135410       cpu=468291.00  
+227 sourcePhspConstantZ_w227.egsdat ncase=22135410       cpu=474786.00  
+228 sourcePhspConstantZ_w228.egsdat ncase=22135410       cpu=473092.00  
+229 sourcePhspConstantZ_w229.egsdat ncase=22135410       cpu=476188.00  
+230 sourcePhspConstantZ_w230.egsdat ncase=19921869       cpu=435759.00  
+231 sourcePhspConstantZ_w231.egsdat ncase=22135410       cpu=474656.00  
+232 sourcePhspConstantZ_w232.egsdat ncase=22135410       cpu=469422.00  
+233 sourcePhspConstantZ_w233.egsdat ncase=22135410       cpu=469319.00  
+234 sourcePhspConstantZ_w234.egsdat ncase=22135410       cpu=469143.00  
+235 sourcePhspConstantZ_w235.egsdat ncase=22135410       cpu=470594.00  
+236 sourcePhspConstantZ_w236.egsdat ncase=22135410       cpu=473147.00  
+237 sourcePhspConstantZ_w237.egsdat ncase=22135410       cpu=474134.00  
+238 sourcePhspConstantZ_w238.egsdat ncase=22135410       cpu=471830.00  
+239 sourcePhspConstantZ_w239.egsdat ncase=19921869       cpu=466179.00  
+240 sourcePhspConstantZ_w240.egsdat ncase=22135410       cpu=466093.00  
+241 sourcePhspConstantZ_w241.egsdat ncase=22135410       cpu=475822.00  
+242 sourcePhspConstantZ_w242.egsdat ncase=22135410       cpu=467798.00  
+243 sourcePhspConstantZ_w243.egsdat ncase=22135410       cpu=471498.00  
+244 sourcePhspConstantZ_w244.egsdat ncase=19921869       cpu=437550.00  
+245 sourcePhspConstantZ_w245.egsdat ncase=19921869       cpu=434755.00  
+246 sourcePhspConstantZ_w246.egsdat ncase=19921869       cpu=442715.00  
+247 sourcePhspConstantZ_w247.egsdat ncase=19921869       cpu=440846.00  
+248 sourcePhspConstantZ_w248.egsdat ncase=19921869       cpu=440499.00  
+249 sourcePhspConstantZ_w249.egsdat ncase=22135410       cpu=472690.00  
+250 sourcePhspConstantZ_w250.egsdat ncase=22135410       cpu=476972.00  
+251 sourcePhspConstantZ_w251.egsdat ncase=22135410       cpu=471797.00  
+252 sourcePhspConstantZ_w252.egsdat ncase=22135410       cpu=469171.00  
+253 sourcePhspConstantZ_w253.egsdat ncase=22135410       cpu=474091.00  
+254 sourcePhspConstantZ_w254.egsdat ncase=22135410       cpu=474063.00  
+255 sourcePhspConstantZ_w255.egsdat ncase=22135410       cpu=472346.00  
+256 sourcePhspConstantZ_w256.egsdat ncase=22135410       cpu=467578.00  
+257 sourcePhspConstantZ_w257.egsdat ncase=22135410       cpu=471583.00  
+258 sourcePhspConstantZ_w258.egsdat ncase=22135410       cpu=470780.00  
+259 sourcePhspConstantZ_w259.egsdat ncase=19921869       cpu=432346.00  
+260 sourcePhspConstantZ_w260.egsdat ncase=22135410       cpu=469957.00  
+261 sourcePhspConstantZ_w261.egsdat ncase=22135410       cpu=469471.00  
+262 sourcePhspConstantZ_w262.egsdat ncase=22135410       cpu=474820.00  
+263 sourcePhspConstantZ_w263.egsdat ncase=22135410       cpu=473454.00  
+264 sourcePhspConstantZ_w264.egsdat ncase=22135410       cpu=469863.00  
+265 sourcePhspConstantZ_w265.egsdat ncase=22135410       cpu=473585.00  
+266 sourcePhspConstantZ_w266.egsdat ncase=22135410       cpu=466566.00  
+267 sourcePhspConstantZ_w267.egsdat ncase=22135410       cpu=470853.00  
+268 sourcePhspConstantZ_w268.egsdat ncase=19921869       cpu=431682.00  
+269 sourcePhspConstantZ_w269.egsdat ncase=22135410       cpu=473606.00  
+270 sourcePhspConstantZ_w270.egsdat ncase=19921869       cpu=430943.00  
+271 sourcePhspConstantZ_w271.egsdat ncase=22135410       cpu=466853.00  
+272 sourcePhspConstantZ_w272.egsdat ncase=22135410       cpu=466341.00  
+273 sourcePhspConstantZ_w273.egsdat ncase=22135410       cpu=466422.00  
+274 sourcePhspConstantZ_w274.egsdat ncase=22135410       cpu=469099.00  
+275 sourcePhspConstantZ_w275.egsdat ncase=22135410       cpu=465921.00  
+276 sourcePhspConstantZ_w276.egsdat ncase=22135410       cpu=466840.00  
+277 sourcePhspConstantZ_w277.egsdat ncase=22135410       cpu=469049.00  
+278 sourcePhspConstantZ_w278.egsdat ncase=19921869       cpu=434459.00  
+279 sourcePhspConstantZ_w279.egsdat ncase=22135410       cpu=468196.00  
+280 sourcePhspConstantZ_w280.egsdat ncase=22135410       cpu=469094.00  
+281 sourcePhspConstantZ_w281.egsdat ncase=22135410       cpu=466259.00  
+282 sourcePhspConstantZ_w282.egsdat ncase=22135410       cpu=467658.00  
+283 sourcePhspConstantZ_w283.egsdat ncase=22135410       cpu=469957.00  
+284 sourcePhspConstantZ_w284.egsdat ncase=22135410       cpu=466817.00  
+285 sourcePhspConstantZ_w285.egsdat ncase=19921869       cpu=434535.00  
+286 sourcePhspConstantZ_w286.egsdat ncase=22135410       cpu=465336.00  
+287 sourcePhspConstantZ_w287.egsdat ncase=22135410       cpu=465850.00  
+288 sourcePhspConstantZ_w288.egsdat ncase=22135410       cpu=470055.00  
+289 sourcePhspConstantZ_w289.egsdat ncase=22135410       cpu=466730.00  
+290 sourcePhspConstantZ_w290.egsdat ncase=19921869       cpu=433036.00  
+291 sourcePhspConstantZ_w291.egsdat ncase=22135410       cpu=471740.00  
+292 sourcePhspConstantZ_w292.egsdat ncase=22135410       cpu=466895.00  
+293 sourcePhspConstantZ_w293.egsdat ncase=22135410       cpu=476274.00  
+294 sourcePhspConstantZ_w294.egsdat ncase=22135410       cpu=467478.00  
+295 sourcePhspConstantZ_w295.egsdat ncase=22135410       cpu=472790.00  
+296 sourcePhspConstantZ_w296.egsdat ncase=22135410       cpu=470403.00  
+297 sourcePhspConstantZ_w297.egsdat ncase=22135410       cpu=468900.00  
+298 sourcePhspConstantZ_w298.egsdat ncase=22135410       cpu=467833.00  
+299 sourcePhspConstantZ_w299.egsdat ncase=22135410       cpu=471178.00  
+300 sourcePhspConstantZ_w300.egsdat ncase=22135410       cpu=468214.00  
+301 sourcePhspConstantZ_w301.egsdat ncase=22135410       cpu=470082.00  
+302 sourcePhspConstantZ_w302.egsdat ncase=22135410       cpu=467226.00  
+303 sourcePhspConstantZ_w303.egsdat ncase=22135410       cpu=472054.00  
+304 sourcePhspConstantZ_w304.egsdat ncase=22135410       cpu=471573.00  
+305 sourcePhspConstantZ_w305.egsdat ncase=22135410       cpu=465795.00  
+306 sourcePhspConstantZ_w306.egsdat ncase=22135410       cpu=466385.00  
+307 sourcePhspConstantZ_w307.egsdat ncase=22135410       cpu=475772.00  
+308 sourcePhspConstantZ_w308.egsdat ncase=22135410       cpu=472641.00  
+309 sourcePhspConstantZ_w309.egsdat ncase=22135410       cpu=471478.00  
+310 sourcePhspConstantZ_w310.egsdat ncase=22135410       cpu=468954.00  
+311 sourcePhspConstantZ_w311.egsdat ncase=22135410       cpu=466127.00  
+312 sourcePhspConstantZ_w312.egsdat ncase=22135410       cpu=465958.00  
+313 sourcePhspConstantZ_w313.egsdat ncase=19921869       cpu=431033.00  
+314 sourcePhspConstantZ_w314.egsdat ncase=22135410       cpu=469594.00  
+315 sourcePhspConstantZ_w315.egsdat ncase=22135410       cpu=475303.00  
+316 sourcePhspConstantZ_w316.egsdat ncase=22135410       cpu=471986.00  
+317 sourcePhspConstantZ_w317.egsdat ncase=22135410       cpu=469576.00  
+318 sourcePhspConstantZ_w318.egsdat ncase=22135410       cpu=465833.00  
+319 sourcePhspConstantZ_w319.egsdat ncase=22135410       cpu=470220.00  
+320 sourcePhspConstantZ_w320.egsdat ncase=22135410       cpu=466764.00  
+321 sourcePhspConstantZ_w321.egsdat ncase=22135410       cpu=467753.00  
+322 sourcePhspConstantZ_w322.egsdat ncase=22135410       cpu=477088.00  
+323 sourcePhspConstantZ_w323.egsdat ncase=22135410       cpu=467396.00  
+324 sourcePhspConstantZ_w324.egsdat ncase=22135410       cpu=466643.00  
+325 sourcePhspConstantZ_w325.egsdat ncase=19921869       cpu=430662.00  
+326 sourcePhspConstantZ_w326.egsdat ncase=22135410       cpu=470230.00  
+327 sourcePhspConstantZ_w327.egsdat ncase=22135410       cpu=466517.00  
+328 sourcePhspConstantZ_w328.egsdat ncase=22135410       cpu=467525.00  
+329 sourcePhspConstantZ_w329.egsdat ncase=22135410       cpu=471082.00  
+330 sourcePhspConstantZ_w330.egsdat ncase=22135410       cpu=465507.00  
+331 sourcePhspConstantZ_w331.egsdat ncase=22135410       cpu=471568.00  
+332 sourcePhspConstantZ_w332.egsdat ncase=22135410       cpu=466081.00  
+333 sourcePhspConstantZ_w333.egsdat ncase=22135410       cpu=475390.00  
+334 sourcePhspConstantZ_w334.egsdat ncase=22135410       cpu=468122.00  
+335 sourcePhspConstantZ_w335.egsdat ncase=22135410       cpu=472276.00  
+336 sourcePhspConstantZ_w336.egsdat ncase=22135410       cpu=470981.00  
+337 sourcePhspConstantZ_w337.egsdat ncase=22135410       cpu=469965.00  
+338 sourcePhspConstantZ_w338.egsdat ncase=22135410       cpu=471109.00  
+339 sourcePhspConstantZ_w339.egsdat ncase=22135410       cpu=469954.00  
+340 sourcePhspConstantZ_w340.egsdat ncase=22135410       cpu=471440.00  
+341 sourcePhspConstantZ_w341.egsdat ncase=19921869       cpu=430302.00  
+342 sourcePhspConstantZ_w342.egsdat ncase=22135410       cpu=471550.00  
+343 sourcePhspConstantZ_w343.egsdat ncase=22135410       cpu=470985.00  
+344 sourcePhspConstantZ_w344.egsdat ncase=22135410       cpu=472211.00  
+345 sourcePhspConstantZ_w345.egsdat ncase=22135410       cpu=470390.00  
+346 sourcePhspConstantZ_w346.egsdat ncase=22135410       cpu=472053.00  
+347 sourcePhspConstantZ_w347.egsdat ncase=22135410       cpu=472053.00  
+348 sourcePhspConstantZ_w348.egsdat ncase=22135410       cpu=472783.00  
+349 sourcePhspConstantZ_w349.egsdat ncase=22135410       cpu=470704.00  
+350 sourcePhspConstantZ_w350.egsdat ncase=22135410       cpu=468374.00  
+351 sourcePhspConstantZ_w351.egsdat ncase=22135410       cpu=475250.00  
+352 sourcePhspConstantZ_w352.egsdat ncase=19921869       cpu=436328.00  
+353 sourcePhspConstantZ_w353.egsdat ncase=22135410       cpu=467045.00  
+354 sourcePhspConstantZ_w354.egsdat ncase=22135410       cpu=474694.00  
+355 sourcePhspConstantZ_w355.egsdat ncase=22135410       cpu=470426.00  
+356 sourcePhspConstantZ_w356.egsdat ncase=22135410       cpu=468714.00  
+357 sourcePhspConstantZ_w357.egsdat ncase=22135410       cpu=474537.00  
+358 sourcePhspConstantZ_w358.egsdat ncase=22135410       cpu=467873.00  
+359 sourcePhspConstantZ_w359.egsdat ncase=22135410       cpu=466916.00  
+360 sourcePhspConstantZ_w360.egsdat ncase=22135410       cpu=471949.00  
+361 sourcePhspConstantZ_w361.egsdat ncase=22135410       cpu=468930.00  
+362 sourcePhspConstantZ_w362.egsdat ncase=22135410       cpu=472212.00  
+363 sourcePhspConstantZ_w363.egsdat ncase=22135410       cpu=471056.00  
+364 sourcePhspConstantZ_w364.egsdat ncase=22135410       cpu=473218.00  
+365 sourcePhspConstantZ_w365.egsdat ncase=22135410       cpu=466340.00  
+366 sourcePhspConstantZ_w366.egsdat ncase=22135410       cpu=468447.00  
+367 sourcePhspConstantZ_w367.egsdat ncase=22135410       cpu=468790.00  
+368 sourcePhspConstantZ_w368.egsdat ncase=19921869       cpu=449995.00  
+369 sourcePhspConstantZ_w369.egsdat ncase=22135410       cpu=476776.00  
+370 sourcePhspConstantZ_w370.egsdat ncase=22135410       cpu=468802.00  
+371 sourcePhspConstantZ_w371.egsdat ncase=22135410       cpu=473680.00  
+372 sourcePhspConstantZ_w372.egsdat ncase=22135410       cpu=467246.00  
+373 sourcePhspConstantZ_w373.egsdat ncase=22135410       cpu=475011.00  
+374 sourcePhspConstantZ_w374.egsdat ncase=22135410       cpu=474857.00  
+375 sourcePhspConstantZ_w375.egsdat ncase=22135410       cpu=471022.00  
+376 sourcePhspConstantZ_w376.egsdat ncase=19921869       cpu=434799.00  
+377 sourcePhspConstantZ_w377.egsdat ncase=19921869       cpu=440915.00  
+378 sourcePhspConstantZ_w378.egsdat ncase=22135410       cpu=471760.00  
+379 sourcePhspConstantZ_w379.egsdat ncase=22135410       cpu=468517.00  
+380 sourcePhspConstantZ_w380.egsdat ncase=22135410       cpu=471563.00  
+381 sourcePhspConstantZ_w381.egsdat ncase=22135410       cpu=467791.00  
+382 sourcePhspConstantZ_w382.egsdat ncase=22135410       cpu=466597.00  
+383 sourcePhspConstantZ_w383.egsdat ncase=22135410       cpu=466015.00  
+384 sourcePhspConstantZ_w384.egsdat ncase=22135410       cpu=465196.00  
+385 sourcePhspConstantZ_w385.egsdat ncase=22135410       cpu=468686.00  
+386 sourcePhspConstantZ_w386.egsdat ncase=22135410       cpu=473584.00  
+387 sourcePhspConstantZ_w387.egsdat ncase=22135410       cpu=468201.00  
+388 sourcePhspConstantZ_w388.egsdat ncase=22135410       cpu=470979.00  
+389 sourcePhspConstantZ_w389.egsdat ncase=22135410       cpu=471475.00  
+390 sourcePhspConstantZ_w390.egsdat ncase=22135410       cpu=469525.00  
+391 sourcePhspConstantZ_w391.egsdat ncase=22135410       cpu=468636.00  
+392 sourcePhspConstantZ_w392.egsdat ncase=22135410       cpu=470249.00  
+393 sourcePhspConstantZ_w393.egsdat ncase=22135410       cpu=469859.00  
+394 sourcePhspConstantZ_w394.egsdat ncase=22135410       cpu=470549.00  
+395 sourcePhspConstantZ_w395.egsdat ncase=22135410       cpu=466945.00  
+396 sourcePhspConstantZ_w396.egsdat ncase=22135410       cpu=471155.00  
+397 sourcePhspConstantZ_w397.egsdat ncase=22135410       cpu=466524.00  
+398 sourcePhspConstantZ_w398.egsdat ncase=22135410       cpu=470212.00  
+399 sourcePhspConstantZ_w399.egsdat ncase=22135410       cpu=474410.00  
+400 sourcePhspConstantZ_w400.egsdat ncase=22135410       cpu=466671.00  
+401 sourcePhspConstantZ_w401.egsdat ncase=22135410       cpu=468779.00  
+402 sourcePhspConstantZ_w402.egsdat ncase=22135410       cpu=468529.00  
+403 sourcePhspConstantZ_w403.egsdat ncase=22135410       cpu=473039.00  
+404 sourcePhspConstantZ_w404.egsdat ncase=22135410       cpu=467460.00  
+405 sourcePhspConstantZ_w405.egsdat ncase=22135410       cpu=471748.00  
+406 sourcePhspConstantZ_w406.egsdat ncase=22135410       cpu=469552.00  
+407 sourcePhspConstantZ_w407.egsdat ncase=22135410       cpu=468147.00  
+408 sourcePhspConstantZ_w408.egsdat ncase=22135410       cpu=468005.00  
+409 sourcePhspConstantZ_w409.egsdat ncase=22135410       cpu=469567.00  
+410 sourcePhspConstantZ_w410.egsdat ncase=19921869       cpu=435408.00  
+411 sourcePhspConstantZ_w411.egsdat ncase=19921869       cpu=433700.00  
+412 sourcePhspConstantZ_w412.egsdat ncase=22135410       cpu=467055.00  
+413 sourcePhspConstantZ_w413.egsdat ncase=22135410       cpu=469242.00  
+414 sourcePhspConstantZ_w414.egsdat ncase=22135410       cpu=466271.00  
+415 sourcePhspConstantZ_w415.egsdat ncase=22135410       cpu=466699.00  
+416 sourcePhspConstantZ_w416.egsdat ncase=22135410       cpu=471372.00  
+417 sourcePhspConstantZ_w417.egsdat ncase=22135410       cpu=473787.00  
+418 sourcePhspConstantZ_w418.egsdat ncase=22135410       cpu=467798.00  
+419 sourcePhspConstantZ_w419.egsdat ncase=22135410       cpu=470128.00  
+420 sourcePhspConstantZ_w420.egsdat ncase=22135410       cpu=474482.00  
+421 sourcePhspConstantZ_w421.egsdat ncase=22135410       cpu=467891.00  
+422 sourcePhspConstantZ_w422.egsdat ncase=22135410       cpu=471644.00  
+423 sourcePhspConstantZ_w423.egsdat ncase=22135410       cpu=469628.00  
+424 sourcePhspConstantZ_w424.egsdat ncase=22135410       cpu=468085.00  
+425 sourcePhspConstantZ_w425.egsdat ncase=22135410       cpu=472057.00  
+426 sourcePhspConstantZ_w426.egsdat ncase=22135410       cpu=470532.00  
+427 sourcePhspConstantZ_w427.egsdat ncase=22135410       cpu=472883.00  
+428 sourcePhspConstantZ_w428.egsdat ncase=22135410       cpu=463159.00  
+429 sourcePhspConstantZ_w429.egsdat ncase=22135410       cpu=465638.00  
+430 sourcePhspConstantZ_w430.egsdat ncase=22135410       cpu=467862.00  
+431 sourcePhspConstantZ_w431.egsdat ncase=22135410       cpu=465497.00  
+432 sourcePhspConstantZ_w432.egsdat ncase=22135410       cpu=440249.00  
+433 sourcePhspConstantZ_w433.egsdat ncase=22135410       cpu=469661.00  
+434 sourcePhspConstantZ_w434.egsdat ncase=22135410       cpu=470183.00  
+435 sourcePhspConstantZ_w435.egsdat ncase=22135410       cpu=467890.00  
+436 sourcePhspConstantZ_w436.egsdat ncase=22135410       cpu=471201.00  
+437 sourcePhspConstantZ_w437.egsdat ncase=22135410       cpu=468490.00  
+438 sourcePhspConstantZ_w438.egsdat ncase=22135410       cpu=470692.00  
+439 sourcePhspConstantZ_w439.egsdat ncase=22135410       cpu=470214.00  
+440 sourcePhspConstantZ_w440.egsdat ncase=22135410       cpu=472699.00  
+441 sourcePhspConstantZ_w441.egsdat ncase=22135410       cpu=470951.00  
+442 sourcePhspConstantZ_w442.egsdat ncase=19921869       cpu=434032.00  
+443 sourcePhspConstantZ_w443.egsdat ncase=22135410       cpu=474015.00  
+444 sourcePhspConstantZ_w444.egsdat ncase=22135410       cpu=475415.00  
+445 sourcePhspConstantZ_w445.egsdat ncase=22135410       cpu=474422.00  
+446 sourcePhspConstantZ_w446.egsdat ncase=22135410       cpu=475448.00  
+447 sourcePhspConstantZ_w447.egsdat ncase=19921869       cpu=443734.00  
+448 sourcePhspConstantZ_w448.egsdat ncase=19921869       cpu=432724.00  
+449 sourcePhspConstantZ_w449.egsdat ncase=22135410       cpu=474732.00  
+450 sourcePhspConstantZ_w450.egsdat ncase=22135410       cpu=475307.00  
+451 sourcePhspConstantZ_w451.egsdat ncase=19921869       cpu=430700.00  
+452 sourcePhspConstantZ_w452.egsdat ncase=22135410       cpu=471603.00  
+453 sourcePhspConstantZ_w453.egsdat ncase=19921869       cpu=468567.00  
+454 sourcePhspConstantZ_w454.egsdat ncase=22135410       cpu=474899.00  
+455 sourcePhspConstantZ_w455.egsdat ncase=22135410       cpu=474637.00  
+456 sourcePhspConstantZ_w456.egsdat ncase=22135410       cpu=472506.00  
+457 sourcePhspConstantZ_w457.egsdat ncase=22135410       cpu=472155.00  
+458 sourcePhspConstantZ_w458.egsdat ncase=22135410       cpu=475497.00  
+459 sourcePhspConstantZ_w459.egsdat ncase=22135410       cpu=470024.00  
+460 sourcePhspConstantZ_w460.egsdat ncase=22135410       cpu=468049.00  
+461 sourcePhspConstantZ_w461.egsdat ncase=22135410       cpu=470998.00  
+462 sourcePhspConstantZ_w462.egsdat ncase=22135410       cpu=476755.00  
+463 sourcePhspConstantZ_w463.egsdat ncase=22135410       cpu=471913.00  
+464 sourcePhspConstantZ_w464.egsdat ncase=22135410       cpu=470261.00  
+465 sourcePhspConstantZ_w465.egsdat ncase=22135410       cpu=472615.00  
+466 sourcePhspConstantZ_w466.egsdat ncase=22135410       cpu=473862.00  
+467 sourcePhspConstantZ_w467.egsdat ncase=26562492       cpu=436834.00  
+468 sourcePhspConstantZ_w468.egsdat ncase=22135410       cpu=471627.00  
+469 sourcePhspConstantZ_w469.egsdat ncase=22135410       cpu=470742.00  
+470 sourcePhspConstantZ_w470.egsdat ncase=22135410       cpu=476404.00  
+471 sourcePhspConstantZ_w471.egsdat ncase=19921869       cpu=430216.00  
+472 sourcePhspConstantZ_w472.egsdat ncase=22135410       cpu=474050.00  
+473 sourcePhspConstantZ_w473.egsdat ncase=22135410       cpu=475559.00  
+474 sourcePhspConstantZ_w474.egsdat ncase=22135410       cpu=467888.00  
+475 sourcePhspConstantZ_w475.egsdat ncase=22135410       cpu=474084.00  
+476 sourcePhspConstantZ_w476.egsdat ncase=22135410       cpu=467189.00  
+477 sourcePhspConstantZ_w477.egsdat ncase=22135410       cpu=465398.00  
+478 sourcePhspConstantZ_w478.egsdat ncase=22135410       cpu=471322.00  
+479 sourcePhspConstantZ_w479.egsdat ncase=19921869       cpu=432184.00  
+480 sourcePhspConstantZ_w480.egsdat ncase=22135410       cpu=469393.00  
+481 sourcePhspConstantZ_w481.egsdat ncase=22135410       cpu=472879.00  
+482 sourcePhspConstantZ_w482.egsdat ncase=22135410       cpu=470634.00  
+483 sourcePhspConstantZ_w483.egsdat ncase=22135410       cpu=470660.00  
+484 sourcePhspConstantZ_w484.egsdat ncase=22135410       cpu=468186.00  
+485 sourcePhspConstantZ_w485.egsdat ncase=22135410       cpu=476443.00  
+486 sourcePhspConstantZ_w486.egsdat ncase=19921869       cpu=433415.00  
+487 sourcePhspConstantZ_w487.egsdat ncase=22135410       cpu=473573.00  
+488 sourcePhspConstantZ_w488.egsdat ncase=22135410       cpu=469746.00  
+489 sourcePhspConstantZ_w489.egsdat ncase=19921869       cpu=429811.00  
+490 sourcePhspConstantZ_w490.egsdat ncase=22135410       cpu=473339.00  
+491 sourcePhspConstantZ_w491.egsdat ncase=22135410       cpu=467932.00  
+492 sourcePhspConstantZ_w492.egsdat ncase=22135410       cpu=466430.00  
+493 sourcePhspConstantZ_w493.egsdat ncase=22135410       cpu=471416.00  
+494 sourcePhspConstantZ_w494.egsdat ncase=22135410       cpu=474841.00  
+495 sourcePhspConstantZ_w495.egsdat ncase=22135410       cpu=471344.00  
+496 sourcePhspConstantZ_w496.egsdat ncase=22135410       cpu=469754.00  
+497 sourcePhspConstantZ_w497.egsdat ncase=19921869       cpu=430017.00  
+498 sourcePhspConstantZ_w498.egsdat ncase=19921869       cpu=429752.00  
+499 sourcePhspConstantZ_w499.egsdat ncase=22135410       cpu=472291.00  
+500 sourcePhspConstantZ_w500.egsdat ncase=22135410       cpu=466755.00  
+501 sourcePhspConstantZ_w501.egsdat ncase=22135410       cpu=471026.00  
+502 sourcePhspConstantZ_w502.egsdat ncase=22135410       cpu=457056.00  
+503 sourcePhspConstantZ_w503.egsdat ncase=22135410       cpu=460973.00  
+504 sourcePhspConstantZ_w504.egsdat ncase=22135410       cpu=459304.00  
+505 sourcePhspConstantZ_w505.egsdat ncase=22135410       cpu=468066.00  
+506 sourcePhspConstantZ_w506.egsdat ncase=22135410       cpu=475816.00  
+507 sourcePhspConstantZ_w507.egsdat ncase=22135410       cpu=469042.00  
+508 sourcePhspConstantZ_w508.egsdat ncase=22135410       cpu=473205.00  
+509 sourcePhspConstantZ_w509.egsdat ncase=22135410       cpu=469187.00  
+510 sourcePhspConstantZ_w510.egsdat ncase=22135410       cpu=469743.00  
+511 sourcePhspConstantZ_w511.egsdat ncase=22135410       cpu=468207.00  
+512 sourcePhspConstantZ_w512.egsdat ncase=22135410       cpu=466434.00  
+513 sourcePhspConstantZ_w513.egsdat ncase=22135410       cpu=470542.00  
+514 sourcePhspConstantZ_w514.egsdat ncase=19921869       cpu=430919.00  
+515 sourcePhspConstantZ_w515.egsdat ncase=22135410       cpu=467741.00  
+516 sourcePhspConstantZ_w516.egsdat ncase=22135410       cpu=474712.00  
+517 sourcePhspConstantZ_w517.egsdat ncase=22135410       cpu=474742.00  
+518 sourcePhspConstantZ_w518.egsdat ncase=22135410       cpu=470162.00  
+519 sourcePhspConstantZ_w519.egsdat ncase=22135410       cpu=476439.00  
+520 sourcePhspConstantZ_w520.egsdat ncase=19921869       cpu=432681.00  
+521 sourcePhspConstantZ_w521.egsdat ncase=22135410       cpu=470082.00  
+522 sourcePhspConstantZ_w522.egsdat ncase=22135410       cpu=470174.00  
+523 sourcePhspConstantZ_w523.egsdat ncase=22135410       cpu=469940.00  
+524 sourcePhspConstantZ_w524.egsdat ncase=22135410       cpu=472257.00  
+525 sourcePhspConstantZ_w525.egsdat ncase=22135410       cpu=471704.00  
+526 sourcePhspConstantZ_w526.egsdat ncase=22135410       cpu=467152.00  
+527 sourcePhspConstantZ_w527.egsdat ncase=19921869       cpu=432754.00  
+528 sourcePhspConstantZ_w528.egsdat ncase=22135410       cpu=469557.00  
+529 sourcePhspConstantZ_w529.egsdat ncase=22135410       cpu=473156.00  
+530 sourcePhspConstantZ_w530.egsdat ncase=22135410       cpu=472771.00  
+531 sourcePhspConstantZ_w531.egsdat ncase=22135410       cpu=469857.00  
+532 sourcePhspConstantZ_w532.egsdat ncase=22135410       cpu=472134.00  
+533 sourcePhspConstantZ_w533.egsdat ncase=22135410       cpu=476025.00  
+534 sourcePhspConstantZ_w534.egsdat ncase=22135410       cpu=472722.00  
+535 sourcePhspConstantZ_w535.egsdat ncase=22135410       cpu=474729.00  
+536 sourcePhspConstantZ_w536.egsdat ncase=22135410       cpu=470532.00  
+537 sourcePhspConstantZ_w537.egsdat ncase=22135410       cpu=470114.00  
+538 sourcePhspConstantZ_w538.egsdat ncase=22135410       cpu=469650.00  
+539 sourcePhspConstantZ_w539.egsdat ncase=22135410       cpu=469763.00  
+540 sourcePhspConstantZ_w540.egsdat ncase=22135410       cpu=469995.00  
+541 sourcePhspConstantZ_w541.egsdat ncase=22135410       cpu=470324.00  
+542 sourcePhspConstantZ_w542.egsdat ncase=22135410       cpu=469409.00  
+543 sourcePhspConstantZ_w543.egsdat ncase=22135410       cpu=469862.00  
+544 sourcePhspConstantZ_w544.egsdat ncase=22135410       cpu=471553.00  
+545 sourcePhspConstantZ_w545.egsdat ncase=22135410       cpu=472267.00  
+546 sourcePhspConstantZ_w546.egsdat ncase=22135410       cpu=475558.00  
+547 sourcePhspConstantZ_w547.egsdat ncase=22135410       cpu=469823.00  
+548 sourcePhspConstantZ_w548.egsdat ncase=22135410       cpu=459655.00  
+549 sourcePhspConstantZ_w549.egsdat ncase=22135410       cpu=457038.00  
+550 sourcePhspConstantZ_w550.egsdat ncase=22135410       cpu=459999.00  
+551 sourcePhspConstantZ_w551.egsdat ncase=19921869       cpu=436715.00  
+552 sourcePhspConstantZ_w552.egsdat ncase=22135410       cpu=468118.00  
+553 sourcePhspConstantZ_w553.egsdat ncase=22135410       cpu=470815.00  
+554 sourcePhspConstantZ_w554.egsdat ncase=22135410       cpu=469672.00  
+555 sourcePhspConstantZ_w555.egsdat ncase=22135410       cpu=473229.00  
+556 sourcePhspConstantZ_w556.egsdat ncase=22135410       cpu=474549.00  
+557 sourcePhspConstantZ_w557.egsdat ncase=22135410       cpu=476179.00  
+558 sourcePhspConstantZ_w558.egsdat ncase=22135410       cpu=470089.00  
+559 sourcePhspConstantZ_w559.egsdat ncase=22135410       cpu=470109.00  
+560 sourcePhspConstantZ_w560.egsdat ncase=19921869       cpu=436067.00  
+561 sourcePhspConstantZ_w561.egsdat ncase=19921869       cpu=434805.00  
+562 sourcePhspConstantZ_w562.egsdat ncase=22135410       cpu=472390.00  
+563 sourcePhspConstantZ_w563.egsdat ncase=19921869       cpu=430691.00  
+564 sourcePhspConstantZ_w564.egsdat ncase=22135410       cpu=472628.00  
+565 sourcePhspConstantZ_w565.egsdat ncase=19921869       cpu=429750.00  
+566 sourcePhspConstantZ_w566.egsdat ncase=19921869       cpu=430575.00  
+567 sourcePhspConstantZ_w567.egsdat ncase=22135410       cpu=471685.00  
+568 sourcePhspConstantZ_w568.egsdat ncase=19921869       cpu=430365.00  
+569 sourcePhspConstantZ_w569.egsdat ncase=22135410       cpu=474319.00  
+570 sourcePhspConstantZ_w570.egsdat ncase=19921869       cpu=431009.00  
+571 sourcePhspConstantZ_w571.egsdat ncase=22135410       cpu=473167.00  
+572 sourcePhspConstantZ_w572.egsdat ncase=22135410       cpu=474198.00  
+573 sourcePhspConstantZ_w573.egsdat ncase=19921869       cpu=432847.00  
+574 sourcePhspConstantZ_w574.egsdat ncase=19921869       cpu=439358.00  
+575 sourcePhspConstantZ_w575.egsdat ncase=22135410       cpu=470276.00  
+576 sourcePhspConstantZ_w576.egsdat ncase=22135410       cpu=471175.00  
+577 sourcePhspConstantZ_w577.egsdat ncase=22135410       cpu=470329.00  
+578 sourcePhspConstantZ_w578.egsdat ncase=22135410       cpu=469130.00  
+579 sourcePhspConstantZ_w579.egsdat ncase=22135410       cpu=471622.00  
+580 sourcePhspConstantZ_w580.egsdat ncase=22135410       cpu=468434.00  
+581 sourcePhspConstantZ_w581.egsdat ncase=22135410       cpu=468375.00  
+582 sourcePhspConstantZ_w582.egsdat ncase=22135410       cpu=469309.00  
+583 sourcePhspConstantZ_w583.egsdat ncase=19921869       cpu=432634.00  
+584 sourcePhspConstantZ_w584.egsdat ncase=22135410       cpu=468976.00  
+585 sourcePhspConstantZ_w585.egsdat ncase=22135410       cpu=471333.00  
+586 sourcePhspConstantZ_w586.egsdat ncase=22135410       cpu=473625.00  
+587 sourcePhspConstantZ_w587.egsdat ncase=22135410       cpu=473224.00  
+588 sourcePhspConstantZ_w588.egsdat ncase=19921869       cpu=445101.00  
+589 sourcePhspConstantZ_w589.egsdat ncase=22135410       cpu=471627.00  
+590 sourcePhspConstantZ_w590.egsdat ncase=19921869       cpu=436394.00  
+591 sourcePhspConstantZ_w591.egsdat ncase=22135410       cpu=475115.00  
+592 sourcePhspConstantZ_w592.egsdat ncase=22135410       cpu=474734.00  
+593 sourcePhspConstantZ_w593.egsdat ncase=22135410       cpu=476579.00  
+594 sourcePhspConstantZ_w594.egsdat ncase=19921869       cpu=431209.00  
+595 sourcePhspConstantZ_w595.egsdat ncase=22135410       cpu=471557.00  
+596 sourcePhspConstantZ_w596.egsdat ncase=22135410       cpu=466904.00  
+597 sourcePhspConstantZ_w597.egsdat ncase=22135410       cpu=472711.00  
+598 sourcePhspConstantZ_w598.egsdat ncase=22135410       cpu=472692.00  
+599 sourcePhspConstantZ_w599.egsdat ncase=19921869       cpu=430185.00  
+600 sourcePhspConstantZ_w600.egsdat ncase=22135410       cpu=475122.00  
+601 sourcePhspConstantZ_w601.egsdat ncase=22135410       cpu=474454.00  
+602 sourcePhspConstantZ_w602.egsdat ncase=22135410       cpu=475504.00  
+603 sourcePhspConstantZ_w603.egsdat ncase=22135410       cpu=467405.00  
+604 sourcePhspConstantZ_w604.egsdat ncase=22135410       cpu=469897.00  
+605 sourcePhspConstantZ_w605.egsdat ncase=22135410       cpu=467283.00  
+606 sourcePhspConstantZ_w606.egsdat ncase=22135410       cpu=467115.00  
+607 sourcePhspConstantZ_w607.egsdat ncase=22135410       cpu=468849.00  
+608 sourcePhspConstantZ_w608.egsdat ncase=22135410       cpu=475205.00  
+609 sourcePhspConstantZ_w609.egsdat ncase=22135410       cpu=468440.00  
+610 sourcePhspConstantZ_w610.egsdat ncase=22135410       cpu=473310.00  
+611 sourcePhspConstantZ_w611.egsdat ncase=22135410       cpu=469513.00  
+612 sourcePhspConstantZ_w612.egsdat ncase=19921869       cpu=445439.00  
+613 sourcePhspConstantZ_w613.egsdat ncase=22135410       cpu=467090.00  
+614 sourcePhspConstantZ_w614.egsdat ncase=22135410       cpu=469270.00  
+615 sourcePhspConstantZ_w615.egsdat ncase=22135410       cpu=469812.00  
+616 sourcePhspConstantZ_w616.egsdat ncase=22135410       cpu=475519.00  
+617 sourcePhspConstantZ_w617.egsdat ncase=22135410       cpu=473945.00  
+618 sourcePhspConstantZ_w618.egsdat ncase=22135410       cpu=469320.00  
+619 sourcePhspConstantZ_w619.egsdat ncase=22135410       cpu=466973.00  
+620 sourcePhspConstantZ_w620.egsdat ncase=22135410       cpu=465530.00  
+621 sourcePhspConstantZ_w621.egsdat ncase=22135410       cpu=472936.00  
+622 sourcePhspConstantZ_w622.egsdat ncase=22135410       cpu=467909.00  
+623 sourcePhspConstantZ_w623.egsdat ncase=22135410       cpu=474111.00  
+624 sourcePhspConstantZ_w624.egsdat ncase=22135410       cpu=469453.00  
+625 sourcePhspConstantZ_w625.egsdat ncase=22135410       cpu=472489.00  
+626 sourcePhspConstantZ_w626.egsdat ncase=22135410       cpu=466745.00  
+627 sourcePhspConstantZ_w627.egsdat ncase=22135410       cpu=468314.00  
+628 sourcePhspConstantZ_w628.egsdat ncase=22135410       cpu=467566.00  
+629 sourcePhspConstantZ_w629.egsdat ncase=22135410       cpu=467931.00  
+630 sourcePhspConstantZ_w630.egsdat ncase=22135410       cpu=468744.00  
+631 sourcePhspConstantZ_w631.egsdat ncase=22135410       cpu=468258.00  
+632 sourcePhspConstantZ_w632.egsdat ncase=22135410       cpu=470459.00  
+633 sourcePhspConstantZ_w633.egsdat ncase=22135410       cpu=472150.00  
+634 sourcePhspConstantZ_w634.egsdat ncase=22135410       cpu=473013.00  
+635 sourcePhspConstantZ_w635.egsdat ncase=22135410       cpu=474391.00  
+636 sourcePhspConstantZ_w636.egsdat ncase=22135410       cpu=468113.00  
+637 sourcePhspConstantZ_w637.egsdat ncase=22135410       cpu=471203.00  
+638 sourcePhspConstantZ_w638.egsdat ncase=22135410       cpu=467081.00  
+639 sourcePhspConstantZ_w639.egsdat ncase=22135410       cpu=474770.00  
+640 sourcePhspConstantZ_w640.egsdat ncase=19921869       cpu=427151.00  
+641 sourcePhspConstantZ_w641.egsdat ncase=22135410       cpu=464928.00  
+642 sourcePhspConstantZ_w642.egsdat ncase=19921869       cpu=433587.00  
+643 sourcePhspConstantZ_w643.egsdat ncase=22135410       cpu=474562.00  
+644 sourcePhspConstantZ_w644.egsdat ncase=22135410       cpu=470315.00  
+645 sourcePhspConstantZ_w645.egsdat ncase=22135410       cpu=465159.00  
+646 sourcePhspConstantZ_w646.egsdat ncase=22135410       cpu=470147.00  
+647 sourcePhspConstantZ_w647.egsdat ncase=22135410       cpu=469239.00  
+648 sourcePhspConstantZ_w648.egsdat ncase=22135410       cpu=473165.00  
+649 sourcePhspConstantZ_w649.egsdat ncase=22135410       cpu=472783.00  
+650 sourcePhspConstantZ_w650.egsdat ncase=22135410       cpu=471078.00  
+651 sourcePhspConstantZ_w651.egsdat ncase=22135410       cpu=467567.00  
+652 sourcePhspConstantZ_w652.egsdat ncase=22135410       cpu=466879.00  
+653 sourcePhspConstantZ_w653.egsdat ncase=22135410       cpu=471065.00  
+654 sourcePhspConstantZ_w654.egsdat ncase=22135410       cpu=470030.00  
+655 sourcePhspConstantZ_w655.egsdat ncase=22135410       cpu=466156.00  
+656 sourcePhspConstantZ_w656.egsdat ncase=22135410       cpu=469156.00  
+657 sourcePhspConstantZ_w657.egsdat ncase=22135410       cpu=469188.00  
+658 sourcePhspConstantZ_w658.egsdat ncase=22135410       cpu=470074.00  
+659 sourcePhspConstantZ_w659.egsdat ncase=22135410       cpu=472096.00  
+660 sourcePhspConstantZ_w660.egsdat ncase=22135410       cpu=478020.00  
+661 sourcePhspConstantZ_w661.egsdat ncase=22135410       cpu=476357.00  
+662 sourcePhspConstantZ_w662.egsdat ncase=19921869       cpu=436246.00  
+663 sourcePhspConstantZ_w663.egsdat ncase=22135410       cpu=475884.00  
+664 sourcePhspConstantZ_w664.egsdat ncase=19921869       cpu=450486.00  
+665 sourcePhspConstantZ_w665.egsdat ncase=19921869       cpu=437719.00  
+666 sourcePhspConstantZ_w666.egsdat ncase=22135410       cpu=468919.00  
+667 sourcePhspConstantZ_w667.egsdat ncase=22135410       cpu=474855.00  
+668 sourcePhspConstantZ_w668.egsdat ncase=22135410       cpu=470239.00  
+669 sourcePhspConstantZ_w669.egsdat ncase=22135410       cpu=470157.00  
+670 sourcePhspConstantZ_w670.egsdat ncase=22135410       cpu=472675.00  
+671 sourcePhspConstantZ_w671.egsdat ncase=22135410       cpu=473460.00  
+672 sourcePhspConstantZ_w672.egsdat ncase=22135410       cpu=470231.00  
+673 sourcePhspConstantZ_w673.egsdat ncase=22135410       cpu=471232.00  
+674 sourcePhspConstantZ_w674.egsdat ncase=22135410       cpu=471328.00  
+675 sourcePhspConstantZ_w675.egsdat ncase=22135410       cpu=469833.00  
+676 sourcePhspConstantZ_w676.egsdat ncase=22135410       cpu=470766.00  
+677 sourcePhspConstantZ_w677.egsdat ncase=22135410       cpu=469640.00  
+678 sourcePhspConstantZ_w678.egsdat ncase=22135410       cpu=471808.00  
+679 sourcePhspConstantZ_w679.egsdat ncase=22135410       cpu=466636.00  
+680 sourcePhspConstantZ_w680.egsdat ncase=22135410       cpu=470344.00  
+681 sourcePhspConstantZ_w681.egsdat ncase=22135410       cpu=472604.00  
+682 sourcePhspConstantZ_w682.egsdat ncase=22135410       cpu=469318.00  
+683 sourcePhspConstantZ_w683.egsdat ncase=22135410       cpu=470852.00  
+684 sourcePhspConstantZ_w684.egsdat ncase=22135410       cpu=471545.00  
+685 sourcePhspConstantZ_w685.egsdat ncase=22135410       cpu=470116.00  
+686 sourcePhspConstantZ_w686.egsdat ncase=22135410       cpu=473322.00  
+687 sourcePhspConstantZ_w687.egsdat ncase=22135410       cpu=470043.00  
+688 sourcePhspConstantZ_w688.egsdat ncase=19921869       cpu=449668.00  
+689 sourcePhspConstantZ_w689.egsdat ncase=19921869       cpu=439865.00  
+690 sourcePhspConstantZ_w690.egsdat ncase=19921869       cpu=442166.00  
+691 sourcePhspConstantZ_w691.egsdat ncase=19921869       cpu=443215.00  
+692 sourcePhspConstantZ_w692.egsdat ncase=19921869       cpu=441760.00  
+693 sourcePhspConstantZ_w693.egsdat ncase=19921869       cpu=449503.00  
+694 sourcePhspConstantZ_w694.egsdat ncase=19921869       cpu=449210.00  
+695 sourcePhspConstantZ_w695.egsdat ncase=19921869       cpu=440335.00  
+696 sourcePhspConstantZ_w696.egsdat ncase=19921869       cpu=442289.00  
+697 sourcePhspConstantZ_w697.egsdat ncase=19921869       cpu=447043.00  
+698 sourcePhspConstantZ_w698.egsdat ncase=19921869       cpu=442946.00  
+699 sourcePhspConstantZ_w699.egsdat ncase=19921869       cpu=447096.00  
+700 sourcePhspConstantZ_w700.egsdat ncase=19921869       cpu=444734.00  
+701 sourcePhspConstantZ_w701.egsdat ncase=19921869       cpu=442154.00  
+702 sourcePhspConstantZ_w702.egsdat ncase=19921869       cpu=446253.00  
+703 sourcePhspConstantZ_w703.egsdat ncase=19921869       cpu=441797.00  
+704 sourcePhspConstantZ_w704.egsdat ncase=22135410       cpu=466340.00  
+705 sourcePhspConstantZ_w705.egsdat ncase=19921869       cpu=442424.00  
+706 sourcePhspConstantZ_w706.egsdat ncase=19921869       cpu=439186.00  
+707 sourcePhspConstantZ_w707.egsdat ncase=19921869       cpu=441693.00  
+708 sourcePhspConstantZ_w708.egsdat ncase=19921869       cpu=443491.00  
+709 sourcePhspConstantZ_w709.egsdat ncase=19921869       cpu=447173.00  
+710 sourcePhspConstantZ_w710.egsdat ncase=19921869       cpu=443563.00  
+711 sourcePhspConstantZ_w711.egsdat ncase=19921869       cpu=445223.00  
+712 sourcePhspConstantZ_w712.egsdat ncase=19921869       cpu=441620.00  
+713 sourcePhspConstantZ_w713.egsdat ncase=19921869       cpu=431181.00  
+714 sourcePhspConstantZ_w714.egsdat ncase=19921869       cpu=441025.00  
+715 sourcePhspConstantZ_w715.egsdat ncase=19921869       cpu=430672.00  
+716 sourcePhspConstantZ_w716.egsdat ncase=19921869       cpu=445899.00  
+717 sourcePhspConstantZ_w717.egsdat ncase=19921869       cpu=431349.00  
+718 sourcePhspConstantZ_w718.egsdat ncase=22135410       cpu=472027.00  
+719 sourcePhspConstantZ_w719.egsdat ncase=22135410       cpu=471562.00  
+720 sourcePhspConstantZ_w720.egsdat ncase=22135410       cpu=468315.00  
+721 sourcePhspConstantZ_w721.egsdat ncase=22135410       cpu=467141.00  
+722 sourcePhspConstantZ_w722.egsdat ncase=22135410       cpu=474530.00  
+723 sourcePhspConstantZ_w723.egsdat ncase=22135410       cpu=469284.00  
+724 sourcePhspConstantZ_w724.egsdat ncase=22135410       cpu=472340.00  
+725 sourcePhspConstantZ_w725.egsdat ncase=22135410       cpu=468882.00  
+726 sourcePhspConstantZ_w726.egsdat ncase=22135410       cpu=475221.00  
+727 sourcePhspConstantZ_w727.egsdat ncase=22135410       cpu=465782.00  
+728 sourcePhspConstantZ_w728.egsdat ncase=22135410       cpu=469743.00  
+729 sourcePhspConstantZ_w729.egsdat ncase=22135410       cpu=436660.00  
+730 sourcePhspConstantZ_w730.egsdat ncase=22135410       cpu=433803.00  
+731 sourcePhspConstantZ_w731.egsdat ncase=22135410       cpu=469942.00  
+732 sourcePhspConstantZ_w732.egsdat ncase=22135410       cpu=475323.00  
+733 sourcePhspConstantZ_w733.egsdat ncase=22135410       cpu=466645.00  
+734 sourcePhspConstantZ_w734.egsdat ncase=19921869       cpu=430176.00  
+735 sourcePhspConstantZ_w735.egsdat ncase=22135410       cpu=469086.00  
+736 sourcePhspConstantZ_w736.egsdat ncase=19921869       cpu=435785.00  
+737 sourcePhspConstantZ_w737.egsdat ncase=22135410       cpu=469707.00  
+738 sourcePhspConstantZ_w738.egsdat ncase=22135410       cpu=468764.00  
+739 sourcePhspConstantZ_w739.egsdat ncase=22135410       cpu=467751.00  
+740 sourcePhspConstantZ_w740.egsdat ncase=19921869       cpu=429261.00  
+741 sourcePhspConstantZ_w741.egsdat ncase=22135410       cpu=464222.00  
+742 sourcePhspConstantZ_w742.egsdat ncase=22135410       cpu=467571.00  
+743 sourcePhspConstantZ_w743.egsdat ncase=22135410       cpu=461568.00  
+744 sourcePhspConstantZ_w744.egsdat ncase=22135410       cpu=463244.00  
+745 sourcePhspConstantZ_w745.egsdat ncase=17708328       cpu=439766.00  
+746 sourcePhspConstantZ_w746.egsdat ncase=17708328       cpu=438318.00  
+747 sourcePhspConstantZ_w747.egsdat ncase=17708328       cpu=437952.00  
+748 sourcePhspConstantZ_w748.egsdat ncase=17708328       cpu=435159.00  
+749 sourcePhspConstantZ_w749.egsdat ncase=17708328       cpu=448780.00  
+750 sourcePhspConstantZ_w750.egsdat ncase=17708328       cpu=433911.00  
+751 sourcePhspConstantZ_w751.egsdat ncase=17708328       cpu=439392.00  
+752 sourcePhspConstantZ_w752.egsdat ncase=17708328       cpu=435842.00  
+753 sourcePhspConstantZ_w753.egsdat ncase=17708328       cpu=451243.00  
+754 sourcePhspConstantZ_w754.egsdat ncase=17708328       cpu=435391.00  
+755 sourcePhspConstantZ_w755.egsdat ncase=17708328       cpu=435764.00  
+756 sourcePhspConstantZ_w756.egsdat ncase=17708328       cpu=433532.00  
+757 sourcePhspConstantZ_w757.egsdat ncase=17708328       cpu=440550.00  
+758 sourcePhspConstantZ_w758.egsdat ncase=17708328       cpu=439951.00  
+759 sourcePhspConstantZ_w759.egsdat ncase=17708328       cpu=433492.00  
+760 sourcePhspConstantZ_w760.egsdat ncase=17708328       cpu=433917.00  
+761 sourcePhspConstantZ_w761.egsdat ncase=17708328       cpu=432826.00  
+762 sourcePhspConstantZ_w762.egsdat ncase=17708328       cpu=437042.00  
+763 sourcePhspConstantZ_w763.egsdat ncase=17708328       cpu=437086.00  
+764 sourcePhspConstantZ_w764.egsdat ncase=17708328       cpu=433073.00  
+765 sourcePhspConstantZ_w765.egsdat ncase=17708328       cpu=435093.00  
+766 sourcePhspConstantZ_w766.egsdat ncase=17708328       cpu=433190.00  
+767 sourcePhspConstantZ_w767.egsdat ncase=17708328       cpu=432978.00  
+768 sourcePhspConstantZ_w768.egsdat ncase=17708328       cpu=435666.00  
+=======================================================================
+                            Total ncase=16858332864    cpu=351018392.00
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.26 (sec.) 0.0001(hours)
+CPU time including previous runs:       351018392.26 (sec.) 97505.1090 (hours)
+Histories per hour:                     172897        
+Number of random numbers used:          2973364421299166
+Number of electron CH steps:            3.69049e+12   
+Number of all electron steps:           8.45925e+14   
+
+======================================================
+Phase Space Scoring Object(sourcePhsp100kv)
+======================================================
+
+ IAEA format phase space output:
+ Header file: /home/rsmina/EGSnrc/egs_home/TB/sourcePhsp100kv.1.IAEAheader
+ Data file: /home/rsmina/EGSnrc/egs_home/TB/sourcePhsp100kv.1.IAEAphsp
+Summary of scored data:
+=> total no. of particles = 1562757137 
+=> no. of photons = 1560754002 
+=> max. k.e. of all particles = -1e+30 MeV
+=> min. k.e. of charged particles = 1e+30 MeV
+=> no. of primary histories represented = 3544954363681059872
+
+======================================================
+
+======================================================
+Dose Scoring Object(dose)
+======================================================
+=> last case = 16858332864 fluence = 2.71453e+09
+
+==> Summary of region dosimetry (per fluence)
+ ir  medium         rho/[g/cm3]  V/cm3    Edep/[MeV*cm2]            D/[Gy*cm2]         
+---------------------------------------------------------------------------------------
+360 air               0.001     1.0000 1.3895e-06 +/- 0.301  % 1.8476e-13 +/- 0.301  %
+---------------------------------------------------------------------------------------
+
+======================================================
+
+
+================================================================================
+Finished simulation
+
+  Elapsed time:                   10.0 s (  0.003 h)
+  CPU time:                        2.9 s (  0.001 h)
+  Ratio:                          3.397
+
+
+End of run                                             Wed Nov 17 17:46:59 2021
+================================================================================
+finishSimulation(TB) 0
