@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 2.5E10
+    ncase = 50000
     #calculation = combine
     #nchunk = 50000
     #nbatch = 3
@@ -288,13 +288,13 @@
 ################################
 :start ausgab object definition: # Only 1 ausgab definition block allowed
 	### Particle tracks
-	#:start ausgab object:
-	#	name = tracks
-	#	library = egs_track_scoring
-	#	score electrons = no
-	#	score positrons = no
+	:start ausgab object:
+		name = tracks
+		library = egs_track_scoring
+		score electrons = no
+		score positrons = no
     	#	stop scoring   = 1000000
-	#stop ausgab object:
+	stop ausgab object:
 
     :start ausgab object:
         library = egs_radiative_splitting
@@ -304,7 +304,7 @@
 
     :start ausgab object:
           library                  = egs_phsp_scoring
-          name                     = sourcePhsp100kvPart
+          name                     = testsourcePhsp100kv
           output format            = IAEA
           particle type            = all
           #output directory         =
