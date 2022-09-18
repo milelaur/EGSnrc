@@ -1,6 +1,6 @@
 ################################
 #
-# TrueBeam kV imaging System, Half fan option and focal spot either small or large
+# TrueBeam kV imaging System, Full fan option and focal spot either small or large
 #
 ################################
 
@@ -8,10 +8,10 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 3.5E10
+    ncase = 1E10
     #calculation = combine
-    nchunk = 3
-    nbatch = 10
+    nchunk = 50
+    nbatch = 3
 :stop run control:
 
 ################################
@@ -38,15 +38,6 @@
     :stop geometry:
 
     ################################
-    ### Full fan bowtie
-    ################################
-    :start geometry:
-        library = egs_glib
-        name = bowtie
-        include file = bow_tie_hf.egsinp
-    :stop geometry:
-
-    ################################
     ### Detection cover
     ################################
     :start geometry:
@@ -63,7 +54,7 @@
     :start geometry:
         name = prim_coll_and_blades_and_hard
         library = egs_gunion
-	geometries = blades hard_filt bowtie cover
+	geometries = blades hard_filt cover
     :stop geometry:
 
     ### Air block from faceplate to end
@@ -90,14 +81,79 @@
     ### TESTING GEOMETRY
     ################################
 
-    ### Air between source and air
+    ### Air between source and water
     :start geometry:
         name = air_prim_to_detector
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -25 25
-        y-planes = -25 25
-        z-planes = 18.4 121
+        x-planes = -30 30
+        y-planes = -30 30
+        z-planes = 8.752 120
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+    ### water tank
+    #:start geometry:
+    #    name = tank
+    #    library = egs_ndgeometry
+    #    type = EGS_XYZGeometry
+    #    x-planes = -50 50
+    #    y-planes = -50 50
+    #    z-planes = 100 121
+    #    :start media input:
+    #        media = water
+    #    :stop media input:
+    #:stop geometry:
+
+   ### Profile before blades
+    :start geometry:
+        name = profileBefBlades
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -20 -19 -18 -17 -16 -15 -14 -13 -12 -11 -10 -9 -8 -7 -6 -5 -4 -3 -2 -1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+        y-planes = -0.5 0.5
+        z-planes = 8.9 9
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+    ### Profile after blades
+    :start geometry:
+        name = profileBlade
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -15 -14 -13 -12 -11 -10 -9 -8 -7 -6 -5 -4 -3 -2 -1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+        y-planes = -0.5 0.5
+        z-planes = 11.5 12.5
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+   ### Profile after hardening filter
+    :start geometry:
+        name = profileHardFilt
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -15 -14 -13 -12 -11 -10 -9 -8 -7 -6 -5 -4 -3 -2 -1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+        y-planes = -0.5 0.5
+        z-planes = 13.5 14.5
+        :start media input:
+            media = air
+        :stop media input:
+    :stop geometry:
+
+   ### Profile after cover
+    :start geometry:
+        name = profileCover
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -15 -14 -13 -12 -11 -10 -9 -8 -7 -6 -5 -4 -3 -2 -1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+        y-planes = -0.5 0.5
+        z-planes = 18.5 19.5
         :start media input:
             media = air
         :stop media input:
@@ -123,7 +179,7 @@
         type = EGS_XYZGeometry
         x-planes = -0.5 0.5
         y-planes = -20 -19 -18 -17 -16 -15 -14 -13 -12 -11 -10 -9 -8 -7 -6 -5 -4 -3 -2 -1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
-        z-planes = 100.5 101.5
+        z-planes = 100 101
         :start media input:
             media = air
         :stop media input:
@@ -147,7 +203,7 @@
         name = obi_system
         library = egs_gunion
 	### Add profilex, profiley or pdd
-        geometries = obi profilex air_prim_to_detector
+        geometries = obi profilex profileBefBlades profileBlade profileHardFilt profileCover air_prim_to_detector 
     :stop geometry:
 
     ### Geometry for Russian Roulette
@@ -158,7 +214,7 @@
         type = EGS_XYZGeometry
         x-planes = -1 1
         y-planes = -1 1
-        z-planes = 100 120
+        z-planes = 99.5 120.5
     :stop geometry:
 
     :start geometry:
@@ -166,7 +222,7 @@
         library = egs_ndgeometry
         type = EGS_XYZGeometry
         x-planes = -1 1
-        y-planes = -21 21
+        y-planes = -20.5 20.5
         z-planes = 99.5 101.5
     :stop geometry:
 
@@ -174,7 +230,7 @@
         name = profilexRR
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -21 21
+        x-planes = -20.5 20.5
         y-planes = -1 1
         z-planes = 99.5 101.5
     :stop geometry:
@@ -293,7 +349,7 @@
    :start source:
         library = iaea_phsp_source
         name = my_source
-        iaea phase space file = sourcePhsp100kVFixedComp.1
+        iaea phase space file = sourcePhsp100kVPhoSplit.1
         particle type = all
         #cutout = x1 x2 y1 y2
         #weight window = 0.99 1.01
@@ -328,7 +384,7 @@
     ### Dose scoring object to x profile
     :start ausgab object:
         library = egs_dose_scoring
-        name = profilexScorHalfFan
+        name = profilexScorReuse
         medium dose = no
         region dose = yes
         :start output dose file:
@@ -340,7 +396,7 @@
     ### Dose scoring object to y profile
     #:start ausgab object:
     #    library = egs_dose_scoring
-    #    name = profileyScorFullFan
+    #    name = profileyScorReuse
     #    medium dose = no
     #    region dose = yes
     #    :start output dose file:
@@ -352,7 +408,7 @@
     ### Dose scoring object to pdd
     #:start ausgab object:
     #    library = egs_dose_scoring
-    #    name = pddScorFullFan
+    #    name = pddScorReuse
     #    medium dose = no
     #    region dose = yes
     #    :start output dose file:
@@ -415,8 +471,8 @@
 ### VARIANCE REDUCTION
 ##############################################################################
 :start variance reduction:
-    split brem photons = 100
-    bcse medium = anode 100
+    #split brem photons = 100
+    #bcse medium = anode 100
     photon splitting = 100
     :start range rejection:
         rejection = 100
@@ -441,9 +497,9 @@
 	set color = pb 255 85 0 200
 	set color = water 85 170 255 200
 	set color = titanium 0 170 127 250
-    set color = carbonate 170 85 0 200
+        set color = carbonate 170 85 0 200
 	set color = target_material 85 225 127 200
-    set color = molybdenum 0 170 225 200
+        set color = molybdenum 0 170 225 200
 	set color = graphite 170 85 127 200
 	set color = vacuum 225 225 225 50
 :stop view control:

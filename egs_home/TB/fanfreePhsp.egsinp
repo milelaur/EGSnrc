@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 4.8E10
+    ncase = 3.5E10
     #calculation = combine
     nchunk = 50
     nbatch = 3
@@ -297,14 +297,14 @@
    :start source:
         library = iaea_phsp_source
         name = my_source
-        iaea phase space file = sourcePhsp100kv.1
+        iaea phase space file = sourcePhsp100kVFixedComp.1
         particle type = all
         #cutout = x1 x2 y1 y2
         #weight window = 0.99 1.01
-        recycle photons = 6
-        recycle electrons = 6
-	reuse photons = 2
-	reuse electrons = 2
+        recycle photons = 25
+        recycle electrons = 25
+	reuse photons = 4
+	reuse electrons = 4
     :stop source:
 
     simulation source = my_source

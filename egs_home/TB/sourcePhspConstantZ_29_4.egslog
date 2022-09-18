@@ -1,0 +1,1173 @@
+
+               ***************************************************
+               *                                                 *
+               *                  TB                       *
+               *                                                 *
+               ***************************************************
+
+This is TB   based on
+      EGS_AdvancedApplication  
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = sourcePhsp
+ number of regions = 720
+ geometries:
+   to_primary_collimator (type EGS_UnionGeometry)
+   air (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Transformed Parallel beam from a shape of type sphere with monoenergetic 0.1 MeV, electrons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 336
+  numbers used so far = 4785801483392
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = NO
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 1000000
+ - Track buffer size           = 1024
+ - Output file name            = /home/rsmina/EGSnrc/egs_home/TB/sourcePhspConstantZ_w240_w240.ptracks
+
+
+===========================================
+Radiative splitting Object (splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Phase Space Scoring Object (sourcePhsp100kvPart1)
+*******************************************
+
+ Will output phase space for particles crossing surfaces of geometry:
+phsp_plate
+ Particles scored on: entering phase space geometry
+ Data will be output in IAEA format.
+
+ Phase space file names:
+  Header file: /home/rsmina/EGSnrc/egs_home/TB/sourcePhsp100kvPart1_w240.1.IAEAheader
+  Data file: /home/rsmina/EGSnrc/egs_home/TB/sourcePhsp100kvPart1_w240.1.IAEAphsp
+ Data scored at constant Z = 8.8752 cm
+ Particles scored: all
+*******************************************
+Dose Scoring Object (dose)
+*******************************************
+
+ - Regions in dose calculator :1
+
+
+--------------------------------------
+ medium         rho/[g/cm**3]
+--------------------------------------
+graphite         2.00
+target_material 19.39
+molybdenum      10.22
+beryllium        1.85
+steel            8.06
+oil              0.89
+aluminum         2.70
+air              0.00
+pb              11.35
+--------------------------------------
+
+*******************************************
+
+
+
+
+
+The following media are defined:
+================================
+
+  0  graphite                 AE= 0.5120 AP= 0.0010 0
+  1  target_material          AE= 0.5120 AP= 0.0010 1
+  2  molybdenum               AE= 0.5120 AP= 0.0010 2
+  3  beryllium                AE= 0.5120 AP= 0.0010 3
+  4  steel                    AE= 0.5120 AP= 0.0010 4
+  5  oil                      AE= 0.5120 AP= 0.0010 5
+  6  aluminum                 AE= 0.5120 AP= 0.0010 6
+  7  air                      AE= 0.5120 AP= 0.0010 7
+  8  pb                       AE= 0.5120 AP= 0.0010 8
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          On
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 sourcePhspConstantZ_w1.egsdat  ncase=2100000000     cpu=518133.00  
+ 2 sourcePhspConstantZ_w2.egsdat  ncase=1950000000     cpu=524669.00  
+ 3 sourcePhspConstantZ_w3.egsdat  ncase=1950000000     cpu=520788.00  
+ 4 sourcePhspConstantZ_w4.egsdat  ncase=2100000000     cpu=549784.00  
+ 5 sourcePhspConstantZ_w5.egsdat  ncase=1950000000     cpu=526538.00  
+ 6 sourcePhspConstantZ_w6.egsdat  ncase=2100000000     cpu=546477.00  
+ 7 sourcePhspConstantZ_w7.egsdat  ncase=2100000000     cpu=547050.00  
+ 8 sourcePhspConstantZ_w8.egsdat  ncase=1950000000     cpu=520955.00  
+ 9 sourcePhspConstantZ_w9.egsdat  ncase=1950000000     cpu=516038.00  
+10 sourcePhspConstantZ_w10.egsdat ncase=1950000000     cpu=519023.00  
+11 sourcePhspConstantZ_w11.egsdat ncase=1950000000     cpu=524257.00  
+12 sourcePhspConstantZ_w12.egsdat ncase=1950000000     cpu=517702.00  
+13 sourcePhspConstantZ_w13.egsdat ncase=1950000000     cpu=516016.00  
+14 sourcePhspConstantZ_w14.egsdat ncase=1950000000     cpu=514854.00  
+15 sourcePhspConstantZ_w15.egsdat ncase=1950000000     cpu=521795.00  
+16 sourcePhspConstantZ_w16.egsdat ncase=1650000000     cpu=519611.00  
+17 sourcePhspConstantZ_w17.egsdat ncase=1800000000     cpu=554405.00  
+18 sourcePhspConstantZ_w18.egsdat ncase=1650000000     cpu=518341.00  
+19 sourcePhspConstantZ_w19.egsdat ncase=1800000000     cpu=556662.00  
+20 sourcePhspConstantZ_w20.egsdat ncase=1650000000     cpu=515628.00  
+21 sourcePhspConstantZ_w21.egsdat ncase=1650000000     cpu=525570.00  
+22 sourcePhspConstantZ_w22.egsdat ncase=1650000000     cpu=518439.00  
+23 sourcePhspConstantZ_w23.egsdat ncase=1650000000     cpu=523021.00  
+24 sourcePhspConstantZ_w24.egsdat ncase=1650000000     cpu=522105.00  
+25 sourcePhspConstantZ_w25.egsdat ncase=1650000000     cpu=516098.00  
+26 sourcePhspConstantZ_w26.egsdat ncase=1650000000     cpu=522195.00  
+27 sourcePhspConstantZ_w27.egsdat ncase=1650000000     cpu=520009.00  
+28 sourcePhspConstantZ_w28.egsdat ncase=1800000000     cpu=559429.00  
+29 sourcePhspConstantZ_w29.egsdat ncase=1650000000     cpu=518002.00  
+30 sourcePhspConstantZ_w30.egsdat ncase=1650000000     cpu=515870.00  
+31 sourcePhspConstantZ_w31.egsdat ncase=1650000000     cpu=522995.00  
+32 sourcePhspConstantZ_w32.egsdat ncase=1800000000     cpu=546493.00  
+33 sourcePhspConstantZ_w33.egsdat ncase=1800000000     cpu=545765.00  
+34 sourcePhspConstantZ_w34.egsdat ncase=1800000000     cpu=550940.00  
+35 sourcePhspConstantZ_w35.egsdat ncase=1800000000     cpu=545666.00  
+36 sourcePhspConstantZ_w36.egsdat ncase=1650000000     cpu=519532.00  
+37 sourcePhspConstantZ_w37.egsdat ncase=1800000000     cpu=557271.00  
+38 sourcePhspConstantZ_w38.egsdat ncase=1650000000     cpu=515764.00  
+39 sourcePhspConstantZ_w39.egsdat ncase=1800000000     cpu=559800.00  
+40 sourcePhspConstantZ_w40.egsdat ncase=1650000000     cpu=524128.00  
+41 sourcePhspConstantZ_w41.egsdat ncase=1650000000     cpu=515997.00  
+42 sourcePhspConstantZ_w42.egsdat ncase=1650000000     cpu=520193.00  
+43 sourcePhspConstantZ_w43.egsdat ncase=1800000000     cpu=557895.00  
+44 sourcePhspConstantZ_w44.egsdat ncase=1650000000     cpu=518930.00  
+45 sourcePhspConstantZ_w45.egsdat ncase=1650000000     cpu=518151.00  
+46 sourcePhspConstantZ_w46.egsdat ncase=1650000000     cpu=532731.00  
+47 sourcePhspConstantZ_w47.egsdat ncase=1800000000     cpu=559941.00  
+48 sourcePhspConstantZ_w48.egsdat ncase=1650000000     cpu=518075.00  
+49 sourcePhspConstantZ_w49.egsdat ncase=1650000000     cpu=516838.00  
+50 sourcePhspConstantZ_w50.egsdat ncase=1650000000     cpu=522122.00  
+51 sourcePhspConstantZ_w51.egsdat ncase=1650000000     cpu=518969.00  
+52 sourcePhspConstantZ_w52.egsdat ncase=1650000000     cpu=519519.00  
+53 sourcePhspConstantZ_w53.egsdat ncase=1650000000     cpu=518631.00  
+54 sourcePhspConstantZ_w54.egsdat ncase=1650000000     cpu=516482.00  
+55 sourcePhspConstantZ_w55.egsdat ncase=1650000000     cpu=517146.00  
+56 sourcePhspConstantZ_w56.egsdat ncase=1800000000     cpu=555945.00  
+57 sourcePhspConstantZ_w57.egsdat ncase=1650000000     cpu=518477.00  
+58 sourcePhspConstantZ_w58.egsdat ncase=1650000000     cpu=517315.00  
+59 sourcePhspConstantZ_w59.egsdat ncase=1650000000     cpu=516607.00  
+60 sourcePhspConstantZ_w60.egsdat ncase=1650000000     cpu=520563.00  
+61 sourcePhspConstantZ_w61.egsdat ncase=1650000000     cpu=520647.00  
+62 sourcePhspConstantZ_w62.egsdat ncase=1650000000     cpu=528284.00  
+63 sourcePhspConstantZ_w63.egsdat ncase=1650000000     cpu=528868.00  
+64 sourcePhspConstantZ_w64.egsdat ncase=1650000000     cpu=516924.00  
+65 sourcePhspConstantZ_w65.egsdat ncase=1800000000     cpu=559480.00  
+66 sourcePhspConstantZ_w66.egsdat ncase=1650000000     cpu=519667.00  
+67 sourcePhspConstantZ_w67.egsdat ncase=1650000000     cpu=517472.00  
+68 sourcePhspConstantZ_w68.egsdat ncase=1800000000     cpu=557188.00  
+69 sourcePhspConstantZ_w69.egsdat ncase=1650000000     cpu=517034.00  
+70 sourcePhspConstantZ_w70.egsdat ncase=1650000000     cpu=520675.00  
+71 sourcePhspConstantZ_w71.egsdat ncase=1650000000     cpu=519388.00  
+72 sourcePhspConstantZ_w72.egsdat ncase=1650000000     cpu=523810.00  
+73 sourcePhspConstantZ_w73.egsdat ncase=1650000000     cpu=521690.00  
+74 sourcePhspConstantZ_w74.egsdat ncase=1650000000     cpu=518068.00  
+75 sourcePhspConstantZ_w75.egsdat ncase=1650000000     cpu=517196.00  
+76 sourcePhspConstantZ_w76.egsdat ncase=1650000000     cpu=525304.00  
+77 sourcePhspConstantZ_w77.egsdat ncase=1650000000     cpu=515039.00  
+78 sourcePhspConstantZ_w78.egsdat ncase=1650000000     cpu=523683.00  
+79 sourcePhspConstantZ_w79.egsdat ncase=1650000000     cpu=516938.00  
+80 sourcePhspConstantZ_w80.egsdat ncase=1650000000     cpu=516758.00  
+81 sourcePhspConstantZ_w81.egsdat ncase=1800000000     cpu=557366.00  
+82 sourcePhspConstantZ_w82.egsdat ncase=1800000000     cpu=556630.00  
+83 sourcePhspConstantZ_w83.egsdat ncase=1800000000     cpu=558530.00  
+84 sourcePhspConstantZ_w84.egsdat ncase=1800000000     cpu=557078.00  
+85 sourcePhspConstantZ_w85.egsdat ncase=1800000000     cpu=557600.00  
+86 sourcePhspConstantZ_w86.egsdat ncase=1800000000     cpu=559518.00  
+87 sourcePhspConstantZ_w87.egsdat ncase=1650000000     cpu=517388.00  
+88 sourcePhspConstantZ_w88.egsdat ncase=1800000000     cpu=558268.00  
+89 sourcePhspConstantZ_w89.egsdat ncase=1650000000     cpu=519392.00  
+90 sourcePhspConstantZ_w90.egsdat ncase=1650000000     cpu=522274.00  
+91 sourcePhspConstantZ_w91.egsdat ncase=1650000000     cpu=518119.00  
+92 sourcePhspConstantZ_w92.egsdat ncase=1650000000     cpu=519167.00  
+93 sourcePhspConstantZ_w93.egsdat ncase=1800000000     cpu=558512.00  
+94 sourcePhspConstantZ_w94.egsdat ncase=1650000000     cpu=565414.00  
+95 sourcePhspConstantZ_w95.egsdat ncase=1800000000     cpu=558367.00  
+96 sourcePhspConstantZ_w96.egsdat ncase=1800000000     cpu=558672.00  
+97 sourcePhspConstantZ_w97.egsdat ncase=1650000000     cpu=516797.00  
+98 sourcePhspConstantZ_w98.egsdat ncase=1650000000     cpu=522339.00  
+99 sourcePhspConstantZ_w99.egsdat ncase=1800000000     cpu=559450.00  
+100 sourcePhspConstantZ_w100.egsdat ncase=1800000000     cpu=559159.00  
+101 sourcePhspConstantZ_w101.egsdat ncase=1650000000     cpu=518713.00  
+102 sourcePhspConstantZ_w102.egsdat ncase=1650000000     cpu=516075.00  
+103 sourcePhspConstantZ_w103.egsdat ncase=1650000000     cpu=516400.00  
+104 sourcePhspConstantZ_w104.egsdat ncase=1650000000     cpu=515997.00  
+105 sourcePhspConstantZ_w105.egsdat ncase=1650000000     cpu=523021.00  
+106 sourcePhspConstantZ_w106.egsdat ncase=1650000000     cpu=527235.00  
+107 sourcePhspConstantZ_w107.egsdat ncase=1650000000     cpu=524516.00  
+108 sourcePhspConstantZ_w108.egsdat ncase=1650000000     cpu=516974.00  
+109 sourcePhspConstantZ_w109.egsdat ncase=1650000000     cpu=516086.00  
+110 sourcePhspConstantZ_w110.egsdat ncase=1650000000     cpu=519511.00  
+111 sourcePhspConstantZ_w111.egsdat ncase=1650000000     cpu=517838.00  
+112 sourcePhspConstantZ_w112.egsdat ncase=1650000000     cpu=520914.00  
+113 sourcePhspConstantZ_w113.egsdat ncase=1800000000     cpu=556655.00  
+114 sourcePhspConstantZ_w114.egsdat ncase=1650000000     cpu=519034.00  
+115 sourcePhspConstantZ_w115.egsdat ncase=1800000000     cpu=555342.00  
+116 sourcePhspConstantZ_w116.egsdat ncase=1650000000     cpu=525705.00  
+117 sourcePhspConstantZ_w117.egsdat ncase=1650000000     cpu=526404.00  
+118 sourcePhspConstantZ_w118.egsdat ncase=1650000000     cpu=526942.00  
+119 sourcePhspConstantZ_w119.egsdat ncase=1650000000     cpu=516959.00  
+120 sourcePhspConstantZ_w120.egsdat ncase=1650000000     cpu=519343.00  
+121 sourcePhspConstantZ_w121.egsdat ncase=1650000000     cpu=518252.00  
+122 sourcePhspConstantZ_w122.egsdat ncase=1650000000     cpu=526790.00  
+123 sourcePhspConstantZ_w123.egsdat ncase=1650000000     cpu=516894.00  
+124 sourcePhspConstantZ_w124.egsdat ncase=1650000000     cpu=519093.00  
+125 sourcePhspConstantZ_w125.egsdat ncase=1800000000     cpu=554949.00  
+126 sourcePhspConstantZ_w126.egsdat ncase=1650000000     cpu=515736.00  
+127 sourcePhspConstantZ_w127.egsdat ncase=1800000000     cpu=555370.00  
+128 sourcePhspConstantZ_w128.egsdat ncase=1650000000     cpu=521570.00  
+129 sourcePhspConstantZ_w129.egsdat ncase=1650000000     cpu=517296.00  
+130 sourcePhspConstantZ_w130.egsdat ncase=1650000000     cpu=521981.00  
+131 sourcePhspConstantZ_w131.egsdat ncase=1650000000     cpu=520860.00  
+132 sourcePhspConstantZ_w132.egsdat ncase=1650000000     cpu=523393.00  
+133 sourcePhspConstantZ_w133.egsdat ncase=1650000000     cpu=516038.00  
+134 sourcePhspConstantZ_w134.egsdat ncase=1650000000     cpu=519709.00  
+135 sourcePhspConstantZ_w135.egsdat ncase=1650000000     cpu=523210.00  
+136 sourcePhspConstantZ_w136.egsdat ncase=1650000000     cpu=533373.00  
+137 sourcePhspConstantZ_w137.egsdat ncase=1650000000     cpu=527392.00  
+138 sourcePhspConstantZ_w138.egsdat ncase=1650000000     cpu=516559.00  
+139 sourcePhspConstantZ_w139.egsdat ncase=1650000000     cpu=525125.00  
+140 sourcePhspConstantZ_w140.egsdat ncase=1650000000     cpu=521571.00  
+141 sourcePhspConstantZ_w141.egsdat ncase=1500000000     cpu=546335.00  
+142 sourcePhspConstantZ_w142.egsdat ncase=1650000000     cpu=523673.00  
+143 sourcePhspConstantZ_w143.egsdat ncase=1650000000     cpu=518238.00  
+144 sourcePhspConstantZ_w144.egsdat ncase=1800000000     cpu=559130.00  
+145 sourcePhspConstantZ_w145.egsdat ncase=1650000000     cpu=518876.00  
+146 sourcePhspConstantZ_w146.egsdat ncase=1650000000     cpu=518207.00  
+147 sourcePhspConstantZ_w147.egsdat ncase=1800000000     cpu=558496.00  
+148 sourcePhspConstantZ_w148.egsdat ncase=1800000000     cpu=556872.00  
+149 sourcePhspConstantZ_w149.egsdat ncase=1650000000     cpu=517986.00  
+150 sourcePhspConstantZ_w150.egsdat ncase=1800000000     cpu=553490.00  
+151 sourcePhspConstantZ_w151.egsdat ncase=1650000000     cpu=519335.00  
+152 sourcePhspConstantZ_w152.egsdat ncase=1650000000     cpu=516782.00  
+153 sourcePhspConstantZ_w153.egsdat ncase=1800000000     cpu=561179.00  
+154 sourcePhspConstantZ_w154.egsdat ncase=1650000000     cpu=518117.00  
+155 sourcePhspConstantZ_w155.egsdat ncase=1800000000     cpu=559804.00  
+156 sourcePhspConstantZ_w156.egsdat ncase=1650000000     cpu=518060.00  
+157 sourcePhspConstantZ_w157.egsdat ncase=1800000000     cpu=560757.00  
+158 sourcePhspConstantZ_w158.egsdat ncase=1800000000     cpu=558657.00  
+159 sourcePhspConstantZ_w159.egsdat ncase=1650000000     cpu=516385.00  
+160 sourcePhspConstantZ_w160.egsdat ncase=1500000000     cpu=533105.00  
+161 sourcePhspConstantZ_w161.egsdat ncase=1500000000     cpu=535553.00  
+162 sourcePhspConstantZ_w162.egsdat ncase=1500000000     cpu=535074.00  
+163 sourcePhspConstantZ_w163.egsdat ncase=1500000000     cpu=537997.00  
+164 sourcePhspConstantZ_w164.egsdat ncase=1500000000     cpu=534491.00  
+165 sourcePhspConstantZ_w165.egsdat ncase=1500000000     cpu=540031.00  
+166 sourcePhspConstantZ_w166.egsdat ncase=1500000000     cpu=560781.00  
+167 sourcePhspConstantZ_w167.egsdat ncase=1500000000     cpu=535467.00  
+168 sourcePhspConstantZ_w168.egsdat ncase=1500000000     cpu=544960.00  
+169 sourcePhspConstantZ_w169.egsdat ncase=1500000000     cpu=543951.00  
+170 sourcePhspConstantZ_w170.egsdat ncase=1500000000     cpu=562512.00  
+171 sourcePhspConstantZ_w171.egsdat ncase=1500000000     cpu=551932.00  
+172 sourcePhspConstantZ_w172.egsdat ncase=1500000000     cpu=543098.00  
+173 sourcePhspConstantZ_w173.egsdat ncase=1500000000     cpu=535411.00  
+174 sourcePhspConstantZ_w174.egsdat ncase=1500000000     cpu=538679.00  
+175 sourcePhspConstantZ_w175.egsdat ncase=1500000000     cpu=540292.00  
+176 sourcePhspConstantZ_w176.egsdat ncase=1500000000     cpu=560903.00  
+177 sourcePhspConstantZ_w177.egsdat ncase=1500000000     cpu=538056.00  
+178 sourcePhspConstantZ_w178.egsdat ncase=1500000000     cpu=541078.00  
+179 sourcePhspConstantZ_w179.egsdat ncase=1500000000     cpu=536883.00  
+180 sourcePhspConstantZ_w180.egsdat ncase=1500000000     cpu=534771.00  
+181 sourcePhspConstantZ_w181.egsdat ncase=1500000000     cpu=535992.00  
+182 sourcePhspConstantZ_w182.egsdat ncase=1500000000     cpu=541453.00  
+183 sourcePhspConstantZ_w183.egsdat ncase=1500000000     cpu=544198.00  
+184 sourcePhspConstantZ_w184.egsdat ncase=1500000000     cpu=542291.00  
+185 sourcePhspConstantZ_w185.egsdat ncase=1500000000     cpu=537059.00  
+186 sourcePhspConstantZ_w186.egsdat ncase=1500000000     cpu=547209.00  
+187 sourcePhspConstantZ_w187.egsdat ncase=1500000000     cpu=533387.00  
+188 sourcePhspConstantZ_w188.egsdat ncase=1500000000     cpu=553632.00  
+189 sourcePhspConstantZ_w189.egsdat ncase=1500000000     cpu=535283.00  
+190 sourcePhspConstantZ_w190.egsdat ncase=1500000000     cpu=538833.00  
+191 sourcePhspConstantZ_w191.egsdat ncase=1500000000     cpu=541922.00  
+192 sourcePhspConstantZ_w192.egsdat ncase=1500000000     cpu=538827.00  
+193 sourcePhspConstantZ_w193.egsdat ncase=1500000000     cpu=546117.00  
+194 sourcePhspConstantZ_w194.egsdat ncase=1500000000     cpu=537903.00  
+195 sourcePhspConstantZ_w195.egsdat ncase=1500000000     cpu=543693.00  
+196 sourcePhspConstantZ_w196.egsdat ncase=1500000000     cpu=538842.00  
+197 sourcePhspConstantZ_w197.egsdat ncase=1650000000     cpu=518522.00  
+198 sourcePhspConstantZ_w198.egsdat ncase=1650000000     cpu=516045.00  
+199 sourcePhspConstantZ_w199.egsdat ncase=1650000000     cpu=524102.00  
+200 sourcePhspConstantZ_w200.egsdat ncase=1650000000     cpu=515013.00  
+201 sourcePhspConstantZ_w201.egsdat ncase=1500000000     cpu=535798.00  
+202 sourcePhspConstantZ_w202.egsdat ncase=1500000000     cpu=539579.00  
+203 sourcePhspConstantZ_w203.egsdat ncase=1500000000     cpu=537402.00  
+204 sourcePhspConstantZ_w204.egsdat ncase=1500000000     cpu=546951.00  
+205 sourcePhspConstantZ_w205.egsdat ncase=1500000000     cpu=540547.00  
+206 sourcePhspConstantZ_w206.egsdat ncase=1500000000     cpu=538886.00  
+207 sourcePhspConstantZ_w207.egsdat ncase=1500000000     cpu=541867.00  
+208 sourcePhspConstantZ_w208.egsdat ncase=1500000000     cpu=536197.00  
+209 sourcePhspConstantZ_w209.egsdat ncase=1500000000     cpu=539621.00  
+210 sourcePhspConstantZ_w210.egsdat ncase=1500000000     cpu=539535.00  
+211 sourcePhspConstantZ_w211.egsdat ncase=1500000000     cpu=537027.00  
+212 sourcePhspConstantZ_w212.egsdat ncase=1650000000     cpu=523847.00  
+213 sourcePhspConstantZ_w213.egsdat ncase=1650000000     cpu=521823.00  
+214 sourcePhspConstantZ_w214.egsdat ncase=1650000000     cpu=515427.00  
+215 sourcePhspConstantZ_w215.egsdat ncase=1800000000     cpu=556563.00  
+216 sourcePhspConstantZ_w216.egsdat ncase=1500000000     cpu=543507.00  
+217 sourcePhspConstantZ_w217.egsdat ncase=1500000000     cpu=535664.00  
+218 sourcePhspConstantZ_w218.egsdat ncase=1500000000     cpu=538608.00  
+219 sourcePhspConstantZ_w219.egsdat ncase=1500000000     cpu=534052.00  
+220 sourcePhspConstantZ_w220.egsdat ncase=1500000000     cpu=533956.00  
+221 sourcePhspConstantZ_w221.egsdat ncase=1500000000     cpu=536817.00  
+222 sourcePhspConstantZ_w222.egsdat ncase=1500000000     cpu=542233.00  
+223 sourcePhspConstantZ_w223.egsdat ncase=1500000000     cpu=549381.00  
+224 sourcePhspConstantZ_w224.egsdat ncase=1500000000     cpu=551614.00  
+225 sourcePhspConstantZ_w225.egsdat ncase=1500000000     cpu=537271.00  
+226 sourcePhspConstantZ_w226.egsdat ncase=1500000000     cpu=538042.00  
+227 sourcePhspConstantZ_w227.egsdat ncase=1500000000     cpu=535136.00  
+228 sourcePhspConstantZ_w228.egsdat ncase=1500000000     cpu=544181.00  
+229 sourcePhspConstantZ_w229.egsdat ncase=1500000000     cpu=537568.00  
+230 sourcePhspConstantZ_w230.egsdat ncase=1500000000     cpu=541880.00  
+231 sourcePhspConstantZ_w231.egsdat ncase=1500000000     cpu=536954.00  
+232 sourcePhspConstantZ_w232.egsdat ncase=1500000000     cpu=560224.00  
+233 sourcePhspConstantZ_w233.egsdat ncase=1500000000     cpu=535300.00  
+234 sourcePhspConstantZ_w234.egsdat ncase=1500000000     cpu=549166.00  
+235 sourcePhspConstantZ_w235.egsdat ncase=1500000000     cpu=538891.00  
+236 sourcePhspConstantZ_w236.egsdat ncase=1500000000     cpu=539817.00  
+237 sourcePhspConstantZ_w237.egsdat ncase=1500000000     cpu=541868.00  
+238 sourcePhspConstantZ_w238.egsdat ncase=1500000000     cpu=535201.00  
+239 sourcePhspConstantZ_w239.egsdat ncase=1500000000     cpu=532882.00  
+240 sourcePhspConstantZ_w240.egsdat ncase=1500000000     cpu=565056.00  
+241 sourcePhspConstantZ_w241.egsdat ncase=1500000000     cpu=536788.00  
+242 sourcePhspConstantZ_w242.egsdat ncase=1650000000     cpu=518203.00  
+243 sourcePhspConstantZ_w243.egsdat ncase=1650000000     cpu=519303.00  
+244 sourcePhspConstantZ_w244.egsdat ncase=1650000000     cpu=518285.00  
+245 sourcePhspConstantZ_w245.egsdat ncase=1650000000     cpu=520096.00  
+246 sourcePhspConstantZ_w246.egsdat ncase=1500000000     cpu=539798.00  
+247 sourcePhspConstantZ_w247.egsdat ncase=1500000000     cpu=541374.00  
+248 sourcePhspConstantZ_w248.egsdat ncase=1500000000     cpu=536294.00  
+249 sourcePhspConstantZ_w249.egsdat ncase=1500000000     cpu=538451.00  
+250 sourcePhspConstantZ_w250.egsdat ncase=1500000000     cpu=533988.00  
+251 sourcePhspConstantZ_w251.egsdat ncase=1500000000     cpu=545104.00  
+252 sourcePhspConstantZ_w252.egsdat ncase=1500000000     cpu=536792.00  
+253 sourcePhspConstantZ_w253.egsdat ncase=1500000000     cpu=535114.00  
+254 sourcePhspConstantZ_w254.egsdat ncase=1500000000     cpu=536429.00  
+255 sourcePhspConstantZ_w255.egsdat ncase=1500000000     cpu=538873.00  
+256 sourcePhspConstantZ_w256.egsdat ncase=1500000000     cpu=534203.00  
+257 sourcePhspConstantZ_w257.egsdat ncase=1650000000     cpu=527741.00  
+258 sourcePhspConstantZ_w258.egsdat ncase=1800000000     cpu=554538.00  
+259 sourcePhspConstantZ_w259.egsdat ncase=1800000000     cpu=545434.00  
+260 sourcePhspConstantZ_w260.egsdat ncase=1800000000     cpu=551014.00  
+261 sourcePhspConstantZ_w261.egsdat ncase=1800000000     cpu=559978.00  
+262 sourcePhspConstantZ_w262.egsdat ncase=1800000000     cpu=559218.00  
+263 sourcePhspConstantZ_w263.egsdat ncase=1650000000     cpu=517361.00  
+264 sourcePhspConstantZ_w264.egsdat ncase=1650000000     cpu=522733.00  
+265 sourcePhspConstantZ_w265.egsdat ncase=1500000000     cpu=538205.00  
+266 sourcePhspConstantZ_w266.egsdat ncase=1500000000     cpu=539710.00  
+267 sourcePhspConstantZ_w267.egsdat ncase=1500000000     cpu=549880.00  
+268 sourcePhspConstantZ_w268.egsdat ncase=1500000000     cpu=539082.00  
+269 sourcePhspConstantZ_w269.egsdat ncase=1500000000     cpu=533681.00  
+270 sourcePhspConstantZ_w270.egsdat ncase=1500000000     cpu=545690.00  
+271 sourcePhspConstantZ_w271.egsdat ncase=1500000000     cpu=536899.00  
+272 sourcePhspConstantZ_w272.egsdat ncase=1800000000     cpu=560363.00  
+273 sourcePhspConstantZ_w273.egsdat ncase=1800000000     cpu=557723.00  
+274 sourcePhspConstantZ_w274.egsdat ncase=1650000000     cpu=519430.00  
+275 sourcePhspConstantZ_w275.egsdat ncase=1650000000     cpu=518932.00  
+276 sourcePhspConstantZ_w276.egsdat ncase=1500000000     cpu=532625.00  
+277 sourcePhspConstantZ_w277.egsdat ncase=1500000000     cpu=542102.00  
+278 sourcePhspConstantZ_w278.egsdat ncase=1500000000     cpu=557269.00  
+279 sourcePhspConstantZ_w279.egsdat ncase=1500000000     cpu=543060.00  
+280 sourcePhspConstantZ_w280.egsdat ncase=1500000000     cpu=535912.00  
+281 sourcePhspConstantZ_w281.egsdat ncase=1500000000     cpu=532726.00  
+282 sourcePhspConstantZ_w282.egsdat ncase=1500000000     cpu=537634.00  
+283 sourcePhspConstantZ_w283.egsdat ncase=1500000000     cpu=533287.00  
+284 sourcePhspConstantZ_w284.egsdat ncase=1500000000     cpu=540559.00  
+285 sourcePhspConstantZ_w285.egsdat ncase=1500000000     cpu=537259.00  
+286 sourcePhspConstantZ_w286.egsdat ncase=1500000000     cpu=540839.00  
+287 sourcePhspConstantZ_w287.egsdat ncase=1800000000     cpu=560704.00  
+288 sourcePhspConstantZ_w288.egsdat ncase=1800000000     cpu=559693.00  
+289 sourcePhspConstantZ_w289.egsdat ncase=1800000000     cpu=558357.00  
+290 sourcePhspConstantZ_w290.egsdat ncase=1800000000     cpu=559348.00  
+291 sourcePhspConstantZ_w291.egsdat ncase=1500000000     cpu=547585.00  
+292 sourcePhspConstantZ_w292.egsdat ncase=1500000000     cpu=538183.00  
+293 sourcePhspConstantZ_w293.egsdat ncase=1500000000     cpu=550075.00  
+294 sourcePhspConstantZ_w294.egsdat ncase=1500000000     cpu=538429.00  
+295 sourcePhspConstantZ_w295.egsdat ncase=1350000000     cpu=514842.00  
+296 sourcePhspConstantZ_w296.egsdat ncase=1500000000     cpu=534092.00  
+297 sourcePhspConstantZ_w297.egsdat ncase=1500000000     cpu=549536.00  
+298 sourcePhspConstantZ_w298.egsdat ncase=1500000000     cpu=539112.00  
+299 sourcePhspConstantZ_w299.egsdat ncase=1500000000     cpu=539612.00  
+300 sourcePhspConstantZ_w300.egsdat ncase=1500000000     cpu=535190.00  
+301 sourcePhspConstantZ_w301.egsdat ncase=1500000000     cpu=543320.00  
+302 sourcePhspConstantZ_w302.egsdat ncase=1500000000     cpu=536418.00  
+303 sourcePhspConstantZ_w303.egsdat ncase=1500000000     cpu=536422.00  
+304 sourcePhspConstantZ_w304.egsdat ncase=1500000000     cpu=535840.00  
+305 sourcePhspConstantZ_w305.egsdat ncase=1500000000     cpu=538808.00  
+306 sourcePhspConstantZ_w306.egsdat ncase=1500000000     cpu=541755.00  
+307 sourcePhspConstantZ_w307.egsdat ncase=1500000000     cpu=534454.00  
+308 sourcePhspConstantZ_w308.egsdat ncase=1500000000     cpu=537873.00  
+309 sourcePhspConstantZ_w309.egsdat ncase=1500000000     cpu=537484.00  
+310 sourcePhspConstantZ_w310.egsdat ncase=1500000000     cpu=536804.00  
+311 sourcePhspConstantZ_w311.egsdat ncase=1500000000     cpu=539242.00  
+312 sourcePhspConstantZ_w312.egsdat ncase=1500000000     cpu=547052.00  
+313 sourcePhspConstantZ_w313.egsdat ncase=1500000000     cpu=534137.00  
+314 sourcePhspConstantZ_w314.egsdat ncase=1500000000     cpu=535280.00  
+315 sourcePhspConstantZ_w315.egsdat ncase=1500000000     cpu=540159.00  
+316 sourcePhspConstantZ_w316.egsdat ncase=1500000000     cpu=543553.00  
+317 sourcePhspConstantZ_w317.egsdat ncase=1500000000     cpu=534340.00  
+318 sourcePhspConstantZ_w318.egsdat ncase=1500000000     cpu=545287.00  
+319 sourcePhspConstantZ_w319.egsdat ncase=1500000000     cpu=543693.00  
+320 sourcePhspConstantZ_w320.egsdat ncase=1500000000     cpu=534276.00  
+321 sourcePhspConstantZ_w321.egsdat ncase=1500000000     cpu=551326.00  
+322 sourcePhspConstantZ_w322.egsdat ncase=1500000000     cpu=540726.00  
+323 sourcePhspConstantZ_w323.egsdat ncase=1500000000     cpu=548848.00  
+324 sourcePhspConstantZ_w324.egsdat ncase=1500000000     cpu=537066.00  
+325 sourcePhspConstantZ_w325.egsdat ncase=1500000000     cpu=537740.00  
+326 sourcePhspConstantZ_w326.egsdat ncase=1500000000     cpu=538940.00  
+327 sourcePhspConstantZ_w327.egsdat ncase=1500000000     cpu=546888.00  
+328 sourcePhspConstantZ_w328.egsdat ncase=1500000000     cpu=535796.00  
+329 sourcePhspConstantZ_w329.egsdat ncase=1500000000     cpu=538247.00  
+330 sourcePhspConstantZ_w330.egsdat ncase=1500000000     cpu=541232.00  
+331 sourcePhspConstantZ_w331.egsdat ncase=1500000000     cpu=537933.00  
+332 sourcePhspConstantZ_w332.egsdat ncase=1500000000     cpu=552394.00  
+333 sourcePhspConstantZ_w333.egsdat ncase=1500000000     cpu=545545.00  
+334 sourcePhspConstantZ_w334.egsdat ncase=1500000000     cpu=538087.00  
+335 sourcePhspConstantZ_w335.egsdat ncase=1500000000     cpu=542626.00  
+336 sourcePhspConstantZ_w336.egsdat ncase=1500000000     cpu=541182.00  
+337 sourcePhspConstantZ_w337.egsdat ncase=1500000000     cpu=535593.00  
+338 sourcePhspConstantZ_w338.egsdat ncase=1500000000     cpu=548170.00  
+339 sourcePhspConstantZ_w339.egsdat ncase=1500000000     cpu=533499.00  
+340 sourcePhspConstantZ_w340.egsdat ncase=1500000000     cpu=533709.00  
+341 sourcePhspConstantZ_w341.egsdat ncase=1500000000     cpu=538394.00  
+342 sourcePhspConstantZ_w342.egsdat ncase=1500000000     cpu=539945.00  
+343 sourcePhspConstantZ_w343.egsdat ncase=1500000000     cpu=547547.00  
+344 sourcePhspConstantZ_w344.egsdat ncase=1500000000     cpu=563227.00  
+345 sourcePhspConstantZ_w345.egsdat ncase=1500000000     cpu=553221.00  
+346 sourcePhspConstantZ_w346.egsdat ncase=1500000000     cpu=536869.00  
+347 sourcePhspConstantZ_w347.egsdat ncase=1500000000     cpu=537308.00  
+348 sourcePhspConstantZ_w348.egsdat ncase=1500000000     cpu=538550.00  
+349 sourcePhspConstantZ_w349.egsdat ncase=1500000000     cpu=543778.00  
+350 sourcePhspConstantZ_w350.egsdat ncase=1500000000     cpu=540441.00  
+351 sourcePhspConstantZ_w351.egsdat ncase=1500000000     cpu=537168.00  
+352 sourcePhspConstantZ_w352.egsdat ncase=1500000000     cpu=551392.00  
+353 sourcePhspConstantZ_w353.egsdat ncase=1500000000     cpu=535058.00  
+354 sourcePhspConstantZ_w354.egsdat ncase=1500000000     cpu=541733.00  
+355 sourcePhspConstantZ_w355.egsdat ncase=1500000000     cpu=542225.00  
+356 sourcePhspConstantZ_w356.egsdat ncase=1500000000     cpu=538620.00  
+357 sourcePhspConstantZ_w357.egsdat ncase=1500000000     cpu=552736.00  
+358 sourcePhspConstantZ_w358.egsdat ncase=1500000000     cpu=538221.00  
+359 sourcePhspConstantZ_w359.egsdat ncase=1500000000     cpu=540647.00  
+360 sourcePhspConstantZ_w360.egsdat ncase=1500000000     cpu=541108.00  
+361 sourcePhspConstantZ_w361.egsdat ncase=1500000000     cpu=534356.00  
+362 sourcePhspConstantZ_w362.egsdat ncase=1500000000     cpu=553241.00  
+363 sourcePhspConstantZ_w363.egsdat ncase=1500000000     cpu=542763.00  
+364 sourcePhspConstantZ_w364.egsdat ncase=1500000000     cpu=532533.00  
+365 sourcePhspConstantZ_w365.egsdat ncase=1500000000     cpu=544076.00  
+366 sourcePhspConstantZ_w366.egsdat ncase=1500000000     cpu=539612.00  
+367 sourcePhspConstantZ_w367.egsdat ncase=1500000000     cpu=552110.00  
+368 sourcePhspConstantZ_w368.egsdat ncase=1500000000     cpu=551182.00  
+369 sourcePhspConstantZ_w369.egsdat ncase=1500000000     cpu=551407.00  
+370 sourcePhspConstantZ_w370.egsdat ncase=1500000000     cpu=537361.00  
+371 sourcePhspConstantZ_w371.egsdat ncase=1500000000     cpu=541199.00  
+372 sourcePhspConstantZ_w372.egsdat ncase=1500000000     cpu=541860.00  
+373 sourcePhspConstantZ_w373.egsdat ncase=1500000000     cpu=539524.00  
+374 sourcePhspConstantZ_w374.egsdat ncase=1500000000     cpu=538199.00  
+375 sourcePhspConstantZ_w375.egsdat ncase=1500000000     cpu=542189.00  
+376 sourcePhspConstantZ_w376.egsdat ncase=1500000000     cpu=532679.00  
+377 sourcePhspConstantZ_w377.egsdat ncase=1500000000     cpu=539467.00  
+378 sourcePhspConstantZ_w378.egsdat ncase=1500000000     cpu=532805.00  
+379 sourcePhspConstantZ_w379.egsdat ncase=1500000000     cpu=547879.00  
+380 sourcePhspConstantZ_w380.egsdat ncase=1500000000     cpu=536182.00  
+381 sourcePhspConstantZ_w381.egsdat ncase=1500000000     cpu=549979.00  
+382 sourcePhspConstantZ_w382.egsdat ncase=1500000000     cpu=543271.00  
+383 sourcePhspConstantZ_w383.egsdat ncase=1500000000     cpu=540052.00  
+384 sourcePhspConstantZ_w384.egsdat ncase=1500000000     cpu=536840.00  
+385 sourcePhspConstantZ_w385.egsdat ncase=1500000000     cpu=532651.00  
+386 sourcePhspConstantZ_w386.egsdat ncase=1500000000     cpu=539899.00  
+387 sourcePhspConstantZ_w387.egsdat ncase=1500000000     cpu=533886.00  
+388 sourcePhspConstantZ_w388.egsdat ncase=1500000000     cpu=553173.00  
+389 sourcePhspConstantZ_w389.egsdat ncase=1500000000     cpu=534407.00  
+390 sourcePhspConstantZ_w390.egsdat ncase=1500000000     cpu=540823.00  
+391 sourcePhspConstantZ_w391.egsdat ncase=1950000000     cpu=515993.00  
+392 sourcePhspConstantZ_w392.egsdat ncase=1950000000     cpu=528739.00  
+393 sourcePhspConstantZ_w393.egsdat ncase=1950000000     cpu=521646.00  
+394 sourcePhspConstantZ_w394.egsdat ncase=1950000000     cpu=526759.00  
+395 sourcePhspConstantZ_w395.egsdat ncase=1950000000     cpu=520290.00  
+396 sourcePhspConstantZ_w396.egsdat ncase=1950000000     cpu=519732.00  
+397 sourcePhspConstantZ_w397.egsdat ncase=1950000000     cpu=514916.00  
+398 sourcePhspConstantZ_w398.egsdat ncase=1950000000     cpu=519660.00  
+399 sourcePhspConstantZ_w399.egsdat ncase=1500000000     cpu=536770.00  
+400 sourcePhspConstantZ_w400.egsdat ncase=1500000000     cpu=549951.00  
+401 sourcePhspConstantZ_w401.egsdat ncase=1500000000     cpu=539558.00  
+402 sourcePhspConstantZ_w402.egsdat ncase=1500000000     cpu=553657.00  
+403 sourcePhspConstantZ_w403.egsdat ncase=1500000000     cpu=535001.00  
+404 sourcePhspConstantZ_w404.egsdat ncase=1500000000     cpu=545998.00  
+405 sourcePhspConstantZ_w405.egsdat ncase=1500000000     cpu=549924.00  
+406 sourcePhspConstantZ_w406.egsdat ncase=1500000000     cpu=545380.00  
+407 sourcePhspConstantZ_w407.egsdat ncase=1500000000     cpu=542905.00  
+408 sourcePhspConstantZ_w408.egsdat ncase=1500000000     cpu=533710.00  
+409 sourcePhspConstantZ_w409.egsdat ncase=1500000000     cpu=537579.00  
+410 sourcePhspConstantZ_w410.egsdat ncase=1500000000     cpu=541316.00  
+411 sourcePhspConstantZ_w411.egsdat ncase=1500000000     cpu=542017.00  
+412 sourcePhspConstantZ_w412.egsdat ncase=1500000000     cpu=532225.00  
+413 sourcePhspConstantZ_w413.egsdat ncase=1500000000     cpu=547895.00  
+414 sourcePhspConstantZ_w414.egsdat ncase=1500000000     cpu=538573.00  
+415 sourcePhspConstantZ_w415.egsdat ncase=1500000000     cpu=536400.00  
+416 sourcePhspConstantZ_w416.egsdat ncase=1500000000     cpu=535470.00  
+417 sourcePhspConstantZ_w417.egsdat ncase=1500000000     cpu=539476.00  
+418 sourcePhspConstantZ_w418.egsdat ncase=1500000000     cpu=544780.00  
+419 sourcePhspConstantZ_w419.egsdat ncase=1500000000     cpu=540854.00  
+420 sourcePhspConstantZ_w420.egsdat ncase=1500000000     cpu=557152.00  
+421 sourcePhspConstantZ_w421.egsdat ncase=1500000000     cpu=541754.00  
+422 sourcePhspConstantZ_w422.egsdat ncase=1500000000     cpu=544600.00  
+423 sourcePhspConstantZ_w423.egsdat ncase=1500000000     cpu=535258.00  
+424 sourcePhspConstantZ_w424.egsdat ncase=1500000000     cpu=536671.00  
+425 sourcePhspConstantZ_w425.egsdat ncase=1500000000     cpu=547785.00  
+426 sourcePhspConstantZ_w426.egsdat ncase=1500000000     cpu=546813.00  
+427 sourcePhspConstantZ_w427.egsdat ncase=1500000000     cpu=532992.00  
+428 sourcePhspConstantZ_w428.egsdat ncase=1500000000     cpu=545820.00  
+429 sourcePhspConstantZ_w429.egsdat ncase=1500000000     cpu=547315.00  
+430 sourcePhspConstantZ_w430.egsdat ncase=1500000000     cpu=539024.00  
+431 sourcePhspConstantZ_w431.egsdat ncase=1500000000     cpu=537279.00  
+432 sourcePhspConstantZ_w432.egsdat ncase=1500000000     cpu=541076.00  
+433 sourcePhspConstantZ_w433.egsdat ncase=1500000000     cpu=544140.00  
+434 sourcePhspConstantZ_w434.egsdat ncase=1500000000     cpu=538971.00  
+435 sourcePhspConstantZ_w435.egsdat ncase=1500000000     cpu=556597.00  
+436 sourcePhspConstantZ_w436.egsdat ncase=1500000000     cpu=548076.00  
+437 sourcePhspConstantZ_w437.egsdat ncase=1500000000     cpu=539444.00  
+438 sourcePhspConstantZ_w438.egsdat ncase=1500000000     cpu=537186.00  
+439 sourcePhspConstantZ_w439.egsdat ncase=1500000000     cpu=536598.00  
+440 sourcePhspConstantZ_w440.egsdat ncase=1500000000     cpu=537733.00  
+441 sourcePhspConstantZ_w441.egsdat ncase=1500000000     cpu=541270.00  
+442 sourcePhspConstantZ_w442.egsdat ncase=1500000000     cpu=539663.00  
+443 sourcePhspConstantZ_w443.egsdat ncase=1500000000     cpu=534540.00  
+444 sourcePhspConstantZ_w444.egsdat ncase=1500000000     cpu=536689.00  
+445 sourcePhspConstantZ_w445.egsdat ncase=1500000000     cpu=543658.00  
+446 sourcePhspConstantZ_w446.egsdat ncase=1500000000     cpu=540775.00  
+447 sourcePhspConstantZ_w447.egsdat ncase=1500000000     cpu=542051.00  
+448 sourcePhspConstantZ_w448.egsdat ncase=1500000000     cpu=536114.00  
+449 sourcePhspConstantZ_w449.egsdat ncase=1500000000     cpu=538978.00  
+450 sourcePhspConstantZ_w450.egsdat ncase=1500000000     cpu=533688.00  
+451 sourcePhspConstantZ_w451.egsdat ncase=1500000000     cpu=536987.00  
+452 sourcePhspConstantZ_w452.egsdat ncase=1500000000     cpu=536690.00  
+453 sourcePhspConstantZ_w453.egsdat ncase=1500000000     cpu=534229.00  
+454 sourcePhspConstantZ_w454.egsdat ncase=1500000000     cpu=539543.00  
+455 sourcePhspConstantZ_w455.egsdat ncase=1500000000     cpu=546837.00  
+456 sourcePhspConstantZ_w456.egsdat ncase=1500000000     cpu=536772.00  
+457 sourcePhspConstantZ_w457.egsdat ncase=1500000000     cpu=538203.00  
+458 sourcePhspConstantZ_w458.egsdat ncase=1500000000     cpu=538097.00  
+459 sourcePhspConstantZ_w459.egsdat ncase=1500000000     cpu=534676.00  
+460 sourcePhspConstantZ_w460.egsdat ncase=1500000000     cpu=537906.00  
+461 sourcePhspConstantZ_w461.egsdat ncase=1500000000     cpu=541112.00  
+462 sourcePhspConstantZ_w462.egsdat ncase=1500000000     cpu=537628.00  
+463 sourcePhspConstantZ_w463.egsdat ncase=1500000000     cpu=543390.00  
+464 sourcePhspConstantZ_w464.egsdat ncase=1500000000     cpu=542256.00  
+465 sourcePhspConstantZ_w465.egsdat ncase=1500000000     cpu=541622.00  
+466 sourcePhspConstantZ_w466.egsdat ncase=1500000000     cpu=538643.00  
+467 sourcePhspConstantZ_w467.egsdat ncase=1500000000     cpu=534536.00  
+468 sourcePhspConstantZ_w468.egsdat ncase=1500000000     cpu=534757.00  
+469 sourcePhspConstantZ_w469.egsdat ncase=1500000000     cpu=536948.00  
+470 sourcePhspConstantZ_w470.egsdat ncase=1500000000     cpu=539753.00  
+471 sourcePhspConstantZ_w471.egsdat ncase=1500000000     cpu=539815.00  
+472 sourcePhspConstantZ_w472.egsdat ncase=1500000000     cpu=549687.00  
+473 sourcePhspConstantZ_w473.egsdat ncase=1500000000     cpu=537365.00  
+474 sourcePhspConstantZ_w474.egsdat ncase=1500000000     cpu=541753.00  
+475 sourcePhspConstantZ_w475.egsdat ncase=1500000000     cpu=545320.00  
+476 sourcePhspConstantZ_w476.egsdat ncase=1500000000     cpu=547423.00  
+477 sourcePhspConstantZ_w477.egsdat ncase=1500000000     cpu=538856.00  
+478 sourcePhspConstantZ_w478.egsdat ncase=1500000000     cpu=533712.00  
+479 sourcePhspConstantZ_w479.egsdat ncase=1500000000     cpu=538098.00  
+480 sourcePhspConstantZ_w480.egsdat ncase=1500000000     cpu=537505.00  
+481 sourcePhspConstantZ_w481.egsdat ncase=1500000000     cpu=543987.00  
+482 sourcePhspConstantZ_w482.egsdat ncase=1500000000     cpu=538745.00  
+483 sourcePhspConstantZ_w483.egsdat ncase=1500000000     cpu=544181.00  
+484 sourcePhspConstantZ_w484.egsdat ncase=1650000000     cpu=515097.00  
+485 sourcePhspConstantZ_w485.egsdat ncase=1800000000     cpu=557962.00  
+486 sourcePhspConstantZ_w486.egsdat ncase=1650000000     cpu=517502.00  
+487 sourcePhspConstantZ_w487.egsdat ncase=1650000000     cpu=514946.00  
+488 sourcePhspConstantZ_w488.egsdat ncase=1650000000     cpu=517793.00  
+489 sourcePhspConstantZ_w489.egsdat ncase=1650000000     cpu=514988.00  
+490 sourcePhspConstantZ_w490.egsdat ncase=1800000000     cpu=560576.00  
+491 sourcePhspConstantZ_w491.egsdat ncase=1800000000     cpu=555955.00  
+492 sourcePhspConstantZ_w492.egsdat ncase=1650000000     cpu=519039.00  
+493 sourcePhspConstantZ_w493.egsdat ncase=1650000000     cpu=514810.00  
+494 sourcePhspConstantZ_w494.egsdat ncase=1800000000     cpu=556815.00  
+495 sourcePhspConstantZ_w495.egsdat ncase=1800000000     cpu=560112.00  
+496 sourcePhspConstantZ_w496.egsdat ncase=1650000000     cpu=513037.00  
+497 sourcePhspConstantZ_w497.egsdat ncase=1650000000     cpu=517722.00  
+498 sourcePhspConstantZ_w498.egsdat ncase=1650000000     cpu=518294.00  
+499 sourcePhspConstantZ_w499.egsdat ncase=1650000000     cpu=515783.00  
+500 sourcePhspConstantZ_w500.egsdat ncase=1800000000     cpu=560551.00  
+501 sourcePhspConstantZ_w501.egsdat ncase=1800000000     cpu=558204.00  
+502 sourcePhspConstantZ_w502.egsdat ncase=1800000000     cpu=558527.00  
+503 sourcePhspConstantZ_w503.egsdat ncase=1800000000     cpu=554596.00  
+504 sourcePhspConstantZ_w504.egsdat ncase=1800000000     cpu=560081.00  
+505 sourcePhspConstantZ_w505.egsdat ncase=1650000000     cpu=516816.00  
+506 sourcePhspConstantZ_w506.egsdat ncase=1650000000     cpu=518178.00  
+507 sourcePhspConstantZ_w507.egsdat ncase=1800000000     cpu=556122.00  
+508 sourcePhspConstantZ_w508.egsdat ncase=1650000000     cpu=517359.00  
+509 sourcePhspConstantZ_w509.egsdat ncase=1650000000     cpu=513829.00  
+510 sourcePhspConstantZ_w510.egsdat ncase=1800000000     cpu=556555.00  
+511 sourcePhspConstantZ_w511.egsdat ncase=1800000000     cpu=556435.00  
+512 sourcePhspConstantZ_w512.egsdat ncase=1800000000     cpu=558648.00  
+513 sourcePhspConstantZ_w513.egsdat ncase=1800000000     cpu=558961.00  
+514 sourcePhspConstantZ_w514.egsdat ncase=1650000000     cpu=517792.00  
+515 sourcePhspConstantZ_w515.egsdat ncase=1800000000     cpu=557256.00  
+516 sourcePhspConstantZ_w516.egsdat ncase=1500000000     cpu=524231.00  
+517 sourcePhspConstantZ_w517.egsdat ncase=1650000000     cpu=523578.00  
+518 sourcePhspConstantZ_w518.egsdat ncase=1800000000     cpu=556882.00  
+519 sourcePhspConstantZ_w519.egsdat ncase=1650000000     cpu=519763.00  
+520 sourcePhspConstantZ_w520.egsdat ncase=1800000000     cpu=557813.00  
+521 sourcePhspConstantZ_w521.egsdat ncase=1800000000     cpu=555524.00  
+522 sourcePhspConstantZ_w522.egsdat ncase=1650000000     cpu=514998.00  
+523 sourcePhspConstantZ_w523.egsdat ncase=1650000000     cpu=516371.00  
+524 sourcePhspConstantZ_w524.egsdat ncase=1650000000     cpu=515456.00  
+525 sourcePhspConstantZ_w525.egsdat ncase=1800000000     cpu=554138.00  
+526 sourcePhspConstantZ_w526.egsdat ncase=1800000000     cpu=560187.00  
+527 sourcePhspConstantZ_w527.egsdat ncase=1650000000     cpu=519305.00  
+528 sourcePhspConstantZ_w528.egsdat ncase=1650000000     cpu=514328.00  
+529 sourcePhspConstantZ_w529.egsdat ncase=1800000000     cpu=558924.00  
+530 sourcePhspConstantZ_w530.egsdat ncase=1650000000     cpu=518602.00  
+531 sourcePhspConstantZ_w531.egsdat ncase=1650000000     cpu=517179.00  
+532 sourcePhspConstantZ_w532.egsdat ncase=1650000000     cpu=515445.00  
+533 sourcePhspConstantZ_w533.egsdat ncase=1800000000     cpu=558025.00  
+534 sourcePhspConstantZ_w534.egsdat ncase=1650000000     cpu=513811.00  
+535 sourcePhspConstantZ_w535.egsdat ncase=1800000000     cpu=557220.00  
+536 sourcePhspConstantZ_w536.egsdat ncase=1650000000     cpu=519250.00  
+537 sourcePhspConstantZ_w537.egsdat ncase=1650000000     cpu=514490.00  
+538 sourcePhspConstantZ_w538.egsdat ncase=1650000000     cpu=516052.00  
+539 sourcePhspConstantZ_w539.egsdat ncase=1650000000     cpu=544203.00  
+540 sourcePhspConstantZ_w540.egsdat ncase=1800000000     cpu=558608.00  
+541 sourcePhspConstantZ_w541.egsdat ncase=1650000000     cpu=518694.00  
+542 sourcePhspConstantZ_w542.egsdat ncase=1800000000     cpu=560238.00  
+543 sourcePhspConstantZ_w543.egsdat ncase=1650000000     cpu=519255.00  
+544 sourcePhspConstantZ_w544.egsdat ncase=1650000000     cpu=518493.00  
+545 sourcePhspConstantZ_w545.egsdat ncase=1800000000     cpu=557182.00  
+546 sourcePhspConstantZ_w546.egsdat ncase=1800000000     cpu=559153.00  
+547 sourcePhspConstantZ_w547.egsdat ncase=1650000000     cpu=514446.00  
+548 sourcePhspConstantZ_w548.egsdat ncase=1650000000     cpu=515921.00  
+549 sourcePhspConstantZ_w549.egsdat ncase=1650000000     cpu=516892.00  
+550 sourcePhspConstantZ_w550.egsdat ncase=1800000000     cpu=556283.00  
+551 sourcePhspConstantZ_w551.egsdat ncase=1800000000     cpu=556083.00  
+552 sourcePhspConstantZ_w552.egsdat ncase=1650000000     cpu=517313.00  
+553 sourcePhspConstantZ_w553.egsdat ncase=1800000000     cpu=558353.00  
+554 sourcePhspConstantZ_w554.egsdat ncase=1800000000     cpu=559265.00  
+555 sourcePhspConstantZ_w555.egsdat ncase=1650000000     cpu=520997.00  
+556 sourcePhspConstantZ_w556.egsdat ncase=1650000000     cpu=515950.00  
+557 sourcePhspConstantZ_w557.egsdat ncase=1650000000     cpu=515830.00  
+558 sourcePhspConstantZ_w558.egsdat ncase=1800000000     cpu=558505.00  
+559 sourcePhspConstantZ_w559.egsdat ncase=1650000000     cpu=525948.00  
+560 sourcePhspConstantZ_w560.egsdat ncase=1650000000     cpu=524606.00  
+561 sourcePhspConstantZ_w561.egsdat ncase=1800000000     cpu=554413.00  
+562 sourcePhspConstantZ_w562.egsdat ncase=1800000000     cpu=559396.00  
+563 sourcePhspConstantZ_w563.egsdat ncase=1650000000     cpu=517430.00  
+564 sourcePhspConstantZ_w564.egsdat ncase=1800000000     cpu=557027.00  
+565 sourcePhspConstantZ_w565.egsdat ncase=1650000000     cpu=523015.00  
+566 sourcePhspConstantZ_w566.egsdat ncase=1650000000     cpu=516112.00  
+567 sourcePhspConstantZ_w567.egsdat ncase=1650000000     cpu=531221.00  
+568 sourcePhspConstantZ_w568.egsdat ncase=1650000000     cpu=520980.00  
+569 sourcePhspConstantZ_w569.egsdat ncase=1650000000     cpu=513530.00  
+570 sourcePhspConstantZ_w570.egsdat ncase=1800000000     cpu=555320.00  
+571 sourcePhspConstantZ_w571.egsdat ncase=1800000000     cpu=560212.00  
+572 sourcePhspConstantZ_w572.egsdat ncase=1800000000     cpu=558391.00  
+573 sourcePhspConstantZ_w573.egsdat ncase=1650000000     cpu=516108.00  
+574 sourcePhspConstantZ_w574.egsdat ncase=1800000000     cpu=556356.00  
+575 sourcePhspConstantZ_w575.egsdat ncase=1650000000     cpu=519060.00  
+576 sourcePhspConstantZ_w576.egsdat ncase=1650000000     cpu=519361.00  
+577 sourcePhspConstantZ_w577.egsdat ncase=1800000000     cpu=554870.00  
+578 sourcePhspConstantZ_w578.egsdat ncase=1800000000     cpu=558593.00  
+579 sourcePhspConstantZ_w579.egsdat ncase=1650000000     cpu=518512.00  
+580 sourcePhspConstantZ_w580.egsdat ncase=1650000000     cpu=522136.00  
+581 sourcePhspConstantZ_w581.egsdat ncase=1650000000     cpu=514410.00  
+582 sourcePhspConstantZ_w582.egsdat ncase=1650000000     cpu=515762.00  
+583 sourcePhspConstantZ_w583.egsdat ncase=1650000000     cpu=516487.00  
+584 sourcePhspConstantZ_w584.egsdat ncase=1650000000     cpu=527925.00  
+585 sourcePhspConstantZ_w585.egsdat ncase=1800000000     cpu=559421.00  
+586 sourcePhspConstantZ_w586.egsdat ncase=1800000000     cpu=555495.00  
+587 sourcePhspConstantZ_w587.egsdat ncase=1800000000     cpu=559450.00  
+588 sourcePhspConstantZ_w588.egsdat ncase=1650000000     cpu=515619.00  
+589 sourcePhspConstantZ_w589.egsdat ncase=1800000000     cpu=556998.00  
+590 sourcePhspConstantZ_w590.egsdat ncase=1650000000     cpu=515401.00  
+591 sourcePhspConstantZ_w591.egsdat ncase=1800000000     cpu=559845.00  
+592 sourcePhspConstantZ_w592.egsdat ncase=1650000000     cpu=513759.00  
+593 sourcePhspConstantZ_w593.egsdat ncase=1650000000     cpu=519200.00  
+594 sourcePhspConstantZ_w594.egsdat ncase=1650000000     cpu=514521.00  
+595 sourcePhspConstantZ_w595.egsdat ncase=1800000000     cpu=554904.00  
+596 sourcePhspConstantZ_w596.egsdat ncase=1800000000     cpu=555730.00  
+597 sourcePhspConstantZ_w597.egsdat ncase=1650000000     cpu=514992.00  
+598 sourcePhspConstantZ_w598.egsdat ncase=1800000000     cpu=555077.00  
+599 sourcePhspConstantZ_w599.egsdat ncase=1650000000     cpu=519817.00  
+600 sourcePhspConstantZ_w600.egsdat ncase=1650000000     cpu=513951.00  
+601 sourcePhspConstantZ_w601.egsdat ncase=1800000000     cpu=556297.00  
+602 sourcePhspConstantZ_w602.egsdat ncase=1800000000     cpu=557858.00  
+603 sourcePhspConstantZ_w603.egsdat ncase=1650000000     cpu=516118.00  
+604 sourcePhspConstantZ_w604.egsdat ncase=1650000000     cpu=521960.00  
+605 sourcePhspConstantZ_w605.egsdat ncase=1800000000     cpu=556259.00  
+606 sourcePhspConstantZ_w606.egsdat ncase=1650000000     cpu=516646.00  
+607 sourcePhspConstantZ_w607.egsdat ncase=1800000000     cpu=556122.00  
+608 sourcePhspConstantZ_w608.egsdat ncase=1650000000     cpu=526868.00  
+609 sourcePhspConstantZ_w609.egsdat ncase=1650000000     cpu=515333.00  
+610 sourcePhspConstantZ_w610.egsdat ncase=1800000000     cpu=557663.00  
+611 sourcePhspConstantZ_w611.egsdat ncase=1800000000     cpu=559557.00  
+612 sourcePhspConstantZ_w612.egsdat ncase=1650000000     cpu=516954.00  
+613 sourcePhspConstantZ_w613.egsdat ncase=1800000000     cpu=558841.00  
+614 sourcePhspConstantZ_w614.egsdat ncase=1800000000     cpu=557047.00  
+615 sourcePhspConstantZ_w615.egsdat ncase=1650000000     cpu=517639.00  
+616 sourcePhspConstantZ_w616.egsdat ncase=1650000000     cpu=519450.00  
+617 sourcePhspConstantZ_w617.egsdat ncase=1650000000     cpu=519973.00  
+618 sourcePhspConstantZ_w618.egsdat ncase=1650000000     cpu=515543.00  
+619 sourcePhspConstantZ_w619.egsdat ncase=1800000000     cpu=555518.00  
+620 sourcePhspConstantZ_w620.egsdat ncase=1800000000     cpu=556166.00  
+621 sourcePhspConstantZ_w621.egsdat ncase=1800000000     cpu=556133.00  
+622 sourcePhspConstantZ_w622.egsdat ncase=1650000000     cpu=522990.00  
+623 sourcePhspConstantZ_w623.egsdat ncase=1800000000     cpu=554673.00  
+624 sourcePhspConstantZ_w624.egsdat ncase=1650000000     cpu=514945.00  
+625 sourcePhspConstantZ_w625.egsdat ncase=1650000000     cpu=516319.00  
+626 sourcePhspConstantZ_w626.egsdat ncase=1650000000     cpu=514278.00  
+627 sourcePhspConstantZ_w627.egsdat ncase=1800000000     cpu=558552.00  
+628 sourcePhspConstantZ_w628.egsdat ncase=1650000000     cpu=523583.00  
+629 sourcePhspConstantZ_w629.egsdat ncase=1650000000     cpu=526852.00  
+630 sourcePhspConstantZ_w630.egsdat ncase=1650000000     cpu=525460.00  
+631 sourcePhspConstantZ_w631.egsdat ncase=1650000000     cpu=523442.00  
+632 sourcePhspConstantZ_w632.egsdat ncase=1650000000     cpu=522811.00  
+633 sourcePhspConstantZ_w633.egsdat ncase=1650000000     cpu=522975.00  
+634 sourcePhspConstantZ_w634.egsdat ncase=1650000000     cpu=519616.00  
+635 sourcePhspConstantZ_w635.egsdat ncase=1650000000     cpu=521131.00  
+636 sourcePhspConstantZ_w636.egsdat ncase=1650000000     cpu=520231.00  
+637 sourcePhspConstantZ_w637.egsdat ncase=1650000000     cpu=526826.00  
+638 sourcePhspConstantZ_w638.egsdat ncase=1650000000     cpu=524600.00  
+639 sourcePhspConstantZ_w639.egsdat ncase=1650000000     cpu=520871.00  
+640 sourcePhspConstantZ_w640.egsdat ncase=1650000000     cpu=524070.00  
+641 sourcePhspConstantZ_w641.egsdat ncase=1650000000     cpu=515772.00  
+642 sourcePhspConstantZ_w642.egsdat ncase=1650000000     cpu=515274.00  
+643 sourcePhspConstantZ_w643.egsdat ncase=1650000000     cpu=517611.00  
+644 sourcePhspConstantZ_w644.egsdat ncase=1800000000     cpu=557339.00  
+645 sourcePhspConstantZ_w645.egsdat ncase=1650000000     cpu=515851.00  
+646 sourcePhspConstantZ_w646.egsdat ncase=1500000000     cpu=540773.00  
+647 sourcePhspConstantZ_w647.egsdat ncase=1650000000     cpu=517508.00  
+648 sourcePhspConstantZ_w648.egsdat ncase=1800000000     cpu=557701.00  
+649 sourcePhspConstantZ_w649.egsdat ncase=1650000000     cpu=515754.00  
+650 sourcePhspConstantZ_w650.egsdat ncase=1800000000     cpu=556267.00  
+651 sourcePhspConstantZ_w651.egsdat ncase=1800000000     cpu=555075.00  
+652 sourcePhspConstantZ_w652.egsdat ncase=1800000000     cpu=556490.00  
+653 sourcePhspConstantZ_w653.egsdat ncase=1800000000     cpu=558903.00  
+654 sourcePhspConstantZ_w654.egsdat ncase=1650000000     cpu=517223.00  
+655 sourcePhspConstantZ_w655.egsdat ncase=1650000000     cpu=517115.00  
+656 sourcePhspConstantZ_w656.egsdat ncase=1650000000     cpu=516614.00  
+657 sourcePhspConstantZ_w657.egsdat ncase=1650000000     cpu=522761.00  
+658 sourcePhspConstantZ_w658.egsdat ncase=1800000000     cpu=556140.00  
+659 sourcePhspConstantZ_w659.egsdat ncase=1650000000     cpu=543353.00  
+660 sourcePhspConstantZ_w660.egsdat ncase=1650000000     cpu=518276.00  
+661 sourcePhspConstantZ_w661.egsdat ncase=1650000000     cpu=514380.00  
+662 sourcePhspConstantZ_w662.egsdat ncase=1800000000     cpu=554864.00  
+663 sourcePhspConstantZ_w663.egsdat ncase=1650000000     cpu=521628.00  
+664 sourcePhspConstantZ_w664.egsdat ncase=1650000000     cpu=445080.00  
+665 sourcePhspConstantZ_w665.egsdat ncase=1800000000     cpu=473032.00  
+666 sourcePhspConstantZ_w666.egsdat ncase=1650000000     cpu=451913.00  
+667 sourcePhspConstantZ_w667.egsdat ncase=1650000000     cpu=442917.00  
+668 sourcePhspConstantZ_w668.egsdat ncase=1650000000     cpu=445206.00  
+669 sourcePhspConstantZ_w669.egsdat ncase=1800000000     cpu=469559.00  
+670 sourcePhspConstantZ_w670.egsdat ncase=1800000000     cpu=467640.00  
+671 sourcePhspConstantZ_w671.egsdat ncase=1800000000     cpu=469784.00  
+672 sourcePhspConstantZ_w672.egsdat ncase=1800000000     cpu=460633.00  
+673 sourcePhspConstantZ_w673.egsdat ncase=1800000000     cpu=462949.00  
+674 sourcePhspConstantZ_w674.egsdat ncase=1650000000     cpu=419311.00  
+675 sourcePhspConstantZ_w675.egsdat ncase=1650000000     cpu=423402.00  
+676 sourcePhspConstantZ_w676.egsdat ncase=1650000000     cpu=428186.00  
+677 sourcePhspConstantZ_w677.egsdat ncase=1650000000     cpu=429387.00  
+678 sourcePhspConstantZ_w678.egsdat ncase=1650000000     cpu=422946.00  
+679 sourcePhspConstantZ_w679.egsdat ncase=1650000000     cpu=419848.00  
+680 sourcePhspConstantZ_w680.egsdat ncase=1650000000     cpu=424618.00  
+681 sourcePhspConstantZ_w681.egsdat ncase=1650000000     cpu=422161.00  
+682 sourcePhspConstantZ_w682.egsdat ncase=1650000000     cpu=419990.00  
+683 sourcePhspConstantZ_w683.egsdat ncase=1650000000     cpu=440779.00  
+684 sourcePhspConstantZ_w684.egsdat ncase=1650000000     cpu=442606.00  
+685 sourcePhspConstantZ_w685.egsdat ncase=1650000000     cpu=443469.00  
+686 sourcePhspConstantZ_w686.egsdat ncase=1650000000     cpu=445837.00  
+687 sourcePhspConstantZ_w687.egsdat ncase=1650000000     cpu=436701.00  
+688 sourcePhspConstantZ_w688.egsdat ncase=1650000000     cpu=436140.00  
+689 sourcePhspConstantZ_w689.egsdat ncase=1650000000     cpu=436595.00  
+690 sourcePhspConstantZ_w690.egsdat ncase=1650000000     cpu=437496.00  
+691 sourcePhspConstantZ_w691.egsdat ncase=1650000000     cpu=422219.00  
+692 sourcePhspConstantZ_w692.egsdat ncase=1650000000     cpu=416132.00  
+693 sourcePhspConstantZ_w693.egsdat ncase=1650000000     cpu=421868.00  
+694 sourcePhspConstantZ_w694.egsdat ncase=1650000000     cpu=417073.00  
+695 sourcePhspConstantZ_w695.egsdat ncase=1650000000     cpu=413952.00  
+696 sourcePhspConstantZ_w696.egsdat ncase=1650000000     cpu=427826.00  
+697 sourcePhspConstantZ_w697.egsdat ncase=1650000000     cpu=416601.00  
+698 sourcePhspConstantZ_w698.egsdat ncase=1650000000     cpu=418547.00  
+699 sourcePhspConstantZ_w699.egsdat ncase=1650000000     cpu=412518.00  
+700 sourcePhspConstantZ_w700.egsdat ncase=1650000000     cpu=420895.00  
+701 sourcePhspConstantZ_w701.egsdat ncase=1650000000     cpu=424695.00  
+702 sourcePhspConstantZ_w702.egsdat ncase=1650000000     cpu=418767.00  
+703 sourcePhspConstantZ_w703.egsdat ncase=1650000000     cpu=410528.00  
+704 sourcePhspConstantZ_w704.egsdat ncase=1650000000     cpu=407013.00  
+705 sourcePhspConstantZ_w705.egsdat ncase=1650000000     cpu=411485.00  
+706 sourcePhspConstantZ_w706.egsdat ncase=1650000000     cpu=418835.00  
+707 sourcePhspConstantZ_w707.egsdat ncase=1650000000     cpu=418068.00  
+708 sourcePhspConstantZ_w708.egsdat ncase=1650000000     cpu=431958.00  
+709 sourcePhspConstantZ_w709.egsdat ncase=1650000000     cpu=426721.00  
+710 sourcePhspConstantZ_w710.egsdat ncase=1650000000     cpu=420481.00  
+711 sourcePhspConstantZ_w711.egsdat ncase=1650000000     cpu=417354.00  
+712 sourcePhspConstantZ_w712.egsdat ncase=1650000000     cpu=418037.00  
+713 sourcePhspConstantZ_w713.egsdat ncase=1650000000     cpu=413270.00  
+714 sourcePhspConstantZ_w714.egsdat ncase=1650000000     cpu=414864.00  
+715 sourcePhspConstantZ_w715.egsdat ncase=1650000000     cpu=423753.00  
+716 sourcePhspConstantZ_w716.egsdat ncase=1650000000     cpu=415900.00  
+717 sourcePhspConstantZ_w717.egsdat ncase=1200000000     cpu=392203.00  
+718 sourcePhspConstantZ_w718.egsdat ncase=1350000000     cpu=428035.00  
+719 sourcePhspConstantZ_w719.egsdat ncase=1350000000     cpu=429993.00  
+720 sourcePhspConstantZ_w720.egsdat ncase=1350000000     cpu=428783.00  
+721 sourcePhspConstantZ_w721.egsdat ncase=1350000000     cpu=437197.00  
+722 sourcePhspConstantZ_w722.egsdat ncase=1350000000     cpu=434433.00  
+723 sourcePhspConstantZ_w723.egsdat ncase=1350000000     cpu=431896.00  
+724 sourcePhspConstantZ_w724.egsdat ncase=1350000000     cpu=427563.00  
+725 sourcePhspConstantZ_w725.egsdat ncase=1350000000     cpu=437546.00  
+726 sourcePhspConstantZ_w726.egsdat ncase=1350000000     cpu=432431.00  
+727 sourcePhspConstantZ_w727.egsdat ncase=1350000000     cpu=434088.00  
+728 sourcePhspConstantZ_w728.egsdat ncase=1350000000     cpu=433357.00  
+729 sourcePhspConstantZ_w729.egsdat ncase=1350000000     cpu=422590.00  
+730 sourcePhspConstantZ_w730.egsdat ncase=1350000000     cpu=423279.00  
+731 sourcePhspConstantZ_w731.egsdat ncase=1350000000     cpu=423178.00  
+732 sourcePhspConstantZ_w732.egsdat ncase=1350000000     cpu=418602.00  
+733 sourcePhspConstantZ_w733.egsdat ncase=1350000000     cpu=424712.00  
+734 sourcePhspConstantZ_w734.egsdat ncase=1350000000     cpu=428155.00  
+735 sourcePhspConstantZ_w735.egsdat ncase=1350000000     cpu=419241.00  
+736 sourcePhspConstantZ_w736.egsdat ncase=1350000000     cpu=426987.00  
+737 sourcePhspConstantZ_w737.egsdat ncase=1350000000     cpu=419799.00  
+738 sourcePhspConstantZ_w738.egsdat ncase=1350000000     cpu=430153.00  
+739 sourcePhspConstantZ_w739.egsdat ncase=1350000000     cpu=424292.00  
+740 sourcePhspConstantZ_w740.egsdat ncase=1200000000     cpu=426530.00  
+741 sourcePhspConstantZ_w741.egsdat ncase=1350000000     cpu=424449.00  
+742 sourcePhspConstantZ_w742.egsdat ncase=1350000000     cpu=418360.00  
+743 sourcePhspConstantZ_w743.egsdat ncase=1350000000     cpu=421220.00  
+744 sourcePhspConstantZ_w744.egsdat ncase=1350000000     cpu=419718.00  
+745 sourcePhspConstantZ_w745.egsdat ncase=1350000000     cpu=417455.00  
+746 sourcePhspConstantZ_w746.egsdat ncase=1350000000     cpu=417156.00  
+747 sourcePhspConstantZ_w747.egsdat ncase=1350000000     cpu=422290.00  
+748 sourcePhspConstantZ_w748.egsdat ncase=1350000000     cpu=418733.00  
+749 sourcePhspConstantZ_w749.egsdat ncase=1350000000     cpu=429913.00  
+750 sourcePhspConstantZ_w750.egsdat ncase=1350000000     cpu=425508.00  
+751 sourcePhspConstantZ_w751.egsdat ncase=1350000000     cpu=422303.00  
+752 sourcePhspConstantZ_w752.egsdat ncase=1350000000     cpu=419288.00  
+753 sourcePhspConstantZ_w753.egsdat ncase=1350000000     cpu=422949.00  
+754 sourcePhspConstantZ_w754.egsdat ncase=1350000000     cpu=420268.00  
+755 sourcePhspConstantZ_w755.egsdat ncase=1350000000     cpu=420738.00  
+756 sourcePhspConstantZ_w756.egsdat ncase=1350000000     cpu=425764.00  
+757 sourcePhspConstantZ_w757.egsdat ncase=1350000000     cpu=423596.00  
+758 sourcePhspConstantZ_w758.egsdat ncase=1350000000     cpu=425319.00  
+759 sourcePhspConstantZ_w759.egsdat ncase=1350000000     cpu=423532.00  
+760 sourcePhspConstantZ_w760.egsdat ncase=1350000000     cpu=418596.00  
+761 sourcePhspConstantZ_w761.egsdat ncase=1350000000     cpu=426598.00  
+762 sourcePhspConstantZ_w762.egsdat ncase=1350000000     cpu=417663.00  
+763 sourcePhspConstantZ_w763.egsdat ncase=1350000000     cpu=420086.00  
+764 sourcePhspConstantZ_w764.egsdat ncase=1350000000     cpu=415991.00  
+765 sourcePhspConstantZ_w765.egsdat ncase=1350000000     cpu=422446.00  
+766 sourcePhspConstantZ_w766.egsdat ncase=1350000000     cpu=425489.00  
+767 sourcePhspConstantZ_w767.egsdat ncase=1350000000     cpu=420328.00  
+768 sourcePhspConstantZ_w768.egsdat ncase=1350000000     cpu=419776.00  
+769 sourcePhspConstantZ_w769.egsdat ncase=1350000000     cpu=419069.00  
+770 sourcePhspConstantZ_w770.egsdat ncase=1350000000     cpu=421606.00  
+771 sourcePhspConstantZ_w771.egsdat ncase=1350000000     cpu=420117.00  
+772 sourcePhspConstantZ_w772.egsdat ncase=1350000000     cpu=416651.00  
+773 sourcePhspConstantZ_w773.egsdat ncase=1350000000     cpu=416849.00  
+774 sourcePhspConstantZ_w774.egsdat ncase=1350000000     cpu=421886.00  
+775 sourcePhspConstantZ_w775.egsdat ncase=1350000000     cpu=423453.00  
+776 sourcePhspConstantZ_w776.egsdat ncase=1350000000     cpu=422892.00  
+777 sourcePhspConstantZ_w777.egsdat ncase=1350000000     cpu=425823.00  
+778 sourcePhspConstantZ_w778.egsdat ncase=1350000000     cpu=424281.00  
+779 sourcePhspConstantZ_w779.egsdat ncase=1350000000     cpu=428212.00  
+780 sourcePhspConstantZ_w780.egsdat ncase=1350000000     cpu=426749.00  
+781 sourcePhspConstantZ_w781.egsdat ncase=1200000000     cpu=383377.00  
+782 sourcePhspConstantZ_w782.egsdat ncase=1200000000     cpu=379373.00  
+783 sourcePhspConstantZ_w783.egsdat ncase=1350000000     cpu=419961.00  
+784 sourcePhspConstantZ_w784.egsdat ncase=1200000000     cpu=380256.00  
+785 sourcePhspConstantZ_w785.egsdat ncase=1200000000     cpu=384625.00  
+786 sourcePhspConstantZ_w786.egsdat ncase=1200000000     cpu=383399.00  
+787 sourcePhspConstantZ_w787.egsdat ncase=1200000000     cpu=381446.00  
+788 sourcePhspConstantZ_w788.egsdat ncase=1350000000     cpu=421682.00  
+789 sourcePhspConstantZ_w789.egsdat ncase=1200000000     cpu=379438.00  
+790 sourcePhspConstantZ_w790.egsdat ncase=1350000000     cpu=419419.00  
+791 sourcePhspConstantZ_w791.egsdat ncase=1350000000     cpu=424597.00  
+792 sourcePhspConstantZ_w792.egsdat ncase=1350000000     cpu=420415.00  
+793 sourcePhspConstantZ_w793.egsdat ncase=1350000000     cpu=419639.00  
+794 sourcePhspConstantZ_w794.egsdat ncase=1350000000     cpu=420444.00  
+795 sourcePhspConstantZ_w795.egsdat ncase=1350000000     cpu=424589.00  
+796 sourcePhspConstantZ_w796.egsdat ncase=1350000000     cpu=424660.00  
+797 sourcePhspConstantZ_w797.egsdat ncase=1200000000     cpu=380546.00  
+798 sourcePhspConstantZ_w798.egsdat ncase=1350000000     cpu=420108.00  
+799 sourcePhspConstantZ_w799.egsdat ncase=1350000000     cpu=418763.00  
+800 sourcePhspConstantZ_w800.egsdat ncase=1350000000     cpu=419057.00  
+801 sourcePhspConstantZ_w801.egsdat ncase=1200000000     cpu=378035.00  
+802 sourcePhspConstantZ_w802.egsdat ncase=1350000000     cpu=418699.00  
+803 sourcePhspConstantZ_w803.egsdat ncase=1350000000     cpu=419905.00  
+804 sourcePhspConstantZ_w804.egsdat ncase=1350000000     cpu=418434.00  
+805 sourcePhspConstantZ_w805.egsdat ncase=1350000000     cpu=416848.00  
+806 sourcePhspConstantZ_w806.egsdat ncase=1350000000     cpu=422666.00  
+807 sourcePhspConstantZ_w807.egsdat ncase=1350000000     cpu=419789.00  
+808 sourcePhspConstantZ_w808.egsdat ncase=1350000000     cpu=423510.00  
+809 sourcePhspConstantZ_w809.egsdat ncase=1350000000     cpu=420882.00  
+810 sourcePhspConstantZ_w810.egsdat ncase=1350000000     cpu=420322.00  
+811 sourcePhspConstantZ_w811.egsdat ncase=1200000000     cpu=381188.00  
+812 sourcePhspConstantZ_w812.egsdat ncase=1350000000     cpu=417992.00  
+813 sourcePhspConstantZ_w813.egsdat ncase=1200000000     cpu=380555.00  
+814 sourcePhspConstantZ_w814.egsdat ncase=1350000000     cpu=421089.00  
+815 sourcePhspConstantZ_w815.egsdat ncase=1200000000     cpu=378048.00  
+816 sourcePhspConstantZ_w816.egsdat ncase=1200000000     cpu=380462.00  
+817 sourcePhspConstantZ_w817.egsdat ncase=1350000000     cpu=421009.00  
+818 sourcePhspConstantZ_w818.egsdat ncase=1350000000     cpu=418556.00  
+819 sourcePhspConstantZ_w819.egsdat ncase=1200000000     cpu=376766.00  
+820 sourcePhspConstantZ_w820.egsdat ncase=1350000000     cpu=418577.00  
+821 sourcePhspConstantZ_w821.egsdat ncase=1350000000     cpu=419332.00  
+822 sourcePhspConstantZ_w822.egsdat ncase=1350000000     cpu=419069.00  
+823 sourcePhspConstantZ_w823.egsdat ncase=1350000000     cpu=421741.00  
+824 sourcePhspConstantZ_w824.egsdat ncase=1350000000     cpu=418087.00  
+825 sourcePhspConstantZ_w825.egsdat ncase=1200000000     cpu=374795.00  
+826 sourcePhspConstantZ_w826.egsdat ncase=1200000000     cpu=381851.00  
+827 sourcePhspConstantZ_w827.egsdat ncase=1200000000     cpu=384138.00  
+828 sourcePhspConstantZ_w828.egsdat ncase=1350000000     cpu=416613.00  
+829 sourcePhspConstantZ_w829.egsdat ncase=1500000000     cpu=401377.00  
+830 sourcePhspConstantZ_w830.egsdat ncase=1500000000     cpu=392861.00  
+831 sourcePhspConstantZ_w831.egsdat ncase=1500000000     cpu=393101.00  
+832 sourcePhspConstantZ_w832.egsdat ncase=1500000000     cpu=396363.00  
+833 sourcePhspConstantZ_w833.egsdat ncase=1500000000     cpu=395568.00  
+834 sourcePhspConstantZ_w834.egsdat ncase=1500000000     cpu=388054.00  
+835 sourcePhspConstantZ_w835.egsdat ncase=1500000000     cpu=399123.00  
+836 sourcePhspConstantZ_w836.egsdat ncase=1500000000     cpu=389676.00  
+837 sourcePhspConstantZ_w837.egsdat ncase=1200000000     cpu=371211.00  
+838 sourcePhspConstantZ_w838.egsdat ncase=1200000000     cpu=370850.00  
+839 sourcePhspConstantZ_w839.egsdat ncase=1200000000     cpu=371416.00  
+840 sourcePhspConstantZ_w840.egsdat ncase=1200000000     cpu=371886.00  
+841 sourcePhspConstantZ_w841.egsdat ncase=1200000000     cpu=378976.00  
+842 sourcePhspConstantZ_w842.egsdat ncase=1200000000     cpu=381177.00  
+843 sourcePhspConstantZ_w843.egsdat ncase=1200000000     cpu=372999.00  
+844 sourcePhspConstantZ_w844.egsdat ncase=1200000000     cpu=371237.00  
+845 sourcePhspConstantZ_w845.egsdat ncase=1200000000     cpu=379407.00  
+846 sourcePhspConstantZ_w846.egsdat ncase=1200000000     cpu=374935.00  
+847 sourcePhspConstantZ_w847.egsdat ncase=1200000000     cpu=372402.00  
+848 sourcePhspConstantZ_w848.egsdat ncase=1200000000     cpu=370570.00  
+849 sourcePhspConstantZ_w849.egsdat ncase=1200000000     cpu=376376.00  
+850 sourcePhspConstantZ_w850.egsdat ncase=1200000000     cpu=374625.00  
+851 sourcePhspConstantZ_w851.egsdat ncase=1200000000     cpu=374120.00  
+852 sourcePhspConstantZ_w852.egsdat ncase=1200000000     cpu=374063.00  
+853 sourcePhspConstantZ_w853.egsdat ncase=1200000000     cpu=363626.00  
+854 sourcePhspConstantZ_w854.egsdat ncase=1200000000     cpu=361043.00  
+855 sourcePhspConstantZ_w855.egsdat ncase=1200000000     cpu=362462.00  
+856 sourcePhspConstantZ_w856.egsdat ncase=1200000000     cpu=373331.00  
+857 sourcePhspConstantZ_w857.egsdat ncase=1200000000     cpu=376808.00  
+858 sourcePhspConstantZ_w858.egsdat ncase=1200000000     cpu=376036.00  
+859 sourcePhspConstantZ_w859.egsdat ncase=1200000000     cpu=376895.00  
+860 sourcePhspConstantZ_w860.egsdat ncase=1200000000     cpu=355904.00  
+861 sourcePhspConstantZ_w861.egsdat ncase=1050000000     cpu=361377.00  
+862 sourcePhspConstantZ_w862.egsdat ncase=1050000000     cpu=330593.00  
+863 sourcePhspConstantZ_w863.egsdat ncase=1050000000     cpu=338774.00  
+864 sourcePhspConstantZ_w864.egsdat ncase=1200000000     cpu=359026.00  
+865 sourcePhspConstantZ_w865.egsdat ncase=1200000000     cpu=359499.00  
+866 sourcePhspConstantZ_w866.egsdat ncase=1200000000     cpu=358362.00  
+867 sourcePhspConstantZ_w867.egsdat ncase=1050000000     cpu=326437.00  
+868 sourcePhspConstantZ_w868.egsdat ncase=1050000000     cpu=329691.00  
+869 sourcePhspConstantZ_w869.egsdat ncase=1050000000     cpu=326031.00  
+870 sourcePhspConstantZ_w870.egsdat ncase=1050000000     cpu=336640.00  
+871 sourcePhspConstantZ_w871.egsdat ncase=1200000000     cpu=360754.00  
+872 sourcePhspConstantZ_w872.egsdat ncase=1200000000     cpu=357744.00  
+873 sourcePhspConstantZ_w873.egsdat ncase=1200000000     cpu=356557.00  
+874 sourcePhspConstantZ_w874.egsdat ncase=1050000000     cpu=328640.00  
+875 sourcePhspConstantZ_w875.egsdat ncase=1050000000     cpu=327388.00  
+876 sourcePhspConstantZ_w876.egsdat ncase=1050000000     cpu=334015.00  
+877 sourcePhspConstantZ_w877.egsdat ncase=1050000000     cpu=330094.00  
+878 sourcePhspConstantZ_w878.egsdat ncase=1200000000     cpu=360797.00  
+879 sourcePhspConstantZ_w879.egsdat ncase=1050000000     cpu=320891.00  
+880 sourcePhspConstantZ_w880.egsdat ncase=1200000000     cpu=356095.00  
+881 sourcePhspConstantZ_w881.egsdat ncase=1050000000     cpu=325290.00  
+882 sourcePhspConstantZ_w882.egsdat ncase=1050000000     cpu=325701.00  
+883 sourcePhspConstantZ_w883.egsdat ncase=1050000000     cpu=325114.00  
+884 sourcePhspConstantZ_w884.egsdat ncase=1050000000     cpu=326064.00  
+885 sourcePhspConstantZ_w885.egsdat ncase=1050000000     cpu=329807.00  
+886 sourcePhspConstantZ_w886.egsdat ncase=1050000000     cpu=330868.00  
+887 sourcePhspConstantZ_w887.egsdat ncase=1200000000     cpu=357885.00  
+888 sourcePhspConstantZ_w888.egsdat ncase=1050000000     cpu=321068.00  
+889 sourcePhspConstantZ_w889.egsdat ncase=1200000000     cpu=357807.00  
+890 sourcePhspConstantZ_w890.egsdat ncase=1050000000     cpu=327702.00  
+891 sourcePhspConstantZ_w891.egsdat ncase=1050000000     cpu=324947.00  
+892 sourcePhspConstantZ_w892.egsdat ncase=1050000000     cpu=326823.00  
+893 sourcePhspConstantZ_w893.egsdat ncase=1050000000     cpu=326241.00  
+894 sourcePhspConstantZ_w894.egsdat ncase=1050000000     cpu=322845.00  
+895 sourcePhspConstantZ_w895.egsdat ncase=1050000000     cpu=320225.00  
+896 sourcePhspConstantZ_w896.egsdat ncase=1050000000     cpu=323654.00  
+897 sourcePhspConstantZ_w897.egsdat ncase=1050000000     cpu=328457.00  
+898 sourcePhspConstantZ_w898.egsdat ncase=1050000000     cpu=327180.00  
+899 sourcePhspConstantZ_w899.egsdat ncase=1050000000     cpu=329837.00  
+900 sourcePhspConstantZ_w900.egsdat ncase=1050000000     cpu=332076.00  
+901 sourcePhspConstantZ_w901.egsdat ncase=1200000000     cpu=356910.00  
+902 sourcePhspConstantZ_w902.egsdat ncase=1200000000     cpu=362615.00  
+903 sourcePhspConstantZ_w903.egsdat ncase=1200000000     cpu=356989.00  
+904 sourcePhspConstantZ_w904.egsdat ncase=1050000000     cpu=328192.00  
+905 sourcePhspConstantZ_w905.egsdat ncase=1050000000     cpu=326901.00  
+906 sourcePhspConstantZ_w906.egsdat ncase=1050000000     cpu=325881.00  
+907 sourcePhspConstantZ_w907.egsdat ncase=1050000000     cpu=324660.00  
+908 sourcePhspConstantZ_w908.egsdat ncase=1050000000     cpu=330293.00  
+909 sourcePhspConstantZ_w909.egsdat ncase=1050000000     cpu=324694.00  
+910 sourcePhspConstantZ_w910.egsdat ncase=1050000000     cpu=332639.00  
+911 sourcePhspConstantZ_w911.egsdat ncase=1050000000     cpu=328729.00  
+912 sourcePhspConstantZ_w912.egsdat ncase=1050000000     cpu=330009.00  
+913 sourcePhspConstantZ_w913.egsdat ncase=1050000000     cpu=331122.00  
+914 sourcePhspConstantZ_w914.egsdat ncase=1050000000     cpu=328343.00  
+915 sourcePhspConstantZ_w915.egsdat ncase=1200000000     cpu=359058.00  
+916 sourcePhspConstantZ_w916.egsdat ncase=1200000000     cpu=362640.00  
+917 sourcePhspConstantZ_w917.egsdat ncase=1200000000     cpu=359566.00  
+918 sourcePhspConstantZ_w918.egsdat ncase=1050000000     cpu=325933.00  
+919 sourcePhspConstantZ_w919.egsdat ncase=1050000000     cpu=330211.00  
+920 sourcePhspConstantZ_w920.egsdat ncase=1050000000     cpu=329652.00  
+921 sourcePhspConstantZ_w921.egsdat ncase=1050000000     cpu=327637.00  
+922 sourcePhspConstantZ_w922.egsdat ncase=1200000000     cpu=361474.00  
+923 sourcePhspConstantZ_w923.egsdat ncase=1200000000     cpu=357686.00  
+924 sourcePhspConstantZ_w924.egsdat ncase=1200000000     cpu=359549.00  
+925 sourcePhspConstantZ_w925.egsdat ncase=1050000000     cpu=327599.00  
+926 sourcePhspConstantZ_w926.egsdat ncase=1050000000     cpu=331572.00  
+927 sourcePhspConstantZ_w927.egsdat ncase=1050000000     cpu=330435.00  
+928 sourcePhspConstantZ_w928.egsdat ncase=1050000000     cpu=328097.00  
+929 sourcePhspConstantZ_w929.egsdat ncase=1050000000     cpu=324408.00  
+930 sourcePhspConstantZ_w930.egsdat ncase=1050000000     cpu=329257.00  
+931 sourcePhspConstantZ_w931.egsdat ncase=1050000000     cpu=331263.00  
+932 sourcePhspConstantZ_w932.egsdat ncase=1050000000     cpu=325087.00  
+933 sourcePhspConstantZ_w933.egsdat ncase=1050000000     cpu=327662.00  
+934 sourcePhspConstantZ_w934.egsdat ncase=1050000000     cpu=325035.00  
+935 sourcePhspConstantZ_w935.egsdat ncase=1050000000     cpu=327967.00  
+936 sourcePhspConstantZ_w936.egsdat ncase=1050000000     cpu=324142.00  
+937 sourcePhspConstantZ_w937.egsdat ncase=1050000000     cpu=331601.00  
+938 sourcePhspConstantZ_w938.egsdat ncase=1050000000     cpu=326006.00  
+939 sourcePhspConstantZ_w939.egsdat ncase=1050000000     cpu=328685.00  
+940 sourcePhspConstantZ_w940.egsdat ncase=1050000000     cpu=323728.00  
+941 sourcePhspConstantZ_w941.egsdat ncase=1050000000     cpu=327729.00  
+942 sourcePhspConstantZ_w942.egsdat ncase=1050000000     cpu=324611.00  
+943 sourcePhspConstantZ_w943.egsdat ncase=1050000000     cpu=328801.00  
+944 sourcePhspConstantZ_w944.egsdat ncase=1050000000     cpu=331322.00  
+945 sourcePhspConstantZ_w945.egsdat ncase=1050000000     cpu=355771.00  
+946 sourcePhspConstantZ_w946.egsdat ncase=1050000000     cpu=357520.00  
+947 sourcePhspConstantZ_w947.egsdat ncase=1050000000     cpu=361274.00  
+948 sourcePhspConstantZ_w948.egsdat ncase=900000000      cpu=363481.00  
+949 sourcePhspConstantZ_w949.egsdat ncase=900000000      cpu=342975.00  
+950 sourcePhspConstantZ_w950.egsdat ncase=900000000      cpu=352294.00  
+951 sourcePhspConstantZ_w951.egsdat ncase=900000000      cpu=345102.00  
+952 sourcePhspConstantZ_w952.egsdat ncase=900000000      cpu=350105.00  
+953 sourcePhspConstantZ_w953.egsdat ncase=1050000000     cpu=332148.00  
+954 sourcePhspConstantZ_w954.egsdat ncase=1050000000     cpu=342382.00  
+955 sourcePhspConstantZ_w955.egsdat ncase=1050000000     cpu=338115.00  
+956 sourcePhspConstantZ_w956.egsdat ncase=1050000000     cpu=329343.00  
+957 sourcePhspConstantZ_w957.egsdat ncase=1050000000     cpu=322132.00  
+958 sourcePhspConstantZ_w958.egsdat ncase=1050000000     cpu=324720.00  
+959 sourcePhspConstantZ_w959.egsdat ncase=1050000000     cpu=330572.00  
+960 sourcePhspConstantZ_w960.egsdat ncase=1050000000     cpu=331175.00  
+961 sourcePhspConstantZ_w961.egsdat ncase=1050000000     cpu=336013.00  
+962 sourcePhspConstantZ_w962.egsdat ncase=1050000000     cpu=336275.00  
+963 sourcePhspConstantZ_w963.egsdat ncase=1050000000     cpu=341031.00  
+964 sourcePhspConstantZ_w964.egsdat ncase=1050000000     cpu=329729.00  
+965 sourcePhspConstantZ_w965.egsdat ncase=1050000000     cpu=329821.00  
+966 sourcePhspConstantZ_w966.egsdat ncase=1050000000     cpu=335410.00  
+967 sourcePhspConstantZ_w967.egsdat ncase=1050000000     cpu=328071.00  
+968 sourcePhspConstantZ_w968.egsdat ncase=1050000000     cpu=334025.00  
+969 sourcePhspConstantZ_w969.egsdat ncase=1050000000     cpu=331940.00  
+970 sourcePhspConstantZ_w970.egsdat ncase=900000000      cpu=323091.00  
+971 sourcePhspConstantZ_w971.egsdat ncase=900000000      cpu=323326.00  
+972 sourcePhspConstantZ_w972.egsdat ncase=900000000      cpu=325468.00  
+973 sourcePhspConstantZ_w973.egsdat ncase=900000000      cpu=324460.00  
+974 sourcePhspConstantZ_w974.egsdat ncase=1050000000     cpu=323508.00  
+975 sourcePhspConstantZ_w975.egsdat ncase=1050000000     cpu=351969.00  
+976 sourcePhspConstantZ_w976.egsdat ncase=1050000000     cpu=359206.00  
+977 sourcePhspConstantZ_w977.egsdat ncase=1050000000     cpu=351976.00  
+978 sourcePhspConstantZ_w978.egsdat ncase=1050000000     cpu=353384.00  
+979 sourcePhspConstantZ_w979.egsdat ncase=900000000      cpu=323916.00  
+980 sourcePhspConstantZ_w980.egsdat ncase=900000000      cpu=322987.00  
+981 sourcePhspConstantZ_w981.egsdat ncase=900000000      cpu=322642.00  
+982 sourcePhspConstantZ_w982.egsdat ncase=900000000      cpu=322652.00  
+983 sourcePhspConstantZ_w983.egsdat ncase=900000000      cpu=324210.00  
+984 sourcePhspConstantZ_w984.egsdat ncase=900000000      cpu=327355.00  
+985 sourcePhspConstantZ_w985.egsdat ncase=900000000      cpu=322402.00  
+986 sourcePhspConstantZ_w986.egsdat ncase=900000000      cpu=322318.00  
+987 sourcePhspConstantZ_w987.egsdat ncase=1050000000     cpu=358543.00  
+988 sourcePhspConstantZ_w988.egsdat ncase=1050000000     cpu=355936.00  
+989 sourcePhspConstantZ_w989.egsdat ncase=1050000000     cpu=360407.00  
+990 sourcePhspConstantZ_w990.egsdat ncase=1050000000     cpu=357199.00  
+991 sourcePhspConstantZ_w991.egsdat ncase=1050000000     cpu=354194.00  
+992 sourcePhspConstantZ_w992.egsdat ncase=1050000000     cpu=355112.00  
+993 sourcePhspConstantZ_w993.egsdat ncase=1050000000     cpu=359392.00  
+994 sourcePhspConstantZ_w994.egsdat ncase=1050000000     cpu=360536.00  
+995 sourcePhspConstantZ_w995.egsdat ncase=900000000      cpu=321516.00  
+996 sourcePhspConstantZ_w996.egsdat ncase=900000000      cpu=322352.00  
+997 sourcePhspConstantZ_w997.egsdat ncase=900000000      cpu=320380.00  
+998 sourcePhspConstantZ_w998.egsdat ncase=900000000      cpu=336943.00  
+999 sourcePhspConstantZ_w999.egsdat ncase=1050000000     cpu=345776.00  
+1000 sourcePhspConstantZ_w1000.egsdat ncase=1050000000     cpu=345771.00  
+=======================================================================
+                            Total ncase=1500000000000  cpu=483894034.00
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.62 (sec.) 0.0002(hours)
+CPU time including previous runs:       483894034.62 (sec.) 134415.0096 (hours)
+Histories per hour:                     1.11595e+07   
+Number of random numbers used:          4785777431076756
+Number of electron CH steps:            6.48513e+13   
+Number of all electron steps:           9.55064e+14   
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     1000000
+   Total tracks scored:     81840
+   Still being scored:      0
+   Output file name:        /home/rsmina/EGSnrc/egs_home/TB/sourcePhspConstantZ_w240_w240.ptracks
+

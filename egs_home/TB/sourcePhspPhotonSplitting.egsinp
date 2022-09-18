@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 1.5E12
+    ncase = 1.6E12
     calculation = combine
     #nchunk = 50000
     nbatch = 3
@@ -304,7 +304,7 @@
 
     :start ausgab object:
           library                  = egs_phsp_scoring
-          name                     = sourcePhsp100kvPart1
+          name                     = sourcePhsp100kvPhotonSplitting
           output format            = IAEA
           particle type            = all
           #output directory         =
@@ -377,8 +377,8 @@
 ### VARIANCE REDUCTION
 ##############################################################################
 :start variance reduction:
-    split brem photons = 100
-    bcse medium = anode 100
+    #split brem photons = 100
+    #bcse medium = anode 100
     photon splitting = 100
 :stop variance reduction:
 

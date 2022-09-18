@@ -38,7 +38,8 @@
 batch_command=sbatch
 
 #generic_bo="-n1"
-generic_bo="--ntasks=1 --cpus-per-task=1 --time=7-00:00:00 --share --mem=1024M --mail-type=END,FAIL --mail-user=miia.nadhum@gmail.com"
+#generic_bo="--ntasks=1 --cpus-per-task=1 --time=7-00:00:00 --share --mem=1024M --mail-type=END,FAIL --mail-user=miia.nadhum@gmail.com"
+generic_bo="--ntasks=1 --cpus-per-task=1 --time=7-00:00:00 --mem=1024M --mail-type=END,FAIL --mail-user=miia.nadhum@gmail.com"
 
 # Flag to specify where the output from this job should go.
 # If it is not empty, the job output will be send to input_file.eo
