@@ -94,16 +94,16 @@
         :stop media input:
     :stop geometry:
 
-    ### water tank
+    ### styrox
     :start geometry:
-        name = tank
+        name = styrox
         library = egs_ndgeometry
         type = EGS_XYZGeometry
         x-planes = -50 50
         y-planes = -50 50
         z-planes = 100 121
         :start media input:
-            media = water
+            media = polystyrene
         :stop media input:
     :stop geometry:
 
@@ -172,7 +172,7 @@
         y-planes = -0.5 0.5
         z-planes = 100 100.5
         :start media input:
-            media = water
+            media = polystyrene
         :stop media input:
         set label = Prof 4
     :stop geometry:
@@ -186,7 +186,7 @@
         y-planes = -20 -19 -18 -17 -16 -15 -14 -13 -12 -11 -10 -9 -8 -7 -6 -5 -4 -3 -2 -1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
         z-planes = 100 100.5
         :start media input:
-            media = water
+            media = polystyrene
         :stop media input:
     :stop geometry:
 
@@ -199,7 +199,7 @@
         y-planes = -0.5 0.5
         z-planes = 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120
         :start media input:
-            media = water
+            media = polystyrene
         :stop media input:
     :stop geometry:
 
@@ -312,11 +312,11 @@
 		density correction file=titanium
 	:stop titanium:
 
-	### Water
-	:start water:
+	### polystyrene
+	:start polystyrene:
 		bremsstrahlung correction=NRC
-		density correction file= water_icru90
-	:stop water:
+		density correction file= polystyrene
+	:stop polystyrene:
 
     ### Carbonate
     :start carbonate:
@@ -477,7 +477,7 @@
     ### Dose scoring object to x profile
     :start ausgab object:
         library = egs_dose_scoring
-        name = profilexWater
+        name = profilexStyrox
         medium dose = no
         region dose = yes
         :start output dose file:
@@ -616,7 +616,7 @@
 	set color = aluminum 0 0 255 200
 	set color = steel 0 255 0 200
 	set color = pb 255 85 0 200
-	set color = water 85 170 255 200
+	set color = polystyrene 85 170 255 200
 	set color = titanium 0 170 127 250
         set color = carbonate 170 85 0 200
 	set color = target_material 85 225 127 200
