@@ -118,6 +118,7 @@
         :start media input:
             media = air
         :stop media input:
+        set label = BBla 0
     :stop geometry:
 
     ### Plane after blades
@@ -131,6 +132,7 @@
         :start media input:
             media = air
         :stop media input:
+        set label = ABla 1
     :stop geometry:
 
    ### Plane after hardening filter
@@ -144,6 +146,7 @@
         :start media input:
             media = air
         :stop media input:
+        set label = AHaFl 2
     :stop geometry:
 
    ### Plane after cover
@@ -157,6 +160,7 @@
         :start media input:
             media = air
         :stop media input:
+        set label = ACo 3
     :stop geometry:
 
     ### Profile x direction
@@ -170,6 +174,7 @@
         :start media input:
             media = water
         :stop media input:
+        set label = Prof 4
     :stop geometry:
 
     ### Profile y direction
@@ -548,7 +553,35 @@
 
     :start calculation geometry:
         geometry name    = obi_system
-        cavity regions   = 800
+        cavity regions   = BBla
+        #excluded regions = 0  # exclude particles passing through these regions
+        cavity mass      = 1  # 5 cm radius air sphere
+    :stop calculation geometry:
+
+    :start calculation geometry:
+        geometry name    = obi_system
+        cavity regions   = ABla
+        #excluded regions = 0  # exclude particles passing through these regions
+        cavity mass      = 1  # 5 cm radius air sphere
+    :stop calculation geometry:
+
+    :start calculation geometry:
+        geometry name    = obi_system
+        cavity regions   = AHaFl
+        #excluded regions = 0  # exclude particles passing through these regions
+        cavity mass      = 1  # 5 cm radius air sphere
+    :stop calculation geometry:
+
+    :start calculation geometry:
+        geometry name    = obi_system
+        cavity regions   = ACo
+        #excluded regions = 0  # exclude particles passing through these regions
+        cavity mass      = 1  # 5 cm radius air sphere
+    :stop calculation geometry:
+
+    :start calculation geometry:
+        geometry name    = obi_system
+        cavity regions   = Prof
         #excluded regions = 0  # exclude particles passing through these regions
         cavity mass      = 1  # 5 cm radius air sphere
     :stop calculation geometry:
