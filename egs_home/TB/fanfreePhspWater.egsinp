@@ -381,16 +381,16 @@
         splitting = 1000
     :stop ausgab object:
 
-    :start ausgab object:
-        library = egs_phsp_scoring
-        name = BefBlades
-        output format = IAEA
-        particle type = all
+    #:start ausgab object:
+    #    library = egs_phsp_scoring
+    #    name = BefBlades
+    #    output format = IAEA
+    #    particle type = all
         #output directory =
-        phase space geometry = planeBefBlades
-        score particles on = entry
-        constant Z = 8.9
-    :stop ausgab object:
+    #    phase space geometry = planeBefBlades
+    #    score particles on = entry
+    #    constant Z = 8.9
+    #:stop ausgab object:
 
     :start ausgab object:
         library = egs_phsp_scoring
@@ -425,10 +425,54 @@
         constant Z = 18.5
     :stop ausgab object:
 
+   :start ausgab object:
+        library = egs_dose_scoring
+        name = BefBl
+        medium dose = no
+        region dose = yes
+        :start output dose file:
+            geometry name = planeBefBlades
+            file type = 3ddose
+        :stop output dose file:
+    :stop ausgab object:
+
+   :start ausgab object:
+        library = egs_dose_scoring
+        name = AftBl
+        medium dose = no
+        region dose = yes
+        :start output dose file:
+            geometry name = planeBlade
+            file type = 3ddose
+        :stop output dose file:
+    :stop ausgab object:
+
+   :start ausgab object:
+        library = egs_dose_scoring
+        name = AftHaFl
+        medium dose = no
+        region dose = yes
+        :start output dose file:
+            geometry name = planeHardFilt
+            file type = 3ddose
+        :stop output dose file:
+    :stop ausgab object:
+
+   :start ausgab object:
+        library = egs_dose_scoring
+        name = AftCo
+        medium dose = no
+        region dose = yes
+        :start output dose file:
+            geometry name = planeCover
+            file type = 3ddose
+        :stop output dose file:
+    :stop ausgab object:
+
     ### Dose scoring object to x profile
     :start ausgab object:
         library = egs_dose_scoring
-        name = profilexScorReuse
+        name = profilexWater
         medium dose = no
         region dose = yes
         :start output dose file:
