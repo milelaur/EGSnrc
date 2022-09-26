@@ -1,0 +1,1182 @@
+
+               ***************************************************
+               *                                                 *
+               *                  TB                       *
+               *                                                 *
+               ***************************************************
+
+This is TB   based on
+      EGS_AdvancedApplication  
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 7056
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   planeBefBlades (type EGS_XYZGeometry)
+   planeBlade (type EGS_XYZGeometry)
+   planeHardFilt (type EGS_XYZGeometry)
+   planeCover (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ IAEA phase space source from sourcePhsp100kVFixedComp.1
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 400
+  numbers used so far = 142517864192
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+===========================================
+Radiative splitting Object (splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Phase Space Scoring Object (AftCover)
+*******************************************
+
+ Will output phase space for particles crossing surfaces of geometry:
+planeCover
+ Particles scored on: entering phase space geometry
+ Data will be output in IAEA format.
+
+ Phase space file names:
+  Header file: /home/rsmina/EGSnrc/egs_home/TB/AftCover_w304.1.IAEAheader
+  Data file: /home/rsmina/EGSnrc/egs_home/TB/AftCover_w304.1.IAEAphsp
+ Data scored at constant Z = 18.5 cm
+ Particles scored: all
+*******************************************
+Dose Scoring Object (AftCo)
+*******************************************
+
+ - Regions in dose calculator :7056
+
+
+--------------------------------------
+medium       rho/[g/cm**3]
+--------------------------------------
+pb          11.35
+steel        8.06
+air          0.00
+titanium     4.54
+carbonate    1.20
+polystyrene  1.06
+--------------------------------------
+
+*******************************************
+
+
+ Will output dose to file:
+ EGS_XYZGeometry: planeCover
+ file format:  3ddose
+ file name: /home/rsmina/EGSnrc/egs_home/TB/AftCo.3ddose
+*******************************************
+Dose Scoring Object (profilexStyrox)
+*******************************************
+
+ - Regions in dose calculator :7056
+
+
+--------------------------------------
+medium       rho/[g/cm**3]
+--------------------------------------
+pb          11.35
+steel        8.06
+air          0.00
+titanium     4.54
+carbonate    1.20
+polystyrene  1.06
+--------------------------------------
+
+*******************************************
+
+
+ Will output dose to file:
+ EGS_XYZGeometry: profilex
+ file format:  3ddose
+ file name: /home/rsmina/EGSnrc/egs_home/TB/profilexStyrox.3ddose
+
+
+
+The following media are defined:
+================================
+
+  0  pb                       AE= 0.5120 AP= 0.0010 0
+  1  steel                    AE= 0.5120 AP= 0.0010 1
+  2  air                      AE= 0.5120 AP= 0.0010 2
+  3  titanium                 AE= 0.5120 AP= 0.0010 3
+  4  carbonate                AE= 0.5120 AP= 0.0010 4
+  5  polystyrene              AE= 0.5120 AP= 0.0010 5
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          On
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 fanfreePhspStyrox_w1.egsdat    ncase=1859814        cpu=25230.00   
+ 2 fanfreePhspStyrox_w2.egsdat    ncase=1519848        cpu=25055.80   
+ 3 fanfreePhspStyrox_w3.egsdat    ncase=1579842        cpu=25189.40   
+ 4 fanfreePhspStyrox_w4.egsdat    ncase=1799820        cpu=24832.10   
+ 5 fanfreePhspStyrox_w5.egsdat    ncase=1379862        cpu=25007.80   
+ 6 fanfreePhspStyrox_w6.egsdat    ncase=1599840        cpu=25213.40   
+ 7 fanfreePhspStyrox_w7.egsdat    ncase=1699830        cpu=25032.40   
+ 8 fanfreePhspStyrox_w8.egsdat    ncase=1419858        cpu=25079.90   
+ 9 fanfreePhspStyrox_w9.egsdat    ncase=1539846        cpu=24894.10   
+10 fanfreePhspStyrox_w10.egsdat   ncase=1119888        cpu=25082.50   
+11 fanfreePhspStyrox_w11.egsdat   ncase=1559844        cpu=24913.10   
+12 fanfreePhspStyrox_w12.egsdat   ncase=1439856        cpu=24891.00   
+13 fanfreePhspStyrox_w13.egsdat   ncase=1679832        cpu=24881.80   
+14 fanfreePhspStyrox_w14.egsdat   ncase=1559844        cpu=24981.80   
+15 fanfreePhspStyrox_w15.egsdat   ncase=1739826        cpu=24740.60   
+16 fanfreePhspStyrox_w16.egsdat   ncase=1819818        cpu=24749.30   
+17 fanfreePhspStyrox_w17.egsdat   ncase=1599840        cpu=24975.10   
+18 fanfreePhspStyrox_w18.egsdat   ncase=1639836        cpu=24881.20   
+19 fanfreePhspStyrox_w19.egsdat   ncase=1719828        cpu=24725.40   
+20 fanfreePhspStyrox_w20.egsdat   ncase=1659834        cpu=24800.10   
+21 fanfreePhspStyrox_w21.egsdat   ncase=1619838        cpu=25075.90   
+22 fanfreePhspStyrox_w22.egsdat   ncase=1619838        cpu=24850.30   
+23 fanfreePhspStyrox_w23.egsdat   ncase=1539846        cpu=24889.20   
+24 fanfreePhspStyrox_w24.egsdat   ncase=1499850        cpu=24856.70   
+25 fanfreePhspStyrox_w25.egsdat   ncase=1259874        cpu=24694.10   
+26 fanfreePhspStyrox_w26.egsdat   ncase=1699830        cpu=24810.10   
+27 fanfreePhspStyrox_w27.egsdat   ncase=1519848        cpu=24753.40   
+28 fanfreePhspStyrox_w28.egsdat   ncase=1459854        cpu=24916.00   
+29 fanfreePhspStyrox_w29.egsdat   ncase=1479852        cpu=24705.50   
+30 fanfreePhspStyrox_w30.egsdat   ncase=1399860        cpu=24695.60   
+31 fanfreePhspStyrox_w31.egsdat   ncase=1299870        cpu=25121.00   
+32 fanfreePhspStyrox_w32.egsdat   ncase=1379862        cpu=24963.30   
+33 fanfreePhspStyrox_w33.egsdat   ncase=1419858        cpu=24710.40   
+34 fanfreePhspStyrox_w34.egsdat   ncase=1419858        cpu=24803.10   
+35 fanfreePhspStyrox_w35.egsdat   ncase=1439856        cpu=24677.50   
+36 fanfreePhspStyrox_w36.egsdat   ncase=1339866        cpu=25169.60   
+37 fanfreePhspStyrox_w37.egsdat   ncase=1639836        cpu=24827.90   
+38 fanfreePhspStyrox_w38.egsdat   ncase=1819818        cpu=24724.80   
+39 fanfreePhspStyrox_w39.egsdat   ncase=1699830        cpu=24704.10   
+40 fanfreePhspStyrox_w40.egsdat   ncase=1759824        cpu=25058.60   
+41 fanfreePhspStyrox_w41.egsdat   ncase=1539846        cpu=24679.00   
+42 fanfreePhspStyrox_w42.egsdat   ncase=1499850        cpu=24906.20   
+43 fanfreePhspStyrox_w43.egsdat   ncase=1379862        cpu=24875.70   
+44 fanfreePhspStyrox_w44.egsdat   ncase=1639836        cpu=24804.50   
+45 fanfreePhspStyrox_w45.egsdat   ncase=1539846        cpu=24725.00   
+46 fanfreePhspStyrox_w46.egsdat   ncase=1279872        cpu=24712.90   
+47 fanfreePhspStyrox_w47.egsdat   ncase=1619838        cpu=25174.00   
+48 fanfreePhspStyrox_w48.egsdat   ncase=1539846        cpu=24804.00   
+49 fanfreePhspStyrox_w49.egsdat   ncase=1479852        cpu=24808.00   
+50 fanfreePhspStyrox_w50.egsdat   ncase=1519848        cpu=24844.00   
+51 fanfreePhspStyrox_w51.egsdat   ncase=1599840        cpu=24797.70   
+52 fanfreePhspStyrox_w52.egsdat   ncase=1379862        cpu=24741.00   
+53 fanfreePhspStyrox_w53.egsdat   ncase=1699830        cpu=24703.00   
+54 fanfreePhspStyrox_w54.egsdat   ncase=1359864        cpu=24727.30   
+55 fanfreePhspStyrox_w55.egsdat   ncase=1459854        cpu=25049.50   
+56 fanfreePhspStyrox_w56.egsdat   ncase=1779822        cpu=24624.00   
+57 fanfreePhspStyrox_w57.egsdat   ncase=1379862        cpu=24736.10   
+58 fanfreePhspStyrox_w58.egsdat   ncase=1379862        cpu=24651.10   
+59 fanfreePhspStyrox_w59.egsdat   ncase=1579842        cpu=24945.90   
+60 fanfreePhspStyrox_w60.egsdat   ncase=1599840        cpu=24914.20   
+61 fanfreePhspStyrox_w61.egsdat   ncase=1359864        cpu=24724.40   
+62 fanfreePhspStyrox_w62.egsdat   ncase=1319868        cpu=24958.70   
+63 fanfreePhspStyrox_w63.egsdat   ncase=1499850        cpu=25061.70   
+64 fanfreePhspStyrox_w64.egsdat   ncase=1259874        cpu=24904.60   
+65 fanfreePhspStyrox_w65.egsdat   ncase=1399860        cpu=24686.70   
+66 fanfreePhspStyrox_w66.egsdat   ncase=1319868        cpu=24728.40   
+67 fanfreePhspStyrox_w67.egsdat   ncase=1359864        cpu=24692.40   
+68 fanfreePhspStyrox_w68.egsdat   ncase=1439856        cpu=25075.50   
+69 fanfreePhspStyrox_w69.egsdat   ncase=1539846        cpu=24670.90   
+70 fanfreePhspStyrox_w70.egsdat   ncase=1439856        cpu=24827.10   
+71 fanfreePhspStyrox_w71.egsdat   ncase=1399860        cpu=25262.40   
+72 fanfreePhspStyrox_w72.egsdat   ncase=1439856        cpu=24757.90   
+73 fanfreePhspStyrox_w73.egsdat   ncase=1439856        cpu=25036.70   
+74 fanfreePhspStyrox_w74.egsdat   ncase=1299870        cpu=24950.00   
+75 fanfreePhspStyrox_w75.egsdat   ncase=1619838        cpu=24722.80   
+76 fanfreePhspStyrox_w76.egsdat   ncase=1479852        cpu=24911.60   
+77 fanfreePhspStyrox_w77.egsdat   ncase=1759824        cpu=24631.30   
+78 fanfreePhspStyrox_w78.egsdat   ncase=1719828        cpu=24748.00   
+79 fanfreePhspStyrox_w79.egsdat   ncase=1499850        cpu=24679.30   
+80 fanfreePhspStyrox_w80.egsdat   ncase=1659834        cpu=24606.60   
+81 fanfreePhspStyrox_w81.egsdat   ncase=1359864        cpu=24859.20   
+82 fanfreePhspStyrox_w82.egsdat   ncase=1339866        cpu=24852.30   
+83 fanfreePhspStyrox_w83.egsdat   ncase=1399860        cpu=24591.00   
+84 fanfreePhspStyrox_w84.egsdat   ncase=1299870        cpu=24878.90   
+85 fanfreePhspStyrox_w85.egsdat   ncase=1859814        cpu=24574.60   
+86 fanfreePhspStyrox_w86.egsdat   ncase=1299870        cpu=24621.70   
+87 fanfreePhspStyrox_w87.egsdat   ncase=1579842        cpu=24816.60   
+88 fanfreePhspStyrox_w88.egsdat   ncase=1359864        cpu=25129.90   
+89 fanfreePhspStyrox_w89.egsdat   ncase=1379862        cpu=24707.80   
+90 fanfreePhspStyrox_w90.egsdat   ncase=1599840        cpu=24730.10   
+91 fanfreePhspStyrox_w91.egsdat   ncase=1179882        cpu=24945.70   
+92 fanfreePhspStyrox_w92.egsdat   ncase=1439856        cpu=24990.20   
+93 fanfreePhspStyrox_w93.egsdat   ncase=1639836        cpu=24731.50   
+94 fanfreePhspStyrox_w94.egsdat   ncase=1599840        cpu=24715.10   
+95 fanfreePhspStyrox_w95.egsdat   ncase=1419858        cpu=24825.00   
+96 fanfreePhspStyrox_w96.egsdat   ncase=1359864        cpu=24982.90   
+97 fanfreePhspStyrox_w97.egsdat   ncase=1579842        cpu=24728.40   
+98 fanfreePhspStyrox_w98.egsdat   ncase=1399860        cpu=24868.80   
+99 fanfreePhspStyrox_w99.egsdat   ncase=1579842        cpu=24711.60   
+100 fanfreePhspStyrox_w100.egsdat  ncase=1499850        cpu=24695.60   
+101 fanfreePhspStyrox_w101.egsdat  ncase=1439856        cpu=24704.90   
+102 fanfreePhspStyrox_w102.egsdat  ncase=1439856        cpu=24706.00   
+103 fanfreePhspStyrox_w103.egsdat  ncase=1259874        cpu=24678.10   
+104 fanfreePhspStyrox_w104.egsdat  ncase=1659834        cpu=24770.20   
+105 fanfreePhspStyrox_w105.egsdat  ncase=1179882        cpu=24614.90   
+106 fanfreePhspStyrox_w106.egsdat  ncase=1559844        cpu=24630.00   
+107 fanfreePhspStyrox_w107.egsdat  ncase=1519848        cpu=24563.60   
+108 fanfreePhspStyrox_w108.egsdat  ncase=1479852        cpu=24620.00   
+109 fanfreePhspStyrox_w109.egsdat  ncase=1359864        cpu=24676.00   
+110 fanfreePhspStyrox_w110.egsdat  ncase=1419858        cpu=24640.40   
+111 fanfreePhspStyrox_w111.egsdat  ncase=1819818        cpu=24504.00   
+112 fanfreePhspStyrox_w112.egsdat  ncase=1579842        cpu=24811.50   
+113 fanfreePhspStyrox_w113.egsdat  ncase=1379862        cpu=24745.50   
+114 fanfreePhspStyrox_w114.egsdat  ncase=1259874        cpu=24840.30   
+115 fanfreePhspStyrox_w115.egsdat  ncase=1239876        cpu=24720.30   
+116 fanfreePhspStyrox_w116.egsdat  ncase=1459854        cpu=24513.30   
+117 fanfreePhspStyrox_w117.egsdat  ncase=1099890        cpu=24575.60   
+118 fanfreePhspStyrox_w118.egsdat  ncase=1479852        cpu=24603.70   
+119 fanfreePhspStyrox_w119.egsdat  ncase=1459854        cpu=24656.20   
+120 fanfreePhspStyrox_w120.egsdat  ncase=1859814        cpu=24528.80   
+121 fanfreePhspStyrox_w121.egsdat  ncase=1359864        cpu=25051.00   
+122 fanfreePhspStyrox_w122.egsdat  ncase=1379862        cpu=24881.80   
+123 fanfreePhspStyrox_w123.egsdat  ncase=1479852        cpu=24700.40   
+124 fanfreePhspStyrox_w124.egsdat  ncase=1379862        cpu=24628.40   
+125 fanfreePhspStyrox_w125.egsdat  ncase=1499850        cpu=24720.30   
+126 fanfreePhspStyrox_w126.egsdat  ncase=1219878        cpu=24780.40   
+127 fanfreePhspStyrox_w127.egsdat  ncase=1619838        cpu=24738.50   
+128 fanfreePhspStyrox_w128.egsdat  ncase=1339866        cpu=24677.50   
+129 fanfreePhspStyrox_w129.egsdat  ncase=1319868        cpu=24660.80   
+130 fanfreePhspStyrox_w130.egsdat  ncase=1319868        cpu=24580.70   
+131 fanfreePhspStyrox_w131.egsdat  ncase=1179882        cpu=24996.00   
+132 fanfreePhspStyrox_w132.egsdat  ncase=1199880        cpu=24944.60   
+133 fanfreePhspStyrox_w133.egsdat  ncase=1279872        cpu=24564.40   
+134 fanfreePhspStyrox_w134.egsdat  ncase=1139886        cpu=24602.20   
+135 fanfreePhspStyrox_w135.egsdat  ncase=1399860        cpu=24874.80   
+136 fanfreePhspStyrox_w136.egsdat  ncase=1179882        cpu=25019.60   
+137 fanfreePhspStyrox_w137.egsdat  ncase=1319868        cpu=24443.00   
+138 fanfreePhspStyrox_w138.egsdat  ncase=1419858        cpu=24917.60   
+139 fanfreePhspStyrox_w139.egsdat  ncase=1439856        cpu=24563.40   
+140 fanfreePhspStyrox_w140.egsdat  ncase=1359864        cpu=24705.20   
+141 fanfreePhspStyrox_w141.egsdat  ncase=1259874        cpu=24559.60   
+142 fanfreePhspStyrox_w142.egsdat  ncase=1359864        cpu=24793.80   
+143 fanfreePhspStyrox_w143.egsdat  ncase=1379862        cpu=24706.40   
+144 fanfreePhspStyrox_w144.egsdat  ncase=1379862        cpu=24618.10   
+145 fanfreePhspStyrox_w145.egsdat  ncase=1399860        cpu=24782.80   
+146 fanfreePhspStyrox_w146.egsdat  ncase=1359864        cpu=25134.30   
+147 fanfreePhspStyrox_w147.egsdat  ncase=1139886        cpu=24654.90   
+148 fanfreePhspStyrox_w148.egsdat  ncase=1299870        cpu=25035.20   
+149 fanfreePhspStyrox_w149.egsdat  ncase=1239876        cpu=24841.30   
+150 fanfreePhspStyrox_w150.egsdat  ncase=1359864        cpu=24852.90   
+151 fanfreePhspStyrox_w151.egsdat  ncase=1199880        cpu=25062.60   
+152 fanfreePhspStyrox_w152.egsdat  ncase=1459854        cpu=24573.10   
+153 fanfreePhspStyrox_w153.egsdat  ncase=1319868        cpu=24486.90   
+154 fanfreePhspStyrox_w154.egsdat  ncase=1279872        cpu=24827.20   
+155 fanfreePhspStyrox_w155.egsdat  ncase=1459854        cpu=24509.50   
+156 fanfreePhspStyrox_w156.egsdat  ncase=1339866        cpu=24490.20   
+157 fanfreePhspStyrox_w157.egsdat  ncase=1179882        cpu=24564.90   
+158 fanfreePhspStyrox_w158.egsdat  ncase=1439856        cpu=24564.40   
+159 fanfreePhspStyrox_w159.egsdat  ncase=1319868        cpu=24778.50   
+160 fanfreePhspStyrox_w160.egsdat  ncase=1239876        cpu=24884.80   
+161 fanfreePhspStyrox_w161.egsdat  ncase=1499850        cpu=24305.10   
+162 fanfreePhspStyrox_w162.egsdat  ncase=1579842        cpu=24354.30   
+163 fanfreePhspStyrox_w163.egsdat  ncase=1579842        cpu=24298.70   
+164 fanfreePhspStyrox_w164.egsdat  ncase=1779822        cpu=24207.60   
+165 fanfreePhspStyrox_w165.egsdat  ncase=1699830        cpu=24218.30   
+166 fanfreePhspStyrox_w166.egsdat  ncase=1319868        cpu=24751.90   
+167 fanfreePhspStyrox_w167.egsdat  ncase=1619838        cpu=24462.60   
+168 fanfreePhspStyrox_w168.egsdat  ncase=1599840        cpu=24227.20   
+169 fanfreePhspStyrox_w169.egsdat  ncase=1439856        cpu=24275.00   
+170 fanfreePhspStyrox_w170.egsdat  ncase=1719828        cpu=24575.30   
+171 fanfreePhspStyrox_w171.egsdat  ncase=1759824        cpu=24392.00   
+172 fanfreePhspStyrox_w172.egsdat  ncase=1559844        cpu=24340.50   
+173 fanfreePhspStyrox_w173.egsdat  ncase=1699830        cpu=24331.80   
+174 fanfreePhspStyrox_w174.egsdat  ncase=1639836        cpu=24275.90   
+175 fanfreePhspStyrox_w175.egsdat  ncase=1599840        cpu=24483.80   
+176 fanfreePhspStyrox_w176.egsdat  ncase=1439856        cpu=24351.30   
+177 fanfreePhspStyrox_w177.egsdat  ncase=1359864        cpu=24377.10   
+178 fanfreePhspStyrox_w178.egsdat  ncase=1579842        cpu=24355.30   
+179 fanfreePhspStyrox_w179.egsdat  ncase=1559844        cpu=24210.50   
+180 fanfreePhspStyrox_w180.egsdat  ncase=1759824        cpu=24543.20   
+181 fanfreePhspStyrox_w181.egsdat  ncase=1359864        cpu=24187.90   
+182 fanfreePhspStyrox_w182.egsdat  ncase=1479852        cpu=24205.70   
+183 fanfreePhspStyrox_w183.egsdat  ncase=1459854        cpu=24350.10   
+184 fanfreePhspStyrox_w184.egsdat  ncase=1399860        cpu=24705.20   
+185 fanfreePhspStyrox_w185.egsdat  ncase=1499850        cpu=24343.00   
+186 fanfreePhspStyrox_w186.egsdat  ncase=1759824        cpu=24289.50   
+187 fanfreePhspStyrox_w187.egsdat  ncase=1659834        cpu=24412.00   
+188 fanfreePhspStyrox_w188.egsdat  ncase=1499850        cpu=24254.20   
+189 fanfreePhspStyrox_w189.egsdat  ncase=1579842        cpu=24279.50   
+190 fanfreePhspStyrox_w190.egsdat  ncase=1479852        cpu=24229.10   
+191 fanfreePhspStyrox_w191.egsdat  ncase=1579842        cpu=24764.10   
+192 fanfreePhspStyrox_w192.egsdat  ncase=1499850        cpu=24370.40   
+193 fanfreePhspStyrox_w193.egsdat  ncase=1619838        cpu=24261.20   
+194 fanfreePhspStyrox_w194.egsdat  ncase=1399860        cpu=24370.40   
+195 fanfreePhspStyrox_w195.egsdat  ncase=1659834        cpu=24375.20   
+196 fanfreePhspStyrox_w196.egsdat  ncase=1559844        cpu=24448.30   
+197 fanfreePhspStyrox_w197.egsdat  ncase=1739826        cpu=24847.30   
+198 fanfreePhspStyrox_w198.egsdat  ncase=1439856        cpu=24448.70   
+199 fanfreePhspStyrox_w199.egsdat  ncase=1579842        cpu=24257.00   
+200 fanfreePhspStyrox_w200.egsdat  ncase=1399860        cpu=24504.50   
+201 fanfreePhspStyrox_w201.egsdat  ncase=1179882        cpu=24516.00   
+202 fanfreePhspStyrox_w202.egsdat  ncase=1119888        cpu=24790.20   
+203 fanfreePhspStyrox_w203.egsdat  ncase=1239876        cpu=24219.50   
+204 fanfreePhspStyrox_w204.egsdat  ncase=1319868        cpu=24479.60   
+205 fanfreePhspStyrox_w205.egsdat  ncase=1519848        cpu=24469.80   
+206 fanfreePhspStyrox_w206.egsdat  ncase=1459854        cpu=24459.70   
+207 fanfreePhspStyrox_w207.egsdat  ncase=1499850        cpu=24249.30   
+208 fanfreePhspStyrox_w208.egsdat  ncase=1079892        cpu=24336.10   
+209 fanfreePhspStyrox_w209.egsdat  ncase=1619838        cpu=24423.90   
+210 fanfreePhspStyrox_w210.egsdat  ncase=1919808        cpu=24450.80   
+211 fanfreePhspStyrox_w211.egsdat  ncase=1559844        cpu=24222.60   
+212 fanfreePhspStyrox_w212.egsdat  ncase=1519848        cpu=25016.10   
+213 fanfreePhspStyrox_w213.egsdat  ncase=1499850        cpu=24209.00   
+214 fanfreePhspStyrox_w214.egsdat  ncase=1499850        cpu=24161.40   
+215 fanfreePhspStyrox_w215.egsdat  ncase=1579842        cpu=24621.70   
+216 fanfreePhspStyrox_w216.egsdat  ncase=1319868        cpu=24632.50   
+217 fanfreePhspStyrox_w217.egsdat  ncase=1319868        cpu=24687.30   
+218 fanfreePhspStyrox_w218.egsdat  ncase=1619838        cpu=24595.80   
+219 fanfreePhspStyrox_w219.egsdat  ncase=1439856        cpu=24206.60   
+220 fanfreePhspStyrox_w220.egsdat  ncase=1479852        cpu=24472.70   
+221 fanfreePhspStyrox_w221.egsdat  ncase=1279872        cpu=24386.20   
+222 fanfreePhspStyrox_w222.egsdat  ncase=1319868        cpu=24246.20   
+223 fanfreePhspStyrox_w223.egsdat  ncase=1339866        cpu=24294.30   
+224 fanfreePhspStyrox_w224.egsdat  ncase=1339866        cpu=24261.30   
+225 fanfreePhspStyrox_w225.egsdat  ncase=1299870        cpu=24345.80   
+226 fanfreePhspStyrox_w226.egsdat  ncase=1199880        cpu=24037.70   
+227 fanfreePhspStyrox_w227.egsdat  ncase=1139886        cpu=24204.20   
+228 fanfreePhspStyrox_w228.egsdat  ncase=1199880        cpu=24104.10   
+229 fanfreePhspStyrox_w229.egsdat  ncase=1139886        cpu=24676.90   
+230 fanfreePhspStyrox_w230.egsdat  ncase=1139886        cpu=24214.60   
+231 fanfreePhspStyrox_w231.egsdat  ncase=1339866        cpu=23948.60   
+232 fanfreePhspStyrox_w232.egsdat  ncase=1359864        cpu=24089.10   
+233 fanfreePhspStyrox_w233.egsdat  ncase=1179882        cpu=24164.10   
+234 fanfreePhspStyrox_w234.egsdat  ncase=1399860        cpu=24093.50   
+235 fanfreePhspStyrox_w235.egsdat  ncase=1119888        cpu=23912.70   
+236 fanfreePhspStyrox_w236.egsdat  ncase=1099890        cpu=24090.40   
+237 fanfreePhspStyrox_w237.egsdat  ncase=1259874        cpu=24008.60   
+238 fanfreePhspStyrox_w238.egsdat  ncase=1319868        cpu=24001.60   
+239 fanfreePhspStyrox_w239.egsdat  ncase=1119888        cpu=23983.90   
+240 fanfreePhspStyrox_w240.egsdat  ncase=1019898        cpu=24091.80   
+241 fanfreePhspStyrox_w241.egsdat  ncase=1199880        cpu=24512.70   
+242 fanfreePhspStyrox_w242.egsdat  ncase=1219878        cpu=24083.40   
+243 fanfreePhspStyrox_w243.egsdat  ncase=1239876        cpu=24442.30   
+244 fanfreePhspStyrox_w244.egsdat  ncase=1499850        cpu=24013.20   
+245 fanfreePhspStyrox_w245.egsdat  ncase=1559844        cpu=23973.20   
+246 fanfreePhspStyrox_w246.egsdat  ncase=1539846        cpu=24220.90   
+247 fanfreePhspStyrox_w247.egsdat  ncase=1299870        cpu=24243.30   
+248 fanfreePhspStyrox_w248.egsdat  ncase=1199880        cpu=24209.30   
+249 fanfreePhspStyrox_w249.egsdat  ncase=1239876        cpu=23985.30   
+250 fanfreePhspStyrox_w250.egsdat  ncase=1159884        cpu=23987.90   
+251 fanfreePhspStyrox_w251.egsdat  ncase=1199880        cpu=24175.70   
+252 fanfreePhspStyrox_w252.egsdat  ncase=1159884        cpu=24025.90   
+253 fanfreePhspStyrox_w253.egsdat  ncase=1539846        cpu=24136.10   
+254 fanfreePhspStyrox_w254.egsdat  ncase=1119888        cpu=24047.80   
+255 fanfreePhspStyrox_w255.egsdat  ncase=1419858        cpu=24197.80   
+256 fanfreePhspStyrox_w256.egsdat  ncase=1339866        cpu=24521.10   
+257 fanfreePhspStyrox_w257.egsdat  ncase=1299870        cpu=24440.20   
+258 fanfreePhspStyrox_w258.egsdat  ncase=1459854        cpu=24013.30   
+259 fanfreePhspStyrox_w259.egsdat  ncase=1299870        cpu=24063.90   
+260 fanfreePhspStyrox_w260.egsdat  ncase=1379862        cpu=24111.20   
+261 fanfreePhspStyrox_w261.egsdat  ncase=1379862        cpu=24124.20   
+262 fanfreePhspStyrox_w262.egsdat  ncase=1419858        cpu=24115.70   
+263 fanfreePhspStyrox_w263.egsdat  ncase=1299870        cpu=24152.90   
+264 fanfreePhspStyrox_w264.egsdat  ncase=1299870        cpu=24076.50   
+265 fanfreePhspStyrox_w265.egsdat  ncase=1299870        cpu=24287.70   
+266 fanfreePhspStyrox_w266.egsdat  ncase=1139886        cpu=23996.80   
+267 fanfreePhspStyrox_w267.egsdat  ncase=1419858        cpu=24414.90   
+268 fanfreePhspStyrox_w268.egsdat  ncase=1139886        cpu=24459.10   
+269 fanfreePhspStyrox_w269.egsdat  ncase=1459854        cpu=24126.00   
+270 fanfreePhspStyrox_w270.egsdat  ncase=1199880        cpu=24505.10   
+271 fanfreePhspStyrox_w271.egsdat  ncase=1379862        cpu=24169.10   
+272 fanfreePhspStyrox_w272.egsdat  ncase=1699830        cpu=24451.30   
+273 fanfreePhspStyrox_w273.egsdat  ncase=1539846        cpu=24295.00   
+274 fanfreePhspStyrox_w274.egsdat  ncase=1419858        cpu=24049.10   
+275 fanfreePhspStyrox_w275.egsdat  ncase=1419858        cpu=24124.50   
+276 fanfreePhspStyrox_w276.egsdat  ncase=1319868        cpu=24210.40   
+277 fanfreePhspStyrox_w277.egsdat  ncase=1259874        cpu=24549.00   
+278 fanfreePhspStyrox_w278.egsdat  ncase=1479852        cpu=24135.90   
+279 fanfreePhspStyrox_w279.egsdat  ncase=1399860        cpu=24758.20   
+280 fanfreePhspStyrox_w280.egsdat  ncase=1399860        cpu=23995.20   
+281 fanfreePhspStyrox_w281.egsdat  ncase=1259874        cpu=24095.50   
+282 fanfreePhspStyrox_w282.egsdat  ncase=1299870        cpu=24388.30   
+283 fanfreePhspStyrox_w283.egsdat  ncase=1419858        cpu=24166.00   
+284 fanfreePhspStyrox_w284.egsdat  ncase=1179882        cpu=24580.90   
+285 fanfreePhspStyrox_w285.egsdat  ncase=1359864        cpu=24250.30   
+286 fanfreePhspStyrox_w286.egsdat  ncase=1339866        cpu=24069.30   
+287 fanfreePhspStyrox_w287.egsdat  ncase=1579842        cpu=24548.20   
+288 fanfreePhspStyrox_w288.egsdat  ncase=1219878        cpu=24159.80   
+289 fanfreePhspStyrox_w289.egsdat  ncase=1519848        cpu=24022.40   
+290 fanfreePhspStyrox_w290.egsdat  ncase=1219878        cpu=23897.60   
+291 fanfreePhspStyrox_w291.egsdat  ncase=1399860        cpu=24125.80   
+292 fanfreePhspStyrox_w292.egsdat  ncase=1239876        cpu=24015.20   
+293 fanfreePhspStyrox_w293.egsdat  ncase=1139886        cpu=24585.90   
+294 fanfreePhspStyrox_w294.egsdat  ncase=1279872        cpu=24352.90   
+295 fanfreePhspStyrox_w295.egsdat  ncase=1419858        cpu=23936.60   
+296 fanfreePhspStyrox_w296.egsdat  ncase=1659834        cpu=24027.50   
+297 fanfreePhspStyrox_w297.egsdat  ncase=1559844        cpu=24144.90   
+298 fanfreePhspStyrox_w298.egsdat  ncase=1219878        cpu=24216.00   
+299 fanfreePhspStyrox_w299.egsdat  ncase=1539846        cpu=23983.20   
+300 fanfreePhspStyrox_w300.egsdat  ncase=1299870        cpu=24294.40   
+301 fanfreePhspStyrox_w301.egsdat  ncase=1179882        cpu=24371.60   
+302 fanfreePhspStyrox_w302.egsdat  ncase=1259874        cpu=24109.20   
+303 fanfreePhspStyrox_w303.egsdat  ncase=1299870        cpu=23907.50   
+304 fanfreePhspStyrox_w304.egsdat  ncase=1639836        cpu=24824.80   
+305 fanfreePhspStyrox_w305.egsdat  ncase=1339866        cpu=24301.00   
+306 fanfreePhspStyrox_w306.egsdat  ncase=1399860        cpu=23976.30   
+307 fanfreePhspStyrox_w307.egsdat  ncase=1399860        cpu=24036.10   
+308 fanfreePhspStyrox_w308.egsdat  ncase=1499850        cpu=24163.70   
+309 fanfreePhspStyrox_w309.egsdat  ncase=1639836        cpu=23918.90   
+310 fanfreePhspStyrox_w310.egsdat  ncase=1339866        cpu=24439.90   
+311 fanfreePhspStyrox_w311.egsdat  ncase=1519848        cpu=23997.40   
+312 fanfreePhspStyrox_w312.egsdat  ncase=1359864        cpu=24146.10   
+313 fanfreePhspStyrox_w313.egsdat  ncase=1339866        cpu=23937.20   
+314 fanfreePhspStyrox_w314.egsdat  ncase=1319868        cpu=24197.40   
+315 fanfreePhspStyrox_w315.egsdat  ncase=1659834        cpu=24000.80   
+316 fanfreePhspStyrox_w316.egsdat  ncase=1339866        cpu=24017.80   
+317 fanfreePhspStyrox_w317.egsdat  ncase=1479852        cpu=24066.40   
+318 fanfreePhspStyrox_w318.egsdat  ncase=1279872        cpu=24112.30   
+319 fanfreePhspStyrox_w319.egsdat  ncase=1239876        cpu=24093.30   
+320 fanfreePhspStyrox_w320.egsdat  ncase=1319868        cpu=24306.40   
+321 fanfreePhspStyrox_w321.egsdat  ncase=1319868        cpu=24245.80   
+322 fanfreePhspStyrox_w322.egsdat  ncase=1379862        cpu=23995.90   
+323 fanfreePhspStyrox_w323.egsdat  ncase=1139886        cpu=23894.80   
+324 fanfreePhspStyrox_w324.egsdat  ncase=1519848        cpu=24065.00   
+325 fanfreePhspStyrox_w325.egsdat  ncase=1459854        cpu=23859.80   
+326 fanfreePhspStyrox_w326.egsdat  ncase=1459854        cpu=23963.60   
+327 fanfreePhspStyrox_w327.egsdat  ncase=1519848        cpu=23870.70   
+328 fanfreePhspStyrox_w328.egsdat  ncase=1319868        cpu=23839.00   
+329 fanfreePhspStyrox_w329.egsdat  ncase=1319868        cpu=23863.30   
+330 fanfreePhspStyrox_w330.egsdat  ncase=1559844        cpu=23871.50   
+331 fanfreePhspStyrox_w331.egsdat  ncase=1139886        cpu=23869.00   
+332 fanfreePhspStyrox_w332.egsdat  ncase=1579842        cpu=23987.30   
+333 fanfreePhspStyrox_w333.egsdat  ncase=1499850        cpu=23854.50   
+334 fanfreePhspStyrox_w334.egsdat  ncase=1659834        cpu=24070.40   
+335 fanfreePhspStyrox_w335.egsdat  ncase=1279872        cpu=24168.40   
+336 fanfreePhspStyrox_w336.egsdat  ncase=1279872        cpu=24422.90   
+337 fanfreePhspStyrox_w337.egsdat  ncase=1299870        cpu=23888.90   
+338 fanfreePhspStyrox_w338.egsdat  ncase=1319868        cpu=24054.10   
+339 fanfreePhspStyrox_w339.egsdat  ncase=1419858        cpu=24391.00   
+340 fanfreePhspStyrox_w340.egsdat  ncase=1419858        cpu=24115.50   
+341 fanfreePhspStyrox_w341.egsdat  ncase=1599840        cpu=24452.70   
+342 fanfreePhspStyrox_w342.egsdat  ncase=1259874        cpu=24058.40   
+343 fanfreePhspStyrox_w343.egsdat  ncase=1359864        cpu=24280.70   
+344 fanfreePhspStyrox_w344.egsdat  ncase=1319868        cpu=24210.60   
+345 fanfreePhspStyrox_w345.egsdat  ncase=1139886        cpu=23969.80   
+346 fanfreePhspStyrox_w346.egsdat  ncase=1319868        cpu=24262.60   
+347 fanfreePhspStyrox_w347.egsdat  ncase=1379862        cpu=24324.30   
+348 fanfreePhspStyrox_w348.egsdat  ncase=1119888        cpu=23959.30   
+349 fanfreePhspStyrox_w349.egsdat  ncase=1379862        cpu=24351.10   
+350 fanfreePhspStyrox_w350.egsdat  ncase=1219878        cpu=23989.40   
+351 fanfreePhspStyrox_w351.egsdat  ncase=1519848        cpu=24207.90   
+352 fanfreePhspStyrox_w352.egsdat  ncase=1559844        cpu=24081.40   
+353 fanfreePhspStyrox_w353.egsdat  ncase=1259874        cpu=24074.80   
+354 fanfreePhspStyrox_w354.egsdat  ncase=1319868        cpu=24177.30   
+355 fanfreePhspStyrox_w355.egsdat  ncase=1339866        cpu=24149.50   
+356 fanfreePhspStyrox_w356.egsdat  ncase=1199880        cpu=24194.80   
+357 fanfreePhspStyrox_w357.egsdat  ncase=1239876        cpu=24251.50   
+358 fanfreePhspStyrox_w358.egsdat  ncase=1519848        cpu=23949.10   
+359 fanfreePhspStyrox_w359.egsdat  ncase=1319868        cpu=24010.80   
+360 fanfreePhspStyrox_w360.egsdat  ncase=1519848        cpu=24025.60   
+361 fanfreePhspStyrox_w361.egsdat  ncase=1139886        cpu=24110.60   
+362 fanfreePhspStyrox_w362.egsdat  ncase=1419858        cpu=23834.00   
+363 fanfreePhspStyrox_w363.egsdat  ncase=1119888        cpu=23862.40   
+364 fanfreePhspStyrox_w364.egsdat  ncase=1499850        cpu=23848.30   
+365 fanfreePhspStyrox_w365.egsdat  ncase=1259874        cpu=24043.30   
+366 fanfreePhspStyrox_w366.egsdat  ncase=1279872        cpu=23763.80   
+367 fanfreePhspStyrox_w367.egsdat  ncase=1279872        cpu=24037.80   
+368 fanfreePhspStyrox_w368.egsdat  ncase=1319868        cpu=24021.20   
+369 fanfreePhspStyrox_w369.egsdat  ncase=1459854        cpu=23928.00   
+370 fanfreePhspStyrox_w370.egsdat  ncase=1239876        cpu=23828.60   
+371 fanfreePhspStyrox_w371.egsdat  ncase=1639836        cpu=23773.10   
+372 fanfreePhspStyrox_w372.egsdat  ncase=1219878        cpu=23784.50   
+373 fanfreePhspStyrox_w373.egsdat  ncase=1219878        cpu=24163.00   
+374 fanfreePhspStyrox_w374.egsdat  ncase=1579842        cpu=23725.20   
+375 fanfreePhspStyrox_w375.egsdat  ncase=1219878        cpu=23756.90   
+376 fanfreePhspStyrox_w376.egsdat  ncase=1259874        cpu=23986.30   
+377 fanfreePhspStyrox_w377.egsdat  ncase=1359864        cpu=23859.10   
+378 fanfreePhspStyrox_w378.egsdat  ncase=1279872        cpu=23901.90   
+379 fanfreePhspStyrox_w379.egsdat  ncase=1259874        cpu=23743.80   
+380 fanfreePhspStyrox_w380.egsdat  ncase=1419858        cpu=23938.00   
+381 fanfreePhspStyrox_w381.egsdat  ncase=1359864        cpu=24011.60   
+382 fanfreePhspStyrox_w382.egsdat  ncase=1359864        cpu=23951.80   
+383 fanfreePhspStyrox_w383.egsdat  ncase=1359864        cpu=23802.40   
+384 fanfreePhspStyrox_w384.egsdat  ncase=1219878        cpu=24005.20   
+385 fanfreePhspStyrox_w385.egsdat  ncase=1399860        cpu=23877.80   
+386 fanfreePhspStyrox_w386.egsdat  ncase=1319868        cpu=24093.50   
+387 fanfreePhspStyrox_w387.egsdat  ncase=1279872        cpu=24085.20   
+388 fanfreePhspStyrox_w388.egsdat  ncase=1479852        cpu=23872.20   
+389 fanfreePhspStyrox_w389.egsdat  ncase=1299870        cpu=24016.80   
+390 fanfreePhspStyrox_w390.egsdat  ncase=1399860        cpu=24001.20   
+391 fanfreePhspStyrox_w391.egsdat  ncase=1399860        cpu=24003.20   
+392 fanfreePhspStyrox_w392.egsdat  ncase=1459854        cpu=23953.90   
+393 fanfreePhspStyrox_w393.egsdat  ncase=1199880        cpu=23833.40   
+394 fanfreePhspStyrox_w394.egsdat  ncase=1239876        cpu=23931.50   
+395 fanfreePhspStyrox_w395.egsdat  ncase=1059894        cpu=24373.10   
+396 fanfreePhspStyrox_w396.egsdat  ncase=1219878        cpu=24147.40   
+397 fanfreePhspStyrox_w397.egsdat  ncase=1139886        cpu=24100.70   
+398 fanfreePhspStyrox_w398.egsdat  ncase=1159884        cpu=24059.30   
+399 fanfreePhspStyrox_w399.egsdat  ncase=1259874        cpu=23856.80   
+400 fanfreePhspStyrox_w400.egsdat  ncase=1599840        cpu=23960.50   
+401 fanfreePhspStyrox_w401.egsdat  ncase=1379862        cpu=24123.40   
+402 fanfreePhspStyrox_w402.egsdat  ncase=1539846        cpu=23853.90   
+403 fanfreePhspStyrox_w403.egsdat  ncase=1259874        cpu=24268.70   
+404 fanfreePhspStyrox_w404.egsdat  ncase=1359864        cpu=23885.70   
+405 fanfreePhspStyrox_w405.egsdat  ncase=1539846        cpu=23844.70   
+406 fanfreePhspStyrox_w406.egsdat  ncase=1379862        cpu=23908.80   
+407 fanfreePhspStyrox_w407.egsdat  ncase=1179882        cpu=24103.50   
+408 fanfreePhspStyrox_w408.egsdat  ncase=1219878        cpu=24230.70   
+409 fanfreePhspStyrox_w409.egsdat  ncase=1419858        cpu=23994.00   
+410 fanfreePhspStyrox_w410.egsdat  ncase=1359864        cpu=23875.40   
+411 fanfreePhspStyrox_w411.egsdat  ncase=1279872        cpu=24224.40   
+412 fanfreePhspStyrox_w412.egsdat  ncase=1319868        cpu=24301.30   
+413 fanfreePhspStyrox_w413.egsdat  ncase=1339866        cpu=24260.60   
+414 fanfreePhspStyrox_w414.egsdat  ncase=1499850        cpu=24215.30   
+415 fanfreePhspStyrox_w415.egsdat  ncase=1419858        cpu=24087.80   
+416 fanfreePhspStyrox_w416.egsdat  ncase=1439856        cpu=24102.90   
+417 fanfreePhspStyrox_w417.egsdat  ncase=1299870        cpu=23814.10   
+418 fanfreePhspStyrox_w418.egsdat  ncase=1439856        cpu=23915.60   
+419 fanfreePhspStyrox_w419.egsdat  ncase=1299870        cpu=23836.60   
+420 fanfreePhspStyrox_w420.egsdat  ncase=1259874        cpu=24585.80   
+421 fanfreePhspStyrox_w421.egsdat  ncase=1339866        cpu=23836.30   
+422 fanfreePhspStyrox_w422.egsdat  ncase=1479852        cpu=23906.40   
+423 fanfreePhspStyrox_w423.egsdat  ncase=1379862        cpu=23986.60   
+424 fanfreePhspStyrox_w424.egsdat  ncase=1239876        cpu=24125.40   
+425 fanfreePhspStyrox_w425.egsdat  ncase=1199880        cpu=23887.70   
+426 fanfreePhspStyrox_w426.egsdat  ncase=1319868        cpu=24130.90   
+427 fanfreePhspStyrox_w427.egsdat  ncase=1339866        cpu=24001.50   
+428 fanfreePhspStyrox_w428.egsdat  ncase=1279872        cpu=23932.40   
+429 fanfreePhspStyrox_w429.egsdat  ncase=1499850        cpu=24231.10   
+430 fanfreePhspStyrox_w430.egsdat  ncase=1519848        cpu=24083.70   
+431 fanfreePhspStyrox_w431.egsdat  ncase=1359864        cpu=24021.40   
+432 fanfreePhspStyrox_w432.egsdat  ncase=1399860        cpu=23807.90   
+433 fanfreePhspStyrox_w433.egsdat  ncase=1319868        cpu=23954.50   
+434 fanfreePhspStyrox_w434.egsdat  ncase=1599840        cpu=23727.30   
+435 fanfreePhspStyrox_w435.egsdat  ncase=1439856        cpu=23754.50   
+436 fanfreePhspStyrox_w436.egsdat  ncase=1219878        cpu=23825.90   
+437 fanfreePhspStyrox_w437.egsdat  ncase=1659834        cpu=24418.90   
+438 fanfreePhspStyrox_w438.egsdat  ncase=1419858        cpu=24055.50   
+439 fanfreePhspStyrox_w439.egsdat  ncase=1619838        cpu=23910.80   
+440 fanfreePhspStyrox_w440.egsdat  ncase=1239876        cpu=23929.90   
+441 fanfreePhspStyrox_w441.egsdat  ncase=1359864        cpu=24157.10   
+442 fanfreePhspStyrox_w442.egsdat  ncase=1279872        cpu=23991.80   
+443 fanfreePhspStyrox_w443.egsdat  ncase=1479852        cpu=23808.30   
+444 fanfreePhspStyrox_w444.egsdat  ncase=1599840        cpu=23844.70   
+445 fanfreePhspStyrox_w445.egsdat  ncase=1459854        cpu=23830.80   
+446 fanfreePhspStyrox_w446.egsdat  ncase=1199880        cpu=24269.30   
+447 fanfreePhspStyrox_w447.egsdat  ncase=1379862        cpu=23751.70   
+448 fanfreePhspStyrox_w448.egsdat  ncase=1459854        cpu=24070.60   
+449 fanfreePhspStyrox_w449.egsdat  ncase=1399860        cpu=23941.70   
+450 fanfreePhspStyrox_w450.egsdat  ncase=1259874        cpu=23849.00   
+451 fanfreePhspStyrox_w451.egsdat  ncase=1319868        cpu=24148.70   
+452 fanfreePhspStyrox_w452.egsdat  ncase=1499850        cpu=24431.20   
+453 fanfreePhspStyrox_w453.egsdat  ncase=1219878        cpu=24448.40   
+454 fanfreePhspStyrox_w454.egsdat  ncase=1319868        cpu=23995.20   
+455 fanfreePhspStyrox_w455.egsdat  ncase=1519848        cpu=23971.80   
+456 fanfreePhspStyrox_w456.egsdat  ncase=1579842        cpu=23767.80   
+457 fanfreePhspStyrox_w457.egsdat  ncase=1439856        cpu=23753.40   
+458 fanfreePhspStyrox_w458.egsdat  ncase=1419858        cpu=23972.20   
+459 fanfreePhspStyrox_w459.egsdat  ncase=1459854        cpu=23707.90   
+460 fanfreePhspStyrox_w460.egsdat  ncase=1319868        cpu=23912.30   
+461 fanfreePhspStyrox_w461.egsdat  ncase=1479852        cpu=23814.90   
+462 fanfreePhspStyrox_w462.egsdat  ncase=1499850        cpu=23983.80   
+463 fanfreePhspStyrox_w463.egsdat  ncase=1319868        cpu=24070.10   
+464 fanfreePhspStyrox_w464.egsdat  ncase=1379862        cpu=23849.70   
+465 fanfreePhspStyrox_w465.egsdat  ncase=1499850        cpu=23784.90   
+466 fanfreePhspStyrox_w466.egsdat  ncase=1459854        cpu=23825.30   
+467 fanfreePhspStyrox_w467.egsdat  ncase=1279872        cpu=23877.20   
+468 fanfreePhspStyrox_w468.egsdat  ncase=1419858        cpu=23830.10   
+469 fanfreePhspStyrox_w469.egsdat  ncase=1319868        cpu=23784.50   
+470 fanfreePhspStyrox_w470.egsdat  ncase=1559844        cpu=23660.70   
+471 fanfreePhspStyrox_w471.egsdat  ncase=1399860        cpu=23722.60   
+472 fanfreePhspStyrox_w472.egsdat  ncase=1479852        cpu=23858.80   
+473 fanfreePhspStyrox_w473.egsdat  ncase=1579842        cpu=24032.60   
+474 fanfreePhspStyrox_w474.egsdat  ncase=1459854        cpu=23752.20   
+475 fanfreePhspStyrox_w475.egsdat  ncase=1599840        cpu=23990.00   
+476 fanfreePhspStyrox_w476.egsdat  ncase=1479852        cpu=23855.70   
+477 fanfreePhspStyrox_w477.egsdat  ncase=1379862        cpu=23851.50   
+478 fanfreePhspStyrox_w478.egsdat  ncase=1619838        cpu=23797.70   
+479 fanfreePhspStyrox_w479.egsdat  ncase=1659834        cpu=23749.90   
+480 fanfreePhspStyrox_w480.egsdat  ncase=1259874        cpu=23807.80   
+481 fanfreePhspStyrox_w481.egsdat  ncase=1359864        cpu=23949.30   
+482 fanfreePhspStyrox_w482.egsdat  ncase=1199880        cpu=23868.80   
+483 fanfreePhspStyrox_w483.egsdat  ncase=1299870        cpu=23815.50   
+484 fanfreePhspStyrox_w484.egsdat  ncase=1519848        cpu=23618.20   
+485 fanfreePhspStyrox_w485.egsdat  ncase=1359864        cpu=23571.40   
+486 fanfreePhspStyrox_w486.egsdat  ncase=1119888        cpu=23925.20   
+487 fanfreePhspStyrox_w487.egsdat  ncase=1319868        cpu=24125.20   
+488 fanfreePhspStyrox_w488.egsdat  ncase=1239876        cpu=23461.60   
+489 fanfreePhspStyrox_w489.egsdat  ncase=1399860        cpu=23662.00   
+490 fanfreePhspStyrox_w490.egsdat  ncase=1219878        cpu=23727.20   
+491 fanfreePhspStyrox_w491.egsdat  ncase=1599840        cpu=24075.30   
+492 fanfreePhspStyrox_w492.egsdat  ncase=1379862        cpu=23564.80   
+493 fanfreePhspStyrox_w493.egsdat  ncase=1479852        cpu=23713.60   
+494 fanfreePhspStyrox_w494.egsdat  ncase=1439856        cpu=23986.10   
+495 fanfreePhspStyrox_w495.egsdat  ncase=1539846        cpu=23864.30   
+496 fanfreePhspStyrox_w496.egsdat  ncase=1159884        cpu=23818.80   
+497 fanfreePhspStyrox_w497.egsdat  ncase=1199880        cpu=23984.30   
+498 fanfreePhspStyrox_w498.egsdat  ncase=1639836        cpu=23628.20   
+499 fanfreePhspStyrox_w499.egsdat  ncase=1559844        cpu=23807.40   
+500 fanfreePhspStyrox_w500.egsdat  ncase=1099890        cpu=23742.90   
+501 fanfreePhspStyrox_w501.egsdat  ncase=1439856        cpu=23962.30   
+502 fanfreePhspStyrox_w502.egsdat  ncase=539946         cpu=9809.66    
+503 fanfreePhspStyrox_w503.egsdat  ncase=579942         cpu=9814.09    
+504 fanfreePhspStyrox_w504.egsdat  ncase=499950         cpu=10175.70   
+505 fanfreePhspStyrox_w505.egsdat  ncase=1119888        cpu=23663.50   
+506 fanfreePhspStyrox_w506.egsdat  ncase=1199880        cpu=23733.20   
+507 fanfreePhspStyrox_w507.egsdat  ncase=1079892        cpu=23618.10   
+508 fanfreePhspStyrox_w508.egsdat  ncase=1139886        cpu=24375.30   
+509 fanfreePhspStyrox_w509.egsdat  ncase=1179882        cpu=23976.00   
+510 fanfreePhspStyrox_w510.egsdat  ncase=1239876        cpu=23377.70   
+511 fanfreePhspStyrox_w511.egsdat  ncase=1419858        cpu=23630.90   
+512 fanfreePhspStyrox_w512.egsdat  ncase=1319868        cpu=23683.80   
+513 fanfreePhspStyrox_w513.egsdat  ncase=1279872        cpu=23565.70   
+514 fanfreePhspStyrox_w514.egsdat  ncase=479952         cpu=10002.70   
+515 fanfreePhspStyrox_w515.egsdat  ncase=1279872        cpu=23629.50   
+516 fanfreePhspStyrox_w516.egsdat  ncase=1239876        cpu=23659.60   
+517 fanfreePhspStyrox_w517.egsdat  ncase=1359864        cpu=23694.90   
+518 fanfreePhspStyrox_w518.egsdat  ncase=1079892        cpu=24212.30   
+519 fanfreePhspStyrox_w519.egsdat  ncase=1499850        cpu=23889.20   
+520 fanfreePhspStyrox_w520.egsdat  ncase=1419858        cpu=23788.50   
+521 fanfreePhspStyrox_w521.egsdat  ncase=1439856        cpu=23646.40   
+522 fanfreePhspStyrox_w522.egsdat  ncase=1559844        cpu=23850.10   
+523 fanfreePhspStyrox_w523.egsdat  ncase=1519848        cpu=23714.50   
+524 fanfreePhspStyrox_w524.egsdat  ncase=1499850        cpu=23527.00   
+525 fanfreePhspStyrox_w525.egsdat  ncase=1419858        cpu=23584.20   
+526 fanfreePhspStyrox_w526.egsdat  ncase=1379862        cpu=23709.70   
+527 fanfreePhspStyrox_w527.egsdat  ncase=1379862        cpu=23679.50   
+528 fanfreePhspStyrox_w528.egsdat  ncase=1179882        cpu=23481.40   
+529 fanfreePhspStyrox_w529.egsdat  ncase=1479852        cpu=23514.40   
+530 fanfreePhspStyrox_w530.egsdat  ncase=1079892        cpu=23600.90   
+531 fanfreePhspStyrox_w531.egsdat  ncase=1359864        cpu=23832.50   
+532 fanfreePhspStyrox_w532.egsdat  ncase=1159884        cpu=23339.70   
+533 fanfreePhspStyrox_w533.egsdat  ncase=1159884        cpu=23382.70   
+534 fanfreePhspStyrox_w534.egsdat  ncase=1379862        cpu=23446.40   
+535 fanfreePhspStyrox_w535.egsdat  ncase=1159884        cpu=23083.90   
+536 fanfreePhspStyrox_w536.egsdat  ncase=1359864        cpu=23165.30   
+537 fanfreePhspStyrox_w537.egsdat  ncase=1359864        cpu=22526.50   
+538 fanfreePhspStyrox_w538.egsdat  ncase=1299870        cpu=23205.00   
+539 fanfreePhspStyrox_w539.egsdat  ncase=1339866        cpu=23890.90   
+540 fanfreePhspStyrox_w540.egsdat  ncase=1379862        cpu=23140.00   
+541 fanfreePhspStyrox_w541.egsdat  ncase=1079892        cpu=23270.60   
+542 fanfreePhspStyrox_w542.egsdat  ncase=1239876        cpu=23439.50   
+543 fanfreePhspStyrox_w543.egsdat  ncase=1239876        cpu=23609.50   
+544 fanfreePhspStyrox_w544.egsdat  ncase=1039896        cpu=23186.10   
+545 fanfreePhspStyrox_w545.egsdat  ncase=1239876        cpu=23166.10   
+546 fanfreePhspStyrox_w546.egsdat  ncase=999900         cpu=23512.20   
+547 fanfreePhspStyrox_w547.egsdat  ncase=1199880        cpu=23500.60   
+548 fanfreePhspStyrox_w548.egsdat  ncase=979902         cpu=23205.30   
+549 fanfreePhspStyrox_w549.egsdat  ncase=1239876        cpu=23521.60   
+550 fanfreePhspStyrox_w550.egsdat  ncase=1099890        cpu=23513.90   
+551 fanfreePhspStyrox_w551.egsdat  ncase=1139886        cpu=23368.10   
+552 fanfreePhspStyrox_w552.egsdat  ncase=1399860        cpu=23303.30   
+553 fanfreePhspStyrox_w553.egsdat  ncase=1019898        cpu=23314.00   
+554 fanfreePhspStyrox_w554.egsdat  ncase=1139886        cpu=23463.10   
+555 fanfreePhspStyrox_w555.egsdat  ncase=1079892        cpu=23451.20   
+556 fanfreePhspStyrox_w556.egsdat  ncase=1259874        cpu=23257.10   
+557 fanfreePhspStyrox_w557.egsdat  ncase=1099890        cpu=23243.80   
+558 fanfreePhspStyrox_w558.egsdat  ncase=1479852        cpu=23306.60   
+559 fanfreePhspStyrox_w559.egsdat  ncase=899910         cpu=23177.20   
+560 fanfreePhspStyrox_w560.egsdat  ncase=1099890        cpu=23396.60   
+561 fanfreePhspStyrox_w561.egsdat  ncase=1279872        cpu=23197.60   
+562 fanfreePhspStyrox_w562.egsdat  ncase=519948         cpu=9969.16    
+563 fanfreePhspStyrox_w563.egsdat  ncase=519948         cpu=10019.10   
+564 fanfreePhspStyrox_w564.egsdat  ncase=559944         cpu=9809.33    
+565 fanfreePhspStyrox_w565.egsdat  ncase=479952         cpu=10157.00   
+566 fanfreePhspStyrox_w566.egsdat  ncase=519948         cpu=10140.80   
+567 fanfreePhspStyrox_w567.egsdat  ncase=519948         cpu=9998.14    
+568 fanfreePhspStyrox_w568.egsdat  ncase=539946         cpu=9713.00    
+569 fanfreePhspStyrox_w569.egsdat  ncase=499950         cpu=9823.83    
+570 fanfreePhspStyrox_w570.egsdat  ncase=459954         cpu=9956.12    
+571 fanfreePhspStyrox_w571.egsdat  ncase=439956         cpu=9727.27    
+572 fanfreePhspStyrox_w572.egsdat  ncase=479952         cpu=9700.09    
+573 fanfreePhspStyrox_w573.egsdat  ncase=499950         cpu=9833.18    
+574 fanfreePhspStyrox_w574.egsdat  ncase=499950         cpu=10045.40   
+575 fanfreePhspStyrox_w575.egsdat  ncase=519948         cpu=9802.95    
+576 fanfreePhspStyrox_w576.egsdat  ncase=479952         cpu=9714.92    
+577 fanfreePhspStyrox_w577.egsdat  ncase=499950         cpu=9728.39    
+578 fanfreePhspStyrox_w578.egsdat  ncase=579942         cpu=9728.76    
+579 fanfreePhspStyrox_w579.egsdat  ncase=519948         cpu=10091.30   
+580 fanfreePhspStyrox_w580.egsdat  ncase=519948         cpu=9863.73    
+581 fanfreePhspStyrox_w581.egsdat  ncase=519948         cpu=9851.51    
+582 fanfreePhspStyrox_w582.egsdat  ncase=499950         cpu=9812.18    
+583 fanfreePhspStyrox_w583.egsdat  ncase=419958         cpu=10045.30   
+584 fanfreePhspStyrox_w584.egsdat  ncase=479952         cpu=10292.80   
+585 fanfreePhspStyrox_w585.egsdat  ncase=519948         cpu=9779.53    
+586 fanfreePhspStyrox_w586.egsdat  ncase=479952         cpu=9801.51    
+587 fanfreePhspStyrox_w587.egsdat  ncase=519948         cpu=9998.20    
+588 fanfreePhspStyrox_w588.egsdat  ncase=519948         cpu=9690.92    
+589 fanfreePhspStyrox_w589.egsdat  ncase=519948         cpu=9920.68    
+590 fanfreePhspStyrox_w590.egsdat  ncase=599940         cpu=9757.82    
+591 fanfreePhspStyrox_w591.egsdat  ncase=519948         cpu=9940.31    
+592 fanfreePhspStyrox_w592.egsdat  ncase=479952         cpu=9969.84    
+593 fanfreePhspStyrox_w593.egsdat  ncase=559944         cpu=9791.16    
+594 fanfreePhspStyrox_w594.egsdat  ncase=499950         cpu=9977.24    
+595 fanfreePhspStyrox_w595.egsdat  ncase=519948         cpu=10324.50   
+596 fanfreePhspStyrox_w596.egsdat  ncase=519948         cpu=10021.60   
+597 fanfreePhspStyrox_w597.egsdat  ncase=539946         cpu=9707.89    
+598 fanfreePhspStyrox_w598.egsdat  ncase=579942         cpu=9953.76    
+599 fanfreePhspStyrox_w599.egsdat  ncase=519948         cpu=9991.62    
+600 fanfreePhspStyrox_w600.egsdat  ncase=539946         cpu=9729.98    
+601 fanfreePhspStyrox_w601.egsdat  ncase=519948         cpu=9904.05    
+602 fanfreePhspStyrox_w602.egsdat  ncase=419958         cpu=9695.42    
+603 fanfreePhspStyrox_w603.egsdat  ncase=519948         cpu=9734.57    
+604 fanfreePhspStyrox_w604.egsdat  ncase=519948         cpu=10169.90   
+605 fanfreePhspStyrox_w605.egsdat  ncase=519948         cpu=9763.45    
+606 fanfreePhspStyrox_w606.egsdat  ncase=479952         cpu=9681.98    
+607 fanfreePhspStyrox_w607.egsdat  ncase=539946         cpu=9906.37    
+608 fanfreePhspStyrox_w608.egsdat  ncase=539946         cpu=9840.91    
+609 fanfreePhspStyrox_w609.egsdat  ncase=479952         cpu=9926.21    
+610 fanfreePhspStyrox_w610.egsdat  ncase=519948         cpu=9868.16    
+611 fanfreePhspStyrox_w611.egsdat  ncase=519948         cpu=10036.40   
+612 fanfreePhspStyrox_w612.egsdat  ncase=539946         cpu=9708.00    
+613 fanfreePhspStyrox_w613.egsdat  ncase=559944         cpu=9806.63    
+614 fanfreePhspStyrox_w614.egsdat  ncase=499950         cpu=9835.46    
+615 fanfreePhspStyrox_w615.egsdat  ncase=559944         cpu=9700.58    
+616 fanfreePhspStyrox_w616.egsdat  ncase=479952         cpu=9849.71    
+617 fanfreePhspStyrox_w617.egsdat  ncase=519948         cpu=10162.20   
+618 fanfreePhspStyrox_w618.egsdat  ncase=579942         cpu=9823.79    
+619 fanfreePhspStyrox_w619.egsdat  ncase=499950         cpu=9926.80    
+620 fanfreePhspStyrox_w620.egsdat  ncase=459954         cpu=9864.97    
+621 fanfreePhspStyrox_w621.egsdat  ncase=519948         cpu=9936.35    
+622 fanfreePhspStyrox_w622.egsdat  ncase=459954         cpu=10157.00   
+623 fanfreePhspStyrox_w623.egsdat  ncase=519948         cpu=9689.37    
+624 fanfreePhspStyrox_w624.egsdat  ncase=519948         cpu=9845.77    
+625 fanfreePhspStyrox_w625.egsdat  ncase=599940         cpu=10270.90   
+626 fanfreePhspStyrox_w626.egsdat  ncase=519948         cpu=10278.80   
+627 fanfreePhspStyrox_w627.egsdat  ncase=519948         cpu=9975.73    
+628 fanfreePhspStyrox_w628.egsdat  ncase=479952         cpu=9825.22    
+629 fanfreePhspStyrox_w629.egsdat  ncase=479952         cpu=10204.10   
+630 fanfreePhspStyrox_w630.egsdat  ncase=519948         cpu=9974.66    
+631 fanfreePhspStyrox_w631.egsdat  ncase=539946         cpu=9885.66    
+632 fanfreePhspStyrox_w632.egsdat  ncase=559944         cpu=9974.73    
+633 fanfreePhspStyrox_w633.egsdat  ncase=559944         cpu=9775.76    
+634 fanfreePhspStyrox_w634.egsdat  ncase=539946         cpu=10027.80   
+635 fanfreePhspStyrox_w635.egsdat  ncase=559944         cpu=9803.56    
+636 fanfreePhspStyrox_w636.egsdat  ncase=479952         cpu=9881.29    
+637 fanfreePhspStyrox_w637.egsdat  ncase=479952         cpu=10085.00   
+638 fanfreePhspStyrox_w638.egsdat  ncase=559944         cpu=9788.75    
+639 fanfreePhspStyrox_w639.egsdat  ncase=479952         cpu=9894.27    
+640 fanfreePhspStyrox_w640.egsdat  ncase=519948         cpu=9723.47    
+641 fanfreePhspStyrox_w641.egsdat  ncase=579942         cpu=9796.79    
+642 fanfreePhspStyrox_w642.egsdat  ncase=519948         cpu=9988.92    
+643 fanfreePhspStyrox_w643.egsdat  ncase=479952         cpu=10245.10   
+644 fanfreePhspStyrox_w644.egsdat  ncase=519948         cpu=9730.19    
+645 fanfreePhspStyrox_w645.egsdat  ncase=519948         cpu=9894.25    
+646 fanfreePhspStyrox_w646.egsdat  ncase=399960         cpu=9796.06    
+647 fanfreePhspStyrox_w647.egsdat  ncase=559944         cpu=9989.02    
+648 fanfreePhspStyrox_w648.egsdat  ncase=519948         cpu=10141.40   
+649 fanfreePhspStyrox_w649.egsdat  ncase=539946         cpu=9776.22    
+650 fanfreePhspStyrox_w650.egsdat  ncase=499950         cpu=9713.49    
+651 fanfreePhspStyrox_w651.egsdat  ncase=499950         cpu=9798.04    
+652 fanfreePhspStyrox_w652.egsdat  ncase=519948         cpu=10051.00   
+653 fanfreePhspStyrox_w653.egsdat  ncase=599940         cpu=10108.90   
+654 fanfreePhspStyrox_w654.egsdat  ncase=519948         cpu=9771.16    
+655 fanfreePhspStyrox_w655.egsdat  ncase=519948         cpu=10071.20   
+656 fanfreePhspStyrox_w656.egsdat  ncase=559944         cpu=9887.20    
+657 fanfreePhspStyrox_w657.egsdat  ncase=519948         cpu=9956.45    
+658 fanfreePhspStyrox_w658.egsdat  ncase=519948         cpu=9756.59    
+659 fanfreePhspStyrox_w659.egsdat  ncase=539946         cpu=9861.90    
+660 fanfreePhspStyrox_w660.egsdat  ncase=379962         cpu=9740.80    
+661 fanfreePhspStyrox_w661.egsdat  ncase=479952         cpu=9958.61    
+662 fanfreePhspStyrox_w662.egsdat  ncase=539946         cpu=9671.34    
+663 fanfreePhspStyrox_w663.egsdat  ncase=499950         cpu=9773.68    
+664 fanfreePhspStyrox_w664.egsdat  ncase=519948         cpu=9790.86    
+665 fanfreePhspStyrox_w665.egsdat  ncase=519948         cpu=9742.22    
+666 fanfreePhspStyrox_w666.egsdat  ncase=479952         cpu=9933.40    
+667 fanfreePhspStyrox_w667.egsdat  ncase=579942         cpu=9682.62    
+668 fanfreePhspStyrox_w668.egsdat  ncase=519948         cpu=10135.90   
+669 fanfreePhspStyrox_w669.egsdat  ncase=599940         cpu=9747.66    
+670 fanfreePhspStyrox_w670.egsdat  ncase=499950         cpu=9879.10    
+671 fanfreePhspStyrox_w671.egsdat  ncase=559944         cpu=10016.50   
+672 fanfreePhspStyrox_w672.egsdat  ncase=519948         cpu=9763.32    
+673 fanfreePhspStyrox_w673.egsdat  ncase=459954         cpu=9828.24    
+674 fanfreePhspStyrox_w674.egsdat  ncase=519948         cpu=9894.76    
+675 fanfreePhspStyrox_w675.egsdat  ncase=499950         cpu=9861.40    
+676 fanfreePhspStyrox_w676.egsdat  ncase=519948         cpu=10018.30   
+677 fanfreePhspStyrox_w677.egsdat  ncase=499950         cpu=9699.48    
+678 fanfreePhspStyrox_w678.egsdat  ncase=479952         cpu=9801.39    
+679 fanfreePhspStyrox_w679.egsdat  ncase=599940         cpu=9945.15    
+680 fanfreePhspStyrox_w680.egsdat  ncase=519948         cpu=10032.10   
+681 fanfreePhspStyrox_w681.egsdat  ncase=579942         cpu=9835.46    
+682 fanfreePhspStyrox_w682.egsdat  ncase=479952         cpu=9915.42    
+683 fanfreePhspStyrox_w683.egsdat  ncase=499950         cpu=9854.14    
+684 fanfreePhspStyrox_w684.egsdat  ncase=519948         cpu=10302.60   
+685 fanfreePhspStyrox_w685.egsdat  ncase=479952         cpu=9811.87    
+686 fanfreePhspStyrox_w686.egsdat  ncase=559944         cpu=10054.70   
+687 fanfreePhspStyrox_w687.egsdat  ncase=519948         cpu=10187.40   
+688 fanfreePhspStyrox_w688.egsdat  ncase=519948         cpu=9717.17    
+689 fanfreePhspStyrox_w689.egsdat  ncase=559944         cpu=9906.92    
+690 fanfreePhspStyrox_w690.egsdat  ncase=519948         cpu=9858.79    
+691 fanfreePhspStyrox_w691.egsdat  ncase=519948         cpu=10161.60   
+692 fanfreePhspStyrox_w692.egsdat  ncase=559944         cpu=9974.64    
+693 fanfreePhspStyrox_w693.egsdat  ncase=559944         cpu=10031.30   
+694 fanfreePhspStyrox_w694.egsdat  ncase=579942         cpu=9763.90    
+695 fanfreePhspStyrox_w695.egsdat  ncase=499950         cpu=9764.22    
+696 fanfreePhspStyrox_w696.egsdat  ncase=459954         cpu=9949.30    
+697 fanfreePhspStyrox_w697.egsdat  ncase=579942         cpu=9694.16    
+698 fanfreePhspStyrox_w698.egsdat  ncase=499950         cpu=9745.86    
+699 fanfreePhspStyrox_w699.egsdat  ncase=519948         cpu=9841.85    
+700 fanfreePhspStyrox_w700.egsdat  ncase=479952         cpu=9788.69    
+701 fanfreePhspStyrox_w701.egsdat  ncase=579942         cpu=9798.73    
+702 fanfreePhspStyrox_w702.egsdat  ncase=459954         cpu=9815.65    
+703 fanfreePhspStyrox_w703.egsdat  ncase=459954         cpu=9945.40    
+704 fanfreePhspStyrox_w704.egsdat  ncase=519948         cpu=10198.70   
+705 fanfreePhspStyrox_w705.egsdat  ncase=459954         cpu=9877.57    
+706 fanfreePhspStyrox_w706.egsdat  ncase=519948         cpu=9927.17    
+707 fanfreePhspStyrox_w707.egsdat  ncase=519948         cpu=9733.47    
+708 fanfreePhspStyrox_w708.egsdat  ncase=519948         cpu=9876.42    
+709 fanfreePhspStyrox_w709.egsdat  ncase=579942         cpu=9725.89    
+710 fanfreePhspStyrox_w710.egsdat  ncase=619938         cpu=10136.60   
+711 fanfreePhspStyrox_w711.egsdat  ncase=519948         cpu=9802.48    
+712 fanfreePhspStyrox_w712.egsdat  ncase=479952         cpu=9913.61    
+713 fanfreePhspStyrox_w713.egsdat  ncase=519948         cpu=9807.14    
+714 fanfreePhspStyrox_w714.egsdat  ncase=499950         cpu=9798.91    
+715 fanfreePhspStyrox_w715.egsdat  ncase=499950         cpu=9883.48    
+716 fanfreePhspStyrox_w716.egsdat  ncase=499950         cpu=9769.78    
+717 fanfreePhspStyrox_w717.egsdat  ncase=519948         cpu=9800.94    
+718 fanfreePhspStyrox_w718.egsdat  ncase=459954         cpu=9986.33    
+719 fanfreePhspStyrox_w719.egsdat  ncase=539946         cpu=9763.08    
+720 fanfreePhspStyrox_w720.egsdat  ncase=519948         cpu=9872.21    
+721 fanfreePhspStyrox_w721.egsdat  ncase=539946         cpu=9747.09    
+722 fanfreePhspStyrox_w722.egsdat  ncase=519948         cpu=10282.80   
+723 fanfreePhspStyrox_w723.egsdat  ncase=539946         cpu=9908.44    
+724 fanfreePhspStyrox_w724.egsdat  ncase=539946         cpu=9688.89    
+725 fanfreePhspStyrox_w725.egsdat  ncase=519948         cpu=9692.54    
+726 fanfreePhspStyrox_w726.egsdat  ncase=639936         cpu=10080.50   
+727 fanfreePhspStyrox_w727.egsdat  ncase=539946         cpu=9797.93    
+728 fanfreePhspStyrox_w728.egsdat  ncase=459954         cpu=10013.00   
+729 fanfreePhspStyrox_w729.egsdat  ncase=499950         cpu=9689.25    
+730 fanfreePhspStyrox_w730.egsdat  ncase=579942         cpu=9771.24    
+731 fanfreePhspStyrox_w731.egsdat  ncase=519948         cpu=9871.92    
+732 fanfreePhspStyrox_w732.egsdat  ncase=479952         cpu=10003.50   
+733 fanfreePhspStyrox_w733.egsdat  ncase=439956         cpu=9717.59    
+734 fanfreePhspStyrox_w734.egsdat  ncase=479952         cpu=9855.53    
+735 fanfreePhspStyrox_w735.egsdat  ncase=619938         cpu=9819.64    
+736 fanfreePhspStyrox_w736.egsdat  ncase=499950         cpu=9818.91    
+737 fanfreePhspStyrox_w737.egsdat  ncase=479952         cpu=9740.63    
+738 fanfreePhspStyrox_w738.egsdat  ncase=559944         cpu=9909.13    
+739 fanfreePhspStyrox_w739.egsdat  ncase=499950         cpu=9951.55    
+740 fanfreePhspStyrox_w740.egsdat  ncase=499950         cpu=9672.60    
+741 fanfreePhspStyrox_w741.egsdat  ncase=519948         cpu=9854.44    
+742 fanfreePhspStyrox_w742.egsdat  ncase=519948         cpu=9788.76    
+743 fanfreePhspStyrox_w743.egsdat  ncase=539946         cpu=9772.91    
+744 fanfreePhspStyrox_w744.egsdat  ncase=519948         cpu=9997.14    
+745 fanfreePhspStyrox_w745.egsdat  ncase=559944         cpu=9950.27    
+746 fanfreePhspStyrox_w746.egsdat  ncase=519948         cpu=9863.79    
+747 fanfreePhspStyrox_w747.egsdat  ncase=499950         cpu=9831.82    
+748 fanfreePhspStyrox_w748.egsdat  ncase=519948         cpu=10120.80   
+749 fanfreePhspStyrox_w749.egsdat  ncase=479952         cpu=9858.94    
+750 fanfreePhspStyrox_w750.egsdat  ncase=519948         cpu=10102.60   
+751 fanfreePhspStyrox_w751.egsdat  ncase=539946         cpu=9882.06    
+752 fanfreePhspStyrox_w752.egsdat  ncase=519948         cpu=10066.60   
+753 fanfreePhspStyrox_w753.egsdat  ncase=459954         cpu=10031.40   
+754 fanfreePhspStyrox_w754.egsdat  ncase=479952         cpu=9959.99    
+755 fanfreePhspStyrox_w755.egsdat  ncase=439956         cpu=9692.13    
+756 fanfreePhspStyrox_w756.egsdat  ncase=639936         cpu=10205.50   
+757 fanfreePhspStyrox_w757.egsdat  ncase=539946         cpu=9647.26    
+758 fanfreePhspStyrox_w758.egsdat  ncase=559944         cpu=9694.51    
+759 fanfreePhspStyrox_w759.egsdat  ncase=419958         cpu=9744.77    
+760 fanfreePhspStyrox_w760.egsdat  ncase=479952         cpu=10039.10   
+761 fanfreePhspStyrox_w761.egsdat  ncase=499950         cpu=9849.06    
+762 fanfreePhspStyrox_w762.egsdat  ncase=479952         cpu=9878.31    
+763 fanfreePhspStyrox_w763.egsdat  ncase=519948         cpu=9857.04    
+764 fanfreePhspStyrox_w764.egsdat  ncase=539946         cpu=10143.60   
+765 fanfreePhspStyrox_w765.egsdat  ncase=559944         cpu=9970.82    
+766 fanfreePhspStyrox_w766.egsdat  ncase=499950         cpu=10017.60   
+767 fanfreePhspStyrox_w767.egsdat  ncase=459954         cpu=9768.23    
+768 fanfreePhspStyrox_w768.egsdat  ncase=439956         cpu=9760.47    
+769 fanfreePhspStyrox_w769.egsdat  ncase=519948         cpu=10095.60   
+770 fanfreePhspStyrox_w770.egsdat  ncase=479952         cpu=9763.62    
+771 fanfreePhspStyrox_w771.egsdat  ncase=499950         cpu=10046.90   
+772 fanfreePhspStyrox_w772.egsdat  ncase=559944         cpu=9853.28    
+773 fanfreePhspStyrox_w773.egsdat  ncase=479952         cpu=9904.08    
+774 fanfreePhspStyrox_w774.egsdat  ncase=499950         cpu=10081.00   
+775 fanfreePhspStyrox_w775.egsdat  ncase=519948         cpu=9996.98    
+776 fanfreePhspStyrox_w776.egsdat  ncase=519948         cpu=10159.80   
+777 fanfreePhspStyrox_w777.egsdat  ncase=459954         cpu=10007.30   
+778 fanfreePhspStyrox_w778.egsdat  ncase=479952         cpu=9959.39    
+779 fanfreePhspStyrox_w779.egsdat  ncase=479952         cpu=10009.80   
+780 fanfreePhspStyrox_w780.egsdat  ncase=499950         cpu=9916.52    
+781 fanfreePhspStyrox_w781.egsdat  ncase=499950         cpu=9747.37    
+782 fanfreePhspStyrox_w782.egsdat  ncase=499950         cpu=9868.66    
+783 fanfreePhspStyrox_w783.egsdat  ncase=479952         cpu=9685.23    
+784 fanfreePhspStyrox_w784.egsdat  ncase=499950         cpu=9641.29    
+785 fanfreePhspStyrox_w785.egsdat  ncase=479952         cpu=9752.71    
+786 fanfreePhspStyrox_w786.egsdat  ncase=499950         cpu=9879.14    
+787 fanfreePhspStyrox_w787.egsdat  ncase=539946         cpu=9666.41    
+788 fanfreePhspStyrox_w788.egsdat  ncase=479952         cpu=10050.30   
+789 fanfreePhspStyrox_w789.egsdat  ncase=479952         cpu=9694.75    
+790 fanfreePhspStyrox_w790.egsdat  ncase=439956         cpu=9633.94    
+791 fanfreePhspStyrox_w791.egsdat  ncase=559944         cpu=10050.30   
+792 fanfreePhspStyrox_w792.egsdat  ncase=479952         cpu=9650.38    
+793 fanfreePhspStyrox_w793.egsdat  ncase=499950         cpu=10387.40   
+794 fanfreePhspStyrox_w794.egsdat  ncase=479952         cpu=10029.30   
+795 fanfreePhspStyrox_w795.egsdat  ncase=519948         cpu=9972.17    
+796 fanfreePhspStyrox_w796.egsdat  ncase=559944         cpu=9761.35    
+797 fanfreePhspStyrox_w797.egsdat  ncase=479952         cpu=9879.67    
+798 fanfreePhspStyrox_w798.egsdat  ncase=539946         cpu=9700.10    
+799 fanfreePhspStyrox_w799.egsdat  ncase=459954         cpu=10067.60   
+800 fanfreePhspStyrox_w800.egsdat  ncase=519948         cpu=10065.60   
+801 fanfreePhspStyrox_w801.egsdat  ncase=499950         cpu=9728.53    
+802 fanfreePhspStyrox_w802.egsdat  ncase=479952         cpu=10045.70   
+803 fanfreePhspStyrox_w803.egsdat  ncase=479952         cpu=9728.86    
+804 fanfreePhspStyrox_w804.egsdat  ncase=499950         cpu=9992.20    
+805 fanfreePhspStyrox_w805.egsdat  ncase=499950         cpu=9640.68    
+806 fanfreePhspStyrox_w806.egsdat  ncase=519948         cpu=10222.50   
+807 fanfreePhspStyrox_w807.egsdat  ncase=519948         cpu=9631.52    
+808 fanfreePhspStyrox_w808.egsdat  ncase=499950         cpu=9787.23    
+809 fanfreePhspStyrox_w809.egsdat  ncase=499950         cpu=9882.20    
+810 fanfreePhspStyrox_w810.egsdat  ncase=539946         cpu=9768.52    
+811 fanfreePhspStyrox_w811.egsdat  ncase=459954         cpu=9734.93    
+812 fanfreePhspStyrox_w812.egsdat  ncase=519948         cpu=9960.93    
+813 fanfreePhspStyrox_w813.egsdat  ncase=519948         cpu=9660.01    
+814 fanfreePhspStyrox_w814.egsdat  ncase=519948         cpu=9935.94    
+815 fanfreePhspStyrox_w815.egsdat  ncase=499950         cpu=9855.48    
+816 fanfreePhspStyrox_w816.egsdat  ncase=419958         cpu=9801.53    
+817 fanfreePhspStyrox_w817.egsdat  ncase=499950         cpu=9752.15    
+818 fanfreePhspStyrox_w818.egsdat  ncase=499950         cpu=10068.20   
+819 fanfreePhspStyrox_w819.egsdat  ncase=519948         cpu=9969.79    
+820 fanfreePhspStyrox_w820.egsdat  ncase=499950         cpu=9692.70    
+821 fanfreePhspStyrox_w821.egsdat  ncase=479952         cpu=10026.20   
+822 fanfreePhspStyrox_w822.egsdat  ncase=479952         cpu=9924.66    
+823 fanfreePhspStyrox_w823.egsdat  ncase=519948         cpu=10153.00   
+824 fanfreePhspStyrox_w824.egsdat  ncase=479952         cpu=9926.43    
+825 fanfreePhspStyrox_w825.egsdat  ncase=499950         cpu=9963.31    
+826 fanfreePhspStyrox_w826.egsdat  ncase=579942         cpu=9627.97    
+827 fanfreePhspStyrox_w827.egsdat  ncase=519948         cpu=9748.55    
+828 fanfreePhspStyrox_w828.egsdat  ncase=519948         cpu=10270.70   
+829 fanfreePhspStyrox_w829.egsdat  ncase=479952         cpu=10218.00   
+830 fanfreePhspStyrox_w830.egsdat  ncase=539946         cpu=9884.34    
+831 fanfreePhspStyrox_w831.egsdat  ncase=479952         cpu=9644.55    
+832 fanfreePhspStyrox_w832.egsdat  ncase=479952         cpu=9732.39    
+833 fanfreePhspStyrox_w833.egsdat  ncase=479952         cpu=9918.48    
+834 fanfreePhspStyrox_w834.egsdat  ncase=499950         cpu=9858.60    
+835 fanfreePhspStyrox_w835.egsdat  ncase=559944         cpu=9639.52    
+836 fanfreePhspStyrox_w836.egsdat  ncase=519948         cpu=9824.73    
+837 fanfreePhspStyrox_w837.egsdat  ncase=559944         cpu=10259.10   
+838 fanfreePhspStyrox_w838.egsdat  ncase=559944         cpu=10396.90   
+839 fanfreePhspStyrox_w839.egsdat  ncase=499950         cpu=9629.89    
+840 fanfreePhspStyrox_w840.egsdat  ncase=479952         cpu=10118.40   
+841 fanfreePhspStyrox_w841.egsdat  ncase=499950         cpu=10200.40   
+842 fanfreePhspStyrox_w842.egsdat  ncase=519948         cpu=9853.03    
+843 fanfreePhspStyrox_w843.egsdat  ncase=459954         cpu=9700.56    
+844 fanfreePhspStyrox_w844.egsdat  ncase=479952         cpu=9694.15    
+845 fanfreePhspStyrox_w845.egsdat  ncase=499950         cpu=9711.00    
+846 fanfreePhspStyrox_w846.egsdat  ncase=499950         cpu=9708.85    
+847 fanfreePhspStyrox_w847.egsdat  ncase=479952         cpu=9859.69    
+848 fanfreePhspStyrox_w848.egsdat  ncase=419958         cpu=9674.03    
+849 fanfreePhspStyrox_w849.egsdat  ncase=519948         cpu=9698.54    
+850 fanfreePhspStyrox_w850.egsdat  ncase=559944         cpu=10021.50   
+851 fanfreePhspStyrox_w851.egsdat  ncase=459954         cpu=9848.97    
+852 fanfreePhspStyrox_w852.egsdat  ncase=559944         cpu=9821.20    
+853 fanfreePhspStyrox_w853.egsdat  ncase=499950         cpu=9681.11    
+854 fanfreePhspStyrox_w854.egsdat  ncase=499950         cpu=9719.28    
+855 fanfreePhspStyrox_w855.egsdat  ncase=479952         cpu=9804.22    
+856 fanfreePhspStyrox_w856.egsdat  ncase=579942         cpu=10059.60   
+857 fanfreePhspStyrox_w857.egsdat  ncase=499950         cpu=10027.00   
+858 fanfreePhspStyrox_w858.egsdat  ncase=599940         cpu=9789.35    
+859 fanfreePhspStyrox_w859.egsdat  ncase=499950         cpu=9882.75    
+860 fanfreePhspStyrox_w860.egsdat  ncase=559944         cpu=9665.07    
+861 fanfreePhspStyrox_w861.egsdat  ncase=599940         cpu=9661.38    
+862 fanfreePhspStyrox_w862.egsdat  ncase=479952         cpu=9949.22    
+863 fanfreePhspStyrox_w863.egsdat  ncase=499950         cpu=10125.40   
+864 fanfreePhspStyrox_w864.egsdat  ncase=439956         cpu=9738.73    
+865 fanfreePhspStyrox_w865.egsdat  ncase=579942         cpu=9699.06    
+866 fanfreePhspStyrox_w866.egsdat  ncase=499950         cpu=9960.76    
+867 fanfreePhspStyrox_w867.egsdat  ncase=479952         cpu=9641.43    
+868 fanfreePhspStyrox_w868.egsdat  ncase=499950         cpu=9995.24    
+869 fanfreePhspStyrox_w869.egsdat  ncase=499950         cpu=10152.20   
+870 fanfreePhspStyrox_w870.egsdat  ncase=539946         cpu=9637.09    
+871 fanfreePhspStyrox_w871.egsdat  ncase=579942         cpu=9939.96    
+872 fanfreePhspStyrox_w872.egsdat  ncase=539946         cpu=9691.99    
+873 fanfreePhspStyrox_w873.egsdat  ncase=519948         cpu=10014.20   
+874 fanfreePhspStyrox_w874.egsdat  ncase=559944         cpu=9763.61    
+875 fanfreePhspStyrox_w875.egsdat  ncase=459954         cpu=9956.99    
+876 fanfreePhspStyrox_w876.egsdat  ncase=519948         cpu=9757.51    
+877 fanfreePhspStyrox_w877.egsdat  ncase=499950         cpu=9839.34    
+878 fanfreePhspStyrox_w878.egsdat  ncase=499950         cpu=9675.09    
+879 fanfreePhspStyrox_w879.egsdat  ncase=579942         cpu=9893.52    
+880 fanfreePhspStyrox_w880.egsdat  ncase=519948         cpu=9897.30    
+881 fanfreePhspStyrox_w881.egsdat  ncase=459954         cpu=9806.99    
+882 fanfreePhspStyrox_w882.egsdat  ncase=519948         cpu=9626.95    
+883 fanfreePhspStyrox_w883.egsdat  ncase=499950         cpu=10018.60   
+884 fanfreePhspStyrox_w884.egsdat  ncase=519948         cpu=9669.89    
+885 fanfreePhspStyrox_w885.egsdat  ncase=519948         cpu=10233.10   
+886 fanfreePhspStyrox_w886.egsdat  ncase=499950         cpu=10027.70   
+887 fanfreePhspStyrox_w887.egsdat  ncase=499950         cpu=9697.21    
+888 fanfreePhspStyrox_w888.egsdat  ncase=559944         cpu=9917.61    
+889 fanfreePhspStyrox_w889.egsdat  ncase=559944         cpu=9891.88    
+890 fanfreePhspStyrox_w890.egsdat  ncase=479952         cpu=10264.50   
+891 fanfreePhspStyrox_w891.egsdat  ncase=559944         cpu=9683.51    
+892 fanfreePhspStyrox_w892.egsdat  ncase=499950         cpu=9636.10    
+893 fanfreePhspStyrox_w893.egsdat  ncase=499950         cpu=9808.94    
+894 fanfreePhspStyrox_w894.egsdat  ncase=519948         cpu=9766.01    
+895 fanfreePhspStyrox_w895.egsdat  ncase=459954         cpu=9652.15    
+896 fanfreePhspStyrox_w896.egsdat  ncase=459954         cpu=10024.50   
+897 fanfreePhspStyrox_w897.egsdat  ncase=499950         cpu=9628.47    
+898 fanfreePhspStyrox_w898.egsdat  ncase=519948         cpu=9672.15    
+899 fanfreePhspStyrox_w899.egsdat  ncase=619938         cpu=9928.94    
+900 fanfreePhspStyrox_w900.egsdat  ncase=479952         cpu=9834.30    
+901 fanfreePhspStyrox_w901.egsdat  ncase=519948         cpu=10389.90   
+902 fanfreePhspStyrox_w902.egsdat  ncase=479952         cpu=10320.20   
+903 fanfreePhspStyrox_w903.egsdat  ncase=619938         cpu=9929.17    
+904 fanfreePhspStyrox_w904.egsdat  ncase=499950         cpu=9841.62    
+905 fanfreePhspStyrox_w905.egsdat  ncase=519948         cpu=9890.50    
+906 fanfreePhspStyrox_w906.egsdat  ncase=439956         cpu=9772.13    
+907 fanfreePhspStyrox_w907.egsdat  ncase=399960         cpu=9914.67    
+908 fanfreePhspStyrox_w908.egsdat  ncase=519948         cpu=10136.00   
+909 fanfreePhspStyrox_w909.egsdat  ncase=499950         cpu=9830.60    
+910 fanfreePhspStyrox_w910.egsdat  ncase=479952         cpu=9630.29    
+911 fanfreePhspStyrox_w911.egsdat  ncase=479952         cpu=9874.16    
+912 fanfreePhspStyrox_w912.egsdat  ncase=459954         cpu=9655.02    
+913 fanfreePhspStyrox_w913.egsdat  ncase=479952         cpu=9702.75    
+914 fanfreePhspStyrox_w914.egsdat  ncase=519948         cpu=9669.75    
+915 fanfreePhspStyrox_w915.egsdat  ncase=519948         cpu=9767.64    
+916 fanfreePhspStyrox_w916.egsdat  ncase=519948         cpu=9749.32    
+917 fanfreePhspStyrox_w917.egsdat  ncase=519948         cpu=10001.60   
+918 fanfreePhspStyrox_w918.egsdat  ncase=479952         cpu=9697.39    
+919 fanfreePhspStyrox_w919.egsdat  ncase=499950         cpu=9781.07    
+920 fanfreePhspStyrox_w920.egsdat  ncase=519948         cpu=10147.10   
+921 fanfreePhspStyrox_w921.egsdat  ncase=499950         cpu=9722.27    
+922 fanfreePhspStyrox_w922.egsdat  ncase=519948         cpu=10023.80   
+923 fanfreePhspStyrox_w923.egsdat  ncase=459954         cpu=10185.00   
+924 fanfreePhspStyrox_w924.egsdat  ncase=459954         cpu=9772.86    
+925 fanfreePhspStyrox_w925.egsdat  ncase=459954         cpu=9832.32    
+926 fanfreePhspStyrox_w926.egsdat  ncase=459954         cpu=10209.70   
+927 fanfreePhspStyrox_w927.egsdat  ncase=519948         cpu=9882.25    
+928 fanfreePhspStyrox_w928.egsdat  ncase=419958         cpu=9667.88    
+929 fanfreePhspStyrox_w929.egsdat  ncase=499950         cpu=9837.71    
+930 fanfreePhspStyrox_w930.egsdat  ncase=519948         cpu=10067.50   
+931 fanfreePhspStyrox_w931.egsdat  ncase=499950         cpu=9790.07    
+932 fanfreePhspStyrox_w932.egsdat  ncase=419958         cpu=9636.03    
+933 fanfreePhspStyrox_w933.egsdat  ncase=499950         cpu=9710.77    
+934 fanfreePhspStyrox_w934.egsdat  ncase=479952         cpu=10028.30   
+935 fanfreePhspStyrox_w935.egsdat  ncase=519948         cpu=9953.61    
+936 fanfreePhspStyrox_w936.egsdat  ncase=499950         cpu=9769.48    
+937 fanfreePhspStyrox_w937.egsdat  ncase=519948         cpu=9772.21    
+938 fanfreePhspStyrox_w938.egsdat  ncase=479952         cpu=10251.60   
+939 fanfreePhspStyrox_w939.egsdat  ncase=499950         cpu=10076.90   
+940 fanfreePhspStyrox_w940.egsdat  ncase=479952         cpu=9752.48    
+941 fanfreePhspStyrox_w941.egsdat  ncase=519948         cpu=9917.09    
+942 fanfreePhspStyrox_w942.egsdat  ncase=579942         cpu=9704.51    
+943 fanfreePhspStyrox_w943.egsdat  ncase=519948         cpu=10003.50   
+944 fanfreePhspStyrox_w944.egsdat  ncase=499950         cpu=9735.18    
+945 fanfreePhspStyrox_w945.egsdat  ncase=479952         cpu=9664.33    
+946 fanfreePhspStyrox_w946.egsdat  ncase=519948         cpu=10164.30   
+947 fanfreePhspStyrox_w947.egsdat  ncase=519948         cpu=9911.56    
+948 fanfreePhspStyrox_w948.egsdat  ncase=539946         cpu=9651.39    
+949 fanfreePhspStyrox_w949.egsdat  ncase=539946         cpu=9754.17    
+950 fanfreePhspStyrox_w950.egsdat  ncase=579942         cpu=9918.53    
+951 fanfreePhspStyrox_w951.egsdat  ncase=479952         cpu=10173.90   
+952 fanfreePhspStyrox_w952.egsdat  ncase=459954         cpu=9829.81    
+953 fanfreePhspStyrox_w953.egsdat  ncase=479952         cpu=9634.71    
+954 fanfreePhspStyrox_w954.egsdat  ncase=479952         cpu=10434.40   
+955 fanfreePhspStyrox_w955.egsdat  ncase=439956         cpu=9653.85    
+956 fanfreePhspStyrox_w956.egsdat  ncase=439956         cpu=9833.37    
+957 fanfreePhspStyrox_w957.egsdat  ncase=519948         cpu=9808.49    
+958 fanfreePhspStyrox_w958.egsdat  ncase=419958         cpu=9672.98    
+959 fanfreePhspStyrox_w959.egsdat  ncase=399960         cpu=9807.49    
+960 fanfreePhspStyrox_w960.egsdat  ncase=479952         cpu=10036.00   
+961 fanfreePhspStyrox_w961.egsdat  ncase=479952         cpu=9855.91    
+962 fanfreePhspStyrox_w962.egsdat  ncase=479952         cpu=9888.17    
+963 fanfreePhspStyrox_w963.egsdat  ncase=499950         cpu=9861.83    
+964 fanfreePhspStyrox_w964.egsdat  ncase=419958         cpu=9926.93    
+965 fanfreePhspStyrox_w965.egsdat  ncase=419958         cpu=9752.99    
+966 fanfreePhspStyrox_w966.egsdat  ncase=439956         cpu=9694.43    
+967 fanfreePhspStyrox_w967.egsdat  ncase=479952         cpu=10030.60   
+968 fanfreePhspStyrox_w968.egsdat  ncase=399960         cpu=10100.70   
+969 fanfreePhspStyrox_w969.egsdat  ncase=459954         cpu=9756.05    
+970 fanfreePhspStyrox_w970.egsdat  ncase=479952         cpu=9848.54    
+971 fanfreePhspStyrox_w971.egsdat  ncase=359964         cpu=9763.77    
+972 fanfreePhspStyrox_w972.egsdat  ncase=479952         cpu=9776.66    
+973 fanfreePhspStyrox_w973.egsdat  ncase=499950         cpu=9708.28    
+974 fanfreePhspStyrox_w974.egsdat  ncase=359964         cpu=9632.14    
+975 fanfreePhspStyrox_w975.egsdat  ncase=479952         cpu=9777.21    
+976 fanfreePhspStyrox_w976.egsdat  ncase=479952         cpu=9989.45    
+977 fanfreePhspStyrox_w977.egsdat  ncase=339966         cpu=9635.98    
+978 fanfreePhspStyrox_w978.egsdat  ncase=399960         cpu=9806.56    
+979 fanfreePhspStyrox_w979.egsdat  ncase=419958         cpu=9710.57    
+980 fanfreePhspStyrox_w980.egsdat  ncase=459954         cpu=9822.90    
+981 fanfreePhspStyrox_w981.egsdat  ncase=459954         cpu=9753.16    
+982 fanfreePhspStyrox_w982.egsdat  ncase=439956         cpu=9718.86    
+983 fanfreePhspStyrox_w983.egsdat  ncase=419958         cpu=9857.54    
+984 fanfreePhspStyrox_w984.egsdat  ncase=439956         cpu=9736.08    
+985 fanfreePhspStyrox_w985.egsdat  ncase=499950         cpu=9720.65    
+986 fanfreePhspStyrox_w986.egsdat  ncase=519948         cpu=9700.52    
+987 fanfreePhspStyrox_w987.egsdat  ncase=419958         cpu=9688.67    
+988 fanfreePhspStyrox_w988.egsdat  ncase=459954         cpu=9793.54    
+989 fanfreePhspStyrox_w989.egsdat  ncase=439956         cpu=9635.32    
+990 fanfreePhspStyrox_w990.egsdat  ncase=419958         cpu=9959.44    
+991 fanfreePhspStyrox_w991.egsdat  ncase=479952         cpu=10135.40   
+992 fanfreePhspStyrox_w992.egsdat  ncase=499950         cpu=9690.73    
+993 fanfreePhspStyrox_w993.egsdat  ncase=499950         cpu=9672.98    
+994 fanfreePhspStyrox_w994.egsdat  ncase=419958         cpu=9717.89    
+995 fanfreePhspStyrox_w995.egsdat  ncase=459954         cpu=9834.23    
+996 fanfreePhspStyrox_w996.egsdat  ncase=459954         cpu=10142.80   
+997 fanfreePhspStyrox_w997.egsdat  ncase=459954         cpu=9722.51    
+998 fanfreePhspStyrox_w998.egsdat  ncase=479952         cpu=9831.04    
+999 fanfreePhspStyrox_w999.egsdat  ncase=459954         cpu=9942.98    
+1000 fanfreePhspStyrox_w1000.egsdat ncase=499950         cpu=9782.03    
+=======================================================================
+                            Total ncase=999900000      cpu=17880906.48
+
+
+
+Finished simulation
+
+Total cpu time for this run:            9.79 (sec.) 0.0027(hours)
+CPU time including previous runs:       17880916.27 (sec.) 4966.9212 (hours)
+Histories per hour:                     201312        
+Number of random numbers used:          103526087512091
+Number of electron CH steps:            8.04691e+10   
+Number of all electron steps:           3.06453e+13   
