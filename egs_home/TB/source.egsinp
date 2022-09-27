@@ -167,20 +167,20 @@
 			energy = 0.1 # in MeV
 		:stop spectrum:
 		:start shape:
-            #library = egs_gaussian_shape
-            #:start shape:
+            library = egs_gaussian_shape
+            :start shape:
                 library = egs_ellipse
-                ## Large electron spot on the target: Length [5.78699mm, 8.26713 mm] -> avg. 0.703 cm, Width [4.13357mm, 5.78699mm] -> avg 0.496028 cm
-                halfaxis = 0.248014 0.3515
+                ## Large electron spot on the target: Length [5.78699mm, 8.26713mm] -> avg. 0.703 cm, Width [4.13357mm, 5.78699mm] -> avg 0.496028 cm
+                halfaxis = 0.248014 0.351353
 			    ## Small electron spot on the target: Length [2.48014mm, 3.51353mm] -> avg 0.30 cm, Width [1.65343mm, 2.48014mm] -> avg 0.206678 cm
-                #halfaxis = 0.103339 0.15
+                #halfaxis = 0.10333925 0.14984175
                 midpoint = 0 0
-            #:stop shape:
+            :stop shape:
             ## sigma = FWHM/(2*sqrt(2*ln(2)))
             ## Large electron spot
-            #sigma = 2.10644 0.29854
+            sigma = 0.210643697 0.298411762
             ## Small electron spot
-            #sigma = 0.12740 0.87768 
+            #sigma = 0.0877682779 0.127263865 
         :stop shape:
 	:stop source:
 
@@ -204,7 +204,7 @@
     :stop source:
 
 	### Use the source by this name for the simulation
-	simulation source = cathode_ellipse
+	simulation source = cathode
 :stop source definition:
 
 ################################
