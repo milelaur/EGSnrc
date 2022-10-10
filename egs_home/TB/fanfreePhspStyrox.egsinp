@@ -99,8 +99,8 @@
         name = styrox
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -50 50
-        y-planes = -50 50
+        x-planes = -35 35
+        y-planes = -35 35
         z-planes = 100 121
         :start media input:
             media = polystyrene
@@ -208,7 +208,8 @@
         name = obi_system
         library = egs_gunion
 	### Add profilex, profiley or pdd
-        geometries = profilex planeBefBlades planeBlade planeHardFilt planeCover obi tank air_prim_to_detector 
+        #geometries = profilex planeBefBlades planeBlade planeHardFilt planeCover obi tank air_prim_to_detector
+        geometries = profilex obi styrox air_prim_to_detector
     :stop geometry:
 
     ### Geometry for Russian Roulette
@@ -419,16 +420,16 @@
     #    constant Z = 13.5
     #:stop ausgab object:
 
-    :start ausgab object:
-        library = egs_phsp_scoring
-        name = AftCover
-        output format = IAEA
-        particle type = all
+    #:start ausgab object:
+    #    library = egs_phsp_scoring
+    #    name = AftCover
+    #    output format = IAEA
+    #    particle type = all
         #output directory =
-        phase space geometry = planeCover
-        score particles on = entry
-        constant Z = 18.5
-    :stop ausgab object:
+    #    phase space geometry = planeCover
+    #    score particles on = entry
+    #    constant Z = 18.5
+    #:stop ausgab object:
 
    #:start ausgab object:
    #   library = egs_dose_scoring
@@ -463,16 +464,16 @@
    #     :stop output dose file:
    #:stop ausgab object:
 
-   :start ausgab object:
-        library = egs_dose_scoring
-        name = AftCo
-        medium dose = no
-        region dose = yes
-        :start output dose file:
-            geometry name = planeCover
-            file type = 3ddose
-        :stop output dose file:
-    :stop ausgab object:
+    #:start ausgab object:
+    #    library = egs_dose_scoring
+    #    name = AftCo
+    #    medium dose = no
+    #    region dose = yes
+    #    :start output dose file:
+    #        geometry name = planeCover
+    #        file type = 3ddose
+    #    :stop output dose file:
+    #:stop ausgab object:
 
     ### Dose scoring object to x profile
     :start ausgab object:
@@ -551,33 +552,33 @@
 
     calculation type = dose
 
-    :start calculation geometry:
-        geometry name    = obi_system
-        cavity regions   = BBla
+    #:start calculation geometry:
+    #    geometry name    = obi_system
+    #    cavity regions   = BBla
         #excluded regions = 0  # exclude particles passing through these regions
-        cavity mass      = 1  # 5 cm radius air sphere
-    :stop calculation geometry:
+    #    cavity mass      = 1  # 5 cm radius air sphere
+    #:stop calculation geometry:
 
-    :start calculation geometry:
-        geometry name    = obi_system
-        cavity regions   = ABla
+    #:start calculation geometry:
+    #    geometry name    = obi_system
+    #    cavity regions   = ABla
         #excluded regions = 0  # exclude particles passing through these regions
-        cavity mass      = 1  # 5 cm radius air sphere
-    :stop calculation geometry:
+    #    cavity mass      = 1  # 5 cm radius air sphere
+    #:stop calculation geometry:
 
-    :start calculation geometry:
-        geometry name    = obi_system
-        cavity regions   = AHaFl
+    #:start calculation geometry:
+    #    geometry name    = obi_system
+    #    cavity regions   = AHaFl
         #excluded regions = 0  # exclude particles passing through these regions
-        cavity mass      = 1  # 5 cm radius air sphere
-    :stop calculation geometry:
+    #    cavity mass      = 1  # 5 cm radius air sphere
+    #:stop calculation geometry:
 
-    :start calculation geometry:
-        geometry name    = obi_system
-        cavity regions   = ACo
+    #:start calculation geometry:
+    #    geometry name    = obi_system
+    #    cavity regions   = ACo
         #excluded regions = 0  # exclude particles passing through these regions
-        cavity mass      = 1  # 5 cm radius air sphere
-    :stop calculation geometry:
+    #    cavity mass      = 1  # 5 cm radius air sphere
+    #:stop calculation geometry:
 
     :start calculation geometry:
         geometry name    = obi_system
