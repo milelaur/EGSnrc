@@ -1,0 +1,2491 @@
+In EGS_Application::initSimulation()
+================================================================================
+EGSnrc version 4 for x86_64-unknown-linux-gnu          Tue Oct 25 09:27:48 2022
+================================================================================
+configuration..................................................linux
+user code......................................................TB
+pegs file......................................................
+using host.....................................................narvi.cc.tut.fi
+input file.....................................................sourcePhspEllipse
+output file(s).................................................sourcePhspEllipse
+================================================================================
+
+               ***************************************************
+               *                                                 *
+               *                  TB                       *
+               *                                                 *
+               ***************************************************
+
+This is TB   based on
+      EGS_AdvancedApplication  
+
+In initCrossSections(): spin effects = 1
+Property Photon cross-sections output: 0
+Property Photonuclear attenuation: 1
+Property Bound Compton scattering: 1
+Property Radiative Compton corrections: 1
+Property Rayleigh scattering: 1
+Property Atomic relaxations: 1
+Property Photoelectron angular sampling: 1
+Property Spin effects: 1
+Property Triplet production: 1
+Property Brems cross sections: 2
+Property Brems angular sampling: 1
+Property Pair cross sections: 1
+Property Pair angular sampling: 2
+Property Electron-step algorithm: 2
+Property Boundary crossing algorithm: 0
+ ===> Photonuclear flag:   1
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  1
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  2
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  3
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  4
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  5
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  6
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  7
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  8
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  9
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  1
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  2
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  3
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  4
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  5
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  6
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  7
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  8
+
+ PHOTONUCLEAR REQUESTED FOR MEDIUM NUMBER  9
+
+  PEGSLESS INPUT.  CALCULATING ELECTRON CROSS-SECTIONS.
+  density_file carbon_graphite_icru90_2.0g_cm3                                                                                                                                                                                                                                 
+  density_file molybdenum                                                                                                                                                                                                                                                      
+  density_file beryllium                                                                                                                                                                                                                                                       
+  density_file steel_stainless_type302                                                                                                                                                                                                                                         
+  density_file aluminum                                                                                                                                                                                                                                                        
+  density_file air_dry_nearsealevel                                                                                                                                                                                                                                            
+  density_file lead                                                                                                                                                                                                                                                            
+
+  Medium data: 
+
+ AE =    5.12000E-01 MeV,  UE =    1.51100E+00 MeV
+ AP =    1.00000E-03 MeV,  UP =    1.00000E+00 MeV
+
+  No material data file supplied.  Material data obtained from
+  .egsinp file or density correction file.
+
+   Medium: graphite                
+ Sterncid: graphite                
+     rho:    2.00000E+00 g/cm^3
+ Elements: C   
+    rhoz:    1.00000E+00
+      pz:    8.32560E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/carbon_graphite_icru90_2.0g_cm3.density
+
+   Medium: target_material         
+ Sterncid: target_material         
+     rho:    1.93860E+01 g/cm^3
+ Elements: W   RE  
+    rhoz:    9.50000E-01   5.00000E-02
+      pz:    5.16726E-03   2.68528E-04
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+
+   Medium: molybdenum              
+ Sterncid: molybdenum              
+     rho:    1.02200E+01 g/cm^3
+ Elements: MO  
+    rhoz:    1.00000E+00
+      pz:    1.04232E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/molybdenum.density
+
+   Medium: beryllium               
+ Sterncid: beryllium               
+     rho:    1.84800E+00 g/cm^3
+ Elements: BE  
+    rhoz:    1.00000E+00
+      pz:    1.10961E-01
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/beryllium.density
+
+   Medium: steel                   
+ Sterncid: steel                   
+     rho:    8.06000E+00 g/cm^3
+ Elements: C   SI  CR  MN  FE  NI  
+    rhoz:    1.00000E-03   7.00000E-03   1.80000E-01   1.00000E-02   7.12000E-01   9.00000E-02
+      pz:    8.32560E-05   2.49217E-04   3.46167E-03   1.82023E-04   1.27491E-02   1.53296E-03
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/steel_stainless_type302.density
+
+   Medium: oil                     
+ Sterncid: oil                     
+     rho:    8.90550E-01 g/cm^3
+ Elements: H   C   
+    rhoz:    1.00797E+01   2.40223E+02
+      pz:    1.00000E+01   2.00000E+01
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+
+   Medium: aluminum                
+ Sterncid: aluminum                
+     rho:    2.69890E+00 g/cm^3
+ Elements: AL  
+    rhoz:    1.00000E+00
+      pz:    3.70624E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/aluminum.density
+
+   Medium: air                     
+ Sterncid: air                     
+     rho:    1.20479E-03 g/cm^3
+ Elements: C   N   O   AR  
+    rhoz:    1.24000E-04   7.55267E-01   2.31781E-01   1.28270E-02
+      pz:    1.03237E-05   5.39218E-02   1.44869E-02   3.21092E-04
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/air_dry_nearsealevel.density
+
+   Medium: pb                      
+ Sterncid: pb                      
+     rho:    1.13500E+01 g/cm^3
+ Elements: PB  
+    rhoz:    1.00000E+00
+      pz:    4.82649E-03
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/lead.density
+
+
+(Re)-initializing photon cross sections with files from the series: xcom
+
+ Compton cross sections: default
+ Photonuclear cross sections: default
+ Using Compton cross sections from /home/rsmina/EGSnrc/HEN_HOUSE/data/compton_sigma.data
+ Using photonuclear cross sections from /home/rsmina/EGSnrc/HEN_HOUSE/data/iaea_photonuc.data
+
+ Reading renormalized photoelectric cross sections ...... done
+
+ Working on medium   1 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   2 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   3 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   4 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   5 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   6 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   7 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   8 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   9 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+
+Reading screened Rutherford MS data ...............  done 
+
+
+Reading spin data base from /home/rsmina/EGSnrc/HEN_HOUSE/data/spinms.data
+EGSnrc spin data, version 2.0   
+Data generated on a machine with 1234 endianess
+The endianess of this CPU is 1234
+Ranges:      1.00   100.00  0.30054  1.00000
+
+
+  medium    1 .....................  done
+  medium    2 .....................  done
+  medium    3 .....................  done
+  medium    4 .....................  done
+  medium    5 .....................  done
+  medium    6 .....................  done
+  medium    7 .....................  done
+  medium    8 .....................  done
+  medium    9 .....................  done
+  
+  Medium            1  sige =    88.732676887657149        101.89662531002678       monotone =  F F
+  Medium            2  sige =    172.57741978179737        235.40232772540153       monotone =  F F
+  Medium            3  sige =    134.22848806796372        168.69238010014359       monotone =  F F
+  Medium            4  sige =    84.646856620002538        96.504529959621067       monotone =  F F
+  Medium            5  sige =    123.18338032147462        151.05228366131078       monotone =  F F
+  Medium            6  sige =    86.692154941040002        99.318871403923396       monotone =  F F
+  Medium            7  sige =    103.50638592200082        122.48736559039948       monotone =  F F
+  Medium            8  sige =    89.591859601344183        103.21541676401796       monotone =  F F
+  Medium            9  sige =    172.75604562338430        235.60337980532134       monotone =  F F
+  
+  Initializing tmxs for estepe =   0.25000000000000000       and ximax =   0.50000000000000000     
+  
+  
+ Radiative Compton corrections requested:
+    Reading radiative Compton data ...  OK
+    Modifying cross sections and branching ratios ... OK
+
+Bound Compton scattering requested, reading data ......  Done
+
+ Initializing Bound Compton scattering ......
+ Medium   1 has   3 shells: 
+   1   10   1  0.33333 0.210E+02     0.285
+   2   11   2  0.33333 0.110E+03     0.011
+   3   12   3  0.33333 0.669E+02     0.011
+ Medium   2 has  42 shells: 
+   1  882   1  0.02567 0.138E+01    69.525
+   2  883   2  0.02567 0.495E+01    12.100
+   3  884   3  0.02567 0.242E+01    11.544
+   4  885   4  0.05135 0.267E+01    10.207
+   5  886   5  0.02567 0.109E+02     2.820
+   6  887   6  0.02567 0.640E+01     2.575
+   7  888   7  0.05135 0.684E+01     2.281
+   8  889   8  0.05135 0.444E+01     1.872
+   9  890   9  0.07702 0.453E+01     1.809
+  10  891  10  0.02567 0.229E+02     0.592
+  11  892  11  0.02567 0.144E+02     0.489
+  12  893  12  0.05135 0.155E+02     0.423
+  13  894  13  0.05135 0.118E+02     0.255
+  14  895  14  0.07702 0.121E+02     0.243
+  15  896  15  0.02567 0.585E+02     0.074
+  16  897  16  0.02567 0.399E+02     0.044
+  17  898  17  0.05135 0.426E+02     0.034
+  18  899  18  0.07702 0.111E+02     0.034
+  19  900  19  0.10270 0.112E+02     0.032
+  20  901  20  0.05135 0.482E+02     0.008
+  21  902  21  0.02567 0.212E+03     0.008
+  22  903   1  0.00133 0.137E+01    71.677
+  23  904   2  0.00133 0.485E+01    12.527
+  24  905   3  0.00133 0.237E+01    11.959
+  25  906   4  0.00267 0.263E+01    10.535
+  26  907   5  0.00133 0.107E+02     2.932
+  27  908   6  0.00133 0.627E+01     2.682
+  28  909   7  0.00267 0.673E+01     2.367
+  29  910   8  0.00267 0.436E+01     1.949
+  30  911   9  0.00400 0.445E+01     1.822
+  31  912  10  0.00133 0.223E+02     0.625
+  32  913  11  0.00133 0.141E+02     0.518
+  33  914  12  0.00267 0.151E+02     0.445
+  34  915  13  0.00267 0.115E+02     0.274
+  35  916  14  0.00400 0.118E+02     0.260
+  36  917  15  0.00133 0.564E+02     0.083
+  37  918  16  0.00133 0.382E+02     0.046
+  38  919  17  0.00267 0.411E+02     0.035
+  39  920  18  0.00400 0.106E+02     0.043
+  40  921  19  0.00534 0.107E+02     0.040
+  41  922  20  0.00267 0.448E+02     0.008
+  42  923  21  0.00200 0.152E+03     0.008
+ Medium   3 has  14 shells: 
+   1  321   1  0.04762 0.271E+01    19.999
+   2  322   2  0.04762 0.986E+01     2.866
+   3  323   3  0.04762 0.493E+01     2.625
+   4  324   4  0.09524 0.508E+01     2.520
+   5  325   5  0.04762 0.241E+02     0.505
+   6  326   6  0.04762 0.144E+02     0.410
+   7  327   7  0.09524 0.148E+02     0.393
+   8  328   8  0.09524 0.102E+02     0.230
+   9  329   9  0.14286 0.103E+02     0.226
+  10  330  10  0.04762 0.625E+02     0.062
+  11  331  11  0.04762 0.419E+02     0.035
+  12  332  12  0.09524 0.423E+02     0.035
+  13  333  13  0.09524 0.475E+02     0.007
+  14  334  14  0.04762 0.149E+03     0.007
+ Medium   4 has   2 shells: 
+   1    5   1  0.50000 0.325E+02     0.112
+   2    6   2  0.50000 0.184E+03     0.009
+ Medium   5 has  45 shells: 
+   1   10   1  0.00036 0.210E+02     0.285
+   2   11   2  0.00036 0.110E+03     0.011
+   3   12   3  0.00036 0.669E+02     0.011
+   4   45   1  0.00107 0.870E+01     1.839
+   5   46   2  0.00107 0.377E+02     0.149
+   6   47   3  0.00107 0.204E+02     0.100
+   7   48   4  0.00214 0.204E+02     0.099
+   8   49   5  0.00107 0.142E+03     0.008
+   9   50   6  0.00107 0.102E+03     0.008
+  10  120   1  0.01486 0.500E+01     5.989
+  11  121   2  0.01486 0.192E+02     0.698
+  12  122   3  0.01486 0.981E+01     0.585
+  13  123   4  0.02971 0.981E+01     0.576
+  14  124   5  0.01486 0.545E+02     0.075
+  15  125   6  0.01486 0.347E+02     0.043
+  16  126   7  0.02971 0.347E+02     0.043
+  17  127   8  0.02971 0.721E+02     0.007
+  18  128   9  0.01486 0.721E+02     0.007
+  19  129   1  0.00078 0.480E+01     6.539
+  20  130   2  0.00078 0.182E+02     0.769
+  21  131   3  0.00078 0.933E+01     0.651
+  22  132   4  0.00156 0.933E+01     0.639
+  23  133   5  0.00078 0.511E+02     0.082
+  24  134   6  0.00078 0.322E+02     0.047
+  25  135   7  0.00156 0.322E+02     0.047
+  26  136   8  0.00156 0.833E+02     0.007
+  27  137   9  0.00117 0.833E+02     0.007
+  28  138   1  0.05471 0.460E+01     7.112
+  29  139   2  0.05471 0.174E+02     0.848
+  30  140   3  0.05471 0.891E+01     0.721
+  31  141   4  0.10943 0.891E+01     0.708
+  32  142   5  0.05471 0.486E+02     0.092
+  33  143   6  0.05471 0.306E+02     0.053
+  34  144   7  0.10943 0.306E+02     0.053
+  35  145   8  0.10943 0.737E+02     0.008
+  36  146   9  0.10943 0.737E+02     0.008
+  37  156   1  0.00658 0.426E+01     8.333
+  38  157   2  0.00658 0.160E+02     1.008
+  39  158   3  0.00658 0.815E+01     0.871
+  40  159   4  0.01316 0.815E+01     0.854
+  41  160   5  0.00658 0.445E+02     0.111
+  42  161   6  0.00658 0.277E+02     0.067
+  43  162   7  0.01316 0.277E+02     0.067
+  44  163   8  0.01316 0.599E+02     0.008
+  45  164   9  0.01974 0.599E+02     0.008
+ Medium   6 has   4 shells: 
+   1    1   1  0.07692 0.116E+03     0.014
+   2   10   1  0.30769 0.210E+02     0.285
+   3   11   2  0.30769 0.110E+03     0.011
+   4   12   3  0.30769 0.669E+02     0.011
+ Medium   7 has   6 shells: 
+   1   39   1  0.15385 0.940E+01     1.560
+   2   40   2  0.15385 0.418E+02     0.118
+   3   41   3  0.15385 0.230E+02     0.073
+   4   42   4  0.30769 0.230E+02     0.073
+   5   43   5  0.15385 0.170E+03     0.006
+   6   44   6  0.07692 0.126E+03     0.006
+ Medium   8 has  18 shells: 
+   1   10   1  0.00004 0.210E+02     0.285
+   2   11   2  0.00004 0.110E+03     0.011
+   3   12   3  0.00004 0.669E+02     0.011
+   4   13   1  0.21604 0.178E+02     0.410
+   5   14   2  0.21604 0.921E+02     0.015
+   6   15   3  0.21604 0.558E+02     0.014
+   7   16   4  0.10802 0.558E+02     0.014
+   8   17   1  0.05804 0.155E+02     0.543
+   9   18   2  0.05804 0.793E+02     0.024
+  10   19   3  0.05804 0.479E+02     0.014
+  11   20   4  0.05804 0.479E+02     0.014
+  12   72   1  0.00129 0.671E+01     3.203
+  13   73   2  0.00129 0.271E+02     0.326
+  14   74   3  0.00129 0.142E+02     0.251
+  15   75   4  0.00257 0.142E+02     0.249
+  16   76   5  0.00129 0.889E+02     0.029
+  17   77   6  0.00129 0.606E+02     0.016
+  18   78   7  0.00257 0.606E+02     0.016
+ Medium   9 has  23 shells: 
+   1 1054   1  0.02439 0.121E+01    88.004
+   2 1055   2  0.02439 0.430E+01    15.861
+   3 1056   3  0.02439 0.210E+01    15.200
+   4 1057   4  0.04878 0.238E+01    13.035
+   5 1058   5  0.02439 0.944E+01     3.851
+   6 1059   6  0.02439 0.552E+01     3.554
+   7 1060   7  0.04878 0.600E+01     3.066
+   8 1061   8  0.04878 0.388E+01     2.586
+   9 1062   9  0.07317 0.397E+01     2.484
+  10 1063  10  0.02439 0.193E+02     0.894
+  11 1064  11  0.02439 0.121E+02     0.764
+  12 1065  12  0.04878 0.131E+02     0.645
+  13 1066  13  0.04878 0.984E+01     0.434
+  14 1067  14  0.07317 0.101E+02     0.412
+  15 1068  15  0.02439 0.445E+02     0.148
+  16 1069  16  0.02439 0.295E+02     0.105
+  17 1070  17  0.04878 0.325E+02     0.086
+  18 1071  18  0.07317 0.830E+01     0.141
+  19 1072  19  0.09756 0.841E+01     0.136
+  20 1073  20  0.04878 0.303E+02     0.020
+  21 1074  21  0.07317 0.311E+02     0.018
+  22 1075  22  0.02439 0.142E+03     0.007
+  23 1076  23  0.02439 0.111E+03     0.007
+ ...... Done.
+
+Output from subroutine EDGSET:
+==============================
+ Atomic relaxations requested! 
+
+ Reading simplified photo-absorption data ..... Done
+
+ Reading simplified relaxation data ..... Done
+
+ Reading parametrized XCOM photo cross section data ..... Done
+
+ Reading EADL relaxation data ......
+  Z =   6 has  4 shells
+  Z =  74 has 22 shells
+  Z =  75 has 22 shells
+  Z =  42 has 15 shells
+  Z =   4 has  2 shells
+  Z =  14 has  7 shells
+  Z =  24 has 10 shells
+  Z =  25 has 10 shells
+  Z =  26 has 10 shells
+  Z =  28 has 10 shells
+  Z =   1 has  1 shells
+  Z =  13 has  7 shells
+  Z =   7 has  4 shells
+  Z =   8 has  4 shells
+  Z =  18 has  7 shells
+  Z =  82 has 24 shells
+ ...... Done.
+
+  
+ Using NRC brems cross sections! 
+  
+  Initializing brems data for medium            1 ...
+  Max. new cross sections per energy loss:    88.744082483347924        101.89876751445045     
+  Initializing brems data for medium            2 ...
+  Max. new cross sections per energy loss:    172.54018784839718        235.40667168839906     
+  Initializing brems data for medium            3 ...
+  Max. new cross sections per energy loss:    134.21977259920902        168.69128398047008     
+  Initializing brems data for medium            4 ...
+  Max. new cross sections per energy loss:    84.655508271298302        96.506529836044180     
+  Initializing brems data for medium            5 ...
+  Max. new cross sections per energy loss:    123.18746932258490        151.05333992476235     
+  Initializing brems data for medium            6 ...
+  Max. new cross sections per energy loss:    86.702570264406774        99.320914375223566     
+  Initializing brems data for medium            7 ...
+  Max. new cross sections per energy loss:    103.51799954025240        122.48985642658717     
+  Initializing brems data for medium            8 ...
+  Max. new cross sections per energy loss:    89.603753795943703        103.21767115908033     
+  Initializing brems data for medium            9 ...
+  Max. new cross sections per energy loss:    172.71375768187906        235.60728196646150     
+  
+  
+
+
+Reading NRC pair data base from /home/rsmina/EGSnrc/HEN_HOUSE/data/pair_nrc1.data
+Data generated on a machine with 1234 endianess
+The endianess of this CPU is 1234
+Energy range of the data:     2.010  168.603
+  medium    1 .....................  done
+  medium    2 .....................  done
+  medium    3 .....................  done
+  medium    4 .....................  done
+  medium    5 .....................  done
+  medium    6 .....................  done
+  medium    7 .....................  done
+  medium    8 .....................  done
+  medium    9 .....................  done
+  
+  
+ eii_init: minimum threshold energy found:    1.0000000000000000E-003
+ eii_init: number of shells to simulate EII:           24
+
+
+Opened EII data file /home/rsmina/EGSnrc/HEN_HOUSE/data/eii_ik.data
+ eii_init: reading EII data ...   OK 
+  
+ eii_init: for medium            2  adjusted sige =    169.85507115684098       monotone =  F
+ eii_init: for medium            3  adjusted sige =    128.83320327206374       monotone =  F
+ eii_init: for medium            5  adjusted sige =    114.88681191816330       monotone =  F
+ eii_init: for medium            7  adjusted sige =    120.50583977411063       monotone =  F
+ eii_init: for medium            8  adjusted sige =    89.565860648723145       monotone =  F
+ eii_init: for medium            9  adjusted sige =    172.18788716669485       monotone =  F
+ init_triplet: reading triplet data ...  OK
+   Preparing triplet fraction data for medium   1 ...  OK
+   Preparing triplet fraction data for medium   2 ...  OK
+   Preparing triplet fraction data for medium   3 ...  OK
+   Preparing triplet fraction data for medium   4 ...  OK
+   Preparing triplet fraction data for medium   5 ...  OK
+   Preparing triplet fraction data for medium   6 ...  OK
+   Preparing triplet fraction data for medium   7 ...  OK
+   Preparing triplet fraction data for medium   8 ...  OK
+   Preparing triplet fraction data for medium   9 ...  OK
+EGSnrc SUCCESSFULLY 'HATCHED' FOR     9 MEDIA.
+
+
+The following media are defined:
+================================
+
+  0  graphite                 AE= 0.5120 AP= 0.0010 0
+  1  target_material          AE= 0.5120 AP= 0.0010 1
+  2  molybdenum               AE= 0.5120 AP= 0.0010 2
+  3  beryllium                AE= 0.5120 AP= 0.0010 3
+  4  steel                    AE= 0.5120 AP= 0.0010 4
+  5  oil                      AE= 0.5120 AP= 0.0010 5
+  6  aluminum                 AE= 0.5120 AP= 0.0010 6
+  7  air                      AE= 0.5120 AP= 0.0010 7
+  8  pb                       AE= 0.5120 AP= 0.0010 8
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                eadl
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          On
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+initScoring(): you must provide both, 'regions' and 'bins' input
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = sourcePhsp
+ number of regions = 720
+ geometries:
+   to_primary_collimator (type EGS_UnionGeometry)
+   air (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Transformed Transformed Parallel beam from a shape of type ellipsewith Gaussian ditribution with monoenergetic 0.1 MeV, electrons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 97
+  numbers used so far = 0
+
+
+Run Control Object (RCO):
+=========================
+  type = simple
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = YES
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 10000
+ - Track buffer size           = 1024
+ - Output file name            = /home/rsmina/EGSnrc/egs_home/TB/sourcePhspEllipse.ptracks
+
+
+===========================================
+Radiative splitting Object (splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Phase Space Scoring Object (sourcePhsp100kvPart1)
+*******************************************
+
+ Will output phase space for particles crossing surfaces of geometry:
+phsp_plate
+ Particles scored on: entering phase space geometry
+ Data will be output in IAEA format.
+
+ Phase space file names:
+  Header file: /home/rsmina/EGSnrc/egs_home/TB/sourcePhsp100kvPart1.1.IAEAheader
+  Data file: /home/rsmina/EGSnrc/egs_home/TB/sourcePhsp100kvPart1.1.IAEAphsp
+ Data scored at constant Z = 8.8752 cm
+ Particles scored: all
+*******************************************
+Dose Scoring Object (dose)
+*******************************************
+
+ - Regions in dose calculator :1
+
+
+--------------------------------------
+ medium         rho/[g/cm**3]
+--------------------------------------
+graphite         2.00
+target_material 19.39
+molybdenum      10.22
+beryllium        1.85
+steel            8.06
+oil              0.89
+aluminum         2.70
+air              0.00
+pb              11.35
+--------------------------------------
+
+*******************************************
+
+
+
+
+
+Combine results only
+
+calling combineResults()
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 sourcePhspEllipse_w1.egsdat    ncase=1650000000     cpu=434420.00  
+ 2 sourcePhspEllipse_w2.egsdat    ncase=1650000000     cpu=423761.00  
+ 3 sourcePhspEllipse_w3.egsdat    ncase=1650000000     cpu=425235.00  
+ 4 sourcePhspEllipse_w4.egsdat    ncase=1650000000     cpu=433721.00  
+ 5 sourcePhspEllipse_w5.egsdat    ncase=1650000000     cpu=419649.00  
+ 6 sourcePhspEllipse_w6.egsdat    ncase=1650000000     cpu=420403.00  
+ 7 sourcePhspEllipse_w7.egsdat    ncase=1650000000     cpu=421521.00  
+ 8 sourcePhspEllipse_w8.egsdat    ncase=1650000000     cpu=419140.00  
+ 9 sourcePhspEllipse_w9.egsdat    ncase=1650000000     cpu=427217.00  
+10 sourcePhspEllipse_w10.egsdat   ncase=1650000000     cpu=430661.00  
+11 sourcePhspEllipse_w11.egsdat   ncase=1650000000     cpu=422821.00  
+12 sourcePhspEllipse_w12.egsdat   ncase=1650000000     cpu=421255.00  
+13 sourcePhspEllipse_w13.egsdat   ncase=1500000000     cpu=419670.00  
+14 sourcePhspEllipse_w14.egsdat   ncase=1500000000     cpu=424357.00  
+15 sourcePhspEllipse_w15.egsdat   ncase=1500000000     cpu=413094.00  
+16 sourcePhspEllipse_w16.egsdat   ncase=1500000000     cpu=412060.00  
+17 sourcePhspEllipse_w17.egsdat   ncase=1500000000     cpu=410604.00  
+18 sourcePhspEllipse_w18.egsdat   ncase=1500000000     cpu=414786.00  
+19 sourcePhspEllipse_w19.egsdat   ncase=1500000000     cpu=417349.00  
+20 sourcePhspEllipse_w20.egsdat   ncase=1500000000     cpu=412871.00  
+21 sourcePhspEllipse_w21.egsdat   ncase=1500000000     cpu=420084.00  
+22 sourcePhspEllipse_w22.egsdat   ncase=1500000000     cpu=409445.00  
+23 sourcePhspEllipse_w23.egsdat   ncase=1500000000     cpu=414798.00  
+24 sourcePhspEllipse_w24.egsdat   ncase=1500000000     cpu=413809.00  
+25 sourcePhspEllipse_w25.egsdat   ncase=1500000000     cpu=416975.00  
+26 sourcePhspEllipse_w26.egsdat   ncase=1500000000     cpu=414016.00  
+27 sourcePhspEllipse_w27.egsdat   ncase=1500000000     cpu=415718.00  
+28 sourcePhspEllipse_w28.egsdat   ncase=1500000000     cpu=408224.00  
+29 sourcePhspEllipse_w29.egsdat   ncase=1500000000     cpu=408849.00  
+30 sourcePhspEllipse_w30.egsdat   ncase=1500000000     cpu=412694.00  
+31 sourcePhspEllipse_w31.egsdat   ncase=1500000000     cpu=411862.00  
+32 sourcePhspEllipse_w32.egsdat   ncase=1500000000     cpu=411112.00  
+33 sourcePhspEllipse_w33.egsdat   ncase=1500000000     cpu=408232.00  
+34 sourcePhspEllipse_w34.egsdat   ncase=1500000000     cpu=412857.00  
+35 sourcePhspEllipse_w35.egsdat   ncase=1650000000     cpu=436372.00  
+36 sourcePhspEllipse_w36.egsdat   ncase=1650000000     cpu=439387.00  
+37 sourcePhspEllipse_w37.egsdat   ncase=1650000000     cpu=434856.00  
+38 sourcePhspEllipse_w38.egsdat   ncase=1500000000     cpu=407887.00  
+39 sourcePhspEllipse_w39.egsdat   ncase=1500000000     cpu=409147.00  
+40 sourcePhspEllipse_w40.egsdat   ncase=1500000000     cpu=415965.00  
+41 sourcePhspEllipse_w41.egsdat   ncase=1650000000     cpu=438047.00  
+42 sourcePhspEllipse_w42.egsdat   ncase=1500000000     cpu=406551.00  
+43 sourcePhspEllipse_w43.egsdat   ncase=1650000000     cpu=438639.00  
+44 sourcePhspEllipse_w44.egsdat   ncase=1650000000     cpu=440655.00  
+45 sourcePhspEllipse_w45.egsdat   ncase=1500000000     cpu=410998.00  
+46 sourcePhspEllipse_w46.egsdat   ncase=1650000000     cpu=439785.00  
+47 sourcePhspEllipse_w47.egsdat   ncase=1500000000     cpu=409880.00  
+48 sourcePhspEllipse_w48.egsdat   ncase=1650000000     cpu=436351.00  
+49 sourcePhspEllipse_w49.egsdat   ncase=1500000000     cpu=409639.00  
+50 sourcePhspEllipse_w50.egsdat   ncase=1500000000     cpu=409161.00  
+51 sourcePhspEllipse_w51.egsdat   ncase=1650000000     cpu=439931.00  
+52 sourcePhspEllipse_w52.egsdat   ncase=1500000000     cpu=407285.00  
+53 sourcePhspEllipse_w53.egsdat   ncase=1500000000     cpu=408237.00  
+54 sourcePhspEllipse_w54.egsdat   ncase=1500000000     cpu=409250.00  
+55 sourcePhspEllipse_w55.egsdat   ncase=1500000000     cpu=408188.00  
+56 sourcePhspEllipse_w56.egsdat   ncase=1500000000     cpu=411086.00  
+57 sourcePhspEllipse_w57.egsdat   ncase=1650000000     cpu=440181.00  
+58 sourcePhspEllipse_w58.egsdat   ncase=1650000000     cpu=439009.00  
+59 sourcePhspEllipse_w59.egsdat   ncase=1500000000     cpu=418819.00  
+60 sourcePhspEllipse_w60.egsdat   ncase=1500000000     cpu=407008.00  
+61 sourcePhspEllipse_w61.egsdat   ncase=1500000000     cpu=408716.00  
+62 sourcePhspEllipse_w62.egsdat   ncase=1500000000     cpu=411858.00  
+63 sourcePhspEllipse_w63.egsdat   ncase=1500000000     cpu=413730.00  
+64 sourcePhspEllipse_w64.egsdat   ncase=1500000000     cpu=409372.00  
+65 sourcePhspEllipse_w65.egsdat   ncase=1500000000     cpu=412989.00  
+66 sourcePhspEllipse_w66.egsdat   ncase=1650000000     cpu=437853.00  
+67 sourcePhspEllipse_w67.egsdat   ncase=1500000000     cpu=413782.00  
+68 sourcePhspEllipse_w68.egsdat   ncase=1500000000     cpu=411629.00  
+69 sourcePhspEllipse_w69.egsdat   ncase=1500000000     cpu=411058.00  
+70 sourcePhspEllipse_w70.egsdat   ncase=1500000000     cpu=411958.00  
+71 sourcePhspEllipse_w71.egsdat   ncase=1500000000     cpu=409994.00  
+72 sourcePhspEllipse_w72.egsdat   ncase=1500000000     cpu=420405.00  
+73 sourcePhspEllipse_w73.egsdat   ncase=1500000000     cpu=405725.00  
+74 sourcePhspEllipse_w74.egsdat   ncase=1500000000     cpu=412324.00  
+75 sourcePhspEllipse_w75.egsdat   ncase=1500000000     cpu=412495.00  
+76 sourcePhspEllipse_w76.egsdat   ncase=1500000000     cpu=408439.00  
+77 sourcePhspEllipse_w77.egsdat   ncase=1500000000     cpu=410411.00  
+78 sourcePhspEllipse_w78.egsdat   ncase=1500000000     cpu=410489.00  
+79 sourcePhspEllipse_w79.egsdat   ncase=1500000000     cpu=421171.00  
+80 sourcePhspEllipse_w80.egsdat   ncase=1500000000     cpu=409926.00  
+81 sourcePhspEllipse_w81.egsdat   ncase=1500000000     cpu=407859.00  
+82 sourcePhspEllipse_w82.egsdat   ncase=1500000000     cpu=405915.00  
+83 sourcePhspEllipse_w83.egsdat   ncase=1500000000     cpu=408977.00  
+84 sourcePhspEllipse_w84.egsdat   ncase=1500000000     cpu=411350.00  
+85 sourcePhspEllipse_w85.egsdat   ncase=1500000000     cpu=412980.00  
+86 sourcePhspEllipse_w86.egsdat   ncase=1500000000     cpu=411576.00  
+87 sourcePhspEllipse_w87.egsdat   ncase=1500000000     cpu=408789.00  
+88 sourcePhspEllipse_w88.egsdat   ncase=1500000000     cpu=417354.00  
+89 sourcePhspEllipse_w89.egsdat   ncase=1500000000     cpu=409954.00  
+90 sourcePhspEllipse_w90.egsdat   ncase=1500000000     cpu=411501.00  
+91 sourcePhspEllipse_w91.egsdat   ncase=1500000000     cpu=406421.00  
+92 sourcePhspEllipse_w92.egsdat   ncase=1500000000     cpu=406072.00  
+93 sourcePhspEllipse_w93.egsdat   ncase=1650000000     cpu=440635.00  
+94 sourcePhspEllipse_w94.egsdat   ncase=1650000000     cpu=442004.00  
+95 sourcePhspEllipse_w95.egsdat   ncase=1650000000     cpu=441171.00  
+96 sourcePhspEllipse_w96.egsdat   ncase=1650000000     cpu=441965.00  
+97 sourcePhspEllipse_w97.egsdat   ncase=1650000000     cpu=440355.00  
+98 sourcePhspEllipse_w98.egsdat   ncase=1500000000     cpu=413737.00  
+99 sourcePhspEllipse_w99.egsdat   ncase=1500000000     cpu=406365.00  
+100 sourcePhspEllipse_w100.egsdat  ncase=1500000000     cpu=408748.00  
+101 sourcePhspEllipse_w101.egsdat  ncase=1650000000     cpu=440490.00  
+102 sourcePhspEllipse_w102.egsdat  ncase=1500000000     cpu=408338.00  
+103 sourcePhspEllipse_w103.egsdat  ncase=1650000000     cpu=438916.00  
+104 sourcePhspEllipse_w104.egsdat  ncase=1500000000     cpu=411144.00  
+105 sourcePhspEllipse_w105.egsdat  ncase=1500000000     cpu=409318.00  
+106 sourcePhspEllipse_w106.egsdat  ncase=1500000000     cpu=405555.00  
+107 sourcePhspEllipse_w107.egsdat  ncase=1650000000     cpu=442104.00  
+108 sourcePhspEllipse_w108.egsdat  ncase=1650000000     cpu=434393.00  
+109 sourcePhspEllipse_w109.egsdat  ncase=1650000000     cpu=437525.00  
+110 sourcePhspEllipse_w110.egsdat  ncase=1650000000     cpu=443609.00  
+111 sourcePhspEllipse_w111.egsdat  ncase=1650000000     cpu=440331.00  
+112 sourcePhspEllipse_w112.egsdat  ncase=1500000000     cpu=407246.00  
+113 sourcePhspEllipse_w113.egsdat  ncase=1650000000     cpu=437624.00  
+114 sourcePhspEllipse_w114.egsdat  ncase=1650000000     cpu=438202.00  
+115 sourcePhspEllipse_w115.egsdat  ncase=1650000000     cpu=431731.00  
+116 sourcePhspEllipse_w116.egsdat  ncase=1650000000     cpu=435609.00  
+117 sourcePhspEllipse_w117.egsdat  ncase=1650000000     cpu=443848.00  
+118 sourcePhspEllipse_w118.egsdat  ncase=1650000000     cpu=434556.00  
+119 sourcePhspEllipse_w119.egsdat  ncase=1650000000     cpu=440483.00  
+120 sourcePhspEllipse_w120.egsdat  ncase=1650000000     cpu=435723.00  
+121 sourcePhspEllipse_w121.egsdat  ncase=1650000000     cpu=437112.00  
+122 sourcePhspEllipse_w122.egsdat  ncase=1500000000     cpu=411979.00  
+123 sourcePhspEllipse_w123.egsdat  ncase=1650000000     cpu=440093.00  
+124 sourcePhspEllipse_w124.egsdat  ncase=1500000000     cpu=407311.00  
+125 sourcePhspEllipse_w125.egsdat  ncase=1500000000     cpu=406811.00  
+126 sourcePhspEllipse_w126.egsdat  ncase=1500000000     cpu=408025.00  
+127 sourcePhspEllipse_w127.egsdat  ncase=1650000000     cpu=439321.00  
+128 sourcePhspEllipse_w128.egsdat  ncase=1500000000     cpu=410242.00  
+129 sourcePhspEllipse_w129.egsdat  ncase=1500000000     cpu=412936.00  
+130 sourcePhspEllipse_w130.egsdat  ncase=1500000000     cpu=411585.00  
+131 sourcePhspEllipse_w131.egsdat  ncase=1650000000     cpu=442036.00  
+132 sourcePhspEllipse_w132.egsdat  ncase=1500000000     cpu=408019.00  
+133 sourcePhspEllipse_w133.egsdat  ncase=1500000000     cpu=412781.00  
+134 sourcePhspEllipse_w134.egsdat  ncase=1500000000     cpu=408870.00  
+135 sourcePhspEllipse_w135.egsdat  ncase=1650000000     cpu=442009.00  
+136 sourcePhspEllipse_w136.egsdat  ncase=1500000000     cpu=407993.00  
+137 sourcePhspEllipse_w137.egsdat  ncase=1500000000     cpu=409957.00  
+138 sourcePhspEllipse_w138.egsdat  ncase=1500000000     cpu=411083.00  
+139 sourcePhspEllipse_w139.egsdat  ncase=1500000000     cpu=410994.00  
+140 sourcePhspEllipse_w140.egsdat  ncase=1500000000     cpu=414167.00  
+141 sourcePhspEllipse_w141.egsdat  ncase=1500000000     cpu=412502.00  
+142 sourcePhspEllipse_w142.egsdat  ncase=1650000000     cpu=433346.00  
+143 sourcePhspEllipse_w143.egsdat  ncase=1650000000     cpu=427457.00  
+144 sourcePhspEllipse_w144.egsdat  ncase=1650000000     cpu=431138.00  
+145 sourcePhspEllipse_w145.egsdat  ncase=1650000000     cpu=440107.00  
+146 sourcePhspEllipse_w146.egsdat  ncase=1650000000     cpu=434503.00  
+147 sourcePhspEllipse_w147.egsdat  ncase=1650000000     cpu=429584.00  
+148 sourcePhspEllipse_w148.egsdat  ncase=1650000000     cpu=436995.00  
+149 sourcePhspEllipse_w149.egsdat  ncase=1650000000     cpu=426188.00  
+150 sourcePhspEllipse_w150.egsdat  ncase=1650000000     cpu=428448.00  
+151 sourcePhspEllipse_w151.egsdat  ncase=1650000000     cpu=424575.00  
+152 sourcePhspEllipse_w152.egsdat  ncase=1650000000     cpu=438190.00  
+153 sourcePhspEllipse_w153.egsdat  ncase=1650000000     cpu=433242.00  
+154 sourcePhspEllipse_w154.egsdat  ncase=1650000000     cpu=431314.00  
+155 sourcePhspEllipse_w155.egsdat  ncase=1650000000     cpu=430913.00  
+156 sourcePhspEllipse_w156.egsdat  ncase=1500000000     cpu=421760.00  
+157 sourcePhspEllipse_w157.egsdat  ncase=1500000000     cpu=416751.00  
+158 sourcePhspEllipse_w158.egsdat  ncase=1500000000     cpu=417424.00  
+159 sourcePhspEllipse_w159.egsdat  ncase=1500000000     cpu=412583.00  
+160 sourcePhspEllipse_w160.egsdat  ncase=1500000000     cpu=418835.00  
+161 sourcePhspEllipse_w161.egsdat  ncase=1500000000     cpu=414636.00  
+162 sourcePhspEllipse_w162.egsdat  ncase=1500000000     cpu=420968.00  
+163 sourcePhspEllipse_w163.egsdat  ncase=1500000000     cpu=415822.00  
+164 sourcePhspEllipse_w164.egsdat  ncase=1500000000     cpu=410291.00  
+165 sourcePhspEllipse_w165.egsdat  ncase=1500000000     cpu=419113.00  
+166 sourcePhspEllipse_w166.egsdat  ncase=1500000000     cpu=412319.00  
+167 sourcePhspEllipse_w167.egsdat  ncase=1500000000     cpu=415161.00  
+168 sourcePhspEllipse_w168.egsdat  ncase=1500000000     cpu=417427.00  
+169 sourcePhspEllipse_w169.egsdat  ncase=1500000000     cpu=412831.00  
+170 sourcePhspEllipse_w170.egsdat  ncase=1500000000     cpu=411525.00  
+171 sourcePhspEllipse_w171.egsdat  ncase=1500000000     cpu=419192.00  
+172 sourcePhspEllipse_w172.egsdat  ncase=1500000000     cpu=414228.00  
+173 sourcePhspEllipse_w173.egsdat  ncase=1500000000     cpu=409787.00  
+174 sourcePhspEllipse_w174.egsdat  ncase=1500000000     cpu=416081.00  
+175 sourcePhspEllipse_w175.egsdat  ncase=1500000000     cpu=418772.00  
+176 sourcePhspEllipse_w176.egsdat  ncase=1500000000     cpu=426364.00  
+177 sourcePhspEllipse_w177.egsdat  ncase=1500000000     cpu=429692.00  
+178 sourcePhspEllipse_w178.egsdat  ncase=1500000000     cpu=419536.00  
+179 sourcePhspEllipse_w179.egsdat  ncase=1500000000     cpu=428171.00  
+180 sourcePhspEllipse_w180.egsdat  ncase=1500000000     cpu=420119.00  
+181 sourcePhspEllipse_w181.egsdat  ncase=1500000000     cpu=423999.00  
+182 sourcePhspEllipse_w182.egsdat  ncase=1500000000     cpu=421995.00  
+183 sourcePhspEllipse_w183.egsdat  ncase=1500000000     cpu=421181.00  
+184 sourcePhspEllipse_w184.egsdat  ncase=1500000000     cpu=416722.00  
+185 sourcePhspEllipse_w185.egsdat  ncase=1500000000     cpu=418993.00  
+186 sourcePhspEllipse_w186.egsdat  ncase=1500000000     cpu=425399.00  
+187 sourcePhspEllipse_w187.egsdat  ncase=1500000000     cpu=420926.00  
+188 sourcePhspEllipse_w188.egsdat  ncase=1500000000     cpu=415243.00  
+189 sourcePhspEllipse_w189.egsdat  ncase=1500000000     cpu=418365.00  
+190 sourcePhspEllipse_w190.egsdat  ncase=1500000000     cpu=422805.00  
+191 sourcePhspEllipse_w191.egsdat  ncase=1500000000     cpu=422420.00  
+192 sourcePhspEllipse_w192.egsdat  ncase=1500000000     cpu=420467.00  
+193 sourcePhspEllipse_w193.egsdat  ncase=1500000000     cpu=427950.00  
+194 sourcePhspEllipse_w194.egsdat  ncase=1500000000     cpu=424905.00  
+195 sourcePhspEllipse_w195.egsdat  ncase=1500000000     cpu=415679.00  
+196 sourcePhspEllipse_w196.egsdat  ncase=1500000000     cpu=414616.00  
+197 sourcePhspEllipse_w197.egsdat  ncase=1500000000     cpu=410075.00  
+198 sourcePhspEllipse_w198.egsdat  ncase=1500000000     cpu=413234.00  
+199 sourcePhspEllipse_w199.egsdat  ncase=1500000000     cpu=415779.00  
+200 sourcePhspEllipse_w200.egsdat  ncase=1500000000     cpu=410063.00  
+201 sourcePhspEllipse_w201.egsdat  ncase=1500000000     cpu=415561.00  
+202 sourcePhspEllipse_w202.egsdat  ncase=1500000000     cpu=413568.00  
+203 sourcePhspEllipse_w203.egsdat  ncase=1500000000     cpu=413776.00  
+204 sourcePhspEllipse_w204.egsdat  ncase=1500000000     cpu=416764.00  
+205 sourcePhspEllipse_w205.egsdat  ncase=1500000000     cpu=414306.00  
+206 sourcePhspEllipse_w206.egsdat  ncase=1500000000     cpu=411524.00  
+207 sourcePhspEllipse_w207.egsdat  ncase=1500000000     cpu=414276.00  
+208 sourcePhspEllipse_w208.egsdat  ncase=1500000000     cpu=420059.00  
+209 sourcePhspEllipse_w209.egsdat  ncase=1500000000     cpu=419055.00  
+210 sourcePhspEllipse_w210.egsdat  ncase=1500000000     cpu=409814.00  
+211 sourcePhspEllipse_w211.egsdat  ncase=1500000000     cpu=408938.00  
+212 sourcePhspEllipse_w212.egsdat  ncase=1500000000     cpu=414812.00  
+213 sourcePhspEllipse_w213.egsdat  ncase=1500000000     cpu=411795.00  
+214 sourcePhspEllipse_w214.egsdat  ncase=1500000000     cpu=409176.00  
+215 sourcePhspEllipse_w215.egsdat  ncase=1050000000     cpu=414446.00  
+216 sourcePhspEllipse_w216.egsdat  ncase=1050000000     cpu=409056.00  
+217 sourcePhspEllipse_w217.egsdat  ncase=1050000000     cpu=429780.00  
+218 sourcePhspEllipse_w218.egsdat  ncase=1050000000     cpu=425296.00  
+219 sourcePhspEllipse_w219.egsdat  ncase=1350000000     cpu=427929.00  
+220 sourcePhspEllipse_w220.egsdat  ncase=1350000000     cpu=433008.00  
+221 sourcePhspEllipse_w221.egsdat  ncase=1350000000     cpu=432229.00  
+222 sourcePhspEllipse_w222.egsdat  ncase=1350000000     cpu=437686.00  
+223 sourcePhspEllipse_w223.egsdat  ncase=1350000000     cpu=426737.00  
+224 sourcePhspEllipse_w224.egsdat  ncase=1350000000     cpu=429649.00  
+225 sourcePhspEllipse_w225.egsdat  ncase=1350000000     cpu=435441.00  
+226 sourcePhspEllipse_w226.egsdat  ncase=1350000000     cpu=420559.00  
+227 sourcePhspEllipse_w227.egsdat  ncase=1350000000     cpu=433290.00  
+228 sourcePhspEllipse_w228.egsdat  ncase=1350000000     cpu=420296.00  
+229 sourcePhspEllipse_w229.egsdat  ncase=1350000000     cpu=425115.00  
+230 sourcePhspEllipse_w230.egsdat  ncase=1350000000     cpu=426395.00  
+231 sourcePhspEllipse_w231.egsdat  ncase=1350000000     cpu=425425.00  
+232 sourcePhspEllipse_w232.egsdat  ncase=1500000000     cpu=440027.00  
+233 sourcePhspEllipse_w233.egsdat  ncase=1350000000     cpu=429181.00  
+234 sourcePhspEllipse_w234.egsdat  ncase=1350000000     cpu=427593.00  
+235 sourcePhspEllipse_w235.egsdat  ncase=1350000000     cpu=421115.00  
+236 sourcePhspEllipse_w236.egsdat  ncase=1350000000     cpu=428167.00  
+237 sourcePhspEllipse_w237.egsdat  ncase=1350000000     cpu=424804.00  
+238 sourcePhspEllipse_w238.egsdat  ncase=1350000000     cpu=434749.00  
+239 sourcePhspEllipse_w239.egsdat  ncase=1350000000     cpu=429107.00  
+240 sourcePhspEllipse_w240.egsdat  ncase=1350000000     cpu=426208.00  
+241 sourcePhspEllipse_w241.egsdat  ncase=1350000000     cpu=421762.00  
+242 sourcePhspEllipse_w242.egsdat  ncase=1350000000     cpu=421083.00  
+243 sourcePhspEllipse_w243.egsdat  ncase=1350000000     cpu=428694.00  
+244 sourcePhspEllipse_w244.egsdat  ncase=1350000000     cpu=428742.00  
+245 sourcePhspEllipse_w245.egsdat  ncase=1350000000     cpu=427532.00  
+246 sourcePhspEllipse_w246.egsdat  ncase=1350000000     cpu=421398.00  
+247 sourcePhspEllipse_w247.egsdat  ncase=1350000000     cpu=421281.00  
+248 sourcePhspEllipse_w248.egsdat  ncase=1350000000     cpu=421810.00  
+249 sourcePhspEllipse_w249.egsdat  ncase=1350000000     cpu=435756.00  
+250 sourcePhspEllipse_w250.egsdat  ncase=1350000000     cpu=427383.00  
+251 sourcePhspEllipse_w251.egsdat  ncase=1350000000     cpu=422665.00  
+252 sourcePhspEllipse_w252.egsdat  ncase=1350000000     cpu=428479.00  
+253 sourcePhspEllipse_w253.egsdat  ncase=1350000000     cpu=424081.00  
+254 sourcePhspEllipse_w254.egsdat  ncase=1350000000     cpu=426232.00  
+255 sourcePhspEllipse_w255.egsdat  ncase=1350000000     cpu=417230.00  
+256 sourcePhspEllipse_w256.egsdat  ncase=1350000000     cpu=421939.00  
+257 sourcePhspEllipse_w257.egsdat  ncase=1350000000     cpu=416325.00  
+258 sourcePhspEllipse_w258.egsdat  ncase=1350000000     cpu=435281.00  
+259 sourcePhspEllipse_w259.egsdat  ncase=1350000000     cpu=423468.00  
+260 sourcePhspEllipse_w260.egsdat  ncase=1350000000     cpu=418244.00  
+261 sourcePhspEllipse_w261.egsdat  ncase=1350000000     cpu=419080.00  
+262 sourcePhspEllipse_w262.egsdat  ncase=1350000000     cpu=418813.00  
+263 sourcePhspEllipse_w263.egsdat  ncase=1350000000     cpu=369837.00  
+264 sourcePhspEllipse_w264.egsdat  ncase=1350000000     cpu=367674.00  
+265 sourcePhspEllipse_w265.egsdat  ncase=1350000000     cpu=378993.00  
+266 sourcePhspEllipse_w266.egsdat  ncase=1350000000     cpu=365740.00  
+267 sourcePhspEllipse_w267.egsdat  ncase=1350000000     cpu=376927.00  
+268 sourcePhspEllipse_w268.egsdat  ncase=1350000000     cpu=388524.00  
+269 sourcePhspEllipse_w269.egsdat  ncase=1350000000     cpu=372737.00  
+270 sourcePhspEllipse_w270.egsdat  ncase=1350000000     cpu=366250.00  
+271 sourcePhspEllipse_w271.egsdat  ncase=1350000000     cpu=378462.00  
+272 sourcePhspEllipse_w272.egsdat  ncase=1350000000     cpu=372017.00  
+273 sourcePhspEllipse_w273.egsdat  ncase=1350000000     cpu=378154.00  
+274 sourcePhspEllipse_w274.egsdat  ncase=1350000000     cpu=377570.00  
+275 sourcePhspEllipse_w275.egsdat  ncase=1350000000     cpu=368910.00  
+276 sourcePhspEllipse_w276.egsdat  ncase=1350000000     cpu=370895.00  
+277 sourcePhspEllipse_w277.egsdat  ncase=1500000000     cpu=415879.00  
+278 sourcePhspEllipse_w278.egsdat  ncase=1500000000     cpu=417254.00  
+279 sourcePhspEllipse_w279.egsdat  ncase=1500000000     cpu=410076.00  
+280 sourcePhspEllipse_w280.egsdat  ncase=1500000000     cpu=418267.00  
+281 sourcePhspEllipse_w281.egsdat  ncase=1500000000     cpu=407528.00  
+282 sourcePhspEllipse_w282.egsdat  ncase=1500000000     cpu=409731.00  
+283 sourcePhspEllipse_w283.egsdat  ncase=1500000000     cpu=407758.00  
+284 sourcePhspEllipse_w284.egsdat  ncase=1500000000     cpu=418834.00  
+285 sourcePhspEllipse_w285.egsdat  ncase=1500000000     cpu=420971.00  
+286 sourcePhspEllipse_w286.egsdat  ncase=1500000000     cpu=416627.00  
+287 sourcePhspEllipse_w287.egsdat  ncase=1500000000     cpu=407805.00  
+288 sourcePhspEllipse_w288.egsdat  ncase=1500000000     cpu=411186.00  
+289 sourcePhspEllipse_w289.egsdat  ncase=1500000000     cpu=411051.00  
+290 sourcePhspEllipse_w290.egsdat  ncase=1500000000     cpu=411461.00  
+291 sourcePhspEllipse_w291.egsdat  ncase=1500000000     cpu=415296.00  
+292 sourcePhspEllipse_w292.egsdat  ncase=1500000000     cpu=412299.00  
+293 sourcePhspEllipse_w293.egsdat  ncase=1500000000     cpu=413328.00  
+294 sourcePhspEllipse_w294.egsdat  ncase=1500000000     cpu=412921.00  
+295 sourcePhspEllipse_w295.egsdat  ncase=1500000000     cpu=411762.00  
+296 sourcePhspEllipse_w296.egsdat  ncase=1500000000     cpu=410607.00  
+297 sourcePhspEllipse_w297.egsdat  ncase=1500000000     cpu=411705.00  
+298 sourcePhspEllipse_w298.egsdat  ncase=1650000000     cpu=436052.00  
+299 sourcePhspEllipse_w299.egsdat  ncase=1500000000     cpu=409373.00  
+300 sourcePhspEllipse_w300.egsdat  ncase=1500000000     cpu=410663.00  
+301 sourcePhspEllipse_w301.egsdat  ncase=1650000000     cpu=436889.00  
+302 sourcePhspEllipse_w302.egsdat  ncase=1500000000     cpu=416230.00  
+303 sourcePhspEllipse_w303.egsdat  ncase=1500000000     cpu=405541.00  
+304 sourcePhspEllipse_w304.egsdat  ncase=1500000000     cpu=405653.00  
+305 sourcePhspEllipse_w305.egsdat  ncase=1500000000     cpu=409633.00  
+306 sourcePhspEllipse_w306.egsdat  ncase=1650000000     cpu=436837.00  
+307 sourcePhspEllipse_w307.egsdat  ncase=1500000000     cpu=407883.00  
+308 sourcePhspEllipse_w308.egsdat  ncase=1500000000     cpu=408522.00  
+309 sourcePhspEllipse_w309.egsdat  ncase=1650000000     cpu=438927.00  
+310 sourcePhspEllipse_w310.egsdat  ncase=1650000000     cpu=437779.00  
+311 sourcePhspEllipse_w311.egsdat  ncase=1650000000     cpu=437048.00  
+312 sourcePhspEllipse_w312.egsdat  ncase=1500000000     cpu=405301.00  
+313 sourcePhspEllipse_w313.egsdat  ncase=1500000000     cpu=411227.00  
+314 sourcePhspEllipse_w314.egsdat  ncase=1650000000     cpu=439078.00  
+315 sourcePhspEllipse_w315.egsdat  ncase=1500000000     cpu=409667.00  
+316 sourcePhspEllipse_w316.egsdat  ncase=1500000000     cpu=408598.00  
+317 sourcePhspEllipse_w317.egsdat  ncase=1350000000     cpu=421218.00  
+318 sourcePhspEllipse_w318.egsdat  ncase=1350000000     cpu=421657.00  
+319 sourcePhspEllipse_w319.egsdat  ncase=1350000000     cpu=429979.00  
+320 sourcePhspEllipse_w320.egsdat  ncase=1350000000     cpu=417125.00  
+321 sourcePhspEllipse_w321.egsdat  ncase=1350000000     cpu=418777.00  
+322 sourcePhspEllipse_w322.egsdat  ncase=1350000000     cpu=422455.00  
+323 sourcePhspEllipse_w323.egsdat  ncase=1350000000     cpu=417378.00  
+324 sourcePhspEllipse_w324.egsdat  ncase=1350000000     cpu=422447.00  
+325 sourcePhspEllipse_w325.egsdat  ncase=1350000000     cpu=422217.00  
+326 sourcePhspEllipse_w326.egsdat  ncase=1350000000     cpu=425482.00  
+327 sourcePhspEllipse_w327.egsdat  ncase=1350000000     cpu=423915.00  
+328 sourcePhspEllipse_w328.egsdat  ncase=1350000000     cpu=424714.00  
+329 sourcePhspEllipse_w329.egsdat  ncase=1350000000     cpu=423645.00  
+330 sourcePhspEllipse_w330.egsdat  ncase=1350000000     cpu=422472.00  
+331 sourcePhspEllipse_w331.egsdat  ncase=1350000000     cpu=423901.00  
+332 sourcePhspEllipse_w332.egsdat  ncase=1350000000     cpu=421153.00  
+333 sourcePhspEllipse_w333.egsdat  ncase=1350000000     cpu=416832.00  
+334 sourcePhspEllipse_w334.egsdat  ncase=1350000000     cpu=420326.00  
+335 sourcePhspEllipse_w335.egsdat  ncase=1350000000     cpu=418379.00  
+336 sourcePhspEllipse_w336.egsdat  ncase=1350000000     cpu=424065.00  
+337 sourcePhspEllipse_w337.egsdat  ncase=1350000000     cpu=417113.00  
+338 sourcePhspEllipse_w338.egsdat  ncase=1350000000     cpu=422681.00  
+339 sourcePhspEllipse_w339.egsdat  ncase=1350000000     cpu=417900.00  
+340 sourcePhspEllipse_w340.egsdat  ncase=1350000000     cpu=420679.00  
+341 sourcePhspEllipse_w341.egsdat  ncase=1200000000     cpu=432435.00  
+342 sourcePhspEllipse_w342.egsdat  ncase=1200000000     cpu=435531.00  
+343 sourcePhspEllipse_w343.egsdat  ncase=1200000000     cpu=433271.00  
+344 sourcePhspEllipse_w344.egsdat  ncase=1050000000     cpu=406296.00  
+345 sourcePhspEllipse_w345.egsdat  ncase=1200000000     cpu=437101.00  
+346 sourcePhspEllipse_w346.egsdat  ncase=1200000000     cpu=428718.00  
+347 sourcePhspEllipse_w347.egsdat  ncase=1200000000     cpu=427603.00  
+348 sourcePhspEllipse_w348.egsdat  ncase=1200000000     cpu=430681.00  
+349 sourcePhspEllipse_w349.egsdat  ncase=1200000000     cpu=436539.00  
+350 sourcePhspEllipse_w350.egsdat  ncase=1200000000     cpu=427020.00  
+351 sourcePhspEllipse_w351.egsdat  ncase=1200000000     cpu=430659.00  
+352 sourcePhspEllipse_w352.egsdat  ncase=1200000000     cpu=429756.00  
+353 sourcePhspEllipse_w353.egsdat  ncase=1200000000     cpu=427561.00  
+354 sourcePhspEllipse_w354.egsdat  ncase=1200000000     cpu=429467.00  
+355 sourcePhspEllipse_w355.egsdat  ncase=1200000000     cpu=433172.00  
+356 sourcePhspEllipse_w356.egsdat  ncase=1200000000     cpu=433623.00  
+357 sourcePhspEllipse_w357.egsdat  ncase=1500000000     cpu=414422.00  
+358 sourcePhspEllipse_w358.egsdat  ncase=1500000000     cpu=421145.00  
+359 sourcePhspEllipse_w359.egsdat  ncase=1500000000     cpu=421445.00  
+360 sourcePhspEllipse_w360.egsdat  ncase=1500000000     cpu=428562.00  
+361 sourcePhspEllipse_w361.egsdat  ncase=1500000000     cpu=421473.00  
+362 sourcePhspEllipse_w362.egsdat  ncase=1500000000     cpu=412531.00  
+363 sourcePhspEllipse_w363.egsdat  ncase=1500000000     cpu=428031.00  
+364 sourcePhspEllipse_w364.egsdat  ncase=1500000000     cpu=425554.00  
+365 sourcePhspEllipse_w365.egsdat  ncase=1500000000     cpu=417588.00  
+366 sourcePhspEllipse_w366.egsdat  ncase=1500000000     cpu=418690.00  
+367 sourcePhspEllipse_w367.egsdat  ncase=1500000000     cpu=420055.00  
+368 sourcePhspEllipse_w368.egsdat  ncase=1500000000     cpu=418319.00  
+369 sourcePhspEllipse_w369.egsdat  ncase=1500000000     cpu=413621.00  
+370 sourcePhspEllipse_w370.egsdat  ncase=1500000000     cpu=419129.00  
+371 sourcePhspEllipse_w371.egsdat  ncase=1500000000     cpu=426132.00  
+372 sourcePhspEllipse_w372.egsdat  ncase=1500000000     cpu=428865.00  
+373 sourcePhspEllipse_w373.egsdat  ncase=1500000000     cpu=418098.00  
+374 sourcePhspEllipse_w374.egsdat  ncase=1500000000     cpu=414037.00  
+375 sourcePhspEllipse_w375.egsdat  ncase=1500000000     cpu=424428.00  
+376 sourcePhspEllipse_w376.egsdat  ncase=1500000000     cpu=416250.00  
+377 sourcePhspEllipse_w377.egsdat  ncase=1500000000     cpu=420322.00  
+378 sourcePhspEllipse_w378.egsdat  ncase=1500000000     cpu=409571.00  
+379 sourcePhspEllipse_w379.egsdat  ncase=1650000000     cpu=438510.00  
+380 sourcePhspEllipse_w380.egsdat  ncase=1500000000     cpu=407936.00  
+381 sourcePhspEllipse_w381.egsdat  ncase=1500000000     cpu=415150.00  
+382 sourcePhspEllipse_w382.egsdat  ncase=1500000000     cpu=420869.00  
+383 sourcePhspEllipse_w383.egsdat  ncase=1500000000     cpu=412234.00  
+384 sourcePhspEllipse_w384.egsdat  ncase=1500000000     cpu=405184.00  
+385 sourcePhspEllipse_w385.egsdat  ncase=1500000000     cpu=413655.00  
+386 sourcePhspEllipse_w386.egsdat  ncase=1650000000     cpu=437900.00  
+387 sourcePhspEllipse_w387.egsdat  ncase=1500000000     cpu=406684.00  
+388 sourcePhspEllipse_w388.egsdat  ncase=1500000000     cpu=406103.00  
+389 sourcePhspEllipse_w389.egsdat  ncase=1500000000     cpu=405872.00  
+390 sourcePhspEllipse_w390.egsdat  ncase=1500000000     cpu=419079.00  
+391 sourcePhspEllipse_w391.egsdat  ncase=1500000000     cpu=414840.00  
+392 sourcePhspEllipse_w392.egsdat  ncase=1500000000     cpu=415736.00  
+393 sourcePhspEllipse_w393.egsdat  ncase=1500000000     cpu=416261.00  
+394 sourcePhspEllipse_w394.egsdat  ncase=1500000000     cpu=406508.00  
+395 sourcePhspEllipse_w395.egsdat  ncase=1500000000     cpu=405330.00  
+396 sourcePhspEllipse_w396.egsdat  ncase=1500000000     cpu=414650.00  
+397 sourcePhspEllipse_w397.egsdat  ncase=1500000000     cpu=421943.00  
+398 sourcePhspEllipse_w398.egsdat  ncase=1500000000     cpu=413966.00  
+399 sourcePhspEllipse_w399.egsdat  ncase=1500000000     cpu=417581.00  
+400 sourcePhspEllipse_w400.egsdat  ncase=1500000000     cpu=417193.00  
+401 sourcePhspEllipse_w401.egsdat  ncase=1500000000     cpu=420862.00  
+402 sourcePhspEllipse_w402.egsdat  ncase=1500000000     cpu=425747.00  
+403 sourcePhspEllipse_w403.egsdat  ncase=1500000000     cpu=419361.00  
+404 sourcePhspEllipse_w404.egsdat  ncase=1500000000     cpu=418356.00  
+405 sourcePhspEllipse_w405.egsdat  ncase=1500000000     cpu=419106.00  
+406 sourcePhspEllipse_w406.egsdat  ncase=1500000000     cpu=416193.00  
+407 sourcePhspEllipse_w407.egsdat  ncase=1500000000     cpu=419162.00  
+408 sourcePhspEllipse_w408.egsdat  ncase=1500000000     cpu=426334.00  
+409 sourcePhspEllipse_w409.egsdat  ncase=1500000000     cpu=417996.00  
+410 sourcePhspEllipse_w410.egsdat  ncase=1500000000     cpu=417731.00  
+411 sourcePhspEllipse_w411.egsdat  ncase=1500000000     cpu=416591.00  
+412 sourcePhspEllipse_w412.egsdat  ncase=1500000000     cpu=414218.00  
+413 sourcePhspEllipse_w413.egsdat  ncase=1500000000     cpu=415756.00  
+414 sourcePhspEllipse_w414.egsdat  ncase=1500000000     cpu=420616.00  
+415 sourcePhspEllipse_w415.egsdat  ncase=1500000000     cpu=419426.00  
+416 sourcePhspEllipse_w416.egsdat  ncase=1500000000     cpu=418208.00  
+417 sourcePhspEllipse_w417.egsdat  ncase=1500000000     cpu=409591.00  
+418 sourcePhspEllipse_w418.egsdat  ncase=1500000000     cpu=406433.00  
+419 sourcePhspEllipse_w419.egsdat  ncase=1500000000     cpu=406929.00  
+420 sourcePhspEllipse_w420.egsdat  ncase=1500000000     cpu=409918.00  
+421 sourcePhspEllipse_w421.egsdat  ncase=1500000000     cpu=413093.00  
+422 sourcePhspEllipse_w422.egsdat  ncase=1500000000     cpu=406491.00  
+423 sourcePhspEllipse_w423.egsdat  ncase=1500000000     cpu=415373.00  
+424 sourcePhspEllipse_w424.egsdat  ncase=1500000000     cpu=404814.00  
+425 sourcePhspEllipse_w425.egsdat  ncase=1650000000     cpu=438134.00  
+426 sourcePhspEllipse_w426.egsdat  ncase=1500000000     cpu=406796.00  
+427 sourcePhspEllipse_w427.egsdat  ncase=1500000000     cpu=408124.00  
+428 sourcePhspEllipse_w428.egsdat  ncase=1650000000     cpu=438303.00  
+429 sourcePhspEllipse_w429.egsdat  ncase=1500000000     cpu=410142.00  
+430 sourcePhspEllipse_w430.egsdat  ncase=1500000000     cpu=409458.00  
+431 sourcePhspEllipse_w431.egsdat  ncase=1500000000     cpu=408689.00  
+432 sourcePhspEllipse_w432.egsdat  ncase=1500000000     cpu=414669.00  
+433 sourcePhspEllipse_w433.egsdat  ncase=1500000000     cpu=412420.00  
+434 sourcePhspEllipse_w434.egsdat  ncase=1500000000     cpu=410173.00  
+435 sourcePhspEllipse_w435.egsdat  ncase=1500000000     cpu=409754.00  
+436 sourcePhspEllipse_w436.egsdat  ncase=1500000000     cpu=412192.00  
+437 sourcePhspEllipse_w437.egsdat  ncase=1500000000     cpu=408554.00  
+438 sourcePhspEllipse_w438.egsdat  ncase=1650000000     cpu=439687.00  
+439 sourcePhspEllipse_w439.egsdat  ncase=1500000000     cpu=408998.00  
+440 sourcePhspEllipse_w440.egsdat  ncase=1500000000     cpu=406803.00  
+441 sourcePhspEllipse_w441.egsdat  ncase=1650000000     cpu=439400.00  
+442 sourcePhspEllipse_w442.egsdat  ncase=1500000000     cpu=413029.00  
+443 sourcePhspEllipse_w443.egsdat  ncase=1500000000     cpu=409470.00  
+444 sourcePhspEllipse_w444.egsdat  ncase=1500000000     cpu=413266.00  
+445 sourcePhspEllipse_w445.egsdat  ncase=1500000000     cpu=412123.00  
+446 sourcePhspEllipse_w446.egsdat  ncase=1500000000     cpu=411933.00  
+447 sourcePhspEllipse_w447.egsdat  ncase=1500000000     cpu=408068.00  
+448 sourcePhspEllipse_w448.egsdat  ncase=1650000000     cpu=436712.00  
+449 sourcePhspEllipse_w449.egsdat  ncase=1500000000     cpu=406275.00  
+450 sourcePhspEllipse_w450.egsdat  ncase=1500000000     cpu=408635.00  
+451 sourcePhspEllipse_w451.egsdat  ncase=1500000000     cpu=408727.00  
+452 sourcePhspEllipse_w452.egsdat  ncase=1500000000     cpu=409213.00  
+453 sourcePhspEllipse_w453.egsdat  ncase=1500000000     cpu=408329.00  
+454 sourcePhspEllipse_w454.egsdat  ncase=1650000000     cpu=438070.00  
+455 sourcePhspEllipse_w455.egsdat  ncase=1500000000     cpu=408667.00  
+456 sourcePhspEllipse_w456.egsdat  ncase=1500000000     cpu=409936.00  
+457 sourcePhspEllipse_w457.egsdat  ncase=1500000000     cpu=411403.00  
+458 sourcePhspEllipse_w458.egsdat  ncase=1500000000     cpu=408802.00  
+459 sourcePhspEllipse_w459.egsdat  ncase=1500000000     cpu=407979.00  
+460 sourcePhspEllipse_w460.egsdat  ncase=1500000000     cpu=410022.00  
+461 sourcePhspEllipse_w461.egsdat  ncase=1650000000     cpu=437675.00  
+462 sourcePhspEllipse_w462.egsdat  ncase=1650000000     cpu=438834.00  
+463 sourcePhspEllipse_w463.egsdat  ncase=1500000000     cpu=407167.00  
+464 sourcePhspEllipse_w464.egsdat  ncase=1500000000     cpu=407344.00  
+465 sourcePhspEllipse_w465.egsdat  ncase=1500000000     cpu=404639.00  
+466 sourcePhspEllipse_w466.egsdat  ncase=1500000000     cpu=408458.00  
+467 sourcePhspEllipse_w467.egsdat  ncase=1500000000     cpu=407421.00  
+468 sourcePhspEllipse_w468.egsdat  ncase=1650000000     cpu=438290.00  
+469 sourcePhspEllipse_w469.egsdat  ncase=1500000000     cpu=404717.00  
+470 sourcePhspEllipse_w470.egsdat  ncase=1500000000     cpu=409822.00  
+471 sourcePhspEllipse_w471.egsdat  ncase=1500000000     cpu=414606.00  
+472 sourcePhspEllipse_w472.egsdat  ncase=1500000000     cpu=409238.00  
+473 sourcePhspEllipse_w473.egsdat  ncase=1500000000     cpu=409685.00  
+474 sourcePhspEllipse_w474.egsdat  ncase=1500000000     cpu=405497.00  
+475 sourcePhspEllipse_w475.egsdat  ncase=1650000000     cpu=436768.00  
+476 sourcePhspEllipse_w476.egsdat  ncase=1650000000     cpu=439630.00  
+477 sourcePhspEllipse_w477.egsdat  ncase=1650000000     cpu=436594.00  
+478 sourcePhspEllipse_w478.egsdat  ncase=1500000000     cpu=407312.00  
+479 sourcePhspEllipse_w479.egsdat  ncase=1500000000     cpu=406644.00  
+480 sourcePhspEllipse_w480.egsdat  ncase=1500000000     cpu=410286.00  
+481 sourcePhspEllipse_w481.egsdat  ncase=1650000000     cpu=437932.00  
+482 sourcePhspEllipse_w482.egsdat  ncase=1500000000     cpu=408605.00  
+483 sourcePhspEllipse_w483.egsdat  ncase=1500000000     cpu=407389.00  
+484 sourcePhspEllipse_w484.egsdat  ncase=1500000000     cpu=409379.00  
+485 sourcePhspEllipse_w485.egsdat  ncase=1500000000     cpu=406463.00  
+486 sourcePhspEllipse_w486.egsdat  ncase=1500000000     cpu=407514.00  
+487 sourcePhspEllipse_w487.egsdat  ncase=1650000000     cpu=438554.00  
+488 sourcePhspEllipse_w488.egsdat  ncase=1500000000     cpu=406600.00  
+489 sourcePhspEllipse_w489.egsdat  ncase=1500000000     cpu=406706.00  
+490 sourcePhspEllipse_w490.egsdat  ncase=1500000000     cpu=405451.00  
+491 sourcePhspEllipse_w491.egsdat  ncase=1500000000     cpu=404585.00  
+492 sourcePhspEllipse_w492.egsdat  ncase=1500000000     cpu=412359.00  
+493 sourcePhspEllipse_w493.egsdat  ncase=1500000000     cpu=406079.00  
+494 sourcePhspEllipse_w494.egsdat  ncase=1500000000     cpu=405306.00  
+495 sourcePhspEllipse_w495.egsdat  ncase=1500000000     cpu=407592.00  
+496 sourcePhspEllipse_w496.egsdat  ncase=1500000000     cpu=404936.00  
+497 sourcePhspEllipse_w497.egsdat  ncase=1650000000     cpu=440770.00  
+498 sourcePhspEllipse_w498.egsdat  ncase=1650000000     cpu=434185.00  
+499 sourcePhspEllipse_w499.egsdat  ncase=1500000000     cpu=405864.00  
+500 sourcePhspEllipse_w500.egsdat  ncase=1650000000     cpu=438975.00  
+501 sourcePhspEllipse_w501.egsdat  ncase=1650000000     cpu=441392.00  
+502 sourcePhspEllipse_w502.egsdat  ncase=1500000000     cpu=405890.00  
+503 sourcePhspEllipse_w503.egsdat  ncase=1650000000     cpu=441554.00  
+504 sourcePhspEllipse_w504.egsdat  ncase=1650000000     cpu=441811.00  
+505 sourcePhspEllipse_w505.egsdat  ncase=1650000000     cpu=435696.00  
+506 sourcePhspEllipse_w506.egsdat  ncase=1650000000     cpu=442018.00  
+507 sourcePhspEllipse_w507.egsdat  ncase=1650000000     cpu=440422.00  
+508 sourcePhspEllipse_w508.egsdat  ncase=1650000000     cpu=435261.00  
+509 sourcePhspEllipse_w509.egsdat  ncase=1650000000     cpu=442888.00  
+510 sourcePhspEllipse_w510.egsdat  ncase=1500000000     cpu=404566.00  
+511 sourcePhspEllipse_w511.egsdat  ncase=1650000000     cpu=439574.00  
+512 sourcePhspEllipse_w512.egsdat  ncase=1650000000     cpu=435960.00  
+513 sourcePhspEllipse_w513.egsdat  ncase=1650000000     cpu=435751.00  
+514 sourcePhspEllipse_w514.egsdat  ncase=1650000000     cpu=438019.00  
+515 sourcePhspEllipse_w515.egsdat  ncase=1650000000     cpu=434789.00  
+516 sourcePhspEllipse_w516.egsdat  ncase=1650000000     cpu=441268.00  
+517 sourcePhspEllipse_w517.egsdat  ncase=1500000000     cpu=408757.00  
+518 sourcePhspEllipse_w518.egsdat  ncase=1500000000     cpu=405208.00  
+519 sourcePhspEllipse_w519.egsdat  ncase=1500000000     cpu=410504.00  
+520 sourcePhspEllipse_w520.egsdat  ncase=1500000000     cpu=409614.00  
+521 sourcePhspEllipse_w521.egsdat  ncase=1500000000     cpu=408030.00  
+522 sourcePhspEllipse_w522.egsdat  ncase=1500000000     cpu=408679.00  
+523 sourcePhspEllipse_w523.egsdat  ncase=1500000000     cpu=406036.00  
+524 sourcePhspEllipse_w524.egsdat  ncase=1650000000     cpu=436752.00  
+525 sourcePhspEllipse_w525.egsdat  ncase=1500000000     cpu=414111.00  
+526 sourcePhspEllipse_w526.egsdat  ncase=1500000000     cpu=406197.00  
+527 sourcePhspEllipse_w527.egsdat  ncase=1500000000     cpu=409428.00  
+528 sourcePhspEllipse_w528.egsdat  ncase=1500000000     cpu=409124.00  
+529 sourcePhspEllipse_w529.egsdat  ncase=1500000000     cpu=408455.00  
+530 sourcePhspEllipse_w530.egsdat  ncase=1500000000     cpu=405118.00  
+531 sourcePhspEllipse_w531.egsdat  ncase=1500000000     cpu=419034.00  
+532 sourcePhspEllipse_w532.egsdat  ncase=1500000000     cpu=409114.00  
+533 sourcePhspEllipse_w533.egsdat  ncase=1500000000     cpu=406656.00  
+534 sourcePhspEllipse_w534.egsdat  ncase=1650000000     cpu=438115.00  
+535 sourcePhspEllipse_w535.egsdat  ncase=1500000000     cpu=412633.00  
+536 sourcePhspEllipse_w536.egsdat  ncase=1500000000     cpu=406347.00  
+537 sourcePhspEllipse_w537.egsdat  ncase=1500000000     cpu=416239.00  
+538 sourcePhspEllipse_w538.egsdat  ncase=1500000000     cpu=413539.00  
+539 sourcePhspEllipse_w539.egsdat  ncase=1500000000     cpu=415084.00  
+540 sourcePhspEllipse_w540.egsdat  ncase=1500000000     cpu=410133.00  
+541 sourcePhspEllipse_w541.egsdat  ncase=1500000000     cpu=408935.00  
+542 sourcePhspEllipse_w542.egsdat  ncase=1500000000     cpu=407523.00  
+543 sourcePhspEllipse_w543.egsdat  ncase=1500000000     cpu=405285.00  
+544 sourcePhspEllipse_w544.egsdat  ncase=1500000000     cpu=404875.00  
+545 sourcePhspEllipse_w545.egsdat  ncase=1500000000     cpu=407022.00  
+546 sourcePhspEllipse_w546.egsdat  ncase=1650000000     cpu=436438.00  
+547 sourcePhspEllipse_w547.egsdat  ncase=1500000000     cpu=412509.00  
+548 sourcePhspEllipse_w548.egsdat  ncase=1650000000     cpu=436799.00  
+549 sourcePhspEllipse_w549.egsdat  ncase=1500000000     cpu=410439.00  
+550 sourcePhspEllipse_w550.egsdat  ncase=1650000000     cpu=436558.00  
+551 sourcePhspEllipse_w551.egsdat  ncase=1500000000     cpu=409137.00  
+552 sourcePhspEllipse_w552.egsdat  ncase=1500000000     cpu=411190.00  
+553 sourcePhspEllipse_w553.egsdat  ncase=1500000000     cpu=410727.00  
+554 sourcePhspEllipse_w554.egsdat  ncase=1500000000     cpu=410455.00  
+555 sourcePhspEllipse_w555.egsdat  ncase=1500000000     cpu=405044.00  
+556 sourcePhspEllipse_w556.egsdat  ncase=1500000000     cpu=408819.00  
+557 sourcePhspEllipse_w557.egsdat  ncase=1500000000     cpu=426464.00  
+558 sourcePhspEllipse_w558.egsdat  ncase=1500000000     cpu=424153.00  
+559 sourcePhspEllipse_w559.egsdat  ncase=1500000000     cpu=417303.00  
+560 sourcePhspEllipse_w560.egsdat  ncase=1500000000     cpu=430513.00  
+561 sourcePhspEllipse_w561.egsdat  ncase=1500000000     cpu=428420.00  
+562 sourcePhspEllipse_w562.egsdat  ncase=1500000000     cpu=431474.00  
+563 sourcePhspEllipse_w563.egsdat  ncase=1500000000     cpu=420793.00  
+564 sourcePhspEllipse_w564.egsdat  ncase=1500000000     cpu=424564.00  
+565 sourcePhspEllipse_w565.egsdat  ncase=1500000000     cpu=424042.00  
+566 sourcePhspEllipse_w566.egsdat  ncase=1500000000     cpu=434252.00  
+567 sourcePhspEllipse_w567.egsdat  ncase=1500000000     cpu=424258.00  
+568 sourcePhspEllipse_w568.egsdat  ncase=1500000000     cpu=425301.00  
+569 sourcePhspEllipse_w569.egsdat  ncase=1500000000     cpu=419002.00  
+570 sourcePhspEllipse_w570.egsdat  ncase=1500000000     cpu=426299.00  
+571 sourcePhspEllipse_w571.egsdat  ncase=1500000000     cpu=425140.00  
+572 sourcePhspEllipse_w572.egsdat  ncase=1500000000     cpu=419989.00  
+573 sourcePhspEllipse_w573.egsdat  ncase=1500000000     cpu=419501.00  
+574 sourcePhspEllipse_w574.egsdat  ncase=1500000000     cpu=425645.00  
+575 sourcePhspEllipse_w575.egsdat  ncase=1500000000     cpu=424387.00  
+576 sourcePhspEllipse_w576.egsdat  ncase=1500000000     cpu=420411.00  
+577 sourcePhspEllipse_w577.egsdat  ncase=1500000000     cpu=424490.00  
+578 sourcePhspEllipse_w578.egsdat  ncase=1500000000     cpu=419839.00  
+579 sourcePhspEllipse_w579.egsdat  ncase=1500000000     cpu=417895.00  
+580 sourcePhspEllipse_w580.egsdat  ncase=1500000000     cpu=412393.00  
+581 sourcePhspEllipse_w581.egsdat  ncase=1500000000     cpu=420980.00  
+582 sourcePhspEllipse_w582.egsdat  ncase=1500000000     cpu=413041.00  
+583 sourcePhspEllipse_w583.egsdat  ncase=1500000000     cpu=424667.00  
+584 sourcePhspEllipse_w584.egsdat  ncase=1500000000     cpu=412082.00  
+585 sourcePhspEllipse_w585.egsdat  ncase=1500000000     cpu=418433.00  
+586 sourcePhspEllipse_w586.egsdat  ncase=1500000000     cpu=419145.00  
+587 sourcePhspEllipse_w587.egsdat  ncase=1500000000     cpu=413547.00  
+588 sourcePhspEllipse_w588.egsdat  ncase=1500000000     cpu=418796.00  
+589 sourcePhspEllipse_w589.egsdat  ncase=1500000000     cpu=418391.00  
+590 sourcePhspEllipse_w590.egsdat  ncase=1500000000     cpu=420962.00  
+591 sourcePhspEllipse_w591.egsdat  ncase=1500000000     cpu=418119.00  
+592 sourcePhspEllipse_w592.egsdat  ncase=1500000000     cpu=416692.00  
+593 sourcePhspEllipse_w593.egsdat  ncase=1500000000     cpu=412933.00  
+594 sourcePhspEllipse_w594.egsdat  ncase=1500000000     cpu=421520.00  
+595 sourcePhspEllipse_w595.egsdat  ncase=1500000000     cpu=413375.00  
+596 sourcePhspEllipse_w596.egsdat  ncase=1500000000     cpu=417092.00  
+597 sourcePhspEllipse_w597.egsdat  ncase=1500000000     cpu=408990.00  
+598 sourcePhspEllipse_w598.egsdat  ncase=1500000000     cpu=411495.00  
+599 sourcePhspEllipse_w599.egsdat  ncase=1500000000     cpu=413215.00  
+600 sourcePhspEllipse_w600.egsdat  ncase=1500000000     cpu=415637.00  
+601 sourcePhspEllipse_w601.egsdat  ncase=1500000000     cpu=418775.00  
+602 sourcePhspEllipse_w602.egsdat  ncase=1500000000     cpu=409530.00  
+603 sourcePhspEllipse_w603.egsdat  ncase=1500000000     cpu=410726.00  
+604 sourcePhspEllipse_w604.egsdat  ncase=1500000000     cpu=412502.00  
+605 sourcePhspEllipse_w605.egsdat  ncase=1500000000     cpu=414697.00  
+606 sourcePhspEllipse_w606.egsdat  ncase=1500000000     cpu=418750.00  
+607 sourcePhspEllipse_w607.egsdat  ncase=1500000000     cpu=409905.00  
+608 sourcePhspEllipse_w608.egsdat  ncase=1500000000     cpu=416338.00  
+609 sourcePhspEllipse_w609.egsdat  ncase=1500000000     cpu=412749.00  
+610 sourcePhspEllipse_w610.egsdat  ncase=1500000000     cpu=419314.00  
+611 sourcePhspEllipse_w611.egsdat  ncase=1500000000     cpu=410378.00  
+612 sourcePhspEllipse_w612.egsdat  ncase=1500000000     cpu=417713.00  
+613 sourcePhspEllipse_w613.egsdat  ncase=1500000000     cpu=417181.00  
+614 sourcePhspEllipse_w614.egsdat  ncase=1500000000     cpu=414315.00  
+615 sourcePhspEllipse_w615.egsdat  ncase=1500000000     cpu=409407.00  
+616 sourcePhspEllipse_w616.egsdat  ncase=1500000000     cpu=413416.00  
+617 sourcePhspEllipse_w617.egsdat  ncase=1500000000     cpu=431194.00  
+618 sourcePhspEllipse_w618.egsdat  ncase=1500000000     cpu=418820.00  
+619 sourcePhspEllipse_w619.egsdat  ncase=1500000000     cpu=421257.00  
+620 sourcePhspEllipse_w620.egsdat  ncase=1500000000     cpu=419574.00  
+621 sourcePhspEllipse_w621.egsdat  ncase=1500000000     cpu=418933.00  
+622 sourcePhspEllipse_w622.egsdat  ncase=1500000000     cpu=417498.00  
+623 sourcePhspEllipse_w623.egsdat  ncase=1500000000     cpu=417262.00  
+624 sourcePhspEllipse_w624.egsdat  ncase=1500000000     cpu=414264.00  
+625 sourcePhspEllipse_w625.egsdat  ncase=1500000000     cpu=422451.00  
+626 sourcePhspEllipse_w626.egsdat  ncase=1500000000     cpu=424569.00  
+627 sourcePhspEllipse_w627.egsdat  ncase=1500000000     cpu=423416.00  
+628 sourcePhspEllipse_w628.egsdat  ncase=1500000000     cpu=426757.00  
+629 sourcePhspEllipse_w629.egsdat  ncase=1500000000     cpu=422308.00  
+630 sourcePhspEllipse_w630.egsdat  ncase=1500000000     cpu=416969.00  
+631 sourcePhspEllipse_w631.egsdat  ncase=1500000000     cpu=419719.00  
+632 sourcePhspEllipse_w632.egsdat  ncase=1500000000     cpu=413649.00  
+633 sourcePhspEllipse_w633.egsdat  ncase=1500000000     cpu=419661.00  
+634 sourcePhspEllipse_w634.egsdat  ncase=1500000000     cpu=420804.00  
+635 sourcePhspEllipse_w635.egsdat  ncase=1500000000     cpu=417986.00  
+636 sourcePhspEllipse_w636.egsdat  ncase=1500000000     cpu=417176.00  
+637 sourcePhspEllipse_w637.egsdat  ncase=1500000000     cpu=426638.00  
+638 sourcePhspEllipse_w638.egsdat  ncase=1500000000     cpu=424903.00  
+639 sourcePhspEllipse_w639.egsdat  ncase=1500000000     cpu=422344.00  
+640 sourcePhspEllipse_w640.egsdat  ncase=1500000000     cpu=424852.00  
+641 sourcePhspEllipse_w641.egsdat  ncase=1500000000     cpu=422444.00  
+642 sourcePhspEllipse_w642.egsdat  ncase=1500000000     cpu=430482.00  
+643 sourcePhspEllipse_w643.egsdat  ncase=1500000000     cpu=423120.00  
+644 sourcePhspEllipse_w644.egsdat  ncase=1500000000     cpu=431094.00  
+645 sourcePhspEllipse_w645.egsdat  ncase=1500000000     cpu=425424.00  
+646 sourcePhspEllipse_w646.egsdat  ncase=1500000000     cpu=426575.00  
+647 sourcePhspEllipse_w647.egsdat  ncase=1500000000     cpu=425685.00  
+648 sourcePhspEllipse_w648.egsdat  ncase=1500000000     cpu=430528.00  
+649 sourcePhspEllipse_w649.egsdat  ncase=1500000000     cpu=426473.00  
+650 sourcePhspEllipse_w650.egsdat  ncase=1500000000     cpu=423580.00  
+651 sourcePhspEllipse_w651.egsdat  ncase=1500000000     cpu=432554.00  
+652 sourcePhspEllipse_w652.egsdat  ncase=1500000000     cpu=424763.00  
+653 sourcePhspEllipse_w653.egsdat  ncase=1500000000     cpu=421019.00  
+654 sourcePhspEllipse_w654.egsdat  ncase=1500000000     cpu=423285.00  
+655 sourcePhspEllipse_w655.egsdat  ncase=1500000000     cpu=432168.00  
+656 sourcePhspEllipse_w656.egsdat  ncase=1500000000     cpu=427696.00  
+657 sourcePhspEllipse_w657.egsdat  ncase=1500000000     cpu=418996.00  
+658 sourcePhspEllipse_w658.egsdat  ncase=1500000000     cpu=413771.00  
+659 sourcePhspEllipse_w659.egsdat  ncase=1500000000     cpu=420008.00  
+660 sourcePhspEllipse_w660.egsdat  ncase=1500000000     cpu=411513.00  
+661 sourcePhspEllipse_w661.egsdat  ncase=1500000000     cpu=420366.00  
+662 sourcePhspEllipse_w662.egsdat  ncase=1500000000     cpu=412835.00  
+663 sourcePhspEllipse_w663.egsdat  ncase=1500000000     cpu=413964.00  
+664 sourcePhspEllipse_w664.egsdat  ncase=1500000000     cpu=416014.00  
+665 sourcePhspEllipse_w665.egsdat  ncase=1500000000     cpu=419046.00  
+666 sourcePhspEllipse_w666.egsdat  ncase=1500000000     cpu=416440.00  
+667 sourcePhspEllipse_w667.egsdat  ncase=1500000000     cpu=407762.00  
+668 sourcePhspEllipse_w668.egsdat  ncase=1500000000     cpu=416885.00  
+669 sourcePhspEllipse_w669.egsdat  ncase=1500000000     cpu=417145.00  
+670 sourcePhspEllipse_w670.egsdat  ncase=1500000000     cpu=413263.00  
+671 sourcePhspEllipse_w671.egsdat  ncase=1500000000     cpu=411954.00  
+672 sourcePhspEllipse_w672.egsdat  ncase=1500000000     cpu=413040.00  
+673 sourcePhspEllipse_w673.egsdat  ncase=1500000000     cpu=413081.00  
+674 sourcePhspEllipse_w674.egsdat  ncase=1500000000     cpu=413932.00  
+675 sourcePhspEllipse_w675.egsdat  ncase=1500000000     cpu=415716.00  
+676 sourcePhspEllipse_w676.egsdat  ncase=1500000000     cpu=411504.00  
+677 sourcePhspEllipse_w677.egsdat  ncase=1500000000     cpu=414267.00  
+678 sourcePhspEllipse_w678.egsdat  ncase=1500000000     cpu=416172.00  
+679 sourcePhspEllipse_w679.egsdat  ncase=1500000000     cpu=419121.00  
+680 sourcePhspEllipse_w680.egsdat  ncase=1500000000     cpu=417791.00  
+681 sourcePhspEllipse_w681.egsdat  ncase=1500000000     cpu=418669.00  
+682 sourcePhspEllipse_w682.egsdat  ncase=1500000000     cpu=414655.00  
+683 sourcePhspEllipse_w683.egsdat  ncase=1500000000     cpu=417839.00  
+684 sourcePhspEllipse_w684.egsdat  ncase=1500000000     cpu=424082.00  
+685 sourcePhspEllipse_w685.egsdat  ncase=1500000000     cpu=417930.00  
+686 sourcePhspEllipse_w686.egsdat  ncase=1500000000     cpu=419963.00  
+687 sourcePhspEllipse_w687.egsdat  ncase=1500000000     cpu=423610.00  
+688 sourcePhspEllipse_w688.egsdat  ncase=1500000000     cpu=432145.00  
+689 sourcePhspEllipse_w689.egsdat  ncase=1500000000     cpu=417506.00  
+690 sourcePhspEllipse_w690.egsdat  ncase=1500000000     cpu=418700.00  
+691 sourcePhspEllipse_w691.egsdat  ncase=1500000000     cpu=416034.00  
+692 sourcePhspEllipse_w692.egsdat  ncase=1500000000     cpu=425326.00  
+693 sourcePhspEllipse_w693.egsdat  ncase=1500000000     cpu=422959.00  
+694 sourcePhspEllipse_w694.egsdat  ncase=1500000000     cpu=414297.00  
+695 sourcePhspEllipse_w695.egsdat  ncase=1500000000     cpu=428844.00  
+696 sourcePhspEllipse_w696.egsdat  ncase=1500000000     cpu=415206.00  
+697 sourcePhspEllipse_w697.egsdat  ncase=1500000000     cpu=417568.00  
+698 sourcePhspEllipse_w698.egsdat  ncase=1500000000     cpu=421342.00  
+699 sourcePhspEllipse_w699.egsdat  ncase=1500000000     cpu=419258.00  
+700 sourcePhspEllipse_w700.egsdat  ncase=1500000000     cpu=424267.00  
+701 sourcePhspEllipse_w701.egsdat  ncase=1500000000     cpu=416490.00  
+702 sourcePhspEllipse_w702.egsdat  ncase=1500000000     cpu=414818.00  
+703 sourcePhspEllipse_w703.egsdat  ncase=1500000000     cpu=417759.00  
+704 sourcePhspEllipse_w704.egsdat  ncase=1500000000     cpu=415303.00  
+705 sourcePhspEllipse_w705.egsdat  ncase=1500000000     cpu=413122.00  
+706 sourcePhspEllipse_w706.egsdat  ncase=1500000000     cpu=421714.00  
+707 sourcePhspEllipse_w707.egsdat  ncase=1500000000     cpu=417888.00  
+708 sourcePhspEllipse_w708.egsdat  ncase=1500000000     cpu=416999.00  
+709 sourcePhspEllipse_w709.egsdat  ncase=1500000000     cpu=415206.00  
+710 sourcePhspEllipse_w710.egsdat  ncase=1500000000     cpu=420245.00  
+711 sourcePhspEllipse_w711.egsdat  ncase=1500000000     cpu=414892.00  
+712 sourcePhspEllipse_w712.egsdat  ncase=1500000000     cpu=420291.00  
+713 sourcePhspEllipse_w713.egsdat  ncase=1500000000     cpu=414063.00  
+714 sourcePhspEllipse_w714.egsdat  ncase=1500000000     cpu=419314.00  
+715 sourcePhspEllipse_w715.egsdat  ncase=1500000000     cpu=427127.00  
+716 sourcePhspEllipse_w716.egsdat  ncase=1500000000     cpu=413169.00  
+717 sourcePhspEllipse_w717.egsdat  ncase=1500000000     cpu=422044.00  
+718 sourcePhspEllipse_w718.egsdat  ncase=1500000000     cpu=420644.00  
+719 sourcePhspEllipse_w719.egsdat  ncase=1500000000     cpu=421990.00  
+720 sourcePhspEllipse_w720.egsdat  ncase=1500000000     cpu=421661.00  
+721 sourcePhspEllipse_w721.egsdat  ncase=1500000000     cpu=419770.00  
+722 sourcePhspEllipse_w722.egsdat  ncase=1500000000     cpu=435040.00  
+723 sourcePhspEllipse_w723.egsdat  ncase=1500000000     cpu=432610.00  
+724 sourcePhspEllipse_w724.egsdat  ncase=1500000000     cpu=430807.00  
+725 sourcePhspEllipse_w725.egsdat  ncase=1500000000     cpu=430095.00  
+726 sourcePhspEllipse_w726.egsdat  ncase=1500000000     cpu=422604.00  
+727 sourcePhspEllipse_w727.egsdat  ncase=1500000000     cpu=422337.00  
+728 sourcePhspEllipse_w728.egsdat  ncase=1500000000     cpu=425198.00  
+729 sourcePhspEllipse_w729.egsdat  ncase=1500000000     cpu=435598.00  
+730 sourcePhspEllipse_w730.egsdat  ncase=1500000000     cpu=426042.00  
+731 sourcePhspEllipse_w731.egsdat  ncase=1500000000     cpu=422484.00  
+732 sourcePhspEllipse_w732.egsdat  ncase=1500000000     cpu=420534.00  
+733 sourcePhspEllipse_w733.egsdat  ncase=1500000000     cpu=425058.00  
+734 sourcePhspEllipse_w734.egsdat  ncase=1500000000     cpu=420382.00  
+735 sourcePhspEllipse_w735.egsdat  ncase=1500000000     cpu=432108.00  
+736 sourcePhspEllipse_w736.egsdat  ncase=1500000000     cpu=432061.00  
+737 sourcePhspEllipse_w737.egsdat  ncase=1500000000     cpu=414672.00  
+738 sourcePhspEllipse_w738.egsdat  ncase=1500000000     cpu=417852.00  
+739 sourcePhspEllipse_w739.egsdat  ncase=1500000000     cpu=418739.00  
+740 sourcePhspEllipse_w740.egsdat  ncase=1500000000     cpu=410966.00  
+741 sourcePhspEllipse_w741.egsdat  ncase=1500000000     cpu=406705.00  
+742 sourcePhspEllipse_w742.egsdat  ncase=1500000000     cpu=412407.00  
+743 sourcePhspEllipse_w743.egsdat  ncase=1500000000     cpu=411849.00  
+744 sourcePhspEllipse_w744.egsdat  ncase=1500000000     cpu=417824.00  
+745 sourcePhspEllipse_w745.egsdat  ncase=1500000000     cpu=411102.00  
+746 sourcePhspEllipse_w746.egsdat  ncase=1500000000     cpu=411204.00  
+747 sourcePhspEllipse_w747.egsdat  ncase=1500000000     cpu=418130.00  
+748 sourcePhspEllipse_w748.egsdat  ncase=1500000000     cpu=421333.00  
+749 sourcePhspEllipse_w749.egsdat  ncase=1500000000     cpu=411148.00  
+750 sourcePhspEllipse_w750.egsdat  ncase=1500000000     cpu=410944.00  
+751 sourcePhspEllipse_w751.egsdat  ncase=1500000000     cpu=409530.00  
+752 sourcePhspEllipse_w752.egsdat  ncase=1500000000     cpu=420176.00  
+753 sourcePhspEllipse_w753.egsdat  ncase=1500000000     cpu=410490.00  
+754 sourcePhspEllipse_w754.egsdat  ncase=1500000000     cpu=418534.00  
+755 sourcePhspEllipse_w755.egsdat  ncase=1500000000     cpu=409758.00  
+756 sourcePhspEllipse_w756.egsdat  ncase=1500000000     cpu=420699.00  
+757 sourcePhspEllipse_w757.egsdat  ncase=1500000000     cpu=421133.00  
+758 sourcePhspEllipse_w758.egsdat  ncase=1500000000     cpu=419205.00  
+759 sourcePhspEllipse_w759.egsdat  ncase=1500000000     cpu=418306.00  
+760 sourcePhspEllipse_w760.egsdat  ncase=1500000000     cpu=420716.00  
+761 sourcePhspEllipse_w761.egsdat  ncase=1500000000     cpu=423140.00  
+762 sourcePhspEllipse_w762.egsdat  ncase=1500000000     cpu=414206.00  
+763 sourcePhspEllipse_w763.egsdat  ncase=1500000000     cpu=420813.00  
+764 sourcePhspEllipse_w764.egsdat  ncase=1500000000     cpu=419983.00  
+765 sourcePhspEllipse_w765.egsdat  ncase=1500000000     cpu=421662.00  
+766 sourcePhspEllipse_w766.egsdat  ncase=1500000000     cpu=424488.00  
+767 sourcePhspEllipse_w767.egsdat  ncase=1500000000     cpu=415912.00  
+768 sourcePhspEllipse_w768.egsdat  ncase=1500000000     cpu=424785.00  
+769 sourcePhspEllipse_w769.egsdat  ncase=1500000000     cpu=428404.00  
+770 sourcePhspEllipse_w770.egsdat  ncase=1500000000     cpu=420456.00  
+771 sourcePhspEllipse_w771.egsdat  ncase=1500000000     cpu=417198.00  
+772 sourcePhspEllipse_w772.egsdat  ncase=1500000000     cpu=420162.00  
+773 sourcePhspEllipse_w773.egsdat  ncase=1500000000     cpu=415130.00  
+774 sourcePhspEllipse_w774.egsdat  ncase=1500000000     cpu=419060.00  
+775 sourcePhspEllipse_w775.egsdat  ncase=1500000000     cpu=425398.00  
+776 sourcePhspEllipse_w776.egsdat  ncase=1500000000     cpu=418852.00  
+777 sourcePhspEllipse_w777.egsdat  ncase=1500000000     cpu=421602.00  
+778 sourcePhspEllipse_w778.egsdat  ncase=1500000000     cpu=420725.00  
+779 sourcePhspEllipse_w779.egsdat  ncase=1500000000     cpu=412371.00  
+780 sourcePhspEllipse_w780.egsdat  ncase=1500000000     cpu=418123.00  
+781 sourcePhspEllipse_w781.egsdat  ncase=1500000000     cpu=423059.00  
+782 sourcePhspEllipse_w782.egsdat  ncase=1500000000     cpu=421881.00  
+783 sourcePhspEllipse_w783.egsdat  ncase=1500000000     cpu=426573.00  
+784 sourcePhspEllipse_w784.egsdat  ncase=1500000000     cpu=413096.00  
+785 sourcePhspEllipse_w785.egsdat  ncase=1500000000     cpu=419734.00  
+786 sourcePhspEllipse_w786.egsdat  ncase=1500000000     cpu=421193.00  
+787 sourcePhspEllipse_w787.egsdat  ncase=1500000000     cpu=415864.00  
+788 sourcePhspEllipse_w788.egsdat  ncase=1500000000     cpu=422511.00  
+789 sourcePhspEllipse_w789.egsdat  ncase=1500000000     cpu=415814.00  
+790 sourcePhspEllipse_w790.egsdat  ncase=1500000000     cpu=415476.00  
+791 sourcePhspEllipse_w791.egsdat  ncase=1500000000     cpu=421092.00  
+792 sourcePhspEllipse_w792.egsdat  ncase=1500000000     cpu=427824.00  
+793 sourcePhspEllipse_w793.egsdat  ncase=1500000000     cpu=420198.00  
+794 sourcePhspEllipse_w794.egsdat  ncase=1500000000     cpu=423281.00  
+795 sourcePhspEllipse_w795.egsdat  ncase=1500000000     cpu=421618.00  
+796 sourcePhspEllipse_w796.egsdat  ncase=1500000000     cpu=419408.00  
+797 sourcePhspEllipse_w797.egsdat  ncase=1500000000     cpu=432542.00  
+798 sourcePhspEllipse_w798.egsdat  ncase=1500000000     cpu=438645.00  
+799 sourcePhspEllipse_w799.egsdat  ncase=1500000000     cpu=429568.00  
+800 sourcePhspEllipse_w800.egsdat  ncase=1500000000     cpu=438561.00  
+801 sourcePhspEllipse_w801.egsdat  ncase=1500000000     cpu=435777.00  
+802 sourcePhspEllipse_w802.egsdat  ncase=1500000000     cpu=431824.00  
+803 sourcePhspEllipse_w803.egsdat  ncase=1500000000     cpu=432186.00  
+804 sourcePhspEllipse_w804.egsdat  ncase=1500000000     cpu=431991.00  
+805 sourcePhspEllipse_w805.egsdat  ncase=1500000000     cpu=437379.00  
+806 sourcePhspEllipse_w806.egsdat  ncase=1500000000     cpu=441919.00  
+807 sourcePhspEllipse_w807.egsdat  ncase=1350000000     cpu=423180.00  
+808 sourcePhspEllipse_w808.egsdat  ncase=1500000000     cpu=432464.00  
+809 sourcePhspEllipse_w809.egsdat  ncase=1500000000     cpu=431625.00  
+810 sourcePhspEllipse_w810.egsdat  ncase=1500000000     cpu=435636.00  
+811 sourcePhspEllipse_w811.egsdat  ncase=1500000000     cpu=435836.00  
+812 sourcePhspEllipse_w812.egsdat  ncase=1500000000     cpu=436421.00  
+813 sourcePhspEllipse_w813.egsdat  ncase=1500000000     cpu=437225.00  
+814 sourcePhspEllipse_w814.egsdat  ncase=1500000000     cpu=444820.00  
+815 sourcePhspEllipse_w815.egsdat  ncase=1500000000     cpu=435205.00  
+816 sourcePhspEllipse_w816.egsdat  ncase=1500000000     cpu=443911.00  
+817 sourcePhspEllipse_w817.egsdat  ncase=1500000000     cpu=432509.00  
+818 sourcePhspEllipse_w818.egsdat  ncase=1500000000     cpu=420571.00  
+819 sourcePhspEllipse_w819.egsdat  ncase=1500000000     cpu=427120.00  
+820 sourcePhspEllipse_w820.egsdat  ncase=1500000000     cpu=429616.00  
+821 sourcePhspEllipse_w821.egsdat  ncase=1500000000     cpu=421694.00  
+822 sourcePhspEllipse_w822.egsdat  ncase=1500000000     cpu=434829.00  
+823 sourcePhspEllipse_w823.egsdat  ncase=1500000000     cpu=424595.00  
+824 sourcePhspEllipse_w824.egsdat  ncase=1500000000     cpu=420028.00  
+825 sourcePhspEllipse_w825.egsdat  ncase=1500000000     cpu=425917.00  
+826 sourcePhspEllipse_w826.egsdat  ncase=1500000000     cpu=428119.00  
+827 sourcePhspEllipse_w827.egsdat  ncase=1500000000     cpu=423246.00  
+828 sourcePhspEllipse_w828.egsdat  ncase=1500000000     cpu=431622.00  
+829 sourcePhspEllipse_w829.egsdat  ncase=1500000000     cpu=421231.00  
+830 sourcePhspEllipse_w830.egsdat  ncase=1500000000     cpu=422311.00  
+831 sourcePhspEllipse_w831.egsdat  ncase=1500000000     cpu=421457.00  
+832 sourcePhspEllipse_w832.egsdat  ncase=1500000000     cpu=428295.00  
+833 sourcePhspEllipse_w833.egsdat  ncase=1500000000     cpu=427882.00  
+834 sourcePhspEllipse_w834.egsdat  ncase=1500000000     cpu=424675.00  
+835 sourcePhspEllipse_w835.egsdat  ncase=1500000000     cpu=429754.00  
+836 sourcePhspEllipse_w836.egsdat  ncase=1500000000     cpu=423581.00  
+837 sourcePhspEllipse_w837.egsdat  ncase=1500000000     cpu=421363.00  
+838 sourcePhspEllipse_w838.egsdat  ncase=1500000000     cpu=424129.00  
+839 sourcePhspEllipse_w839.egsdat  ncase=1500000000     cpu=422245.00  
+840 sourcePhspEllipse_w840.egsdat  ncase=1500000000     cpu=430847.00  
+841 sourcePhspEllipse_w841.egsdat  ncase=1500000000     cpu=423573.00  
+842 sourcePhspEllipse_w842.egsdat  ncase=1500000000     cpu=423812.00  
+843 sourcePhspEllipse_w843.egsdat  ncase=1500000000     cpu=421964.00  
+844 sourcePhspEllipse_w844.egsdat  ncase=1500000000     cpu=426282.00  
+845 sourcePhspEllipse_w845.egsdat  ncase=1500000000     cpu=430729.00  
+846 sourcePhspEllipse_w846.egsdat  ncase=1500000000     cpu=423621.00  
+847 sourcePhspEllipse_w847.egsdat  ncase=1500000000     cpu=419257.00  
+848 sourcePhspEllipse_w848.egsdat  ncase=1500000000     cpu=423298.00  
+849 sourcePhspEllipse_w849.egsdat  ncase=1500000000     cpu=425614.00  
+850 sourcePhspEllipse_w850.egsdat  ncase=1500000000     cpu=427418.00  
+851 sourcePhspEllipse_w851.egsdat  ncase=1500000000     cpu=429230.00  
+852 sourcePhspEllipse_w852.egsdat  ncase=1500000000     cpu=422467.00  
+853 sourcePhspEllipse_w853.egsdat  ncase=1350000000     cpu=411263.00  
+854 sourcePhspEllipse_w854.egsdat  ncase=1500000000     cpu=429532.00  
+855 sourcePhspEllipse_w855.egsdat  ncase=1500000000     cpu=423512.00  
+856 sourcePhspEllipse_w856.egsdat  ncase=1500000000     cpu=427836.00  
+857 sourcePhspEllipse_w857.egsdat  ncase=1500000000     cpu=407588.00  
+858 sourcePhspEllipse_w858.egsdat  ncase=1500000000     cpu=407409.00  
+859 sourcePhspEllipse_w859.egsdat  ncase=1500000000     cpu=405955.00  
+860 sourcePhspEllipse_w860.egsdat  ncase=1500000000     cpu=404142.00  
+861 sourcePhspEllipse_w861.egsdat  ncase=1500000000     cpu=414225.00  
+862 sourcePhspEllipse_w862.egsdat  ncase=1500000000     cpu=409886.00  
+863 sourcePhspEllipse_w863.egsdat  ncase=1500000000     cpu=409090.00  
+864 sourcePhspEllipse_w864.egsdat  ncase=1500000000     cpu=413296.00  
+865 sourcePhspEllipse_w865.egsdat  ncase=1500000000     cpu=406207.00  
+866 sourcePhspEllipse_w866.egsdat  ncase=1500000000     cpu=409503.00  
+867 sourcePhspEllipse_w867.egsdat  ncase=1500000000     cpu=409927.00  
+868 sourcePhspEllipse_w868.egsdat  ncase=1500000000     cpu=410312.00  
+869 sourcePhspEllipse_w869.egsdat  ncase=1650000000     cpu=438409.00  
+870 sourcePhspEllipse_w870.egsdat  ncase=1500000000     cpu=410617.00  
+871 sourcePhspEllipse_w871.egsdat  ncase=1500000000     cpu=406834.00  
+872 sourcePhspEllipse_w872.egsdat  ncase=1500000000     cpu=407839.00  
+873 sourcePhspEllipse_w873.egsdat  ncase=1500000000     cpu=407696.00  
+874 sourcePhspEllipse_w874.egsdat  ncase=1500000000     cpu=408149.00  
+875 sourcePhspEllipse_w875.egsdat  ncase=1500000000     cpu=414848.00  
+876 sourcePhspEllipse_w876.egsdat  ncase=1650000000     cpu=438639.00  
+877 sourcePhspEllipse_w877.egsdat  ncase=1500000000     cpu=424418.00  
+878 sourcePhspEllipse_w878.egsdat  ncase=1500000000     cpu=423179.00  
+879 sourcePhspEllipse_w879.egsdat  ncase=1500000000     cpu=420622.00  
+880 sourcePhspEllipse_w880.egsdat  ncase=1500000000     cpu=429678.00  
+881 sourcePhspEllipse_w881.egsdat  ncase=1500000000     cpu=424012.00  
+882 sourcePhspEllipse_w882.egsdat  ncase=1500000000     cpu=425504.00  
+883 sourcePhspEllipse_w883.egsdat  ncase=1500000000     cpu=432299.00  
+884 sourcePhspEllipse_w884.egsdat  ncase=1500000000     cpu=428366.00  
+885 sourcePhspEllipse_w885.egsdat  ncase=1500000000     cpu=422189.00  
+886 sourcePhspEllipse_w886.egsdat  ncase=1500000000     cpu=421849.00  
+887 sourcePhspEllipse_w887.egsdat  ncase=1500000000     cpu=426943.00  
+888 sourcePhspEllipse_w888.egsdat  ncase=1500000000     cpu=428204.00  
+889 sourcePhspEllipse_w889.egsdat  ncase=1500000000     cpu=420357.00  
+890 sourcePhspEllipse_w890.egsdat  ncase=1500000000     cpu=433004.00  
+891 sourcePhspEllipse_w891.egsdat  ncase=1500000000     cpu=432598.00  
+892 sourcePhspEllipse_w892.egsdat  ncase=1500000000     cpu=426574.00  
+893 sourcePhspEllipse_w893.egsdat  ncase=1500000000     cpu=426192.00  
+894 sourcePhspEllipse_w894.egsdat  ncase=1500000000     cpu=426786.00  
+895 sourcePhspEllipse_w895.egsdat  ncase=1500000000     cpu=428377.00  
+896 sourcePhspEllipse_w896.egsdat  ncase=1500000000     cpu=424822.00  
+897 sourcePhspEllipse_w897.egsdat  ncase=1500000000     cpu=404466.00  
+898 sourcePhspEllipse_w898.egsdat  ncase=1500000000     cpu=409328.00  
+899 sourcePhspEllipse_w899.egsdat  ncase=1500000000     cpu=413792.00  
+900 sourcePhspEllipse_w900.egsdat  ncase=1500000000     cpu=413004.00  
+901 sourcePhspEllipse_w901.egsdat  ncase=1500000000     cpu=403788.00  
+902 sourcePhspEllipse_w902.egsdat  ncase=1500000000     cpu=409516.00  
+903 sourcePhspEllipse_w903.egsdat  ncase=1500000000     cpu=410079.00  
+904 sourcePhspEllipse_w904.egsdat  ncase=1500000000     cpu=420495.00  
+905 sourcePhspEllipse_w905.egsdat  ncase=1500000000     cpu=408183.00  
+906 sourcePhspEllipse_w906.egsdat  ncase=1500000000     cpu=406973.00  
+907 sourcePhspEllipse_w907.egsdat  ncase=1500000000     cpu=412581.00  
+908 sourcePhspEllipse_w908.egsdat  ncase=1650000000     cpu=440117.00  
+909 sourcePhspEllipse_w909.egsdat  ncase=1500000000     cpu=408598.00  
+910 sourcePhspEllipse_w910.egsdat  ncase=1500000000     cpu=415625.00  
+911 sourcePhspEllipse_w911.egsdat  ncase=1500000000     cpu=429173.00  
+912 sourcePhspEllipse_w912.egsdat  ncase=1650000000     cpu=440196.00  
+913 sourcePhspEllipse_w913.egsdat  ncase=1500000000     cpu=414790.00  
+914 sourcePhspEllipse_w914.egsdat  ncase=1500000000     cpu=403617.00  
+915 sourcePhspEllipse_w915.egsdat  ncase=1650000000     cpu=438484.00  
+916 sourcePhspEllipse_w916.egsdat  ncase=1500000000     cpu=418203.00  
+917 sourcePhspEllipse_w917.egsdat  ncase=1500000000     cpu=427360.00  
+918 sourcePhspEllipse_w918.egsdat  ncase=1500000000     cpu=418399.00  
+919 sourcePhspEllipse_w919.egsdat  ncase=1500000000     cpu=424830.00  
+920 sourcePhspEllipse_w920.egsdat  ncase=1500000000     cpu=419906.00  
+921 sourcePhspEllipse_w921.egsdat  ncase=1500000000     cpu=422862.00  
+922 sourcePhspEllipse_w922.egsdat  ncase=1500000000     cpu=421481.00  
+923 sourcePhspEllipse_w923.egsdat  ncase=1500000000     cpu=430757.00  
+924 sourcePhspEllipse_w924.egsdat  ncase=1500000000     cpu=416850.00  
+925 sourcePhspEllipse_w925.egsdat  ncase=1500000000     cpu=428431.00  
+926 sourcePhspEllipse_w926.egsdat  ncase=1500000000     cpu=423429.00  
+927 sourcePhspEllipse_w927.egsdat  ncase=1500000000     cpu=424069.00  
+928 sourcePhspEllipse_w928.egsdat  ncase=1500000000     cpu=420355.00  
+929 sourcePhspEllipse_w929.egsdat  ncase=1500000000     cpu=421467.00  
+930 sourcePhspEllipse_w930.egsdat  ncase=1500000000     cpu=417456.00  
+931 sourcePhspEllipse_w931.egsdat  ncase=1500000000     cpu=418990.00  
+932 sourcePhspEllipse_w932.egsdat  ncase=1500000000     cpu=427020.00  
+933 sourcePhspEllipse_w933.egsdat  ncase=1500000000     cpu=418936.00  
+934 sourcePhspEllipse_w934.egsdat  ncase=1500000000     cpu=421558.00  
+935 sourcePhspEllipse_w935.egsdat  ncase=1500000000     cpu=420417.00  
+936 sourcePhspEllipse_w936.egsdat  ncase=1500000000     cpu=422862.00  
+937 sourcePhspEllipse_w937.egsdat  ncase=1500000000     cpu=430012.00  
+938 sourcePhspEllipse_w938.egsdat  ncase=1500000000     cpu=428097.00  
+939 sourcePhspEllipse_w939.egsdat  ncase=1500000000     cpu=432398.00  
+940 sourcePhspEllipse_w940.egsdat  ncase=1500000000     cpu=430678.00  
+941 sourcePhspEllipse_w941.egsdat  ncase=1500000000     cpu=433860.00  
+942 sourcePhspEllipse_w942.egsdat  ncase=1500000000     cpu=435001.00  
+943 sourcePhspEllipse_w943.egsdat  ncase=1500000000     cpu=424726.00  
+944 sourcePhspEllipse_w944.egsdat  ncase=1500000000     cpu=438379.00  
+945 sourcePhspEllipse_w945.egsdat  ncase=1500000000     cpu=425795.00  
+946 sourcePhspEllipse_w946.egsdat  ncase=1500000000     cpu=434966.00  
+947 sourcePhspEllipse_w947.egsdat  ncase=1500000000     cpu=426668.00  
+948 sourcePhspEllipse_w948.egsdat  ncase=1500000000     cpu=434663.00  
+949 sourcePhspEllipse_w949.egsdat  ncase=1500000000     cpu=422819.00  
+950 sourcePhspEllipse_w950.egsdat  ncase=1500000000     cpu=427154.00  
+951 sourcePhspEllipse_w951.egsdat  ncase=1500000000     cpu=430819.00  
+952 sourcePhspEllipse_w952.egsdat  ncase=1500000000     cpu=433801.00  
+953 sourcePhspEllipse_w953.egsdat  ncase=1500000000     cpu=425602.00  
+954 sourcePhspEllipse_w954.egsdat  ncase=1500000000     cpu=433892.00  
+955 sourcePhspEllipse_w955.egsdat  ncase=1500000000     cpu=431996.00  
+956 sourcePhspEllipse_w956.egsdat  ncase=1500000000     cpu=428437.00  
+957 sourcePhspEllipse_w957.egsdat  ncase=1500000000     cpu=419670.00  
+958 sourcePhspEllipse_w958.egsdat  ncase=1500000000     cpu=419379.00  
+959 sourcePhspEllipse_w959.egsdat  ncase=1500000000     cpu=425371.00  
+960 sourcePhspEllipse_w960.egsdat  ncase=1500000000     cpu=423019.00  
+961 sourcePhspEllipse_w961.egsdat  ncase=1500000000     cpu=416961.00  
+962 sourcePhspEllipse_w962.egsdat  ncase=1500000000     cpu=422593.00  
+963 sourcePhspEllipse_w963.egsdat  ncase=1500000000     cpu=430081.00  
+964 sourcePhspEllipse_w964.egsdat  ncase=1500000000     cpu=426920.00  
+965 sourcePhspEllipse_w965.egsdat  ncase=1500000000     cpu=421533.00  
+966 sourcePhspEllipse_w966.egsdat  ncase=1500000000     cpu=420523.00  
+967 sourcePhspEllipse_w967.egsdat  ncase=1500000000     cpu=426144.00  
+968 sourcePhspEllipse_w968.egsdat  ncase=1500000000     cpu=429091.00  
+969 sourcePhspEllipse_w969.egsdat  ncase=1500000000     cpu=421968.00  
+970 sourcePhspEllipse_w970.egsdat  ncase=1500000000     cpu=422675.00  
+971 sourcePhspEllipse_w971.egsdat  ncase=1500000000     cpu=430351.00  
+972 sourcePhspEllipse_w972.egsdat  ncase=1500000000     cpu=424239.00  
+973 sourcePhspEllipse_w973.egsdat  ncase=1500000000     cpu=423862.00  
+974 sourcePhspEllipse_w974.egsdat  ncase=1500000000     cpu=417185.00  
+975 sourcePhspEllipse_w975.egsdat  ncase=1500000000     cpu=423998.00  
+976 sourcePhspEllipse_w976.egsdat  ncase=1500000000     cpu=422221.00  
+977 sourcePhspEllipse_w977.egsdat  ncase=1500000000     cpu=405059.00  
+978 sourcePhspEllipse_w978.egsdat  ncase=1500000000     cpu=409939.00  
+979 sourcePhspEllipse_w979.egsdat  ncase=1500000000     cpu=406500.00  
+980 sourcePhspEllipse_w980.egsdat  ncase=1500000000     cpu=413991.00  
+981 sourcePhspEllipse_w981.egsdat  ncase=1500000000     cpu=403526.00  
+982 sourcePhspEllipse_w982.egsdat  ncase=1500000000     cpu=407157.00  
+983 sourcePhspEllipse_w983.egsdat  ncase=1500000000     cpu=409007.00  
+984 sourcePhspEllipse_w984.egsdat  ncase=1500000000     cpu=405303.00  
+985 sourcePhspEllipse_w985.egsdat  ncase=1500000000     cpu=410645.00  
+986 sourcePhspEllipse_w986.egsdat  ncase=1500000000     cpu=412881.00  
+987 sourcePhspEllipse_w987.egsdat  ncase=1500000000     cpu=404797.00  
+988 sourcePhspEllipse_w988.egsdat  ncase=1500000000     cpu=412974.00  
+989 sourcePhspEllipse_w989.egsdat  ncase=1500000000     cpu=407311.00  
+990 sourcePhspEllipse_w990.egsdat  ncase=1500000000     cpu=408224.00  
+991 sourcePhspEllipse_w991.egsdat  ncase=1500000000     cpu=415451.00  
+992 sourcePhspEllipse_w992.egsdat  ncase=1500000000     cpu=405631.00  
+993 sourcePhspEllipse_w993.egsdat  ncase=1500000000     cpu=406881.00  
+994 sourcePhspEllipse_w994.egsdat  ncase=1650000000     cpu=436829.00  
+995 sourcePhspEllipse_w995.egsdat  ncase=1500000000     cpu=410852.00  
+996 sourcePhspEllipse_w996.egsdat  ncase=1500000000     cpu=405165.00  
+997 sourcePhspEllipse_w997.egsdat  ncase=1500000000     cpu=406819.00  
+998 sourcePhspEllipse_w998.egsdat  ncase=1500000000     cpu=411155.00  
+999 sourcePhspEllipse_w999.egsdat  ncase=1500000000     cpu=409775.00  
+1000 sourcePhspEllipse_w1000.egsdat ncase=1500000000     cpu=406966.00  
+=======================================================================
+                            Total ncase=1497900000000  cpu=419405513.00
+
+
+
+Finished simulation
+
+Total cpu time for this run:            1.14 (sec.) 0.0003(hours)
+CPU time including previous runs:       419405514.14 (sec.) 116501.5317 (hours)
+Histories per hour:                     1.28573e+07   
+Number of random numbers used:          4779571303295262
+Number of electron CH steps:            6.47339e+13   
+Number of all electron steps:           9.53741e+14   
+
+
+ last case = -1043586304 Etot = 1.4979e+11
+
+
+======================================================
+ Energy fractions
+======================================================
+The first and last items in the following list of energy fractions are the reflected and transmitted energy, respectively. These two values are only meaningful if the source is directed in the positive z-direction. The remaining values are the deposited energy fractions in the regions of the geometry, but notice that the identifying index is the region number offset by 1 (ir+1).
+
+ir+1 | Reflected, deposited, or transmitted energy fraction for 1497900000000 particles:
+
+  0  1.554058e-01 +/- 2.628712e-07  
+  1  1.610083e-07 +/- 2.369953e-10  
+  2  1.125359e-10 +/- 4.486718e-12  
+  3  1.610104e-07 +/- 2.370543e-10  
+  4  9.729331e-08 +/- 1.799603e-10  
+  5  1.164169e-10 +/- 6.186631e-12  
+  6  9.667905e-08 +/- 1.792908e-10  
+  7  1.500279e-06 +/- 7.100719e-10  
+  8  1.028857e-05 +/- 1.856800e-09  
+  9  1.501736e-06 +/- 7.104402e-10  
+  10  2.236722e-06 +/- 8.934897e-10  
+  11  8.255232e-09 +/- 3.545941e-11  
+  12  2.235328e-06 +/- 8.932565e-10  
+  13  1.487530e-06 +/- 7.076090e-10  
+  14  3.652342e-07 +/- 3.968356e-10  
+  15  1.487371e-06 +/- 7.074574e-10  
+  16  1.723126e-05 +/- 2.421458e-09  
+  17  6.002908e-01 +/- 3.384286e-07  
+  18  1.722180e-05 +/- 2.420759e-09  
+  19  3.233932e-06 +/- 1.073223e-09  
+  20  1.638667e-05 +/- 2.386987e-09  
+  21  3.236082e-06 +/- 1.073501e-09  
+  22  2.622640e-06 +/- 9.290823e-10  
+  23  1.305353e-05 +/- 2.041794e-09  
+  24  2.623993e-06 +/- 9.292951e-10  
+  25  4.429293e-06 +/- 1.228968e-09  
+  26  2.773087e-05 +/- 3.059918e-09  
+  27  4.434282e-06 +/- 1.229684e-09  
+  28  0.000000e+00 +/- 0.000000e+00  
+  29  0.000000e+00 +/- 0.000000e+00  
+  30  0.000000e+00 +/- 0.000000e+00  
+  31  0.000000e+00 +/- 0.000000e+00  
+  32  0.000000e+00 +/- 0.000000e+00  
+  33  0.000000e+00 +/- 0.000000e+00  
+  34  0.000000e+00 +/- 0.000000e+00  
+  35  0.000000e+00 +/- 0.000000e+00  
+  36  0.000000e+00 +/- 0.000000e+00  
+  37  0.000000e+00 +/- 0.000000e+00  
+  38  0.000000e+00 +/- 0.000000e+00  
+  39  0.000000e+00 +/- 0.000000e+00  
+  40  0.000000e+00 +/- 0.000000e+00  
+  41  0.000000e+00 +/- 0.000000e+00  
+  42  0.000000e+00 +/- 0.000000e+00  
+  43  0.000000e+00 +/- 0.000000e+00  
+  44  0.000000e+00 +/- 0.000000e+00  
+  45  0.000000e+00 +/- 0.000000e+00  
+  46  0.000000e+00 +/- 0.000000e+00  
+  47  0.000000e+00 +/- 0.000000e+00  
+  48  0.000000e+00 +/- 0.000000e+00  
+  49  0.000000e+00 +/- 0.000000e+00  
+  50  0.000000e+00 +/- 0.000000e+00  
+  51  0.000000e+00 +/- 0.000000e+00  
+  52  0.000000e+00 +/- 0.000000e+00  
+  53  0.000000e+00 +/- 0.000000e+00  
+  54  0.000000e+00 +/- 0.000000e+00  
+  55  0.000000e+00 +/- 0.000000e+00  
+  56  0.000000e+00 +/- 0.000000e+00  
+  57  0.000000e+00 +/- 0.000000e+00  
+  58  0.000000e+00 +/- 0.000000e+00  
+  59  0.000000e+00 +/- 0.000000e+00  
+  60  0.000000e+00 +/- 0.000000e+00  
+  61  0.000000e+00 +/- 0.000000e+00  
+  62  0.000000e+00 +/- 0.000000e+00  
+  63  0.000000e+00 +/- 0.000000e+00  
+  64  0.000000e+00 +/- 0.000000e+00  
+  65  0.000000e+00 +/- 0.000000e+00  
+  66  0.000000e+00 +/- 0.000000e+00  
+  67  0.000000e+00 +/- 0.000000e+00  
+  68  0.000000e+00 +/- 0.000000e+00  
+  69  0.000000e+00 +/- 0.000000e+00  
+  70  0.000000e+00 +/- 0.000000e+00  
+  71  0.000000e+00 +/- 0.000000e+00  
+  72  0.000000e+00 +/- 0.000000e+00  
+  73  1.523658e-07 +/- 3.186896e-11  
+  74  0.000000e+00 +/- 0.000000e+00  
+  75  3.036234e-02 +/- 1.273419e-07  
+  76  1.592807e-02 +/- 8.893344e-08  
+  77  3.640064e-05 +/- 1.743098e-09  
+  78  0.000000e+00 +/- 0.000000e+00  
+  79  6.952952e-05 +/- 3.697668e-09  
+  80  0.000000e+00 +/- 0.000000e+00  
+  81  0.000000e+00 +/- 0.000000e+00  
+  82  0.000000e+00 +/- 0.000000e+00  
+  83  0.000000e+00 +/- 0.000000e+00  
+  84  0.000000e+00 +/- 0.000000e+00  
+  85  0.000000e+00 +/- 0.000000e+00  
+  86  0.000000e+00 +/- 0.000000e+00  
+  87  0.000000e+00 +/- 0.000000e+00  
+  88  0.000000e+00 +/- 0.000000e+00  
+  89  0.000000e+00 +/- 0.000000e+00  
+  90  0.000000e+00 +/- 0.000000e+00  
+  91  0.000000e+00 +/- 0.000000e+00  
+  92  0.000000e+00 +/- 0.000000e+00  
+  93  0.000000e+00 +/- 0.000000e+00  
+  94  0.000000e+00 +/- 0.000000e+00  
+  95  0.000000e+00 +/- 0.000000e+00  
+  96  0.000000e+00 +/- 0.000000e+00  
+  97  0.000000e+00 +/- 0.000000e+00  
+  98  0.000000e+00 +/- 0.000000e+00  
+  99  0.000000e+00 +/- 0.000000e+00  
+  100  0.000000e+00 +/- 0.000000e+00  
+  101  0.000000e+00 +/- 0.000000e+00  
+  102  0.000000e+00 +/- 0.000000e+00  
+  103  0.000000e+00 +/- 0.000000e+00  
+  104  0.000000e+00 +/- 0.000000e+00  
+  105  0.000000e+00 +/- 0.000000e+00  
+  106  0.000000e+00 +/- 0.000000e+00  
+  107  0.000000e+00 +/- 0.000000e+00  
+  108  0.000000e+00 +/- 0.000000e+00  
+  109  2.912088e-08 +/- 6.516117e-11  
+  110  0.000000e+00 +/- 0.000000e+00  
+  111  0.000000e+00 +/- 0.000000e+00  
+  112  0.000000e+00 +/- 0.000000e+00  
+  113  0.000000e+00 +/- 0.000000e+00  
+  114  0.000000e+00 +/- 0.000000e+00  
+  115  0.000000e+00 +/- 0.000000e+00  
+  116  0.000000e+00 +/- 0.000000e+00  
+  117  0.000000e+00 +/- 0.000000e+00  
+  118  0.000000e+00 +/- 0.000000e+00  
+  119  0.000000e+00 +/- 0.000000e+00  
+  120  0.000000e+00 +/- 0.000000e+00  
+  121  6.882051e-05 +/- 5.001072e-09  
+  122  1.205995e-06 +/- 5.679279e-10  
+  123  0.000000e+00 +/- 0.000000e+00  
+  124  4.773783e-09 +/- 2.286077e-11  
+  125  7.631461e-07 +/- 5.339728e-10  
+  126  9.543916e-07 +/- 5.245740e-10  
+  127  1.042339e-08 +/- 3.500716e-11  
+  128  1.001323e-06 +/- 5.984038e-10  
+  129  1.467442e-07 +/- 2.283475e-10  
+  130  4.492516e-09 +/- 1.735175e-11  
+  131  1.951113e-07 +/- 2.855509e-10  
+  132  0.000000e+00 +/- 0.000000e+00  
+  133  1.552121e-07 +/- 2.361401e-10  
+  134  0.000000e+00 +/- 0.000000e+00  
+  135  0.000000e+00 +/- 0.000000e+00  
+  136  0.000000e+00 +/- 0.000000e+00  
+  137  0.000000e+00 +/- 0.000000e+00  
+  138  0.000000e+00 +/- 0.000000e+00  
+  139  0.000000e+00 +/- 0.000000e+00  
+  140  0.000000e+00 +/- 0.000000e+00  
+  141  0.000000e+00 +/- 0.000000e+00  
+  142  0.000000e+00 +/- 0.000000e+00  
+  143  0.000000e+00 +/- 0.000000e+00  
+  144  0.000000e+00 +/- 0.000000e+00  
+  145  2.008936e-07 +/- 1.926213e-10  
+  146  1.053214e-05 +/- 1.950475e-09  
+  147  0.000000e+00 +/- 0.000000e+00  
+  148  0.000000e+00 +/- 0.000000e+00  
+  149  0.000000e+00 +/- 0.000000e+00  
+  150  0.000000e+00 +/- 0.000000e+00  
+  151  0.000000e+00 +/- 0.000000e+00  
+  152  0.000000e+00 +/- 0.000000e+00  
+  153  0.000000e+00 +/- 0.000000e+00  
+  154  0.000000e+00 +/- 0.000000e+00  
+  155  0.000000e+00 +/- 0.000000e+00  
+  156  0.000000e+00 +/- 0.000000e+00  
+  157  0.000000e+00 +/- 0.000000e+00  
+  158  0.000000e+00 +/- 0.000000e+00  
+  159  0.000000e+00 +/- 0.000000e+00  
+  160  0.000000e+00 +/- 0.000000e+00  
+  161  0.000000e+00 +/- 0.000000e+00  
+  162  0.000000e+00 +/- 0.000000e+00  
+  163  0.000000e+00 +/- 0.000000e+00  
+  164  0.000000e+00 +/- 0.000000e+00  
+  165  0.000000e+00 +/- 0.000000e+00  
+  166  0.000000e+00 +/- 0.000000e+00  
+  167  0.000000e+00 +/- 0.000000e+00  
+  168  0.000000e+00 +/- 0.000000e+00  
+  169  0.000000e+00 +/- 0.000000e+00  
+  170  0.000000e+00 +/- 0.000000e+00  
+  171  0.000000e+00 +/- 0.000000e+00  
+  172  0.000000e+00 +/- 0.000000e+00  
+  173  0.000000e+00 +/- 0.000000e+00  
+  174  0.000000e+00 +/- 0.000000e+00  
+  175  0.000000e+00 +/- 0.000000e+00  
+  176  0.000000e+00 +/- 0.000000e+00  
+  177  0.000000e+00 +/- 0.000000e+00  
+  178  0.000000e+00 +/- 0.000000e+00  
+  179  0.000000e+00 +/- 0.000000e+00  
+  180  0.000000e+00 +/- 0.000000e+00  
+  181  0.000000e+00 +/- 0.000000e+00  
+  182  0.000000e+00 +/- 0.000000e+00  
+  183  0.000000e+00 +/- 0.000000e+00  
+  184  0.000000e+00 +/- 0.000000e+00  
+  185  0.000000e+00 +/- 0.000000e+00  
+  186  0.000000e+00 +/- 0.000000e+00  
+  187  0.000000e+00 +/- 0.000000e+00  
+  188  0.000000e+00 +/- 0.000000e+00  
+  189  0.000000e+00 +/- 0.000000e+00  
+  190  0.000000e+00 +/- 0.000000e+00  
+  191  0.000000e+00 +/- 0.000000e+00  
+  192  0.000000e+00 +/- 0.000000e+00  
+  193  0.000000e+00 +/- 0.000000e+00  
+  194  0.000000e+00 +/- 0.000000e+00  
+  195  0.000000e+00 +/- 0.000000e+00  
+  196  0.000000e+00 +/- 0.000000e+00  
+  197  0.000000e+00 +/- 0.000000e+00  
+  198  0.000000e+00 +/- 0.000000e+00  
+  199  0.000000e+00 +/- 0.000000e+00  
+  200  0.000000e+00 +/- 0.000000e+00  
+  201  0.000000e+00 +/- 0.000000e+00  
+  202  0.000000e+00 +/- 0.000000e+00  
+  203  0.000000e+00 +/- 0.000000e+00  
+  204  0.000000e+00 +/- 0.000000e+00  
+  205  0.000000e+00 +/- 0.000000e+00  
+  206  0.000000e+00 +/- 0.000000e+00  
+  207  0.000000e+00 +/- 0.000000e+00  
+  208  0.000000e+00 +/- 0.000000e+00  
+  209  0.000000e+00 +/- 0.000000e+00  
+  210  0.000000e+00 +/- 0.000000e+00  
+  211  0.000000e+00 +/- 0.000000e+00  
+  212  0.000000e+00 +/- 0.000000e+00  
+  213  0.000000e+00 +/- 0.000000e+00  
+  214  0.000000e+00 +/- 0.000000e+00  
+  215  0.000000e+00 +/- 0.000000e+00  
+  216  0.000000e+00 +/- 0.000000e+00  
+  217  7.333483e-09 +/- 5.230244e-11  
+  218  1.115660e-08 +/- 6.598840e-11  
+  219  2.458340e-09 +/- 3.114368e-11  
+  220  2.886038e-09 +/- 3.263275e-11  
+  221  2.499858e-09 +/- 3.146681e-11  
+  222  1.117212e-08 +/- 6.596105e-11  
+  223  7.375963e-09 +/- 5.253088e-11  
+  224  1.566513e-08 +/- 7.752128e-11  
+  225  2.636850e-08 +/- 1.030095e-10  
+  226  8.231604e-09 +/- 5.540008e-11  
+  227  3.890337e-07 +/- 3.685533e-10  
+  228  8.331085e-09 +/- 5.570817e-11  
+  229  2.628066e-08 +/- 1.027659e-10  
+  230  1.569294e-08 +/- 7.763869e-11  
+  231  1.410099e-06 +/- 7.783979e-10  
+  232  3.153624e-06 +/- 1.168905e-09  
+  233  8.042715e-07 +/- 5.390546e-10  
+  234  7.486782e-09 +/- 2.336367e-11  
+  235  8.033625e-07 +/- 5.386297e-10  
+  236  3.153803e-06 +/- 1.168911e-09  
+  237  1.411595e-06 +/- 7.790477e-10  
+  238  2.549704e-07 +/- 3.197405e-10  
+  239  1.264787e-06 +/- 7.422740e-10  
+  240  4.096141e-07 +/- 4.060836e-10  
+  241  6.633076e-07 +/- 4.857749e-10  
+  242  4.094827e-07 +/- 4.059331e-10  
+  243  1.264871e-06 +/- 7.423757e-10  
+  244  2.554656e-07 +/- 3.201169e-10  
+  245  4.257826e-08 +/- 1.260617e-10  
+  246  7.187890e-07 +/- 5.582759e-10  
+  247  6.646493e-07 +/- 5.313082e-10  
+  248  1.453161e-06 +/- 7.623727e-10  
+  249  6.640908e-07 +/- 5.309924e-10  
+  250  7.182645e-07 +/- 5.580618e-10  
+  251  4.280341e-08 +/- 1.264357e-10  
+  252  2.042923e-11 +/- 2.228225e-12  
+  253  8.192596e-12 +/- 1.499808e-12  
+  254  1.460116e-12 +/- 4.592511e-13  
+  255  9.085458e-12 +/- 1.865878e-12  
+  256  3.442140e-12 +/- 9.667077e-13  
+  257  8.268650e-12 +/- 1.538344e-12  
+  258  1.889422e-11 +/- 2.280670e-12  
+  259  3.310019e-11 +/- 2.934998e-12  
+  260  2.100551e-11 +/- 3.329842e-12  
+  261  4.413005e-14 +/- 4.413001e-14  
+  262  2.408553e-14 +/- 1.577987e-14  
+  263  4.973243e-14 +/- 3.661112e-14  
+  264  1.876198e-11 +/- 3.145483e-12  
+  265  3.547493e-11 +/- 3.234071e-12  
+  266  1.538980e-09 +/- 2.791209e-11  
+  267  2.471760e-11 +/- 1.715277e-12  
+  268  1.419016e-12 +/- 3.103872e-13  
+  269  0.000000e+00 +/- 0.000000e+00  
+  270  1.526025e-12 +/- 3.340352e-13  
+  271  1.831036e-11 +/- 1.454150e-12  
+  272  1.587185e-09 +/- 2.826399e-11  
+  273  2.646708e-10 +/- 1.065361e-11  
+  274  1.278154e-09 +/- 2.616642e-11  
+  275  2.712384e-12 +/- 4.034657e-13  
+  276  1.150405e-11 +/- 9.651743e-13  
+  277  3.194810e-12 +/- 4.997510e-13  
+  278  1.261614e-09 +/- 2.604447e-11  
+  279  2.507992e-10 +/- 1.036589e-11  
+  280  3.700914e-10 +/- 1.041303e-11  
+  281  1.499909e-09 +/- 2.429642e-11  
+  282  1.476855e-09 +/- 2.471367e-11  
+  283  4.123169e-09 +/- 3.798385e-11  
+  284  1.411287e-09 +/- 2.402279e-11  
+  285  1.451496e-09 +/- 2.392610e-11  
+  286  3.597176e-10 +/- 1.015590e-11  
+  287  0.000000e+00 +/- 0.000000e+00  
+  288  0.000000e+00 +/- 0.000000e+00  
+  289  7.195658e-10 +/- 3.154333e-12  
+  290  0.000000e+00 +/- 0.000000e+00  
+  291  0.000000e+00 +/- 0.000000e+00  
+  292  0.000000e+00 +/- 0.000000e+00  
+  293  0.000000e+00 +/- 0.000000e+00  
+  294  0.000000e+00 +/- 0.000000e+00  
+  295  0.000000e+00 +/- 0.000000e+00  
+  296  0.000000e+00 +/- 0.000000e+00  
+  297  0.000000e+00 +/- 0.000000e+00  
+  298  0.000000e+00 +/- 0.000000e+00  
+  299  0.000000e+00 +/- 0.000000e+00  
+  300  0.000000e+00 +/- 0.000000e+00  
+  301  0.000000e+00 +/- 0.000000e+00  
+  302  0.000000e+00 +/- 0.000000e+00  
+  303  0.000000e+00 +/- 0.000000e+00  
+  304  0.000000e+00 +/- 0.000000e+00  
+  305  0.000000e+00 +/- 0.000000e+00  
+  306  0.000000e+00 +/- 0.000000e+00  
+  307  0.000000e+00 +/- 0.000000e+00  
+  308  0.000000e+00 +/- 0.000000e+00  
+  309  0.000000e+00 +/- 0.000000e+00  
+  310  0.000000e+00 +/- 0.000000e+00  
+  311  0.000000e+00 +/- 0.000000e+00  
+  312  0.000000e+00 +/- 0.000000e+00  
+  313  0.000000e+00 +/- 0.000000e+00  
+  314  0.000000e+00 +/- 0.000000e+00  
+  315  0.000000e+00 +/- 0.000000e+00  
+  316  0.000000e+00 +/- 0.000000e+00  
+  317  0.000000e+00 +/- 0.000000e+00  
+  318  0.000000e+00 +/- 0.000000e+00  
+  319  0.000000e+00 +/- 0.000000e+00  
+  320  0.000000e+00 +/- 0.000000e+00  
+  321  0.000000e+00 +/- 0.000000e+00  
+  322  0.000000e+00 +/- 0.000000e+00  
+  323  0.000000e+00 +/- 0.000000e+00  
+  324  0.000000e+00 +/- 0.000000e+00  
+  325  0.000000e+00 +/- 0.000000e+00  
+  326  0.000000e+00 +/- 0.000000e+00  
+  327  0.000000e+00 +/- 0.000000e+00  
+  328  0.000000e+00 +/- 0.000000e+00  
+  329  0.000000e+00 +/- 0.000000e+00  
+  330  0.000000e+00 +/- 0.000000e+00  
+  331  0.000000e+00 +/- 0.000000e+00  
+  332  0.000000e+00 +/- 0.000000e+00  
+  333  0.000000e+00 +/- 0.000000e+00  
+  334  0.000000e+00 +/- 0.000000e+00  
+  335  0.000000e+00 +/- 0.000000e+00  
+  336  0.000000e+00 +/- 0.000000e+00  
+  337  0.000000e+00 +/- 0.000000e+00  
+  338  0.000000e+00 +/- 0.000000e+00  
+  339  0.000000e+00 +/- 0.000000e+00  
+  340  0.000000e+00 +/- 0.000000e+00  
+  341  0.000000e+00 +/- 0.000000e+00  
+  342  0.000000e+00 +/- 0.000000e+00  
+  343  0.000000e+00 +/- 0.000000e+00  
+  344  0.000000e+00 +/- 0.000000e+00  
+  345  0.000000e+00 +/- 0.000000e+00  
+  346  0.000000e+00 +/- 0.000000e+00  
+  347  0.000000e+00 +/- 0.000000e+00  
+  348  0.000000e+00 +/- 0.000000e+00  
+  349  0.000000e+00 +/- 0.000000e+00  
+  350  0.000000e+00 +/- 0.000000e+00  
+  351  0.000000e+00 +/- 0.000000e+00  
+  352  0.000000e+00 +/- 0.000000e+00  
+  353  0.000000e+00 +/- 0.000000e+00  
+  354  0.000000e+00 +/- 0.000000e+00  
+  355  0.000000e+00 +/- 0.000000e+00  
+  356  0.000000e+00 +/- 0.000000e+00  
+  357  0.000000e+00 +/- 0.000000e+00  
+  358  0.000000e+00 +/- 0.000000e+00  
+  359  0.000000e+00 +/- 0.000000e+00  
+  360  0.000000e+00 +/- 0.000000e+00  
+  361  2.257208e-06 +/- 7.230231e-10  
+  362  0.000000e+00 +/- 0.000000e+00  
+  363  0.000000e+00 +/- 0.000000e+00  
+  364  0.000000e+00 +/- 0.000000e+00  
+  365  0.000000e+00 +/- 0.000000e+00  
+  366  0.000000e+00 +/- 0.000000e+00  
+  367  0.000000e+00 +/- 0.000000e+00  
+  368  0.000000e+00 +/- 0.000000e+00  
+  369  0.000000e+00 +/- 0.000000e+00  
+  370  0.000000e+00 +/- 0.000000e+00  
+  371  0.000000e+00 +/- 0.000000e+00  
+  372  0.000000e+00 +/- 0.000000e+00  
+  373  0.000000e+00 +/- 0.000000e+00  
+  374  0.000000e+00 +/- 0.000000e+00  
+  375  0.000000e+00 +/- 0.000000e+00  
+  376  0.000000e+00 +/- 0.000000e+00  
+  377  0.000000e+00 +/- 0.000000e+00  
+  378  0.000000e+00 +/- 0.000000e+00  
+  379  0.000000e+00 +/- 0.000000e+00  
+  380  0.000000e+00 +/- 0.000000e+00  
+  381  0.000000e+00 +/- 0.000000e+00  
+  382  0.000000e+00 +/- 0.000000e+00  
+  383  0.000000e+00 +/- 0.000000e+00  
+  384  0.000000e+00 +/- 0.000000e+00  
+  385  0.000000e+00 +/- 0.000000e+00  
+  386  0.000000e+00 +/- 0.000000e+00  
+  387  0.000000e+00 +/- 0.000000e+00  
+  388  0.000000e+00 +/- 0.000000e+00  
+  389  0.000000e+00 +/- 0.000000e+00  
+  390  0.000000e+00 +/- 0.000000e+00  
+  391  0.000000e+00 +/- 0.000000e+00  
+  392  0.000000e+00 +/- 0.000000e+00  
+  393  0.000000e+00 +/- 0.000000e+00  
+  394  0.000000e+00 +/- 0.000000e+00  
+  395  0.000000e+00 +/- 0.000000e+00  
+  396  0.000000e+00 +/- 0.000000e+00  
+  397  0.000000e+00 +/- 0.000000e+00  
+  398  0.000000e+00 +/- 0.000000e+00  
+  399  0.000000e+00 +/- 0.000000e+00  
+  400  0.000000e+00 +/- 0.000000e+00  
+  401  0.000000e+00 +/- 0.000000e+00  
+  402  0.000000e+00 +/- 0.000000e+00  
+  403  0.000000e+00 +/- 0.000000e+00  
+  404  0.000000e+00 +/- 0.000000e+00  
+  405  0.000000e+00 +/- 0.000000e+00  
+  406  0.000000e+00 +/- 0.000000e+00  
+  407  0.000000e+00 +/- 0.000000e+00  
+  408  0.000000e+00 +/- 0.000000e+00  
+  409  0.000000e+00 +/- 0.000000e+00  
+  410  0.000000e+00 +/- 0.000000e+00  
+  411  0.000000e+00 +/- 0.000000e+00  
+  412  0.000000e+00 +/- 0.000000e+00  
+  413  0.000000e+00 +/- 0.000000e+00  
+  414  0.000000e+00 +/- 0.000000e+00  
+  415  0.000000e+00 +/- 0.000000e+00  
+  416  0.000000e+00 +/- 0.000000e+00  
+  417  0.000000e+00 +/- 0.000000e+00  
+  418  0.000000e+00 +/- 0.000000e+00  
+  419  0.000000e+00 +/- 0.000000e+00  
+  420  0.000000e+00 +/- 0.000000e+00  
+  421  0.000000e+00 +/- 0.000000e+00  
+  422  0.000000e+00 +/- 0.000000e+00  
+  423  0.000000e+00 +/- 0.000000e+00  
+  424  0.000000e+00 +/- 0.000000e+00  
+  425  0.000000e+00 +/- 0.000000e+00  
+  426  0.000000e+00 +/- 0.000000e+00  
+  427  0.000000e+00 +/- 0.000000e+00  
+  428  0.000000e+00 +/- 0.000000e+00  
+  429  0.000000e+00 +/- 0.000000e+00  
+  430  0.000000e+00 +/- 0.000000e+00  
+  431  0.000000e+00 +/- 0.000000e+00  
+  432  0.000000e+00 +/- 0.000000e+00  
+  433  0.000000e+00 +/- 0.000000e+00  
+  434  0.000000e+00 +/- 0.000000e+00  
+  435  0.000000e+00 +/- 0.000000e+00  
+  436  0.000000e+00 +/- 0.000000e+00  
+  437  0.000000e+00 +/- 0.000000e+00  
+  438  0.000000e+00 +/- 0.000000e+00  
+  439  0.000000e+00 +/- 0.000000e+00  
+  440  0.000000e+00 +/- 0.000000e+00  
+  441  0.000000e+00 +/- 0.000000e+00  
+  442  0.000000e+00 +/- 0.000000e+00  
+  443  0.000000e+00 +/- 0.000000e+00  
+  444  0.000000e+00 +/- 0.000000e+00  
+  445  0.000000e+00 +/- 0.000000e+00  
+  446  0.000000e+00 +/- 0.000000e+00  
+  447  0.000000e+00 +/- 0.000000e+00  
+  448  0.000000e+00 +/- 0.000000e+00  
+  449  0.000000e+00 +/- 0.000000e+00  
+  450  0.000000e+00 +/- 0.000000e+00  
+  451  0.000000e+00 +/- 0.000000e+00  
+  452  0.000000e+00 +/- 0.000000e+00  
+  453  0.000000e+00 +/- 0.000000e+00  
+  454  0.000000e+00 +/- 0.000000e+00  
+  455  0.000000e+00 +/- 0.000000e+00  
+  456  0.000000e+00 +/- 0.000000e+00  
+  457  0.000000e+00 +/- 0.000000e+00  
+  458  0.000000e+00 +/- 0.000000e+00  
+  459  0.000000e+00 +/- 0.000000e+00  
+  460  0.000000e+00 +/- 0.000000e+00  
+  461  0.000000e+00 +/- 0.000000e+00  
+  462  0.000000e+00 +/- 0.000000e+00  
+  463  0.000000e+00 +/- 0.000000e+00  
+  464  0.000000e+00 +/- 0.000000e+00  
+  465  0.000000e+00 +/- 0.000000e+00  
+  466  0.000000e+00 +/- 0.000000e+00  
+  467  0.000000e+00 +/- 0.000000e+00  
+  468  0.000000e+00 +/- 0.000000e+00  
+  469  0.000000e+00 +/- 0.000000e+00  
+  470  0.000000e+00 +/- 0.000000e+00  
+  471  0.000000e+00 +/- 0.000000e+00  
+  472  0.000000e+00 +/- 0.000000e+00  
+  473  0.000000e+00 +/- 0.000000e+00  
+  474  0.000000e+00 +/- 0.000000e+00  
+  475  0.000000e+00 +/- 0.000000e+00  
+  476  0.000000e+00 +/- 0.000000e+00  
+  477  0.000000e+00 +/- 0.000000e+00  
+  478  0.000000e+00 +/- 0.000000e+00  
+  479  0.000000e+00 +/- 0.000000e+00  
+  480  0.000000e+00 +/- 0.000000e+00  
+  481  0.000000e+00 +/- 0.000000e+00  
+  482  0.000000e+00 +/- 0.000000e+00  
+  483  0.000000e+00 +/- 0.000000e+00  
+  484  0.000000e+00 +/- 0.000000e+00  
+  485  0.000000e+00 +/- 0.000000e+00  
+  486  0.000000e+00 +/- 0.000000e+00  
+  487  0.000000e+00 +/- 0.000000e+00  
+  488  0.000000e+00 +/- 0.000000e+00  
+  489  0.000000e+00 +/- 0.000000e+00  
+  490  0.000000e+00 +/- 0.000000e+00  
+  491  0.000000e+00 +/- 0.000000e+00  
+  492  0.000000e+00 +/- 0.000000e+00  
+  493  0.000000e+00 +/- 0.000000e+00  
+  494  0.000000e+00 +/- 0.000000e+00  
+  495  0.000000e+00 +/- 0.000000e+00  
+  496  0.000000e+00 +/- 0.000000e+00  
+  497  0.000000e+00 +/- 0.000000e+00  
+  498  0.000000e+00 +/- 0.000000e+00  
+  499  0.000000e+00 +/- 0.000000e+00  
+  500  0.000000e+00 +/- 0.000000e+00  
+  501  0.000000e+00 +/- 0.000000e+00  
+  502  0.000000e+00 +/- 0.000000e+00  
+  503  0.000000e+00 +/- 0.000000e+00  
+  504  0.000000e+00 +/- 0.000000e+00  
+  505  0.000000e+00 +/- 0.000000e+00  
+  506  0.000000e+00 +/- 0.000000e+00  
+  507  0.000000e+00 +/- 0.000000e+00  
+  508  0.000000e+00 +/- 0.000000e+00  
+  509  0.000000e+00 +/- 0.000000e+00  
+  510  0.000000e+00 +/- 0.000000e+00  
+  511  0.000000e+00 +/- 0.000000e+00  
+  512  0.000000e+00 +/- 0.000000e+00  
+  513  0.000000e+00 +/- 0.000000e+00  
+  514  0.000000e+00 +/- 0.000000e+00  
+  515  0.000000e+00 +/- 0.000000e+00  
+  516  0.000000e+00 +/- 0.000000e+00  
+  517  0.000000e+00 +/- 0.000000e+00  
+  518  0.000000e+00 +/- 0.000000e+00  
+  519  0.000000e+00 +/- 0.000000e+00  
+  520  0.000000e+00 +/- 0.000000e+00  
+  521  0.000000e+00 +/- 0.000000e+00  
+  522  0.000000e+00 +/- 0.000000e+00  
+  523  0.000000e+00 +/- 0.000000e+00  
+  524  0.000000e+00 +/- 0.000000e+00  
+  525  0.000000e+00 +/- 0.000000e+00  
+  526  0.000000e+00 +/- 0.000000e+00  
+  527  0.000000e+00 +/- 0.000000e+00  
+  528  0.000000e+00 +/- 0.000000e+00  
+  529  0.000000e+00 +/- 0.000000e+00  
+  530  0.000000e+00 +/- 0.000000e+00  
+  531  0.000000e+00 +/- 0.000000e+00  
+  532  0.000000e+00 +/- 0.000000e+00  
+  533  0.000000e+00 +/- 0.000000e+00  
+  534  0.000000e+00 +/- 0.000000e+00  
+  535  0.000000e+00 +/- 0.000000e+00  
+  536  0.000000e+00 +/- 0.000000e+00  
+  537  0.000000e+00 +/- 0.000000e+00  
+  538  0.000000e+00 +/- 0.000000e+00  
+  539  0.000000e+00 +/- 0.000000e+00  
+  540  0.000000e+00 +/- 0.000000e+00  
+  541  0.000000e+00 +/- 0.000000e+00  
+  542  0.000000e+00 +/- 0.000000e+00  
+  543  0.000000e+00 +/- 0.000000e+00  
+  544  0.000000e+00 +/- 0.000000e+00  
+  545  0.000000e+00 +/- 0.000000e+00  
+  546  0.000000e+00 +/- 0.000000e+00  
+  547  0.000000e+00 +/- 0.000000e+00  
+  548  0.000000e+00 +/- 0.000000e+00  
+  549  0.000000e+00 +/- 0.000000e+00  
+  550  0.000000e+00 +/- 0.000000e+00  
+  551  0.000000e+00 +/- 0.000000e+00  
+  552  0.000000e+00 +/- 0.000000e+00  
+  553  0.000000e+00 +/- 0.000000e+00  
+  554  0.000000e+00 +/- 0.000000e+00  
+  555  0.000000e+00 +/- 0.000000e+00  
+  556  0.000000e+00 +/- 0.000000e+00  
+  557  0.000000e+00 +/- 0.000000e+00  
+  558  0.000000e+00 +/- 0.000000e+00  
+  559  0.000000e+00 +/- 0.000000e+00  
+  560  0.000000e+00 +/- 0.000000e+00  
+  561  0.000000e+00 +/- 0.000000e+00  
+  562  0.000000e+00 +/- 0.000000e+00  
+  563  0.000000e+00 +/- 0.000000e+00  
+  564  0.000000e+00 +/- 0.000000e+00  
+  565  0.000000e+00 +/- 0.000000e+00  
+  566  0.000000e+00 +/- 0.000000e+00  
+  567  0.000000e+00 +/- 0.000000e+00  
+  568  0.000000e+00 +/- 0.000000e+00  
+  569  0.000000e+00 +/- 0.000000e+00  
+  570  0.000000e+00 +/- 0.000000e+00  
+  571  0.000000e+00 +/- 0.000000e+00  
+  572  0.000000e+00 +/- 0.000000e+00  
+  573  0.000000e+00 +/- 0.000000e+00  
+  574  0.000000e+00 +/- 0.000000e+00  
+  575  0.000000e+00 +/- 0.000000e+00  
+  576  0.000000e+00 +/- 0.000000e+00  
+  577  0.000000e+00 +/- 0.000000e+00  
+  578  0.000000e+00 +/- 0.000000e+00  
+  579  0.000000e+00 +/- 0.000000e+00  
+  580  0.000000e+00 +/- 0.000000e+00  
+  581  0.000000e+00 +/- 0.000000e+00  
+  582  0.000000e+00 +/- 0.000000e+00  
+  583  0.000000e+00 +/- 0.000000e+00  
+  584  0.000000e+00 +/- 0.000000e+00  
+  585  0.000000e+00 +/- 0.000000e+00  
+  586  0.000000e+00 +/- 0.000000e+00  
+  587  0.000000e+00 +/- 0.000000e+00  
+  588  0.000000e+00 +/- 0.000000e+00  
+  589  0.000000e+00 +/- 0.000000e+00  
+  590  0.000000e+00 +/- 0.000000e+00  
+  591  0.000000e+00 +/- 0.000000e+00  
+  592  0.000000e+00 +/- 0.000000e+00  
+  593  0.000000e+00 +/- 0.000000e+00  
+  594  0.000000e+00 +/- 0.000000e+00  
+  595  0.000000e+00 +/- 0.000000e+00  
+  596  0.000000e+00 +/- 0.000000e+00  
+  597  0.000000e+00 +/- 0.000000e+00  
+  598  0.000000e+00 +/- 0.000000e+00  
+  599  0.000000e+00 +/- 0.000000e+00  
+  600  0.000000e+00 +/- 0.000000e+00  
+  601  0.000000e+00 +/- 0.000000e+00  
+  602  0.000000e+00 +/- 0.000000e+00  
+  603  0.000000e+00 +/- 0.000000e+00  
+  604  0.000000e+00 +/- 0.000000e+00  
+  605  0.000000e+00 +/- 0.000000e+00  
+  606  0.000000e+00 +/- 0.000000e+00  
+  607  0.000000e+00 +/- 0.000000e+00  
+  608  0.000000e+00 +/- 0.000000e+00  
+  609  0.000000e+00 +/- 0.000000e+00  
+  610  0.000000e+00 +/- 0.000000e+00  
+  611  0.000000e+00 +/- 0.000000e+00  
+  612  0.000000e+00 +/- 0.000000e+00  
+  613  0.000000e+00 +/- 0.000000e+00  
+  614  0.000000e+00 +/- 0.000000e+00  
+  615  0.000000e+00 +/- 0.000000e+00  
+  616  0.000000e+00 +/- 0.000000e+00  
+  617  0.000000e+00 +/- 0.000000e+00  
+  618  0.000000e+00 +/- 0.000000e+00  
+  619  0.000000e+00 +/- 0.000000e+00  
+  620  0.000000e+00 +/- 0.000000e+00  
+  621  0.000000e+00 +/- 0.000000e+00  
+  622  0.000000e+00 +/- 0.000000e+00  
+  623  0.000000e+00 +/- 0.000000e+00  
+  624  0.000000e+00 +/- 0.000000e+00  
+  625  0.000000e+00 +/- 0.000000e+00  
+  626  0.000000e+00 +/- 0.000000e+00  
+  627  0.000000e+00 +/- 0.000000e+00  
+  628  0.000000e+00 +/- 0.000000e+00  
+  629  0.000000e+00 +/- 0.000000e+00  
+  630  0.000000e+00 +/- 0.000000e+00  
+  631  0.000000e+00 +/- 0.000000e+00  
+  632  0.000000e+00 +/- 0.000000e+00  
+  633  0.000000e+00 +/- 0.000000e+00  
+  634  0.000000e+00 +/- 0.000000e+00  
+  635  0.000000e+00 +/- 0.000000e+00  
+  636  0.000000e+00 +/- 0.000000e+00  
+  637  0.000000e+00 +/- 0.000000e+00  
+  638  0.000000e+00 +/- 0.000000e+00  
+  639  0.000000e+00 +/- 0.000000e+00  
+  640  0.000000e+00 +/- 0.000000e+00  
+  641  0.000000e+00 +/- 0.000000e+00  
+  642  0.000000e+00 +/- 0.000000e+00  
+  643  0.000000e+00 +/- 0.000000e+00  
+  644  0.000000e+00 +/- 0.000000e+00  
+  645  0.000000e+00 +/- 0.000000e+00  
+  646  0.000000e+00 +/- 0.000000e+00  
+  647  0.000000e+00 +/- 0.000000e+00  
+  648  0.000000e+00 +/- 0.000000e+00  
+  649  0.000000e+00 +/- 0.000000e+00  
+  650  0.000000e+00 +/- 0.000000e+00  
+  651  0.000000e+00 +/- 0.000000e+00  
+  652  0.000000e+00 +/- 0.000000e+00  
+  653  0.000000e+00 +/- 0.000000e+00  
+  654  0.000000e+00 +/- 0.000000e+00  
+  655  0.000000e+00 +/- 0.000000e+00  
+  656  0.000000e+00 +/- 0.000000e+00  
+  657  0.000000e+00 +/- 0.000000e+00  
+  658  0.000000e+00 +/- 0.000000e+00  
+  659  0.000000e+00 +/- 0.000000e+00  
+  660  0.000000e+00 +/- 0.000000e+00  
+  661  0.000000e+00 +/- 0.000000e+00  
+  662  0.000000e+00 +/- 0.000000e+00  
+  663  0.000000e+00 +/- 0.000000e+00  
+  664  0.000000e+00 +/- 0.000000e+00  
+  665  0.000000e+00 +/- 0.000000e+00  
+  666  0.000000e+00 +/- 0.000000e+00  
+  667  0.000000e+00 +/- 0.000000e+00  
+  668  0.000000e+00 +/- 0.000000e+00  
+  669  0.000000e+00 +/- 0.000000e+00  
+  670  0.000000e+00 +/- 0.000000e+00  
+  671  0.000000e+00 +/- 0.000000e+00  
+  672  0.000000e+00 +/- 0.000000e+00  
+  673  0.000000e+00 +/- 0.000000e+00  
+  674  0.000000e+00 +/- 0.000000e+00  
+  675  0.000000e+00 +/- 0.000000e+00  
+  676  0.000000e+00 +/- 0.000000e+00  
+  677  0.000000e+00 +/- 0.000000e+00  
+  678  0.000000e+00 +/- 0.000000e+00  
+  679  0.000000e+00 +/- 0.000000e+00  
+  680  0.000000e+00 +/- 0.000000e+00  
+  681  0.000000e+00 +/- 0.000000e+00  
+  682  0.000000e+00 +/- 0.000000e+00  
+  683  0.000000e+00 +/- 0.000000e+00  
+  684  0.000000e+00 +/- 0.000000e+00  
+  685  0.000000e+00 +/- 0.000000e+00  
+  686  0.000000e+00 +/- 0.000000e+00  
+  687  0.000000e+00 +/- 0.000000e+00  
+  688  0.000000e+00 +/- 0.000000e+00  
+  689  0.000000e+00 +/- 0.000000e+00  
+  690  0.000000e+00 +/- 0.000000e+00  
+  691  0.000000e+00 +/- 0.000000e+00  
+  692  0.000000e+00 +/- 0.000000e+00  
+  693  0.000000e+00 +/- 0.000000e+00  
+  694  0.000000e+00 +/- 0.000000e+00  
+  695  0.000000e+00 +/- 0.000000e+00  
+  696  0.000000e+00 +/- 0.000000e+00  
+  697  0.000000e+00 +/- 0.000000e+00  
+  698  0.000000e+00 +/- 0.000000e+00  
+  699  0.000000e+00 +/- 0.000000e+00  
+  700  0.000000e+00 +/- 0.000000e+00  
+  701  0.000000e+00 +/- 0.000000e+00  
+  702  0.000000e+00 +/- 0.000000e+00  
+  703  0.000000e+00 +/- 0.000000e+00  
+  704  0.000000e+00 +/- 0.000000e+00  
+  705  0.000000e+00 +/- 0.000000e+00  
+  706  0.000000e+00 +/- 0.000000e+00  
+  707  0.000000e+00 +/- 0.000000e+00  
+  708  0.000000e+00 +/- 0.000000e+00  
+  709  0.000000e+00 +/- 0.000000e+00  
+  710  0.000000e+00 +/- 0.000000e+00  
+  711  0.000000e+00 +/- 0.000000e+00  
+  712  0.000000e+00 +/- 0.000000e+00  
+  713  0.000000e+00 +/- 0.000000e+00  
+  714  0.000000e+00 +/- 0.000000e+00  
+  715  0.000000e+00 +/- 0.000000e+00  
+  716  0.000000e+00 +/- 0.000000e+00  
+  717  0.000000e+00 +/- 0.000000e+00  
+  718  0.000000e+00 +/- 0.000000e+00  
+  719  0.000000e+00 +/- 0.000000e+00  
+  720  0.000000e+00 +/- 0.000000e+00  
+  721  1.976667e-01 +/- 2.872812e-07  
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     0
+   Total tracks scored:     0
+   Still being scored:      0
+   Output file name:        /home/rsmina/EGSnrc/egs_home/TB/sourcePhspEllipse.ptracks
+
+
+======================================================
+Phase Space Scoring Object(sourcePhsp100kvPart1)
+======================================================
+
+ IAEA format phase space output:
+ Header file: /home/rsmina/EGSnrc/egs_home/TB/sourcePhsp100kvPart1.1.IAEAheader
+ Data file: /home/rsmina/EGSnrc/egs_home/TB/sourcePhsp100kvPart1.1.IAEAphsp
+Summary of scored data:
+=> total no. of particles = 118176735 
+=> no. of photons = 118014044 
+=> max. k.e. of all particles = -1e+30 MeV
+=> min. k.e. of charged particles = 1e+30 MeV
+=> no. of primary histories represented = -4582191675627087389
+
+======================================================
+
+======================================================
+Dose Scoring Object(dose)
+======================================================
+=> last case = 1497900000000 fluence = 1.4979e+12
+
+
+==> Summary of region dosimetry (per particle)
+ ir  medium         rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+--------------------------------------------------------------------------------------
+360 air               0.001     1.0000 2.2572e-07 +/- 0.032  % 3.0014e-14 +/- 0.032  %
+--------------------------------------------------------------------------------------
+
+======================================================
+
+
+================================================================================
+Finished simulation
+
+  Elapsed time:                   14.2 s (  0.004 h)
+  CPU time:                        4.1 s (  0.001 h)
+  Ratio:                          3.506
+
+
+End of run                                             Tue Oct 25 09:28:02 2022
+================================================================================
+finishSimulation(TB) 0
