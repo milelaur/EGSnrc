@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 10000
+    ncase = 100000
     #calculation = combine
     #nchunk = 50000
     #nbatch = 3
@@ -45,6 +45,19 @@
         :stop media input:
     :stop geometry:
 
+    ### Phsp plate
+    :start geometry:
+        name = plate
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -2 2
+        y-planes = -2 2
+        z-planes = -6 -4
+        :start media input:
+            media = water
+        :stop media input:
+    :stop geometry:
+
 	### Geometry that contains testing geometry for source
     :start geometry:
         name = source_test
@@ -52,12 +65,19 @@
         geometries = anode src
     :stop geometry:
 
+    ### Geometry that contains vacuum and plate
+    :start geometry:
+        name = source_test1
+        library = egs_gunion
+        geometries = plate src
+    :stop geometry:
+
 	################################
 	### SIMULATION GEOMETRY
 	################################
 
 	### Testing source
-	simulation geometry = src
+	simulation geometry = source_test1
 
 :stop geometry definition:
 
@@ -157,34 +177,35 @@
 ################################
 :start source definition:
 
-     :start source:
+    :start source:
         name = cathode_src
-        library = egs_parallel_beam
-        charge = -1
-        direction = 0 0 -1
-        :start spectrum:
-            type = monoenergetic
-            energy = 0.1 # in MeV
-        :stop spectrum:
+	library = egs_parallel_beam
+	charge = -1
+	direction = 0 0 -1
+	:start spectrum:
+	    type = monoenergetic
+	    energy = 0.1 # in MeV
+	:stop spectrum:
         :start shape:
-            library = egs_gaussian_shape
+    	    library = egs_gaussian_shape
             :start shape:
                 library = egs_ellipse
-                ## Large electron spot on the target: Length [5.78699mm, 8.26713mm] -> avg. 0.703 cm, Width [4.13357mm, 5.78699mm] -> avg 0.496028 cm
+                ## Large electron spot on the target: Length [5.78699mm, 8.26713mm] -> avg. 0.703 cm, Width [4.13357mm, 5.78699mm] -> avg 0.4$
                 halfaxis = 0.248014 0.351353
-                ## Small electron spot on the target: Length [2.48014mm, 3.51353mm] -> avg 0.30 cm, Width [1.65343mm, 2.48014mm] -> avg 0.206678 cm
+                ## Small electron spot on the target: Length [2.48014mm, 3.51353mm] -> avg 0.30 cm, Width [1.65343mm, 2.48014mm] -> avg 0.206$
                 #halfaxis = 0.10333925 0.14984175
+                #halfaxis = 0.0496028 0.0702706
                 midpoint = 0 0
             :stop shape:
             ## sigma = FWHM/(2*sqrt(2*ln(2)))
             ## Large electron spot
-            sigma = 0.210643697 0.298411762
+            #sigma = 0.210643697 0.298411762
             ## Small electron spot
             #sigma = 0.0877682779 0.127263865
 
-	    ## sigma = FWHM/(2*sqrt(2*ln(2))) * 20%
+            ## sigma = FWHM/(2*sqrt(2*ln(2))) * 20%
             ## Large electron spot (halfaxis on the target [~0.27, ~0.38] according to egs_view)
-            #sigma = 0.0421287394  0.0596823524
+            sigma = 0.0421287394  0.0596823524
             ## Small electron spot (halfaxis on the target [~0.105, ~0.16] according to egs_view)
             #sigma = 0.01755365558 0.025452773
         :stop shape:
@@ -210,7 +231,7 @@
     :stop source:
 
 	### Use the source by this name for the simulation
-	simulation source = cathode
+	simulation source = cathode_src
 :stop source definition:
 
 ################################
@@ -223,8 +244,20 @@
 		library = egs_track_scoring
 		score electrons = yes
 		score positrons = no
-    	stop scoring   = 10000
+    	stop scoring   = 100000
 	:stop ausgab object:
+
+    :start ausgab object:
+        library                  = egs_phsp_scoring
+        name                     = sourceTesting
+        output format            = IAEA
+        particle type            = all
+        #output directory         =
+        phase space geometry     = plate
+        score particles on       = entry
+        constant Z               = -4
+    :stop ausgab object:
+
 
 :stop ausgab object definition:
 
