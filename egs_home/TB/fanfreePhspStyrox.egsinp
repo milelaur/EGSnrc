@@ -172,7 +172,7 @@
         y-planes = -0.5 0.5
         z-planes = 100 100.5
         :start media input:
-            media = polystyrene
+            media = water
         :stop media input:
         set label = Prof 4
     :stop geometry:
@@ -186,7 +186,7 @@
         y-planes = -20 -19 -18 -17 -16 -15 -14 -13 -12 -11 -10 -9 -8 -7 -6 -5 -4 -3 -2 -1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
         z-planes = 100 100.5
         :start media input:
-            media = polystyrene
+            media = water
         :stop media input:
     :stop geometry:
 
@@ -199,7 +199,7 @@
         y-planes = -0.5 0.5
         z-planes = 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120
         :start media input:
-            media = polystyrene
+            media = water
         :stop media input:
     :stop geometry:
 
@@ -478,7 +478,7 @@
     ### Dose scoring object to x profile
     :start ausgab object:
         library = egs_dose_scoring
-        name = profilexStyrox
+        name = profilexFilm
         medium dose = no
         region dose = yes
         :start output dose file:
@@ -617,11 +617,12 @@
 	set color = aluminum 0 0 255 200
 	set color = steel 0 255 0 200
 	set color = pb 255 85 0 200
-	set color = polystyrene 85 170 255 200
+	set color = water 85 170 255 200
 	set color = titanium 0 170 127 250
-        set color = carbonate 170 85 0 200
+    set color = carbonate 170 85 0 200
 	set color = target_material 85 225 127 200
-        set color = molybdenum 0 170 225 200
+    set color = molybdenum 0 170 225 200
 	set color = graphite 170 85 127 200
 	set color = vacuum 225 225 225 50
+    set color = polystyrene 150 115 225 200
 :stop view control:
