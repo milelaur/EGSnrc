@@ -19,20 +19,20 @@
 ################################
 :start geometry definition:
 
-	################################
+    ################################
     ### Anode target
     ################################
-	:start geometry:
+    :start geometry:
         library = egs_glib
         name = anode
         include file = anode.egsinp
     :stop geometry:
 
 
-	################################
+    ################################
     ### X-ray window
     ################################
-	:start geometry:
+    :start geometry:
         library = egs_glib
         name = xray_window
         include file = x-ray_window.egsinp
@@ -42,14 +42,14 @@
     ################################
     ### Pb port
     ################################
-	:start geometry:
+    :start geometry:
         library = egs_glib
         name = pb_port
         include file = pb_port.egsinp
     :stop geometry:
 	
 
-	################################
+    ################################
     ### Faceplate
     ################################
 
@@ -62,7 +62,7 @@
     ################################
     ### Primary collimator
     ################################
-	:start geometry:
+    :start geometry:
         library = egs_glib
         name = primary_collimator
         include file = primary_collimator.egsinp
@@ -71,7 +71,7 @@
     ################################
     ### phsp plate
     ################################
-	:start geometry:
+    :start geometry:
         name = phsp_plate
         library = egs_ndgeometry
         type = EGS_XYZGeometry
