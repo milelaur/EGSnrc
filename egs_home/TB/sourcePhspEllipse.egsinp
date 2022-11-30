@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 1.5E12
+    ncase = 1.5E4
     #calculation = combine
     #nchunk = 50000
     nbatch = 3
@@ -259,9 +259,9 @@
 	    type = monoenergetic
 	    energy = 0.1 # in MeV
 	:stop spectrum:
-        :start shape:
+        #:start shape:
     	    #library = egs_gaussian_shape
-            #:start shape:
+            :start shape:
                 library = egs_ellipse
                 ## Large electron spot on the target: Length [5.78699mm, 8.26713mm] -> avg. 0.703 cm, Width [4.13357mm, 5.78699mm] -> avg 0.4$
                 #halfaxis = 0.248014 0.351353
@@ -270,7 +270,7 @@
                 ## The smallest large electron spot on the target: Length = 5.78699mm, Width = 4.13357mm
                 halfaxis = 0.2066785 0.2893495
                 midpoint = 0 0
-            #:stop shape:
+            :stop shape:
             ## sigma = FWHM/(2*sqrt(2*ln(2)))
             ## Large electron spot
             #sigma = 0.210643697 0.298411762
@@ -282,7 +282,7 @@
             #sigma = 0.0421287394  0.0596823524
             ## Small electron spot (halfaxis on the target [~0.105, ~0.16] according to egs_view)
             #sigma = 0.01755365558 0.025452773
-        :stop shape:
+        #:stop shape:
     :stop source:
 
     :start source:
