@@ -9,7 +9,7 @@
 ################################
 :start run control:
     ncase = 2.8E9
-    calculation = combine
+    #calculation = combine
     nchunk = 50
     nbatch = 3
 :stop run control:
@@ -361,7 +361,7 @@
    :start source:
         library = iaea_phsp_source
         name = my_source
-        iaea phase space file = sourcePhspEllipseSmallestNoGaussian.1
+        iaea phase space file = sourcePhspEllipseSmallFocalSpot.1
         particle type = all
         #cutout = x1 x2 y1 y2
         #weight window = 0.99 1.01
