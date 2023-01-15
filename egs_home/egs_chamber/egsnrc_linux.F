@@ -2253,8 +2253,8 @@ C*****************************************************************************
         hen_house(i:i) = ' '
 1741  CONTINUE
 1742  CONTINUE
-      i = lnblnk1('/home/miia/EGSnrc/HEN_HOUSE/')
-      hen_house(:i) = '/home/miia/EGSnrc/HEN_HOUSE/'
+      i = lnblnk1('/home/rsmina/EGSnrc/HEN_HOUSE/')
+      hen_house(:i) = '/home/rsmina/EGSnrc/HEN_HOUSE/'
       IF (( '/' .NE. fool_dec )) THEN
         DO 1751 j=1,i
           IF((hen_house(j:j) .EQ. '/'))hen_house(j:j) = '/'
@@ -18184,7 +18184,7 @@ C*****************************************************************************
           rng_seed = rng_seed + 1
           logE = log(peig)
           DO 7051 k=nne(medium),1,-1
-            iZ = int( zelem(medium,k) + 0.5 )
+            iz = int(pe_zsorted(k,medium)+0.5)
             zpos = pe_zpos(iZ)
             IF (( iZ .LT. 1 .OR. iZ .GT. 100 )) THEN
               write(i_log,*) ' Error in egs_shellwise_photo: '

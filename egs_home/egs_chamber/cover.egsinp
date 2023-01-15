@@ -1,0 +1,21 @@
+################################
+#
+# Cover of TrueBeam kV imaging System
+#
+################################
+:start geometry definition:
+	### Detection cover
+	:start geometry:
+        name = cover
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -7 7
+        y-planes = -7 7
+        z-planes = 18 18.2
+        :start media input:
+            media = carbonate
+        :stop media input:
+    :stop geometry:
+
+    simulation geometry = cover
+:stop geometry definition:
