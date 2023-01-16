@@ -139,8 +139,8 @@
     ### Scoring geometry
     :start calculation geometry:
         geometry name         = shield
-        scoring regions       = 1       # outer air shell
-        scoring region masses = 0.49326 # mass in g for each region
+        cavity regions       = 1       # outer air shell
+        cavity mass = 0.49326 # mass in g for each region
     :stop calculation geometry:
 
     ### fluence scoring requested (common to all calculation geometries)
@@ -152,7 +152,7 @@
     :stop fluence scoring:
 
     ### E*muen file (could also be E*mutr): absolute or relative file path
-    emuen file = $EGS_HOME/egs_kerma/emuen_rho_air_1keV-20MeV.data
+    emuen file = /home/miia/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
 
     ### geometry for forced-detection (if omitted, score ONLY when reaching scoring region)
     Default FD geometry = shield

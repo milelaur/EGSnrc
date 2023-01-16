@@ -8,10 +8,11 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 1.5E12
-    calculation = combine
+    ncase = 6E6
+    #ncase = 1.5E12
+    #calculation = combine
     #nchunk = 50
-    nbatch = 3
+    #nbatch = 3
 :stop run control:
 
 ################################
@@ -121,7 +122,7 @@
         geometries = to_primary_collimator air
     :stop geometry:
 
-	################################
+    ################################
 	### TESTING GEOMETRY
 	################################
 
@@ -253,13 +254,13 @@
 
     :start source:
         name = cathode_src
-	library = egs_parallel_beam
-	charge = -1
-	direction = 0 0 -1
-	:start spectrum:
-	    type = monoenergetic
-	    energy = 0.1 # in MeV
-	:stop spectrum:
+	    library = egs_parallel_beam
+	    charge = -1
+	    direction = 0 0 -1
+        :start spectrum:
+            type = monoenergetic
+            energy = 0.1 # in MeV
+        :stop spectrum:
         #:start shape:
     	    #library = egs_gaussian_shape
             :start shape:
@@ -323,12 +324,6 @@
 	:stop ausgab object:
 
     :start ausgab object:
-        library = egs_radiative_splitting
-        name = splitting
-        splitting = 1000
-    :stop ausgab object:
-
-    :start ausgab object:
           library                  = egs_phsp_scoring
           name                     = sourcePhsp100kvPart1
           output format            = IAEA
@@ -338,16 +333,6 @@
           score particles on       = entry
           constant Z               = 8.8752
     :stop ausgab object:
-
-    ### Dose scoring object
-	:start ausgab object:
-		name = dose
-		library = egs_dose_scoring
-		medium dose = no
-		region dose = yes
-		volume = 1
-		dose regions = 360
-	:stop ausgab object:
 
 :stop ausgab object definition:
 
@@ -388,14 +373,31 @@
 ##############################################################################
 :start scoring options:
 
-    calculation type = dose
-
+    ### use the same geometry under two different names, for easier bookeeping
     :start calculation geometry:
-        geometry name    = sourcePhsp
-        cavity regions   = 360
-        #excluded regions = 0  # exclude particles passing through these regions
-        cavity mass      = 1  # 5 cm radius air sphere
+        geometry name         = sourcePhsp
+        cavity regions       = 144
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
     :stop calculation geometry:
+
+    ### fluence scoring requested (common to all calculation geometries)
+    :start fluence scoring:
+        minimum energy = 0.001
+        maximum energy = 0.1
+        number of bins = 100
+        scale          = linear
+    :stop fluence scoring:
+
+    ### E*muen file (could also be E*mutr): absolute or relative file path
+    #emuen file = emuen_rho_air_1keV-1.5MeV.data
+    ### Use absolute path when submitting parallel jobs!!!
+    ### $EGS_HOME replaced with its value now
+    emuen file = /home/miia/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
+    #emuen file = /home/rsmina/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
+
+    ### geometry for forced-detection (if omitted, score ONLY when reaching scoring region)
+    Default FD geometry = sourcePhsp
 
 :stop scoring options:
 

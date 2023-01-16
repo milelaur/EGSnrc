@@ -228,6 +228,7 @@ public:
             the_stack->latch[np] = latch;
 
         }
+        
         return 0;
     }
 

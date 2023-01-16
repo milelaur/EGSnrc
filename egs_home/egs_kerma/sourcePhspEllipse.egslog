@@ -1,0 +1,176 @@
+
+               *************************************************
+               *                                               *
+               *                  egs_kerma                    *
+               *                                               *
+               *************************************************
+
+This is EGS_KermaApplication Revision: 1.0  based on
+      EGS_AdvancedApplication  
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = sourcePhsp
+ number of regions = 720
+ geometries:
+   to_primary_collimator (type EGS_UnionGeometry)
+   air (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Transformed Transformed Parallel beam from a shape of type ellipse with monoenergetic 0.1 MeV, electrons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 108
+  numbers used so far = 1275907456
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = YES
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 10000
+ - Track buffer size           = 1024
+ - Output file name            = /home/miia/EGSnrc/egs_home/egs_kerma/sourcePhspEllipse_w12_w12.ptracks
+
+
+*******************************************
+Phase Space Scoring Object (sourcePhsp100kvPart1)
+*******************************************
+
+ Will output phase space for particles crossing surfaces of geometry:
+phsp_plate
+ Particles scored on: entering phase space geometry
+ Data will be output in IAEA format.
+
+ Phase space file names:
+  Header file: /home/miia/EGSnrc/egs_home/egs_kerma/sourcePhsp100kvPart1_w12.1.IAEAheader
+  Data file: /home/miia/EGSnrc/egs_home/egs_kerma/sourcePhsp100kvPart1_w12.1.IAEAphsp
+ Data scored at constant Z = 8.8752 cm
+ Particles scored: all
+
+
+
+The following media are defined:
+================================
+
+  0  graphite                 AE= 0.5120 AP= 0.0010 0
+  1  target_material          AE= 0.5120 AP= 0.0010 1
+  2  molybdenum               AE= 0.5120 AP= 0.0010 2
+  3  beryllium                AE= 0.5120 AP= 0.0010 3
+  4  steel                    AE= 0.5120 AP= 0.0010 4
+  5  oil                      AE= 0.5120 AP= 0.0010 5
+  6  aluminum                 AE= 0.5120 AP= 0.0010 6
+  7  air                      AE= 0.5120 AP= 0.0010 7
+  8  pb                       AE= 0.5120 AP= 0.0010 8
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          On
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+**********************************************
+   Volumetric Track-length Kerma estimation 
+**********************************************
+
+---> Scoring only when photon enters volume
+     including those scattered inside the geometry.
+     Fluence is equivalent to FLURZ total fluence!
+
+
+
+Calculation geometry: sourcePhsp
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = sourcePhsp
+ number of regions = 720
+ geometries:
+   to_primary_collimator (type EGS_UnionGeometry)
+   air (type EGS_XYZGeometry)
+=======================================================
+  cavity region 144, medium = 7
+
+excluded regions for geometry sourcePhsp : NONE
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 sourcePhspEllipse_w1.egsdat    ncase=440000         cpu=73.20      
+ 2 sourcePhspEllipse_w2.egsdat    ncase=400000         cpu=67.77      
+ 3 sourcePhspEllipse_w3.egsdat    ncase=400000         cpu=68.86      
+ 4 sourcePhspEllipse_w4.egsdat    ncase=400000         cpu=72.52      
+ 5 sourcePhspEllipse_w5.egsdat    ncase=440000         cpu=72.12      
+ 6 sourcePhspEllipse_w6.egsdat    ncase=400000         cpu=70.99      
+ 7 sourcePhspEllipse_w7.egsdat    ncase=440000         cpu=70.20      
+ 8 sourcePhspEllipse_w8.egsdat    ncase=360000         cpu=67.70      
+ 9 sourcePhspEllipse_w9.egsdat    ncase=360000         cpu=70.23      
+10 sourcePhspEllipse_w10.egsdat   ncase=360000         cpu=69.19      
+11 sourcePhspEllipse_w11.egsdat   ncase=440000         cpu=72.15      
+12 sourcePhspEllipse_w12.egsdat   ncase=400000         cpu=72.86      
+13 sourcePhspEllipse_w13.egsdat   ncase=400000         cpu=69.31      
+14 sourcePhspEllipse_w14.egsdat   ncase=400000         cpu=68.43      
+15 sourcePhspEllipse_w15.egsdat   ncase=360000         cpu=68.36      
+=======================================================================
+                            Total ncase=6000000        cpu=1053.89    
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.00 (sec.) 0.0000(hours)
+CPU time including previous runs:       1053.89 (sec.) 0.2927 (hours)
+Histories per hour:                     2.04955e+07   
+Number of random numbers used:          19126275896   
+Number of electron CH steps:            2.59333e+08   
+Number of all electron steps:           3.82072e+09   
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     10000
+   Total tracks scored:     2320404
+   Still being scored:      0
+   Output file name:        /home/miia/EGSnrc/egs_home/egs_kerma/sourcePhspEllipse_w12_w12.ptracks
+

@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 1.6E7
+    ncase = 2.8E9
     #calculation = combine
     nchunk = 50
     nbatch = 3
@@ -363,14 +363,14 @@
    :start source:
         library = iaea_phsp_source
         name = my_source
-        iaea phase space file = sourcePhspEllipseChamper.1
+        iaea phase space file = sourcePhspEllipseOilChanged.1
         particle type = all
         #cutout = x1 x2 y1 y2
         #weight window = 0.99 1.01
-        recycle photons = 100
-        recycle electrons = 100
-	#reuse photons = 4
-	#reuse electrons = 4
+        recycle photons = 25
+        recycle electrons = 25
+        #reuse photons = 4
+        #reuse electrons = 4
     :stop source:
 
     simulation source = my_source
@@ -387,100 +387,6 @@
 	#score electrons = no
 	#score positrons = no
 	#stop scoring   = 1000000
-    #:stop ausgab object:
-
-    :start ausgab object:
-        library = egs_radiative_splitting
-        name = splitting
-        splitting = 1000
-    :stop ausgab object:
-
-    #:start ausgab object:
-    #    library = egs_phsp_scoring
-    #    name = BefBlades
-    #    output format = IAEA
-    #    particle type = all
-        #output directory =
-    #    phase space geometry = planeBefBlades
-    #    score particles on = entry
-    #    constant Z = 8.9
-    #:stop ausgab object:
-
-    #:start ausgab object:
-    #    library = egs_phsp_scoring
-    #    name = AftBlades
-    #    output format = IAEA
-    #    particle type = all
-        #output directory =
-    #    phase space geometry = planeBlade
-    #    score particles on = entry
-    #    constant Z = 11.5
-    #:stop ausgab object:
-
-    #:start ausgab object:
-    #    library = egs_phsp_scoring
-    #    name = AftHardFilt
-    #    output format = IAEA
-    #    particle type = all
-        #output directory =
-    #    phase space geometry = planeHardFilt
-    #    score particles on = entry
-    #    constant Z = 13.5
-    #:stop ausgab object:
-
-    #:start ausgab object:
-    #    library = egs_phsp_scoring
-    #    name = AftCover
-    #    output format = IAEA
-    #    particle type = all
-        #output directory =
-    #    phase space geometry = planeCover
-    #    score particles on = entry
-    #    constant Z = 18.5
-    #:stop ausgab object:
-
-   #:start ausgab object:
-   #   library = egs_dose_scoring
-   #     name = BefBl
-   #     medium dose = no
-   #     region dose = yes
-   #     :start output dose file:
-   #         geometry name = planeBefBlades
-   #         file type = 3ddose
-   #     :stop output dose file:
-   # :stop ausgab object:
-
-   #:start ausgab object:
-   #     library = egs_dose_scoring
-   #     name = AftBl
-   #     medium dose = no
-   #     region dose = yes
-   #     :start output dose file:
-   #         geometry name = planeBlade
-   #         file type = 3ddose
-   #     :stop output dose file:
-   # :stop ausgab object:
-
-   #:start ausgab object:
-   #     library = egs_dose_scoring
-   #     name = AftHaFl
-   #     medium dose = no
-   #     region dose = yes
-   #     :start output dose file:
-   #         geometry name = planeHardFilt
-   #         file type = 3ddose
-   #     :stop output dose file:
-   #:stop ausgab object:
-
-    #:start ausgab object:
-    #    library = egs_dose_scoring
-    #    name = AftCo
-    #    medium dose = no
-    #    region dose = yes
-    #    :start output dose file:
-    #        geometry name = planeCover
-    #        file type = 3ddose
-    #    :stop output dose file:
     #:stop ausgab object:
 
     ### Dose scoring object to x profile
@@ -558,42 +464,31 @@
 ##############################################################################
 :start scoring options:
 
-    calculation type = dose
-
-    #:start calculation geometry:
-    #    geometry name    = obi_system
-    #    cavity regions   = BBla
-        #excluded regions = 0  # exclude particles passing through these regions
-    #    cavity mass      = 1  # 5 cm radius air sphere
-    #:stop calculation geometry:
-
-    #:start calculation geometry:
-    #    geometry name    = obi_system
-    #    cavity regions   = ABla
-        #excluded regions = 0  # exclude particles passing through these regions
-    #    cavity mass      = 1  # 5 cm radius air sphere
-    #:stop calculation geometry:
-
-    #:start calculation geometry:
-    #    geometry name    = obi_system
-    #    cavity regions   = AHaFl
-        #excluded regions = 0  # exclude particles passing through these regions
-    #    cavity mass      = 1  # 5 cm radius air sphere
-    #:stop calculation geometry:
-
-    #:start calculation geometry:
-    #    geometry name    = obi_system
-    #    cavity regions   = ACo
-        #excluded regions = 0  # exclude particles passing through these regions
-    #    cavity mass      = 1  # 5 cm radius air sphere
-    #:stop calculation geometry:
-
+    ### use the same geometry under two different names, for easier bookeeping
     :start calculation geometry:
-        geometry name    = obi_system
-        cavity regions   = Prof
-        #excluded regions = 0  # exclude particles passing through these regions
-        cavity mass      = 1  # 5 cm radius air sphere
+        geometry name         = obi_system
+        cavity regions       = 144
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
     :stop calculation geometry:
+
+    ### fluence scoring requested (common to all calculation geometries)
+    :start fluence scoring:
+        minimum energy = 0.001
+        maximum energy = 0.1
+        number of bins = 100
+        scale          = linear
+    :stop fluence scoring:
+
+    ### E*muen file (could also be E*mutr): absolute or relative file path
+    #emuen file = emuen_rho_air_1keV-1.5MeV.data
+    ### Use absolute path when submitting parallel jobs!!!
+    ### $EGS_HOME replaced with its value now
+    #emuen file = /home/miia/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
+    emuen file = /home/rsmina/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
+
+    ### geometry for forced-detection (if omitted, score ONLY when reaching scoring region)
+    Default FD geometry = obi_system
 
 :stop scoring options:
 
