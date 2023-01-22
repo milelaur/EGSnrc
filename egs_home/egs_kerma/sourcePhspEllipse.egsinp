@@ -8,11 +8,10 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 6E6
-    #ncase = 1.5E12
+    ncase = 1.5E12
     #calculation = combine
     #nchunk = 50
-    #nbatch = 3
+    nbatch = 3
 :stop run control:
 
 ################################
@@ -393,8 +392,8 @@
     #emuen file = emuen_rho_air_1keV-1.5MeV.data
     ### Use absolute path when submitting parallel jobs!!!
     ### $EGS_HOME replaced with its value now
-    emuen file = /home/miia/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
-    #emuen file = /home/rsmina/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
+    #emuen file = /home/miia/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
+    emuen file = /home/rsmina/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
 
     ### geometry for forced-detection (if omitted, score ONLY when reaching scoring region)
     Default FD geometry = sourcePhsp

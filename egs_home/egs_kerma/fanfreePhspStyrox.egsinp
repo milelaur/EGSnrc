@@ -11,7 +11,7 @@
     ncase = 2.8E9
     #calculation = combine
     nchunk = 50
-    nbatch = 3
+    #nbatch = 3
 :stop run control:
 
 ################################
@@ -169,7 +169,7 @@
         library = egs_ndgeometry
         type = EGS_XYZGeometry
         x-slabs = -20 1 40
-	#x-slabs = -20 0.2 200
+	    #x-slabs = -20 0.2 200
         y-slabs = -0.5 1 1
         z-slabs = 100 0.1 1
         :start media input:
@@ -363,7 +363,7 @@
    :start source:
         library = iaea_phsp_source
         name = my_source
-        iaea phase space file = sourcePhspEllipseOilChanged.1
+        iaea phase space file = sourcePhspEllipseKerma.1
         particle type = all
         #cutout = x1 x2 y1 y2
         #weight window = 0.99 1.01
@@ -381,13 +381,13 @@
 ################################
 :start ausgab object definition: # Only 1 ausgab definition block allowed
     ### Particle tracks
-    #:start ausgab object:
-	#name = tracks
-	#library = egs_track_scoring
-	#score electrons = no
-	#score positrons = no
-	#stop scoring   = 1000000
-    #:stop ausgab object:
+    :start ausgab object:
+        name = tracks
+        library = egs_track_scoring
+        score electrons = no
+        score positrons = no
+        stop scoring   = 1000000
+    :stop ausgab object:
 
     ### Dose scoring object to x profile
     :start ausgab object:
@@ -467,7 +467,639 @@
     ### use the same geometry under two different names, for easier bookeeping
     :start calculation geometry:
         geometry name         = obi_system
-        cavity regions       = 144
+        cavity regions       = 0
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 1
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 2
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 3
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 4
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 5
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 6
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 7
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 8
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 9
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 10
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 11
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 12
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 13
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 14
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 15
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 16
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 17
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 18
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 19
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 20
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 21
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 22
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 23
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 24
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 25
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 26
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 27
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 28
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 29
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 30
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 31
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 32
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 33
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 34
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 35
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 36
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 37
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 38
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = obi_system
+        cavity regions       = 39
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 0
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 1
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 2
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 3
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 4
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 5
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 6
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 7
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 8
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 9
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 10
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 11
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 12
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 13
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 14
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 15
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 16
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 17
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 18
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 19
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 20
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 21
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 22
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 23
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 24
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 25
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 26
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 27
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 28
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 29
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 30
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 31
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 32
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 33
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 34
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 35
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 36
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 37
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 38
+        cavity mass = 1 # mass in g for each scoring region
+        #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
+    :stop calculation geometry:
+
+    ### use the same geometry under two different names, for easier bookeeping
+    :start calculation geometry:
+        geometry name         = profilex
+        cavity regions       = 39
         cavity mass = 1 # mass in g for each scoring region
         #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
     :stop calculation geometry:
@@ -476,7 +1108,7 @@
     :start fluence scoring:
         minimum energy = 0.001
         maximum energy = 0.1
-        number of bins = 100
+        number of bins = 10
         scale          = linear
     :stop fluence scoring:
 
@@ -484,8 +1116,8 @@
     #emuen file = emuen_rho_air_1keV-1.5MeV.data
     ### Use absolute path when submitting parallel jobs!!!
     ### $EGS_HOME replaced with its value now
-    #emuen file = /home/miia/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
-    emuen file = /home/rsmina/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
+    emuen file = /home/miia/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
+    #emuen file = /home/rsmina/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
 
     ### geometry for forced-detection (if omitted, score ONLY when reaching scoring region)
     Default FD geometry = obi_system
