@@ -65,8 +65,8 @@ rname_bo="-J"
 # jobs are submitted quickly. A sleep time of 1 second is sufficient
 # on out system,
 #
-batch_sleep_time=0
-#batch_sleep_time=1
+#batch_sleep_time=0
+batch_sleep_time=1
 
 # Some queueing systems (e.g. PBS) have a limitation on the
 # maximum length of a job name (e.g. for PBS this is 15).

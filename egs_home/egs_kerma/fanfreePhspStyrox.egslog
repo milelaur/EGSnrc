@@ -1,0 +1,4188 @@
+
+               *************************************************
+               *                                               *
+               *                  egs_kerma                    *
+               *                                               *
+               *************************************************
+
+This is EGS_KermaApplication Revision: 1.0  based on
+      EGS_AdvancedApplication  
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ IAEA phase space source from sourcePhspEllipseKerma.1
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 206
+  numbers used so far = 287556927872
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = NO
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 1000000
+ - Track buffer size           = 1024
+ - Output file name            = /home/rsmina/EGSnrc/egs_home/egs_kerma/fanfreePhspStyrox_w110_w110.ptracks
+
+
+*******************************************
+Dose Scoring Object (profilexFilm)
+*******************************************
+
+ - Regions in dose calculator :648
+
+
+--------------------------------------
+medium       rho/[g/cm**3]
+--------------------------------------
+pb          11.35
+steel        8.06
+air          0.00
+titanium     4.54
+carbonate    1.20
+polystyrene  1.06
+film         1.14
+water        1.00
+--------------------------------------
+
+*******************************************
+
+
+ Will output dose to file:
+ EGS_XYZGeometry: profilex
+ file format:  3ddose
+ file name: /home/rsmina/EGSnrc/egs_home/egs_kerma/profilexFilm.3ddose
+
+
+
+The following media are defined:
+================================
+
+  0  pb                       AE= 0.5120 AP= 0.0010 0
+  1  steel                    AE= 0.5120 AP= 0.0010 1
+  2  air                      AE= 0.5120 AP= 0.0010 2
+  3  titanium                 AE= 0.5120 AP= 0.0010 3
+  4  carbonate                AE= 0.5120 AP= 0.0010 4
+  5  polystyrene              AE= 0.5120 AP= 0.0010 5
+  6  film                     AE= 0.5120 AP= 0.0010 6
+  7  water                    AE= 0.5120 AP= 0.0010 7
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          On
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+**********************************************
+   Volumetric Track-length Kerma estimation 
+**********************************************
+
+---> Scoring only when photon enters volume
+     including those scattered inside the geometry.
+     Fluence is equivalent to FLURZ total fluence!
+
+
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 0, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 1, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 2, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 3, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 4, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 5, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 6, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 7, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 8, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 9, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 10, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 11, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 12, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 13, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 14, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 15, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 16, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 17, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 18, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 19, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 20, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 21, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 22, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 23, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 24, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 25, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 26, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 27, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 28, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 29, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 30, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 31, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 32, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 33, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 34, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 35, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 36, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 37, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 38, medium = 6
+
+Calculation geometry: obi_system
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+  cavity region 39, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 0, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 1, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 2, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 3, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 4, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 5, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 6, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 7, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 8, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 9, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 10, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 11, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 12, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 13, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 14, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 15, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 16, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 17, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 18, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 19, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 20, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 21, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 22, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 23, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 24, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 25, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 26, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 27, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 28, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 29, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 30, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 31, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 32, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 33, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 34, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 35, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 36, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 37, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 38, medium = 6
+
+Calculation geometry: profilex
+======================== geometry =====================
+ type = EGS_XYZGeometry
+ name = profilex
+ number of regions = 40
+======================== geometry =====================
+ type = x-planes
+ name = geometry51
+ number of regions = 40
+ first plane at -20, 40 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = y-planes
+ name = geometry52
+ number of regions = 1
+ first plane at -0.5, 1 slices of 1 thickness
+=======================================================
+======================== geometry =====================
+ type = z-planes
+ name = geometry53
+ number of regions = 1
+ first plane at 100, 1 slices of 0.1 thickness
+=======================================================
+=======================================================
+  cavity region 39, medium = 6
+
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry obi_system : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+excluded regions for geometry profilex : NONE
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 fanfreePhspStyrox_w1.egsdat    ncase=3023892        cpu=34670.60   
+ 2 fanfreePhspStyrox_w2.egsdat    ncase=2967894        cpu=34821.50   
+ 3 fanfreePhspStyrox_w3.egsdat    ncase=3023892        cpu=34512.90   
+ 4 fanfreePhspStyrox_w4.egsdat    ncase=2911896        cpu=34377.10   
+ 5 fanfreePhspStyrox_w5.egsdat    ncase=3023892        cpu=34708.10   
+ 6 fanfreePhspStyrox_w6.egsdat    ncase=2967894        cpu=34538.20   
+ 7 fanfreePhspStyrox_w7.egsdat    ncase=3023892        cpu=34686.90   
+ 8 fanfreePhspStyrox_w8.egsdat    ncase=2911896        cpu=34521.50   
+ 9 fanfreePhspStyrox_w9.egsdat    ncase=2967894        cpu=34585.10   
+10 fanfreePhspStyrox_w10.egsdat   ncase=2967894        cpu=34383.60   
+11 fanfreePhspStyrox_w11.egsdat   ncase=2967894        cpu=34820.20   
+12 fanfreePhspStyrox_w12.egsdat   ncase=2967894        cpu=34737.90   
+13 fanfreePhspStyrox_w13.egsdat   ncase=2967894        cpu=34509.50   
+14 fanfreePhspStyrox_w14.egsdat   ncase=3023892        cpu=34614.80   
+15 fanfreePhspStyrox_w15.egsdat   ncase=2911896        cpu=34729.40   
+16 fanfreePhspStyrox_w16.egsdat   ncase=3023892        cpu=34573.40   
+17 fanfreePhspStyrox_w17.egsdat   ncase=3023892        cpu=34521.20   
+18 fanfreePhspStyrox_w18.egsdat   ncase=3023892        cpu=34584.90   
+19 fanfreePhspStyrox_w19.egsdat   ncase=3135888        cpu=34655.30   
+20 fanfreePhspStyrox_w20.egsdat   ncase=3191886        cpu=34518.90   
+21 fanfreePhspStyrox_w21.egsdat   ncase=3191886        cpu=34711.20   
+22 fanfreePhspStyrox_w22.egsdat   ncase=3191886        cpu=34753.00   
+23 fanfreePhspStyrox_w23.egsdat   ncase=3191886        cpu=34405.50   
+24 fanfreePhspStyrox_w24.egsdat   ncase=3191886        cpu=34629.00   
+25 fanfreePhspStyrox_w25.egsdat   ncase=3135888        cpu=34440.90   
+26 fanfreePhspStyrox_w26.egsdat   ncase=3135888        cpu=34721.60   
+27 fanfreePhspStyrox_w27.egsdat   ncase=3079890        cpu=34483.20   
+28 fanfreePhspStyrox_w28.egsdat   ncase=3135888        cpu=34358.00   
+29 fanfreePhspStyrox_w29.egsdat   ncase=3191886        cpu=34518.40   
+30 fanfreePhspStyrox_w30.egsdat   ncase=3023892        cpu=34271.30   
+31 fanfreePhspStyrox_w31.egsdat   ncase=3191886        cpu=34779.70   
+32 fanfreePhspStyrox_w32.egsdat   ncase=3191886        cpu=34567.90   
+33 fanfreePhspStyrox_w33.egsdat   ncase=3079890        cpu=34519.30   
+34 fanfreePhspStyrox_w34.egsdat   ncase=3135888        cpu=34810.60   
+35 fanfreePhspStyrox_w35.egsdat   ncase=3135888        cpu=34804.10   
+36 fanfreePhspStyrox_w36.egsdat   ncase=3191886        cpu=34622.50   
+37 fanfreePhspStyrox_w37.egsdat   ncase=3191886        cpu=34716.10   
+38 fanfreePhspStyrox_w38.egsdat   ncase=3079890        cpu=34562.80   
+39 fanfreePhspStyrox_w39.egsdat   ncase=2911896        cpu=34230.20   
+40 fanfreePhspStyrox_w40.egsdat   ncase=2967894        cpu=34534.10   
+41 fanfreePhspStyrox_w41.egsdat   ncase=2967894        cpu=34676.80   
+42 fanfreePhspStyrox_w42.egsdat   ncase=2967894        cpu=34572.60   
+43 fanfreePhspStyrox_w43.egsdat   ncase=2967894        cpu=34670.90   
+44 fanfreePhspStyrox_w44.egsdat   ncase=2855898        cpu=34725.50   
+45 fanfreePhspStyrox_w45.egsdat   ncase=2799900        cpu=34179.60   
+46 fanfreePhspStyrox_w46.egsdat   ncase=2967894        cpu=34378.60   
+47 fanfreePhspStyrox_w47.egsdat   ncase=2967894        cpu=34315.90   
+48 fanfreePhspStyrox_w48.egsdat   ncase=2855898        cpu=34342.20   
+49 fanfreePhspStyrox_w49.egsdat   ncase=2967894        cpu=34408.70   
+50 fanfreePhspStyrox_w50.egsdat   ncase=2911896        cpu=34687.30   
+51 fanfreePhspStyrox_w51.egsdat   ncase=2855898        cpu=34350.20   
+52 fanfreePhspStyrox_w52.egsdat   ncase=2911896        cpu=34459.70   
+53 fanfreePhspStyrox_w53.egsdat   ncase=2967894        cpu=34734.70   
+54 fanfreePhspStyrox_w54.egsdat   ncase=2967894        cpu=34744.80   
+55 fanfreePhspStyrox_w55.egsdat   ncase=2855898        cpu=34349.60   
+56 fanfreePhspStyrox_w56.egsdat   ncase=2967894        cpu=34559.20   
+57 fanfreePhspStyrox_w57.egsdat   ncase=2911896        cpu=34546.00   
+58 fanfreePhspStyrox_w58.egsdat   ncase=2911896        cpu=34324.20   
+59 fanfreePhspStyrox_w59.egsdat   ncase=3191886        cpu=34399.80   
+60 fanfreePhspStyrox_w60.egsdat   ncase=3247884        cpu=34484.20   
+61 fanfreePhspStyrox_w61.egsdat   ncase=3247884        cpu=34597.90   
+62 fanfreePhspStyrox_w62.egsdat   ncase=3191886        cpu=34423.20   
+63 fanfreePhspStyrox_w63.egsdat   ncase=3247884        cpu=34293.40   
+64 fanfreePhspStyrox_w64.egsdat   ncase=3247884        cpu=34419.10   
+65 fanfreePhspStyrox_w65.egsdat   ncase=3135888        cpu=34407.20   
+66 fanfreePhspStyrox_w66.egsdat   ncase=3135888        cpu=34618.40   
+67 fanfreePhspStyrox_w67.egsdat   ncase=3247884        cpu=34627.20   
+68 fanfreePhspStyrox_w68.egsdat   ncase=2015928        cpu=21930.00   
+69 fanfreePhspStyrox_w69.egsdat   ncase=3247884        cpu=34488.10   
+70 fanfreePhspStyrox_w70.egsdat   ncase=3079890        cpu=34284.00   
+71 fanfreePhspStyrox_w71.egsdat   ncase=3247884        cpu=34644.80   
+72 fanfreePhspStyrox_w72.egsdat   ncase=3247884        cpu=34421.90   
+73 fanfreePhspStyrox_w73.egsdat   ncase=3247884        cpu=34377.40   
+74 fanfreePhspStyrox_w74.egsdat   ncase=3247884        cpu=34405.00   
+75 fanfreePhspStyrox_w75.egsdat   ncase=3135888        cpu=34588.30   
+76 fanfreePhspStyrox_w76.egsdat   ncase=3247884        cpu=34757.50   
+77 fanfreePhspStyrox_w77.egsdat   ncase=3191886        cpu=34297.10   
+78 fanfreePhspStyrox_w78.egsdat   ncase=3191886        cpu=34419.40   
+79 fanfreePhspStyrox_w79.egsdat   ncase=3079890        cpu=34750.90   
+80 fanfreePhspStyrox_w80.egsdat   ncase=2631906        cpu=34833.50   
+81 fanfreePhspStyrox_w81.egsdat   ncase=2575908        cpu=34340.30   
+82 fanfreePhspStyrox_w82.egsdat   ncase=2631906        cpu=34642.50   
+83 fanfreePhspStyrox_w83.egsdat   ncase=2631906        cpu=34715.70   
+84 fanfreePhspStyrox_w84.egsdat   ncase=2631906        cpu=34876.00   
+85 fanfreePhspStyrox_w85.egsdat   ncase=2631906        cpu=34935.60   
+86 fanfreePhspStyrox_w86.egsdat   ncase=2631906        cpu=34680.10   
+87 fanfreePhspStyrox_w87.egsdat   ncase=2631906        cpu=34697.50   
+88 fanfreePhspStyrox_w88.egsdat   ncase=2631906        cpu=34388.80   
+89 fanfreePhspStyrox_w89.egsdat   ncase=2631906        cpu=34770.50   
+90 fanfreePhspStyrox_w90.egsdat   ncase=2575908        cpu=34926.60   
+91 fanfreePhspStyrox_w91.egsdat   ncase=2631906        cpu=34611.80   
+92 fanfreePhspStyrox_w92.egsdat   ncase=2519910        cpu=34386.40   
+93 fanfreePhspStyrox_w93.egsdat   ncase=2631906        cpu=34752.40   
+94 fanfreePhspStyrox_w94.egsdat   ncase=2631906        cpu=34351.90   
+95 fanfreePhspStyrox_w95.egsdat   ncase=2631906        cpu=34504.20   
+96 fanfreePhspStyrox_w96.egsdat   ncase=1679940        cpu=22022.30   
+97 fanfreePhspStyrox_w97.egsdat   ncase=2575908        cpu=34697.80   
+98 fanfreePhspStyrox_w98.egsdat   ncase=2631906        cpu=34838.10   
+99 fanfreePhspStyrox_w99.egsdat   ncase=2631906        cpu=34487.80   
+100 fanfreePhspStyrox_w100.egsdat  ncase=2631906        cpu=34652.90   
+101 fanfreePhspStyrox_w101.egsdat  ncase=2631906        cpu=34806.90   
+102 fanfreePhspStyrox_w102.egsdat  ncase=2631906        cpu=34514.90   
+103 fanfreePhspStyrox_w103.egsdat  ncase=2631906        cpu=34891.10   
+104 fanfreePhspStyrox_w104.egsdat  ncase=2407914        cpu=34666.10   
+105 fanfreePhspStyrox_w105.egsdat  ncase=2407914        cpu=34903.90   
+106 fanfreePhspStyrox_w106.egsdat  ncase=2295918        cpu=34517.90   
+107 fanfreePhspStyrox_w107.egsdat  ncase=1567944        cpu=22698.40   
+108 fanfreePhspStyrox_w108.egsdat  ncase=2407914        cpu=34832.40   
+109 fanfreePhspStyrox_w109.egsdat  ncase=2407914        cpu=34956.20   
+110 fanfreePhspStyrox_w110.egsdat  ncase=2463912        cpu=35076.40   
+111 fanfreePhspStyrox_w111.egsdat  ncase=2407914        cpu=34888.50   
+112 fanfreePhspStyrox_w112.egsdat  ncase=2351916        cpu=35005.00   
+113 fanfreePhspStyrox_w113.egsdat  ncase=2295918        cpu=34386.50   
+114 fanfreePhspStyrox_w114.egsdat  ncase=2351916        cpu=35003.30   
+115 fanfreePhspStyrox_w115.egsdat  ncase=1511946        cpu=22470.20   
+116 fanfreePhspStyrox_w116.egsdat  ncase=2911896        cpu=33910.40   
+117 fanfreePhspStyrox_w117.egsdat  ncase=2911896        cpu=33851.90   
+118 fanfreePhspStyrox_w118.egsdat  ncase=2855898        cpu=34345.90   
+119 fanfreePhspStyrox_w119.egsdat  ncase=2911896        cpu=34423.20   
+120 fanfreePhspStyrox_w120.egsdat  ncase=2855898        cpu=34396.30   
+121 fanfreePhspStyrox_w121.egsdat  ncase=2911896        cpu=33996.00   
+122 fanfreePhspStyrox_w122.egsdat  ncase=2911896        cpu=34041.50   
+123 fanfreePhspStyrox_w123.egsdat  ncase=2855898        cpu=34005.60   
+124 fanfreePhspStyrox_w124.egsdat  ncase=2911896        cpu=34205.30   
+125 fanfreePhspStyrox_w125.egsdat  ncase=2855898        cpu=34108.70   
+126 fanfreePhspStyrox_w126.egsdat  ncase=2911896        cpu=34084.20   
+127 fanfreePhspStyrox_w127.egsdat  ncase=2911896        cpu=34166.40   
+128 fanfreePhspStyrox_w128.egsdat  ncase=2855898        cpu=34183.50   
+129 fanfreePhspStyrox_w129.egsdat  ncase=2911896        cpu=33807.80   
+130 fanfreePhspStyrox_w130.egsdat  ncase=2911896        cpu=33949.40   
+131 fanfreePhspStyrox_w131.egsdat  ncase=2911896        cpu=33926.60   
+132 fanfreePhspStyrox_w132.egsdat  ncase=2911896        cpu=33961.50   
+133 fanfreePhspStyrox_w133.egsdat  ncase=2855898        cpu=34165.90   
+134 fanfreePhspStyrox_w134.egsdat  ncase=2911896        cpu=34024.30   
+135 fanfreePhspStyrox_w135.egsdat  ncase=2855898        cpu=34239.60   
+136 fanfreePhspStyrox_w136.egsdat  ncase=2855898        cpu=33862.40   
+137 fanfreePhspStyrox_w137.egsdat  ncase=1847934        cpu=21261.60   
+138 fanfreePhspStyrox_w138.egsdat  ncase=2911896        cpu=33778.20   
+139 fanfreePhspStyrox_w139.egsdat  ncase=2911896        cpu=34372.80   
+140 fanfreePhspStyrox_w140.egsdat  ncase=3023892        cpu=34384.30   
+141 fanfreePhspStyrox_w141.egsdat  ncase=2911896        cpu=34169.20   
+142 fanfreePhspStyrox_w142.egsdat  ncase=2911896        cpu=34097.00   
+143 fanfreePhspStyrox_w143.egsdat  ncase=2967894        cpu=33961.00   
+144 fanfreePhspStyrox_w144.egsdat  ncase=2967894        cpu=34296.10   
+145 fanfreePhspStyrox_w145.egsdat  ncase=2967894        cpu=33817.30   
+146 fanfreePhspStyrox_w146.egsdat  ncase=2967894        cpu=33961.40   
+147 fanfreePhspStyrox_w147.egsdat  ncase=3023892        cpu=34281.20   
+148 fanfreePhspStyrox_w148.egsdat  ncase=3023892        cpu=34325.70   
+149 fanfreePhspStyrox_w149.egsdat  ncase=2967894        cpu=33864.30   
+150 fanfreePhspStyrox_w150.egsdat  ncase=3023892        cpu=34378.60   
+151 fanfreePhspStyrox_w151.egsdat  ncase=3023892        cpu=34312.50   
+152 fanfreePhspStyrox_w152.egsdat  ncase=2911896        cpu=34268.50   
+153 fanfreePhspStyrox_w153.egsdat  ncase=2967894        cpu=34454.20   
+154 fanfreePhspStyrox_w154.egsdat  ncase=3023892        cpu=34285.00   
+155 fanfreePhspStyrox_w155.egsdat  ncase=2967894        cpu=34084.00   
+156 fanfreePhspStyrox_w156.egsdat  ncase=2855898        cpu=34196.90   
+157 fanfreePhspStyrox_w157.egsdat  ncase=2855898        cpu=34362.40   
+158 fanfreePhspStyrox_w158.egsdat  ncase=2799900        cpu=34463.50   
+159 fanfreePhspStyrox_w159.egsdat  ncase=2911896        cpu=34545.80   
+160 fanfreePhspStyrox_w160.egsdat  ncase=2799900        cpu=33924.20   
+161 fanfreePhspStyrox_w161.egsdat  ncase=2855898        cpu=34434.10   
+162 fanfreePhspStyrox_w162.egsdat  ncase=2799900        cpu=34317.30   
+163 fanfreePhspStyrox_w163.egsdat  ncase=2855898        cpu=34266.30   
+164 fanfreePhspStyrox_w164.egsdat  ncase=2799900        cpu=34114.10   
+165 fanfreePhspStyrox_w165.egsdat  ncase=2855898        cpu=34241.20   
+166 fanfreePhspStyrox_w166.egsdat  ncase=2743902        cpu=33946.20   
+167 fanfreePhspStyrox_w167.egsdat  ncase=2799900        cpu=34169.90   
+168 fanfreePhspStyrox_w168.egsdat  ncase=2799900        cpu=33803.40   
+169 fanfreePhspStyrox_w169.egsdat  ncase=2855898        cpu=34012.20   
+170 fanfreePhspStyrox_w170.egsdat  ncase=2799900        cpu=34002.30   
+171 fanfreePhspStyrox_w171.egsdat  ncase=2855898        cpu=34028.80   
+172 fanfreePhspStyrox_w173.egsdat  ncase=2799900        cpu=34049.60   
+173 fanfreePhspStyrox_w174.egsdat  ncase=2855898        cpu=34344.00   
+174 fanfreePhspStyrox_w175.egsdat  ncase=2799900        cpu=34407.80   
+175 fanfreePhspStyrox_w176.egsdat  ncase=2799900        cpu=34106.60   
+176 fanfreePhspStyrox_w177.egsdat  ncase=2911896        cpu=34357.10   
+177 fanfreePhspStyrox_w178.egsdat  ncase=2855898        cpu=34543.60   
+178 fanfreePhspStyrox_w179.egsdat  ncase=2855898        cpu=34212.30   
+179 fanfreePhspStyrox_w180.egsdat  ncase=2855898        cpu=34093.10   
+180 fanfreePhspStyrox_w181.egsdat  ncase=2855898        cpu=34020.90   
+181 fanfreePhspStyrox_w182.egsdat  ncase=2911896        cpu=34352.40   
+182 fanfreePhspStyrox_w183.egsdat  ncase=2855898        cpu=34298.80   
+183 fanfreePhspStyrox_w184.egsdat  ncase=2855898        cpu=34421.30   
+184 fanfreePhspStyrox_w185.egsdat  ncase=2911896        cpu=34377.00   
+185 fanfreePhspStyrox_w186.egsdat  ncase=2799900        cpu=33955.70   
+186 fanfreePhspStyrox_w187.egsdat  ncase=2799900        cpu=33974.10   
+187 fanfreePhspStyrox_w188.egsdat  ncase=2799900        cpu=33928.40   
+188 fanfreePhspStyrox_w189.egsdat  ncase=2911896        cpu=34468.00   
+189 fanfreePhspStyrox_w190.egsdat  ncase=2855898        cpu=34173.70   
+190 fanfreePhspStyrox_w191.egsdat  ncase=2911896        cpu=34077.20   
+191 fanfreePhspStyrox_w192.egsdat  ncase=2855898        cpu=34193.00   
+192 fanfreePhspStyrox_w193.egsdat  ncase=2855898        cpu=34329.00   
+193 fanfreePhspStyrox_w194.egsdat  ncase=2911896        cpu=34519.60   
+194 fanfreePhspStyrox_w195.egsdat  ncase=2911896        cpu=34217.90   
+195 fanfreePhspStyrox_w196.egsdat  ncase=2519910        cpu=33868.70   
+196 fanfreePhspStyrox_w197.egsdat  ncase=2575908        cpu=34268.90   
+197 fanfreePhspStyrox_w198.egsdat  ncase=2575908        cpu=34004.60   
+198 fanfreePhspStyrox_w199.egsdat  ncase=2631906        cpu=34173.80   
+199 fanfreePhspStyrox_w200.egsdat  ncase=2575908        cpu=33690.00   
+200 fanfreePhspStyrox_w201.egsdat  ncase=2575908        cpu=33733.40   
+201 fanfreePhspStyrox_w202.egsdat  ncase=2575908        cpu=34022.30   
+202 fanfreePhspStyrox_w203.egsdat  ncase=2575908        cpu=33929.90   
+203 fanfreePhspStyrox_w204.egsdat  ncase=2519910        cpu=33751.30   
+204 fanfreePhspStyrox_w205.egsdat  ncase=2575908        cpu=33611.30   
+205 fanfreePhspStyrox_w206.egsdat  ncase=2575908        cpu=34097.00   
+206 fanfreePhspStyrox_w207.egsdat  ncase=2575908        cpu=33933.40   
+207 fanfreePhspStyrox_w208.egsdat  ncase=2519910        cpu=33771.60   
+208 fanfreePhspStyrox_w209.egsdat  ncase=2575908        cpu=34189.60   
+209 fanfreePhspStyrox_w210.egsdat  ncase=2575908        cpu=34240.00   
+210 fanfreePhspStyrox_w211.egsdat  ncase=2575908        cpu=33790.40   
+211 fanfreePhspStyrox_w212.egsdat  ncase=2575908        cpu=34156.00   
+212 fanfreePhspStyrox_w213.egsdat  ncase=2575908        cpu=33537.40   
+213 fanfreePhspStyrox_w214.egsdat  ncase=2575908        cpu=33801.40   
+214 fanfreePhspStyrox_w215.egsdat  ncase=2519910        cpu=33898.60   
+215 fanfreePhspStyrox_w216.egsdat  ncase=2519910        cpu=34085.60   
+216 fanfreePhspStyrox_w217.egsdat  ncase=2519910        cpu=33792.00   
+217 fanfreePhspStyrox_w218.egsdat  ncase=2575908        cpu=34344.90   
+218 fanfreePhspStyrox_w219.egsdat  ncase=2575908        cpu=34182.50   
+219 fanfreePhspStyrox_w220.egsdat  ncase=2575908        cpu=33725.50   
+220 fanfreePhspStyrox_w221.egsdat  ncase=2575908        cpu=34167.50   
+221 fanfreePhspStyrox_w222.egsdat  ncase=2519910        cpu=33801.90   
+222 fanfreePhspStyrox_w223.egsdat  ncase=2631906        cpu=34325.80   
+223 fanfreePhspStyrox_w224.egsdat  ncase=2631906        cpu=34384.80   
+224 fanfreePhspStyrox_w225.egsdat  ncase=2519910        cpu=33711.10   
+225 fanfreePhspStyrox_w226.egsdat  ncase=2575908        cpu=34355.50   
+226 fanfreePhspStyrox_w227.egsdat  ncase=2519910        cpu=34162.80   
+227 fanfreePhspStyrox_w228.egsdat  ncase=2575908        cpu=34014.40   
+228 fanfreePhspStyrox_w229.egsdat  ncase=2575908        cpu=34461.40   
+229 fanfreePhspStyrox_w230.egsdat  ncase=2631906        cpu=34419.20   
+230 fanfreePhspStyrox_w231.egsdat  ncase=2575908        cpu=34533.50   
+231 fanfreePhspStyrox_w232.egsdat  ncase=2575908        cpu=34075.20   
+232 fanfreePhspStyrox_w233.egsdat  ncase=2575908        cpu=33866.20   
+233 fanfreePhspStyrox_w234.egsdat  ncase=2631906        cpu=34091.10   
+234 fanfreePhspStyrox_w235.egsdat  ncase=2575908        cpu=34365.10   
+235 fanfreePhspStyrox_w236.egsdat  ncase=2631906        cpu=34101.70   
+236 fanfreePhspStyrox_w237.egsdat  ncase=2631906        cpu=34147.80   
+237 fanfreePhspStyrox_w238.egsdat  ncase=2575908        cpu=34199.30   
+238 fanfreePhspStyrox_w239.egsdat  ncase=2575908        cpu=33837.00   
+239 fanfreePhspStyrox_w240.egsdat  ncase=2575908        cpu=34282.80   
+240 fanfreePhspStyrox_w241.egsdat  ncase=2575908        cpu=34139.80   
+241 fanfreePhspStyrox_w242.egsdat  ncase=2575908        cpu=34326.90   
+242 fanfreePhspStyrox_w243.egsdat  ncase=2575908        cpu=33978.40   
+243 fanfreePhspStyrox_w244.egsdat  ncase=2911896        cpu=34226.70   
+244 fanfreePhspStyrox_w245.egsdat  ncase=2855898        cpu=34060.80   
+245 fanfreePhspStyrox_w246.egsdat  ncase=1791936        cpu=21179.70   
+246 fanfreePhspStyrox_w247.egsdat  ncase=2911896        cpu=34212.90   
+247 fanfreePhspStyrox_w248.egsdat  ncase=2855898        cpu=33863.10   
+248 fanfreePhspStyrox_w249.egsdat  ncase=2799900        cpu=33982.40   
+249 fanfreePhspStyrox_w250.egsdat  ncase=2855898        cpu=34036.20   
+250 fanfreePhspStyrox_w251.egsdat  ncase=2911896        cpu=34216.50   
+251 fanfreePhspStyrox_w252.egsdat  ncase=2855898        cpu=34378.00   
+252 fanfreePhspStyrox_w253.egsdat  ncase=2911896        cpu=34395.60   
+253 fanfreePhspStyrox_w254.egsdat  ncase=2799900        cpu=34085.10   
+254 fanfreePhspStyrox_w255.egsdat  ncase=2855898        cpu=33862.70   
+255 fanfreePhspStyrox_w256.egsdat  ncase=2855898        cpu=34321.00   
+256 fanfreePhspStyrox_w257.egsdat  ncase=2855898        cpu=34200.40   
+257 fanfreePhspStyrox_w258.egsdat  ncase=2911896        cpu=34237.30   
+258 fanfreePhspStyrox_w259.egsdat  ncase=2855898        cpu=33847.60   
+259 fanfreePhspStyrox_w260.egsdat  ncase=2855898        cpu=33851.70   
+260 fanfreePhspStyrox_w261.egsdat  ncase=2799900        cpu=34163.20   
+261 fanfreePhspStyrox_w262.egsdat  ncase=2855898        cpu=34231.80   
+262 fanfreePhspStyrox_w263.egsdat  ncase=2855898        cpu=34294.60   
+263 fanfreePhspStyrox_w264.egsdat  ncase=2911896        cpu=34169.10   
+264 fanfreePhspStyrox_w265.egsdat  ncase=2911896        cpu=34113.70   
+265 fanfreePhspStyrox_w266.egsdat  ncase=2911896        cpu=34046.30   
+266 fanfreePhspStyrox_w267.egsdat  ncase=2855898        cpu=33774.90   
+267 fanfreePhspStyrox_w268.egsdat  ncase=2911896        cpu=34251.60   
+268 fanfreePhspStyrox_w269.egsdat  ncase=2855898        cpu=34234.70   
+269 fanfreePhspStyrox_w270.egsdat  ncase=2967894        cpu=34156.00   
+270 fanfreePhspStyrox_w271.egsdat  ncase=2911896        cpu=33786.90   
+271 fanfreePhspStyrox_w272.egsdat  ncase=2967894        cpu=34397.00   
+272 fanfreePhspStyrox_w273.egsdat  ncase=2967894        cpu=34254.10   
+273 fanfreePhspStyrox_w274.egsdat  ncase=2911896        cpu=34076.90   
+274 fanfreePhspStyrox_w275.egsdat  ncase=2967894        cpu=34105.90   
+275 fanfreePhspStyrox_w276.egsdat  ncase=2855898        cpu=33936.50   
+276 fanfreePhspStyrox_w277.egsdat  ncase=2911896        cpu=33932.60   
+277 fanfreePhspStyrox_w278.egsdat  ncase=2855898        cpu=34230.40   
+278 fanfreePhspStyrox_w279.egsdat  ncase=2967894        cpu=34343.20   
+279 fanfreePhspStyrox_w280.egsdat  ncase=2911896        cpu=34308.80   
+280 fanfreePhspStyrox_w281.egsdat  ncase=2911896        cpu=33824.00   
+281 fanfreePhspStyrox_w282.egsdat  ncase=2911896        cpu=34212.60   
+282 fanfreePhspStyrox_w283.egsdat  ncase=2967894        cpu=34183.00   
+283 fanfreePhspStyrox_w284.egsdat  ncase=2799900        cpu=33964.10   
+284 fanfreePhspStyrox_w285.egsdat  ncase=2855898        cpu=33772.60   
+285 fanfreePhspStyrox_w286.egsdat  ncase=2799900        cpu=33900.90   
+286 fanfreePhspStyrox_w287.egsdat  ncase=2799900        cpu=34025.60   
+287 fanfreePhspStyrox_w288.egsdat  ncase=2743902        cpu=34024.10   
+288 fanfreePhspStyrox_w289.egsdat  ncase=2855898        cpu=33824.80   
+289 fanfreePhspStyrox_w290.egsdat  ncase=2911896        cpu=34232.10   
+290 fanfreePhspStyrox_w291.egsdat  ncase=2855898        cpu=33967.00   
+291 fanfreePhspStyrox_w292.egsdat  ncase=2855898        cpu=34030.90   
+292 fanfreePhspStyrox_w293.egsdat  ncase=2799900        cpu=33909.90   
+293 fanfreePhspStyrox_w294.egsdat  ncase=2855898        cpu=34212.20   
+294 fanfreePhspStyrox_w295.egsdat  ncase=2799900        cpu=34030.80   
+295 fanfreePhspStyrox_w296.egsdat  ncase=2799900        cpu=34277.10   
+296 fanfreePhspStyrox_w297.egsdat  ncase=2799900        cpu=34117.30   
+297 fanfreePhspStyrox_w298.egsdat  ncase=2743902        cpu=33746.30   
+298 fanfreePhspStyrox_w299.egsdat  ncase=2799900        cpu=34223.80   
+299 fanfreePhspStyrox_w300.egsdat  ncase=2855898        cpu=34004.40   
+300 fanfreePhspStyrox_w301.egsdat  ncase=2799900        cpu=33936.40   
+301 fanfreePhspStyrox_w302.egsdat  ncase=2799900        cpu=34376.20   
+302 fanfreePhspStyrox_w303.egsdat  ncase=2799900        cpu=34073.10   
+303 fanfreePhspStyrox_w304.egsdat  ncase=2911896        cpu=34105.60   
+304 fanfreePhspStyrox_w305.egsdat  ncase=2911896        cpu=34023.80   
+305 fanfreePhspStyrox_w306.egsdat  ncase=2855898        cpu=33980.70   
+306 fanfreePhspStyrox_w307.egsdat  ncase=2967894        cpu=34212.40   
+307 fanfreePhspStyrox_w308.egsdat  ncase=2967894        cpu=34225.60   
+308 fanfreePhspStyrox_w309.egsdat  ncase=2967894        cpu=34454.90   
+309 fanfreePhspStyrox_w310.egsdat  ncase=2967894        cpu=34229.70   
+310 fanfreePhspStyrox_w311.egsdat  ncase=2855898        cpu=34409.60   
+311 fanfreePhspStyrox_w312.egsdat  ncase=2911896        cpu=34205.50   
+312 fanfreePhspStyrox_w313.egsdat  ncase=2911896        cpu=33793.00   
+313 fanfreePhspStyrox_w314.egsdat  ncase=2855898        cpu=34030.90   
+314 fanfreePhspStyrox_w315.egsdat  ncase=2855898        cpu=34051.50   
+315 fanfreePhspStyrox_w316.egsdat  ncase=2911896        cpu=33788.60   
+316 fanfreePhspStyrox_w317.egsdat  ncase=2911896        cpu=34026.10   
+317 fanfreePhspStyrox_w318.egsdat  ncase=2911896        cpu=34050.90   
+318 fanfreePhspStyrox_w319.egsdat  ncase=2911896        cpu=34149.60   
+319 fanfreePhspStyrox_w320.egsdat  ncase=2967894        cpu=34320.30   
+320 fanfreePhspStyrox_w321.egsdat  ncase=2855898        cpu=33772.00   
+321 fanfreePhspStyrox_w322.egsdat  ncase=2855898        cpu=33802.60   
+322 fanfreePhspStyrox_w323.egsdat  ncase=2855898        cpu=34021.10   
+323 fanfreePhspStyrox_w324.egsdat  ncase=2799900        cpu=34147.20   
+324 fanfreePhspStyrox_w325.egsdat  ncase=2743902        cpu=33791.30   
+325 fanfreePhspStyrox_w326.egsdat  ncase=2855898        cpu=33827.80   
+326 fanfreePhspStyrox_w327.egsdat  ncase=2911896        cpu=34221.00   
+327 fanfreePhspStyrox_w328.egsdat  ncase=2799900        cpu=34032.70   
+328 fanfreePhspStyrox_w329.egsdat  ncase=2855898        cpu=33823.20   
+329 fanfreePhspStyrox_w330.egsdat  ncase=2743902        cpu=33908.50   
+330 fanfreePhspStyrox_w331.egsdat  ncase=2855898        cpu=34283.20   
+331 fanfreePhspStyrox_w332.egsdat  ncase=2911896        cpu=34255.90   
+332 fanfreePhspStyrox_w333.egsdat  ncase=2799900        cpu=33956.70   
+333 fanfreePhspStyrox_w334.egsdat  ncase=2911896        cpu=34191.00   
+334 fanfreePhspStyrox_w335.egsdat  ncase=2911896        cpu=34108.10   
+335 fanfreePhspStyrox_w336.egsdat  ncase=2799900        cpu=34089.50   
+336 fanfreePhspStyrox_w337.egsdat  ncase=2799900        cpu=34009.60   
+337 fanfreePhspStyrox_w338.egsdat  ncase=2799900        cpu=34174.30   
+338 fanfreePhspStyrox_w339.egsdat  ncase=2855898        cpu=34305.40   
+339 fanfreePhspStyrox_w340.egsdat  ncase=2855898        cpu=34224.90   
+340 fanfreePhspStyrox_w341.egsdat  ncase=2855898        cpu=33822.00   
+341 fanfreePhspStyrox_w342.egsdat  ncase=2855898        cpu=33930.30   
+342 fanfreePhspStyrox_w343.egsdat  ncase=2855898        cpu=33984.70   
+343 fanfreePhspStyrox_w344.egsdat  ncase=2855898        cpu=33966.80   
+344 fanfreePhspStyrox_w345.egsdat  ncase=2967894        cpu=34148.60   
+345 fanfreePhspStyrox_w346.egsdat  ncase=2967894        cpu=34321.30   
+346 fanfreePhspStyrox_w347.egsdat  ncase=2855898        cpu=33817.20   
+347 fanfreePhspStyrox_w348.egsdat  ncase=2911896        cpu=33978.90   
+348 fanfreePhspStyrox_w349.egsdat  ncase=2967894        cpu=34297.90   
+349 fanfreePhspStyrox_w350.egsdat  ncase=2911896        cpu=33994.90   
+350 fanfreePhspStyrox_w351.egsdat  ncase=2967894        cpu=34293.20   
+351 fanfreePhspStyrox_w352.egsdat  ncase=2855898        cpu=34157.80   
+352 fanfreePhspStyrox_w353.egsdat  ncase=2911896        cpu=34284.60   
+353 fanfreePhspStyrox_w354.egsdat  ncase=2967894        cpu=34273.50   
+354 fanfreePhspStyrox_w355.egsdat  ncase=2855898        cpu=33956.60   
+355 fanfreePhspStyrox_w356.egsdat  ncase=2967894        cpu=34072.50   
+356 fanfreePhspStyrox_w357.egsdat  ncase=2967894        cpu=34224.00   
+357 fanfreePhspStyrox_w358.egsdat  ncase=2911896        cpu=34107.20   
+358 fanfreePhspStyrox_w359.egsdat  ncase=2967894        cpu=34135.90   
+359 fanfreePhspStyrox_w360.egsdat  ncase=2855898        cpu=33819.90   
+360 fanfreePhspStyrox_w361.egsdat  ncase=2911896        cpu=33989.80   
+361 fanfreePhspStyrox_w362.egsdat  ncase=2911896        cpu=33973.30   
+362 fanfreePhspStyrox_w363.egsdat  ncase=2911896        cpu=34276.70   
+363 fanfreePhspStyrox_w364.egsdat  ncase=2911896        cpu=33697.90   
+364 fanfreePhspStyrox_w365.egsdat  ncase=2855898        cpu=33738.50   
+365 fanfreePhspStyrox_w366.egsdat  ncase=2911896        cpu=33673.70   
+366 fanfreePhspStyrox_w367.egsdat  ncase=2967894        cpu=34137.60   
+367 fanfreePhspStyrox_w368.egsdat  ncase=2911896        cpu=33935.20   
+368 fanfreePhspStyrox_w369.egsdat  ncase=2855898        cpu=33655.10   
+369 fanfreePhspStyrox_w370.egsdat  ncase=2743902        cpu=33841.20   
+370 fanfreePhspStyrox_w371.egsdat  ncase=2855898        cpu=34027.20   
+371 fanfreePhspStyrox_w372.egsdat  ncase=2799900        cpu=33967.00   
+372 fanfreePhspStyrox_w373.egsdat  ncase=2967894        cpu=34068.30   
+373 fanfreePhspStyrox_w374.egsdat  ncase=2911896        cpu=33901.00   
+374 fanfreePhspStyrox_w375.egsdat  ncase=2967894        cpu=34312.40   
+375 fanfreePhspStyrox_w376.egsdat  ncase=2911896        cpu=33797.10   
+376 fanfreePhspStyrox_w377.egsdat  ncase=2911896        cpu=33895.90   
+377 fanfreePhspStyrox_w378.egsdat  ncase=2911896        cpu=34185.90   
+378 fanfreePhspStyrox_w379.egsdat  ncase=2911896        cpu=33882.80   
+379 fanfreePhspStyrox_w380.egsdat  ncase=2911896        cpu=34192.30   
+380 fanfreePhspStyrox_w381.egsdat  ncase=2967894        cpu=34045.70   
+381 fanfreePhspStyrox_w382.egsdat  ncase=2967894        cpu=34256.60   
+382 fanfreePhspStyrox_w383.egsdat  ncase=2911896        cpu=34228.10   
+383 fanfreePhspStyrox_w384.egsdat  ncase=2855898        cpu=33890.20   
+384 fanfreePhspStyrox_w385.egsdat  ncase=2967894        cpu=34206.60   
+385 fanfreePhspStyrox_w386.egsdat  ncase=2967894        cpu=34179.30   
+386 fanfreePhspStyrox_w387.egsdat  ncase=2967894        cpu=34030.70   
+387 fanfreePhspStyrox_w388.egsdat  ncase=2911896        cpu=33940.60   
+388 fanfreePhspStyrox_w389.egsdat  ncase=2967894        cpu=33887.70   
+389 fanfreePhspStyrox_w390.egsdat  ncase=2911896        cpu=34023.30   
+390 fanfreePhspStyrox_w391.egsdat  ncase=2911896        cpu=33909.90   
+391 fanfreePhspStyrox_w392.egsdat  ncase=2967894        cpu=34150.20   
+392 fanfreePhspStyrox_w393.egsdat  ncase=2855898        cpu=33672.50   
+393 fanfreePhspStyrox_w394.egsdat  ncase=2967894        cpu=33891.50   
+394 fanfreePhspStyrox_w395.egsdat  ncase=2911896        cpu=34020.20   
+395 fanfreePhspStyrox_w396.egsdat  ncase=2911896        cpu=33927.30   
+396 fanfreePhspStyrox_w397.egsdat  ncase=2911896        cpu=33895.70   
+397 fanfreePhspStyrox_w398.egsdat  ncase=2967894        cpu=33822.50   
+398 fanfreePhspStyrox_w399.egsdat  ncase=2967894        cpu=33832.70   
+399 fanfreePhspStyrox_w400.egsdat  ncase=2911896        cpu=33809.90   
+400 fanfreePhspStyrox_w401.egsdat  ncase=2967894        cpu=34013.40   
+401 fanfreePhspStyrox_w402.egsdat  ncase=2911896        cpu=34122.50   
+402 fanfreePhspStyrox_w403.egsdat  ncase=2855898        cpu=33802.80   
+403 fanfreePhspStyrox_w404.egsdat  ncase=2967894        cpu=34130.20   
+404 fanfreePhspStyrox_w405.egsdat  ncase=2855898        cpu=34030.70   
+405 fanfreePhspStyrox_w406.egsdat  ncase=2967894        cpu=34302.10   
+406 fanfreePhspStyrox_w407.egsdat  ncase=2911896        cpu=33930.10   
+407 fanfreePhspStyrox_w408.egsdat  ncase=2911896        cpu=34183.30   
+408 fanfreePhspStyrox_w409.egsdat  ncase=2911896        cpu=34124.00   
+409 fanfreePhspStyrox_w410.egsdat  ncase=2911896        cpu=33863.70   
+410 fanfreePhspStyrox_w411.egsdat  ncase=2911896        cpu=33872.50   
+411 fanfreePhspStyrox_w412.egsdat  ncase=2967894        cpu=33976.00   
+412 fanfreePhspStyrox_w413.egsdat  ncase=2855898        cpu=33861.20   
+413 fanfreePhspStyrox_w414.egsdat  ncase=2799900        cpu=33723.10   
+414 fanfreePhspStyrox_w415.egsdat  ncase=2911896        cpu=33959.60   
+415 fanfreePhspStyrox_w416.egsdat  ncase=2911896        cpu=34072.00   
+416 fanfreePhspStyrox_w417.egsdat  ncase=2967894        cpu=34091.50   
+417 fanfreePhspStyrox_w418.egsdat  ncase=2911896        cpu=33699.50   
+418 fanfreePhspStyrox_w419.egsdat  ncase=2911896        cpu=33837.90   
+419 fanfreePhspStyrox_w420.egsdat  ncase=2967894        cpu=34264.70   
+420 fanfreePhspStyrox_w421.egsdat  ncase=2911896        cpu=34079.30   
+421 fanfreePhspStyrox_w422.egsdat  ncase=2911896        cpu=33997.60   
+422 fanfreePhspStyrox_w423.egsdat  ncase=2911896        cpu=34119.50   
+423 fanfreePhspStyrox_w424.egsdat  ncase=2967894        cpu=34061.30   
+424 fanfreePhspStyrox_w425.egsdat  ncase=2855898        cpu=33719.20   
+425 fanfreePhspStyrox_w426.egsdat  ncase=2967894        cpu=34098.80   
+426 fanfreePhspStyrox_w427.egsdat  ncase=3023892        cpu=34247.30   
+427 fanfreePhspStyrox_w428.egsdat  ncase=3023892        cpu=34195.00   
+428 fanfreePhspStyrox_w429.egsdat  ncase=2967894        cpu=34149.80   
+429 fanfreePhspStyrox_w430.egsdat  ncase=3023892        cpu=33967.50   
+430 fanfreePhspStyrox_w431.egsdat  ncase=2967894        cpu=33930.20   
+431 fanfreePhspStyrox_w432.egsdat  ncase=2967894        cpu=33882.40   
+432 fanfreePhspStyrox_w433.egsdat  ncase=2911896        cpu=33747.60   
+433 fanfreePhspStyrox_w434.egsdat  ncase=3023892        cpu=34093.30   
+434 fanfreePhspStyrox_w435.egsdat  ncase=2967894        cpu=33854.80   
+435 fanfreePhspStyrox_w436.egsdat  ncase=3023892        cpu=34206.70   
+436 fanfreePhspStyrox_w437.egsdat  ncase=2911896        cpu=33923.80   
+437 fanfreePhspStyrox_w438.egsdat  ncase=2911896        cpu=33937.10   
+438 fanfreePhspStyrox_w439.egsdat  ncase=2967894        cpu=33983.40   
+439 fanfreePhspStyrox_w440.egsdat  ncase=2967894        cpu=34081.10   
+440 fanfreePhspStyrox_w441.egsdat  ncase=2911896        cpu=33695.30   
+441 fanfreePhspStyrox_w442.egsdat  ncase=3023892        cpu=34098.00   
+442 fanfreePhspStyrox_w443.egsdat  ncase=2967894        cpu=34105.50   
+443 fanfreePhspStyrox_w444.egsdat  ncase=2855898        cpu=33830.30   
+444 fanfreePhspStyrox_w445.egsdat  ncase=2911896        cpu=33873.70   
+445 fanfreePhspStyrox_w446.egsdat  ncase=2855898        cpu=33732.60   
+446 fanfreePhspStyrox_w447.egsdat  ncase=2855898        cpu=33712.70   
+447 fanfreePhspStyrox_w448.egsdat  ncase=2911896        cpu=33994.10   
+448 fanfreePhspStyrox_w449.egsdat  ncase=2967894        cpu=33987.40   
+449 fanfreePhspStyrox_w450.egsdat  ncase=1847934        cpu=21279.20   
+450 fanfreePhspStyrox_w451.egsdat  ncase=2967894        cpu=34152.90   
+451 fanfreePhspStyrox_w452.egsdat  ncase=2967894        cpu=33805.30   
+452 fanfreePhspStyrox_w453.egsdat  ncase=2967894        cpu=33691.30   
+453 fanfreePhspStyrox_w454.egsdat  ncase=2855898        cpu=33653.10   
+454 fanfreePhspStyrox_w455.egsdat  ncase=2967894        cpu=33878.40   
+455 fanfreePhspStyrox_w456.egsdat  ncase=2967894        cpu=33789.70   
+456 fanfreePhspStyrox_w457.egsdat  ncase=2855898        cpu=33730.00   
+457 fanfreePhspStyrox_w458.egsdat  ncase=2911896        cpu=33717.50   
+458 fanfreePhspStyrox_w459.egsdat  ncase=2911896        cpu=33731.70   
+459 fanfreePhspStyrox_w460.egsdat  ncase=2911896        cpu=33802.30   
+460 fanfreePhspStyrox_w461.egsdat  ncase=2967894        cpu=34139.10   
+461 fanfreePhspStyrox_w462.egsdat  ncase=2911896        cpu=33876.10   
+462 fanfreePhspStyrox_w463.egsdat  ncase=2967894        cpu=33760.60   
+463 fanfreePhspStyrox_w464.egsdat  ncase=2967894        cpu=34126.40   
+464 fanfreePhspStyrox_w465.egsdat  ncase=2911896        cpu=33620.80   
+465 fanfreePhspStyrox_w466.egsdat  ncase=2855898        cpu=34112.80   
+466 fanfreePhspStyrox_w467.egsdat  ncase=2855898        cpu=33857.40   
+467 fanfreePhspStyrox_w468.egsdat  ncase=2911896        cpu=33651.40   
+468 fanfreePhspStyrox_w469.egsdat  ncase=2911896        cpu=34128.80   
+469 fanfreePhspStyrox_w470.egsdat  ncase=2911896        cpu=33802.60   
+470 fanfreePhspStyrox_w471.egsdat  ncase=2911896        cpu=34110.20   
+471 fanfreePhspStyrox_w472.egsdat  ncase=2967894        cpu=33893.80   
+472 fanfreePhspStyrox_w473.egsdat  ncase=2855898        cpu=34008.60   
+473 fanfreePhspStyrox_w474.egsdat  ncase=2911896        cpu=34290.00   
+474 fanfreePhspStyrox_w475.egsdat  ncase=2855898        cpu=33843.90   
+475 fanfreePhspStyrox_w476.egsdat  ncase=2911896        cpu=34076.40   
+476 fanfreePhspStyrox_w477.egsdat  ncase=2855898        cpu=33689.20   
+477 fanfreePhspStyrox_w478.egsdat  ncase=2855898        cpu=34126.50   
+478 fanfreePhspStyrox_w479.egsdat  ncase=2911896        cpu=33844.80   
+479 fanfreePhspStyrox_w480.egsdat  ncase=2855898        cpu=33728.70   
+480 fanfreePhspStyrox_w481.egsdat  ncase=2967894        cpu=33853.30   
+481 fanfreePhspStyrox_w482.egsdat  ncase=2967894        cpu=34222.80   
+482 fanfreePhspStyrox_w483.egsdat  ncase=2967894        cpu=33924.20   
+483 fanfreePhspStyrox_w484.egsdat  ncase=2743902        cpu=33404.70   
+484 fanfreePhspStyrox_w485.egsdat  ncase=2855898        cpu=33478.40   
+485 fanfreePhspStyrox_w486.egsdat  ncase=2799900        cpu=33743.90   
+486 fanfreePhspStyrox_w487.egsdat  ncase=2855898        cpu=33647.60   
+487 fanfreePhspStyrox_w488.egsdat  ncase=2911896        cpu=33987.00   
+488 fanfreePhspStyrox_w489.egsdat  ncase=2743902        cpu=33400.40   
+489 fanfreePhspStyrox_w490.egsdat  ncase=2911896        cpu=34015.50   
+490 fanfreePhspStyrox_w491.egsdat  ncase=2911896        cpu=33630.80   
+491 fanfreePhspStyrox_w492.egsdat  ncase=2911896        cpu=33665.00   
+492 fanfreePhspStyrox_w493.egsdat  ncase=2855898        cpu=33913.30   
+493 fanfreePhspStyrox_w494.egsdat  ncase=2799900        cpu=33826.60   
+494 fanfreePhspStyrox_w495.egsdat  ncase=2911896        cpu=33887.50   
+495 fanfreePhspStyrox_w496.egsdat  ncase=2911896        cpu=33901.30   
+496 fanfreePhspStyrox_w497.egsdat  ncase=2911896        cpu=33800.40   
+497 fanfreePhspStyrox_w498.egsdat  ncase=2855898        cpu=33983.80   
+498 fanfreePhspStyrox_w499.egsdat  ncase=2855898        cpu=33867.60   
+499 fanfreePhspStyrox_w500.egsdat  ncase=2911896        cpu=33868.40   
+500 fanfreePhspStyrox_w501.egsdat  ncase=2855898        cpu=33974.80   
+501 fanfreePhspStyrox_w502.egsdat  ncase=2855898        cpu=33895.20   
+502 fanfreePhspStyrox_w503.egsdat  ncase=2799900        cpu=33978.60   
+503 fanfreePhspStyrox_w504.egsdat  ncase=2855898        cpu=33671.20   
+504 fanfreePhspStyrox_w506.egsdat  ncase=2799900        cpu=34006.10   
+505 fanfreePhspStyrox_w507.egsdat  ncase=2855898        cpu=33731.40   
+506 fanfreePhspStyrox_w508.egsdat  ncase=2855898        cpu=33803.10   
+507 fanfreePhspStyrox_w509.egsdat  ncase=2855898        cpu=33974.70   
+508 fanfreePhspStyrox_w510.egsdat  ncase=2855898        cpu=34009.70   
+509 fanfreePhspStyrox_w511.egsdat  ncase=2687904        cpu=33737.70   
+510 fanfreePhspStyrox_w512.egsdat  ncase=2743902        cpu=33444.40   
+511 fanfreePhspStyrox_w513.egsdat  ncase=2799900        cpu=33651.40   
+512 fanfreePhspStyrox_w514.egsdat  ncase=2743902        cpu=33814.70   
+513 fanfreePhspStyrox_w515.egsdat  ncase=2799900        cpu=33903.00   
+514 fanfreePhspStyrox_w516.egsdat  ncase=2855898        cpu=33837.00   
+515 fanfreePhspStyrox_w517.egsdat  ncase=2799900        cpu=33518.10   
+516 fanfreePhspStyrox_w518.egsdat  ncase=2855898        cpu=34075.40   
+517 fanfreePhspStyrox_w519.egsdat  ncase=2855898        cpu=33785.90   
+518 fanfreePhspStyrox_w520.egsdat  ncase=2799900        cpu=33973.70   
+519 fanfreePhspStyrox_w521.egsdat  ncase=2799900        cpu=33462.00   
+520 fanfreePhspStyrox_w522.egsdat  ncase=2743902        cpu=33753.00   
+521 fanfreePhspStyrox_w523.egsdat  ncase=2855898        cpu=34106.90   
+522 fanfreePhspStyrox_w524.egsdat  ncase=2743902        cpu=33877.20   
+523 fanfreePhspStyrox_w525.egsdat  ncase=2687904        cpu=33732.70   
+524 fanfreePhspStyrox_w526.egsdat  ncase=2687904        cpu=33838.30   
+525 fanfreePhspStyrox_w527.egsdat  ncase=2743902        cpu=33880.30   
+526 fanfreePhspStyrox_w528.egsdat  ncase=2743902        cpu=33452.40   
+527 fanfreePhspStyrox_w529.egsdat  ncase=1679940        cpu=21221.10   
+528 fanfreePhspStyrox_w530.egsdat  ncase=2743902        cpu=34126.70   
+529 fanfreePhspStyrox_w531.egsdat  ncase=2743902        cpu=33942.10   
+530 fanfreePhspStyrox_w532.egsdat  ncase=2743902        cpu=33834.00   
+531 fanfreePhspStyrox_w533.egsdat  ncase=2743902        cpu=33983.10   
+532 fanfreePhspStyrox_w534.egsdat  ncase=2743902        cpu=33656.20   
+533 fanfreePhspStyrox_w535.egsdat  ncase=2799900        cpu=33790.60   
+534 fanfreePhspStyrox_w536.egsdat  ncase=2743902        cpu=33955.40   
+535 fanfreePhspStyrox_w537.egsdat  ncase=2799900        cpu=34009.30   
+536 fanfreePhspStyrox_w538.egsdat  ncase=2743902        cpu=33507.90   
+537 fanfreePhspStyrox_w539.egsdat  ncase=2799900        cpu=33911.90   
+538 fanfreePhspStyrox_w540.egsdat  ncase=2687904        cpu=33561.30   
+539 fanfreePhspStyrox_w541.egsdat  ncase=2799900        cpu=33830.70   
+540 fanfreePhspStyrox_w542.egsdat  ncase=2799900        cpu=34045.30   
+541 fanfreePhspStyrox_w543.egsdat  ncase=2743902        cpu=33811.70   
+542 fanfreePhspStyrox_w544.egsdat  ncase=2855898        cpu=33958.20   
+543 fanfreePhspStyrox_w545.egsdat  ncase=2575908        cpu=33757.40   
+544 fanfreePhspStyrox_w546.egsdat  ncase=2799900        cpu=33762.10   
+545 fanfreePhspStyrox_w547.egsdat  ncase=2799900        cpu=33491.20   
+546 fanfreePhspStyrox_w548.egsdat  ncase=2799900        cpu=33712.70   
+547 fanfreePhspStyrox_w549.egsdat  ncase=2743902        cpu=33536.90   
+548 fanfreePhspStyrox_w550.egsdat  ncase=1623942        cpu=21208.90   
+549 fanfreePhspStyrox_w551.egsdat  ncase=2743902        cpu=33972.60   
+550 fanfreePhspStyrox_w552.egsdat  ncase=2911896        cpu=33868.20   
+551 fanfreePhspStyrox_w553.egsdat  ncase=2911896        cpu=34016.50   
+552 fanfreePhspStyrox_w554.egsdat  ncase=2855898        cpu=33490.40   
+553 fanfreePhspStyrox_w555.egsdat  ncase=2855898        cpu=33657.50   
+554 fanfreePhspStyrox_w556.egsdat  ncase=2855898        cpu=33569.30   
+555 fanfreePhspStyrox_w557.egsdat  ncase=2911896        cpu=34105.20   
+556 fanfreePhspStyrox_w558.egsdat  ncase=2855898        cpu=33831.00   
+557 fanfreePhspStyrox_w559.egsdat  ncase=2855898        cpu=33831.50   
+558 fanfreePhspStyrox_w560.egsdat  ncase=2799900        cpu=33803.80   
+559 fanfreePhspStyrox_w561.egsdat  ncase=2855898        cpu=34078.70   
+560 fanfreePhspStyrox_w562.egsdat  ncase=2855898        cpu=33487.80   
+561 fanfreePhspStyrox_w563.egsdat  ncase=1791936        cpu=21250.90   
+562 fanfreePhspStyrox_w564.egsdat  ncase=2743902        cpu=33947.50   
+563 fanfreePhspStyrox_w565.egsdat  ncase=2799900        cpu=33826.30   
+564 fanfreePhspStyrox_w566.egsdat  ncase=2799900        cpu=33560.60   
+565 fanfreePhspStyrox_w567.egsdat  ncase=2799900        cpu=33605.90   
+566 fanfreePhspStyrox_w568.egsdat  ncase=2743902        cpu=33579.10   
+567 fanfreePhspStyrox_w569.egsdat  ncase=2743902        cpu=33475.40   
+568 fanfreePhspStyrox_w570.egsdat  ncase=2799900        cpu=33922.90   
+569 fanfreePhspStyrox_w571.egsdat  ncase=2687904        cpu=33525.70   
+570 fanfreePhspStyrox_w572.egsdat  ncase=2799900        cpu=33602.40   
+571 fanfreePhspStyrox_w573.egsdat  ncase=2799900        cpu=33758.00   
+572 fanfreePhspStyrox_w574.egsdat  ncase=2743902        cpu=33464.10   
+573 fanfreePhspStyrox_w575.egsdat  ncase=2799900        cpu=34049.50   
+574 fanfreePhspStyrox_w576.egsdat  ncase=2743902        cpu=33576.60   
+575 fanfreePhspStyrox_w577.egsdat  ncase=2799900        cpu=33753.70   
+576 fanfreePhspStyrox_w578.egsdat  ncase=2799900        cpu=33819.90   
+577 fanfreePhspStyrox_w579.egsdat  ncase=2799900        cpu=33561.00   
+578 fanfreePhspStyrox_w580.egsdat  ncase=2799900        cpu=33596.20   
+579 fanfreePhspStyrox_w581.egsdat  ncase=2743902        cpu=33880.40   
+580 fanfreePhspStyrox_w582.egsdat  ncase=2799900        cpu=33897.20   
+581 fanfreePhspStyrox_w583.egsdat  ncase=2743902        cpu=33637.40   
+582 fanfreePhspStyrox_w584.egsdat  ncase=2799900        cpu=33420.90   
+583 fanfreePhspStyrox_w585.egsdat  ncase=1791936        cpu=21226.60   
+584 fanfreePhspStyrox_w586.egsdat  ncase=2911896        cpu=33951.70   
+585 fanfreePhspStyrox_w587.egsdat  ncase=2799900        cpu=33786.10   
+586 fanfreePhspStyrox_w588.egsdat  ncase=2799900        cpu=33619.40   
+587 fanfreePhspStyrox_w589.egsdat  ncase=2855898        cpu=33866.30   
+588 fanfreePhspStyrox_w590.egsdat  ncase=2855898        cpu=33610.10   
+589 fanfreePhspStyrox_w591.egsdat  ncase=2855898        cpu=33957.60   
+590 fanfreePhspStyrox_w592.egsdat  ncase=2799900        cpu=33798.10   
+591 fanfreePhspStyrox_w593.egsdat  ncase=2799900        cpu=33591.30   
+592 fanfreePhspStyrox_w594.egsdat  ncase=2799900        cpu=33589.20   
+593 fanfreePhspStyrox_w595.egsdat  ncase=2911896        cpu=33976.60   
+594 fanfreePhspStyrox_w596.egsdat  ncase=2855898        cpu=33863.70   
+595 fanfreePhspStyrox_w597.egsdat  ncase=2855898        cpu=33722.80   
+596 fanfreePhspStyrox_w598.egsdat  ncase=2911896        cpu=34029.20   
+597 fanfreePhspStyrox_w599.egsdat  ncase=2855898        cpu=33573.10   
+598 fanfreePhspStyrox_w600.egsdat  ncase=2799900        cpu=33750.70   
+599 fanfreePhspStyrox_w601.egsdat  ncase=2799900        cpu=33648.50   
+600 fanfreePhspStyrox_w602.egsdat  ncase=2855898        cpu=33696.30   
+601 fanfreePhspStyrox_w603.egsdat  ncase=2855898        cpu=33981.50   
+602 fanfreePhspStyrox_w604.egsdat  ncase=2855898        cpu=33693.70   
+603 fanfreePhspStyrox_w605.egsdat  ncase=2743902        cpu=33722.60   
+604 fanfreePhspStyrox_w606.egsdat  ncase=2799900        cpu=33899.20   
+605 fanfreePhspStyrox_w607.egsdat  ncase=2743902        cpu=33550.00   
+606 fanfreePhspStyrox_w608.egsdat  ncase=2799900        cpu=33471.70   
+607 fanfreePhspStyrox_w609.egsdat  ncase=2743902        cpu=33580.50   
+608 fanfreePhspStyrox_w610.egsdat  ncase=2855898        cpu=33693.20   
+609 fanfreePhspStyrox_w611.egsdat  ncase=2743902        cpu=33753.10   
+610 fanfreePhspStyrox_w612.egsdat  ncase=2743902        cpu=33252.80   
+611 fanfreePhspStyrox_w613.egsdat  ncase=2743902        cpu=33634.70   
+612 fanfreePhspStyrox_w614.egsdat  ncase=2855898        cpu=33890.90   
+613 fanfreePhspStyrox_w615.egsdat  ncase=2743902        cpu=33788.30   
+614 fanfreePhspStyrox_w616.egsdat  ncase=2799900        cpu=33345.60   
+615 fanfreePhspStyrox_w617.egsdat  ncase=2855898        cpu=33831.70   
+616 fanfreePhspStyrox_w618.egsdat  ncase=2519910        cpu=33885.40   
+617 fanfreePhspStyrox_w619.egsdat  ncase=2799900        cpu=33638.00   
+618 fanfreePhspStyrox_w620.egsdat  ncase=2799900        cpu=33552.40   
+619 fanfreePhspStyrox_w621.egsdat  ncase=2799900        cpu=33700.10   
+620 fanfreePhspStyrox_w622.egsdat  ncase=2799900        cpu=33658.00   
+621 fanfreePhspStyrox_w623.egsdat  ncase=2743902        cpu=33754.90   
+622 fanfreePhspStyrox_w624.egsdat  ncase=2743902        cpu=33265.90   
+623 fanfreePhspStyrox_w625.egsdat  ncase=2743902        cpu=33402.50   
+624 fanfreePhspStyrox_w626.egsdat  ncase=2799900        cpu=33668.00   
+625 fanfreePhspStyrox_w627.egsdat  ncase=2799900        cpu=33581.10   
+626 fanfreePhspStyrox_w628.egsdat  ncase=2743902        cpu=33387.70   
+627 fanfreePhspStyrox_w629.egsdat  ncase=2855898        cpu=33666.60   
+628 fanfreePhspStyrox_w630.egsdat  ncase=2855898        cpu=33721.40   
+629 fanfreePhspStyrox_w631.egsdat  ncase=2855898        cpu=33705.70   
+630 fanfreePhspStyrox_w632.egsdat  ncase=2799900        cpu=33209.20   
+631 fanfreePhspStyrox_w633.egsdat  ncase=2855898        cpu=33636.50   
+632 fanfreePhspStyrox_w634.egsdat  ncase=2743902        cpu=33329.70   
+633 fanfreePhspStyrox_w635.egsdat  ncase=2799900        cpu=33820.30   
+634 fanfreePhspStyrox_w636.egsdat  ncase=2743902        cpu=33162.50   
+635 fanfreePhspStyrox_w637.egsdat  ncase=2855898        cpu=33661.60   
+636 fanfreePhspStyrox_w638.egsdat  ncase=2855898        cpu=33729.50   
+637 fanfreePhspStyrox_w639.egsdat  ncase=2855898        cpu=33771.40   
+638 fanfreePhspStyrox_w640.egsdat  ncase=2799900        cpu=33493.20   
+639 fanfreePhspStyrox_w641.egsdat  ncase=2743902        cpu=33721.30   
+640 fanfreePhspStyrox_w642.egsdat  ncase=2799900        cpu=33363.70   
+641 fanfreePhspStyrox_w643.egsdat  ncase=2743902        cpu=33478.10   
+642 fanfreePhspStyrox_w644.egsdat  ncase=2743902        cpu=33511.40   
+643 fanfreePhspStyrox_w645.egsdat  ncase=2799900        cpu=33447.70   
+644 fanfreePhspStyrox_w646.egsdat  ncase=2799900        cpu=33534.40   
+645 fanfreePhspStyrox_w647.egsdat  ncase=2855898        cpu=33946.10   
+646 fanfreePhspStyrox_w648.egsdat  ncase=2855898        cpu=34030.80   
+647 fanfreePhspStyrox_w649.egsdat  ncase=2743902        cpu=33676.20   
+648 fanfreePhspStyrox_w650.egsdat  ncase=2855898        cpu=33907.70   
+649 fanfreePhspStyrox_w651.egsdat  ncase=2743902        cpu=34000.70   
+650 fanfreePhspStyrox_w652.egsdat  ncase=2855898        cpu=34004.80   
+651 fanfreePhspStyrox_w653.egsdat  ncase=1735938        cpu=21122.80   
+652 fanfreePhspStyrox_w654.egsdat  ncase=2855898        cpu=33746.40   
+653 fanfreePhspStyrox_w655.egsdat  ncase=2855898        cpu=34018.80   
+654 fanfreePhspStyrox_w656.egsdat  ncase=2743902        cpu=33897.60   
+655 fanfreePhspStyrox_w657.egsdat  ncase=2799900        cpu=33931.60   
+656 fanfreePhspStyrox_w658.egsdat  ncase=2799900        cpu=33721.60   
+657 fanfreePhspStyrox_w659.egsdat  ncase=2799900        cpu=33847.90   
+658 fanfreePhspStyrox_w660.egsdat  ncase=2855898        cpu=33952.90   
+659 fanfreePhspStyrox_w661.egsdat  ncase=2799900        cpu=33505.30   
+660 fanfreePhspStyrox_w662.egsdat  ncase=2855898        cpu=33869.10   
+661 fanfreePhspStyrox_w663.egsdat  ncase=2799900        cpu=33922.90   
+662 fanfreePhspStyrox_w664.egsdat  ncase=2855898        cpu=33740.80   
+663 fanfreePhspStyrox_w665.egsdat  ncase=2855898        cpu=33583.10   
+664 fanfreePhspStyrox_w666.egsdat  ncase=2855898        cpu=33570.10   
+665 fanfreePhspStyrox_w667.egsdat  ncase=2911896        cpu=34025.20   
+666 fanfreePhspStyrox_w668.egsdat  ncase=2855898        cpu=33733.40   
+667 fanfreePhspStyrox_w669.egsdat  ncase=2855898        cpu=33636.30   
+668 fanfreePhspStyrox_w670.egsdat  ncase=2855898        cpu=33466.90   
+669 fanfreePhspStyrox_w671.egsdat  ncase=2911896        cpu=33982.70   
+670 fanfreePhspStyrox_w672.egsdat  ncase=2911896        cpu=33814.40   
+671 fanfreePhspStyrox_w673.egsdat  ncase=2799900        cpu=33682.20   
+672 fanfreePhspStyrox_w674.egsdat  ncase=2855898        cpu=33463.70   
+673 fanfreePhspStyrox_w675.egsdat  ncase=2855898        cpu=33696.00   
+674 fanfreePhspStyrox_w676.egsdat  ncase=2911896        cpu=33951.50   
+675 fanfreePhspStyrox_w677.egsdat  ncase=2855898        cpu=33771.80   
+676 fanfreePhspStyrox_w678.egsdat  ncase=2855898        cpu=34004.40   
+677 fanfreePhspStyrox_w679.egsdat  ncase=1791936        cpu=21091.90   
+678 fanfreePhspStyrox_w680.egsdat  ncase=2911896        cpu=33864.30   
+679 fanfreePhspStyrox_w681.egsdat  ncase=2911896        cpu=33820.10   
+680 fanfreePhspStyrox_w682.egsdat  ncase=2855898        cpu=33502.00   
+681 fanfreePhspStyrox_w683.egsdat  ncase=2855898        cpu=33561.30   
+682 fanfreePhspStyrox_w684.egsdat  ncase=2855898        cpu=33739.60   
+683 fanfreePhspStyrox_w685.egsdat  ncase=2855898        cpu=33884.10   
+684 fanfreePhspStyrox_w686.egsdat  ncase=2799900        cpu=33504.10   
+685 fanfreePhspStyrox_w687.egsdat  ncase=2799900        cpu=33712.50   
+686 fanfreePhspStyrox_w688.egsdat  ncase=2855898        cpu=33813.80   
+687 fanfreePhspStyrox_w689.egsdat  ncase=2855898        cpu=33684.60   
+688 fanfreePhspStyrox_w690.egsdat  ncase=2743902        cpu=33600.40   
+689 fanfreePhspStyrox_w691.egsdat  ncase=2799900        cpu=33841.70   
+690 fanfreePhspStyrox_w692.egsdat  ncase=2631906        cpu=33843.30   
+691 fanfreePhspStyrox_w693.egsdat  ncase=2855898        cpu=33791.30   
+692 fanfreePhspStyrox_w694.egsdat  ncase=2855898        cpu=33893.40   
+693 fanfreePhspStyrox_w695.egsdat  ncase=1735938        cpu=20741.90   
+694 fanfreePhspStyrox_w696.egsdat  ncase=2799900        cpu=33957.30   
+695 fanfreePhspStyrox_w697.egsdat  ncase=2855898        cpu=33672.20   
+696 fanfreePhspStyrox_w698.egsdat  ncase=2799900        cpu=33664.60   
+697 fanfreePhspStyrox_w699.egsdat  ncase=2855898        cpu=33947.90   
+698 fanfreePhspStyrox_w700.egsdat  ncase=2855898        cpu=33560.80   
+699 fanfreePhspStyrox_w701.egsdat  ncase=2799900        cpu=33765.70   
+700 fanfreePhspStyrox_w702.egsdat  ncase=2799900        cpu=33455.40   
+701 fanfreePhspStyrox_w703.egsdat  ncase=2855898        cpu=33902.60   
+702 fanfreePhspStyrox_w704.egsdat  ncase=2799900        cpu=33706.80   
+703 fanfreePhspStyrox_w705.egsdat  ncase=2799900        cpu=33963.40   
+704 fanfreePhspStyrox_w706.egsdat  ncase=2799900        cpu=33466.40   
+705 fanfreePhspStyrox_w707.egsdat  ncase=2799900        cpu=33990.80   
+706 fanfreePhspStyrox_w708.egsdat  ncase=2799900        cpu=33976.40   
+707 fanfreePhspStyrox_w709.egsdat  ncase=2799900        cpu=33806.90   
+708 fanfreePhspStyrox_w710.egsdat  ncase=2743902        cpu=33535.30   
+709 fanfreePhspStyrox_w711.egsdat  ncase=2799900        cpu=33730.30   
+710 fanfreePhspStyrox_w712.egsdat  ncase=2799900        cpu=33525.20   
+711 fanfreePhspStyrox_w713.egsdat  ncase=2799900        cpu=33540.30   
+712 fanfreePhspStyrox_w714.egsdat  ncase=2855898        cpu=33630.20   
+713 fanfreePhspStyrox_w715.egsdat  ncase=2743902        cpu=33669.10   
+714 fanfreePhspStyrox_w716.egsdat  ncase=2855898        cpu=33913.20   
+715 fanfreePhspStyrox_w717.egsdat  ncase=2799900        cpu=33419.10   
+716 fanfreePhspStyrox_w718.egsdat  ncase=2855898        cpu=33891.60   
+717 fanfreePhspStyrox_w719.egsdat  ncase=2855898        cpu=33913.80   
+718 fanfreePhspStyrox_w720.egsdat  ncase=2799900        cpu=33620.30   
+719 fanfreePhspStyrox_w721.egsdat  ncase=2743902        cpu=33778.70   
+720 fanfreePhspStyrox_w722.egsdat  ncase=2855898        cpu=33924.40   
+721 fanfreePhspStyrox_w723.egsdat  ncase=2855898        cpu=34032.50   
+722 fanfreePhspStyrox_w724.egsdat  ncase=2743902        cpu=33773.00   
+723 fanfreePhspStyrox_w725.egsdat  ncase=2799900        cpu=33387.20   
+724 fanfreePhspStyrox_w726.egsdat  ncase=2855898        cpu=33911.70   
+725 fanfreePhspStyrox_w727.egsdat  ncase=2855898        cpu=33813.10   
+726 fanfreePhspStyrox_w728.egsdat  ncase=2743902        cpu=33702.50   
+727 fanfreePhspStyrox_w729.egsdat  ncase=2743902        cpu=33463.20   
+728 fanfreePhspStyrox_w730.egsdat  ncase=2799900        cpu=33505.80   
+729 fanfreePhspStyrox_w731.egsdat  ncase=2799900        cpu=33368.50   
+730 fanfreePhspStyrox_w732.egsdat  ncase=2855898        cpu=33670.40   
+731 fanfreePhspStyrox_w733.egsdat  ncase=2799900        cpu=33265.00   
+732 fanfreePhspStyrox_w734.egsdat  ncase=2799900        cpu=33742.30   
+733 fanfreePhspStyrox_w735.egsdat  ncase=2855898        cpu=33560.70   
+734 fanfreePhspStyrox_w736.egsdat  ncase=2799900        cpu=33788.80   
+735 fanfreePhspStyrox_w737.egsdat  ncase=2855898        cpu=33734.70   
+736 fanfreePhspStyrox_w738.egsdat  ncase=2799900        cpu=33876.10   
+737 fanfreePhspStyrox_w739.egsdat  ncase=2799900        cpu=33645.80   
+738 fanfreePhspStyrox_w740.egsdat  ncase=2799900        cpu=33357.20   
+739 fanfreePhspStyrox_w741.egsdat  ncase=2855898        cpu=33811.80   
+740 fanfreePhspStyrox_w742.egsdat  ncase=2743902        cpu=33570.70   
+741 fanfreePhspStyrox_w743.egsdat  ncase=2799900        cpu=33892.40   
+742 fanfreePhspStyrox_w744.egsdat  ncase=2687904        cpu=33655.70   
+743 fanfreePhspStyrox_w745.egsdat  ncase=2799900        cpu=33787.70   
+744 fanfreePhspStyrox_w746.egsdat  ncase=2799900        cpu=33834.50   
+745 fanfreePhspStyrox_w747.egsdat  ncase=2799900        cpu=33473.00   
+746 fanfreePhspStyrox_w748.egsdat  ncase=2743902        cpu=33615.10   
+747 fanfreePhspStyrox_w749.egsdat  ncase=2743902        cpu=33719.40   
+748 fanfreePhspStyrox_w750.egsdat  ncase=2799900        cpu=33560.40   
+749 fanfreePhspStyrox_w751.egsdat  ncase=2799900        cpu=33522.50   
+750 fanfreePhspStyrox_w752.egsdat  ncase=2743902        cpu=33365.70   
+751 fanfreePhspStyrox_w753.egsdat  ncase=2799900        cpu=33834.10   
+752 fanfreePhspStyrox_w754.egsdat  ncase=2799900        cpu=33433.20   
+753 fanfreePhspStyrox_w755.egsdat  ncase=2799900        cpu=33516.80   
+754 fanfreePhspStyrox_w756.egsdat  ncase=2687904        cpu=33396.20   
+755 fanfreePhspStyrox_w757.egsdat  ncase=2743902        cpu=33745.30   
+756 fanfreePhspStyrox_w758.egsdat  ncase=2799900        cpu=33501.10   
+757 fanfreePhspStyrox_w759.egsdat  ncase=2799900        cpu=33688.30   
+758 fanfreePhspStyrox_w760.egsdat  ncase=2743902        cpu=33613.00   
+759 fanfreePhspStyrox_w761.egsdat  ncase=2799900        cpu=33922.70   
+760 fanfreePhspStyrox_w762.egsdat  ncase=2799900        cpu=33806.70   
+761 fanfreePhspStyrox_w763.egsdat  ncase=2743902        cpu=33366.20   
+762 fanfreePhspStyrox_w764.egsdat  ncase=2631906        cpu=33420.80   
+763 fanfreePhspStyrox_w765.egsdat  ncase=2687904        cpu=33645.60   
+764 fanfreePhspStyrox_w766.egsdat  ncase=2743902        cpu=33487.30   
+765 fanfreePhspStyrox_w767.egsdat  ncase=2799900        cpu=33778.20   
+766 fanfreePhspStyrox_w768.egsdat  ncase=2743902        cpu=33440.90   
+767 fanfreePhspStyrox_w769.egsdat  ncase=2743902        cpu=33455.90   
+768 fanfreePhspStyrox_w770.egsdat  ncase=2743902        cpu=33423.30   
+769 fanfreePhspStyrox_w771.egsdat  ncase=2743902        cpu=33777.20   
+770 fanfreePhspStyrox_w772.egsdat  ncase=2743902        cpu=33334.00   
+771 fanfreePhspStyrox_w773.egsdat  ncase=2687904        cpu=33225.40   
+772 fanfreePhspStyrox_w774.egsdat  ncase=2743902        cpu=33333.60   
+773 fanfreePhspStyrox_w775.egsdat  ncase=2687904        cpu=33440.80   
+774 fanfreePhspStyrox_w776.egsdat  ncase=2743902        cpu=33644.20   
+775 fanfreePhspStyrox_w777.egsdat  ncase=2743902        cpu=33567.30   
+776 fanfreePhspStyrox_w778.egsdat  ncase=2687904        cpu=33790.70   
+777 fanfreePhspStyrox_w779.egsdat  ncase=2743902        cpu=33666.70   
+778 fanfreePhspStyrox_w780.egsdat  ncase=1679940        cpu=20948.80   
+779 fanfreePhspStyrox_w781.egsdat  ncase=2743902        cpu=33672.70   
+780 fanfreePhspStyrox_w782.egsdat  ncase=2743902        cpu=33602.90   
+781 fanfreePhspStyrox_w783.egsdat  ncase=2631906        cpu=33614.80   
+782 fanfreePhspStyrox_w784.egsdat  ncase=2743902        cpu=33693.70   
+783 fanfreePhspStyrox_w785.egsdat  ncase=2799900        cpu=33776.30   
+784 fanfreePhspStyrox_w786.egsdat  ncase=2799900        cpu=33474.80   
+785 fanfreePhspStyrox_w787.egsdat  ncase=2799900        cpu=33747.10   
+786 fanfreePhspStyrox_w788.egsdat  ncase=2799900        cpu=33831.50   
+787 fanfreePhspStyrox_w789.egsdat  ncase=2743902        cpu=33644.20   
+788 fanfreePhspStyrox_w790.egsdat  ncase=2631906        cpu=33325.30   
+789 fanfreePhspStyrox_w791.egsdat  ncase=2799900        cpu=33690.70   
+790 fanfreePhspStyrox_w792.egsdat  ncase=2799900        cpu=33688.10   
+791 fanfreePhspStyrox_w793.egsdat  ncase=2799900        cpu=33707.00   
+792 fanfreePhspStyrox_w794.egsdat  ncase=2687904        cpu=33402.80   
+793 fanfreePhspStyrox_w795.egsdat  ncase=2799900        cpu=33425.70   
+794 fanfreePhspStyrox_w796.egsdat  ncase=2799900        cpu=33757.10   
+795 fanfreePhspStyrox_w797.egsdat  ncase=2743902        cpu=33187.10   
+796 fanfreePhspStyrox_w798.egsdat  ncase=2743902        cpu=33357.50   
+797 fanfreePhspStyrox_w799.egsdat  ncase=2687904        cpu=33333.00   
+798 fanfreePhspStyrox_w800.egsdat  ncase=2799900        cpu=33456.70   
+799 fanfreePhspStyrox_w801.egsdat  ncase=2743902        cpu=33312.50   
+800 fanfreePhspStyrox_w802.egsdat  ncase=2799900        cpu=33594.20   
+801 fanfreePhspStyrox_w803.egsdat  ncase=2743902        cpu=33733.40   
+802 fanfreePhspStyrox_w804.egsdat  ncase=2799900        cpu=33665.10   
+803 fanfreePhspStyrox_w805.egsdat  ncase=2743902        cpu=33265.70   
+804 fanfreePhspStyrox_w806.egsdat  ncase=2799900        cpu=33561.60   
+805 fanfreePhspStyrox_w807.egsdat  ncase=2687904        cpu=33699.90   
+806 fanfreePhspStyrox_w808.egsdat  ncase=2799900        cpu=33441.10   
+807 fanfreePhspStyrox_w809.egsdat  ncase=2687904        cpu=33257.70   
+808 fanfreePhspStyrox_w810.egsdat  ncase=2799900        cpu=33700.20   
+809 fanfreePhspStyrox_w811.egsdat  ncase=2799900        cpu=33387.00   
+810 fanfreePhspStyrox_w812.egsdat  ncase=2799900        cpu=33740.10   
+811 fanfreePhspStyrox_w813.egsdat  ncase=2743902        cpu=33608.60   
+812 fanfreePhspStyrox_w814.egsdat  ncase=2743902        cpu=33318.80   
+813 fanfreePhspStyrox_w815.egsdat  ncase=2799900        cpu=33602.70   
+814 fanfreePhspStyrox_w816.egsdat  ncase=2743902        cpu=33844.80   
+815 fanfreePhspStyrox_w817.egsdat  ncase=2743902        cpu=33635.70   
+816 fanfreePhspStyrox_w818.egsdat  ncase=2799900        cpu=33684.20   
+817 fanfreePhspStyrox_w819.egsdat  ncase=2687904        cpu=33560.20   
+818 fanfreePhspStyrox_w820.egsdat  ncase=2743902        cpu=33424.20   
+819 fanfreePhspStyrox_w821.egsdat  ncase=2799900        cpu=33453.00   
+820 fanfreePhspStyrox_w822.egsdat  ncase=2743902        cpu=33468.60   
+821 fanfreePhspStyrox_w823.egsdat  ncase=2799900        cpu=33710.10   
+822 fanfreePhspStyrox_w824.egsdat  ncase=2743902        cpu=33409.60   
+823 fanfreePhspStyrox_w825.egsdat  ncase=2799900        cpu=33582.50   
+824 fanfreePhspStyrox_w826.egsdat  ncase=2855898        cpu=33852.10   
+825 fanfreePhspStyrox_w827.egsdat  ncase=2855898        cpu=33731.70   
+826 fanfreePhspStyrox_w828.egsdat  ncase=2855898        cpu=33612.10   
+827 fanfreePhspStyrox_w829.egsdat  ncase=2799900        cpu=33568.10   
+828 fanfreePhspStyrox_w830.egsdat  ncase=2855898        cpu=33452.60   
+829 fanfreePhspStyrox_w831.egsdat  ncase=2855898        cpu=33365.50   
+830 fanfreePhspStyrox_w832.egsdat  ncase=2855898        cpu=33507.10   
+831 fanfreePhspStyrox_w833.egsdat  ncase=2743902        cpu=33228.60   
+832 fanfreePhspStyrox_w834.egsdat  ncase=2855898        cpu=33645.30   
+833 fanfreePhspStyrox_w835.egsdat  ncase=2911896        cpu=33815.90   
+834 fanfreePhspStyrox_w836.egsdat  ncase=2799900        cpu=33553.20   
+835 fanfreePhspStyrox_w837.egsdat  ncase=2799900        cpu=33629.20   
+836 fanfreePhspStyrox_w838.egsdat  ncase=2855898        cpu=33502.00   
+837 fanfreePhspStyrox_w839.egsdat  ncase=2799900        cpu=33707.50   
+838 fanfreePhspStyrox_w840.egsdat  ncase=2855898        cpu=33720.20   
+839 fanfreePhspStyrox_w841.egsdat  ncase=2743902        cpu=33298.20   
+840 fanfreePhspStyrox_w842.egsdat  ncase=2911896        cpu=33890.40   
+841 fanfreePhspStyrox_w843.egsdat  ncase=2855898        cpu=33450.60   
+842 fanfreePhspStyrox_w844.egsdat  ncase=2743902        cpu=33236.30   
+843 fanfreePhspStyrox_w845.egsdat  ncase=2799900        cpu=33463.60   
+844 fanfreePhspStyrox_w846.egsdat  ncase=2799900        cpu=33570.20   
+845 fanfreePhspStyrox_w847.egsdat  ncase=2631906        cpu=33457.30   
+846 fanfreePhspStyrox_w848.egsdat  ncase=2799900        cpu=33516.00   
+847 fanfreePhspStyrox_w849.egsdat  ncase=2743902        cpu=33279.10   
+848 fanfreePhspStyrox_w850.egsdat  ncase=2799900        cpu=33478.30   
+849 fanfreePhspStyrox_w851.egsdat  ncase=2799900        cpu=33576.50   
+850 fanfreePhspStyrox_w852.egsdat  ncase=2743902        cpu=33740.30   
+851 fanfreePhspStyrox_w853.egsdat  ncase=2743902        cpu=33539.60   
+852 fanfreePhspStyrox_w854.egsdat  ncase=2799900        cpu=33416.80   
+853 fanfreePhspStyrox_w855.egsdat  ncase=2799900        cpu=33627.30   
+854 fanfreePhspStyrox_w856.egsdat  ncase=2799900        cpu=33748.80   
+855 fanfreePhspStyrox_w857.egsdat  ncase=2799900        cpu=33555.60   
+856 fanfreePhspStyrox_w858.egsdat  ncase=2687904        cpu=33495.80   
+857 fanfreePhspStyrox_w859.egsdat  ncase=2799900        cpu=33694.50   
+858 fanfreePhspStyrox_w860.egsdat  ncase=2743902        cpu=33238.00   
+859 fanfreePhspStyrox_w861.egsdat  ncase=2743902        cpu=33747.90   
+860 fanfreePhspStyrox_w862.egsdat  ncase=2799900        cpu=33412.10   
+861 fanfreePhspStyrox_w863.egsdat  ncase=2743902        cpu=33362.80   
+862 fanfreePhspStyrox_w864.egsdat  ncase=2687904        cpu=33317.20   
+863 fanfreePhspStyrox_w865.egsdat  ncase=2687904        cpu=33501.40   
+864 fanfreePhspStyrox_w866.egsdat  ncase=2743902        cpu=33335.20   
+865 fanfreePhspStyrox_w867.egsdat  ncase=2687904        cpu=33249.10   
+866 fanfreePhspStyrox_w868.egsdat  ncase=2687904        cpu=33136.80   
+867 fanfreePhspStyrox_w869.egsdat  ncase=2743902        cpu=33752.00   
+868 fanfreePhspStyrox_w870.egsdat  ncase=2687904        cpu=33340.40   
+869 fanfreePhspStyrox_w871.egsdat  ncase=2687904        cpu=33660.90   
+870 fanfreePhspStyrox_w872.egsdat  ncase=2799900        cpu=33427.00   
+871 fanfreePhspStyrox_w873.egsdat  ncase=2799900        cpu=33721.50   
+872 fanfreePhspStyrox_w874.egsdat  ncase=2743902        cpu=33595.60   
+873 fanfreePhspStyrox_w875.egsdat  ncase=2687904        cpu=33634.10   
+874 fanfreePhspStyrox_w876.egsdat  ncase=2743902        cpu=33459.10   
+875 fanfreePhspStyrox_w877.egsdat  ncase=2687904        cpu=33157.60   
+876 fanfreePhspStyrox_w878.egsdat  ncase=2743902        cpu=33468.80   
+877 fanfreePhspStyrox_w879.egsdat  ncase=2687904        cpu=33636.20   
+878 fanfreePhspStyrox_w880.egsdat  ncase=2799900        cpu=33756.10   
+879 fanfreePhspStyrox_w881.egsdat  ncase=2687904        cpu=33510.00   
+880 fanfreePhspStyrox_w882.egsdat  ncase=1679940        cpu=20897.80   
+881 fanfreePhspStyrox_w883.egsdat  ncase=2743902        cpu=33422.60   
+882 fanfreePhspStyrox_w884.egsdat  ncase=2743902        cpu=33063.80   
+883 fanfreePhspStyrox_w885.egsdat  ncase=2799900        cpu=33413.90   
+884 fanfreePhspStyrox_w886.egsdat  ncase=2743902        cpu=33371.40   
+885 fanfreePhspStyrox_w887.egsdat  ncase=2799900        cpu=33325.60   
+886 fanfreePhspStyrox_w888.egsdat  ncase=2743902        cpu=33632.20   
+887 fanfreePhspStyrox_w889.egsdat  ncase=2799900        cpu=33556.50   
+888 fanfreePhspStyrox_w890.egsdat  ncase=2799900        cpu=33427.00   
+889 fanfreePhspStyrox_w891.egsdat  ncase=2743902        cpu=33456.20   
+890 fanfreePhspStyrox_w892.egsdat  ncase=2687904        cpu=33173.40   
+891 fanfreePhspStyrox_w893.egsdat  ncase=2799900        cpu=33552.60   
+892 fanfreePhspStyrox_w894.egsdat  ncase=2743902        cpu=33554.70   
+893 fanfreePhspStyrox_w895.egsdat  ncase=2687904        cpu=33484.10   
+894 fanfreePhspStyrox_w896.egsdat  ncase=2743902        cpu=33265.50   
+895 fanfreePhspStyrox_w897.egsdat  ncase=2799900        cpu=33295.80   
+896 fanfreePhspStyrox_w898.egsdat  ncase=2799900        cpu=33407.70   
+897 fanfreePhspStyrox_w899.egsdat  ncase=2799900        cpu=33258.80   
+898 fanfreePhspStyrox_w900.egsdat  ncase=2799900        cpu=33481.90   
+899 fanfreePhspStyrox_w901.egsdat  ncase=2743902        cpu=33282.80   
+900 fanfreePhspStyrox_w902.egsdat  ncase=2687904        cpu=33386.90   
+901 fanfreePhspStyrox_w903.egsdat  ncase=2743902        cpu=33431.60   
+902 fanfreePhspStyrox_w904.egsdat  ncase=2855898        cpu=33604.90   
+903 fanfreePhspStyrox_w905.egsdat  ncase=2911896        cpu=33657.60   
+904 fanfreePhspStyrox_w906.egsdat  ncase=2911896        cpu=33714.70   
+905 fanfreePhspStyrox_w907.egsdat  ncase=2855898        cpu=33722.60   
+906 fanfreePhspStyrox_w908.egsdat  ncase=2911896        cpu=33579.30   
+907 fanfreePhspStyrox_w909.egsdat  ncase=2911896        cpu=33771.30   
+908 fanfreePhspStyrox_w910.egsdat  ncase=2799900        cpu=33511.80   
+909 fanfreePhspStyrox_w911.egsdat  ncase=2855898        cpu=33248.70   
+910 fanfreePhspStyrox_w912.egsdat  ncase=2911896        cpu=33641.20   
+911 fanfreePhspStyrox_w913.egsdat  ncase=2799900        cpu=33667.80   
+912 fanfreePhspStyrox_w914.egsdat  ncase=2799900        cpu=33430.10   
+913 fanfreePhspStyrox_w915.egsdat  ncase=2855898        cpu=33690.30   
+914 fanfreePhspStyrox_w916.egsdat  ncase=2855898        cpu=33686.70   
+915 fanfreePhspStyrox_w917.egsdat  ncase=1791936        cpu=20935.30   
+916 fanfreePhspStyrox_w918.egsdat  ncase=2855898        cpu=33454.40   
+917 fanfreePhspStyrox_w919.egsdat  ncase=2911896        cpu=33819.40   
+918 fanfreePhspStyrox_w920.egsdat  ncase=2799900        cpu=33442.50   
+919 fanfreePhspStyrox_w921.egsdat  ncase=2799900        cpu=33502.60   
+920 fanfreePhspStyrox_w922.egsdat  ncase=2855898        cpu=33289.20   
+921 fanfreePhspStyrox_w923.egsdat  ncase=2799900        cpu=33478.90   
+922 fanfreePhspStyrox_w924.egsdat  ncase=2799900        cpu=33652.50   
+923 fanfreePhspStyrox_w925.egsdat  ncase=2799900        cpu=33648.00   
+924 fanfreePhspStyrox_w926.egsdat  ncase=2855898        cpu=33678.80   
+925 fanfreePhspStyrox_w927.egsdat  ncase=2855898        cpu=33392.70   
+926 fanfreePhspStyrox_w928.egsdat  ncase=2799900        cpu=33683.60   
+927 fanfreePhspStyrox_w929.egsdat  ncase=2799900        cpu=33215.80   
+928 fanfreePhspStyrox_w930.egsdat  ncase=2855898        cpu=33445.50   
+929 fanfreePhspStyrox_w931.egsdat  ncase=2855898        cpu=33430.60   
+930 fanfreePhspStyrox_w932.egsdat  ncase=2799900        cpu=33289.00   
+931 fanfreePhspStyrox_w933.egsdat  ncase=2799900        cpu=33481.20   
+932 fanfreePhspStyrox_w934.egsdat  ncase=2799900        cpu=33093.20   
+933 fanfreePhspStyrox_w935.egsdat  ncase=2855898        cpu=33538.80   
+934 fanfreePhspStyrox_w936.egsdat  ncase=2855898        cpu=33519.60   
+935 fanfreePhspStyrox_w937.egsdat  ncase=2799900        cpu=33592.80   
+936 fanfreePhspStyrox_w938.egsdat  ncase=2799900        cpu=33211.00   
+937 fanfreePhspStyrox_w939.egsdat  ncase=2855898        cpu=33672.10   
+938 fanfreePhspStyrox_w940.egsdat  ncase=2743902        cpu=33080.20   
+939 fanfreePhspStyrox_w941.egsdat  ncase=2743902        cpu=33359.40   
+940 fanfreePhspStyrox_w942.egsdat  ncase=2799900        cpu=33191.80   
+941 fanfreePhspStyrox_w943.egsdat  ncase=2799900        cpu=33355.70   
+942 fanfreePhspStyrox_w944.egsdat  ncase=2799900        cpu=33566.20   
+943 fanfreePhspStyrox_w945.egsdat  ncase=2855898        cpu=33346.00   
+944 fanfreePhspStyrox_w946.egsdat  ncase=2799900        cpu=33137.80   
+945 fanfreePhspStyrox_w947.egsdat  ncase=2855898        cpu=33380.30   
+946 fanfreePhspStyrox_w948.egsdat  ncase=2799900        cpu=33170.00   
+947 fanfreePhspStyrox_w949.egsdat  ncase=2743902        cpu=33160.50   
+948 fanfreePhspStyrox_w950.egsdat  ncase=2743902        cpu=33662.90   
+949 fanfreePhspStyrox_w951.egsdat  ncase=2855898        cpu=33605.60   
+950 fanfreePhspStyrox_w952.egsdat  ncase=2799900        cpu=33480.60   
+951 fanfreePhspStyrox_w953.egsdat  ncase=2855898        cpu=33238.60   
+952 fanfreePhspStyrox_w954.egsdat  ncase=2855898        cpu=33619.80   
+953 fanfreePhspStyrox_w955.egsdat  ncase=2799900        cpu=33662.10   
+954 fanfreePhspStyrox_w956.egsdat  ncase=2855898        cpu=33490.50   
+955 fanfreePhspStyrox_w957.egsdat  ncase=2743902        cpu=33265.30   
+956 fanfreePhspStyrox_w958.egsdat  ncase=2855898        cpu=33540.50   
+957 fanfreePhspStyrox_w959.egsdat  ncase=2799900        cpu=33156.80   
+958 fanfreePhspStyrox_w960.egsdat  ncase=2799900        cpu=33373.20   
+959 fanfreePhspStyrox_w961.egsdat  ncase=2743902        cpu=33111.00   
+960 fanfreePhspStyrox_w962.egsdat  ncase=2855898        cpu=33337.80   
+961 fanfreePhspStyrox_w963.egsdat  ncase=2799900        cpu=33444.30   
+962 fanfreePhspStyrox_w964.egsdat  ncase=2519910        cpu=33434.30   
+963 fanfreePhspStyrox_w965.egsdat  ncase=2295918        cpu=33548.70   
+964 fanfreePhspStyrox_w966.egsdat  ncase=2519910        cpu=33233.60   
+965 fanfreePhspStyrox_w967.egsdat  ncase=2463912        cpu=33128.80   
+966 fanfreePhspStyrox_w968.egsdat  ncase=2519910        cpu=33161.90   
+967 fanfreePhspStyrox_w969.egsdat  ncase=2519910        cpu=33513.30   
+968 fanfreePhspStyrox_w970.egsdat  ncase=2519910        cpu=33538.40   
+969 fanfreePhspStyrox_w971.egsdat  ncase=2519910        cpu=33782.90   
+970 fanfreePhspStyrox_w972.egsdat  ncase=2519910        cpu=33310.20   
+971 fanfreePhspStyrox_w973.egsdat  ncase=2575908        cpu=33763.60   
+972 fanfreePhspStyrox_w974.egsdat  ncase=2575908        cpu=33700.30   
+973 fanfreePhspStyrox_w975.egsdat  ncase=2519910        cpu=33472.50   
+974 fanfreePhspStyrox_w976.egsdat  ncase=2519910        cpu=33425.20   
+975 fanfreePhspStyrox_w977.egsdat  ncase=2519910        cpu=32969.70   
+976 fanfreePhspStyrox_w978.egsdat  ncase=2575908        cpu=33526.20   
+977 fanfreePhspStyrox_w979.egsdat  ncase=2519910        cpu=33332.00   
+978 fanfreePhspStyrox_w980.egsdat  ncase=2519910        cpu=33722.50   
+979 fanfreePhspStyrox_w981.egsdat  ncase=2519910        cpu=33676.80   
+980 fanfreePhspStyrox_w982.egsdat  ncase=2463912        cpu=33385.20   
+981 fanfreePhspStyrox_w983.egsdat  ncase=2519910        cpu=33509.70   
+982 fanfreePhspStyrox_w984.egsdat  ncase=2519910        cpu=33353.90   
+983 fanfreePhspStyrox_w985.egsdat  ncase=2463912        cpu=33331.50   
+984 fanfreePhspStyrox_w986.egsdat  ncase=2519910        cpu=33773.10   
+985 fanfreePhspStyrox_w987.egsdat  ncase=2575908        cpu=33717.70   
+986 fanfreePhspStyrox_w988.egsdat  ncase=2463912        cpu=33671.60   
+987 fanfreePhspStyrox_w989.egsdat  ncase=2519910        cpu=33579.00   
+988 fanfreePhspStyrox_w990.egsdat  ncase=2463912        cpu=33182.00   
+989 fanfreePhspStyrox_w991.egsdat  ncase=2519910        cpu=33089.40   
+990 fanfreePhspStyrox_w992.egsdat  ncase=2519910        cpu=33694.20   
+991 fanfreePhspStyrox_w993.egsdat  ncase=2519910        cpu=33336.30   
+992 fanfreePhspStyrox_w994.egsdat  ncase=2575908        cpu=33322.90   
+993 fanfreePhspStyrox_w995.egsdat  ncase=2519910        cpu=33088.20   
+994 fanfreePhspStyrox_w996.egsdat  ncase=2463912        cpu=33384.50   
+995 fanfreePhspStyrox_w997.egsdat  ncase=2575908        cpu=33446.70   
+996 fanfreePhspStyrox_w998.egsdat  ncase=2519910        cpu=33094.50   
+997 fanfreePhspStyrox_w999.egsdat  ncase=2519910        cpu=33509.40   
+998 fanfreePhspStyrox_w1000.egsdat ncase=2239920        cpu=33095.10   
+=======================================================================
+                            Total ncase=2796372126     cpu=33608481.90
+
+
+
+Finished simulation
+
+Total cpu time for this run:            1.46 (sec.) 0.0004(hours)
+CPU time including previous runs:       33608483.36 (sec.) 9335.6898 (hours)
+Histories per hour:                     299536        
+Number of random numbers used:          327135460207309
+Number of electron CH steps:            2.45698e+12   
+Number of all electron steps:           7.17811e+13   
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     94760
+   Total tracks scored:     198582556
+   Still being scored:      0
+   Output file name:        /home/rsmina/EGSnrc/egs_home/egs_kerma/fanfreePhspStyrox_w110_w110.ptracks
+
+
+======================================================
+Dose Scoring Object(profilexFilm)
+======================================================
+=> last case = 107542818 fluence = 1.40678e+12
+
+==> Summary of region dosimetry (per fluence)
+ ir medium       rho/[g/cm3]  V/cm3    Edep/[MeV*cm2]            D/[Gy*cm2]         
+------------------------------------------------------------------------------------
+  0 film          1.140     1.0000 2.8428e-10 +/- 3.717  % 3.9949e-20 +/- 3.717  %
+  1 film          1.140     1.0000 3.0014e-10 +/- 4.913  % 4.2178e-20 +/- 4.913  %
+  2 film          1.140     1.0000 3.2483e-10 +/- 7.051  % 4.5647e-20 +/- 7.051  %
+  3 film          1.140     1.0000 3.6287e-10 +/- 7.953  % 5.0993e-20 +/- 7.953  %
+  4 film          1.140     1.0000 3.5977e-10 +/- 7.209  % 5.0557e-20 +/- 7.209  %
+  5 film          1.140     1.0000 3.7779e-10 +/- 7.069  % 5.3089e-20 +/- 7.069  %
+  6 film          1.140     1.0000 3.9038e-10 +/- 5.762  % 5.4858e-20 +/- 5.762  %
+  7 film          1.140     1.0000 5.0165e-10 +/- 7.095  % 7.0495e-20 +/- 7.095  %
+  8 film          1.140     1.0000 4.4191e-10 +/- 2.417  % 6.2100e-20 +/- 2.417  %
+  9 film          1.140     1.0000 5.4389e-10 +/- 5.921  % 7.6431e-20 +/- 5.921  %
+ 10 film          1.140     1.0000 4.8420e-10 +/- 3.345  % 6.8042e-20 +/- 3.345  %
+ 11 film          1.140     1.0000 5.1278e-10 +/- 4.422  % 7.2059e-20 +/- 4.422  %
+ 12 film          1.140     1.0000 5.2175e-10 +/- 4.756  % 7.3320e-20 +/- 4.756  %
+ 13 film          1.140     1.0000 5.5155e-10 +/- 5.449  % 7.7507e-20 +/- 5.449  %
+ 14 film          1.140     1.0000 5.5232e-10 +/- 4.876  % 7.7615e-20 +/- 4.876  %
+ 15 film          1.140     1.0000 5.3052e-10 +/- 4.660  % 7.4553e-20 +/- 4.660  %
+ 16 film          1.140     1.0000 6.1119e-10 +/- 6.224  % 8.5889e-20 +/- 6.224  %
+ 17 film          1.140     1.0000 5.2598e-10 +/- 4.343  % 7.3915e-20 +/- 4.343  %
+ 18 film          1.140     1.0000 5.3538e-10 +/- 4.557  % 7.5235e-20 +/- 4.557  %
+ 19 film          1.140     1.0000 5.1874e-10 +/- 4.199  % 7.2897e-20 +/- 4.199  %
+ 20 film          1.140     1.0000 5.5536e-10 +/- 5.041  % 7.8043e-20 +/- 5.041  %
+ 21 film          1.140     1.0000 6.1870e-10 +/- 6.191  % 8.6944e-20 +/- 6.191  %
+ 22 film          1.140     1.0000 5.6784e-10 +/- 5.355  % 7.9797e-20 +/- 5.355  %
+ 23 film          1.140     1.0000 5.4741e-10 +/- 4.652  % 7.6926e-20 +/- 4.652  %
+ 24 film          1.140     1.0000 5.0302e-10 +/- 3.120  % 7.0687e-20 +/- 3.120  %
+ 25 film          1.140     1.0000 5.1669e-10 +/- 4.083  % 7.2608e-20 +/- 4.083  %
+ 26 film          1.140     1.0000 5.3663e-10 +/- 4.817  % 7.5410e-20 +/- 4.817  %
+ 27 film          1.140     1.0000 4.9425e-10 +/- 3.167  % 6.9455e-20 +/- 3.167  %
+ 28 film          1.140     1.0000 5.8238e-10 +/- 6.097  % 8.1840e-20 +/- 6.097  %
+ 29 film          1.140     1.0000 5.1695e-10 +/- 4.901  % 7.2645e-20 +/- 4.901  %
+ 30 film          1.140     1.0000 5.4609e-10 +/- 5.957  % 7.6739e-20 +/- 5.957  %
+ 31 film          1.140     1.0000 4.5700e-10 +/- 3.388  % 6.4221e-20 +/- 3.388  %
+ 32 film          1.140     1.0000 4.3409e-10 +/- 4.536  % 6.1001e-20 +/- 4.536  %
+ 33 film          1.140     1.0000 4.3727e-10 +/- 6.755  % 6.1448e-20 +/- 6.755  %
+ 34 film          1.140     1.0000 4.6244e-10 +/- 8.519  % 6.4985e-20 +/- 8.519  %
+ 35 film          1.140     1.0000 3.5974e-10 +/- 6.749  % 5.0553e-20 +/- 6.749  %
+ 36 film          1.140     1.0000 4.7718e-10 +/- 9.708  % 6.7056e-20 +/- 9.708  %
+ 37 film          1.140     1.0000 3.5292e-10 +/- 7.939  % 4.9595e-20 +/- 7.939  %
+ 38 film          1.140     1.0000 3.9099e-10 +/- 9.122  % 5.4944e-20 +/- 9.122  %
+ 39 film          1.140     1.0000 3.5462e-10 +/- 8.509  % 4.9834e-20 +/- 8.509  %
+162 pb           11.350     1.0000 3.5182e-05 +/- 0.019  % 4.9658e-16 +/- 0.019  %
+163 air           0.001     1.0000 2.5117e-08 +/- 0.069  % 3.3397e-15 +/- 0.069  %
+164 pb           11.350     1.0000 5.1261e-05 +/- 0.015  % 7.2353e-16 +/- 0.015  %
+165 steel         8.060     1.0000 6.1006e-07 +/- 0.130  % 1.2125e-17 +/- 0.130  %
+166 air           0.001     1.0000 1.2527e-08 +/- 0.063  % 1.6657e-15 +/- 0.063  %
+167 steel         8.060     1.0000 6.1441e-07 +/- 0.123  % 1.2212e-17 +/- 0.123  %
+171 pb           11.350     1.0000 1.5064e-05 +/- 0.031  % 2.1262e-16 +/- 0.031  %
+172 air           0.001     1.0000 9.5744e-09 +/- 0.095  % 1.2731e-15 +/- 0.095  %
+173 pb           11.350     1.0000 1.5063e-05 +/- 0.031  % 2.1260e-16 +/- 0.031  %
+174 steel         8.060     1.0000 3.2515e-07 +/- 0.139  % 6.4626e-18 +/- 0.139  %
+175 air           0.001     1.0000 4.5293e-09 +/- 0.096  % 6.0225e-16 +/- 0.096  %
+176 steel         8.060     1.0000 3.2371e-07 +/- 0.139  % 6.4340e-18 +/- 0.139  %
+180 steel         8.060     1.0000 1.2063e-09 +/- 0.842  % 2.3976e-20 +/- 0.842  %
+181 steel         8.060     1.0000 4.1719e-08 +/- 0.261  % 8.2921e-19 +/- 0.261  %
+182 steel         8.060     1.0000 1.2076e-09 +/- 0.852  % 2.4003e-20 +/- 0.852  %
+183 steel         8.060     1.0000 9.3169e-08 +/- 0.502  % 1.8518e-18 +/- 0.502  %
+184 air           0.001     1.0000 2.8968e-08 +/- 0.041  % 3.8518e-15 +/- 0.041  %
+185 steel         8.060     1.0000 9.4384e-08 +/- 0.505  % 1.8760e-18 +/- 0.505  %
+186 steel         8.060     1.0000 1.0255e-09 +/- 0.665  % 2.0384e-20 +/- 0.665  %
+187 steel         8.060     1.0000 3.7898e-08 +/- 0.188  % 7.5327e-19 +/- 0.188  %
+188 steel         8.060     1.0000 1.0459e-09 +/- 0.691  % 2.0788e-20 +/- 0.691  %
+189 steel         8.060     1.0000 3.2084e-08 +/- 0.053  % 6.3769e-19 +/- 0.053  %
+190 steel         8.060     1.0000 6.5446e-08 +/- 0.437  % 1.3008e-18 +/- 0.437  %
+191 steel         8.060     1.0000 3.2086e-08 +/- 0.054  % 6.3773e-19 +/- 0.054  %
+192 steel         8.060     1.0000 4.2964e-08 +/- 0.100  % 8.5394e-19 +/- 0.100  %
+193 titanium      4.540     1.0000 1.2037e-05 +/- 0.023  % 4.2474e-16 +/- 0.023  %
+194 steel         8.060     1.0000 4.2980e-08 +/- 0.100  % 8.5426e-19 +/- 0.100  %
+195 steel         8.060     1.0000 3.1915e-08 +/- 0.050  % 6.3435e-19 +/- 0.050  %
+196 steel         8.060     1.0000 5.4309e-08 +/- 0.358  % 1.0794e-18 +/- 0.358  %
+197 steel         8.060     1.0000 3.1892e-08 +/- 0.049  % 6.3389e-19 +/- 0.049  %
+216 carbonate     1.200     1.0000 1.4673e-07 +/- 0.022  % 1.9588e-17 +/- 0.022  %
+243 air           0.001     1.0000 1.9437e-07 +/- 0.037  % 2.5845e-14 +/- 0.037  %
+324 polystyrene   1.060     1.0000 1.1482e-05 +/- 0.023  % 1.7354e-15 +/- 0.023  %
+486 air           0.001     1.0000 1.0602e-07 +/- 0.028  % 1.4097e-14 +/- 0.028  %
+------------------------------------------------------------------------------------
+
+ EGS_DoseScoring: Writing dose data for EGS_XYZGeometry profilex... 
+ Output file name: /home/rsmina/EGSnrc/egs_home/egs_kerma/profilexFilm.3ddose
+
+======================================================
+
+
+ last case = 107542818 fluence = 1.40678e+12
+
+ Average sampled energy Eave = 1.29465 
+
+Geometry                        Cavity kerma[Gy]  
+-----------------------------------------------
+obi_system                6.72882727e-23 +/- 0.944798  % 
+obi_system                7.98751631e-23 +/- 0.853426  % 
+obi_system                9.68409588e-23 +/- 0.758426  % 
+obi_system                1.17604029e-22 +/- 0.675227  % 
+obi_system                1.50087440e-22 +/- 0.594270  % 
+obi_system                2.48910190e-22 +/- 0.557591  % 
+obi_system                4.39878980e-22 +/- 0.485161  % 
+obi_system                6.74546411e-22 +/- 0.416336  % 
+obi_system                9.03153516e-22 +/- 0.370512  % 
+obi_system                1.03920768e-21 +/- 0.346976  % 
+obi_system                1.08179853e-21 +/- 0.337964  % 
+obi_system                1.10585860e-21 +/- 0.332453  % 
+obi_system                1.12249961e-21 +/- 0.328514  % 
+obi_system                1.13546633e-21 +/- 0.325317  % 
+obi_system                1.16121288e-21 +/- 0.321966  % 
+obi_system                1.15804667e-21 +/- 0.321256  % 
+obi_system                1.16527696e-21 +/- 0.319797  % 
+obi_system                1.16776661e-21 +/- 0.319146  % 
+obi_system                1.17220633e-21 +/- 0.318751  % 
+obi_system                1.17005833e-21 +/- 0.318453  % 
+obi_system                1.17836934e-21 +/- 0.318510  % 
+obi_system                1.17302940e-21 +/- 0.318378  % 
+obi_system                1.17173622e-21 +/- 0.318521  % 
+obi_system                1.17372121e-21 +/- 0.318920  % 
+obi_system                1.15828639e-21 +/- 0.320932  % 
+obi_system                1.15285475e-21 +/- 0.322392  % 
+obi_system                1.14368137e-21 +/- 0.324568  % 
+obi_system                1.12998158e-21 +/- 0.327343  % 
+obi_system                1.11136452e-21 +/- 0.331396  % 
+obi_system                1.08399273e-21 +/- 0.337170  % 
+obi_system                1.04201196e-21 +/- 0.347168  % 
+obi_system                8.94180398e-22 +/- 0.371509  % 
+obi_system                6.77280484e-22 +/- 0.415058  % 
+obi_system                4.46675831e-22 +/- 0.484406  % 
+obi_system                2.47180716e-22 +/- 0.557261  % 
+obi_system                1.50280627e-22 +/- 0.597993  % 
+obi_system                1.18391712e-22 +/- 0.680114  % 
+obi_system                9.89637906e-23 +/- 0.776803  % 
+obi_system                7.89072164e-23 +/- 0.861270  % 
+obi_system                6.53946224e-23 +/- 0.943721  % 
+profilex                  1.67930614e-21 +/- 0.554734  % 
+profilex                  1.71099066e-21 +/- 0.547354  % 
+profilex                  1.69598135e-21 +/- 0.548524  % 
+profilex                  1.71763956e-21 +/- 0.539562  % 
+profilex                  1.74658887e-21 +/- 0.539715  % 
+profilex                  1.73679517e-21 +/- 0.538722  % 
+profilex                  1.73174000e-21 +/- 0.542392  % 
+profilex                  1.74662916e-21 +/- 0.533630  % 
+profilex                  1.77062805e-21 +/- 0.535664  % 
+profilex                  1.75425061e-21 +/- 0.540346  % 
+profilex                  1.77049068e-21 +/- 0.535238  % 
+profilex                  1.78897598e-21 +/- 0.531472  % 
+profilex                  1.76418437e-21 +/- 0.531282  % 
+profilex                  1.79489298e-21 +/- 0.536535  % 
+profilex                  1.81114062e-21 +/- 0.533188  % 
+profilex                  1.78354544e-21 +/- 0.531797  % 
+profilex                  1.79819628e-21 +/- 0.531703  % 
+profilex                  1.80553176e-21 +/- 0.532501  % 
+profilex                  1.78512803e-21 +/- 0.531108  % 
+profilex                  1.77201943e-21 +/- 0.531158  % 
+profilex                  1.79107215e-21 +/- 0.531782  % 
+profilex                  1.78174302e-21 +/- 0.529531  % 
+profilex                  1.79421777e-21 +/- 0.532065  % 
+profilex                  1.80516374e-21 +/- 0.534178  % 
+profilex                  1.79146499e-21 +/- 0.535656  % 
+profilex                  1.78411133e-21 +/- 0.533013  % 
+profilex                  1.80005958e-21 +/- 0.532093  % 
+profilex                  1.79212884e-21 +/- 0.531037  % 
+profilex                  1.80235195e-21 +/- 0.536018  % 
+profilex                  1.76595216e-21 +/- 0.532563  % 
+profilex                  1.75831124e-21 +/- 0.536193  % 
+profilex                  1.75033471e-21 +/- 0.538740  % 
+profilex                  1.78059306e-21 +/- 0.532902  % 
+profilex                  1.75786589e-21 +/- 0.539319  % 
+profilex                  1.76221743e-21 +/- 0.543172  % 
+profilex                  1.74385767e-21 +/- 0.540685  % 
+profilex                  1.71394141e-21 +/- 0.545288  % 
+profilex                  1.72333979e-21 +/- 0.540685  % 
+profilex                  1.70256975e-21 +/- 0.545380  % 
+profilex                  1.68753516e-21 +/- 0.551057  % 
+
+
+
+
+Photon fluence
+=============================
+
+Geometry obi_system : total fluence [cm-2] = 1.5205e-10 +/- 0.985  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    0.000000e+00    0.000000e+00
+   0.015850    1.390837e-11    2.671002e-12
+   0.025750    1.516061e-09    3.639440e-11
+   0.035650    4.512608e-09    6.702944e-11
+   0.045550    4.456612e-09    7.481241e-11
+   0.055450    2.934892e-09    7.145619e-11
+   0.065350    1.304721e-09    5.523287e-11
+   0.075250    4.620984e-10    3.735736e-11
+   0.085150    1.397172e-10    2.386733e-11
+   0.095050    1.783957e-11    7.334767e-12
+
+Geometry obi_system : total fluence [cm-2] = 1.8095e-10 +/- 0.887  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    9.748582e-15    9.748562e-15
+   0.015850    1.607672e-11    3.126469e-12
+   0.025750    1.763421e-09    3.803079e-11
+   0.035650    5.416311e-09    7.365271e-11
+   0.045550    5.322349e-09    8.086894e-11
+   0.055450    3.564403e-09    7.823130e-11
+   0.065350    1.407743e-09    4.912840e-11
+   0.075250    5.725273e-10    4.308789e-11
+   0.085150    1.417492e-10    2.436350e-11
+   0.095050    7.354307e-11    2.059677e-11
+
+Geometry obi_system : total fluence [cm-2] = 2.1972e-10 +/- 0.773  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    0.000000e+00    0.000000e+00
+   0.015850    1.981724e-11    3.400028e-12
+   0.025750    2.112784e-09    4.274583e-11
+   0.035650    6.591627e-09    7.944336e-11
+   0.045550    6.582588e-09    8.647261e-11
+   0.055450    4.175418e-09    7.691003e-11
+   0.065350    1.850168e-09    5.906488e-11
+   0.075250    6.151420e-10    4.164761e-11
+   0.085150    2.080561e-10    3.103627e-11
+   0.095050    3.799859e-11    1.189731e-11
+
+Geometry obi_system : total fluence [cm-2] = 2.6867e-10 +/- 0.689  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    0.000000e+00    0.000000e+00
+   0.015850    2.651836e-11    3.908799e-12
+   0.025750    2.496795e-09    4.557494e-11
+   0.035650    7.875495e-09    8.583692e-11
+   0.045550    8.345419e-09    9.707238e-11
+   0.055450    5.240466e-09    8.581705e-11
+   0.065350    2.190242e-09    6.348500e-11
+   0.075250    7.063741e-10    4.163034e-11
+   0.085150    2.300464e-10    3.323328e-11
+   0.095050    2.751827e-11    1.080934e-11
+
+Geometry obi_system : total fluence [cm-2] = 3.4542e-10 +/- 0.598  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    1.758493e-14    1.619663e-14
+   0.015850    3.086186e-11    4.845422e-12
+   0.025750    3.106344e-09    5.118309e-11
+   0.035650    9.928957e-09    9.693962e-11
+   0.045550    1.083579e-08    1.109734e-10
+   0.055450    6.953996e-09    9.612196e-11
+   0.065350    2.944499e-09    7.197573e-11
+   0.075250    8.690261e-10    4.503636e-11
+   0.085150    1.911799e-10    2.589884e-11
+   0.095050    3.051949e-11    1.088527e-11
+
+Geometry obi_system : total fluence [cm-2] = 6.1519e-10 +/- 0.612  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    2.833009e-13    2.668104e-13
+   0.015850    3.412072e-11    5.109522e-12
+   0.025750    3.965371e-09    5.824009e-11
+   0.035650    1.446557e-08    1.278745e-10
+   0.045550    1.701638e-08    1.627454e-10
+   0.055450    1.394456e-08    1.869546e-10
+   0.065350    7.253467e-09    1.557662e-10
+   0.075250    3.275726e-09    1.216061e-10
+   0.085150    1.746948e-09    9.995734e-11
+   0.095050    4.383413e-10    5.233287e-11
+
+Geometry obi_system : total fluence [cm-2] = 1.1414e-09 +/- 0.535  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.229914e-13    3.223963e-13
+   0.015850    4.977925e-11    6.903075e-12
+   0.025750    5.471174e-09    6.848185e-11
+   0.035650    2.272789e-08    1.803794e-10
+   0.045550    2.961165e-08    2.556916e-10
+   0.055450    2.837374e-08    3.133528e-10
+   0.065350    1.542808e-08    2.569967e-10
+   0.075250    8.039441e-09    2.084434e-10
+   0.085150    4.374567e-09    1.659803e-10
+   0.095050    1.214215e-09    8.916299e-11
+
+Geometry obi_system : total fluence [cm-2] = 1.7928e-09 +/- 0.456  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    2.724279e-13    1.588325e-13
+   0.015850    5.046229e-11    6.900895e-12
+   0.025750    7.344407e-09    8.150764e-11
+   0.035650    3.243583e-08    2.286047e-10
+   0.045550    4.522828e-08    3.390714e-10
+   0.055450    4.476667e-08    4.119579e-10
+   0.065350    2.768172e-08    3.625447e-10
+   0.075250    1.359362e-08    2.784060e-10
+   0.085150    7.563738e-09    2.200113e-10
+   0.095050    2.423310e-09    1.267131e-10
+
+Geometry obi_system : total fluence [cm-2] = 2.4203e-09 +/- 0.404  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    7.179032e-13    4.069336e-13
+   0.015850    5.621097e-11    6.732573e-12
+   0.025750    9.226495e-09    9.178428e-11
+   0.035650    4.196488e-08    2.663088e-10
+   0.045550    6.100561e-08    4.082675e-10
+   0.055450    6.037178e-08    4.908369e-10
+   0.065350    3.862281e-08    4.371996e-10
+   0.075250    1.873117e-08    3.299007e-10
+   0.085150    1.086198e-08    2.658625e-10
+   0.095050    3.633783e-09    1.564146e-10
+
+Geometry obi_system : total fluence [cm-2] = 2.7849e-09 +/- 0.379  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    2.820739e-13    1.318918e-13
+   0.015850    6.343071e-11    6.780933e-12
+   0.025750    1.048696e-08    9.911287e-11
+   0.035650    4.968656e-08    2.943824e-10
+   0.045550    6.809696e-08    4.272615e-10
+   0.055450    7.040460e-08    5.343357e-10
+   0.065350    4.370610e-08    4.679132e-10
+   0.075250    2.241619e-08    3.639321e-10
+   0.085150    1.238291e-08    2.856550e-10
+   0.095050    4.060983e-09    1.657899e-10
+
+Geometry obi_system : total fluence [cm-2] = 2.8889e-09 +/- 0.369  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    1.860956e-12    9.375311e-13
+   0.015850    7.008690e-11    7.035975e-12
+   0.025750    1.136159e-08    1.024151e-10
+   0.035650    5.136024e-08    2.949434e-10
+   0.045550    7.247232e-08    4.410695e-10
+   0.055450    7.253668e-08    5.398751e-10
+   0.065350    4.436873e-08    4.679903e-10
+   0.075250    2.240389e-08    3.635244e-10
+   0.085150    1.246755e-08    2.867621e-10
+   0.095050    4.769555e-09    1.800198e-10
+
+Geometry obi_system : total fluence [cm-2] = 2.9426e-09 +/- 0.364  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    2.309931e-12    1.265947e-12
+   0.015850    7.069263e-11    7.582340e-12
+   0.025750    1.179141e-08    1.045405e-10
+   0.035650    5.348544e-08    3.010025e-10
+   0.045550    7.451310e-08    4.451096e-10
+   0.055450    7.322638e-08    5.387866e-10
+   0.065350    4.428779e-08    4.658413e-10
+   0.075250    2.261812e-08    3.649704e-10
+   0.085150    1.298583e-08    2.932928e-10
+   0.095050    4.249567e-09    1.701038e-10
+
+Geometry obi_system : total fluence [cm-2] = 2.9847e-09 +/- 0.360  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    5.179390e-14    4.834071e-14
+   0.015850    7.399467e-11    6.900038e-12
+   0.025750    1.197746e-08    1.044373e-10
+   0.035650    5.441611e-08    3.028422e-10
+   0.045550    7.624284e-08    4.502619e-10
+   0.055450    7.488706e-08    5.443378e-10
+   0.065350    4.455821e-08    4.657038e-10
+   0.075250    2.249481e-08    3.632417e-10
+   0.085150    1.230465e-08    2.848132e-10
+   0.095050    4.524759e-09    1.755184e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.0125e-09 +/- 0.356  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    7.966328e-13    7.785592e-13
+   0.015850    7.646927e-11    7.687278e-12
+   0.025750    1.215312e-08    1.043905e-10
+   0.035650    5.565571e-08    3.046215e-10
+   0.045550    7.659690e-08    4.488176e-10
+   0.055450    7.536358e-08    5.448540e-10
+   0.065350    4.477951e-08    4.668310e-10
+   0.075250    2.235478e-08    3.609226e-10
+   0.085150    1.325074e-08    2.956268e-10
+   0.095050    4.064946e-09    1.665785e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.0813e-09 +/- 0.353  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.259421e-13    1.977270e-13
+   0.015850    7.561109e-11    7.184190e-12
+   0.025750    1.260938e-08    1.070227e-10
+   0.035650    5.640456e-08    3.069657e-10
+   0.045550    7.805718e-08    4.515001e-10
+   0.055450    7.697959e-08    5.510626e-10
+   0.065350    4.671541e-08    4.784090e-10
+   0.075250    2.266363e-08    3.636383e-10
+   0.085150    1.336729e-08    2.969644e-10
+   0.095050    4.370090e-09    1.727467e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.0681e-09 +/- 0.352  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    9.904429e-13    6.095299e-13
+   0.015850    9.695480e-11    9.269665e-12
+   0.025750    1.250632e-08    1.056677e-10
+   0.035650    5.681373e-08    3.075613e-10
+   0.045550    7.906323e-08    4.537997e-10
+   0.055450    7.590756e-08    5.447137e-10
+   0.065350    4.613442e-08    4.742338e-10
+   0.075250    2.278355e-08    3.648964e-10
+   0.085150    1.263349e-08    2.884167e-10
+   0.095050    3.965341e-09    1.638002e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.0869e-09 +/- 0.351  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    8.168696e-14    4.639008e-14
+   0.015850    8.282021e-11    8.448624e-12
+   0.025750    1.266528e-08    1.076548e-10
+   0.035650    5.740531e-08    3.072276e-10
+   0.045550    7.902058e-08    4.537923e-10
+   0.055450    7.714753e-08    5.503131e-10
+   0.065350    4.622882e-08    4.744177e-10
+   0.075250    2.308115e-08    3.681471e-10
+   0.085150    1.241008e-08    2.862379e-10
+   0.095050    3.768387e-09    1.595509e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.0896e-09 +/- 0.350  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    4.316999e-13    3.533779e-13
+   0.015850    7.326355e-11    7.029346e-12
+   0.025750    1.277648e-08    1.071594e-10
+   0.035650    5.754734e-08    3.079202e-10
+   0.045550    7.945622e-08    4.549376e-10
+   0.055450    7.570635e-08    5.423896e-10
+   0.065350    4.616617e-08    4.732840e-10
+   0.075250    2.337299e-08    3.701930e-10
+   0.085150    1.273859e-08    2.896714e-10
+   0.095050    4.237996e-09    1.702029e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.1016e-09 +/- 0.350  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    5.383542e-13    4.366879e-13
+   0.015850    7.476058e-11    6.667923e-12
+   0.025750    1.292039e-08    1.087661e-10
+   0.035650    5.745817e-08    3.070765e-10
+   0.045550    7.966057e-08    4.550217e-10
+   0.055450    7.746651e-08    5.518495e-10
+   0.065350    4.559229e-08    4.697867e-10
+   0.075250    2.266279e-08    3.634292e-10
+   0.085150    1.311287e-08    2.937984e-10
+   0.095050    4.342649e-09    1.719676e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.0938e-09 +/- 0.350  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    1.794352e-12    9.115013e-13
+   0.015850    7.671204e-11    7.413721e-12
+   0.025750    1.298557e-08    1.088468e-10
+   0.035650    5.753789e-08    3.054833e-10
+   0.045550    7.881649e-08    4.509129e-10
+   0.055450    7.659696e-08    5.458316e-10
+   0.065350    4.613447e-08    4.732116e-10
+   0.075250    2.331362e-08    3.700461e-10
+   0.085150    1.271777e-08    2.893431e-10
+   0.095050    4.322970e-09    1.713408e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.1171e-09 +/- 0.349  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.076964e-12    2.381178e-12
+   0.015850    8.178240e-11    7.705125e-12
+   0.025750    1.295398e-08    1.087968e-10
+   0.035650    5.787666e-08    3.080684e-10
+   0.045550    7.878182e-08    4.491416e-10
+   0.055450    7.767977e-08    5.512915e-10
+   0.065350    4.583268e-08    4.709711e-10
+   0.075250    2.386168e-08    3.741046e-10
+   0.085150    1.302513e-08    2.933552e-10
+   0.095050    4.764605e-09    1.798580e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.1023e-09 +/- 0.349  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    6.555015e-13    4.713713e-13
+   0.015850    9.923713e-11    9.526030e-12
+   0.025750    1.297998e-08    1.094236e-10
+   0.035650    5.753474e-08    3.073583e-10
+   0.045550    7.946927e-08    4.530230e-10
+   0.055450    7.579813e-08    5.420147e-10
+   0.065350    4.681529e-08    4.775847e-10
+   0.075250    2.400006e-08    3.758486e-10
+   0.085150    1.280632e-08    2.905870e-10
+   0.095050    3.864626e-09    1.614456e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.1023e-09 +/- 0.349  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    5.246303e-13    3.381905e-13
+   0.015850    8.392276e-11    7.993175e-12
+   0.025750    1.284038e-08    1.080334e-10
+   0.035650    5.741153e-08    3.068376e-10
+   0.045550    7.898509e-08    4.516861e-10
+   0.055450    7.756407e-08    5.502721e-10
+   0.065350    4.672818e-08    4.763710e-10
+   0.075250    2.249089e-08    3.623516e-10
+   0.085150    1.290561e-08    2.917510e-10
+   0.095050    4.350345e-09    1.717904e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.1100e-09 +/- 0.350  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.766055e-14    2.803773e-14
+   0.015850    7.245321e-11    6.664394e-12
+   0.025750    1.287862e-08    1.089277e-10
+   0.035650    5.762122e-08    3.094155e-10
+   0.045550    7.858504e-08    4.504736e-10
+   0.055450    7.750473e-08    5.509543e-10
+   0.065350    4.732489e-08    4.811323e-10
+   0.075250    2.286199e-08    3.661377e-10
+   0.085150    1.277322e-08    2.901845e-10
+   0.095050    4.523416e-09    1.753316e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.0685e-09 +/- 0.352  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    1.246988e-12    5.466459e-13
+   0.015850    7.137356e-11    6.752272e-12
+   0.025750    1.261260e-08    1.072849e-10
+   0.035650    5.679031e-08    3.056266e-10
+   0.045550    7.829817e-08    4.510063e-10
+   0.055450    7.579507e-08    5.439869e-10
+   0.065350    4.647721e-08    4.762701e-10
+   0.075250    2.225035e-08    3.607878e-10
+   0.085150    1.323021e-08    2.948802e-10
+   0.095050    4.418849e-09    1.731047e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.0532e-09 +/- 0.353  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    1.011277e-13    7.387567e-14
+   0.015850    5.986201e-11    6.421047e-12
+   0.025750    1.244355e-08    1.067140e-10
+   0.035650    5.697779e-08    3.081434e-10
+   0.045550    7.824565e-08    4.517926e-10
+   0.055450    7.486718e-08    5.413798e-10
+   0.065350    4.578517e-08    4.720491e-10
+   0.075250    2.274753e-08    3.660340e-10
+   0.085150    1.332122e-08    2.963152e-10
+   0.095050    3.959698e-09    1.637384e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.0367e-09 +/- 0.356  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    2.090957e-13    1.040546e-13
+   0.015850    7.375285e-11    8.134002e-12
+   0.025750    1.223479e-08    1.051205e-10
+   0.035650    5.568598e-08    3.040165e-10
+   0.045550    7.708486e-08    4.505740e-10
+   0.055450    7.561646e-08    5.463201e-10
+   0.065350    4.565249e-08    4.720632e-10
+   0.075250    2.372910e-08    3.741166e-10
+   0.085150    1.270549e-08    2.892235e-10
+   0.095050    3.953472e-09    1.635837e-10
+
+Geometry obi_system : total fluence [cm-2] = 3.0050e-09 +/- 0.358  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.246138e-13    2.347643e-13
+   0.015850    9.090622e-11    9.444381e-12
+   0.025750    1.200698e-08    1.046124e-10
+   0.035650    5.513993e-08    3.052735e-10
+   0.045550    7.566735e-08    4.466978e-10
+   0.055450    7.546467e-08    5.478743e-10
+   0.065350    4.611318e-08    4.756679e-10
+   0.075250    2.241459e-08    3.626951e-10
+   0.085150    1.262629e-08    2.884389e-10
+   0.095050    4.010857e-09    1.650356e-10
+
+Geometry obi_system : total fluence [cm-2] = 2.9597e-09 +/- 0.363  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    2.431163e-14    1.693116e-14
+   0.015850    8.128448e-11    7.826294e-12
+   0.025750    1.167934e-08    1.033214e-10
+   0.035650    5.387122e-08    3.025416e-10
+   0.045550    7.483063e-08    4.474131e-10
+   0.055450    7.469827e-08    5.460738e-10
+   0.065350    4.384650e-08    4.634090e-10
+   0.075250    2.356745e-08    3.728042e-10
+   0.085150    1.197491e-08    2.804438e-10
+   0.095050    4.413908e-09    1.734260e-10
+
+Geometry obi_system : total fluence [cm-2] = 2.8917e-09 +/- 0.369  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    9.526929e-13    4.878093e-13
+   0.015850    8.183917e-11    8.471698e-12
+   0.025750    1.125431e-08    1.012903e-10
+   0.035650    5.208893e-08    2.976952e-10
+   0.045550    7.265168e-08    4.430335e-10
+   0.055450    7.320017e-08    5.429500e-10
+   0.065350    4.427204e-08    4.673745e-10
+   0.075250    2.199810e-08    3.597468e-10
+   0.085150    1.226134e-08    2.846029e-10
+   0.095050    4.280634e-09    1.701184e-10
+
+Geometry obi_system : total fluence [cm-2] = 2.8017e-09 +/- 0.379  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.609847e-13    3.311725e-13
+   0.015850    6.543867e-11    6.842741e-12
+   0.025750    1.038310e-08    9.703444e-11
+   0.035650    4.862917e-08    2.899297e-10
+   0.045550    6.958447e-08    4.362468e-10
+   0.055450    7.139197e-08    5.399232e-10
+   0.065350    4.387242e-08    4.687638e-10
+   0.075250    2.220601e-08    3.631279e-10
+   0.085150    1.276887e-08    2.897451e-10
+   0.095050    4.094151e-09    1.675034e-10
+
+Geometry obi_system : total fluence [cm-2] = 2.3934e-09 +/- 0.406  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    1.555194e-13    8.935708e-14
+   0.015850    6.819487e-11    8.331382e-12
+   0.025750    9.101678e-09    9.074641e-11
+   0.035650    4.244687e-08    2.684875e-10
+   0.045550    5.914510e-08    3.993874e-10
+   0.055450    6.043787e-08    4.926751e-10
+   0.065350    3.728883e-08    4.274924e-10
+   0.075250    1.905889e-08    3.322919e-10
+   0.085150    1.059681e-08    2.632186e-10
+   0.095050    3.613493e-09    1.559483e-10
+
+Geometry obi_system : total fluence [cm-2] = 1.7962e-09 +/- 0.455  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    4.994123e-13    3.344914e-13
+   0.015850    4.598913e-11    6.573095e-12
+   0.025750    7.375998e-09    8.116626e-11
+   0.035650    3.308555e-08    2.307046e-10
+   0.045550    4.548809e-08    3.406127e-10
+   0.055450    4.471312e-08    4.126882e-10
+   0.065350    2.652668e-08    3.533607e-10
+   0.075250    1.411002e-08    2.828944e-10
+   0.085150    7.624233e-09    2.216156e-10
+   0.095050    2.464395e-09    1.284042e-10
+
+Geometry obi_system : total fluence [cm-2] = 1.1613e-09 +/- 0.535  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    9.749277e-14    7.962548e-14
+   0.015850    4.450256e-11    5.829379e-12
+   0.025750    5.500731e-09    6.845712e-11
+   0.035650    2.280236e-08    1.808831e-10
+   0.045550    3.032406e-08    2.608639e-10
+   0.055450    2.797730e-08    3.091892e-10
+   0.065350    1.632052e-08    2.676726e-10
+   0.075250    8.180813e-09    2.102837e-10
+   0.085150    4.695352e-09    1.729638e-10
+   0.095050    1.457921e-09    9.704660e-11
+
+Geometry obi_system : total fluence [cm-2] = 6.0770e-10 +/- 0.609  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    4.227679e-15    4.227681e-15
+   0.015850    3.292565e-11    4.293961e-12
+   0.025750    4.044114e-09    5.899762e-11
+   0.035650    1.462390e-08    1.311050e-10
+   0.045550    1.671506e-08    1.612226e-10
+   0.055450    1.369594e-08    1.822004e-10
+   0.065350    7.476026e-09    1.591611e-10
+   0.075250    2.886935e-09    1.119723e-10
+   0.085150    1.485766e-09    9.186115e-11
+   0.095050    4.234465e-10    5.096006e-11
+
+Geometry obi_system : total fluence [cm-2] = 3.4646e-10 +/- 0.602  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    2.010809e-13    1.945864e-13
+   0.015850    2.119700e-11    3.301495e-12
+   0.025750    3.088877e-09    5.100235e-11
+   0.035650    1.002214e-08    9.820413e-11
+   0.045550    1.054809e-08    1.074713e-10
+   0.055450    7.075392e-09    9.887403e-11
+   0.065350    2.973317e-09    7.168831e-11
+   0.075250    9.386118e-10    4.525374e-11
+   0.085150    2.985604e-10    3.740923e-11
+   0.095050    2.988830e-11    9.468947e-12
+
+Geometry obi_system : total fluence [cm-2] = 2.7018e-10 +/- 0.686  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    0.000000e+00    0.000000e+00
+   0.015850    2.053786e-11    3.784587e-12
+   0.025750    2.513231e-09    4.715952e-11
+   0.035650    8.087631e-09    8.830938e-11
+   0.045550    8.062382e-09    9.435283e-11
+   0.055450    5.338390e-09    8.685194e-11
+   0.065350    2.302943e-09    6.381944e-11
+   0.075250    7.512836e-10    4.475340e-11
+   0.085150    1.791932e-10    2.723500e-11
+   0.095050    3.502049e-11    1.191577e-11
+
+Geometry obi_system : total fluence [cm-2] = 2.2338e-10 +/- 0.792  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    5.602193e-14    5.602196e-14
+   0.015850    1.725172e-11    3.840519e-12
+   0.025750    2.244651e-09    4.472180e-11
+   0.035650    6.636571e-09    8.129056e-11
+   0.045550    6.671169e-09    8.979606e-11
+   0.055450    4.286926e-09    8.479096e-11
+   0.065350    1.835552e-09    5.957862e-11
+   0.075250    6.499014e-10    4.290978e-11
+   0.085150    1.944393e-10    3.070297e-11
+   0.095050    2.694444e-11    1.019302e-11
+
+Geometry obi_system : total fluence [cm-2] = 1.7793e-10 +/- 0.877  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    1.516098e-13    1.211500e-13
+   0.015850    1.903494e-11    4.793395e-12
+   0.025750    1.782201e-09    3.960927e-11
+   0.035650    5.331813e-09    7.123548e-11
+   0.045550    5.305374e-09    7.918616e-11
+   0.055450    3.319881e-09    7.196222e-11
+   0.065350    1.497682e-09    5.567155e-11
+   0.075250    5.537880e-10    4.047337e-11
+   0.085150    1.278507e-10    2.278531e-11
+   0.095050    3.508848e-11    1.377509e-11
+
+Geometry obi_system : total fluence [cm-2] = 1.4734e-10 +/- 0.986  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    0.000000e+00    0.000000e+00
+   0.015850    1.920626e-11    4.206010e-12
+   0.025750    1.469793e-09    3.471472e-11
+   0.035650    4.488415e-09    6.660708e-11
+   0.045550    4.275271e-09    7.153845e-11
+   0.055450    2.789877e-09    6.830143e-11
+   0.065350    1.262915e-09    5.393926e-11
+   0.075250    3.792095e-10    3.221007e-11
+   0.085150    1.641797e-10    2.717757e-11
+   0.095050    3.347265e-11    1.286596e-11
+
+Geometry profilex : total fluence [cm-2] = 3.6676e-09 +/- 0.476  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    6.864929e-11    2.285895e-11
+   0.015850    2.949931e-09    1.548478e-10
+   0.025750    4.784933e-08    6.304381e-10
+   0.035650    7.954703e-08    8.115782e-10
+   0.045550    7.483623e-08    7.839778e-10
+   0.055450    7.504397e-08    7.853931e-10
+   0.065350    4.683579e-08    6.182246e-10
+   0.075250    2.490836e-08    4.513552e-10
+   0.085150    1.424927e-08    3.416500e-10
+   0.095050    4.176545e-09    1.847541e-10
+
+Geometry profilex : total fluence [cm-2] = 3.7378e-09 +/- 0.471  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    4.547640e-11    1.848035e-11
+   0.015850    3.336232e-09    1.645008e-10
+   0.025750    4.770649e-08    6.276954e-10
+   0.035650    8.129443e-08    8.198296e-10
+   0.045550    7.606589e-08    7.894694e-10
+   0.055450    7.672701e-08    7.925594e-10
+   0.065350    4.774633e-08    6.235986e-10
+   0.075250    2.589520e-08    4.598584e-10
+   0.085150    1.379328e-08    3.360631e-10
+   0.095050    4.944260e-09    2.014236e-10
+
+Geometry profilex : total fluence [cm-2] = 3.7175e-09 +/- 0.472  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    5.273673e-11    1.964227e-11
+   0.015850    3.122024e-09    1.594872e-10
+   0.025750    4.698567e-08    6.229336e-10
+   0.035650    8.102121e-08    8.166783e-10
+   0.045550    7.590925e-08    7.879908e-10
+   0.055450    7.587399e-08    7.871601e-10
+   0.065350    4.795481e-08    6.250011e-10
+   0.075250    2.554296e-08    4.555834e-10
+   0.085150    1.417538e-08    3.403185e-10
+   0.095050    4.865310e-09    1.999224e-10
+
+Geometry profilex : total fluence [cm-2] = 3.7744e-09 +/- 0.468  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    1.156158e-13    5.481223e-14
+   0.015850    2.968948e-09    1.543444e-10
+   0.025750    4.740621e-08    6.250519e-10
+   0.035650    8.388070e-08    8.307462e-10
+   0.045550    7.526010e-08    7.838428e-10
+   0.055450    7.697428e-08    7.924282e-10
+   0.065350    4.936194e-08    6.337044e-10
+   0.075250    2.556881e-08    4.555242e-10
+   0.085150    1.506854e-08    3.508517e-10
+   0.095050    4.758875e-09    1.975839e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8185e-09 +/- 0.465  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    2.946473e-11    1.433865e-11
+   0.015850    3.450885e-09    1.674037e-10
+   0.025750    4.845869e-08    6.314012e-10
+   0.035650    8.276133e-08    8.241304e-10
+   0.045550    7.686890e-08    7.916539e-10
+   0.055450    7.995052e-08    8.078659e-10
+   0.065350    4.771702e-08    6.220373e-10
+   0.075250    2.656679e-08    4.642843e-10
+   0.085150    1.569966e-08    3.582474e-10
+   0.095050    4.204863e-09    1.856322e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8166e-09 +/- 0.465  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.075736e-11    1.531656e-11
+   0.015850    3.263800e-09    1.622230e-10
+   0.025750    4.779651e-08    6.267690e-10
+   0.035650    8.366467e-08    8.291479e-10
+   0.045550    7.708542e-08    7.925343e-10
+   0.055450    7.632744e-08    7.882376e-10
+   0.065350    5.013583e-08    6.376118e-10
+   0.075250    2.687306e-08    4.665915e-10
+   0.085150    1.574355e-08    3.585146e-10
+   0.095050    4.596319e-09    1.935642e-10
+
+Geometry profilex : total fluence [cm-2] = 3.7827e-09 +/- 0.466  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    2.365709e-11    1.304493e-11
+   0.015850    3.571017e-09    1.699422e-10
+   0.025750    4.815922e-08    6.293551e-10
+   0.035650    8.123527e-08    8.162503e-10
+   0.045550    7.919641e-08    8.030541e-10
+   0.055450    7.696083e-08    7.912847e-10
+   0.065350    4.702756e-08    6.164380e-10
+   0.075250    2.562004e-08    4.551818e-10
+   0.085150    1.538228e-08    3.539074e-10
+   0.095050    4.914465e-09    1.999536e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8546e-09 +/- 0.462  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.026316e-11    1.459065e-11
+   0.015850    2.917132e-09    1.534092e-10
+   0.025750    4.776527e-08    6.265071e-10
+   0.035650    8.298279e-08    8.249413e-10
+   0.045550    8.014018e-08    8.076293e-10
+   0.055450    7.804682e-08    7.958724e-10
+   0.065350    5.097253e-08    6.418136e-10
+   0.075250    2.646014e-08    4.623445e-10
+   0.085150    1.523388e-08    3.516470e-10
+   0.095050    4.800154e-09    1.978584e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8694e-09 +/- 0.461  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.791637e-11    1.691069e-11
+   0.015850    3.607532e-09    1.701250e-10
+   0.025750    4.942197e-08    6.367446e-10
+   0.035650    8.188366e-08    8.188769e-10
+   0.045550    8.030479e-08    8.078442e-10
+   0.055450    7.768145e-08    7.939791e-10
+   0.065350    5.118738e-08    6.432746e-10
+   0.075250    2.603560e-08    4.584586e-10
+   0.085150    1.552339e-08    3.551613e-10
+   0.095050    5.160744e-09    2.047932e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8432e-09 +/- 0.462  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    8.557623e-11    2.462733e-11
+   0.015850    3.159782e-09    1.596830e-10
+   0.025750    4.834064e-08    6.286403e-10
+   0.035650    8.498391e-08    8.342864e-10
+   0.045550    7.603911e-08    7.854541e-10
+   0.055450    7.815428e-08    7.965662e-10
+   0.065350    4.975877e-08    6.342046e-10
+   0.075250    2.725916e-08    4.691801e-10
+   0.085150    1.551170e-08    3.548942e-10
+   0.095050    4.907338e-09    1.993241e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8602e-09 +/- 0.461  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    4.280954e-11    1.744686e-11
+   0.015850    3.173842e-09    1.599695e-10
+   0.025750    5.064190e-08    6.433327e-10
+   0.035650    8.350929e-08    8.266058e-10
+   0.045550    7.809236e-08    7.964803e-10
+   0.055450    7.790441e-08    7.945337e-10
+   0.065350    4.913370e-08    6.298218e-10
+   0.075250    2.631881e-08    4.606274e-10
+   0.085150    1.536917e-08    3.532319e-10
+   0.095050    5.735471e-09    2.158159e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8893e-09 +/- 0.459  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    1.567684e-11    1.071529e-11
+   0.015850    3.448926e-09    1.669088e-10
+   0.025750    5.119698e-08    6.473428e-10
+   0.035650    8.573886e-08    8.371685e-10
+   0.045550    7.883260e-08    8.001231e-10
+   0.055450    7.748063e-08    7.921881e-10
+   0.065350    4.842120e-08    6.247998e-10
+   0.075250    2.670138e-08    4.638918e-10
+   0.085150    1.592944e-08    3.597666e-10
+   0.095050    5.089319e-09    2.033776e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8641e-09 +/- 0.461  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    1.922725e-13    1.893618e-13
+   0.015850    3.013423e-09    1.560324e-10
+   0.025750    5.040894e-08    6.426720e-10
+   0.035650    8.346362e-08    8.257752e-10
+   0.045550    7.956307e-08    8.038253e-10
+   0.055450    7.840176e-08    7.972083e-10
+   0.065350    4.856771e-08    6.254157e-10
+   0.075250    2.646752e-08    4.616544e-10
+   0.085150    1.501433e-08    3.489035e-10
+   0.095050    5.411576e-09    2.098113e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8911e-09 +/- 0.459  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    6.635814e-11    2.213117e-11
+   0.015850    3.620638e-09    1.703977e-10
+   0.025750    5.061919e-08    6.432898e-10
+   0.035650    8.582626e-08    8.372931e-10
+   0.045550    7.836716e-08    7.968590e-10
+   0.055450    7.873454e-08    7.985729e-10
+   0.065350    4.833972e-08    6.240697e-10
+   0.075250    2.632397e-08    4.602442e-10
+   0.085150    1.630678e-08    3.635536e-10
+   0.095050    4.832873e-09    1.981939e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9474e-09 +/- 0.456  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    8.574844e-11    2.477819e-11
+   0.015850    3.438375e-09    1.660979e-10
+   0.025750    5.140575e-08    6.480030e-10
+   0.035650    8.434214e-08    8.300235e-10
+   0.045550    7.965550e-08    8.033669e-10
+   0.055450    8.078513e-08    8.093548e-10
+   0.065350    5.114668e-08    6.416549e-10
+   0.075250    2.633069e-08    4.604464e-10
+   0.085150    1.633919e-08    3.637912e-10
+   0.095050    5.200393e-09    2.056577e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8996e-09 +/- 0.458  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.664255e-11    1.610103e-11
+   0.015850    3.345521e-09    1.636787e-10
+   0.025750    4.964504e-08    6.368853e-10
+   0.035650    8.434948e-08    8.298137e-10
+   0.045550    8.091112e-08    8.092432e-10
+   0.055450    7.865842e-08    7.974272e-10
+   0.065350    5.002005e-08    6.344515e-10
+   0.075250    2.667345e-08    4.633970e-10
+   0.085150    1.547831e-08    3.541854e-10
+   0.095050    4.783504e-09    1.970464e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9225e-09 +/- 0.457  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    4.695555e-11    1.818566e-11
+   0.015850    3.562002e-09    1.691952e-10
+   0.025750    4.992265e-08    6.385941e-10
+   0.035650    8.574845e-08    8.366502e-10
+   0.045550    8.004659e-08    8.055073e-10
+   0.055450    8.021493e-08    8.056524e-10
+   0.065350    5.017275e-08    6.359493e-10
+   0.075250    2.682220e-08    4.650425e-10
+   0.085150    1.516522e-08    3.504808e-10
+   0.095050    4.510066e-09    1.914325e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9184e-09 +/- 0.457  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    6.442627e-11    2.114377e-11
+   0.015850    3.251342e-09    1.613708e-10
+   0.025750    5.177226e-08    6.506579e-10
+   0.035650    8.546369e-08    8.348209e-10
+   0.045550    7.999658e-08    8.055501e-10
+   0.055450    7.770638e-08    7.931182e-10
+   0.065350    4.952167e-08    6.319541e-10
+   0.075250    2.737077e-08    4.695909e-10
+   0.085150    1.564269e-08    3.558331e-10
+   0.095050    5.010791e-09    2.017484e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9062e-09 +/- 0.458  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.026215e-11    1.510687e-11
+   0.015850    3.496131e-09    1.678788e-10
+   0.025750    5.027765e-08    6.405927e-10
+   0.035650    8.304695e-08    8.227668e-10
+   0.045550    8.072498e-08    8.087566e-10
+   0.055450    8.030986e-08    8.062784e-10
+   0.065350    4.913120e-08    6.289923e-10
+   0.075250    2.636610e-08    4.607029e-10
+   0.085150    1.603624e-08    3.605901e-10
+   0.095050    5.150273e-09    2.045177e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8823e-09 +/- 0.459  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    5.619669e-13    3.052098e-13
+   0.015850    3.214180e-09    1.602806e-10
+   0.025750    4.995871e-08    6.398580e-10
+   0.035650    8.367494e-08    8.266518e-10
+   0.045550    7.877790e-08    7.989248e-10
+   0.055450    7.885007e-08    7.987480e-10
+   0.065350    4.968677e-08    6.328240e-10
+   0.075250    2.721684e-08    4.681439e-10
+   0.085150    1.561165e-08    3.558128e-10
+   0.095050    5.158800e-09    2.046835e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9105e-09 +/- 0.458  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    1.547602e-11    1.065916e-11
+   0.015850    3.475316e-09    1.666996e-10
+   0.025750    4.987106e-08    6.382746e-10
+   0.035650    8.472938e-08    8.320741e-10
+   0.045550    7.855700e-08    7.981046e-10
+   0.055450    7.974547e-08    8.037868e-10
+   0.065350    4.909578e-08    6.288157e-10
+   0.075250    2.787870e-08    4.737865e-10
+   0.085150    1.594908e-08    3.594409e-10
+   0.095050    5.681464e-09    2.147633e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9025e-09 +/- 0.458  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    1.298938e-12    4.806048e-13
+   0.015850    3.276945e-09    1.626695e-10
+   0.025750    4.983676e-08    6.379915e-10
+   0.035650    8.444667e-08    8.298043e-10
+   0.045550    7.999480e-08    8.052805e-10
+   0.055450    7.781181e-08    7.935818e-10
+   0.065350    5.056811e-08    6.384004e-10
+   0.075250    2.796159e-08    4.747877e-10
+   0.085150    1.563115e-08    3.558766e-10
+   0.095050    4.658852e-09    1.944623e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9133e-09 +/- 0.457  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    2.374649e-11    1.303980e-11
+   0.015850    3.869605e-09    1.765403e-10
+   0.025750    4.909123e-08    6.328674e-10
+   0.035650    8.549054e-08    8.353624e-10
+   0.045550    7.905512e-08    8.005123e-10
+   0.055450    8.013207e-08    8.050623e-10
+   0.065350    5.049133e-08    6.377141e-10
+   0.075250    2.607997e-08    4.583217e-10
+   0.085150    1.587182e-08    3.584759e-10
+   0.095050    5.179344e-09    2.048742e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9386e-09 +/- 0.456  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    7.222827e-11    2.236139e-11
+   0.015850    3.155493e-09    1.593805e-10
+   0.025750    5.128558e-08    6.475713e-10
+   0.035650    8.561926e-08    8.365016e-10
+   0.045550    7.857747e-08    7.980335e-10
+   0.055450    8.022226e-08    8.054516e-10
+   0.065350    5.131993e-08    6.434428e-10
+   0.075250    2.661768e-08    4.628345e-10
+   0.085150    1.559636e-08    3.556773e-10
+   0.095050    5.375931e-09    2.090341e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8963e-09 +/- 0.458  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    7.503486e-11    2.369839e-11
+   0.015850    3.601195e-09    1.696059e-10
+   0.025750    5.076176e-08    6.439971e-10
+   0.035650    8.384951e-08    8.271272e-10
+   0.045550    7.987276e-08    8.048539e-10
+   0.055450    7.791295e-08    7.940035e-10
+   0.065350    5.017205e-08    6.359556e-10
+   0.075250    2.581700e-08    4.557740e-10
+   0.085150    1.621973e-08    3.623807e-10
+   0.095050    5.281588e-09    2.070513e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9082e-09 +/- 0.458  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    9.851309e-11    2.712915e-11
+   0.015850    3.127758e-09    1.583237e-10
+   0.025750    4.916810e-08    6.330472e-10
+   0.035650    8.597739e-08    8.377449e-10
+   0.045550    8.079843e-08    8.093889e-10
+   0.055450    7.835624e-08    7.963036e-10
+   0.065350    4.959088e-08    6.319357e-10
+   0.075250    2.663980e-08    4.631158e-10
+   0.085150    1.627159e-08    3.632115e-10
+   0.095050    4.735111e-09    1.960644e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9230e-09 +/- 0.457  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    4.315887e-11    1.708202e-11
+   0.015850    3.438244e-09    1.660779e-10
+   0.025750    5.057735e-08    6.424632e-10
+   0.035650    8.478574e-08    8.318757e-10
+   0.045550    7.973019e-08    8.034350e-10
+   0.055450    7.981699e-08    8.034637e-10
+   0.065350    4.957202e-08    6.318664e-10
+   0.075250    2.797159e-08    4.747839e-10
+   0.085150    1.559368e-08    3.554228e-10
+   0.095050    4.734984e-09    1.961142e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9172e-09 +/- 0.457  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.038035e-11    1.486404e-11
+   0.015850    3.287853e-09    1.623468e-10
+   0.025750    5.055477e-08    6.428393e-10
+   0.035650    8.627384e-08    8.403833e-10
+   0.045550    7.824175e-08    7.964402e-10
+   0.055450    7.996242e-08    8.045331e-10
+   0.065350    5.064354e-08    6.389390e-10
+   0.075250    2.638845e-08    4.610822e-10
+   0.085150    1.547177e-08    3.540825e-10
+   0.095050    4.820561e-09    1.980425e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9120e-09 +/- 0.458  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    8.894877e-11    2.539672e-11
+   0.015850    3.353778e-09    1.640537e-10
+   0.025750    5.108597e-08    6.467187e-10
+   0.035650    8.639411e-08    8.400656e-10
+   0.045550    7.847526e-08    7.981479e-10
+   0.055450    7.955950e-08    8.029547e-10
+   0.065350    4.810803e-08    6.228868e-10
+   0.075250    2.798897e-08    4.749481e-10
+   0.085150    1.480113e-08    3.463481e-10
+   0.095050    5.298035e-09    2.076960e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8606e-09 +/- 0.461  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    2.246708e-11    1.270033e-11
+   0.015850    3.371547e-09    1.647422e-10
+   0.025750    4.947132e-08    6.367400e-10
+   0.035650    8.444686e-08    8.311260e-10
+   0.045550    7.922130e-08    8.020394e-10
+   0.055450    7.824914e-08    7.967735e-10
+   0.065350    4.881820e-08    6.279028e-10
+   0.075250    2.605308e-08    4.582279e-10
+   0.085150    1.511356e-08    3.503858e-10
+   0.095050    5.193228e-09    2.054609e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8662e-09 +/- 0.461  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    5.169107e-11    1.947637e-11
+   0.015850    3.345816e-09    1.645171e-10
+   0.025750    4.829230e-08    6.291149e-10
+   0.035650    8.243910e-08    8.212533e-10
+   0.045550    7.862733e-08    7.990565e-10
+   0.055450    8.004233e-08    8.059160e-10
+   0.065350    5.013746e-08    6.362856e-10
+   0.075250    2.672641e-08    4.642085e-10
+   0.085150    1.594826e-08    3.600465e-10
+   0.095050    4.909794e-09    1.999991e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8308e-09 +/- 0.463  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    4.301738e-11    1.725277e-11
+   0.015850    3.662569e-09    1.724049e-10
+   0.025750    4.690650e-08    6.193705e-10
+   0.035650    8.479620e-08    8.330339e-10
+   0.045550    7.782689e-08    7.949120e-10
+   0.055450    7.726586e-08    7.921778e-10
+   0.065350    4.936631e-08    6.317388e-10
+   0.075250    2.677985e-08    4.647993e-10
+   0.085150    1.513894e-08    3.511016e-10
+   0.095050    5.166257e-09    2.052630e-10
+
+Geometry profilex : total fluence [cm-2] = 3.9001e-09 +/- 0.459  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    4.520396e-11    1.798673e-11
+   0.015850    3.295716e-09    1.631316e-10
+   0.025750    4.914161e-08    6.349720e-10
+   0.035650    8.509025e-08    8.355531e-10
+   0.045550    8.095428e-08    8.118140e-10
+   0.055450    7.899603e-08    8.010638e-10
+   0.065350    4.944168e-08    6.326866e-10
+   0.075250    2.667526e-08    4.645803e-10
+   0.085150    1.523129e-08    3.525162e-10
+   0.095050    5.075332e-09    2.034062e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8272e-09 +/- 0.464  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    7.645866e-11    2.413149e-11
+   0.015850    3.125398e-09    1.580001e-10
+   0.025750    5.043659e-08    6.432912e-10
+   0.035650    8.240701e-08    8.218411e-10
+   0.045550    7.829059e-08    7.980837e-10
+   0.055450    7.707045e-08    7.918950e-10
+   0.065350    4.843022e-08    6.263819e-10
+   0.075250    2.612574e-08    4.596249e-10
+   0.085150    1.562541e-08    3.569674e-10
+   0.095050    4.995271e-09    2.018487e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8247e-09 +/- 0.464  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    6.349033e-11    2.175530e-11
+   0.015850    3.689228e-09    1.727018e-10
+   0.025750    4.951518e-08    6.382138e-10
+   0.035650    8.308574e-08    8.259299e-10
+   0.045550    7.925688e-08    8.038204e-10
+   0.055450    7.736068e-08    7.935999e-10
+   0.065350    4.852387e-08    6.272711e-10
+   0.075250    2.556063e-08    4.547237e-10
+   0.085150    1.490431e-08    3.486751e-10
+   0.095050    4.369944e-09    1.888450e-10
+
+Geometry profilex : total fluence [cm-2] = 3.8219e-09 +/- 0.465  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    4.537806e-11    1.828550e-11
+   0.015850    3.420358e-09    1.662554e-10
+   0.025750    4.813748e-08    6.295005e-10
+   0.035650    8.254982e-08    8.235525e-10
+   0.045550    7.781165e-08    7.966332e-10
+   0.055450    7.690501e-08    7.917508e-10
+   0.065350    4.955945e-08    6.344604e-10
+   0.075250    2.717157e-08    4.695743e-10
+   0.085150    1.554212e-08    3.560133e-10
+   0.095050    4.908825e-09    2.003792e-10
+
+Geometry profilex : total fluence [cm-2] = 3.7589e-09 +/- 0.469  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    4.738252e-11    1.925751e-11
+   0.015850    3.076195e-09    1.576805e-10
+   0.025750    4.756962e-08    6.266048e-10
+   0.035650    8.135107e-08    8.180789e-10
+   0.045550    7.852433e-08    8.009441e-10
+   0.055450    7.446765e-08    7.795647e-10
+   0.065350    4.843647e-08    6.275619e-10
+   0.075250    2.669416e-08    4.657150e-10
+   0.085150    1.473538e-08    3.468497e-10
+   0.095050    4.785232e-09    1.982299e-10
+
+Geometry profilex : total fluence [cm-2] = 3.7860e-09 +/- 0.467  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    3.170200e-11    1.540248e-11
+   0.015850    3.036551e-09    1.573451e-10
+   0.025750    4.817245e-08    6.307779e-10
+   0.035650    8.196742e-08    8.218335e-10
+   0.045550    7.716322e-08    7.946247e-10
+   0.055450    7.731998e-08    7.948108e-10
+   0.065350    4.805151e-08    6.253630e-10
+   0.075250    2.684731e-08    4.675431e-10
+   0.085150    1.516437e-08    3.521876e-10
+   0.095050    4.667947e-09    1.956449e-10
+
+Geometry profilex : total fluence [cm-2] = 3.7368e-09 +/- 0.471  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    2.595349e-11    1.377884e-11
+   0.015850    2.939158e-09    1.545390e-10
+   0.025750    4.691747e-08    6.227243e-10
+   0.035650    8.280906e-08    8.272160e-10
+   0.045550    7.709418e-08    7.944884e-10
+   0.055450    7.552270e-08    7.859383e-10
+   0.065350    4.783776e-08    6.246802e-10
+   0.075250    2.493599e-08    4.506338e-10
+   0.085150    1.495864e-08    3.501110e-10
+   0.095050    4.411673e-09    1.901878e-10
+
+Geometry profilex : total fluence [cm-2] = 3.6933e-09 +/- 0.474  %
+
+   Emid/MeV    Flu/(MeV*cm2)   DFlu/(MeV*cm2)
+---------------------------------------------
+   0.005950    5.421400e-11    1.996848e-11
+   0.015850    2.928920e-09    1.546180e-10
+   0.025750    4.744702e-08    6.270769e-10
+   0.035650    8.075932e-08    8.176631e-10
+   0.045550    7.538897e-08    7.875694e-10
+   0.055450    7.339089e-08    7.758698e-10
+   0.065350    4.782080e-08    6.253243e-10
+   0.075250    2.554729e-08    4.567139e-10
+   0.085150    1.469833e-08    3.467250e-10
+   0.095050    5.022517e-09    2.031032e-10
+
+
+End of run                                             Mon Jan 30 05:43:41 2023
+================================================================================

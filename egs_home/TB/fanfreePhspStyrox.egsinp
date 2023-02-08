@@ -9,7 +9,7 @@
 ################################
 :start run control:
     ncase = 2.8E9
-    #calculation = combine
+    calculation = combine
     nchunk = 50
     nbatch = 3
 :stop run control:
@@ -173,7 +173,7 @@
         y-slabs = -0.5 1 1
         z-slabs = 100 0.1 1
         :start media input:
-            media = water
+            media = film
         :stop media input:
         set label = Prof 4
     :stop geometry:
@@ -326,6 +326,12 @@
         bremsstrahlung correction=NRC
         density correction file = polycarbonate__makrolon___lexan_
     :stop carbonate:
+
+    ### Film
+	:start film:
+		bremsstrahlung correction=NRC
+		density correction file= radiochromicdyefilm_nylonbase
+	:stop film:
 
     ### Water
 	:start water:
@@ -608,7 +614,7 @@
         rejection = 100
         Esave     = 1
         cavity geometry = profilexRR
-        rejection range medium = air
+        rejection range medium = water
     :stop range rejection:
 :stop variance reduction:
 

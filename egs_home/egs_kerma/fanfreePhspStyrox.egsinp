@@ -9,9 +9,9 @@
 ################################
 :start run control:
     ncase = 2.8E9
-    #calculation = combine
+    calculation = combine
     nchunk = 50
-    #nbatch = 3
+    nbatch = 3
 :stop run control:
 
 ################################
@@ -173,7 +173,7 @@
         y-slabs = -0.5 1 1
         z-slabs = 100 0.1 1
         :start media input:
-            media = water
+            media = film
         :stop media input:
         set label = Prof 4
     :stop geometry:
@@ -332,6 +332,12 @@
 		bremsstrahlung correction=NRC
 		density correction file= water_icru90
 	:stop water:
+
+    ### Film
+	:start film:
+		bremsstrahlung correction=NRC
+		density correction file= radiochromicdyefilm_nylonbase
+	:stop film:
 
 	### Target material (95% W (rho=19.3) and 5% Re (rho=21.02))
 	:start target_material:
@@ -1116,8 +1122,8 @@
     #emuen file = emuen_rho_air_1keV-1.5MeV.data
     ### Use absolute path when submitting parallel jobs!!!
     ### $EGS_HOME replaced with its value now
-    emuen file = /home/miia/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
-    #emuen file = /home/rsmina/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
+    #emuen file = /home/miia/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
+    emuen file = /home/rsmina/EGSnrc/egs_home/egs_kerma/emuen_rho_air_1keV-1.5MeV.data
 
     ### geometry for forced-detection (if omitted, score ONLY when reaching scoring region)
     Default FD geometry = obi_system
