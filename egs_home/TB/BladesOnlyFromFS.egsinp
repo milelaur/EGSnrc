@@ -8,7 +8,8 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 1.6E12
+    ncase = 2E11
+    #ncase = 1.6E12
     #calculation = combine
     #nchunk = 50
     nbatch = 3
@@ -283,8 +284,8 @@
     :start source:
         name = cathode_src
         library = egs_parallel_beam
-        charge = -1
-        direction = 0 0 -1
+        charge = 0
+        direction = 0 0 1
         :start spectrum:
             type = monoenergetic
             energy = 0.1 # in MeV
@@ -347,7 +348,6 @@
 ### MC PARAMETERS
 ################################
 :Start MC Transport Parameter:
-
     Global ECUT= 0.512
     Global PCUT= 0.001
     Global SMAX= 1e10
