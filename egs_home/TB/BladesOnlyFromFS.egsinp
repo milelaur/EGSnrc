@@ -20,15 +20,6 @@
 :start geometry definition:
 
     ################################
-    ### Anode target
-    ################################
-    :start geometry:
-        library = egs_glib
-        name = anode
-        include file = anode.egsinp
-    :stop geometry:
-
-    ################################
     ### X-ray window
     ################################
     :start geometry:
@@ -54,7 +45,7 @@
     :start geometry:
         name = model
         library = egs_gunion
-		geometries = anode xray_window blades
+		geometries = xray_window blades
     :stop geometry:
 
     ### Air between x-ray window and faceplate
@@ -291,56 +282,28 @@
 
     :start source:
         name = cathode_src
-	library = egs_parallel_beam
-	charge = -1
-	direction = 0 0 -1
-	:start spectrum:
-	    type = monoenergetic
-	    energy = 0.1 # in MeV
-	:stop spectrum:
-        #:start shape:
-    	    #library = egs_gaussian_shape
-            :start shape:
-                library = egs_ellipse
-                ## Large electron spot on the target: Length [5.78699mm, 8.26713mm] -> avg. 0.703 cm, Width [4.13357mm, 5.78699mm] -> avg 0.4$
-                #halfaxis = 0.248014 0.351353
-                ## Small electron spot on the target: Length [2.48014mm, 3.51353mm] -> avg 0.30 cm, Width [1.65343mm, 2.48014mm] -> avg 0.206$
-                #halfaxis = 0.10333925 0.14984175
-                ## The smallest large electron spot on the target: Length = 5.78699mm, Width = 4.13357mm
-                halfaxis = 0.2066785 0.2893495
-                midpoint = 0 0
-            :stop shape:
-            ## sigma = FWHM/(2*sqrt(2*ln(2)))
-            ## Large electron spot
-            #sigma = 0.210643697 0.298411762
-            ## Small electron spot
-            #sigma = 0.0877682779 0.127263865
-
-            ## sigma = FWHM/(2*sqrt(2*ln(2))) * 20%
-            ## Large electron spot (halfaxis on the target [~0.27, ~0.38] according to egs_view)
-            #sigma = 0.0421287394  0.0596823524
-            ## Small electron spot (halfaxis on the target [~0.105, ~0.16] according to egs_view)
-            #sigma = 0.01755365558 0.025452773
-        #:stop shape:
+        library = egs_parallel_beam
+        charge = -1
+        direction = 0 0 -1
+        :start spectrum:
+            type = monoenergetic
+            energy = 0.1 # in MeV
+        :stop spectrum:
+        :start shape:
+            library = egs_ellipse
+            ## Large electron spot: Width [1.0mm, 1.4mm], Length [1.4mm, 2.0mm]
+            halfaxis = 0.05 0.07
+            ## Small electron spot: Width [0.4mm, 0.6mm], Length [0.6mm, 0.85mm]
+            #halfaxis = 0.02 0.03
+            midpoint = 0 0
+        :stop shape:
     :stop source:
 
     :start source:
-        library = egs_transformed_source
-        name = cathode_ellipse
-        source name = cathode_src
-        :start transformation:
-            rotation = 1 0 0 0 0 1 0 1 0
-        :stop transformation:
-    :stop source:
-
-	:start source:
-        library = egs_transformed_source
+        library = egs_angular_spread_source
         name = cathode
-        source name = cathode_ellipse
-        :start transformation:
-            rotation vector = 1.9405 -0.483843 0
-			translation = 0 2 0.49865600
-        :stop transformation:
+        sigma = 10
+        source name = cathode_src
     :stop source:
 
 	### Use the source by this name for the simulation
