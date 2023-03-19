@@ -38,6 +38,15 @@
     :stop geometry:
 
     ################################
+    ### Pb port
+    ################################
+    :start geometry:
+        library = egs_glib
+        name = pb_port
+        include file = pb_port.egsinp
+    :stop geometry:
+
+    ################################
     ### Blades
     ################################
     :start geometry:
@@ -64,7 +73,7 @@
         type = EGS_XYZGeometry
         x-planes = -6 6
         y-planes = -4 4
-        z-planes = 3.0 8.9
+        z-planes = 4.0 8.9
         :start media input:
             media = air
         :stop media input:
