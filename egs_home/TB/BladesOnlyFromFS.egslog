@@ -1,0 +1,1836 @@
+
+               ***************************************************
+               *                                                 *
+               *                  TB                       *
+               *                                                 *
+               ***************************************************
+
+This is TB   based on
+      EGS_AdvancedApplication  
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 648
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Angular spread added to a Parallel beam from a shape of type ellipse with monoenergetic 0.1 MeV, photons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 858
+  numbers used so far = 802364447744
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = NO
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 10000
+ - Track buffer size           = 1024
+ - Output file name            = /home/rsmina/EGSnrc/egs_home/TB/BladesOnlyFromFS_w762_w762.ptracks
+
+
+===========================================
+Radiative splitting Object (splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Dose Scoring Object (profilexFilm)
+*******************************************
+
+ - Regions in dose calculator :648
+
+
+--------------------------------------
+medium       rho/[g/cm**3]
+--------------------------------------
+pb          11.35
+steel        8.06
+air          0.00
+polystyrene  1.06
+film         1.14
+--------------------------------------
+
+*******************************************
+
+
+ Will output dose to file:
+ EGS_XYZGeometry: profilex
+ file format:  3ddose
+ file name: /home/rsmina/EGSnrc/egs_home/TB/profilexFilm.3ddose
+
+
+
+The following media are defined:
+================================
+
+  0  pb                       AE= 0.5120 AP= 0.0010 0
+  1  steel                    AE= 0.5120 AP= 0.0010 1
+  2  air                      AE= 0.5120 AP= 0.0010 2
+  3  polystyrene              AE= 0.5120 AP= 0.0010 3
+  4  film                     AE= 0.5120 AP= 0.0010 4
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          Off
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 BladesOnlyFromFS_w1.egsdat     ncase=239999976      cpu=113820.00  
+ 2 BladesOnlyFromFS_w2.egsdat     ncase=239999976      cpu=113508.00  
+ 3 BladesOnlyFromFS_w3.egsdat     ncase=239999976      cpu=113961.00  
+ 4 BladesOnlyFromFS_w4.egsdat     ncase=239999976      cpu=114168.00  
+ 5 BladesOnlyFromFS_w5.egsdat     ncase=239999976      cpu=113478.00  
+ 6 BladesOnlyFromFS_w6.egsdat     ncase=239999976      cpu=113393.00  
+ 7 BladesOnlyFromFS_w7.egsdat     ncase=259999974      cpu=117727.00  
+ 8 BladesOnlyFromFS_w8.egsdat     ncase=259999974      cpu=118498.00  
+ 9 BladesOnlyFromFS_w9.egsdat     ncase=259999974      cpu=118938.00  
+10 BladesOnlyFromFS_w10.egsdat    ncase=259999974      cpu=118089.00  
+11 BladesOnlyFromFS_w11.egsdat    ncase=259999974      cpu=118959.00  
+12 BladesOnlyFromFS_w12.egsdat    ncase=259999974      cpu=118724.00  
+13 BladesOnlyFromFS_w13.egsdat    ncase=259999974      cpu=117693.00  
+14 BladesOnlyFromFS_w14.egsdat    ncase=259999974      cpu=117768.00  
+15 BladesOnlyFromFS_w15.egsdat    ncase=259999974      cpu=119350.00  
+16 BladesOnlyFromFS_w16.egsdat    ncase=259999974      cpu=119150.00  
+17 BladesOnlyFromFS_w17.egsdat    ncase=259999974      cpu=118131.00  
+18 BladesOnlyFromFS_w18.egsdat    ncase=259999974      cpu=118681.00  
+19 BladesOnlyFromFS_w19.egsdat    ncase=259999974      cpu=120754.00  
+20 BladesOnlyFromFS_w20.egsdat    ncase=259999974      cpu=120768.00  
+21 BladesOnlyFromFS_w21.egsdat    ncase=259999974      cpu=121074.00  
+22 BladesOnlyFromFS_w22.egsdat    ncase=259999974      cpu=120795.00  
+23 BladesOnlyFromFS_w23.egsdat    ncase=259999974      cpu=120980.00  
+24 BladesOnlyFromFS_w24.egsdat    ncase=259999974      cpu=121175.00  
+25 BladesOnlyFromFS_w25.egsdat    ncase=259999974      cpu=121145.00  
+26 BladesOnlyFromFS_w26.egsdat    ncase=259999974      cpu=120990.00  
+27 BladesOnlyFromFS_w27.egsdat    ncase=259999974      cpu=120885.00  
+28 BladesOnlyFromFS_w28.egsdat    ncase=259999974      cpu=121334.00  
+29 BladesOnlyFromFS_w29.egsdat    ncase=259999974      cpu=121077.00  
+30 BladesOnlyFromFS_w30.egsdat    ncase=259999974      cpu=121573.00  
+31 BladesOnlyFromFS_w31.egsdat    ncase=259999974      cpu=120948.00  
+32 BladesOnlyFromFS_w32.egsdat    ncase=239999976      cpu=114778.00  
+33 BladesOnlyFromFS_w33.egsdat    ncase=259999974      cpu=118499.00  
+34 BladesOnlyFromFS_w34.egsdat    ncase=259999974      cpu=116722.00  
+35 BladesOnlyFromFS_w35.egsdat    ncase=259999974      cpu=117379.00  
+36 BladesOnlyFromFS_w36.egsdat    ncase=259999974      cpu=117502.00  
+37 BladesOnlyFromFS_w37.egsdat    ncase=259999974      cpu=116935.00  
+38 BladesOnlyFromFS_w38.egsdat    ncase=259999974      cpu=117373.00  
+39 BladesOnlyFromFS_w39.egsdat    ncase=259999974      cpu=118738.00  
+40 BladesOnlyFromFS_w40.egsdat    ncase=259999974      cpu=119788.00  
+41 BladesOnlyFromFS_w41.egsdat    ncase=259999974      cpu=117261.00  
+42 BladesOnlyFromFS_w42.egsdat    ncase=259999974      cpu=116873.00  
+43 BladesOnlyFromFS_w43.egsdat    ncase=259999974      cpu=117376.00  
+44 BladesOnlyFromFS_w44.egsdat    ncase=259999974      cpu=117070.00  
+45 BladesOnlyFromFS_w45.egsdat    ncase=259999974      cpu=117037.00  
+46 BladesOnlyFromFS_w46.egsdat    ncase=259999974      cpu=119753.00  
+47 BladesOnlyFromFS_w47.egsdat    ncase=259999974      cpu=120765.00  
+48 BladesOnlyFromFS_w48.egsdat    ncase=259999974      cpu=116462.00  
+49 BladesOnlyFromFS_w49.egsdat    ncase=259999974      cpu=120191.00  
+50 BladesOnlyFromFS_w50.egsdat    ncase=259999974      cpu=121000.00  
+51 BladesOnlyFromFS_w51.egsdat    ncase=239999976      cpu=114405.00  
+52 BladesOnlyFromFS_w52.egsdat    ncase=239999976      cpu=112901.00  
+53 BladesOnlyFromFS_w53.egsdat    ncase=259999974      cpu=121049.00  
+54 BladesOnlyFromFS_w54.egsdat    ncase=259999974      cpu=120147.00  
+55 BladesOnlyFromFS_w55.egsdat    ncase=239999976      cpu=114286.00  
+56 BladesOnlyFromFS_w56.egsdat    ncase=259999974      cpu=121378.00  
+57 BladesOnlyFromFS_w57.egsdat    ncase=259999974      cpu=121068.00  
+58 BladesOnlyFromFS_w58.egsdat    ncase=259999974      cpu=121326.00  
+59 BladesOnlyFromFS_w59.egsdat    ncase=239999976      cpu=113533.00  
+60 BladesOnlyFromFS_w60.egsdat    ncase=259999974      cpu=121243.00  
+61 BladesOnlyFromFS_w61.egsdat    ncase=259999974      cpu=121055.00  
+62 BladesOnlyFromFS_w62.egsdat    ncase=259999974      cpu=121063.00  
+63 BladesOnlyFromFS_w63.egsdat    ncase=259999974      cpu=119802.00  
+64 BladesOnlyFromFS_w64.egsdat    ncase=259999974      cpu=117467.00  
+65 BladesOnlyFromFS_w65.egsdat    ncase=259999974      cpu=117142.00  
+66 BladesOnlyFromFS_w66.egsdat    ncase=259999974      cpu=117173.00  
+67 BladesOnlyFromFS_w67.egsdat    ncase=259999974      cpu=116728.00  
+68 BladesOnlyFromFS_w68.egsdat    ncase=259999974      cpu=116172.00  
+69 BladesOnlyFromFS_w69.egsdat    ncase=259999974      cpu=117627.00  
+70 BladesOnlyFromFS_w70.egsdat    ncase=259999974      cpu=115971.00  
+71 BladesOnlyFromFS_w71.egsdat    ncase=259999974      cpu=118243.00  
+72 BladesOnlyFromFS_w72.egsdat    ncase=259999974      cpu=116360.00  
+73 BladesOnlyFromFS_w73.egsdat    ncase=259999974      cpu=117048.00  
+74 BladesOnlyFromFS_w74.egsdat    ncase=259999974      cpu=117345.00  
+75 BladesOnlyFromFS_w75.egsdat    ncase=259999974      cpu=116122.00  
+76 BladesOnlyFromFS_w76.egsdat    ncase=259999974      cpu=117684.00  
+77 BladesOnlyFromFS_w77.egsdat    ncase=259999974      cpu=118979.00  
+78 BladesOnlyFromFS_w78.egsdat    ncase=259999974      cpu=117493.00  
+79 BladesOnlyFromFS_w79.egsdat    ncase=259999974      cpu=117003.00  
+80 BladesOnlyFromFS_w80.egsdat    ncase=259999974      cpu=118615.00  
+81 BladesOnlyFromFS_w81.egsdat    ncase=259999974      cpu=116627.00  
+82 BladesOnlyFromFS_w82.egsdat    ncase=259999974      cpu=121154.00  
+83 BladesOnlyFromFS_w83.egsdat    ncase=259999974      cpu=121258.00  
+84 BladesOnlyFromFS_w84.egsdat    ncase=259999974      cpu=120328.00  
+85 BladesOnlyFromFS_w85.egsdat    ncase=259999974      cpu=120471.00  
+86 BladesOnlyFromFS_w86.egsdat    ncase=259999974      cpu=121154.00  
+87 BladesOnlyFromFS_w87.egsdat    ncase=259999974      cpu=121169.00  
+88 BladesOnlyFromFS_w88.egsdat    ncase=239999976      cpu=119096.00  
+89 BladesOnlyFromFS_w89.egsdat    ncase=259999974      cpu=121199.00  
+90 BladesOnlyFromFS_w90.egsdat    ncase=259999974      cpu=121163.00  
+91 BladesOnlyFromFS_w91.egsdat    ncase=259999974      cpu=121631.00  
+92 BladesOnlyFromFS_w92.egsdat    ncase=259999974      cpu=120752.00  
+93 BladesOnlyFromFS_w93.egsdat    ncase=259999974      cpu=120316.00  
+94 BladesOnlyFromFS_w94.egsdat    ncase=259999974      cpu=120789.00  
+95 BladesOnlyFromFS_w95.egsdat    ncase=259999974      cpu=120570.00  
+96 BladesOnlyFromFS_w96.egsdat    ncase=259999974      cpu=116113.00  
+97 BladesOnlyFromFS_w97.egsdat    ncase=259999974      cpu=115376.00  
+98 BladesOnlyFromFS_w98.egsdat    ncase=259999974      cpu=113900.00  
+99 BladesOnlyFromFS_w99.egsdat    ncase=259999974      cpu=114615.00  
+100 BladesOnlyFromFS_w100.egsdat   ncase=259999974      cpu=115654.00  
+101 BladesOnlyFromFS_w101.egsdat   ncase=259999974      cpu=113854.00  
+102 BladesOnlyFromFS_w102.egsdat   ncase=259999974      cpu=113921.00  
+103 BladesOnlyFromFS_w103.egsdat   ncase=259999974      cpu=115584.00  
+104 BladesOnlyFromFS_w104.egsdat   ncase=259999974      cpu=113618.00  
+105 BladesOnlyFromFS_w105.egsdat   ncase=259999974      cpu=113926.00  
+106 BladesOnlyFromFS_w106.egsdat   ncase=259999974      cpu=114549.00  
+107 BladesOnlyFromFS_w107.egsdat   ncase=259999974      cpu=113407.00  
+108 BladesOnlyFromFS_w108.egsdat   ncase=259999974      cpu=114178.00  
+109 BladesOnlyFromFS_w109.egsdat   ncase=259999974      cpu=114116.00  
+110 BladesOnlyFromFS_w110.egsdat   ncase=259999974      cpu=118435.00  
+111 BladesOnlyFromFS_w111.egsdat   ncase=259999974      cpu=114416.00  
+112 BladesOnlyFromFS_w112.egsdat   ncase=259999974      cpu=115531.00  
+113 BladesOnlyFromFS_w113.egsdat   ncase=259999974      cpu=120673.00  
+114 BladesOnlyFromFS_w114.egsdat   ncase=239999976      cpu=113144.00  
+115 BladesOnlyFromFS_w115.egsdat   ncase=259999974      cpu=120327.00  
+116 BladesOnlyFromFS_w116.egsdat   ncase=259999974      cpu=120398.00  
+117 BladesOnlyFromFS_w117.egsdat   ncase=259999974      cpu=121381.00  
+118 BladesOnlyFromFS_w118.egsdat   ncase=239999976      cpu=114126.00  
+119 BladesOnlyFromFS_w119.egsdat   ncase=259999974      cpu=120182.00  
+120 BladesOnlyFromFS_w120.egsdat   ncase=259999974      cpu=120037.00  
+121 BladesOnlyFromFS_w121.egsdat   ncase=239999976      cpu=113858.00  
+122 BladesOnlyFromFS_w122.egsdat   ncase=259999974      cpu=120187.00  
+123 BladesOnlyFromFS_w123.egsdat   ncase=259999974      cpu=120944.00  
+124 BladesOnlyFromFS_w124.egsdat   ncase=259999974      cpu=120280.00  
+125 BladesOnlyFromFS_w125.egsdat   ncase=259999974      cpu=118193.00  
+126 BladesOnlyFromFS_w126.egsdat   ncase=259999974      cpu=116213.00  
+127 BladesOnlyFromFS_w127.egsdat   ncase=259999974      cpu=115992.00  
+128 BladesOnlyFromFS_w128.egsdat   ncase=259999974      cpu=118324.00  
+129 BladesOnlyFromFS_w129.egsdat   ncase=259999974      cpu=118399.00  
+130 BladesOnlyFromFS_w130.egsdat   ncase=259999974      cpu=116190.00  
+131 BladesOnlyFromFS_w131.egsdat   ncase=259999974      cpu=117643.00  
+132 BladesOnlyFromFS_w132.egsdat   ncase=259999974      cpu=117293.00  
+133 BladesOnlyFromFS_w133.egsdat   ncase=259999974      cpu=116170.00  
+134 BladesOnlyFromFS_w134.egsdat   ncase=259999974      cpu=116406.00  
+135 BladesOnlyFromFS_w135.egsdat   ncase=259999974      cpu=116877.00  
+136 BladesOnlyFromFS_w136.egsdat   ncase=259999974      cpu=116343.00  
+137 BladesOnlyFromFS_w137.egsdat   ncase=259999974      cpu=117125.00  
+138 BladesOnlyFromFS_w138.egsdat   ncase=259999974      cpu=117101.00  
+139 BladesOnlyFromFS_w139.egsdat   ncase=259999974      cpu=117093.00  
+140 BladesOnlyFromFS_w140.egsdat   ncase=259999974      cpu=116690.00  
+141 BladesOnlyFromFS_w141.egsdat   ncase=259999974      cpu=117390.00  
+142 BladesOnlyFromFS_w142.egsdat   ncase=259999974      cpu=116789.00  
+143 BladesOnlyFromFS_w143.egsdat   ncase=259999974      cpu=117560.00  
+144 BladesOnlyFromFS_w144.egsdat   ncase=299999970      cpu=117005.00  
+145 BladesOnlyFromFS_w145.egsdat   ncase=299999970      cpu=116886.00  
+146 BladesOnlyFromFS_w146.egsdat   ncase=299999970      cpu=116147.00  
+147 BladesOnlyFromFS_w147.egsdat   ncase=299999970      cpu=117299.00  
+148 BladesOnlyFromFS_w148.egsdat   ncase=299999970      cpu=119400.00  
+149 BladesOnlyFromFS_w149.egsdat   ncase=299999970      cpu=118037.00  
+150 BladesOnlyFromFS_w150.egsdat   ncase=299999970      cpu=117647.00  
+151 BladesOnlyFromFS_w151.egsdat   ncase=279999972      cpu=113747.00  
+152 BladesOnlyFromFS_w152.egsdat   ncase=299999970      cpu=116135.00  
+153 BladesOnlyFromFS_w153.egsdat   ncase=299999970      cpu=116510.00  
+154 BladesOnlyFromFS_w154.egsdat   ncase=259999974      cpu=116654.00  
+155 BladesOnlyFromFS_w155.egsdat   ncase=259999974      cpu=116718.00  
+156 BladesOnlyFromFS_w156.egsdat   ncase=259999974      cpu=118480.00  
+157 BladesOnlyFromFS_w157.egsdat   ncase=259999974      cpu=120796.00  
+158 BladesOnlyFromFS_w158.egsdat   ncase=259999974      cpu=117185.00  
+159 BladesOnlyFromFS_w159.egsdat   ncase=259999974      cpu=117763.00  
+160 BladesOnlyFromFS_w160.egsdat   ncase=259999974      cpu=116472.00  
+161 BladesOnlyFromFS_w161.egsdat   ncase=259999974      cpu=117361.00  
+162 BladesOnlyFromFS_w162.egsdat   ncase=259999974      cpu=116077.00  
+163 BladesOnlyFromFS_w163.egsdat   ncase=259999974      cpu=119442.00  
+164 BladesOnlyFromFS_w164.egsdat   ncase=259999974      cpu=116285.00  
+165 BladesOnlyFromFS_w165.egsdat   ncase=259999974      cpu=116538.00  
+166 BladesOnlyFromFS_w166.egsdat   ncase=259999974      cpu=116663.00  
+167 BladesOnlyFromFS_w167.egsdat   ncase=259999974      cpu=116692.00  
+168 BladesOnlyFromFS_w168.egsdat   ncase=259999974      cpu=118213.00  
+169 BladesOnlyFromFS_w169.egsdat   ncase=259999974      cpu=117668.00  
+170 BladesOnlyFromFS_w170.egsdat   ncase=259999974      cpu=117419.00  
+171 BladesOnlyFromFS_w171.egsdat   ncase=259999974      cpu=116209.00  
+172 BladesOnlyFromFS_w172.egsdat   ncase=259999974      cpu=116288.00  
+173 BladesOnlyFromFS_w173.egsdat   ncase=259999974      cpu=116030.00  
+174 BladesOnlyFromFS_w174.egsdat   ncase=259999974      cpu=118284.00  
+175 BladesOnlyFromFS_w175.egsdat   ncase=259999974      cpu=117158.00  
+176 BladesOnlyFromFS_w176.egsdat   ncase=259999974      cpu=117410.00  
+177 BladesOnlyFromFS_w177.egsdat   ncase=259999974      cpu=118239.00  
+178 BladesOnlyFromFS_w178.egsdat   ncase=259999974      cpu=120531.00  
+179 BladesOnlyFromFS_w179.egsdat   ncase=259999974      cpu=120140.00  
+180 BladesOnlyFromFS_w180.egsdat   ncase=259999974      cpu=120840.00  
+181 BladesOnlyFromFS_w181.egsdat   ncase=259999974      cpu=120551.00  
+182 BladesOnlyFromFS_w182.egsdat   ncase=239999976      cpu=113336.00  
+183 BladesOnlyFromFS_w183.egsdat   ncase=259999974      cpu=120630.00  
+184 BladesOnlyFromFS_w184.egsdat   ncase=259999974      cpu=121017.00  
+185 BladesOnlyFromFS_w185.egsdat   ncase=259999974      cpu=120606.00  
+186 BladesOnlyFromFS_w186.egsdat   ncase=259999974      cpu=121484.00  
+187 BladesOnlyFromFS_w187.egsdat   ncase=259999974      cpu=121098.00  
+188 BladesOnlyFromFS_w188.egsdat   ncase=259999974      cpu=120044.00  
+189 BladesOnlyFromFS_w189.egsdat   ncase=259999974      cpu=121383.00  
+190 BladesOnlyFromFS_w190.egsdat   ncase=259999974      cpu=120441.00  
+191 BladesOnlyFromFS_w191.egsdat   ncase=259999974      cpu=120734.00  
+192 BladesOnlyFromFS_w192.egsdat   ncase=259999974      cpu=121075.00  
+193 BladesOnlyFromFS_w193.egsdat   ncase=259999974      cpu=120508.00  
+194 BladesOnlyFromFS_w194.egsdat   ncase=259999974      cpu=120070.00  
+195 BladesOnlyFromFS_w195.egsdat   ncase=259999974      cpu=120031.00  
+196 BladesOnlyFromFS_w196.egsdat   ncase=259999974      cpu=121643.00  
+197 BladesOnlyFromFS_w197.egsdat   ncase=259999974      cpu=119526.00  
+198 BladesOnlyFromFS_w198.egsdat   ncase=259999974      cpu=121654.00  
+199 BladesOnlyFromFS_w199.egsdat   ncase=259999974      cpu=119837.00  
+200 BladesOnlyFromFS_w200.egsdat   ncase=259999974      cpu=120386.00  
+201 BladesOnlyFromFS_w201.egsdat   ncase=259999974      cpu=120819.00  
+202 BladesOnlyFromFS_w202.egsdat   ncase=259999974      cpu=120740.00  
+203 BladesOnlyFromFS_w203.egsdat   ncase=259999974      cpu=120664.00  
+204 BladesOnlyFromFS_w204.egsdat   ncase=259999974      cpu=119156.00  
+205 BladesOnlyFromFS_w205.egsdat   ncase=259999974      cpu=118901.00  
+206 BladesOnlyFromFS_w206.egsdat   ncase=259999974      cpu=117555.00  
+207 BladesOnlyFromFS_w207.egsdat   ncase=259999974      cpu=119528.00  
+208 BladesOnlyFromFS_w208.egsdat   ncase=259999974      cpu=119027.00  
+209 BladesOnlyFromFS_w209.egsdat   ncase=259999974      cpu=118608.00  
+210 BladesOnlyFromFS_w210.egsdat   ncase=259999974      cpu=118574.00  
+211 BladesOnlyFromFS_w211.egsdat   ncase=259999974      cpu=117285.00  
+212 BladesOnlyFromFS_w212.egsdat   ncase=259999974      cpu=117955.00  
+213 BladesOnlyFromFS_w213.egsdat   ncase=259999974      cpu=119740.00  
+214 BladesOnlyFromFS_w214.egsdat   ncase=259999974      cpu=117549.00  
+215 BladesOnlyFromFS_w215.egsdat   ncase=259999974      cpu=118592.00  
+216 BladesOnlyFromFS_w216.egsdat   ncase=259999974      cpu=116705.00  
+217 BladesOnlyFromFS_w217.egsdat   ncase=259999974      cpu=117387.00  
+218 BladesOnlyFromFS_w218.egsdat   ncase=259999974      cpu=117162.00  
+219 BladesOnlyFromFS_w219.egsdat   ncase=259999974      cpu=118242.00  
+220 BladesOnlyFromFS_w220.egsdat   ncase=259999974      cpu=117580.00  
+221 BladesOnlyFromFS_w221.egsdat   ncase=259999974      cpu=116297.00  
+222 BladesOnlyFromFS_w222.egsdat   ncase=259999974      cpu=116778.00  
+223 BladesOnlyFromFS_w223.egsdat   ncase=259999974      cpu=121203.00  
+224 BladesOnlyFromFS_w224.egsdat   ncase=259999974      cpu=120504.00  
+225 BladesOnlyFromFS_w225.egsdat   ncase=259999974      cpu=120754.00  
+226 BladesOnlyFromFS_w226.egsdat   ncase=259999974      cpu=120804.00  
+227 BladesOnlyFromFS_w227.egsdat   ncase=259999974      cpu=120715.00  
+228 BladesOnlyFromFS_w228.egsdat   ncase=259999974      cpu=120773.00  
+229 BladesOnlyFromFS_w229.egsdat   ncase=239999976      cpu=113645.00  
+230 BladesOnlyFromFS_w230.egsdat   ncase=259999974      cpu=119971.00  
+231 BladesOnlyFromFS_w231.egsdat   ncase=259999974      cpu=120798.00  
+232 BladesOnlyFromFS_w232.egsdat   ncase=239999976      cpu=112745.00  
+233 BladesOnlyFromFS_w233.egsdat   ncase=259999974      cpu=121119.00  
+234 BladesOnlyFromFS_w234.egsdat   ncase=259999974      cpu=119607.00  
+235 BladesOnlyFromFS_w235.egsdat   ncase=259999974      cpu=119634.00  
+236 BladesOnlyFromFS_w236.egsdat   ncase=259999974      cpu=119490.00  
+237 BladesOnlyFromFS_w237.egsdat   ncase=259999974      cpu=121264.00  
+238 BladesOnlyFromFS_w238.egsdat   ncase=239999976      cpu=114612.00  
+239 BladesOnlyFromFS_w239.egsdat   ncase=239999976      cpu=112803.00  
+240 BladesOnlyFromFS_w240.egsdat   ncase=239999976      cpu=114294.00  
+241 BladesOnlyFromFS_w241.egsdat   ncase=239999976      cpu=114002.00  
+242 BladesOnlyFromFS_w242.egsdat   ncase=239999976      cpu=114446.00  
+243 BladesOnlyFromFS_w243.egsdat   ncase=239999976      cpu=115020.00  
+244 BladesOnlyFromFS_w244.egsdat   ncase=259999974      cpu=121012.00  
+245 BladesOnlyFromFS_w245.egsdat   ncase=259999974      cpu=121270.00  
+246 BladesOnlyFromFS_w246.egsdat   ncase=259999974      cpu=120640.00  
+247 BladesOnlyFromFS_w247.egsdat   ncase=239999976      cpu=113979.00  
+248 BladesOnlyFromFS_w248.egsdat   ncase=239999976      cpu=113039.00  
+249 BladesOnlyFromFS_w249.egsdat   ncase=259999974      cpu=121045.00  
+250 BladesOnlyFromFS_w250.egsdat   ncase=259999974      cpu=121142.00  
+251 BladesOnlyFromFS_w251.egsdat   ncase=259999974      cpu=121198.00  
+252 BladesOnlyFromFS_w252.egsdat   ncase=259999974      cpu=120599.00  
+253 BladesOnlyFromFS_w253.egsdat   ncase=239999976      cpu=113357.00  
+254 BladesOnlyFromFS_w254.egsdat   ncase=239999976      cpu=113593.00  
+255 BladesOnlyFromFS_w255.egsdat   ncase=259999974      cpu=121342.00  
+256 BladesOnlyFromFS_w256.egsdat   ncase=239999976      cpu=112913.00  
+257 BladesOnlyFromFS_w257.egsdat   ncase=239999976      cpu=112747.00  
+258 BladesOnlyFromFS_w258.egsdat   ncase=259999974      cpu=121560.00  
+259 BladesOnlyFromFS_w259.egsdat   ncase=239999976      cpu=115928.00  
+260 BladesOnlyFromFS_w260.egsdat   ncase=239999976      cpu=115305.00  
+261 BladesOnlyFromFS_w261.egsdat   ncase=239999976      cpu=116916.00  
+262 BladesOnlyFromFS_w262.egsdat   ncase=239999976      cpu=115356.00  
+263 BladesOnlyFromFS_w263.egsdat   ncase=239999976      cpu=114689.00  
+264 BladesOnlyFromFS_w264.egsdat   ncase=239999976      cpu=115196.00  
+265 BladesOnlyFromFS_w265.egsdat   ncase=239999976      cpu=112981.00  
+266 BladesOnlyFromFS_w266.egsdat   ncase=239999976      cpu=113053.00  
+267 BladesOnlyFromFS_w267.egsdat   ncase=239999976      cpu=113455.00  
+268 BladesOnlyFromFS_w268.egsdat   ncase=239999976      cpu=115172.00  
+269 BladesOnlyFromFS_w269.egsdat   ncase=239999976      cpu=113505.00  
+270 BladesOnlyFromFS_w270.egsdat   ncase=239999976      cpu=114080.00  
+271 BladesOnlyFromFS_w271.egsdat   ncase=239999976      cpu=114089.00  
+272 BladesOnlyFromFS_w272.egsdat   ncase=239999976      cpu=113184.00  
+273 BladesOnlyFromFS_w273.egsdat   ncase=239999976      cpu=114109.00  
+274 BladesOnlyFromFS_w274.egsdat   ncase=239999976      cpu=113414.00  
+275 BladesOnlyFromFS_w275.egsdat   ncase=259999974      cpu=118603.00  
+276 BladesOnlyFromFS_w276.egsdat   ncase=259999974      cpu=118684.00  
+277 BladesOnlyFromFS_w277.egsdat   ncase=259999974      cpu=117382.00  
+278 BladesOnlyFromFS_w278.egsdat   ncase=259999974      cpu=117669.00  
+279 BladesOnlyFromFS_w279.egsdat   ncase=259999974      cpu=118281.00  
+280 BladesOnlyFromFS_w280.egsdat   ncase=239999976      cpu=113622.00  
+281 BladesOnlyFromFS_w281.egsdat   ncase=239999976      cpu=114427.00  
+282 BladesOnlyFromFS_w282.egsdat   ncase=259999974      cpu=120971.00  
+283 BladesOnlyFromFS_w283.egsdat   ncase=239999976      cpu=112948.00  
+284 BladesOnlyFromFS_w284.egsdat   ncase=239999976      cpu=114082.00  
+285 BladesOnlyFromFS_w285.egsdat   ncase=239999976      cpu=115138.00  
+286 BladesOnlyFromFS_w286.egsdat   ncase=239999976      cpu=112633.00  
+287 BladesOnlyFromFS_w287.egsdat   ncase=259999974      cpu=121138.00  
+288 BladesOnlyFromFS_w288.egsdat   ncase=259999974      cpu=117163.00  
+289 BladesOnlyFromFS_w289.egsdat   ncase=259999974      cpu=118413.00  
+290 BladesOnlyFromFS_w290.egsdat   ncase=259999974      cpu=116204.00  
+291 BladesOnlyFromFS_w291.egsdat   ncase=259999974      cpu=117309.00  
+292 BladesOnlyFromFS_w292.egsdat   ncase=259999974      cpu=118093.00  
+293 BladesOnlyFromFS_w293.egsdat   ncase=259999974      cpu=118174.00  
+294 BladesOnlyFromFS_w294.egsdat   ncase=259999974      cpu=118272.00  
+295 BladesOnlyFromFS_w295.egsdat   ncase=259999974      cpu=117631.00  
+296 BladesOnlyFromFS_w296.egsdat   ncase=259999974      cpu=116677.00  
+297 BladesOnlyFromFS_w297.egsdat   ncase=259999974      cpu=119469.00  
+298 BladesOnlyFromFS_w298.egsdat   ncase=259999974      cpu=118381.00  
+299 BladesOnlyFromFS_w299.egsdat   ncase=259999974      cpu=118944.00  
+300 BladesOnlyFromFS_w300.egsdat   ncase=259999974      cpu=119783.00  
+301 BladesOnlyFromFS_w301.egsdat   ncase=259999974      cpu=119987.00  
+302 BladesOnlyFromFS_w302.egsdat   ncase=259999974      cpu=119422.00  
+303 BladesOnlyFromFS_w303.egsdat   ncase=259999974      cpu=118693.00  
+304 BladesOnlyFromFS_w304.egsdat   ncase=259999974      cpu=120040.00  
+305 BladesOnlyFromFS_w305.egsdat   ncase=259999974      cpu=118540.00  
+306 BladesOnlyFromFS_w306.egsdat   ncase=239999976      cpu=113366.00  
+307 BladesOnlyFromFS_w307.egsdat   ncase=239999976      cpu=113852.00  
+308 BladesOnlyFromFS_w308.egsdat   ncase=239999976      cpu=113207.00  
+309 BladesOnlyFromFS_w309.egsdat   ncase=239999976      cpu=113722.00  
+310 BladesOnlyFromFS_w310.egsdat   ncase=239999976      cpu=112614.00  
+311 BladesOnlyFromFS_w311.egsdat   ncase=239999976      cpu=113653.00  
+312 BladesOnlyFromFS_w312.egsdat   ncase=259999974      cpu=121346.00  
+313 BladesOnlyFromFS_w313.egsdat   ncase=259999974      cpu=120861.00  
+314 BladesOnlyFromFS_w314.egsdat   ncase=239999976      cpu=113636.00  
+315 BladesOnlyFromFS_w315.egsdat   ncase=239999976      cpu=114179.00  
+316 BladesOnlyFromFS_w316.egsdat   ncase=259999974      cpu=119081.00  
+317 BladesOnlyFromFS_w317.egsdat   ncase=259999974      cpu=118845.00  
+318 BladesOnlyFromFS_w318.egsdat   ncase=259999974      cpu=120866.00  
+319 BladesOnlyFromFS_w319.egsdat   ncase=259999974      cpu=118411.00  
+320 BladesOnlyFromFS_w320.egsdat   ncase=259999974      cpu=118448.00  
+321 BladesOnlyFromFS_w321.egsdat   ncase=259999974      cpu=119624.00  
+322 BladesOnlyFromFS_w322.egsdat   ncase=259999974      cpu=118039.00  
+323 BladesOnlyFromFS_w323.egsdat   ncase=259999974      cpu=117903.00  
+324 BladesOnlyFromFS_w324.egsdat   ncase=259999974      cpu=117615.00  
+325 BladesOnlyFromFS_w325.egsdat   ncase=259999974      cpu=118208.00  
+326 BladesOnlyFromFS_w326.egsdat   ncase=259999974      cpu=119204.00  
+327 BladesOnlyFromFS_w327.egsdat   ncase=259999974      cpu=118547.00  
+328 BladesOnlyFromFS_w328.egsdat   ncase=259999974      cpu=117217.00  
+329 BladesOnlyFromFS_w329.egsdat   ncase=259999974      cpu=118040.00  
+330 BladesOnlyFromFS_w330.egsdat   ncase=259999974      cpu=118387.00  
+331 BladesOnlyFromFS_w331.egsdat   ncase=259999974      cpu=119439.00  
+332 BladesOnlyFromFS_w332.egsdat   ncase=239999976      cpu=113330.00  
+333 BladesOnlyFromFS_w333.egsdat   ncase=259999974      cpu=121624.00  
+334 BladesOnlyFromFS_w334.egsdat   ncase=259999974      cpu=120308.00  
+335 BladesOnlyFromFS_w335.egsdat   ncase=259999974      cpu=120497.00  
+336 BladesOnlyFromFS_w336.egsdat   ncase=259999974      cpu=120615.00  
+337 BladesOnlyFromFS_w337.egsdat   ncase=259999974      cpu=120071.00  
+338 BladesOnlyFromFS_w338.egsdat   ncase=259999974      cpu=120748.00  
+339 BladesOnlyFromFS_w339.egsdat   ncase=259999974      cpu=120947.00  
+340 BladesOnlyFromFS_w340.egsdat   ncase=219999978      cpu=114054.00  
+341 BladesOnlyFromFS_w341.egsdat   ncase=219999978      cpu=113390.00  
+342 BladesOnlyFromFS_w342.egsdat   ncase=219999978      cpu=114044.00  
+343 BladesOnlyFromFS_w343.egsdat   ncase=219999978      cpu=114812.00  
+344 BladesOnlyFromFS_w344.egsdat   ncase=219999978      cpu=114022.00  
+345 BladesOnlyFromFS_w345.egsdat   ncase=219999978      cpu=113312.00  
+346 BladesOnlyFromFS_w346.egsdat   ncase=219999978      cpu=114959.00  
+347 BladesOnlyFromFS_w347.egsdat   ncase=219999978      cpu=113058.00  
+348 BladesOnlyFromFS_w348.egsdat   ncase=239999976      cpu=123537.00  
+349 BladesOnlyFromFS_w349.egsdat   ncase=219999978      cpu=112949.00  
+350 BladesOnlyFromFS_w350.egsdat   ncase=219999978      cpu=112847.00  
+351 BladesOnlyFromFS_w351.egsdat   ncase=219999978      cpu=112948.00  
+352 BladesOnlyFromFS_w352.egsdat   ncase=219999978      cpu=113092.00  
+353 BladesOnlyFromFS_w353.egsdat   ncase=239999976      cpu=123485.00  
+354 BladesOnlyFromFS_w354.egsdat   ncase=219999978      cpu=113796.00  
+355 BladesOnlyFromFS_w355.egsdat   ncase=219999978      cpu=113145.00  
+356 BladesOnlyFromFS_w356.egsdat   ncase=219999978      cpu=116635.00  
+357 BladesOnlyFromFS_w357.egsdat   ncase=219999978      cpu=120774.00  
+358 BladesOnlyFromFS_w358.egsdat   ncase=219999978      cpu=113297.00  
+359 BladesOnlyFromFS_w359.egsdat   ncase=219999978      cpu=115542.00  
+360 BladesOnlyFromFS_w360.egsdat   ncase=219999978      cpu=115306.00  
+361 BladesOnlyFromFS_w361.egsdat   ncase=219999978      cpu=113693.00  
+362 BladesOnlyFromFS_w362.egsdat   ncase=219999978      cpu=113765.00  
+363 BladesOnlyFromFS_w363.egsdat   ncase=219999978      cpu=113703.00  
+364 BladesOnlyFromFS_w364.egsdat   ncase=219999978      cpu=113454.00  
+365 BladesOnlyFromFS_w365.egsdat   ncase=219999978      cpu=113553.00  
+366 BladesOnlyFromFS_w366.egsdat   ncase=219999978      cpu=113778.00  
+367 BladesOnlyFromFS_w367.egsdat   ncase=239999976      cpu=123007.00  
+368 BladesOnlyFromFS_w368.egsdat   ncase=219999978      cpu=115442.00  
+369 BladesOnlyFromFS_w369.egsdat   ncase=219999978      cpu=112994.00  
+370 BladesOnlyFromFS_w370.egsdat   ncase=219999978      cpu=113340.00  
+371 BladesOnlyFromFS_w371.egsdat   ncase=219999978      cpu=113360.00  
+372 BladesOnlyFromFS_w372.egsdat   ncase=239999976      cpu=123167.00  
+373 BladesOnlyFromFS_w373.egsdat   ncase=239999976      cpu=123215.00  
+374 BladesOnlyFromFS_w374.egsdat   ncase=219999978      cpu=113398.00  
+375 BladesOnlyFromFS_w375.egsdat   ncase=219999978      cpu=113202.00  
+376 BladesOnlyFromFS_w376.egsdat   ncase=219999978      cpu=113423.00  
+377 BladesOnlyFromFS_w377.egsdat   ncase=219999978      cpu=113120.00  
+378 BladesOnlyFromFS_w378.egsdat   ncase=219999978      cpu=114952.00  
+379 BladesOnlyFromFS_w379.egsdat   ncase=219999978      cpu=116095.00  
+380 BladesOnlyFromFS_w380.egsdat   ncase=219999978      cpu=115005.00  
+381 BladesOnlyFromFS_w381.egsdat   ncase=219999978      cpu=115089.00  
+382 BladesOnlyFromFS_w382.egsdat   ncase=219999978      cpu=114480.00  
+383 BladesOnlyFromFS_w383.egsdat   ncase=219999978      cpu=114414.00  
+384 BladesOnlyFromFS_w384.egsdat   ncase=239999976      cpu=123055.00  
+385 BladesOnlyFromFS_w385.egsdat   ncase=239999976      cpu=123131.00  
+386 BladesOnlyFromFS_w386.egsdat   ncase=219999978      cpu=113010.00  
+387 BladesOnlyFromFS_w387.egsdat   ncase=219999978      cpu=113554.00  
+388 BladesOnlyFromFS_w388.egsdat   ncase=239999976      cpu=122915.00  
+389 BladesOnlyFromFS_w389.egsdat   ncase=239999976      cpu=122566.00  
+390 BladesOnlyFromFS_w390.egsdat   ncase=219999978      cpu=114233.00  
+391 BladesOnlyFromFS_w391.egsdat   ncase=219999978      cpu=118424.00  
+392 BladesOnlyFromFS_w392.egsdat   ncase=219999978      cpu=117649.00  
+393 BladesOnlyFromFS_w393.egsdat   ncase=219999978      cpu=118304.00  
+394 BladesOnlyFromFS_w394.egsdat   ncase=219999978      cpu=118104.00  
+395 BladesOnlyFromFS_w395.egsdat   ncase=219999978      cpu=118394.00  
+396 BladesOnlyFromFS_w396.egsdat   ncase=199999980      cpu=119586.00  
+397 BladesOnlyFromFS_w397.egsdat   ncase=219999978      cpu=122743.00  
+398 BladesOnlyFromFS_w398.egsdat   ncase=219999978      cpu=119387.00  
+399 BladesOnlyFromFS_w399.egsdat   ncase=239999976      cpu=122416.00  
+400 BladesOnlyFromFS_w400.egsdat   ncase=239999976      cpu=122745.00  
+401 BladesOnlyFromFS_w401.egsdat   ncase=239999976      cpu=122758.00  
+402 BladesOnlyFromFS_w402.egsdat   ncase=239999976      cpu=122217.00  
+403 BladesOnlyFromFS_w403.egsdat   ncase=239999976      cpu=122040.00  
+404 BladesOnlyFromFS_w404.egsdat   ncase=239999976      cpu=122386.00  
+405 BladesOnlyFromFS_w405.egsdat   ncase=239999976      cpu=121736.00  
+406 BladesOnlyFromFS_w406.egsdat   ncase=239999976      cpu=122613.00  
+407 BladesOnlyFromFS_w407.egsdat   ncase=239999976      cpu=122667.00  
+408 BladesOnlyFromFS_w408.egsdat   ncase=219999978      cpu=115805.00  
+409 BladesOnlyFromFS_w409.egsdat   ncase=239999976      cpu=122566.00  
+410 BladesOnlyFromFS_w410.egsdat   ncase=239999976      cpu=121807.00  
+411 BladesOnlyFromFS_w411.egsdat   ncase=219999978      cpu=114651.00  
+412 BladesOnlyFromFS_w412.egsdat   ncase=219999978      cpu=113005.00  
+413 BladesOnlyFromFS_w413.egsdat   ncase=219999978      cpu=114248.00  
+414 BladesOnlyFromFS_w414.egsdat   ncase=219999978      cpu=113277.00  
+415 BladesOnlyFromFS_w415.egsdat   ncase=239999976      cpu=123258.00  
+416 BladesOnlyFromFS_w416.egsdat   ncase=219999978      cpu=117688.00  
+417 BladesOnlyFromFS_w417.egsdat   ncase=219999978      cpu=113942.00  
+418 BladesOnlyFromFS_w418.egsdat   ncase=219999978      cpu=113539.00  
+419 BladesOnlyFromFS_w419.egsdat   ncase=239999976      cpu=122777.00  
+420 BladesOnlyFromFS_w420.egsdat   ncase=239999976      cpu=122926.00  
+421 BladesOnlyFromFS_w421.egsdat   ncase=219999978      cpu=114408.00  
+422 BladesOnlyFromFS_w422.egsdat   ncase=219999978      cpu=113546.00  
+423 BladesOnlyFromFS_w423.egsdat   ncase=239999976      cpu=123118.00  
+424 BladesOnlyFromFS_w424.egsdat   ncase=219999978      cpu=114970.00  
+425 BladesOnlyFromFS_w425.egsdat   ncase=219999978      cpu=113169.00  
+426 BladesOnlyFromFS_w426.egsdat   ncase=219999978      cpu=113292.00  
+427 BladesOnlyFromFS_w427.egsdat   ncase=219999978      cpu=113086.00  
+428 BladesOnlyFromFS_w428.egsdat   ncase=219999978      cpu=115412.00  
+429 BladesOnlyFromFS_w429.egsdat   ncase=219999978      cpu=113396.00  
+430 BladesOnlyFromFS_w430.egsdat   ncase=219999978      cpu=116564.00  
+431 BladesOnlyFromFS_w431.egsdat   ncase=219999978      cpu=115822.00  
+432 BladesOnlyFromFS_w432.egsdat   ncase=219999978      cpu=119265.00  
+433 BladesOnlyFromFS_w433.egsdat   ncase=219999978      cpu=115878.00  
+434 BladesOnlyFromFS_w434.egsdat   ncase=219999978      cpu=115963.00  
+435 BladesOnlyFromFS_w435.egsdat   ncase=219999978      cpu=117855.00  
+436 BladesOnlyFromFS_w436.egsdat   ncase=219999978      cpu=115935.00  
+437 BladesOnlyFromFS_w437.egsdat   ncase=219999978      cpu=113235.00  
+438 BladesOnlyFromFS_w438.egsdat   ncase=239999976      cpu=123084.00  
+439 BladesOnlyFromFS_w439.egsdat   ncase=239999976      cpu=122475.00  
+440 BladesOnlyFromFS_w440.egsdat   ncase=239999976      cpu=122466.00  
+441 BladesOnlyFromFS_w441.egsdat   ncase=239999976      cpu=122577.00  
+442 BladesOnlyFromFS_w442.egsdat   ncase=239999976      cpu=123231.00  
+443 BladesOnlyFromFS_w443.egsdat   ncase=239999976      cpu=122581.00  
+444 BladesOnlyFromFS_w444.egsdat   ncase=239999976      cpu=122514.00  
+445 BladesOnlyFromFS_w445.egsdat   ncase=219999978      cpu=113171.00  
+446 BladesOnlyFromFS_w446.egsdat   ncase=239999976      cpu=122967.00  
+447 BladesOnlyFromFS_w447.egsdat   ncase=219999978      cpu=113150.00  
+448 BladesOnlyFromFS_w448.egsdat   ncase=239999976      cpu=122906.00  
+449 BladesOnlyFromFS_w449.egsdat   ncase=239999976      cpu=122648.00  
+450 BladesOnlyFromFS_w450.egsdat   ncase=219999978      cpu=112930.00  
+451 BladesOnlyFromFS_w451.egsdat   ncase=239999976      cpu=122617.00  
+452 BladesOnlyFromFS_w452.egsdat   ncase=239999976      cpu=122750.00  
+453 BladesOnlyFromFS_w453.egsdat   ncase=219999978      cpu=112986.00  
+454 BladesOnlyFromFS_w454.egsdat   ncase=239999976      cpu=123086.00  
+455 BladesOnlyFromFS_w455.egsdat   ncase=239999976      cpu=122614.00  
+456 BladesOnlyFromFS_w456.egsdat   ncase=239999976      cpu=122483.00  
+457 BladesOnlyFromFS_w457.egsdat   ncase=239999976      cpu=122444.00  
+458 BladesOnlyFromFS_w458.egsdat   ncase=239999976      cpu=122264.00  
+459 BladesOnlyFromFS_w459.egsdat   ncase=219999978      cpu=120670.00  
+460 BladesOnlyFromFS_w460.egsdat   ncase=219999978      cpu=120243.00  
+461 BladesOnlyFromFS_w461.egsdat   ncase=219999978      cpu=119161.00  
+462 BladesOnlyFromFS_w462.egsdat   ncase=219999978      cpu=118700.00  
+463 BladesOnlyFromFS_w463.egsdat   ncase=219999978      cpu=113092.00  
+464 BladesOnlyFromFS_w464.egsdat   ncase=219999978      cpu=113971.00  
+465 BladesOnlyFromFS_w465.egsdat   ncase=219999978      cpu=113003.00  
+466 BladesOnlyFromFS_w466.egsdat   ncase=219999978      cpu=113304.00  
+467 BladesOnlyFromFS_w467.egsdat   ncase=219999978      cpu=112885.00  
+468 BladesOnlyFromFS_w468.egsdat   ncase=239999976      cpu=122869.00  
+469 BladesOnlyFromFS_w469.egsdat   ncase=219999978      cpu=113605.00  
+470 BladesOnlyFromFS_w470.egsdat   ncase=239999976      cpu=123037.00  
+471 BladesOnlyFromFS_w471.egsdat   ncase=219999978      cpu=121013.00  
+472 BladesOnlyFromFS_w472.egsdat   ncase=219999978      cpu=120660.00  
+473 BladesOnlyFromFS_w473.egsdat   ncase=219999978      cpu=121362.00  
+474 BladesOnlyFromFS_w474.egsdat   ncase=219999978      cpu=120635.00  
+475 BladesOnlyFromFS_w475.egsdat   ncase=219999978      cpu=112944.00  
+476 BladesOnlyFromFS_w476.egsdat   ncase=239999976      cpu=122959.00  
+477 BladesOnlyFromFS_w477.egsdat   ncase=219999978      cpu=113025.00  
+478 BladesOnlyFromFS_w478.egsdat   ncase=219999978      cpu=113061.00  
+479 BladesOnlyFromFS_w479.egsdat   ncase=219999978      cpu=112903.00  
+480 BladesOnlyFromFS_w480.egsdat   ncase=219999978      cpu=112870.00  
+481 BladesOnlyFromFS_w481.egsdat   ncase=239999976      cpu=122788.00  
+482 BladesOnlyFromFS_w482.egsdat   ncase=219999978      cpu=113428.00  
+483 BladesOnlyFromFS_w483.egsdat   ncase=219999978      cpu=119025.00  
+484 BladesOnlyFromFS_w484.egsdat   ncase=219999978      cpu=115149.00  
+485 BladesOnlyFromFS_w485.egsdat   ncase=219999978      cpu=117112.00  
+486 BladesOnlyFromFS_w486.egsdat   ncase=219999978      cpu=114495.00  
+487 BladesOnlyFromFS_w487.egsdat   ncase=219999978      cpu=113638.00  
+488 BladesOnlyFromFS_w488.egsdat   ncase=219999978      cpu=113244.00  
+489 BladesOnlyFromFS_w489.egsdat   ncase=219999978      cpu=112897.00  
+490 BladesOnlyFromFS_w490.egsdat   ncase=219999978      cpu=112920.00  
+491 BladesOnlyFromFS_w491.egsdat   ncase=219999978      cpu=114669.00  
+492 BladesOnlyFromFS_w492.egsdat   ncase=219999978      cpu=113214.00  
+493 BladesOnlyFromFS_w493.egsdat   ncase=239999976      cpu=122737.00  
+494 BladesOnlyFromFS_w494.egsdat   ncase=219999978      cpu=114643.00  
+495 BladesOnlyFromFS_w495.egsdat   ncase=219999978      cpu=113040.00  
+496 BladesOnlyFromFS_w496.egsdat   ncase=219999978      cpu=113070.00  
+497 BladesOnlyFromFS_w497.egsdat   ncase=219999978      cpu=113871.00  
+498 BladesOnlyFromFS_w498.egsdat   ncase=219999978      cpu=113108.00  
+499 BladesOnlyFromFS_w499.egsdat   ncase=219999978      cpu=114350.00  
+500 BladesOnlyFromFS_w500.egsdat   ncase=219999978      cpu=113748.00  
+501 BladesOnlyFromFS_w501.egsdat   ncase=239999976      cpu=122696.00  
+502 BladesOnlyFromFS_w502.egsdat   ncase=219999978      cpu=114841.00  
+503 BladesOnlyFromFS_w503.egsdat   ncase=239999976      cpu=122866.00  
+504 BladesOnlyFromFS_w504.egsdat   ncase=219999978      cpu=113981.00  
+505 BladesOnlyFromFS_w505.egsdat   ncase=219999978      cpu=113819.00  
+506 BladesOnlyFromFS_w506.egsdat   ncase=219999978      cpu=113390.00  
+507 BladesOnlyFromFS_w507.egsdat   ncase=219999978      cpu=114333.00  
+508 BladesOnlyFromFS_w508.egsdat   ncase=219999978      cpu=113090.00  
+509 BladesOnlyFromFS_w509.egsdat   ncase=219999978      cpu=113293.00  
+510 BladesOnlyFromFS_w510.egsdat   ncase=219999978      cpu=113853.00  
+511 BladesOnlyFromFS_w511.egsdat   ncase=239999976      cpu=122685.00  
+512 BladesOnlyFromFS_w512.egsdat   ncase=219999978      cpu=113000.00  
+513 BladesOnlyFromFS_w513.egsdat   ncase=239999976      cpu=123085.00  
+514 BladesOnlyFromFS_w514.egsdat   ncase=239999976      cpu=122412.00  
+515 BladesOnlyFromFS_w515.egsdat   ncase=219999978      cpu=113378.00  
+516 BladesOnlyFromFS_w516.egsdat   ncase=239999976      cpu=122648.00  
+517 BladesOnlyFromFS_w517.egsdat   ncase=219999978      cpu=112701.00  
+518 BladesOnlyFromFS_w518.egsdat   ncase=239999976      cpu=122590.00  
+519 BladesOnlyFromFS_w519.egsdat   ncase=239999976      cpu=122034.00  
+520 BladesOnlyFromFS_w520.egsdat   ncase=219999978      cpu=113166.00  
+521 BladesOnlyFromFS_w521.egsdat   ncase=219999978      cpu=113516.00  
+522 BladesOnlyFromFS_w522.egsdat   ncase=239999976      cpu=122179.00  
+523 BladesOnlyFromFS_w523.egsdat   ncase=239999976      cpu=122206.00  
+524 BladesOnlyFromFS_w524.egsdat   ncase=239999976      cpu=121780.00  
+525 BladesOnlyFromFS_w525.egsdat   ncase=239999976      cpu=121770.00  
+526 BladesOnlyFromFS_w526.egsdat   ncase=219999978      cpu=113423.00  
+527 BladesOnlyFromFS_w527.egsdat   ncase=239999976      cpu=122611.00  
+528 BladesOnlyFromFS_w528.egsdat   ncase=239999976      cpu=122201.00  
+529 BladesOnlyFromFS_w529.egsdat   ncase=219999978      cpu=115812.00  
+530 BladesOnlyFromFS_w530.egsdat   ncase=219999978      cpu=113545.00  
+531 BladesOnlyFromFS_w531.egsdat   ncase=219999978      cpu=112952.00  
+532 BladesOnlyFromFS_w532.egsdat   ncase=219999978      cpu=112904.00  
+533 BladesOnlyFromFS_w533.egsdat   ncase=219999978      cpu=112878.00  
+534 BladesOnlyFromFS_w534.egsdat   ncase=219999978      cpu=113536.00  
+535 BladesOnlyFromFS_w535.egsdat   ncase=219999978      cpu=113551.00  
+536 BladesOnlyFromFS_w536.egsdat   ncase=219999978      cpu=113876.00  
+537 BladesOnlyFromFS_w537.egsdat   ncase=219999978      cpu=113743.00  
+538 BladesOnlyFromFS_w538.egsdat   ncase=219999978      cpu=119209.00  
+539 BladesOnlyFromFS_w539.egsdat   ncase=219999978      cpu=114356.00  
+540 BladesOnlyFromFS_w540.egsdat   ncase=219999978      cpu=114161.00  
+541 BladesOnlyFromFS_w541.egsdat   ncase=219999978      cpu=113454.00  
+542 BladesOnlyFromFS_w542.egsdat   ncase=219999978      cpu=113685.00  
+543 BladesOnlyFromFS_w543.egsdat   ncase=219999978      cpu=117203.00  
+544 BladesOnlyFromFS_w544.egsdat   ncase=219999978      cpu=117429.00  
+545 BladesOnlyFromFS_w545.egsdat   ncase=219999978      cpu=119905.00  
+546 BladesOnlyFromFS_w546.egsdat   ncase=219999978      cpu=116732.00  
+547 BladesOnlyFromFS_w547.egsdat   ncase=219999978      cpu=117547.00  
+548 BladesOnlyFromFS_w548.egsdat   ncase=219999978      cpu=118240.00  
+549 BladesOnlyFromFS_w549.egsdat   ncase=219999978      cpu=116752.00  
+550 BladesOnlyFromFS_w550.egsdat   ncase=219999978      cpu=118174.00  
+551 BladesOnlyFromFS_w551.egsdat   ncase=219999978      cpu=117652.00  
+552 BladesOnlyFromFS_w552.egsdat   ncase=219999978      cpu=117028.00  
+553 BladesOnlyFromFS_w553.egsdat   ncase=219999978      cpu=117085.00  
+554 BladesOnlyFromFS_w554.egsdat   ncase=219999978      cpu=112834.00  
+555 BladesOnlyFromFS_w555.egsdat   ncase=219999978      cpu=114865.00  
+556 BladesOnlyFromFS_w556.egsdat   ncase=219999978      cpu=113087.00  
+557 BladesOnlyFromFS_w557.egsdat   ncase=219999978      cpu=113732.00  
+558 BladesOnlyFromFS_w558.egsdat   ncase=219999978      cpu=114490.00  
+559 BladesOnlyFromFS_w559.egsdat   ncase=219999978      cpu=112608.00  
+560 BladesOnlyFromFS_w560.egsdat   ncase=219999978      cpu=113303.00  
+561 BladesOnlyFromFS_w561.egsdat   ncase=219999978      cpu=112668.00  
+562 BladesOnlyFromFS_w562.egsdat   ncase=219999978      cpu=113250.00  
+563 BladesOnlyFromFS_w563.egsdat   ncase=219999978      cpu=113312.00  
+564 BladesOnlyFromFS_w564.egsdat   ncase=219999978      cpu=112917.00  
+565 BladesOnlyFromFS_w565.egsdat   ncase=219999978      cpu=113165.00  
+566 BladesOnlyFromFS_w566.egsdat   ncase=219999978      cpu=116821.00  
+567 BladesOnlyFromFS_w567.egsdat   ncase=219999978      cpu=114337.00  
+568 BladesOnlyFromFS_w568.egsdat   ncase=219999978      cpu=115662.00  
+569 BladesOnlyFromFS_w569.egsdat   ncase=219999978      cpu=114059.00  
+570 BladesOnlyFromFS_w570.egsdat   ncase=219999978      cpu=115297.00  
+571 BladesOnlyFromFS_w571.egsdat   ncase=219999978      cpu=114413.00  
+572 BladesOnlyFromFS_w572.egsdat   ncase=219999978      cpu=115044.00  
+573 BladesOnlyFromFS_w573.egsdat   ncase=219999978      cpu=117712.00  
+574 BladesOnlyFromFS_w574.egsdat   ncase=219999978      cpu=114227.00  
+575 BladesOnlyFromFS_w575.egsdat   ncase=219999978      cpu=114294.00  
+576 BladesOnlyFromFS_w576.egsdat   ncase=219999978      cpu=113104.00  
+577 BladesOnlyFromFS_w577.egsdat   ncase=219999978      cpu=113914.00  
+578 BladesOnlyFromFS_w578.egsdat   ncase=219999978      cpu=113583.00  
+579 BladesOnlyFromFS_w579.egsdat   ncase=219999978      cpu=112791.00  
+580 BladesOnlyFromFS_w580.egsdat   ncase=219999978      cpu=113022.00  
+581 BladesOnlyFromFS_w581.egsdat   ncase=239999976      cpu=121972.00  
+582 BladesOnlyFromFS_w582.egsdat   ncase=219999978      cpu=113058.00  
+583 BladesOnlyFromFS_w583.egsdat   ncase=219999978      cpu=112934.00  
+584 BladesOnlyFromFS_w584.egsdat   ncase=219999978      cpu=113063.00  
+585 BladesOnlyFromFS_w585.egsdat   ncase=239999976      cpu=122323.00  
+586 BladesOnlyFromFS_w586.egsdat   ncase=219999978      cpu=113539.00  
+587 BladesOnlyFromFS_w587.egsdat   ncase=219999978      cpu=113168.00  
+588 BladesOnlyFromFS_w588.egsdat   ncase=219999978      cpu=115471.00  
+589 BladesOnlyFromFS_w589.egsdat   ncase=219999978      cpu=115071.00  
+590 BladesOnlyFromFS_w590.egsdat   ncase=219999978      cpu=112570.00  
+591 BladesOnlyFromFS_w591.egsdat   ncase=239999976      cpu=122803.00  
+592 BladesOnlyFromFS_w592.egsdat   ncase=239999976      cpu=122787.00  
+593 BladesOnlyFromFS_w593.egsdat   ncase=239999976      cpu=122416.00  
+594 BladesOnlyFromFS_w594.egsdat   ncase=239999976      cpu=122143.00  
+595 BladesOnlyFromFS_w595.egsdat   ncase=219999978      cpu=112551.00  
+596 BladesOnlyFromFS_w596.egsdat   ncase=239999976      cpu=122844.00  
+597 BladesOnlyFromFS_w597.egsdat   ncase=219999978      cpu=112712.00  
+598 BladesOnlyFromFS_w598.egsdat   ncase=219999978      cpu=113936.00  
+599 BladesOnlyFromFS_w599.egsdat   ncase=239999976      cpu=122848.00  
+600 BladesOnlyFromFS_w600.egsdat   ncase=239999976      cpu=122314.00  
+601 BladesOnlyFromFS_w601.egsdat   ncase=219999978      cpu=112696.00  
+602 BladesOnlyFromFS_w602.egsdat   ncase=219999978      cpu=121105.00  
+603 BladesOnlyFromFS_w603.egsdat   ncase=219999978      cpu=120112.00  
+604 BladesOnlyFromFS_w604.egsdat   ncase=219999978      cpu=120026.00  
+605 BladesOnlyFromFS_w605.egsdat   ncase=219999978      cpu=120929.00  
+606 BladesOnlyFromFS_w606.egsdat   ncase=219999978      cpu=120252.00  
+607 BladesOnlyFromFS_w607.egsdat   ncase=239999976      cpu=122491.00  
+608 BladesOnlyFromFS_w608.egsdat   ncase=219999978      cpu=114037.00  
+609 BladesOnlyFromFS_w609.egsdat   ncase=219999978      cpu=112766.00  
+610 BladesOnlyFromFS_w610.egsdat   ncase=219999978      cpu=112570.00  
+611 BladesOnlyFromFS_w611.egsdat   ncase=219999978      cpu=113531.00  
+612 BladesOnlyFromFS_w612.egsdat   ncase=219999978      cpu=114467.00  
+613 BladesOnlyFromFS_w613.egsdat   ncase=239999976      cpu=122645.00  
+614 BladesOnlyFromFS_w614.egsdat   ncase=219999978      cpu=112545.00  
+615 BladesOnlyFromFS_w615.egsdat   ncase=239999976      cpu=123132.00  
+616 BladesOnlyFromFS_w616.egsdat   ncase=219999978      cpu=113180.00  
+617 BladesOnlyFromFS_w617.egsdat   ncase=239999976      cpu=123124.00  
+618 BladesOnlyFromFS_w618.egsdat   ncase=219999978      cpu=112827.00  
+619 BladesOnlyFromFS_w619.egsdat   ncase=219999978      cpu=113206.00  
+620 BladesOnlyFromFS_w620.egsdat   ncase=219999978      cpu=112709.00  
+621 BladesOnlyFromFS_w621.egsdat   ncase=219999978      cpu=112875.00  
+622 BladesOnlyFromFS_w622.egsdat   ncase=219999978      cpu=113270.00  
+623 BladesOnlyFromFS_w623.egsdat   ncase=239999976      cpu=123070.00  
+624 BladesOnlyFromFS_w624.egsdat   ncase=219999978      cpu=113054.00  
+625 BladesOnlyFromFS_w625.egsdat   ncase=219999978      cpu=112625.00  
+626 BladesOnlyFromFS_w626.egsdat   ncase=219999978      cpu=114760.00  
+627 BladesOnlyFromFS_w627.egsdat   ncase=219999978      cpu=115012.00  
+628 BladesOnlyFromFS_w628.egsdat   ncase=219999978      cpu=119766.00  
+629 BladesOnlyFromFS_w629.egsdat   ncase=219999978      cpu=118222.00  
+630 BladesOnlyFromFS_w630.egsdat   ncase=219999978      cpu=118304.00  
+631 BladesOnlyFromFS_w631.egsdat   ncase=219999978      cpu=118668.00  
+632 BladesOnlyFromFS_w632.egsdat   ncase=219999978      cpu=114310.00  
+633 BladesOnlyFromFS_w633.egsdat   ncase=219999978      cpu=115569.00  
+634 BladesOnlyFromFS_w634.egsdat   ncase=219999978      cpu=114373.00  
+635 BladesOnlyFromFS_w635.egsdat   ncase=199999980      cpu=116540.00  
+636 BladesOnlyFromFS_w636.egsdat   ncase=219999978      cpu=114234.00  
+637 BladesOnlyFromFS_w637.egsdat   ncase=219999978      cpu=116249.00  
+638 BladesOnlyFromFS_w638.egsdat   ncase=219999978      cpu=116910.00  
+639 BladesOnlyFromFS_w639.egsdat   ncase=219999978      cpu=114367.00  
+640 BladesOnlyFromFS_w640.egsdat   ncase=219999978      cpu=114417.00  
+641 BladesOnlyFromFS_w641.egsdat   ncase=219999978      cpu=114986.00  
+642 BladesOnlyFromFS_w642.egsdat   ncase=219999978      cpu=114675.00  
+643 BladesOnlyFromFS_w643.egsdat   ncase=219999978      cpu=117317.00  
+644 BladesOnlyFromFS_w644.egsdat   ncase=219999978      cpu=116946.00  
+645 BladesOnlyFromFS_w645.egsdat   ncase=219999978      cpu=118564.00  
+646 BladesOnlyFromFS_w646.egsdat   ncase=219999978      cpu=116409.00  
+647 BladesOnlyFromFS_w647.egsdat   ncase=219999978      cpu=117116.00  
+648 BladesOnlyFromFS_w648.egsdat   ncase=219999978      cpu=118907.00  
+649 BladesOnlyFromFS_w649.egsdat   ncase=219999978      cpu=118073.00  
+650 BladesOnlyFromFS_w650.egsdat   ncase=219999978      cpu=116153.00  
+651 BladesOnlyFromFS_w651.egsdat   ncase=239999976      cpu=122276.00  
+652 BladesOnlyFromFS_w652.egsdat   ncase=219999978      cpu=112810.00  
+653 BladesOnlyFromFS_w653.egsdat   ncase=219999978      cpu=121241.00  
+654 BladesOnlyFromFS_w654.egsdat   ncase=219999978      cpu=119656.00  
+655 BladesOnlyFromFS_w655.egsdat   ncase=219999978      cpu=120606.00  
+656 BladesOnlyFromFS_w656.egsdat   ncase=219999978      cpu=120172.00  
+657 BladesOnlyFromFS_w657.egsdat   ncase=219999978      cpu=118961.00  
+658 BladesOnlyFromFS_w658.egsdat   ncase=219999978      cpu=114298.00  
+659 BladesOnlyFromFS_w659.egsdat   ncase=219999978      cpu=114169.00  
+660 BladesOnlyFromFS_w660.egsdat   ncase=219999978      cpu=114071.00  
+661 BladesOnlyFromFS_w661.egsdat   ncase=219999978      cpu=117398.00  
+662 BladesOnlyFromFS_w662.egsdat   ncase=219999978      cpu=114619.00  
+663 BladesOnlyFromFS_w663.egsdat   ncase=219999978      cpu=115278.00  
+664 BladesOnlyFromFS_w664.egsdat   ncase=219999978      cpu=114014.00  
+665 BladesOnlyFromFS_w665.egsdat   ncase=219999978      cpu=114267.00  
+666 BladesOnlyFromFS_w666.egsdat   ncase=219999978      cpu=114364.00  
+667 BladesOnlyFromFS_w667.egsdat   ncase=219999978      cpu=114400.00  
+668 BladesOnlyFromFS_w668.egsdat   ncase=219999978      cpu=113789.00  
+669 BladesOnlyFromFS_w669.egsdat   ncase=219999978      cpu=114188.00  
+670 BladesOnlyFromFS_w670.egsdat   ncase=219999978      cpu=121356.00  
+671 BladesOnlyFromFS_w671.egsdat   ncase=219999978      cpu=115200.00  
+672 BladesOnlyFromFS_w672.egsdat   ncase=219999978      cpu=113914.00  
+673 BladesOnlyFromFS_w673.egsdat   ncase=219999978      cpu=114394.00  
+674 BladesOnlyFromFS_w674.egsdat   ncase=219999978      cpu=113756.00  
+675 BladesOnlyFromFS_w675.egsdat   ncase=219999978      cpu=114223.00  
+676 BladesOnlyFromFS_w676.egsdat   ncase=219999978      cpu=113980.00  
+677 BladesOnlyFromFS_w677.egsdat   ncase=219999978      cpu=114487.00  
+678 BladesOnlyFromFS_w678.egsdat   ncase=219999978      cpu=115281.00  
+679 BladesOnlyFromFS_w679.egsdat   ncase=219999978      cpu=117465.00  
+680 BladesOnlyFromFS_w680.egsdat   ncase=219999978      cpu=115706.00  
+681 BladesOnlyFromFS_w681.egsdat   ncase=219999978      cpu=116043.00  
+682 BladesOnlyFromFS_w682.egsdat   ncase=219999978      cpu=115402.00  
+683 BladesOnlyFromFS_w683.egsdat   ncase=219999978      cpu=114764.00  
+684 BladesOnlyFromFS_w684.egsdat   ncase=219999978      cpu=114851.00  
+685 BladesOnlyFromFS_w685.egsdat   ncase=219999978      cpu=114496.00  
+686 BladesOnlyFromFS_w686.egsdat   ncase=219999978      cpu=115533.00  
+687 BladesOnlyFromFS_w687.egsdat   ncase=219999978      cpu=115531.00  
+688 BladesOnlyFromFS_w688.egsdat   ncase=299999970      cpu=117113.00  
+689 BladesOnlyFromFS_w689.egsdat   ncase=259999974      cpu=120350.00  
+690 BladesOnlyFromFS_w690.egsdat   ncase=239999976      cpu=111474.00  
+691 BladesOnlyFromFS_w691.egsdat   ncase=199999980      cpu=109736.00  
+692 BladesOnlyFromFS_w692.egsdat   ncase=259999974      cpu=116217.00  
+693 BladesOnlyFromFS_w693.egsdat   ncase=219999978      cpu=113676.00  
+694 BladesOnlyFromFS_w694.egsdat   ncase=239999976      cpu=112088.00  
+695 BladesOnlyFromFS_w695.egsdat   ncase=239999976      cpu=112141.00  
+696 BladesOnlyFromFS_w696.egsdat   ncase=219999978      cpu=112430.00  
+697 BladesOnlyFromFS_w697.egsdat   ncase=239999976      cpu=109582.00  
+698 BladesOnlyFromFS_w698.egsdat   ncase=239999976      cpu=112509.00  
+699 BladesOnlyFromFS_w699.egsdat   ncase=239999976      cpu=108490.00  
+700 BladesOnlyFromFS_w700.egsdat   ncase=219999978      cpu=112528.00  
+701 BladesOnlyFromFS_w701.egsdat   ncase=239999976      cpu=109870.00  
+702 BladesOnlyFromFS_w702.egsdat   ncase=239999976      cpu=111439.00  
+703 BladesOnlyFromFS_w703.egsdat   ncase=239999976      cpu=109897.00  
+704 BladesOnlyFromFS_w704.egsdat   ncase=219999978      cpu=104366.00  
+705 BladesOnlyFromFS_w705.egsdat   ncase=239999976      cpu=108597.00  
+706 BladesOnlyFromFS_w706.egsdat   ncase=239999976      cpu=111066.00  
+707 BladesOnlyFromFS_w707.egsdat   ncase=199999980      cpu=109425.00  
+708 BladesOnlyFromFS_w708.egsdat   ncase=239999976      cpu=110997.00  
+709 BladesOnlyFromFS_w709.egsdat   ncase=219999978      cpu=105059.00  
+710 BladesOnlyFromFS_w710.egsdat   ncase=199999980      cpu=106582.00  
+711 BladesOnlyFromFS_w711.egsdat   ncase=199999980      cpu=101491.00  
+712 BladesOnlyFromFS_w712.egsdat   ncase=259999974      cpu=101157.00  
+713 BladesOnlyFromFS_w713.egsdat   ncase=219999978      cpu=102346.00  
+714 BladesOnlyFromFS_w714.egsdat   ncase=219999978      cpu=102120.00  
+715 BladesOnlyFromFS_w715.egsdat   ncase=199999980      cpu=108968.00  
+716 BladesOnlyFromFS_w716.egsdat   ncase=259999974      cpu=101783.00  
+717 BladesOnlyFromFS_w717.egsdat   ncase=219999978      cpu=103219.00  
+718 BladesOnlyFromFS_w718.egsdat   ncase=219999978      cpu=104082.00  
+719 BladesOnlyFromFS_w719.egsdat   ncase=219999978      cpu=104907.00  
+720 BladesOnlyFromFS_w720.egsdat   ncase=219999978      cpu=105303.00  
+721 BladesOnlyFromFS_w721.egsdat   ncase=219999978      cpu=102771.00  
+722 BladesOnlyFromFS_w722.egsdat   ncase=219999978      cpu=103128.00  
+723 BladesOnlyFromFS_w723.egsdat   ncase=219999978      cpu=103319.00  
+724 BladesOnlyFromFS_w724.egsdat   ncase=219999978      cpu=102921.00  
+725 BladesOnlyFromFS_w725.egsdat   ncase=199999980      cpu=102978.00  
+726 BladesOnlyFromFS_w726.egsdat   ncase=199999980      cpu=106020.00  
+727 BladesOnlyFromFS_w727.egsdat   ncase=199999980      cpu=106224.00  
+728 BladesOnlyFromFS_w728.egsdat   ncase=219999978      cpu=102380.00  
+729 BladesOnlyFromFS_w729.egsdat   ncase=219999978      cpu=104801.00  
+730 BladesOnlyFromFS_w730.egsdat   ncase=219999978      cpu=101760.00  
+731 BladesOnlyFromFS_w731.egsdat   ncase=199999980      cpu=104132.00  
+732 BladesOnlyFromFS_w732.egsdat   ncase=219999978      cpu=98935.60   
+733 BladesOnlyFromFS_w733.egsdat   ncase=219999978      cpu=101066.00  
+734 BladesOnlyFromFS_w734.egsdat   ncase=219999978      cpu=98990.00   
+735 BladesOnlyFromFS_w735.egsdat   ncase=219999978      cpu=98950.00   
+736 BladesOnlyFromFS_w736.egsdat   ncase=219999978      cpu=99560.10   
+737 BladesOnlyFromFS_w737.egsdat   ncase=219999978      cpu=100323.00  
+738 BladesOnlyFromFS_w738.egsdat   ncase=219999978      cpu=98411.30   
+739 BladesOnlyFromFS_w739.egsdat   ncase=219999978      cpu=100519.00  
+740 BladesOnlyFromFS_w740.egsdat   ncase=179999982      cpu=95239.00   
+741 BladesOnlyFromFS_w741.egsdat   ncase=219999978      cpu=100476.00  
+742 BladesOnlyFromFS_w742.egsdat   ncase=199999980      cpu=103163.00  
+743 BladesOnlyFromFS_w743.egsdat   ncase=199999980      cpu=93786.40   
+744 BladesOnlyFromFS_w744.egsdat   ncase=179999982      cpu=91530.90   
+745 BladesOnlyFromFS_w745.egsdat   ncase=199999980      cpu=91985.00   
+746 BladesOnlyFromFS_w746.egsdat   ncase=179999982      cpu=96829.20   
+747 BladesOnlyFromFS_w747.egsdat   ncase=199999980      cpu=92969.00   
+748 BladesOnlyFromFS_w748.egsdat   ncase=199999980      cpu=92638.40   
+749 BladesOnlyFromFS_w749.egsdat   ncase=179999982      cpu=96466.30   
+750 BladesOnlyFromFS_w750.egsdat   ncase=199999980      cpu=90854.70   
+751 BladesOnlyFromFS_w751.egsdat   ncase=219999978      cpu=96653.60   
+752 BladesOnlyFromFS_w752.egsdat   ncase=179999982      cpu=93498.40   
+753 BladesOnlyFromFS_w753.egsdat   ncase=199999980      cpu=91330.00   
+754 BladesOnlyFromFS_w754.egsdat   ncase=179999982      cpu=96612.10   
+755 BladesOnlyFromFS_w755.egsdat   ncase=179999982      cpu=93428.80   
+756 BladesOnlyFromFS_w756.egsdat   ncase=199999980      cpu=92923.60   
+757 BladesOnlyFromFS_w757.egsdat   ncase=199999980      cpu=93621.90   
+758 BladesOnlyFromFS_w758.egsdat   ncase=179999982      cpu=93800.90   
+759 BladesOnlyFromFS_w759.egsdat   ncase=179999982      cpu=92371.80   
+760 BladesOnlyFromFS_w760.egsdat   ncase=179999982      cpu=84027.00   
+761 BladesOnlyFromFS_w761.egsdat   ncase=199999980      cpu=89542.50   
+762 BladesOnlyFromFS_w762.egsdat   ncase=179999982      cpu=94598.40   
+763 BladesOnlyFromFS_w763.egsdat   ncase=199999980      cpu=90155.40   
+764 BladesOnlyFromFS_w764.egsdat   ncase=179999982      cpu=92896.60   
+765 BladesOnlyFromFS_w765.egsdat   ncase=199999980      cpu=87119.10   
+766 BladesOnlyFromFS_w766.egsdat   ncase=179999982      cpu=90761.00   
+767 BladesOnlyFromFS_w767.egsdat   ncase=159999984      cpu=82087.70   
+768 BladesOnlyFromFS_w768.egsdat   ncase=159999984      cpu=83855.20   
+769 BladesOnlyFromFS_w769.egsdat   ncase=159999984      cpu=86258.70   
+770 BladesOnlyFromFS_w770.egsdat   ncase=159999984      cpu=86393.60   
+771 BladesOnlyFromFS_w771.egsdat   ncase=179999982      cpu=84736.10   
+772 BladesOnlyFromFS_w772.egsdat   ncase=179999982      cpu=82551.40   
+773 BladesOnlyFromFS_w773.egsdat   ncase=179999982      cpu=83928.70   
+774 BladesOnlyFromFS_w774.egsdat   ncase=179999982      cpu=83063.70   
+775 BladesOnlyFromFS_w775.egsdat   ncase=159999984      cpu=83171.60   
+776 BladesOnlyFromFS_w776.egsdat   ncase=179999982      cpu=81308.80   
+777 BladesOnlyFromFS_w777.egsdat   ncase=159999984      cpu=83847.80   
+778 BladesOnlyFromFS_w778.egsdat   ncase=159999984      cpu=81953.40   
+779 BladesOnlyFromFS_w779.egsdat   ncase=159999984      cpu=83353.30   
+780 BladesOnlyFromFS_w780.egsdat   ncase=159999984      cpu=85948.20   
+781 BladesOnlyFromFS_w781.egsdat   ncase=179999982      cpu=81245.60   
+782 BladesOnlyFromFS_w782.egsdat   ncase=159999984      cpu=82641.20   
+783 BladesOnlyFromFS_w783.egsdat   ncase=159999984      cpu=81783.70   
+784 BladesOnlyFromFS_w784.egsdat   ncase=159999984      cpu=82286.60   
+785 BladesOnlyFromFS_w785.egsdat   ncase=159999984      cpu=83101.90   
+786 BladesOnlyFromFS_w786.egsdat   ncase=159999984      cpu=81725.90   
+787 BladesOnlyFromFS_w787.egsdat   ncase=159999984      cpu=83078.50   
+788 BladesOnlyFromFS_w788.egsdat   ncase=159999984      cpu=82155.70   
+789 BladesOnlyFromFS_w789.egsdat   ncase=159999984      cpu=83084.70   
+790 BladesOnlyFromFS_w790.egsdat   ncase=179999982      cpu=81609.50   
+791 BladesOnlyFromFS_w791.egsdat   ncase=159999984      cpu=83505.70   
+792 BladesOnlyFromFS_w792.egsdat   ncase=159999984      cpu=81913.10   
+793 BladesOnlyFromFS_w793.egsdat   ncase=159999984      cpu=83045.10   
+794 BladesOnlyFromFS_w794.egsdat   ncase=159999984      cpu=82759.70   
+795 BladesOnlyFromFS_w795.egsdat   ncase=159999984      cpu=75634.40   
+796 BladesOnlyFromFS_w796.egsdat   ncase=139999986      cpu=71487.70   
+797 BladesOnlyFromFS_w797.egsdat   ncase=139999986      cpu=76217.70   
+798 BladesOnlyFromFS_w798.egsdat   ncase=139999986      cpu=71176.50   
+799 BladesOnlyFromFS_w799.egsdat   ncase=139999986      cpu=72866.60   
+800 BladesOnlyFromFS_w800.egsdat   ncase=139999986      cpu=72626.10   
+801 BladesOnlyFromFS_w801.egsdat   ncase=119999988      cpu=65899.00   
+802 BladesOnlyFromFS_w802.egsdat   ncase=119999988      cpu=64320.00   
+803 BladesOnlyFromFS_w803.egsdat   ncase=139999986      cpu=64912.30   
+804 BladesOnlyFromFS_w804.egsdat   ncase=139999986      cpu=72581.50   
+805 BladesOnlyFromFS_w805.egsdat   ncase=119999988      cpu=64406.50   
+806 BladesOnlyFromFS_w806.egsdat   ncase=119999988      cpu=64483.00   
+807 BladesOnlyFromFS_w807.egsdat   ncase=119999988      cpu=62615.20   
+808 BladesOnlyFromFS_w808.egsdat   ncase=139999986      cpu=65532.50   
+809 BladesOnlyFromFS_w809.egsdat   ncase=139999986      cpu=66044.50   
+810 BladesOnlyFromFS_w810.egsdat   ncase=139999986      cpu=65149.00   
+811 BladesOnlyFromFS_w811.egsdat   ncase=139999986      cpu=65326.60   
+812 BladesOnlyFromFS_w812.egsdat   ncase=139999986      cpu=64974.70   
+813 BladesOnlyFromFS_w813.egsdat   ncase=139999986      cpu=63987.60   
+814 BladesOnlyFromFS_w814.egsdat   ncase=119999988      cpu=62575.40   
+815 BladesOnlyFromFS_w815.egsdat   ncase=139999986      cpu=63045.80   
+816 BladesOnlyFromFS_w816.egsdat   ncase=139999986      cpu=63655.60   
+817 BladesOnlyFromFS_w817.egsdat   ncase=139999986      cpu=65076.20   
+818 BladesOnlyFromFS_w818.egsdat   ncase=139999986      cpu=66187.30   
+819 BladesOnlyFromFS_w819.egsdat   ncase=119999988      cpu=61320.80   
+820 BladesOnlyFromFS_w820.egsdat   ncase=119999988      cpu=62011.50   
+821 BladesOnlyFromFS_w821.egsdat   ncase=119999988      cpu=63573.10   
+822 BladesOnlyFromFS_w822.egsdat   ncase=139999986      cpu=65010.20   
+823 BladesOnlyFromFS_w823.egsdat   ncase=139999986      cpu=63844.80   
+824 BladesOnlyFromFS_w824.egsdat   ncase=139999986      cpu=63525.60   
+825 BladesOnlyFromFS_w825.egsdat   ncase=119999988      cpu=64489.10   
+826 BladesOnlyFromFS_w826.egsdat   ncase=119999988      cpu=56337.60   
+827 BladesOnlyFromFS_w827.egsdat   ncase=99999990       cpu=54440.90   
+828 BladesOnlyFromFS_w828.egsdat   ncase=99999990       cpu=54977.30   
+829 BladesOnlyFromFS_w829.egsdat   ncase=99999990       cpu=47355.20   
+830 BladesOnlyFromFS_w830.egsdat   ncase=99999990       cpu=46780.50   
+831 BladesOnlyFromFS_w831.egsdat   ncase=99999990       cpu=47243.40   
+832 BladesOnlyFromFS_w832.egsdat   ncase=99999990       cpu=46939.20   
+833 BladesOnlyFromFS_w833.egsdat   ncase=99999990       cpu=45323.40   
+834 BladesOnlyFromFS_w834.egsdat   ncase=99999990       cpu=45601.70   
+835 BladesOnlyFromFS_w835.egsdat   ncase=99999990       cpu=46421.10   
+836 BladesOnlyFromFS_w836.egsdat   ncase=99999990       cpu=45598.30   
+837 BladesOnlyFromFS_w837.egsdat   ncase=99999990       cpu=46695.50   
+838 BladesOnlyFromFS_w838.egsdat   ncase=99999990       cpu=46328.90   
+839 BladesOnlyFromFS_w839.egsdat   ncase=99999990       cpu=46098.50   
+840 BladesOnlyFromFS_w840.egsdat   ncase=99999990       cpu=46554.10   
+841 BladesOnlyFromFS_w841.egsdat   ncase=99999990       cpu=45924.80   
+842 BladesOnlyFromFS_w842.egsdat   ncase=99999990       cpu=44674.70   
+843 BladesOnlyFromFS_w843.egsdat   ncase=99999990       cpu=44885.60   
+844 BladesOnlyFromFS_w844.egsdat   ncase=99999990       cpu=45066.70   
+845 BladesOnlyFromFS_w845.egsdat   ncase=99999990       cpu=46819.10   
+846 BladesOnlyFromFS_w846.egsdat   ncase=99999990       cpu=46680.60   
+847 BladesOnlyFromFS_w847.egsdat   ncase=99999990       cpu=46295.20   
+848 BladesOnlyFromFS_w848.egsdat   ncase=99999990       cpu=45941.30   
+849 BladesOnlyFromFS_w849.egsdat   ncase=99999990       cpu=46201.10   
+850 BladesOnlyFromFS_w850.egsdat   ncase=99999990       cpu=46129.10   
+851 BladesOnlyFromFS_w851.egsdat   ncase=99999990       cpu=46488.30   
+852 BladesOnlyFromFS_w852.egsdat   ncase=99999990       cpu=46362.90   
+853 BladesOnlyFromFS_w853.egsdat   ncase=99999990       cpu=44947.50   
+854 BladesOnlyFromFS_w854.egsdat   ncase=99999990       cpu=45423.50   
+855 BladesOnlyFromFS_w855.egsdat   ncase=99999990       cpu=45369.80   
+856 BladesOnlyFromFS_w856.egsdat   ncase=99999990       cpu=45239.30   
+857 BladesOnlyFromFS_w857.egsdat   ncase=99999990       cpu=45130.20   
+858 BladesOnlyFromFS_w858.egsdat   ncase=99999990       cpu=45022.20   
+859 BladesOnlyFromFS_w859.egsdat   ncase=99999990       cpu=44997.90   
+860 BladesOnlyFromFS_w860.egsdat   ncase=99999990       cpu=45465.50   
+861 BladesOnlyFromFS_w861.egsdat   ncase=99999990       cpu=45092.50   
+862 BladesOnlyFromFS_w862.egsdat   ncase=99999990       cpu=45323.50   
+863 BladesOnlyFromFS_w863.egsdat   ncase=99999990       cpu=45084.80   
+864 BladesOnlyFromFS_w864.egsdat   ncase=99999990       cpu=45111.50   
+865 BladesOnlyFromFS_w865.egsdat   ncase=99999990       cpu=44985.70   
+866 BladesOnlyFromFS_w866.egsdat   ncase=99999990       cpu=45231.70   
+867 BladesOnlyFromFS_w867.egsdat   ncase=99999990       cpu=45075.60   
+868 BladesOnlyFromFS_w868.egsdat   ncase=99999990       cpu=45338.20   
+869 BladesOnlyFromFS_w869.egsdat   ncase=99999990       cpu=47353.40   
+870 BladesOnlyFromFS_w870.egsdat   ncase=99999990       cpu=46333.40   
+871 BladesOnlyFromFS_w871.egsdat   ncase=99999990       cpu=46233.80   
+872 BladesOnlyFromFS_w872.egsdat   ncase=99999990       cpu=46419.50   
+873 BladesOnlyFromFS_w873.egsdat   ncase=99999990       cpu=45435.00   
+874 BladesOnlyFromFS_w874.egsdat   ncase=99999990       cpu=45296.10   
+875 BladesOnlyFromFS_w875.egsdat   ncase=99999990       cpu=44622.00   
+876 BladesOnlyFromFS_w876.egsdat   ncase=99999990       cpu=45208.30   
+877 BladesOnlyFromFS_w877.egsdat   ncase=99999990       cpu=45741.00   
+878 BladesOnlyFromFS_w878.egsdat   ncase=79999992       cpu=37491.30   
+879 BladesOnlyFromFS_w879.egsdat   ncase=99999990       cpu=46040.60   
+880 BladesOnlyFromFS_w880.egsdat   ncase=99999990       cpu=45832.60   
+881 BladesOnlyFromFS_w881.egsdat   ncase=99999990       cpu=46024.00   
+882 BladesOnlyFromFS_w882.egsdat   ncase=99999990       cpu=46179.10   
+883 BladesOnlyFromFS_w883.egsdat   ncase=99999990       cpu=46266.30   
+884 BladesOnlyFromFS_w884.egsdat   ncase=79999992       cpu=37323.80   
+885 BladesOnlyFromFS_w885.egsdat   ncase=79999992       cpu=36508.00   
+886 BladesOnlyFromFS_w886.egsdat   ncase=79999992       cpu=37617.20   
+887 BladesOnlyFromFS_w887.egsdat   ncase=79999992       cpu=37137.50   
+888 BladesOnlyFromFS_w888.egsdat   ncase=99999990       cpu=44576.40   
+889 BladesOnlyFromFS_w889.egsdat   ncase=99999990       cpu=44642.70   
+890 BladesOnlyFromFS_w890.egsdat   ncase=99999990       cpu=44908.70   
+891 BladesOnlyFromFS_w891.egsdat   ncase=79999992       cpu=36401.80   
+892 BladesOnlyFromFS_w892.egsdat   ncase=79999992       cpu=37114.20   
+893 BladesOnlyFromFS_w893.egsdat   ncase=79999992       cpu=37243.60   
+894 BladesOnlyFromFS_w894.egsdat   ncase=79999992       cpu=37319.80   
+895 BladesOnlyFromFS_w895.egsdat   ncase=79999992       cpu=36976.30   
+896 BladesOnlyFromFS_w896.egsdat   ncase=79999992       cpu=37146.80   
+897 BladesOnlyFromFS_w897.egsdat   ncase=59999994       cpu=27246.10   
+898 BladesOnlyFromFS_w898.egsdat   ncase=59999994       cpu=31036.20   
+899 BladesOnlyFromFS_w899.egsdat   ncase=59999994       cpu=31097.10   
+900 BladesOnlyFromFS_w900.egsdat   ncase=59999994       cpu=30907.40   
+901 BladesOnlyFromFS_w901.egsdat   ncase=59999994       cpu=31253.50   
+902 BladesOnlyFromFS_w902.egsdat   ncase=59999994       cpu=32301.80   
+903 BladesOnlyFromFS_w903.egsdat   ncase=59999994       cpu=30996.90   
+904 BladesOnlyFromFS_w904.egsdat   ncase=59999994       cpu=31297.10   
+905 BladesOnlyFromFS_w905.egsdat   ncase=59999994       cpu=30892.40   
+906 BladesOnlyFromFS_w906.egsdat   ncase=59999994       cpu=28098.90   
+907 BladesOnlyFromFS_w907.egsdat   ncase=59999994       cpu=26956.90   
+908 BladesOnlyFromFS_w908.egsdat   ncase=59999994       cpu=27621.80   
+909 BladesOnlyFromFS_w909.egsdat   ncase=59999994       cpu=28339.30   
+910 BladesOnlyFromFS_w910.egsdat   ncase=59999994       cpu=27529.30   
+911 BladesOnlyFromFS_w911.egsdat   ncase=59999994       cpu=31261.10   
+912 BladesOnlyFromFS_w912.egsdat   ncase=59999994       cpu=31036.60   
+913 BladesOnlyFromFS_w913.egsdat   ncase=59999994       cpu=30722.00   
+914 BladesOnlyFromFS_w914.egsdat   ncase=59999994       cpu=30882.90   
+915 BladesOnlyFromFS_w915.egsdat   ncase=59999994       cpu=31140.80   
+916 BladesOnlyFromFS_w916.egsdat   ncase=59999994       cpu=31338.60   
+917 BladesOnlyFromFS_w917.egsdat   ncase=59999994       cpu=31132.90   
+918 BladesOnlyFromFS_w918.egsdat   ncase=59999994       cpu=31255.40   
+919 BladesOnlyFromFS_w919.egsdat   ncase=59999994       cpu=31004.10   
+920 BladesOnlyFromFS_w920.egsdat   ncase=59999994       cpu=31379.30   
+921 BladesOnlyFromFS_w921.egsdat   ncase=59999994       cpu=32436.80   
+922 BladesOnlyFromFS_w922.egsdat   ncase=59999994       cpu=32423.40   
+923 BladesOnlyFromFS_w923.egsdat   ncase=59999994       cpu=31417.30   
+924 BladesOnlyFromFS_w924.egsdat   ncase=59999994       cpu=31622.90   
+925 BladesOnlyFromFS_w925.egsdat   ncase=59999994       cpu=31663.90   
+926 BladesOnlyFromFS_w926.egsdat   ncase=59999994       cpu=31882.20   
+927 BladesOnlyFromFS_w927.egsdat   ncase=59999994       cpu=30761.60   
+928 BladesOnlyFromFS_w928.egsdat   ncase=59999994       cpu=30770.00   
+929 BladesOnlyFromFS_w929.egsdat   ncase=59999994       cpu=30745.20   
+930 BladesOnlyFromFS_w930.egsdat   ncase=59999994       cpu=30835.20   
+931 BladesOnlyFromFS_w931.egsdat   ncase=39999996       cpu=18474.40   
+=======================================================================
+                            Total ncase=199999980000   cpu=97222599.80
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.86 (sec.) 0.0002(hours)
+CPU time including previous runs:       97222600.66 (sec.) 27006.2780 (hours)
+Histories per hour:                     7.40568e+06   
+Number of random numbers used:          891505361188671
+Number of electron CH steps:            7.84109e+12   
+Number of all electron steps:           1.96276e+14   
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     10000
+   Total tracks scored:     36044
+   Still being scored:      0
+   Output file name:        /home/rsmina/EGSnrc/egs_home/TB/BladesOnlyFromFS_w762_w762.ptracks
+
+
+======================================================
+Dose Scoring Object(profilexFilm)
+======================================================
+=> last case = 199999980000 fluence = 2e+11
+
+
+==> Summary of region dosimetry (per particle)
+ ir medium       rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+-----------------------------------------------------------------------------------
+  0 film          1.140     1.0000 7.0304e-09 +/- 0.412  % 9.8795e-19 +/- 0.412  %
+  1 film          1.140     1.0000 8.4612e-09 +/- 0.376  % 1.1890e-18 +/- 0.376  %
+  2 film          1.140     1.0000 1.0301e-08 +/- 0.338  % 1.4476e-18 +/- 0.338  %
+  3 film          1.140     1.0000 1.2670e-08 +/- 0.305  % 1.7805e-18 +/- 0.305  %
+  4 film          1.140     1.0000 1.5735e-08 +/- 0.273  % 2.2112e-18 +/- 0.273  %
+  5 film          1.140     1.0000 1.9924e-08 +/- 0.243  % 2.7999e-18 +/- 0.243  %
+  6 film          1.140     1.0000 3.1020e-08 +/- 0.193  % 4.3592e-18 +/- 0.193  %
+  7 film          1.140     1.0000 1.2655e-07 +/- 0.097  % 1.7783e-17 +/- 0.097  %
+  8 film          1.140     1.0000 1.5408e-07 +/- 0.088  % 2.1652e-17 +/- 0.088  %
+  9 film          1.140     1.0000 1.6321e-07 +/- 0.085  % 2.2935e-17 +/- 0.085  %
+ 10 film          1.140     1.0000 1.7119e-07 +/- 0.083  % 2.4057e-17 +/- 0.083  %
+ 11 film          1.140     1.0000 1.7781e-07 +/- 0.082  % 2.4987e-17 +/- 0.082  %
+ 12 film          1.140     1.0000 1.8389e-07 +/- 0.080  % 2.5841e-17 +/- 0.080  %
+ 13 film          1.140     1.0000 1.8916e-07 +/- 0.079  % 2.6582e-17 +/- 0.079  %
+ 14 film          1.140     1.0000 1.9344e-07 +/- 0.078  % 2.7183e-17 +/- 0.078  %
+ 15 film          1.140     1.0000 1.9722e-07 +/- 0.077  % 2.7714e-17 +/- 0.077  %
+ 16 film          1.140     1.0000 2.0033e-07 +/- 0.077  % 2.8152e-17 +/- 0.077  %
+ 17 film          1.140     1.0000 2.0278e-07 +/- 0.076  % 2.8496e-17 +/- 0.076  %
+ 18 film          1.140     1.0000 2.0430e-07 +/- 0.076  % 2.8709e-17 +/- 0.076  %
+ 19 film          1.140     1.0000 2.0514e-07 +/- 0.076  % 2.8828e-17 +/- 0.076  %
+ 20 film          1.140     1.0000 2.0507e-07 +/- 0.076  % 2.8817e-17 +/- 0.076  %
+ 21 film          1.140     1.0000 2.0428e-07 +/- 0.076  % 2.8707e-17 +/- 0.076  %
+ 22 film          1.140     1.0000 2.0271e-07 +/- 0.076  % 2.8487e-17 +/- 0.076  %
+ 23 film          1.140     1.0000 2.0064e-07 +/- 0.077  % 2.8196e-17 +/- 0.077  %
+ 24 film          1.140     1.0000 1.9742e-07 +/- 0.077  % 2.7743e-17 +/- 0.077  %
+ 25 film          1.140     1.0000 1.9378e-07 +/- 0.078  % 2.7231e-17 +/- 0.078  %
+ 26 film          1.140     1.0000 1.8921e-07 +/- 0.079  % 2.6589e-17 +/- 0.079  %
+ 27 film          1.140     1.0000 1.8410e-07 +/- 0.080  % 2.5870e-17 +/- 0.080  %
+ 28 film          1.140     1.0000 1.7788e-07 +/- 0.082  % 2.4997e-17 +/- 0.082  %
+ 29 film          1.140     1.0000 1.7103e-07 +/- 0.083  % 2.4035e-17 +/- 0.083  %
+ 30 film          1.140     1.0000 1.6303e-07 +/- 0.085  % 2.2909e-17 +/- 0.085  %
+ 31 film          1.140     1.0000 1.5415e-07 +/- 0.088  % 2.1663e-17 +/- 0.088  %
+ 32 film          1.140     1.0000 1.2653e-07 +/- 0.097  % 1.7781e-17 +/- 0.097  %
+ 33 film          1.140     1.0000 3.1078e-08 +/- 0.194  % 4.3672e-18 +/- 0.194  %
+ 34 film          1.140     1.0000 1.9805e-08 +/- 0.242  % 2.7832e-18 +/- 0.242  %
+ 35 film          1.140     1.0000 1.5722e-08 +/- 0.274  % 2.2093e-18 +/- 0.274  %
+ 36 film          1.140     1.0000 1.2635e-08 +/- 0.306  % 1.7756e-18 +/- 0.306  %
+ 37 film          1.140     1.0000 1.0333e-08 +/- 0.339  % 1.4521e-18 +/- 0.339  %
+ 38 film          1.140     1.0000 8.4622e-09 +/- 0.375  % 1.1892e-18 +/- 0.375  %
+ 39 film          1.140     1.0000 7.0620e-09 +/- 0.412  % 9.9240e-19 +/- 0.412  %
+162 (null)        0.000     1.0000 1.8050e-12 +/- 5.249  %        inf +/- 5.249  %
+189 pb           11.350     1.0000 2.4099e-02 +/- 0.000  % 3.4015e-13 +/- 0.000  %
+190 air           0.001     1.0000 5.2483e-06 +/- 0.011  % 6.9786e-13 +/- 0.011  %
+191 pb           11.350     1.0000 2.4099e-02 +/- 0.000  % 3.4015e-13 +/- 0.000  %
+192 steel         8.060     1.0000 4.7222e-04 +/- 0.003  % 9.3859e-15 +/- 0.003  %
+193 air           0.001     1.0000 2.7282e-06 +/- 0.013  % 3.6276e-13 +/- 0.013  %
+194 steel         8.060     1.0000 4.7222e-04 +/- 0.003  % 9.3858e-15 +/- 0.003  %
+198 pb           11.350     1.0000 6.8947e-03 +/- 0.001  % 9.7316e-14 +/- 0.001  %
+199 air           0.001     1.0000 1.9381e-06 +/- 0.018  % 2.5771e-13 +/- 0.018  %
+200 pb           11.350     1.0000 6.8947e-03 +/- 0.001  % 9.7315e-14 +/- 0.001  %
+201 steel         8.060     1.0000 5.2298e-05 +/- 0.009  % 1.0395e-15 +/- 0.009  %
+202 air           0.001     1.0000 9.4189e-07 +/- 0.023  % 1.2524e-13 +/- 0.023  %
+203 steel         8.060     1.0000 5.2291e-05 +/- 0.009  % 1.0393e-15 +/- 0.009  %
+207 steel         8.060     1.0000 3.0423e-06 +/- 0.035  % 6.0469e-17 +/- 0.035  %
+208 steel         8.060     1.0000 4.0967e-05 +/- 0.010  % 8.1425e-16 +/- 0.010  %
+209 steel         8.060     1.0000 3.0430e-06 +/- 0.035  % 6.0482e-17 +/- 0.035  %
+210 steel         8.060     1.0000 1.5080e-03 +/- 0.002  % 2.9974e-14 +/- 0.002  %
+211 air           0.001     1.0000 6.7583e-06 +/- 0.011  % 8.9864e-13 +/- 0.011  %
+212 steel         8.060     1.0000 1.5080e-03 +/- 0.002  % 2.9972e-14 +/- 0.002  %
+213 steel         8.060     1.0000 3.0418e-06 +/- 0.035  % 6.0458e-17 +/- 0.035  %
+214 steel         8.060     1.0000 4.0973e-05 +/- 0.010  % 8.1438e-16 +/- 0.010  %
+215 steel         8.060     1.0000 3.0432e-06 +/- 0.035  % 6.0487e-17 +/- 0.035  %
+216 air           0.001     1.0000 1.2713e-04 +/- 0.004  % 1.6904e-11 +/- 0.004  %
+270 air           0.001     1.0000 3.4435e-05 +/- 0.005  % 4.5789e-12 +/- 0.005  %
+324 polystyrene   1.060     1.0000 1.2291e-02 +/- 0.001  % 1.8575e-12 +/- 0.001  %
+486 air           0.001     1.0000 7.2232e-05 +/- 0.005  % 9.6047e-12 +/- 0.005  %
+-----------------------------------------------------------------------------------
+
+ EGS_DoseScoring: Writing dose data for EGS_XYZGeometry profilex... 
+ Output file name: /home/rsmina/EGSnrc/egs_home/TB/profilexFilm.3ddose
+
+======================================================
+
+
+ last case = -1863482912 Etot = 2e+10
+
+
+======================================================
+ Energy fractions
+======================================================
+The first and last items in the following list of energy fractions are the reflected and transmitted energy, respectively. These two values are only meaningful if the source is directed in the positive z-direction. The remaining values are the deposited energy fractions in the regions of the geometry, but notice that the identifying index is the region number offset by 1 (ir+1).
+
+ir+1 | Reflected, deposited, or transmitted energy fraction for 199999980000 particles:
+
+  0  1.592167e-01 +/- 6.723147e-07  
+  1  7.030357e-08 +/- 2.898453e-10  
+  2  8.461225e-08 +/- 3.179051e-10  
+  3  1.030148e-07 +/- 3.485352e-10  
+  4  1.266995e-07 +/- 3.864578e-10  
+  5  1.573515e-07 +/- 4.302947e-10  
+  6  1.992423e-07 +/- 4.835968e-10  
+  7  3.102038e-07 +/- 6.002195e-10  
+  8  1.265461e-06 +/- 1.224160e-09  
+  9  1.540761e-06 +/- 1.350880e-09  
+  10  1.632100e-06 +/- 1.390944e-09  
+  11  1.711910e-06 +/- 1.425602e-09  
+  12  1.778087e-06 +/- 1.450882e-09  
+  13  1.838894e-06 +/- 1.475867e-09  
+  14  1.891621e-06 +/- 1.496152e-09  
+  15  1.934397e-06 +/- 1.513537e-09  
+  16  1.972151e-06 +/- 1.528202e-09  
+  17  2.003293e-06 +/- 1.540040e-09  
+  18  2.027812e-06 +/- 1.550531e-09  
+  19  2.042950e-06 +/- 1.554669e-09  
+  20  2.051448e-06 +/- 1.560429e-09  
+  21  2.050673e-06 +/- 1.557941e-09  
+  22  2.042848e-06 +/- 1.554975e-09  
+  23  2.027136e-06 +/- 1.548860e-09  
+  24  2.006433e-06 +/- 1.542890e-09  
+  25  1.974232e-06 +/- 1.528042e-09  
+  26  1.937817e-06 +/- 1.514820e-09  
+  27  1.892132e-06 +/- 1.497276e-09  
+  28  1.840953e-06 +/- 1.476474e-09  
+  29  1.778799e-06 +/- 1.451751e-09  
+  30  1.710331e-06 +/- 1.422858e-09  
+  31  1.630263e-06 +/- 1.388817e-09  
+  32  1.541538e-06 +/- 1.352209e-09  
+  33  1.265305e-06 +/- 1.224303e-09  
+  34  3.107776e-07 +/- 6.016402e-10  
+  35  1.980519e-07 +/- 4.801543e-10  
+  36  1.572171e-07 +/- 4.303258e-10  
+  37  1.263505e-07 +/- 3.866532e-10  
+  38  1.033305e-07 +/- 3.507100e-10  
+  39  8.462156e-08 +/- 3.177123e-10  
+  40  7.062005e-08 +/- 2.911729e-10  
+  41  0.000000e+00 +/- 0.000000e+00  
+  42  0.000000e+00 +/- 0.000000e+00  
+  43  0.000000e+00 +/- 0.000000e+00  
+  44  0.000000e+00 +/- 0.000000e+00  
+  45  0.000000e+00 +/- 0.000000e+00  
+  46  0.000000e+00 +/- 0.000000e+00  
+  47  0.000000e+00 +/- 0.000000e+00  
+  48  0.000000e+00 +/- 0.000000e+00  
+  49  0.000000e+00 +/- 0.000000e+00  
+  50  0.000000e+00 +/- 0.000000e+00  
+  51  0.000000e+00 +/- 0.000000e+00  
+  52  0.000000e+00 +/- 0.000000e+00  
+  53  0.000000e+00 +/- 0.000000e+00  
+  54  0.000000e+00 +/- 0.000000e+00  
+  55  0.000000e+00 +/- 0.000000e+00  
+  56  0.000000e+00 +/- 0.000000e+00  
+  57  0.000000e+00 +/- 0.000000e+00  
+  58  0.000000e+00 +/- 0.000000e+00  
+  59  0.000000e+00 +/- 0.000000e+00  
+  60  0.000000e+00 +/- 0.000000e+00  
+  61  0.000000e+00 +/- 0.000000e+00  
+  62  0.000000e+00 +/- 0.000000e+00  
+  63  0.000000e+00 +/- 0.000000e+00  
+  64  0.000000e+00 +/- 0.000000e+00  
+  65  0.000000e+00 +/- 0.000000e+00  
+  66  0.000000e+00 +/- 0.000000e+00  
+  67  0.000000e+00 +/- 0.000000e+00  
+  68  0.000000e+00 +/- 0.000000e+00  
+  69  0.000000e+00 +/- 0.000000e+00  
+  70  0.000000e+00 +/- 0.000000e+00  
+  71  0.000000e+00 +/- 0.000000e+00  
+  72  0.000000e+00 +/- 0.000000e+00  
+  73  0.000000e+00 +/- 0.000000e+00  
+  74  0.000000e+00 +/- 0.000000e+00  
+  75  0.000000e+00 +/- 0.000000e+00  
+  76  0.000000e+00 +/- 0.000000e+00  
+  77  0.000000e+00 +/- 0.000000e+00  
+  78  0.000000e+00 +/- 0.000000e+00  
+  79  0.000000e+00 +/- 0.000000e+00  
+  80  0.000000e+00 +/- 0.000000e+00  
+  81  0.000000e+00 +/- 0.000000e+00  
+  82  0.000000e+00 +/- 0.000000e+00  
+  83  0.000000e+00 +/- 0.000000e+00  
+  84  0.000000e+00 +/- 0.000000e+00  
+  85  0.000000e+00 +/- 0.000000e+00  
+  86  0.000000e+00 +/- 0.000000e+00  
+  87  0.000000e+00 +/- 0.000000e+00  
+  88  0.000000e+00 +/- 0.000000e+00  
+  89  0.000000e+00 +/- 0.000000e+00  
+  90  0.000000e+00 +/- 0.000000e+00  
+  91  0.000000e+00 +/- 0.000000e+00  
+  92  0.000000e+00 +/- 0.000000e+00  
+  93  0.000000e+00 +/- 0.000000e+00  
+  94  0.000000e+00 +/- 0.000000e+00  
+  95  0.000000e+00 +/- 0.000000e+00  
+  96  0.000000e+00 +/- 0.000000e+00  
+  97  0.000000e+00 +/- 0.000000e+00  
+  98  0.000000e+00 +/- 0.000000e+00  
+  99  0.000000e+00 +/- 0.000000e+00  
+  100  0.000000e+00 +/- 0.000000e+00  
+  101  0.000000e+00 +/- 0.000000e+00  
+  102  0.000000e+00 +/- 0.000000e+00  
+  103  0.000000e+00 +/- 0.000000e+00  
+  104  0.000000e+00 +/- 0.000000e+00  
+  105  0.000000e+00 +/- 0.000000e+00  
+  106  0.000000e+00 +/- 0.000000e+00  
+  107  0.000000e+00 +/- 0.000000e+00  
+  108  0.000000e+00 +/- 0.000000e+00  
+  109  0.000000e+00 +/- 0.000000e+00  
+  110  0.000000e+00 +/- 0.000000e+00  
+  111  0.000000e+00 +/- 0.000000e+00  
+  112  0.000000e+00 +/- 0.000000e+00  
+  113  0.000000e+00 +/- 0.000000e+00  
+  114  0.000000e+00 +/- 0.000000e+00  
+  115  0.000000e+00 +/- 0.000000e+00  
+  116  0.000000e+00 +/- 0.000000e+00  
+  117  0.000000e+00 +/- 0.000000e+00  
+  118  0.000000e+00 +/- 0.000000e+00  
+  119  0.000000e+00 +/- 0.000000e+00  
+  120  0.000000e+00 +/- 0.000000e+00  
+  121  0.000000e+00 +/- 0.000000e+00  
+  122  0.000000e+00 +/- 0.000000e+00  
+  123  0.000000e+00 +/- 0.000000e+00  
+  124  0.000000e+00 +/- 0.000000e+00  
+  125  0.000000e+00 +/- 0.000000e+00  
+  126  0.000000e+00 +/- 0.000000e+00  
+  127  0.000000e+00 +/- 0.000000e+00  
+  128  0.000000e+00 +/- 0.000000e+00  
+  129  0.000000e+00 +/- 0.000000e+00  
+  130  0.000000e+00 +/- 0.000000e+00  
+  131  0.000000e+00 +/- 0.000000e+00  
+  132  0.000000e+00 +/- 0.000000e+00  
+  133  0.000000e+00 +/- 0.000000e+00  
+  134  0.000000e+00 +/- 0.000000e+00  
+  135  0.000000e+00 +/- 0.000000e+00  
+  136  0.000000e+00 +/- 0.000000e+00  
+  137  0.000000e+00 +/- 0.000000e+00  
+  138  0.000000e+00 +/- 0.000000e+00  
+  139  0.000000e+00 +/- 0.000000e+00  
+  140  0.000000e+00 +/- 0.000000e+00  
+  141  0.000000e+00 +/- 0.000000e+00  
+  142  0.000000e+00 +/- 0.000000e+00  
+  143  0.000000e+00 +/- 0.000000e+00  
+  144  0.000000e+00 +/- 0.000000e+00  
+  145  0.000000e+00 +/- 0.000000e+00  
+  146  0.000000e+00 +/- 0.000000e+00  
+  147  0.000000e+00 +/- 0.000000e+00  
+  148  0.000000e+00 +/- 0.000000e+00  
+  149  0.000000e+00 +/- 0.000000e+00  
+  150  0.000000e+00 +/- 0.000000e+00  
+  151  0.000000e+00 +/- 0.000000e+00  
+  152  0.000000e+00 +/- 0.000000e+00  
+  153  0.000000e+00 +/- 0.000000e+00  
+  154  0.000000e+00 +/- 0.000000e+00  
+  155  0.000000e+00 +/- 0.000000e+00  
+  156  0.000000e+00 +/- 0.000000e+00  
+  157  0.000000e+00 +/- 0.000000e+00  
+  158  0.000000e+00 +/- 0.000000e+00  
+  159  0.000000e+00 +/- 0.000000e+00  
+  160  0.000000e+00 +/- 0.000000e+00  
+  161  0.000000e+00 +/- 0.000000e+00  
+  162  0.000000e+00 +/- 0.000000e+00  
+  163  1.805018e-11 +/- 9.473967e-13  
+  164  0.000000e+00 +/- 0.000000e+00  
+  165  0.000000e+00 +/- 0.000000e+00  
+  166  0.000000e+00 +/- 0.000000e+00  
+  167  0.000000e+00 +/- 0.000000e+00  
+  168  0.000000e+00 +/- 0.000000e+00  
+  169  0.000000e+00 +/- 0.000000e+00  
+  170  0.000000e+00 +/- 0.000000e+00  
+  171  0.000000e+00 +/- 0.000000e+00  
+  172  0.000000e+00 +/- 0.000000e+00  
+  173  0.000000e+00 +/- 0.000000e+00  
+  174  0.000000e+00 +/- 0.000000e+00  
+  175  0.000000e+00 +/- 0.000000e+00  
+  176  0.000000e+00 +/- 0.000000e+00  
+  177  0.000000e+00 +/- 0.000000e+00  
+  178  0.000000e+00 +/- 0.000000e+00  
+  179  0.000000e+00 +/- 0.000000e+00  
+  180  0.000000e+00 +/- 0.000000e+00  
+  181  0.000000e+00 +/- 0.000000e+00  
+  182  0.000000e+00 +/- 0.000000e+00  
+  183  0.000000e+00 +/- 0.000000e+00  
+  184  0.000000e+00 +/- 0.000000e+00  
+  185  0.000000e+00 +/- 0.000000e+00  
+  186  0.000000e+00 +/- 0.000000e+00  
+  187  0.000000e+00 +/- 0.000000e+00  
+  188  0.000000e+00 +/- 0.000000e+00  
+  189  0.000000e+00 +/- 0.000000e+00  
+  190  2.409919e-01 +/- 9.279334e-07  
+  191  5.248316e-05 +/- 5.653648e-09  
+  192  2.409919e-01 +/- 9.279336e-07  
+  193  4.722232e-03 +/- 1.355915e-07  
+  194  2.728177e-05 +/- 3.536832e-09  
+  195  4.722210e-03 +/- 1.355914e-07  
+  196  0.000000e+00 +/- 0.000000e+00  
+  197  0.000000e+00 +/- 0.000000e+00  
+  198  0.000000e+00 +/- 0.000000e+00  
+  199  6.894728e-02 +/- 5.525727e-07  
+  200  1.938123e-05 +/- 3.557097e-09  
+  201  6.894672e-02 +/- 5.525713e-07  
+  202  5.229753e-04 +/- 4.683410e-08  
+  203  9.418900e-06 +/- 2.152231e-09  
+  204  5.229068e-04 +/- 4.683120e-08  
+  205  0.000000e+00 +/- 0.000000e+00  
+  206  0.000000e+00 +/- 0.000000e+00  
+  207  0.000000e+00 +/- 0.000000e+00  
+  208  3.042299e-05 +/- 1.066519e-08  
+  209  4.096678e-04 +/- 3.904022e-08  
+  210  3.042960e-05 +/- 1.066677e-08  
+  211  1.508030e-02 +/- 2.640384e-07  
+  212  6.758288e-05 +/- 7.170716e-09  
+  213  1.507959e-02 +/- 2.640322e-07  
+  214  3.041769e-05 +/- 1.066437e-08  
+  215  4.097338e-04 +/- 3.904359e-08  
+  216  3.043209e-05 +/- 1.066693e-08  
+  217  1.271260e-03 +/- 5.486910e-08  
+  218  0.000000e+00 +/- 0.000000e+00  
+  219  0.000000e+00 +/- 0.000000e+00  
+  220  0.000000e+00 +/- 0.000000e+00  
+  221  0.000000e+00 +/- 0.000000e+00  
+  222  0.000000e+00 +/- 0.000000e+00  
+  223  0.000000e+00 +/- 0.000000e+00  
+  224  0.000000e+00 +/- 0.000000e+00  
+  225  0.000000e+00 +/- 0.000000e+00  
+  226  0.000000e+00 +/- 0.000000e+00  
+  227  0.000000e+00 +/- 0.000000e+00  
+  228  0.000000e+00 +/- 0.000000e+00  
+  229  0.000000e+00 +/- 0.000000e+00  
+  230  0.000000e+00 +/- 0.000000e+00  
+  231  0.000000e+00 +/- 0.000000e+00  
+  232  0.000000e+00 +/- 0.000000e+00  
+  233  0.000000e+00 +/- 0.000000e+00  
+  234  0.000000e+00 +/- 0.000000e+00  
+  235  0.000000e+00 +/- 0.000000e+00  
+  236  0.000000e+00 +/- 0.000000e+00  
+  237  0.000000e+00 +/- 0.000000e+00  
+  238  0.000000e+00 +/- 0.000000e+00  
+  239  0.000000e+00 +/- 0.000000e+00  
+  240  0.000000e+00 +/- 0.000000e+00  
+  241  0.000000e+00 +/- 0.000000e+00  
+  242  0.000000e+00 +/- 0.000000e+00  
+  243  0.000000e+00 +/- 0.000000e+00  
+  244  0.000000e+00 +/- 0.000000e+00  
+  245  0.000000e+00 +/- 0.000000e+00  
+  246  0.000000e+00 +/- 0.000000e+00  
+  247  0.000000e+00 +/- 0.000000e+00  
+  248  0.000000e+00 +/- 0.000000e+00  
+  249  0.000000e+00 +/- 0.000000e+00  
+  250  0.000000e+00 +/- 0.000000e+00  
+  251  0.000000e+00 +/- 0.000000e+00  
+  252  0.000000e+00 +/- 0.000000e+00  
+  253  0.000000e+00 +/- 0.000000e+00  
+  254  0.000000e+00 +/- 0.000000e+00  
+  255  0.000000e+00 +/- 0.000000e+00  
+  256  0.000000e+00 +/- 0.000000e+00  
+  257  0.000000e+00 +/- 0.000000e+00  
+  258  0.000000e+00 +/- 0.000000e+00  
+  259  0.000000e+00 +/- 0.000000e+00  
+  260  0.000000e+00 +/- 0.000000e+00  
+  261  0.000000e+00 +/- 0.000000e+00  
+  262  0.000000e+00 +/- 0.000000e+00  
+  263  0.000000e+00 +/- 0.000000e+00  
+  264  0.000000e+00 +/- 0.000000e+00  
+  265  0.000000e+00 +/- 0.000000e+00  
+  266  0.000000e+00 +/- 0.000000e+00  
+  267  0.000000e+00 +/- 0.000000e+00  
+  268  0.000000e+00 +/- 0.000000e+00  
+  269  0.000000e+00 +/- 0.000000e+00  
+  270  0.000000e+00 +/- 0.000000e+00  
+  271  3.443541e-04 +/- 1.790603e-08  
+  272  0.000000e+00 +/- 0.000000e+00  
+  273  0.000000e+00 +/- 0.000000e+00  
+  274  0.000000e+00 +/- 0.000000e+00  
+  275  0.000000e+00 +/- 0.000000e+00  
+  276  0.000000e+00 +/- 0.000000e+00  
+  277  0.000000e+00 +/- 0.000000e+00  
+  278  0.000000e+00 +/- 0.000000e+00  
+  279  0.000000e+00 +/- 0.000000e+00  
+  280  0.000000e+00 +/- 0.000000e+00  
+  281  0.000000e+00 +/- 0.000000e+00  
+  282  0.000000e+00 +/- 0.000000e+00  
+  283  0.000000e+00 +/- 0.000000e+00  
+  284  0.000000e+00 +/- 0.000000e+00  
+  285  0.000000e+00 +/- 0.000000e+00  
+  286  0.000000e+00 +/- 0.000000e+00  
+  287  0.000000e+00 +/- 0.000000e+00  
+  288  0.000000e+00 +/- 0.000000e+00  
+  289  0.000000e+00 +/- 0.000000e+00  
+  290  0.000000e+00 +/- 0.000000e+00  
+  291  0.000000e+00 +/- 0.000000e+00  
+  292  0.000000e+00 +/- 0.000000e+00  
+  293  0.000000e+00 +/- 0.000000e+00  
+  294  0.000000e+00 +/- 0.000000e+00  
+  295  0.000000e+00 +/- 0.000000e+00  
+  296  0.000000e+00 +/- 0.000000e+00  
+  297  0.000000e+00 +/- 0.000000e+00  
+  298  0.000000e+00 +/- 0.000000e+00  
+  299  0.000000e+00 +/- 0.000000e+00  
+  300  0.000000e+00 +/- 0.000000e+00  
+  301  0.000000e+00 +/- 0.000000e+00  
+  302  0.000000e+00 +/- 0.000000e+00  
+  303  0.000000e+00 +/- 0.000000e+00  
+  304  0.000000e+00 +/- 0.000000e+00  
+  305  0.000000e+00 +/- 0.000000e+00  
+  306  0.000000e+00 +/- 0.000000e+00  
+  307  0.000000e+00 +/- 0.000000e+00  
+  308  0.000000e+00 +/- 0.000000e+00  
+  309  0.000000e+00 +/- 0.000000e+00  
+  310  0.000000e+00 +/- 0.000000e+00  
+  311  0.000000e+00 +/- 0.000000e+00  
+  312  0.000000e+00 +/- 0.000000e+00  
+  313  0.000000e+00 +/- 0.000000e+00  
+  314  0.000000e+00 +/- 0.000000e+00  
+  315  0.000000e+00 +/- 0.000000e+00  
+  316  0.000000e+00 +/- 0.000000e+00  
+  317  0.000000e+00 +/- 0.000000e+00  
+  318  0.000000e+00 +/- 0.000000e+00  
+  319  0.000000e+00 +/- 0.000000e+00  
+  320  0.000000e+00 +/- 0.000000e+00  
+  321  0.000000e+00 +/- 0.000000e+00  
+  322  0.000000e+00 +/- 0.000000e+00  
+  323  0.000000e+00 +/- 0.000000e+00  
+  324  0.000000e+00 +/- 0.000000e+00  
+  325  1.229084e-01 +/- 6.247964e-07  
+  326  0.000000e+00 +/- 0.000000e+00  
+  327  0.000000e+00 +/- 0.000000e+00  
+  328  0.000000e+00 +/- 0.000000e+00  
+  329  0.000000e+00 +/- 0.000000e+00  
+  330  0.000000e+00 +/- 0.000000e+00  
+  331  0.000000e+00 +/- 0.000000e+00  
+  332  0.000000e+00 +/- 0.000000e+00  
+  333  0.000000e+00 +/- 0.000000e+00  
+  334  0.000000e+00 +/- 0.000000e+00  
+  335  0.000000e+00 +/- 0.000000e+00  
+  336  0.000000e+00 +/- 0.000000e+00  
+  337  0.000000e+00 +/- 0.000000e+00  
+  338  0.000000e+00 +/- 0.000000e+00  
+  339  0.000000e+00 +/- 0.000000e+00  
+  340  0.000000e+00 +/- 0.000000e+00  
+  341  0.000000e+00 +/- 0.000000e+00  
+  342  0.000000e+00 +/- 0.000000e+00  
+  343  0.000000e+00 +/- 0.000000e+00  
+  344  0.000000e+00 +/- 0.000000e+00  
+  345  0.000000e+00 +/- 0.000000e+00  
+  346  0.000000e+00 +/- 0.000000e+00  
+  347  0.000000e+00 +/- 0.000000e+00  
+  348  0.000000e+00 +/- 0.000000e+00  
+  349  0.000000e+00 +/- 0.000000e+00  
+  350  0.000000e+00 +/- 0.000000e+00  
+  351  0.000000e+00 +/- 0.000000e+00  
+  352  0.000000e+00 +/- 0.000000e+00  
+  353  0.000000e+00 +/- 0.000000e+00  
+  354  0.000000e+00 +/- 0.000000e+00  
+  355  0.000000e+00 +/- 0.000000e+00  
+  356  0.000000e+00 +/- 0.000000e+00  
+  357  0.000000e+00 +/- 0.000000e+00  
+  358  0.000000e+00 +/- 0.000000e+00  
+  359  0.000000e+00 +/- 0.000000e+00  
+  360  0.000000e+00 +/- 0.000000e+00  
+  361  0.000000e+00 +/- 0.000000e+00  
+  362  0.000000e+00 +/- 0.000000e+00  
+  363  0.000000e+00 +/- 0.000000e+00  
+  364  0.000000e+00 +/- 0.000000e+00  
+  365  0.000000e+00 +/- 0.000000e+00  
+  366  0.000000e+00 +/- 0.000000e+00  
+  367  0.000000e+00 +/- 0.000000e+00  
+  368  0.000000e+00 +/- 0.000000e+00  
+  369  0.000000e+00 +/- 0.000000e+00  
+  370  0.000000e+00 +/- 0.000000e+00  
+  371  0.000000e+00 +/- 0.000000e+00  
+  372  0.000000e+00 +/- 0.000000e+00  
+  373  0.000000e+00 +/- 0.000000e+00  
+  374  0.000000e+00 +/- 0.000000e+00  
+  375  0.000000e+00 +/- 0.000000e+00  
+  376  0.000000e+00 +/- 0.000000e+00  
+  377  0.000000e+00 +/- 0.000000e+00  
+  378  0.000000e+00 +/- 0.000000e+00  
+  379  0.000000e+00 +/- 0.000000e+00  
+  380  0.000000e+00 +/- 0.000000e+00  
+  381  0.000000e+00 +/- 0.000000e+00  
+  382  0.000000e+00 +/- 0.000000e+00  
+  383  0.000000e+00 +/- 0.000000e+00  
+  384  0.000000e+00 +/- 0.000000e+00  
+  385  0.000000e+00 +/- 0.000000e+00  
+  386  0.000000e+00 +/- 0.000000e+00  
+  387  0.000000e+00 +/- 0.000000e+00  
+  388  0.000000e+00 +/- 0.000000e+00  
+  389  0.000000e+00 +/- 0.000000e+00  
+  390  0.000000e+00 +/- 0.000000e+00  
+  391  0.000000e+00 +/- 0.000000e+00  
+  392  0.000000e+00 +/- 0.000000e+00  
+  393  0.000000e+00 +/- 0.000000e+00  
+  394  0.000000e+00 +/- 0.000000e+00  
+  395  0.000000e+00 +/- 0.000000e+00  
+  396  0.000000e+00 +/- 0.000000e+00  
+  397  0.000000e+00 +/- 0.000000e+00  
+  398  0.000000e+00 +/- 0.000000e+00  
+  399  0.000000e+00 +/- 0.000000e+00  
+  400  0.000000e+00 +/- 0.000000e+00  
+  401  0.000000e+00 +/- 0.000000e+00  
+  402  0.000000e+00 +/- 0.000000e+00  
+  403  0.000000e+00 +/- 0.000000e+00  
+  404  0.000000e+00 +/- 0.000000e+00  
+  405  0.000000e+00 +/- 0.000000e+00  
+  406  0.000000e+00 +/- 0.000000e+00  
+  407  0.000000e+00 +/- 0.000000e+00  
+  408  0.000000e+00 +/- 0.000000e+00  
+  409  0.000000e+00 +/- 0.000000e+00  
+  410  0.000000e+00 +/- 0.000000e+00  
+  411  0.000000e+00 +/- 0.000000e+00  
+  412  0.000000e+00 +/- 0.000000e+00  
+  413  0.000000e+00 +/- 0.000000e+00  
+  414  0.000000e+00 +/- 0.000000e+00  
+  415  0.000000e+00 +/- 0.000000e+00  
+  416  0.000000e+00 +/- 0.000000e+00  
+  417  0.000000e+00 +/- 0.000000e+00  
+  418  0.000000e+00 +/- 0.000000e+00  
+  419  0.000000e+00 +/- 0.000000e+00  
+  420  0.000000e+00 +/- 0.000000e+00  
+  421  0.000000e+00 +/- 0.000000e+00  
+  422  0.000000e+00 +/- 0.000000e+00  
+  423  0.000000e+00 +/- 0.000000e+00  
+  424  0.000000e+00 +/- 0.000000e+00  
+  425  0.000000e+00 +/- 0.000000e+00  
+  426  0.000000e+00 +/- 0.000000e+00  
+  427  0.000000e+00 +/- 0.000000e+00  
+  428  0.000000e+00 +/- 0.000000e+00  
+  429  0.000000e+00 +/- 0.000000e+00  
+  430  0.000000e+00 +/- 0.000000e+00  
+  431  0.000000e+00 +/- 0.000000e+00  
+  432  0.000000e+00 +/- 0.000000e+00  
+  433  0.000000e+00 +/- 0.000000e+00  
+  434  0.000000e+00 +/- 0.000000e+00  
+  435  0.000000e+00 +/- 0.000000e+00  
+  436  0.000000e+00 +/- 0.000000e+00  
+  437  0.000000e+00 +/- 0.000000e+00  
+  438  0.000000e+00 +/- 0.000000e+00  
+  439  0.000000e+00 +/- 0.000000e+00  
+  440  0.000000e+00 +/- 0.000000e+00  
+  441  0.000000e+00 +/- 0.000000e+00  
+  442  0.000000e+00 +/- 0.000000e+00  
+  443  0.000000e+00 +/- 0.000000e+00  
+  444  0.000000e+00 +/- 0.000000e+00  
+  445  0.000000e+00 +/- 0.000000e+00  
+  446  0.000000e+00 +/- 0.000000e+00  
+  447  0.000000e+00 +/- 0.000000e+00  
+  448  0.000000e+00 +/- 0.000000e+00  
+  449  0.000000e+00 +/- 0.000000e+00  
+  450  0.000000e+00 +/- 0.000000e+00  
+  451  0.000000e+00 +/- 0.000000e+00  
+  452  0.000000e+00 +/- 0.000000e+00  
+  453  0.000000e+00 +/- 0.000000e+00  
+  454  0.000000e+00 +/- 0.000000e+00  
+  455  0.000000e+00 +/- 0.000000e+00  
+  456  0.000000e+00 +/- 0.000000e+00  
+  457  0.000000e+00 +/- 0.000000e+00  
+  458  0.000000e+00 +/- 0.000000e+00  
+  459  0.000000e+00 +/- 0.000000e+00  
+  460  0.000000e+00 +/- 0.000000e+00  
+  461  0.000000e+00 +/- 0.000000e+00  
+  462  0.000000e+00 +/- 0.000000e+00  
+  463  0.000000e+00 +/- 0.000000e+00  
+  464  0.000000e+00 +/- 0.000000e+00  
+  465  0.000000e+00 +/- 0.000000e+00  
+  466  0.000000e+00 +/- 0.000000e+00  
+  467  0.000000e+00 +/- 0.000000e+00  
+  468  0.000000e+00 +/- 0.000000e+00  
+  469  0.000000e+00 +/- 0.000000e+00  
+  470  0.000000e+00 +/- 0.000000e+00  
+  471  0.000000e+00 +/- 0.000000e+00  
+  472  0.000000e+00 +/- 0.000000e+00  
+  473  0.000000e+00 +/- 0.000000e+00  
+  474  0.000000e+00 +/- 0.000000e+00  
+  475  0.000000e+00 +/- 0.000000e+00  
+  476  0.000000e+00 +/- 0.000000e+00  
+  477  0.000000e+00 +/- 0.000000e+00  
+  478  0.000000e+00 +/- 0.000000e+00  
+  479  0.000000e+00 +/- 0.000000e+00  
+  480  0.000000e+00 +/- 0.000000e+00  
+  481  0.000000e+00 +/- 0.000000e+00  
+  482  0.000000e+00 +/- 0.000000e+00  
+  483  0.000000e+00 +/- 0.000000e+00  
+  484  0.000000e+00 +/- 0.000000e+00  
+  485  0.000000e+00 +/- 0.000000e+00  
+  486  0.000000e+00 +/- 0.000000e+00  
+  487  7.223220e-04 +/- 3.345365e-08  
+  488  0.000000e+00 +/- 0.000000e+00  
+  489  0.000000e+00 +/- 0.000000e+00  
+  490  0.000000e+00 +/- 0.000000e+00  
+  491  0.000000e+00 +/- 0.000000e+00  
+  492  0.000000e+00 +/- 0.000000e+00  
+  493  0.000000e+00 +/- 0.000000e+00  
+  494  0.000000e+00 +/- 0.000000e+00  
+  495  0.000000e+00 +/- 0.000000e+00  
+  496  0.000000e+00 +/- 0.000000e+00  
+  497  0.000000e+00 +/- 0.000000e+00  
+  498  0.000000e+00 +/- 0.000000e+00  
+  499  0.000000e+00 +/- 0.000000e+00  
+  500  0.000000e+00 +/- 0.000000e+00  
+  501  0.000000e+00 +/- 0.000000e+00  
+  502  0.000000e+00 +/- 0.000000e+00  
+  503  0.000000e+00 +/- 0.000000e+00  
+  504  0.000000e+00 +/- 0.000000e+00  
+  505  0.000000e+00 +/- 0.000000e+00  
+  506  0.000000e+00 +/- 0.000000e+00  
+  507  0.000000e+00 +/- 0.000000e+00  
+  508  0.000000e+00 +/- 0.000000e+00  
+  509  0.000000e+00 +/- 0.000000e+00  
+  510  0.000000e+00 +/- 0.000000e+00  
+  511  0.000000e+00 +/- 0.000000e+00  
+  512  0.000000e+00 +/- 0.000000e+00  
+  513  0.000000e+00 +/- 0.000000e+00  
+  514  0.000000e+00 +/- 0.000000e+00  
+  515  0.000000e+00 +/- 0.000000e+00  
+  516  0.000000e+00 +/- 0.000000e+00  
+  517  0.000000e+00 +/- 0.000000e+00  
+  518  0.000000e+00 +/- 0.000000e+00  
+  519  0.000000e+00 +/- 0.000000e+00  
+  520  0.000000e+00 +/- 0.000000e+00  
+  521  0.000000e+00 +/- 0.000000e+00  
+  522  0.000000e+00 +/- 0.000000e+00  
+  523  0.000000e+00 +/- 0.000000e+00  
+  524  0.000000e+00 +/- 0.000000e+00  
+  525  0.000000e+00 +/- 0.000000e+00  
+  526  0.000000e+00 +/- 0.000000e+00  
+  527  0.000000e+00 +/- 0.000000e+00  
+  528  0.000000e+00 +/- 0.000000e+00  
+  529  0.000000e+00 +/- 0.000000e+00  
+  530  0.000000e+00 +/- 0.000000e+00  
+  531  0.000000e+00 +/- 0.000000e+00  
+  532  0.000000e+00 +/- 0.000000e+00  
+  533  0.000000e+00 +/- 0.000000e+00  
+  534  0.000000e+00 +/- 0.000000e+00  
+  535  0.000000e+00 +/- 0.000000e+00  
+  536  0.000000e+00 +/- 0.000000e+00  
+  537  0.000000e+00 +/- 0.000000e+00  
+  538  0.000000e+00 +/- 0.000000e+00  
+  539  0.000000e+00 +/- 0.000000e+00  
+  540  0.000000e+00 +/- 0.000000e+00  
+  541  0.000000e+00 +/- 0.000000e+00  
+  542  0.000000e+00 +/- 0.000000e+00  
+  543  0.000000e+00 +/- 0.000000e+00  
+  544  0.000000e+00 +/- 0.000000e+00  
+  545  0.000000e+00 +/- 0.000000e+00  
+  546  0.000000e+00 +/- 0.000000e+00  
+  547  0.000000e+00 +/- 0.000000e+00  
+  548  0.000000e+00 +/- 0.000000e+00  
+  549  0.000000e+00 +/- 0.000000e+00  
+  550  0.000000e+00 +/- 0.000000e+00  
+  551  0.000000e+00 +/- 0.000000e+00  
+  552  0.000000e+00 +/- 0.000000e+00  
+  553  0.000000e+00 +/- 0.000000e+00  
+  554  0.000000e+00 +/- 0.000000e+00  
+  555  0.000000e+00 +/- 0.000000e+00  
+  556  0.000000e+00 +/- 0.000000e+00  
+  557  0.000000e+00 +/- 0.000000e+00  
+  558  0.000000e+00 +/- 0.000000e+00  
+  559  0.000000e+00 +/- 0.000000e+00  
+  560  0.000000e+00 +/- 0.000000e+00  
+  561  0.000000e+00 +/- 0.000000e+00  
+  562  0.000000e+00 +/- 0.000000e+00  
+  563  0.000000e+00 +/- 0.000000e+00  
+  564  0.000000e+00 +/- 0.000000e+00  
+  565  0.000000e+00 +/- 0.000000e+00  
+  566  0.000000e+00 +/- 0.000000e+00  
+  567  0.000000e+00 +/- 0.000000e+00  
+  568  0.000000e+00 +/- 0.000000e+00  
+  569  0.000000e+00 +/- 0.000000e+00  
+  570  0.000000e+00 +/- 0.000000e+00  
+  571  0.000000e+00 +/- 0.000000e+00  
+  572  0.000000e+00 +/- 0.000000e+00  
+  573  0.000000e+00 +/- 0.000000e+00  
+  574  0.000000e+00 +/- 0.000000e+00  
+  575  0.000000e+00 +/- 0.000000e+00  
+  576  0.000000e+00 +/- 0.000000e+00  
+  577  0.000000e+00 +/- 0.000000e+00  
+  578  0.000000e+00 +/- 0.000000e+00  
+  579  0.000000e+00 +/- 0.000000e+00  
+  580  0.000000e+00 +/- 0.000000e+00  
+  581  0.000000e+00 +/- 0.000000e+00  
+  582  0.000000e+00 +/- 0.000000e+00  
+  583  0.000000e+00 +/- 0.000000e+00  
+  584  0.000000e+00 +/- 0.000000e+00  
+  585  0.000000e+00 +/- 0.000000e+00  
+  586  0.000000e+00 +/- 0.000000e+00  
+  587  0.000000e+00 +/- 0.000000e+00  
+  588  0.000000e+00 +/- 0.000000e+00  
+  589  0.000000e+00 +/- 0.000000e+00  
+  590  0.000000e+00 +/- 0.000000e+00  
+  591  0.000000e+00 +/- 0.000000e+00  
+  592  0.000000e+00 +/- 0.000000e+00  
+  593  0.000000e+00 +/- 0.000000e+00  
+  594  0.000000e+00 +/- 0.000000e+00  
+  595  0.000000e+00 +/- 0.000000e+00  
+  596  0.000000e+00 +/- 0.000000e+00  
+  597  0.000000e+00 +/- 0.000000e+00  
+  598  0.000000e+00 +/- 0.000000e+00  
+  599  0.000000e+00 +/- 0.000000e+00  
+  600  0.000000e+00 +/- 0.000000e+00  
+  601  0.000000e+00 +/- 0.000000e+00  
+  602  0.000000e+00 +/- 0.000000e+00  
+  603  0.000000e+00 +/- 0.000000e+00  
+  604  0.000000e+00 +/- 0.000000e+00  
+  605  0.000000e+00 +/- 0.000000e+00  
+  606  0.000000e+00 +/- 0.000000e+00  
+  607  0.000000e+00 +/- 0.000000e+00  
+  608  0.000000e+00 +/- 0.000000e+00  
+  609  0.000000e+00 +/- 0.000000e+00  
+  610  0.000000e+00 +/- 0.000000e+00  
+  611  0.000000e+00 +/- 0.000000e+00  
+  612  0.000000e+00 +/- 0.000000e+00  
+  613  0.000000e+00 +/- 0.000000e+00  
+  614  0.000000e+00 +/- 0.000000e+00  
+  615  0.000000e+00 +/- 0.000000e+00  
+  616  0.000000e+00 +/- 0.000000e+00  
+  617  0.000000e+00 +/- 0.000000e+00  
+  618  0.000000e+00 +/- 0.000000e+00  
+  619  0.000000e+00 +/- 0.000000e+00  
+  620  0.000000e+00 +/- 0.000000e+00  
+  621  0.000000e+00 +/- 0.000000e+00  
+  622  0.000000e+00 +/- 0.000000e+00  
+  623  0.000000e+00 +/- 0.000000e+00  
+  624  0.000000e+00 +/- 0.000000e+00  
+  625  0.000000e+00 +/- 0.000000e+00  
+  626  0.000000e+00 +/- 0.000000e+00  
+  627  0.000000e+00 +/- 0.000000e+00  
+  628  0.000000e+00 +/- 0.000000e+00  
+  629  0.000000e+00 +/- 0.000000e+00  
+  630  0.000000e+00 +/- 0.000000e+00  
+  631  0.000000e+00 +/- 0.000000e+00  
+  632  0.000000e+00 +/- 0.000000e+00  
+  633  0.000000e+00 +/- 0.000000e+00  
+  634  0.000000e+00 +/- 0.000000e+00  
+  635  0.000000e+00 +/- 0.000000e+00  
+  636  0.000000e+00 +/- 0.000000e+00  
+  637  0.000000e+00 +/- 0.000000e+00  
+  638  0.000000e+00 +/- 0.000000e+00  
+  639  0.000000e+00 +/- 0.000000e+00  
+  640  0.000000e+00 +/- 0.000000e+00  
+  641  0.000000e+00 +/- 0.000000e+00  
+  642  0.000000e+00 +/- 0.000000e+00  
+  643  0.000000e+00 +/- 0.000000e+00  
+  644  0.000000e+00 +/- 0.000000e+00  
+  645  0.000000e+00 +/- 0.000000e+00  
+  646  0.000000e+00 +/- 0.000000e+00  
+  647  0.000000e+00 +/- 0.000000e+00  
+  648  0.000000e+00 +/- 0.000000e+00  
+  649  5.384210e-02 +/- 4.606678e-07  
+
+
+End of run                                             Sun Feb 19 21:14:56 2023
+================================================================================
