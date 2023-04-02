@@ -1,0 +1,3040 @@
+
+               ***************************************************
+               *                                                 *
+               *                  TB                       *
+               *                                                 *
+               ***************************************************
+
+This is TB   based on
+      EGS_AdvancedApplication  
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 1728
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Transformed Transformed Parallel beam from a shape of type ellipse with monoenergetic 0.1 MeV, electrons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 704
+  numbers used so far = 4780989323136
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = NO
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 10000
+ - Track buffer size           = 1024
+ - Output file name            = /home/rsmina/EGSnrc/egs_home/TB/BladesXrayWindow_w608_w608.ptracks
+
+
+===========================================
+Radiative splitting Object (splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Dose Scoring Object (profilexFilm)
+*******************************************
+
+ - Regions in dose calculator :1728
+
+
+--------------------------------------
+ medium         rho/[g/cm**3]
+--------------------------------------
+graphite         2.00
+target_material 19.39
+molybdenum      10.22
+beryllium        1.85
+steel            8.06
+oil              1.15
+aluminum         2.70
+air              0.00
+pb              11.35
+polystyrene      1.06
+film             1.14
+--------------------------------------
+
+*******************************************
+
+
+ Will output dose to file:
+ EGS_XYZGeometry: profilex
+ file format:  3ddose
+ file name: /home/rsmina/EGSnrc/egs_home/TB/profilexFilm.3ddose
+
+
+
+The following media are defined:
+================================
+
+  0  graphite                 AE= 0.5120 AP= 0.0010 0
+  1  target_material          AE= 0.5120 AP= 0.0010 1
+  2  molybdenum               AE= 0.5120 AP= 0.0010 2
+  3  beryllium                AE= 0.5120 AP= 0.0010 3
+  4  steel                    AE= 0.5120 AP= 0.0010 4
+  5  oil                      AE= 0.5120 AP= 0.0010 5
+  6  aluminum                 AE= 0.5120 AP= 0.0010 6
+  7  air                      AE= 0.5120 AP= 0.0010 7
+  8  pb                       AE= 0.5120 AP= 0.0010 8
+  9  polystyrene              AE= 0.5120 AP= 0.0010 9
+ 10  film                     AE= 0.5120 AP= 0.0010 10
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          Off
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 BladesXrayWindow_w1.egsdat     ncase=1800000000     cpu=512180.00  
+ 2 BladesXrayWindow_w2.egsdat     ncase=1800000000     cpu=510737.00  
+ 3 BladesXrayWindow_w3.egsdat     ncase=1650000000     cpu=476175.00  
+ 4 BladesXrayWindow_w4.egsdat     ncase=1800000000     cpu=514017.00  
+ 5 BladesXrayWindow_w5.egsdat     ncase=1800000000     cpu=507932.00  
+ 6 BladesXrayWindow_w6.egsdat     ncase=1800000000     cpu=507641.00  
+ 7 BladesXrayWindow_w7.egsdat     ncase=1800000000     cpu=511551.00  
+ 8 BladesXrayWindow_w8.egsdat     ncase=1800000000     cpu=512297.00  
+ 9 BladesXrayWindow_w9.egsdat     ncase=1800000000     cpu=508772.00  
+10 BladesXrayWindow_w10.egsdat    ncase=1800000000     cpu=506167.00  
+11 BladesXrayWindow_w11.egsdat    ncase=1800000000     cpu=510925.00  
+12 BladesXrayWindow_w12.egsdat    ncase=1800000000     cpu=497497.00  
+13 BladesXrayWindow_w13.egsdat    ncase=1800000000     cpu=496795.00  
+14 BladesXrayWindow_w14.egsdat    ncase=1800000000     cpu=501954.00  
+15 BladesXrayWindow_w15.egsdat    ncase=1800000000     cpu=498806.00  
+16 BladesXrayWindow_w16.egsdat    ncase=1800000000     cpu=507847.00  
+17 BladesXrayWindow_w17.egsdat    ncase=1800000000     cpu=511244.00  
+18 BladesXrayWindow_w18.egsdat    ncase=1800000000     cpu=489921.00  
+19 BladesXrayWindow_w19.egsdat    ncase=1800000000     cpu=493362.00  
+20 BladesXrayWindow_w20.egsdat    ncase=1800000000     cpu=492535.00  
+21 BladesXrayWindow_w21.egsdat    ncase=1800000000     cpu=491677.00  
+22 BladesXrayWindow_w22.egsdat    ncase=1800000000     cpu=492960.00  
+23 BladesXrayWindow_w23.egsdat    ncase=1800000000     cpu=498065.00  
+24 BladesXrayWindow_w24.egsdat    ncase=1800000000     cpu=494921.00  
+25 BladesXrayWindow_w25.egsdat    ncase=1800000000     cpu=493235.00  
+26 BladesXrayWindow_w26.egsdat    ncase=1800000000     cpu=499212.00  
+27 BladesXrayWindow_w27.egsdat    ncase=1800000000     cpu=490770.00  
+28 BladesXrayWindow_w28.egsdat    ncase=1800000000     cpu=491466.00  
+29 BladesXrayWindow_w29.egsdat    ncase=1800000000     cpu=504002.00  
+30 BladesXrayWindow_w30.egsdat    ncase=1800000000     cpu=506114.00  
+31 BladesXrayWindow_w31.egsdat    ncase=1800000000     cpu=508794.00  
+32 BladesXrayWindow_w32.egsdat    ncase=1800000000     cpu=512354.00  
+33 BladesXrayWindow_w33.egsdat    ncase=1800000000     cpu=506613.00  
+34 BladesXrayWindow_w34.egsdat    ncase=1800000000     cpu=500762.00  
+35 BladesXrayWindow_w35.egsdat    ncase=1800000000     cpu=506002.00  
+36 BladesXrayWindow_w36.egsdat    ncase=1800000000     cpu=510130.00  
+37 BladesXrayWindow_w37.egsdat    ncase=1650000000     cpu=495358.00  
+38 BladesXrayWindow_w38.egsdat    ncase=1650000000     cpu=484662.00  
+39 BladesXrayWindow_w39.egsdat    ncase=1650000000     cpu=516991.00  
+40 BladesXrayWindow_w40.egsdat    ncase=1650000000     cpu=482746.00  
+41 BladesXrayWindow_w41.egsdat    ncase=1650000000     cpu=490523.00  
+42 BladesXrayWindow_w42.egsdat    ncase=1650000000     cpu=493167.00  
+43 BladesXrayWindow_w43.egsdat    ncase=1650000000     cpu=498148.00  
+44 BladesXrayWindow_w44.egsdat    ncase=1800000000     cpu=511254.00  
+45 BladesXrayWindow_w45.egsdat    ncase=1800000000     cpu=506707.00  
+46 BladesXrayWindow_w46.egsdat    ncase=1800000000     cpu=502306.00  
+47 BladesXrayWindow_w47.egsdat    ncase=1800000000     cpu=509177.00  
+48 BladesXrayWindow_w48.egsdat    ncase=1800000000     cpu=498571.00  
+49 BladesXrayWindow_w49.egsdat    ncase=1800000000     cpu=504267.00  
+50 BladesXrayWindow_w50.egsdat    ncase=1800000000     cpu=505370.00  
+51 BladesXrayWindow_w51.egsdat    ncase=1650000000     cpu=475764.00  
+52 BladesXrayWindow_w52.egsdat    ncase=1800000000     cpu=510778.00  
+53 BladesXrayWindow_w53.egsdat    ncase=1650000000     cpu=480415.00  
+54 BladesXrayWindow_w54.egsdat    ncase=1650000000     cpu=479783.00  
+55 BladesXrayWindow_w55.egsdat    ncase=1800000000     cpu=500536.00  
+56 BladesXrayWindow_w56.egsdat    ncase=1800000000     cpu=505012.00  
+57 BladesXrayWindow_w57.egsdat    ncase=1800000000     cpu=509799.00  
+58 BladesXrayWindow_w58.egsdat    ncase=1650000000     cpu=472700.00  
+59 BladesXrayWindow_w59.egsdat    ncase=1650000000     cpu=476917.00  
+60 BladesXrayWindow_w60.egsdat    ncase=1650000000     cpu=486334.00  
+61 BladesXrayWindow_w61.egsdat    ncase=1650000000     cpu=480480.00  
+62 BladesXrayWindow_w62.egsdat    ncase=1650000000     cpu=493120.00  
+63 BladesXrayWindow_w63.egsdat    ncase=1650000000     cpu=481563.00  
+64 BladesXrayWindow_w64.egsdat    ncase=1650000000     cpu=479102.00  
+65 BladesXrayWindow_w65.egsdat    ncase=1650000000     cpu=494697.00  
+66 BladesXrayWindow_w66.egsdat    ncase=1650000000     cpu=486920.00  
+67 BladesXrayWindow_w67.egsdat    ncase=1650000000     cpu=477515.00  
+68 BladesXrayWindow_w68.egsdat    ncase=1650000000     cpu=483416.00  
+69 BladesXrayWindow_w69.egsdat    ncase=1650000000     cpu=490665.00  
+70 BladesXrayWindow_w70.egsdat    ncase=1650000000     cpu=477058.00  
+71 BladesXrayWindow_w71.egsdat    ncase=1650000000     cpu=479513.00  
+72 BladesXrayWindow_w72.egsdat    ncase=1650000000     cpu=483550.00  
+73 BladesXrayWindow_w73.egsdat    ncase=1650000000     cpu=481961.00  
+74 BladesXrayWindow_w74.egsdat    ncase=1650000000     cpu=475816.00  
+75 BladesXrayWindow_w75.egsdat    ncase=1650000000     cpu=479831.00  
+76 BladesXrayWindow_w76.egsdat    ncase=1650000000     cpu=493469.00  
+77 BladesXrayWindow_w77.egsdat    ncase=1650000000     cpu=478211.00  
+78 BladesXrayWindow_w78.egsdat    ncase=1650000000     cpu=503286.00  
+79 BladesXrayWindow_w79.egsdat    ncase=1650000000     cpu=505108.00  
+80 BladesXrayWindow_w80.egsdat    ncase=1650000000     cpu=498369.00  
+81 BladesXrayWindow_w81.egsdat    ncase=1650000000     cpu=505748.00  
+82 BladesXrayWindow_w82.egsdat    ncase=1650000000     cpu=510472.00  
+83 BladesXrayWindow_w83.egsdat    ncase=1650000000     cpu=498285.00  
+84 BladesXrayWindow_w84.egsdat    ncase=1650000000     cpu=485739.00  
+85 BladesXrayWindow_w85.egsdat    ncase=1650000000     cpu=488566.00  
+86 BladesXrayWindow_w86.egsdat    ncase=1650000000     cpu=506462.00  
+87 BladesXrayWindow_w87.egsdat    ncase=1650000000     cpu=502060.00  
+88 BladesXrayWindow_w88.egsdat    ncase=1650000000     cpu=485996.00  
+89 BladesXrayWindow_w89.egsdat    ncase=1650000000     cpu=487426.00  
+90 BladesXrayWindow_w90.egsdat    ncase=1650000000     cpu=499804.00  
+91 BladesXrayWindow_w91.egsdat    ncase=1650000000     cpu=493428.00  
+92 BladesXrayWindow_w92.egsdat    ncase=1650000000     cpu=493653.00  
+93 BladesXrayWindow_w93.egsdat    ncase=1650000000     cpu=504287.00  
+94 BladesXrayWindow_w94.egsdat    ncase=1650000000     cpu=514394.00  
+95 BladesXrayWindow_w95.egsdat    ncase=1650000000     cpu=488012.00  
+96 BladesXrayWindow_w96.egsdat    ncase=1650000000     cpu=507118.00  
+97 BladesXrayWindow_w97.egsdat    ncase=1650000000     cpu=489251.00  
+98 BladesXrayWindow_w98.egsdat    ncase=1650000000     cpu=500725.00  
+99 BladesXrayWindow_w99.egsdat    ncase=1650000000     cpu=490141.00  
+100 BladesXrayWindow_w100.egsdat   ncase=1650000000     cpu=499402.00  
+101 BladesXrayWindow_w101.egsdat   ncase=1650000000     cpu=487350.00  
+102 BladesXrayWindow_w102.egsdat   ncase=1650000000     cpu=510989.00  
+103 BladesXrayWindow_w103.egsdat   ncase=1650000000     cpu=496110.00  
+104 BladesXrayWindow_w104.egsdat   ncase=1650000000     cpu=491111.00  
+105 BladesXrayWindow_w105.egsdat   ncase=1650000000     cpu=491666.00  
+106 BladesXrayWindow_w106.egsdat   ncase=1650000000     cpu=490129.00  
+107 BladesXrayWindow_w107.egsdat   ncase=1650000000     cpu=493409.00  
+108 BladesXrayWindow_w108.egsdat   ncase=1650000000     cpu=493953.00  
+109 BladesXrayWindow_w109.egsdat   ncase=1650000000     cpu=494757.00  
+110 BladesXrayWindow_w110.egsdat   ncase=1650000000     cpu=473246.00  
+111 BladesXrayWindow_w111.egsdat   ncase=1800000000     cpu=509155.00  
+112 BladesXrayWindow_w112.egsdat   ncase=1800000000     cpu=510499.00  
+113 BladesXrayWindow_w113.egsdat   ncase=1800000000     cpu=504736.00  
+114 BladesXrayWindow_w114.egsdat   ncase=1800000000     cpu=506261.00  
+115 BladesXrayWindow_w115.egsdat   ncase=1800000000     cpu=505692.00  
+116 BladesXrayWindow_w116.egsdat   ncase=1800000000     cpu=513048.00  
+117 BladesXrayWindow_w117.egsdat   ncase=1650000000     cpu=475304.00  
+118 BladesXrayWindow_w118.egsdat   ncase=1650000000     cpu=475767.00  
+119 BladesXrayWindow_w119.egsdat   ncase=1800000000     cpu=509891.00  
+120 BladesXrayWindow_w120.egsdat   ncase=1800000000     cpu=505227.00  
+121 BladesXrayWindow_w121.egsdat   ncase=1650000000     cpu=490723.00  
+122 BladesXrayWindow_w122.egsdat   ncase=1650000000     cpu=489858.00  
+123 BladesXrayWindow_w123.egsdat   ncase=1650000000     cpu=485075.00  
+124 BladesXrayWindow_w124.egsdat   ncase=1650000000     cpu=486244.00  
+125 BladesXrayWindow_w125.egsdat   ncase=1650000000     cpu=473476.00  
+126 BladesXrayWindow_w126.egsdat   ncase=1800000000     cpu=513043.00  
+127 BladesXrayWindow_w127.egsdat   ncase=1800000000     cpu=508333.00  
+128 BladesXrayWindow_w128.egsdat   ncase=1800000000     cpu=512076.00  
+129 BladesXrayWindow_w129.egsdat   ncase=1800000000     cpu=511555.00  
+130 BladesXrayWindow_w130.egsdat   ncase=1800000000     cpu=504401.00  
+131 BladesXrayWindow_w131.egsdat   ncase=1650000000     cpu=485898.00  
+132 BladesXrayWindow_w132.egsdat   ncase=1650000000     cpu=477001.00  
+133 BladesXrayWindow_w133.egsdat   ncase=1650000000     cpu=481147.00  
+134 BladesXrayWindow_w134.egsdat   ncase=1650000000     cpu=478051.00  
+135 BladesXrayWindow_w135.egsdat   ncase=1650000000     cpu=483503.00  
+136 BladesXrayWindow_w136.egsdat   ncase=1650000000     cpu=479382.00  
+137 BladesXrayWindow_w137.egsdat   ncase=1650000000     cpu=485512.00  
+138 BladesXrayWindow_w138.egsdat   ncase=1650000000     cpu=479265.00  
+139 BladesXrayWindow_w139.egsdat   ncase=1650000000     cpu=485345.00  
+140 BladesXrayWindow_w140.egsdat   ncase=1650000000     cpu=497289.00  
+141 BladesXrayWindow_w141.egsdat   ncase=1650000000     cpu=491634.00  
+142 BladesXrayWindow_w142.egsdat   ncase=1650000000     cpu=495396.00  
+143 BladesXrayWindow_w143.egsdat   ncase=1650000000     cpu=497969.00  
+144 BladesXrayWindow_w144.egsdat   ncase=1650000000     cpu=492238.00  
+145 BladesXrayWindow_w145.egsdat   ncase=1800000000     cpu=513178.00  
+146 BladesXrayWindow_w146.egsdat   ncase=1800000000     cpu=510124.00  
+147 BladesXrayWindow_w147.egsdat   ncase=1800000000     cpu=509937.00  
+148 BladesXrayWindow_w148.egsdat   ncase=1800000000     cpu=508532.00  
+149 BladesXrayWindow_w149.egsdat   ncase=1800000000     cpu=513543.00  
+150 BladesXrayWindow_w150.egsdat   ncase=1800000000     cpu=514229.00  
+151 BladesXrayWindow_w151.egsdat   ncase=1650000000     cpu=474218.00  
+152 BladesXrayWindow_w152.egsdat   ncase=1650000000     cpu=475742.00  
+153 BladesXrayWindow_w153.egsdat   ncase=1650000000     cpu=474639.00  
+154 BladesXrayWindow_w154.egsdat   ncase=1800000000     cpu=509617.00  
+155 BladesXrayWindow_w155.egsdat   ncase=1800000000     cpu=514638.00  
+156 BladesXrayWindow_w156.egsdat   ncase=1800000000     cpu=508171.00  
+157 BladesXrayWindow_w157.egsdat   ncase=1800000000     cpu=510272.00  
+158 BladesXrayWindow_w158.egsdat   ncase=1650000000     cpu=481547.00  
+159 BladesXrayWindow_w159.egsdat   ncase=1650000000     cpu=483263.00  
+160 BladesXrayWindow_w160.egsdat   ncase=1650000000     cpu=485015.00  
+161 BladesXrayWindow_w161.egsdat   ncase=1650000000     cpu=479782.00  
+162 BladesXrayWindow_w162.egsdat   ncase=1650000000     cpu=486465.00  
+163 BladesXrayWindow_w163.egsdat   ncase=1650000000     cpu=478002.00  
+164 BladesXrayWindow_w164.egsdat   ncase=1650000000     cpu=481091.00  
+165 BladesXrayWindow_w165.egsdat   ncase=1650000000     cpu=478657.00  
+166 BladesXrayWindow_w166.egsdat   ncase=1650000000     cpu=480947.00  
+167 BladesXrayWindow_w167.egsdat   ncase=1650000000     cpu=476245.00  
+168 BladesXrayWindow_w168.egsdat   ncase=1650000000     cpu=485672.00  
+169 BladesXrayWindow_w169.egsdat   ncase=1650000000     cpu=481541.00  
+170 BladesXrayWindow_w170.egsdat   ncase=1650000000     cpu=475443.00  
+171 BladesXrayWindow_w171.egsdat   ncase=1650000000     cpu=486798.00  
+172 BladesXrayWindow_w172.egsdat   ncase=1650000000     cpu=480062.00  
+173 BladesXrayWindow_w173.egsdat   ncase=1650000000     cpu=475884.00  
+174 BladesXrayWindow_w174.egsdat   ncase=1650000000     cpu=510607.00  
+175 BladesXrayWindow_w175.egsdat   ncase=1650000000     cpu=499698.00  
+176 BladesXrayWindow_w176.egsdat   ncase=1650000000     cpu=512436.00  
+177 BladesXrayWindow_w177.egsdat   ncase=1650000000     cpu=506593.00  
+178 BladesXrayWindow_w178.egsdat   ncase=1650000000     cpu=484720.00  
+179 BladesXrayWindow_w179.egsdat   ncase=1650000000     cpu=489053.00  
+180 BladesXrayWindow_w180.egsdat   ncase=1650000000     cpu=486572.00  
+181 BladesXrayWindow_w181.egsdat   ncase=1650000000     cpu=479338.00  
+182 BladesXrayWindow_w182.egsdat   ncase=1650000000     cpu=478344.00  
+183 BladesXrayWindow_w183.egsdat   ncase=1650000000     cpu=477691.00  
+184 BladesXrayWindow_w184.egsdat   ncase=1800000000     cpu=510752.00  
+185 BladesXrayWindow_w185.egsdat   ncase=1800000000     cpu=507082.00  
+186 BladesXrayWindow_w186.egsdat   ncase=1800000000     cpu=503245.00  
+187 BladesXrayWindow_w187.egsdat   ncase=1800000000     cpu=508157.00  
+188 BladesXrayWindow_w188.egsdat   ncase=1800000000     cpu=504903.00  
+189 BladesXrayWindow_w189.egsdat   ncase=1800000000     cpu=503395.00  
+190 BladesXrayWindow_w190.egsdat   ncase=1800000000     cpu=508789.00  
+191 BladesXrayWindow_w191.egsdat   ncase=1800000000     cpu=498272.00  
+192 BladesXrayWindow_w192.egsdat   ncase=1650000000     cpu=506758.00  
+193 BladesXrayWindow_w193.egsdat   ncase=1650000000     cpu=475238.00  
+194 BladesXrayWindow_w194.egsdat   ncase=1650000000     cpu=478425.00  
+195 BladesXrayWindow_w195.egsdat   ncase=1650000000     cpu=473017.00  
+196 BladesXrayWindow_w196.egsdat   ncase=1800000000     cpu=510572.00  
+197 BladesXrayWindow_w197.egsdat   ncase=1650000000     cpu=478328.00  
+198 BladesXrayWindow_w198.egsdat   ncase=1800000000     cpu=512829.00  
+199 BladesXrayWindow_w199.egsdat   ncase=1650000000     cpu=473587.00  
+200 BladesXrayWindow_w200.egsdat   ncase=1500000000     cpu=494783.00  
+201 BladesXrayWindow_w201.egsdat   ncase=1500000000     cpu=493761.00  
+202 BladesXrayWindow_w202.egsdat   ncase=1500000000     cpu=488715.00  
+203 BladesXrayWindow_w203.egsdat   ncase=1500000000     cpu=495666.00  
+204 BladesXrayWindow_w204.egsdat   ncase=1500000000     cpu=487922.00  
+205 BladesXrayWindow_w205.egsdat   ncase=1500000000     cpu=486894.00  
+206 BladesXrayWindow_w206.egsdat   ncase=1500000000     cpu=497377.00  
+207 BladesXrayWindow_w207.egsdat   ncase=1500000000     cpu=486108.00  
+208 BladesXrayWindow_w208.egsdat   ncase=1500000000     cpu=482327.00  
+209 BladesXrayWindow_w209.egsdat   ncase=1500000000     cpu=492188.00  
+210 BladesXrayWindow_w210.egsdat   ncase=1500000000     cpu=481182.00  
+211 BladesXrayWindow_w211.egsdat   ncase=1500000000     cpu=483255.00  
+212 BladesXrayWindow_w212.egsdat   ncase=1500000000     cpu=489704.00  
+213 BladesXrayWindow_w213.egsdat   ncase=1500000000     cpu=508011.00  
+214 BladesXrayWindow_w214.egsdat   ncase=1500000000     cpu=486620.00  
+215 BladesXrayWindow_w215.egsdat   ncase=1500000000     cpu=479536.00  
+216 BladesXrayWindow_w216.egsdat   ncase=1500000000     cpu=487818.00  
+217 BladesXrayWindow_w217.egsdat   ncase=1500000000     cpu=485955.00  
+218 BladesXrayWindow_w218.egsdat   ncase=1500000000     cpu=481862.00  
+219 BladesXrayWindow_w219.egsdat   ncase=1500000000     cpu=498220.00  
+220 BladesXrayWindow_w220.egsdat   ncase=1500000000     cpu=495789.00  
+221 BladesXrayWindow_w221.egsdat   ncase=1500000000     cpu=498146.00  
+222 BladesXrayWindow_w222.egsdat   ncase=1500000000     cpu=491443.00  
+223 BladesXrayWindow_w223.egsdat   ncase=1500000000     cpu=486203.00  
+224 BladesXrayWindow_w224.egsdat   ncase=1500000000     cpu=488811.00  
+225 BladesXrayWindow_w225.egsdat   ncase=1500000000     cpu=484925.00  
+226 BladesXrayWindow_w226.egsdat   ncase=1500000000     cpu=488399.00  
+227 BladesXrayWindow_w227.egsdat   ncase=1500000000     cpu=484965.00  
+228 BladesXrayWindow_w228.egsdat   ncase=1500000000     cpu=484793.00  
+229 BladesXrayWindow_w229.egsdat   ncase=1500000000     cpu=485334.00  
+230 BladesXrayWindow_w230.egsdat   ncase=1500000000     cpu=486034.00  
+231 BladesXrayWindow_w231.egsdat   ncase=1500000000     cpu=512746.00  
+232 BladesXrayWindow_w232.egsdat   ncase=1350000000     cpu=502143.00  
+233 BladesXrayWindow_w233.egsdat   ncase=1500000000     cpu=506917.00  
+234 BladesXrayWindow_w234.egsdat   ncase=1500000000     cpu=504483.00  
+235 BladesXrayWindow_w235.egsdat   ncase=1500000000     cpu=505858.00  
+236 BladesXrayWindow_w236.egsdat   ncase=1500000000     cpu=499190.00  
+237 BladesXrayWindow_w237.egsdat   ncase=1500000000     cpu=500989.00  
+238 BladesXrayWindow_w238.egsdat   ncase=1500000000     cpu=496890.00  
+239 BladesXrayWindow_w239.egsdat   ncase=1500000000     cpu=500438.00  
+240 BladesXrayWindow_w240.egsdat   ncase=1500000000     cpu=496638.00  
+241 BladesXrayWindow_w241.egsdat   ncase=1500000000     cpu=489142.00  
+242 BladesXrayWindow_w242.egsdat   ncase=1500000000     cpu=508879.00  
+243 BladesXrayWindow_w243.egsdat   ncase=1500000000     cpu=483977.00  
+244 BladesXrayWindow_w244.egsdat   ncase=1500000000     cpu=492982.00  
+245 BladesXrayWindow_w245.egsdat   ncase=1500000000     cpu=494831.00  
+246 BladesXrayWindow_w246.egsdat   ncase=1500000000     cpu=487796.00  
+247 BladesXrayWindow_w247.egsdat   ncase=1500000000     cpu=494416.00  
+248 BladesXrayWindow_w248.egsdat   ncase=1500000000     cpu=499281.00  
+249 BladesXrayWindow_w249.egsdat   ncase=1500000000     cpu=506054.00  
+250 BladesXrayWindow_w250.egsdat   ncase=1500000000     cpu=515055.00  
+251 BladesXrayWindow_w251.egsdat   ncase=1500000000     cpu=509067.00  
+252 BladesXrayWindow_w252.egsdat   ncase=1500000000     cpu=502681.00  
+253 BladesXrayWindow_w253.egsdat   ncase=1500000000     cpu=500665.00  
+254 BladesXrayWindow_w254.egsdat   ncase=1500000000     cpu=491583.00  
+255 BladesXrayWindow_w255.egsdat   ncase=1500000000     cpu=492180.00  
+256 BladesXrayWindow_w256.egsdat   ncase=1500000000     cpu=489868.00  
+257 BladesXrayWindow_w257.egsdat   ncase=1500000000     cpu=491720.00  
+258 BladesXrayWindow_w258.egsdat   ncase=1500000000     cpu=487779.00  
+259 BladesXrayWindow_w259.egsdat   ncase=1500000000     cpu=486155.00  
+260 BladesXrayWindow_w260.egsdat   ncase=1500000000     cpu=492583.00  
+261 BladesXrayWindow_w261.egsdat   ncase=1500000000     cpu=482926.00  
+262 BladesXrayWindow_w262.egsdat   ncase=1500000000     cpu=483055.00  
+263 BladesXrayWindow_w263.egsdat   ncase=1500000000     cpu=482304.00  
+264 BladesXrayWindow_w264.egsdat   ncase=1500000000     cpu=486309.00  
+265 BladesXrayWindow_w265.egsdat   ncase=1500000000     cpu=488248.00  
+266 BladesXrayWindow_w266.egsdat   ncase=1500000000     cpu=488508.00  
+267 BladesXrayWindow_w267.egsdat   ncase=1500000000     cpu=494956.00  
+268 BladesXrayWindow_w268.egsdat   ncase=1500000000     cpu=485223.00  
+269 BladesXrayWindow_w269.egsdat   ncase=1500000000     cpu=479555.00  
+270 BladesXrayWindow_w270.egsdat   ncase=1500000000     cpu=488634.00  
+271 BladesXrayWindow_w271.egsdat   ncase=1500000000     cpu=482844.00  
+272 BladesXrayWindow_w272.egsdat   ncase=1500000000     cpu=488573.00  
+273 BladesXrayWindow_w273.egsdat   ncase=1500000000     cpu=482127.00  
+274 BladesXrayWindow_w274.egsdat   ncase=1500000000     cpu=479909.00  
+275 BladesXrayWindow_w275.egsdat   ncase=1500000000     cpu=489402.00  
+276 BladesXrayWindow_w276.egsdat   ncase=1500000000     cpu=483798.00  
+277 BladesXrayWindow_w277.egsdat   ncase=1500000000     cpu=488179.00  
+278 BladesXrayWindow_w278.egsdat   ncase=1500000000     cpu=494756.00  
+279 BladesXrayWindow_w279.egsdat   ncase=1500000000     cpu=483769.00  
+280 BladesXrayWindow_w280.egsdat   ncase=1500000000     cpu=491826.00  
+281 BladesXrayWindow_w281.egsdat   ncase=1500000000     cpu=490925.00  
+282 BladesXrayWindow_w282.egsdat   ncase=1500000000     cpu=488842.00  
+283 BladesXrayWindow_w283.egsdat   ncase=1500000000     cpu=500986.00  
+284 BladesXrayWindow_w284.egsdat   ncase=1500000000     cpu=482191.00  
+285 BladesXrayWindow_w285.egsdat   ncase=1500000000     cpu=484733.00  
+286 BladesXrayWindow_w286.egsdat   ncase=1500000000     cpu=488663.00  
+287 BladesXrayWindow_w287.egsdat   ncase=1500000000     cpu=488774.00  
+288 BladesXrayWindow_w288.egsdat   ncase=1500000000     cpu=484873.00  
+289 BladesXrayWindow_w289.egsdat   ncase=1500000000     cpu=484427.00  
+290 BladesXrayWindow_w290.egsdat   ncase=1500000000     cpu=496249.00  
+291 BladesXrayWindow_w291.egsdat   ncase=1500000000     cpu=487104.00  
+292 BladesXrayWindow_w292.egsdat   ncase=1500000000     cpu=486442.00  
+293 BladesXrayWindow_w293.egsdat   ncase=1500000000     cpu=481423.00  
+294 BladesXrayWindow_w294.egsdat   ncase=1500000000     cpu=486689.00  
+295 BladesXrayWindow_w295.egsdat   ncase=1500000000     cpu=485345.00  
+296 BladesXrayWindow_w296.egsdat   ncase=1500000000     cpu=484012.00  
+297 BladesXrayWindow_w297.egsdat   ncase=1500000000     cpu=492139.00  
+298 BladesXrayWindow_w298.egsdat   ncase=1500000000     cpu=492434.00  
+299 BladesXrayWindow_w299.egsdat   ncase=1500000000     cpu=482047.00  
+300 BladesXrayWindow_w300.egsdat   ncase=1500000000     cpu=481116.00  
+301 BladesXrayWindow_w301.egsdat   ncase=1500000000     cpu=489446.00  
+302 BladesXrayWindow_w302.egsdat   ncase=1500000000     cpu=482247.00  
+303 BladesXrayWindow_w303.egsdat   ncase=1500000000     cpu=478538.00  
+304 BladesXrayWindow_w304.egsdat   ncase=1500000000     cpu=487845.00  
+305 BladesXrayWindow_w305.egsdat   ncase=1500000000     cpu=481003.00  
+306 BladesXrayWindow_w306.egsdat   ncase=1500000000     cpu=478711.00  
+307 BladesXrayWindow_w307.egsdat   ncase=1500000000     cpu=485314.00  
+308 BladesXrayWindow_w308.egsdat   ncase=1500000000     cpu=484750.00  
+309 BladesXrayWindow_w309.egsdat   ncase=1500000000     cpu=485906.00  
+310 BladesXrayWindow_w310.egsdat   ncase=1500000000     cpu=478817.00  
+311 BladesXrayWindow_w311.egsdat   ncase=1500000000     cpu=495207.00  
+312 BladesXrayWindow_w312.egsdat   ncase=1500000000     cpu=479410.00  
+313 BladesXrayWindow_w313.egsdat   ncase=1500000000     cpu=484855.00  
+314 BladesXrayWindow_w314.egsdat   ncase=1500000000     cpu=484812.00  
+315 BladesXrayWindow_w315.egsdat   ncase=1500000000     cpu=485025.00  
+316 BladesXrayWindow_w316.egsdat   ncase=1500000000     cpu=485021.00  
+317 BladesXrayWindow_w317.egsdat   ncase=1500000000     cpu=512222.00  
+318 BladesXrayWindow_w318.egsdat   ncase=1500000000     cpu=482279.00  
+319 BladesXrayWindow_w319.egsdat   ncase=1500000000     cpu=490242.00  
+320 BladesXrayWindow_w320.egsdat   ncase=1500000000     cpu=486633.00  
+321 BladesXrayWindow_w321.egsdat   ncase=1500000000     cpu=493190.00  
+322 BladesXrayWindow_w322.egsdat   ncase=1500000000     cpu=491427.00  
+323 BladesXrayWindow_w323.egsdat   ncase=1500000000     cpu=484034.00  
+324 BladesXrayWindow_w324.egsdat   ncase=1500000000     cpu=496658.00  
+325 BladesXrayWindow_w325.egsdat   ncase=1500000000     cpu=487091.00  
+326 BladesXrayWindow_w326.egsdat   ncase=1500000000     cpu=487641.00  
+327 BladesXrayWindow_w327.egsdat   ncase=1500000000     cpu=482802.00  
+328 BladesXrayWindow_w328.egsdat   ncase=1500000000     cpu=485576.00  
+329 BladesXrayWindow_w329.egsdat   ncase=1500000000     cpu=493232.00  
+330 BladesXrayWindow_w330.egsdat   ncase=1500000000     cpu=485851.00  
+331 BladesXrayWindow_w331.egsdat   ncase=1500000000     cpu=485561.00  
+332 BladesXrayWindow_w332.egsdat   ncase=1500000000     cpu=486107.00  
+333 BladesXrayWindow_w333.egsdat   ncase=1500000000     cpu=488554.00  
+334 BladesXrayWindow_w334.egsdat   ncase=1500000000     cpu=480138.00  
+335 BladesXrayWindow_w335.egsdat   ncase=1500000000     cpu=496638.00  
+336 BladesXrayWindow_w336.egsdat   ncase=1500000000     cpu=492196.00  
+337 BladesXrayWindow_w337.egsdat   ncase=1500000000     cpu=486838.00  
+338 BladesXrayWindow_w338.egsdat   ncase=1500000000     cpu=484390.00  
+339 BladesXrayWindow_w339.egsdat   ncase=1500000000     cpu=486017.00  
+340 BladesXrayWindow_w340.egsdat   ncase=1500000000     cpu=486242.00  
+341 BladesXrayWindow_w341.egsdat   ncase=1500000000     cpu=486386.00  
+342 BladesXrayWindow_w342.egsdat   ncase=1500000000     cpu=481556.00  
+343 BladesXrayWindow_w343.egsdat   ncase=1500000000     cpu=489355.00  
+344 BladesXrayWindow_w344.egsdat   ncase=1500000000     cpu=482876.00  
+345 BladesXrayWindow_w345.egsdat   ncase=1500000000     cpu=485258.00  
+346 BladesXrayWindow_w346.egsdat   ncase=1500000000     cpu=484635.00  
+347 BladesXrayWindow_w347.egsdat   ncase=1500000000     cpu=489332.00  
+348 BladesXrayWindow_w348.egsdat   ncase=1500000000     cpu=498241.00  
+349 BladesXrayWindow_w349.egsdat   ncase=1500000000     cpu=489461.00  
+350 BladesXrayWindow_w350.egsdat   ncase=1500000000     cpu=480606.00  
+351 BladesXrayWindow_w351.egsdat   ncase=1500000000     cpu=489074.00  
+352 BladesXrayWindow_w352.egsdat   ncase=1500000000     cpu=490000.00  
+353 BladesXrayWindow_w353.egsdat   ncase=1500000000     cpu=486659.00  
+354 BladesXrayWindow_w354.egsdat   ncase=1500000000     cpu=483277.00  
+355 BladesXrayWindow_w355.egsdat   ncase=1500000000     cpu=492627.00  
+356 BladesXrayWindow_w356.egsdat   ncase=1500000000     cpu=499627.00  
+357 BladesXrayWindow_w357.egsdat   ncase=1500000000     cpu=486334.00  
+358 BladesXrayWindow_w358.egsdat   ncase=1500000000     cpu=485371.00  
+359 BladesXrayWindow_w359.egsdat   ncase=1500000000     cpu=486481.00  
+360 BladesXrayWindow_w360.egsdat   ncase=1500000000     cpu=489894.00  
+361 BladesXrayWindow_w361.egsdat   ncase=1500000000     cpu=490624.00  
+362 BladesXrayWindow_w362.egsdat   ncase=1500000000     cpu=482958.00  
+363 BladesXrayWindow_w363.egsdat   ncase=1500000000     cpu=488522.00  
+364 BladesXrayWindow_w364.egsdat   ncase=1500000000     cpu=492449.00  
+365 BladesXrayWindow_w365.egsdat   ncase=1500000000     cpu=486796.00  
+366 BladesXrayWindow_w366.egsdat   ncase=1500000000     cpu=489001.00  
+367 BladesXrayWindow_w367.egsdat   ncase=1500000000     cpu=491258.00  
+368 BladesXrayWindow_w368.egsdat   ncase=1500000000     cpu=498820.00  
+369 BladesXrayWindow_w369.egsdat   ncase=1500000000     cpu=484853.00  
+370 BladesXrayWindow_w370.egsdat   ncase=1500000000     cpu=487586.00  
+371 BladesXrayWindow_w371.egsdat   ncase=1500000000     cpu=486036.00  
+372 BladesXrayWindow_w372.egsdat   ncase=1500000000     cpu=484192.00  
+373 BladesXrayWindow_w373.egsdat   ncase=1500000000     cpu=488459.00  
+374 BladesXrayWindow_w374.egsdat   ncase=1500000000     cpu=482835.00  
+375 BladesXrayWindow_w375.egsdat   ncase=1500000000     cpu=485217.00  
+376 BladesXrayWindow_w376.egsdat   ncase=1500000000     cpu=488033.00  
+377 BladesXrayWindow_w377.egsdat   ncase=1500000000     cpu=487529.00  
+378 BladesXrayWindow_w378.egsdat   ncase=1500000000     cpu=481710.00  
+379 BladesXrayWindow_w379.egsdat   ncase=1500000000     cpu=481377.00  
+380 BladesXrayWindow_w380.egsdat   ncase=1500000000     cpu=482354.00  
+381 BladesXrayWindow_w381.egsdat   ncase=1500000000     cpu=478797.00  
+382 BladesXrayWindow_w382.egsdat   ncase=1500000000     cpu=480874.00  
+383 BladesXrayWindow_w383.egsdat   ncase=1500000000     cpu=482969.00  
+384 BladesXrayWindow_w384.egsdat   ncase=1500000000     cpu=479005.00  
+385 BladesXrayWindow_w385.egsdat   ncase=1500000000     cpu=488328.00  
+386 BladesXrayWindow_w386.egsdat   ncase=1500000000     cpu=488487.00  
+387 BladesXrayWindow_w387.egsdat   ncase=1500000000     cpu=491526.00  
+388 BladesXrayWindow_w388.egsdat   ncase=1500000000     cpu=490322.00  
+389 BladesXrayWindow_w389.egsdat   ncase=1500000000     cpu=480007.00  
+390 BladesXrayWindow_w390.egsdat   ncase=1500000000     cpu=483991.00  
+391 BladesXrayWindow_w391.egsdat   ncase=1500000000     cpu=494792.00  
+392 BladesXrayWindow_w392.egsdat   ncase=1500000000     cpu=500260.00  
+393 BladesXrayWindow_w393.egsdat   ncase=1500000000     cpu=485946.00  
+394 BladesXrayWindow_w394.egsdat   ncase=1500000000     cpu=482230.00  
+395 BladesXrayWindow_w395.egsdat   ncase=1500000000     cpu=486926.00  
+396 BladesXrayWindow_w396.egsdat   ncase=1500000000     cpu=508766.00  
+397 BladesXrayWindow_w397.egsdat   ncase=1500000000     cpu=505706.00  
+398 BladesXrayWindow_w398.egsdat   ncase=1500000000     cpu=501211.00  
+399 BladesXrayWindow_w399.egsdat   ncase=1500000000     cpu=506584.00  
+400 BladesXrayWindow_w400.egsdat   ncase=1500000000     cpu=503933.00  
+401 BladesXrayWindow_w401.egsdat   ncase=1500000000     cpu=507300.00  
+402 BladesXrayWindow_w402.egsdat   ncase=1500000000     cpu=479622.00  
+403 BladesXrayWindow_w403.egsdat   ncase=1500000000     cpu=481340.00  
+404 BladesXrayWindow_w404.egsdat   ncase=1500000000     cpu=490565.00  
+405 BladesXrayWindow_w405.egsdat   ncase=1500000000     cpu=483610.00  
+406 BladesXrayWindow_w406.egsdat   ncase=1500000000     cpu=499163.00  
+407 BladesXrayWindow_w407.egsdat   ncase=1500000000     cpu=482407.00  
+408 BladesXrayWindow_w408.egsdat   ncase=1500000000     cpu=481154.00  
+409 BladesXrayWindow_w409.egsdat   ncase=1500000000     cpu=482843.00  
+410 BladesXrayWindow_w410.egsdat   ncase=1500000000     cpu=479516.00  
+411 BladesXrayWindow_w411.egsdat   ncase=1500000000     cpu=480574.00  
+412 BladesXrayWindow_w412.egsdat   ncase=1500000000     cpu=487629.00  
+413 BladesXrayWindow_w413.egsdat   ncase=1500000000     cpu=487656.00  
+414 BladesXrayWindow_w414.egsdat   ncase=1500000000     cpu=489956.00  
+415 BladesXrayWindow_w415.egsdat   ncase=1500000000     cpu=489350.00  
+416 BladesXrayWindow_w416.egsdat   ncase=1500000000     cpu=484713.00  
+417 BladesXrayWindow_w417.egsdat   ncase=1500000000     cpu=492497.00  
+418 BladesXrayWindow_w418.egsdat   ncase=1500000000     cpu=485818.00  
+419 BladesXrayWindow_w419.egsdat   ncase=1500000000     cpu=499588.00  
+420 BladesXrayWindow_w420.egsdat   ncase=1500000000     cpu=479826.00  
+421 BladesXrayWindow_w421.egsdat   ncase=1500000000     cpu=489390.00  
+422 BladesXrayWindow_w422.egsdat   ncase=1500000000     cpu=492085.00  
+423 BladesXrayWindow_w423.egsdat   ncase=1500000000     cpu=482743.00  
+424 BladesXrayWindow_w424.egsdat   ncase=1500000000     cpu=477770.00  
+425 BladesXrayWindow_w425.egsdat   ncase=1500000000     cpu=478473.00  
+426 BladesXrayWindow_w426.egsdat   ncase=1500000000     cpu=493500.00  
+427 BladesXrayWindow_w427.egsdat   ncase=1500000000     cpu=478239.00  
+428 BladesXrayWindow_w428.egsdat   ncase=1500000000     cpu=486185.00  
+429 BladesXrayWindow_w429.egsdat   ncase=1500000000     cpu=484578.00  
+430 BladesXrayWindow_w430.egsdat   ncase=1500000000     cpu=480969.00  
+431 BladesXrayWindow_w431.egsdat   ncase=1500000000     cpu=491767.00  
+432 BladesXrayWindow_w432.egsdat   ncase=1500000000     cpu=483011.00  
+433 BladesXrayWindow_w433.egsdat   ncase=1500000000     cpu=492391.00  
+434 BladesXrayWindow_w434.egsdat   ncase=1500000000     cpu=492526.00  
+435 BladesXrayWindow_w435.egsdat   ncase=1500000000     cpu=487139.00  
+436 BladesXrayWindow_w436.egsdat   ncase=1500000000     cpu=489094.00  
+437 BladesXrayWindow_w437.egsdat   ncase=1500000000     cpu=484750.00  
+438 BladesXrayWindow_w438.egsdat   ncase=1500000000     cpu=485331.00  
+439 BladesXrayWindow_w439.egsdat   ncase=1500000000     cpu=489602.00  
+440 BladesXrayWindow_w440.egsdat   ncase=1500000000     cpu=478782.00  
+441 BladesXrayWindow_w441.egsdat   ncase=1500000000     cpu=498468.00  
+442 BladesXrayWindow_w442.egsdat   ncase=1500000000     cpu=486863.00  
+443 BladesXrayWindow_w443.egsdat   ncase=1500000000     cpu=485280.00  
+444 BladesXrayWindow_w444.egsdat   ncase=1500000000     cpu=505338.00  
+445 BladesXrayWindow_w445.egsdat   ncase=1500000000     cpu=493739.00  
+446 BladesXrayWindow_w446.egsdat   ncase=1500000000     cpu=493693.00  
+447 BladesXrayWindow_w447.egsdat   ncase=1500000000     cpu=494657.00  
+448 BladesXrayWindow_w448.egsdat   ncase=1500000000     cpu=502334.00  
+449 BladesXrayWindow_w449.egsdat   ncase=1500000000     cpu=493433.00  
+450 BladesXrayWindow_w450.egsdat   ncase=1500000000     cpu=490521.00  
+451 BladesXrayWindow_w451.egsdat   ncase=1500000000     cpu=479606.00  
+452 BladesXrayWindow_w452.egsdat   ncase=1500000000     cpu=481783.00  
+453 BladesXrayWindow_w453.egsdat   ncase=1500000000     cpu=485534.00  
+454 BladesXrayWindow_w454.egsdat   ncase=1500000000     cpu=490049.00  
+455 BladesXrayWindow_w455.egsdat   ncase=1500000000     cpu=481120.00  
+456 BladesXrayWindow_w456.egsdat   ncase=1500000000     cpu=486848.00  
+457 BladesXrayWindow_w457.egsdat   ncase=1500000000     cpu=495515.00  
+458 BladesXrayWindow_w458.egsdat   ncase=1500000000     cpu=481850.00  
+459 BladesXrayWindow_w459.egsdat   ncase=1500000000     cpu=485441.00  
+460 BladesXrayWindow_w460.egsdat   ncase=1500000000     cpu=493953.00  
+461 BladesXrayWindow_w461.egsdat   ncase=1500000000     cpu=489870.00  
+462 BladesXrayWindow_w462.egsdat   ncase=1500000000     cpu=482523.00  
+463 BladesXrayWindow_w463.egsdat   ncase=1500000000     cpu=487694.00  
+464 BladesXrayWindow_w464.egsdat   ncase=1500000000     cpu=479002.00  
+465 BladesXrayWindow_w465.egsdat   ncase=1500000000     cpu=498225.00  
+466 BladesXrayWindow_w466.egsdat   ncase=1500000000     cpu=483507.00  
+467 BladesXrayWindow_w467.egsdat   ncase=1500000000     cpu=503608.00  
+468 BladesXrayWindow_w468.egsdat   ncase=1500000000     cpu=503182.00  
+469 BladesXrayWindow_w469.egsdat   ncase=1500000000     cpu=494077.00  
+470 BladesXrayWindow_w470.egsdat   ncase=1500000000     cpu=489312.00  
+471 BladesXrayWindow_w471.egsdat   ncase=1500000000     cpu=481012.00  
+472 BladesXrayWindow_w472.egsdat   ncase=1500000000     cpu=484332.00  
+473 BladesXrayWindow_w473.egsdat   ncase=1500000000     cpu=491116.00  
+474 BladesXrayWindow_w474.egsdat   ncase=1500000000     cpu=481829.00  
+475 BladesXrayWindow_w475.egsdat   ncase=1500000000     cpu=486410.00  
+476 BladesXrayWindow_w476.egsdat   ncase=1500000000     cpu=490664.00  
+477 BladesXrayWindow_w477.egsdat   ncase=1500000000     cpu=484329.00  
+478 BladesXrayWindow_w478.egsdat   ncase=1500000000     cpu=479253.00  
+479 BladesXrayWindow_w479.egsdat   ncase=1500000000     cpu=487687.00  
+480 BladesXrayWindow_w480.egsdat   ncase=1500000000     cpu=485989.00  
+481 BladesXrayWindow_w481.egsdat   ncase=1500000000     cpu=484886.00  
+482 BladesXrayWindow_w482.egsdat   ncase=1500000000     cpu=490634.00  
+483 BladesXrayWindow_w483.egsdat   ncase=1500000000     cpu=488952.00  
+484 BladesXrayWindow_w484.egsdat   ncase=1500000000     cpu=482585.00  
+485 BladesXrayWindow_w485.egsdat   ncase=1500000000     cpu=482770.00  
+486 BladesXrayWindow_w486.egsdat   ncase=1500000000     cpu=483621.00  
+487 BladesXrayWindow_w487.egsdat   ncase=1500000000     cpu=495846.00  
+488 BladesXrayWindow_w488.egsdat   ncase=1500000000     cpu=488614.00  
+489 BladesXrayWindow_w489.egsdat   ncase=1500000000     cpu=491309.00  
+490 BladesXrayWindow_w490.egsdat   ncase=1500000000     cpu=489752.00  
+491 BladesXrayWindow_w491.egsdat   ncase=1500000000     cpu=491195.00  
+492 BladesXrayWindow_w492.egsdat   ncase=1500000000     cpu=487549.00  
+493 BladesXrayWindow_w493.egsdat   ncase=1500000000     cpu=493797.00  
+494 BladesXrayWindow_w494.egsdat   ncase=1500000000     cpu=489653.00  
+495 BladesXrayWindow_w495.egsdat   ncase=1500000000     cpu=494390.00  
+496 BladesXrayWindow_w496.egsdat   ncase=1500000000     cpu=500610.00  
+497 BladesXrayWindow_w497.egsdat   ncase=1500000000     cpu=511648.00  
+498 BladesXrayWindow_w498.egsdat   ncase=1500000000     cpu=506506.00  
+499 BladesXrayWindow_w499.egsdat   ncase=1500000000     cpu=504571.00  
+500 BladesXrayWindow_w500.egsdat   ncase=1500000000     cpu=515023.00  
+501 BladesXrayWindow_w501.egsdat   ncase=1500000000     cpu=515733.00  
+502 BladesXrayWindow_w502.egsdat   ncase=1500000000     cpu=515233.00  
+503 BladesXrayWindow_w503.egsdat   ncase=1500000000     cpu=501915.00  
+504 BladesXrayWindow_w504.egsdat   ncase=1500000000     cpu=492752.00  
+505 BladesXrayWindow_w505.egsdat   ncase=1500000000     cpu=480017.00  
+506 BladesXrayWindow_w506.egsdat   ncase=1500000000     cpu=484038.00  
+507 BladesXrayWindow_w507.egsdat   ncase=1500000000     cpu=489439.00  
+508 BladesXrayWindow_w508.egsdat   ncase=1500000000     cpu=481607.00  
+509 BladesXrayWindow_w509.egsdat   ncase=1500000000     cpu=487765.00  
+510 BladesXrayWindow_w510.egsdat   ncase=1500000000     cpu=481547.00  
+511 BladesXrayWindow_w511.egsdat   ncase=1500000000     cpu=490324.00  
+512 BladesXrayWindow_w512.egsdat   ncase=1500000000     cpu=486964.00  
+513 BladesXrayWindow_w513.egsdat   ncase=1500000000     cpu=479056.00  
+514 BladesXrayWindow_w514.egsdat   ncase=1500000000     cpu=487335.00  
+515 BladesXrayWindow_w515.egsdat   ncase=1500000000     cpu=498753.00  
+516 BladesXrayWindow_w516.egsdat   ncase=1500000000     cpu=487171.00  
+517 BladesXrayWindow_w517.egsdat   ncase=1500000000     cpu=486512.00  
+518 BladesXrayWindow_w518.egsdat   ncase=1500000000     cpu=483794.00  
+519 BladesXrayWindow_w519.egsdat   ncase=1500000000     cpu=504623.00  
+520 BladesXrayWindow_w520.egsdat   ncase=1500000000     cpu=496212.00  
+521 BladesXrayWindow_w521.egsdat   ncase=1500000000     cpu=491415.00  
+522 BladesXrayWindow_w522.egsdat   ncase=1500000000     cpu=498470.00  
+523 BladesXrayWindow_w523.egsdat   ncase=1500000000     cpu=505933.00  
+524 BladesXrayWindow_w524.egsdat   ncase=1500000000     cpu=487695.00  
+525 BladesXrayWindow_w525.egsdat   ncase=1500000000     cpu=495717.00  
+526 BladesXrayWindow_w526.egsdat   ncase=1500000000     cpu=486669.00  
+527 BladesXrayWindow_w527.egsdat   ncase=1500000000     cpu=489582.00  
+528 BladesXrayWindow_w528.egsdat   ncase=1500000000     cpu=487460.00  
+529 BladesXrayWindow_w529.egsdat   ncase=1500000000     cpu=496381.00  
+530 BladesXrayWindow_w530.egsdat   ncase=1500000000     cpu=496746.00  
+531 BladesXrayWindow_w531.egsdat   ncase=1500000000     cpu=487187.00  
+532 BladesXrayWindow_w532.egsdat   ncase=1500000000     cpu=493415.00  
+533 BladesXrayWindow_w533.egsdat   ncase=1500000000     cpu=495818.00  
+534 BladesXrayWindow_w534.egsdat   ncase=1500000000     cpu=492450.00  
+535 BladesXrayWindow_w535.egsdat   ncase=1500000000     cpu=486770.00  
+536 BladesXrayWindow_w536.egsdat   ncase=1500000000     cpu=489188.00  
+537 BladesXrayWindow_w537.egsdat   ncase=1500000000     cpu=499686.00  
+538 BladesXrayWindow_w538.egsdat   ncase=1500000000     cpu=499067.00  
+539 BladesXrayWindow_w539.egsdat   ncase=1500000000     cpu=491961.00  
+540 BladesXrayWindow_w540.egsdat   ncase=1500000000     cpu=514964.00  
+541 BladesXrayWindow_w541.egsdat   ncase=1500000000     cpu=489712.00  
+542 BladesXrayWindow_w542.egsdat   ncase=1500000000     cpu=485728.00  
+543 BladesXrayWindow_w543.egsdat   ncase=1500000000     cpu=486930.00  
+544 BladesXrayWindow_w544.egsdat   ncase=1500000000     cpu=488766.00  
+545 BladesXrayWindow_w545.egsdat   ncase=1500000000     cpu=482069.00  
+546 BladesXrayWindow_w546.egsdat   ncase=1500000000     cpu=482556.00  
+547 BladesXrayWindow_w547.egsdat   ncase=1500000000     cpu=482059.00  
+548 BladesXrayWindow_w548.egsdat   ncase=1500000000     cpu=488166.00  
+549 BladesXrayWindow_w549.egsdat   ncase=1500000000     cpu=488951.00  
+550 BladesXrayWindow_w550.egsdat   ncase=1500000000     cpu=478918.00  
+551 BladesXrayWindow_w551.egsdat   ncase=1500000000     cpu=490224.00  
+552 BladesXrayWindow_w552.egsdat   ncase=1500000000     cpu=490420.00  
+553 BladesXrayWindow_w553.egsdat   ncase=1500000000     cpu=506962.00  
+554 BladesXrayWindow_w554.egsdat   ncase=1500000000     cpu=505349.00  
+555 BladesXrayWindow_w555.egsdat   ncase=1500000000     cpu=502418.00  
+556 BladesXrayWindow_w556.egsdat   ncase=1500000000     cpu=503202.00  
+557 BladesXrayWindow_w557.egsdat   ncase=1500000000     cpu=499043.00  
+558 BladesXrayWindow_w558.egsdat   ncase=1500000000     cpu=514240.00  
+559 BladesXrayWindow_w559.egsdat   ncase=1500000000     cpu=497641.00  
+560 BladesXrayWindow_w560.egsdat   ncase=1500000000     cpu=514312.00  
+561 BladesXrayWindow_w561.egsdat   ncase=1500000000     cpu=481480.00  
+562 BladesXrayWindow_w562.egsdat   ncase=1500000000     cpu=479889.00  
+563 BladesXrayWindow_w563.egsdat   ncase=1500000000     cpu=485577.00  
+564 BladesXrayWindow_w564.egsdat   ncase=1500000000     cpu=480318.00  
+565 BladesXrayWindow_w565.egsdat   ncase=1500000000     cpu=478004.00  
+566 BladesXrayWindow_w566.egsdat   ncase=1500000000     cpu=482147.00  
+567 BladesXrayWindow_w567.egsdat   ncase=1500000000     cpu=480146.00  
+568 BladesXrayWindow_w568.egsdat   ncase=1500000000     cpu=498815.00  
+569 BladesXrayWindow_w569.egsdat   ncase=1500000000     cpu=479771.00  
+570 BladesXrayWindow_w570.egsdat   ncase=1500000000     cpu=486045.00  
+571 BladesXrayWindow_w571.egsdat   ncase=1500000000     cpu=484009.00  
+572 BladesXrayWindow_w572.egsdat   ncase=1500000000     cpu=483166.00  
+573 BladesXrayWindow_w573.egsdat   ncase=1500000000     cpu=496196.00  
+574 BladesXrayWindow_w574.egsdat   ncase=1500000000     cpu=491215.00  
+575 BladesXrayWindow_w575.egsdat   ncase=1500000000     cpu=478376.00  
+576 BladesXrayWindow_w576.egsdat   ncase=1500000000     cpu=485144.00  
+577 BladesXrayWindow_w577.egsdat   ncase=1500000000     cpu=489510.00  
+578 BladesXrayWindow_w578.egsdat   ncase=1500000000     cpu=480108.00  
+579 BladesXrayWindow_w579.egsdat   ncase=1500000000     cpu=498848.00  
+580 BladesXrayWindow_w580.egsdat   ncase=1500000000     cpu=478683.00  
+581 BladesXrayWindow_w581.egsdat   ncase=1500000000     cpu=501070.00  
+582 BladesXrayWindow_w582.egsdat   ncase=1500000000     cpu=489715.00  
+583 BladesXrayWindow_w583.egsdat   ncase=1500000000     cpu=487853.00  
+584 BladesXrayWindow_w584.egsdat   ncase=1500000000     cpu=478611.00  
+585 BladesXrayWindow_w585.egsdat   ncase=1500000000     cpu=479668.00  
+586 BladesXrayWindow_w586.egsdat   ncase=1500000000     cpu=496338.00  
+587 BladesXrayWindow_w587.egsdat   ncase=1500000000     cpu=495110.00  
+588 BladesXrayWindow_w588.egsdat   ncase=1500000000     cpu=496161.00  
+589 BladesXrayWindow_w589.egsdat   ncase=1500000000     cpu=501546.00  
+590 BladesXrayWindow_w590.egsdat   ncase=1500000000     cpu=490905.00  
+591 BladesXrayWindow_w591.egsdat   ncase=1500000000     cpu=498286.00  
+592 BladesXrayWindow_w592.egsdat   ncase=1500000000     cpu=496523.00  
+593 BladesXrayWindow_w593.egsdat   ncase=1500000000     cpu=499086.00  
+594 BladesXrayWindow_w594.egsdat   ncase=1500000000     cpu=482711.00  
+595 BladesXrayWindow_w595.egsdat   ncase=1500000000     cpu=487845.00  
+596 BladesXrayWindow_w596.egsdat   ncase=1500000000     cpu=480859.00  
+597 BladesXrayWindow_w597.egsdat   ncase=1500000000     cpu=487157.00  
+598 BladesXrayWindow_w598.egsdat   ncase=1500000000     cpu=480867.00  
+599 BladesXrayWindow_w599.egsdat   ncase=1500000000     cpu=486686.00  
+600 BladesXrayWindow_w600.egsdat   ncase=1500000000     cpu=511997.00  
+601 BladesXrayWindow_w601.egsdat   ncase=1500000000     cpu=479275.00  
+602 BladesXrayWindow_w602.egsdat   ncase=1500000000     cpu=490342.00  
+603 BladesXrayWindow_w603.egsdat   ncase=1500000000     cpu=480976.00  
+604 BladesXrayWindow_w604.egsdat   ncase=1500000000     cpu=482025.00  
+605 BladesXrayWindow_w605.egsdat   ncase=1500000000     cpu=483314.00  
+606 BladesXrayWindow_w606.egsdat   ncase=1500000000     cpu=503110.00  
+607 BladesXrayWindow_w607.egsdat   ncase=1500000000     cpu=509041.00  
+608 BladesXrayWindow_w608.egsdat   ncase=1500000000     cpu=522075.00  
+609 BladesXrayWindow_w609.egsdat   ncase=1500000000     cpu=509817.00  
+610 BladesXrayWindow_w610.egsdat   ncase=1500000000     cpu=503198.00  
+611 BladesXrayWindow_w611.egsdat   ncase=1500000000     cpu=515826.00  
+612 BladesXrayWindow_w612.egsdat   ncase=1500000000     cpu=521153.00  
+613 BladesXrayWindow_w613.egsdat   ncase=1500000000     cpu=512785.00  
+614 BladesXrayWindow_w614.egsdat   ncase=1500000000     cpu=486642.00  
+615 BladesXrayWindow_w615.egsdat   ncase=1500000000     cpu=492676.00  
+616 BladesXrayWindow_w616.egsdat   ncase=1500000000     cpu=487723.00  
+617 BladesXrayWindow_w617.egsdat   ncase=1500000000     cpu=479488.00  
+618 BladesXrayWindow_w618.egsdat   ncase=1500000000     cpu=514832.00  
+619 BladesXrayWindow_w619.egsdat   ncase=1500000000     cpu=480590.00  
+620 BladesXrayWindow_w620.egsdat   ncase=1500000000     cpu=494555.00  
+621 BladesXrayWindow_w621.egsdat   ncase=1500000000     cpu=481564.00  
+622 BladesXrayWindow_w622.egsdat   ncase=1500000000     cpu=481781.00  
+623 BladesXrayWindow_w623.egsdat   ncase=1500000000     cpu=483398.00  
+624 BladesXrayWindow_w624.egsdat   ncase=1500000000     cpu=483423.00  
+625 BladesXrayWindow_w625.egsdat   ncase=1500000000     cpu=484243.00  
+626 BladesXrayWindow_w626.egsdat   ncase=1500000000     cpu=489049.00  
+627 BladesXrayWindow_w627.egsdat   ncase=1500000000     cpu=487392.00  
+628 BladesXrayWindow_w628.egsdat   ncase=1500000000     cpu=487126.00  
+629 BladesXrayWindow_w629.egsdat   ncase=1500000000     cpu=481931.00  
+630 BladesXrayWindow_w630.egsdat   ncase=1500000000     cpu=482607.00  
+631 BladesXrayWindow_w631.egsdat   ncase=1500000000     cpu=484838.00  
+632 BladesXrayWindow_w632.egsdat   ncase=1500000000     cpu=489176.00  
+633 BladesXrayWindow_w633.egsdat   ncase=1500000000     cpu=486566.00  
+634 BladesXrayWindow_w634.egsdat   ncase=1500000000     cpu=485666.00  
+635 BladesXrayWindow_w635.egsdat   ncase=1500000000     cpu=493517.00  
+636 BladesXrayWindow_w636.egsdat   ncase=1500000000     cpu=499944.00  
+637 BladesXrayWindow_w637.egsdat   ncase=1500000000     cpu=488276.00  
+638 BladesXrayWindow_w638.egsdat   ncase=1500000000     cpu=485019.00  
+639 BladesXrayWindow_w639.egsdat   ncase=1500000000     cpu=494864.00  
+640 BladesXrayWindow_w640.egsdat   ncase=1500000000     cpu=486690.00  
+641 BladesXrayWindow_w641.egsdat   ncase=1500000000     cpu=483741.00  
+642 BladesXrayWindow_w642.egsdat   ncase=1500000000     cpu=484819.00  
+643 BladesXrayWindow_w643.egsdat   ncase=1500000000     cpu=487357.00  
+644 BladesXrayWindow_w644.egsdat   ncase=1500000000     cpu=492969.00  
+645 BladesXrayWindow_w645.egsdat   ncase=1500000000     cpu=482803.00  
+646 BladesXrayWindow_w646.egsdat   ncase=1500000000     cpu=492721.00  
+647 BladesXrayWindow_w647.egsdat   ncase=1500000000     cpu=488711.00  
+648 BladesXrayWindow_w648.egsdat   ncase=1350000000     cpu=473410.00  
+649 BladesXrayWindow_w649.egsdat   ncase=1500000000     cpu=491724.00  
+650 BladesXrayWindow_w650.egsdat   ncase=1500000000     cpu=504229.00  
+651 BladesXrayWindow_w651.egsdat   ncase=1500000000     cpu=494164.00  
+652 BladesXrayWindow_w652.egsdat   ncase=1500000000     cpu=496779.00  
+653 BladesXrayWindow_w653.egsdat   ncase=1500000000     cpu=497820.00  
+654 BladesXrayWindow_w654.egsdat   ncase=1500000000     cpu=494993.00  
+655 BladesXrayWindow_w655.egsdat   ncase=1350000000     cpu=495256.00  
+656 BladesXrayWindow_w656.egsdat   ncase=1500000000     cpu=500476.00  
+657 BladesXrayWindow_w657.egsdat   ncase=1500000000     cpu=499350.00  
+658 BladesXrayWindow_w658.egsdat   ncase=1500000000     cpu=497051.00  
+659 BladesXrayWindow_w659.egsdat   ncase=1500000000     cpu=495729.00  
+660 BladesXrayWindow_w660.egsdat   ncase=1500000000     cpu=497472.00  
+661 BladesXrayWindow_w661.egsdat   ncase=1500000000     cpu=488540.00  
+662 BladesXrayWindow_w662.egsdat   ncase=1500000000     cpu=483595.00  
+663 BladesXrayWindow_w663.egsdat   ncase=1500000000     cpu=495457.00  
+664 BladesXrayWindow_w664.egsdat   ncase=1500000000     cpu=481138.00  
+665 BladesXrayWindow_w665.egsdat   ncase=1500000000     cpu=487094.00  
+666 BladesXrayWindow_w666.egsdat   ncase=1500000000     cpu=496587.00  
+667 BladesXrayWindow_w667.egsdat   ncase=1500000000     cpu=484779.00  
+668 BladesXrayWindow_w668.egsdat   ncase=1500000000     cpu=489491.00  
+669 BladesXrayWindow_w669.egsdat   ncase=1500000000     cpu=491898.00  
+670 BladesXrayWindow_w670.egsdat   ncase=1500000000     cpu=484832.00  
+671 BladesXrayWindow_w671.egsdat   ncase=1500000000     cpu=485434.00  
+672 BladesXrayWindow_w672.egsdat   ncase=1500000000     cpu=484713.00  
+673 BladesXrayWindow_w673.egsdat   ncase=1500000000     cpu=487136.00  
+674 BladesXrayWindow_w674.egsdat   ncase=1500000000     cpu=485666.00  
+675 BladesXrayWindow_w675.egsdat   ncase=1500000000     cpu=488006.00  
+676 BladesXrayWindow_w676.egsdat   ncase=1500000000     cpu=484780.00  
+677 BladesXrayWindow_w677.egsdat   ncase=1500000000     cpu=489861.00  
+678 BladesXrayWindow_w678.egsdat   ncase=1500000000     cpu=487493.00  
+679 BladesXrayWindow_w679.egsdat   ncase=1500000000     cpu=494309.00  
+680 BladesXrayWindow_w680.egsdat   ncase=1500000000     cpu=492843.00  
+681 BladesXrayWindow_w681.egsdat   ncase=1500000000     cpu=486285.00  
+682 BladesXrayWindow_w682.egsdat   ncase=1500000000     cpu=490090.00  
+683 BladesXrayWindow_w683.egsdat   ncase=1500000000     cpu=488453.00  
+684 BladesXrayWindow_w684.egsdat   ncase=1500000000     cpu=492337.00  
+685 BladesXrayWindow_w685.egsdat   ncase=1500000000     cpu=504591.00  
+686 BladesXrayWindow_w686.egsdat   ncase=1500000000     cpu=489905.00  
+687 BladesXrayWindow_w687.egsdat   ncase=1500000000     cpu=498707.00  
+688 BladesXrayWindow_w688.egsdat   ncase=1500000000     cpu=495658.00  
+689 BladesXrayWindow_w689.egsdat   ncase=1500000000     cpu=491536.00  
+690 BladesXrayWindow_w690.egsdat   ncase=1500000000     cpu=494944.00  
+691 BladesXrayWindow_w691.egsdat   ncase=1500000000     cpu=509039.00  
+692 BladesXrayWindow_w692.egsdat   ncase=1500000000     cpu=503740.00  
+693 BladesXrayWindow_w693.egsdat   ncase=1500000000     cpu=502900.00  
+694 BladesXrayWindow_w694.egsdat   ncase=1500000000     cpu=497413.00  
+695 BladesXrayWindow_w695.egsdat   ncase=1650000000     cpu=506360.00  
+696 BladesXrayWindow_w696.egsdat   ncase=1650000000     cpu=497690.00  
+697 BladesXrayWindow_w697.egsdat   ncase=1650000000     cpu=504462.00  
+698 BladesXrayWindow_w698.egsdat   ncase=1650000000     cpu=471082.00  
+699 BladesXrayWindow_w699.egsdat   ncase=1650000000     cpu=493235.00  
+700 BladesXrayWindow_w700.egsdat   ncase=1650000000     cpu=470381.00  
+701 BladesXrayWindow_w701.egsdat   ncase=1650000000     cpu=472776.00  
+702 BladesXrayWindow_w702.egsdat   ncase=1650000000     cpu=472289.00  
+703 BladesXrayWindow_w703.egsdat   ncase=1650000000     cpu=490706.00  
+704 BladesXrayWindow_w704.egsdat   ncase=1650000000     cpu=470180.00  
+705 BladesXrayWindow_w705.egsdat   ncase=1800000000     cpu=509745.00  
+706 BladesXrayWindow_w706.egsdat   ncase=1800000000     cpu=505842.00  
+707 BladesXrayWindow_w707.egsdat   ncase=1650000000     cpu=489242.00  
+708 BladesXrayWindow_w708.egsdat   ncase=1650000000     cpu=494838.00  
+709 BladesXrayWindow_w709.egsdat   ncase=1650000000     cpu=495331.00  
+710 BladesXrayWindow_w710.egsdat   ncase=1650000000     cpu=501008.00  
+711 BladesXrayWindow_w711.egsdat   ncase=1650000000     cpu=491977.00  
+712 BladesXrayWindow_w712.egsdat   ncase=1650000000     cpu=475417.00  
+713 BladesXrayWindow_w713.egsdat   ncase=1650000000     cpu=475034.00  
+714 BladesXrayWindow_w714.egsdat   ncase=1650000000     cpu=479776.00  
+715 BladesXrayWindow_w715.egsdat   ncase=1650000000     cpu=475901.00  
+716 BladesXrayWindow_w716.egsdat   ncase=1650000000     cpu=482509.00  
+717 BladesXrayWindow_w717.egsdat   ncase=1500000000     cpu=486856.00  
+718 BladesXrayWindow_w718.egsdat   ncase=1500000000     cpu=485666.00  
+719 BladesXrayWindow_w719.egsdat   ncase=1500000000     cpu=483660.00  
+720 BladesXrayWindow_w720.egsdat   ncase=1500000000     cpu=486148.00  
+721 BladesXrayWindow_w721.egsdat   ncase=1500000000     cpu=489503.00  
+722 BladesXrayWindow_w722.egsdat   ncase=1500000000     cpu=478505.00  
+723 BladesXrayWindow_w723.egsdat   ncase=1500000000     cpu=482425.00  
+724 BladesXrayWindow_w724.egsdat   ncase=1500000000     cpu=483671.00  
+725 BladesXrayWindow_w725.egsdat   ncase=1500000000     cpu=498713.00  
+726 BladesXrayWindow_w726.egsdat   ncase=1500000000     cpu=498048.00  
+727 BladesXrayWindow_w727.egsdat   ncase=1500000000     cpu=492789.00  
+728 BladesXrayWindow_w728.egsdat   ncase=1500000000     cpu=498944.00  
+729 BladesXrayWindow_w729.egsdat   ncase=1500000000     cpu=492815.00  
+730 BladesXrayWindow_w730.egsdat   ncase=1500000000     cpu=492935.00  
+731 BladesXrayWindow_w731.egsdat   ncase=1500000000     cpu=477446.00  
+732 BladesXrayWindow_w732.egsdat   ncase=1500000000     cpu=485761.00  
+733 BladesXrayWindow_w733.egsdat   ncase=1650000000     cpu=473954.00  
+734 BladesXrayWindow_w734.egsdat   ncase=1650000000     cpu=470158.00  
+735 BladesXrayWindow_w735.egsdat   ncase=1650000000     cpu=490681.00  
+736 BladesXrayWindow_w736.egsdat   ncase=1650000000     cpu=487006.00  
+737 BladesXrayWindow_w737.egsdat   ncase=1650000000     cpu=484587.00  
+738 BladesXrayWindow_w738.egsdat   ncase=1650000000     cpu=476222.00  
+739 BladesXrayWindow_w739.egsdat   ncase=1650000000     cpu=473318.00  
+740 BladesXrayWindow_w740.egsdat   ncase=1650000000     cpu=475358.00  
+741 BladesXrayWindow_w741.egsdat   ncase=1650000000     cpu=462870.00  
+742 BladesXrayWindow_w742.egsdat   ncase=1650000000     cpu=463172.00  
+743 BladesXrayWindow_w743.egsdat   ncase=1650000000     cpu=470874.00  
+744 BladesXrayWindow_w744.egsdat   ncase=1650000000     cpu=469620.00  
+745 BladesXrayWindow_w745.egsdat   ncase=1350000000     cpu=460140.00  
+746 BladesXrayWindow_w746.egsdat   ncase=1500000000     cpu=499442.00  
+747 BladesXrayWindow_w747.egsdat   ncase=1500000000     cpu=502946.00  
+748 BladesXrayWindow_w748.egsdat   ncase=1350000000     cpu=466361.00  
+749 BladesXrayWindow_w749.egsdat   ncase=1500000000     cpu=483529.00  
+750 BladesXrayWindow_w750.egsdat   ncase=1350000000     cpu=482376.00  
+751 BladesXrayWindow_w751.egsdat   ncase=1350000000     cpu=462432.00  
+752 BladesXrayWindow_w752.egsdat   ncase=1500000000     cpu=500803.00  
+753 BladesXrayWindow_w753.egsdat   ncase=1350000000     cpu=467734.00  
+754 BladesXrayWindow_w754.egsdat   ncase=1500000000     cpu=491504.00  
+755 BladesXrayWindow_w755.egsdat   ncase=1500000000     cpu=503646.00  
+756 BladesXrayWindow_w756.egsdat   ncase=1500000000     cpu=485922.00  
+757 BladesXrayWindow_w757.egsdat   ncase=1500000000     cpu=501906.00  
+758 BladesXrayWindow_w758.egsdat   ncase=1350000000     cpu=462944.00  
+759 BladesXrayWindow_w759.egsdat   ncase=1500000000     cpu=500769.00  
+760 BladesXrayWindow_w760.egsdat   ncase=1350000000     cpu=459058.00  
+761 BladesXrayWindow_w761.egsdat   ncase=1500000000     cpu=482476.00  
+762 BladesXrayWindow_w762.egsdat   ncase=1500000000     cpu=488987.00  
+763 BladesXrayWindow_w763.egsdat   ncase=1500000000     cpu=485857.00  
+764 BladesXrayWindow_w764.egsdat   ncase=1500000000     cpu=485593.00  
+765 BladesXrayWindow_w765.egsdat   ncase=1500000000     cpu=489460.00  
+766 BladesXrayWindow_w766.egsdat   ncase=1500000000     cpu=487909.00  
+767 BladesXrayWindow_w767.egsdat   ncase=1500000000     cpu=487291.00  
+768 BladesXrayWindow_w768.egsdat   ncase=1500000000     cpu=486875.00  
+769 BladesXrayWindow_w769.egsdat   ncase=1500000000     cpu=434561.00  
+770 BladesXrayWindow_w770.egsdat   ncase=1650000000     cpu=472614.00  
+771 BladesXrayWindow_w771.egsdat   ncase=1650000000     cpu=468279.00  
+772 BladesXrayWindow_w772.egsdat   ncase=1650000000     cpu=457516.00  
+773 BladesXrayWindow_w773.egsdat   ncase=1650000000     cpu=463603.00  
+774 BladesXrayWindow_w774.egsdat   ncase=1650000000     cpu=472447.00  
+775 BladesXrayWindow_w775.egsdat   ncase=1650000000     cpu=470733.00  
+776 BladesXrayWindow_w776.egsdat   ncase=1500000000     cpu=479763.00  
+777 BladesXrayWindow_w777.egsdat   ncase=1350000000     cpu=432619.00  
+778 BladesXrayWindow_w778.egsdat   ncase=1350000000     cpu=434846.00  
+779 BladesXrayWindow_w779.egsdat   ncase=1350000000     cpu=435687.00  
+780 BladesXrayWindow_w780.egsdat   ncase=1350000000     cpu=438231.00  
+781 BladesXrayWindow_w781.egsdat   ncase=1350000000     cpu=433785.00  
+782 BladesXrayWindow_w782.egsdat   ncase=1350000000     cpu=439791.00  
+783 BladesXrayWindow_w783.egsdat   ncase=1350000000     cpu=437011.00  
+784 BladesXrayWindow_w784.egsdat   ncase=1650000000     cpu=467946.00  
+785 BladesXrayWindow_w785.egsdat   ncase=1650000000     cpu=457353.00  
+786 BladesXrayWindow_w786.egsdat   ncase=1650000000     cpu=464726.00  
+787 BladesXrayWindow_w787.egsdat   ncase=1650000000     cpu=464656.00  
+788 BladesXrayWindow_w788.egsdat   ncase=1650000000     cpu=469044.00  
+789 BladesXrayWindow_w789.egsdat   ncase=1500000000     cpu=430168.00  
+790 BladesXrayWindow_w790.egsdat   ncase=1650000000     cpu=459533.00  
+791 BladesXrayWindow_w791.egsdat   ncase=1350000000     cpu=453894.00  
+792 BladesXrayWindow_w792.egsdat   ncase=1350000000     cpu=436305.00  
+793 BladesXrayWindow_w793.egsdat   ncase=1350000000     cpu=437743.00  
+794 BladesXrayWindow_w794.egsdat   ncase=1650000000     cpu=460217.00  
+795 BladesXrayWindow_w795.egsdat   ncase=1650000000     cpu=464689.00  
+796 BladesXrayWindow_w796.egsdat   ncase=1650000000     cpu=460177.00  
+797 BladesXrayWindow_w797.egsdat   ncase=1650000000     cpu=462943.00  
+798 BladesXrayWindow_w798.egsdat   ncase=1500000000     cpu=428769.00  
+799 BladesXrayWindow_w799.egsdat   ncase=1650000000     cpu=461193.00  
+800 BladesXrayWindow_w800.egsdat   ncase=1500000000     cpu=430591.00  
+801 BladesXrayWindow_w801.egsdat   ncase=1350000000     cpu=448259.00  
+802 BladesXrayWindow_w802.egsdat   ncase=1350000000     cpu=451192.00  
+803 BladesXrayWindow_w803.egsdat   ncase=1350000000     cpu=451327.00  
+804 BladesXrayWindow_w804.egsdat   ncase=1650000000     cpu=458670.00  
+805 BladesXrayWindow_w805.egsdat   ncase=1350000000     cpu=439814.00  
+806 BladesXrayWindow_w806.egsdat   ncase=1350000000     cpu=439645.00  
+807 BladesXrayWindow_w807.egsdat   ncase=1350000000     cpu=451637.00  
+808 BladesXrayWindow_w808.egsdat   ncase=1350000000     cpu=435046.00  
+809 BladesXrayWindow_w809.egsdat   ncase=1350000000     cpu=441654.00  
+810 BladesXrayWindow_w810.egsdat   ncase=1350000000     cpu=444330.00  
+811 BladesXrayWindow_w811.egsdat   ncase=1350000000     cpu=449783.00  
+812 BladesXrayWindow_w812.egsdat   ncase=1500000000     cpu=448931.00  
+813 BladesXrayWindow_w813.egsdat   ncase=1350000000     cpu=443749.00  
+814 BladesXrayWindow_w814.egsdat   ncase=1350000000     cpu=446263.00  
+815 BladesXrayWindow_w815.egsdat   ncase=1350000000     cpu=450148.00  
+816 BladesXrayWindow_w816.egsdat   ncase=1350000000     cpu=448583.00  
+817 BladesXrayWindow_w817.egsdat   ncase=1350000000     cpu=442931.00  
+818 BladesXrayWindow_w818.egsdat   ncase=1350000000     cpu=450144.00  
+819 BladesXrayWindow_w819.egsdat   ncase=1350000000     cpu=444746.00  
+820 BladesXrayWindow_w820.egsdat   ncase=1350000000     cpu=440372.00  
+821 BladesXrayWindow_w821.egsdat   ncase=1350000000     cpu=442019.00  
+822 BladesXrayWindow_w822.egsdat   ncase=1350000000     cpu=445877.00  
+823 BladesXrayWindow_w823.egsdat   ncase=1350000000     cpu=436361.00  
+824 BladesXrayWindow_w824.egsdat   ncase=1350000000     cpu=449145.00  
+825 BladesXrayWindow_w825.egsdat   ncase=1200000000     cpu=413598.00  
+826 BladesXrayWindow_w826.egsdat   ncase=1350000000     cpu=450392.00  
+827 BladesXrayWindow_w827.egsdat   ncase=1350000000     cpu=448638.00  
+828 BladesXrayWindow_w828.egsdat   ncase=1350000000     cpu=431131.00  
+829 BladesXrayWindow_w829.egsdat   ncase=1500000000     cpu=424018.00  
+830 BladesXrayWindow_w830.egsdat   ncase=1500000000     cpu=418954.00  
+831 BladesXrayWindow_w831.egsdat   ncase=1500000000     cpu=414900.00  
+832 BladesXrayWindow_w832.egsdat   ncase=1500000000     cpu=418808.00  
+833 BladesXrayWindow_w833.egsdat   ncase=1350000000     cpu=453040.00  
+834 BladesXrayWindow_w834.egsdat   ncase=1350000000     cpu=449993.00  
+835 BladesXrayWindow_w835.egsdat   ncase=1350000000     cpu=448831.00  
+836 BladesXrayWindow_w836.egsdat   ncase=1350000000     cpu=447831.00  
+837 BladesXrayWindow_w837.egsdat   ncase=1350000000     cpu=448962.00  
+838 BladesXrayWindow_w838.egsdat   ncase=1200000000     cpu=407247.00  
+839 BladesXrayWindow_w839.egsdat   ncase=1350000000     cpu=449049.00  
+840 BladesXrayWindow_w840.egsdat   ncase=1350000000     cpu=451116.00  
+841 BladesXrayWindow_w841.egsdat   ncase=1350000000     cpu=450180.00  
+842 BladesXrayWindow_w842.egsdat   ncase=1350000000     cpu=449432.00  
+843 BladesXrayWindow_w843.egsdat   ncase=1350000000     cpu=445818.00  
+844 BladesXrayWindow_w844.egsdat   ncase=1350000000     cpu=432400.00  
+845 BladesXrayWindow_w845.egsdat   ncase=1350000000     cpu=436908.00  
+846 BladesXrayWindow_w846.egsdat   ncase=1350000000     cpu=440521.00  
+847 BladesXrayWindow_w847.egsdat   ncase=1350000000     cpu=439407.00  
+848 BladesXrayWindow_w848.egsdat   ncase=1350000000     cpu=434736.00  
+849 BladesXrayWindow_w849.egsdat   ncase=1350000000     cpu=432523.00  
+850 BladesXrayWindow_w850.egsdat   ncase=1350000000     cpu=439890.00  
+851 BladesXrayWindow_w851.egsdat   ncase=1350000000     cpu=436080.00  
+852 BladesXrayWindow_w852.egsdat   ncase=1350000000     cpu=438882.00  
+853 BladesXrayWindow_w853.egsdat   ncase=1350000000     cpu=437471.00  
+854 BladesXrayWindow_w854.egsdat   ncase=1350000000     cpu=438620.00  
+855 BladesXrayWindow_w855.egsdat   ncase=1350000000     cpu=447286.00  
+856 BladesXrayWindow_w856.egsdat   ncase=1350000000     cpu=438612.00  
+857 BladesXrayWindow_w857.egsdat   ncase=1350000000     cpu=438048.00  
+858 BladesXrayWindow_w858.egsdat   ncase=1350000000     cpu=445610.00  
+859 BladesXrayWindow_w859.egsdat   ncase=1350000000     cpu=446352.00  
+860 BladesXrayWindow_w860.egsdat   ncase=1350000000     cpu=441520.00  
+861 BladesXrayWindow_w861.egsdat   ncase=1350000000     cpu=439226.00  
+862 BladesXrayWindow_w862.egsdat   ncase=1200000000     cpu=409471.00  
+863 BladesXrayWindow_w863.egsdat   ncase=1500000000     cpu=429147.00  
+864 BladesXrayWindow_w864.egsdat   ncase=1200000000     cpu=396071.00  
+865 BladesXrayWindow_w865.egsdat   ncase=1500000000     cpu=426139.00  
+866 BladesXrayWindow_w866.egsdat   ncase=1200000000     cpu=399661.00  
+867 BladesXrayWindow_w867.egsdat   ncase=1200000000     cpu=394946.00  
+868 BladesXrayWindow_w868.egsdat   ncase=1200000000     cpu=397792.00  
+869 BladesXrayWindow_w869.egsdat   ncase=1200000000     cpu=403424.00  
+870 BladesXrayWindow_w870.egsdat   ncase=1500000000     cpu=418919.00  
+871 BladesXrayWindow_w871.egsdat   ncase=1500000000     cpu=425633.00  
+872 BladesXrayWindow_w872.egsdat   ncase=1500000000     cpu=420006.00  
+873 BladesXrayWindow_w873.egsdat   ncase=1500000000     cpu=418816.00  
+874 BladesXrayWindow_w874.egsdat   ncase=1350000000     cpu=393239.00  
+875 BladesXrayWindow_w875.egsdat   ncase=1350000000     cpu=389885.00  
+876 BladesXrayWindow_w876.egsdat   ncase=1350000000     cpu=392847.00  
+877 BladesXrayWindow_w877.egsdat   ncase=1350000000     cpu=389881.00  
+878 BladesXrayWindow_w878.egsdat   ncase=1350000000     cpu=393528.00  
+879 BladesXrayWindow_w879.egsdat   ncase=1350000000     cpu=389231.00  
+880 BladesXrayWindow_w880.egsdat   ncase=1350000000     cpu=397749.00  
+881 BladesXrayWindow_w881.egsdat   ncase=1350000000     cpu=391512.00  
+882 BladesXrayWindow_w882.egsdat   ncase=1350000000     cpu=387037.00  
+883 BladesXrayWindow_w883.egsdat   ncase=1350000000     cpu=393627.00  
+884 BladesXrayWindow_w884.egsdat   ncase=1350000000     cpu=393616.00  
+885 BladesXrayWindow_w885.egsdat   ncase=1350000000     cpu=394835.00  
+886 BladesXrayWindow_w886.egsdat   ncase=1350000000     cpu=406193.00  
+887 BladesXrayWindow_w887.egsdat   ncase=1350000000     cpu=391959.00  
+888 BladesXrayWindow_w888.egsdat   ncase=1350000000     cpu=394259.00  
+889 BladesXrayWindow_w889.egsdat   ncase=1350000000     cpu=385674.00  
+890 BladesXrayWindow_w890.egsdat   ncase=1350000000     cpu=386398.00  
+891 BladesXrayWindow_w891.egsdat   ncase=1350000000     cpu=394677.00  
+892 BladesXrayWindow_w892.egsdat   ncase=1350000000     cpu=403614.00  
+893 BladesXrayWindow_w893.egsdat   ncase=1350000000     cpu=387135.00  
+894 BladesXrayWindow_w894.egsdat   ncase=1350000000     cpu=385677.00  
+895 BladesXrayWindow_w895.egsdat   ncase=1350000000     cpu=390667.00  
+896 BladesXrayWindow_w896.egsdat   ncase=1350000000     cpu=391005.00  
+897 BladesXrayWindow_w897.egsdat   ncase=1350000000     cpu=390681.00  
+898 BladesXrayWindow_w898.egsdat   ncase=1350000000     cpu=392550.00  
+899 BladesXrayWindow_w899.egsdat   ncase=1500000000     cpu=426778.00  
+900 BladesXrayWindow_w900.egsdat   ncase=1350000000     cpu=386593.00  
+901 BladesXrayWindow_w901.egsdat   ncase=1350000000     cpu=389914.00  
+902 BladesXrayWindow_w902.egsdat   ncase=1350000000     cpu=390897.00  
+903 BladesXrayWindow_w903.egsdat   ncase=1350000000     cpu=391690.00  
+904 BladesXrayWindow_w904.egsdat   ncase=1350000000     cpu=386606.00  
+905 BladesXrayWindow_w905.egsdat   ncase=1500000000     cpu=428526.00  
+906 BladesXrayWindow_w906.egsdat   ncase=1500000000     cpu=425066.00  
+907 BladesXrayWindow_w907.egsdat   ncase=1350000000     cpu=395516.00  
+908 BladesXrayWindow_w908.egsdat   ncase=1500000000     cpu=428248.00  
+909 BladesXrayWindow_w909.egsdat   ncase=1350000000     cpu=387887.00  
+910 BladesXrayWindow_w910.egsdat   ncase=1500000000     cpu=428670.00  
+911 BladesXrayWindow_w911.egsdat   ncase=1500000000     cpu=428577.00  
+912 BladesXrayWindow_w912.egsdat   ncase=1350000000     cpu=389277.00  
+913 BladesXrayWindow_w913.egsdat   ncase=1350000000     cpu=400708.00  
+914 BladesXrayWindow_w914.egsdat   ncase=1350000000     cpu=385667.00  
+915 BladesXrayWindow_w915.egsdat   ncase=1350000000     cpu=376601.00  
+916 BladesXrayWindow_w916.egsdat   ncase=1350000000     cpu=384133.00  
+917 BladesXrayWindow_w917.egsdat   ncase=1350000000     cpu=382858.00  
+918 BladesXrayWindow_w918.egsdat   ncase=1350000000     cpu=387352.00  
+919 BladesXrayWindow_w919.egsdat   ncase=1350000000     cpu=388052.00  
+920 BladesXrayWindow_w920.egsdat   ncase=1350000000     cpu=384105.00  
+921 BladesXrayWindow_w921.egsdat   ncase=1350000000     cpu=396603.00  
+922 BladesXrayWindow_w922.egsdat   ncase=1350000000     cpu=385836.00  
+923 BladesXrayWindow_w923.egsdat   ncase=1350000000     cpu=385253.00  
+924 BladesXrayWindow_w924.egsdat   ncase=1350000000     cpu=380519.00  
+925 BladesXrayWindow_w925.egsdat   ncase=1350000000     cpu=384741.00  
+926 BladesXrayWindow_w926.egsdat   ncase=1350000000     cpu=393157.00  
+927 BladesXrayWindow_w927.egsdat   ncase=1350000000     cpu=393659.00  
+928 BladesXrayWindow_w928.egsdat   ncase=1350000000     cpu=383327.00  
+929 BladesXrayWindow_w929.egsdat   ncase=1350000000     cpu=381915.00  
+930 BladesXrayWindow_w930.egsdat   ncase=1350000000     cpu=374792.00  
+931 BladesXrayWindow_w931.egsdat   ncase=1350000000     cpu=376126.00  
+932 BladesXrayWindow_w932.egsdat   ncase=1350000000     cpu=376162.00  
+933 BladesXrayWindow_w933.egsdat   ncase=1350000000     cpu=374733.00  
+934 BladesXrayWindow_w934.egsdat   ncase=1350000000     cpu=376723.00  
+935 BladesXrayWindow_w935.egsdat   ncase=1350000000     cpu=379118.00  
+936 BladesXrayWindow_w936.egsdat   ncase=1350000000     cpu=374736.00  
+937 BladesXrayWindow_w937.egsdat   ncase=1350000000     cpu=384423.00  
+938 BladesXrayWindow_w938.egsdat   ncase=1350000000     cpu=383040.00  
+939 BladesXrayWindow_w939.egsdat   ncase=1350000000     cpu=379324.00  
+940 BladesXrayWindow_w940.egsdat   ncase=1350000000     cpu=384850.00  
+941 BladesXrayWindow_w941.egsdat   ncase=1350000000     cpu=382878.00  
+942 BladesXrayWindow_w942.egsdat   ncase=1350000000     cpu=390336.00  
+943 BladesXrayWindow_w943.egsdat   ncase=1350000000     cpu=378483.00  
+944 BladesXrayWindow_w944.egsdat   ncase=1350000000     cpu=380016.00  
+945 BladesXrayWindow_w945.egsdat   ncase=1350000000     cpu=383533.00  
+946 BladesXrayWindow_w946.egsdat   ncase=1350000000     cpu=383735.00  
+947 BladesXrayWindow_w947.egsdat   ncase=1350000000     cpu=388216.00  
+948 BladesXrayWindow_w948.egsdat   ncase=1350000000     cpu=380273.00  
+949 BladesXrayWindow_w949.egsdat   ncase=1350000000     cpu=388017.00  
+950 BladesXrayWindow_w950.egsdat   ncase=1350000000     cpu=376923.00  
+951 BladesXrayWindow_w951.egsdat   ncase=1350000000     cpu=378813.00  
+952 BladesXrayWindow_w952.egsdat   ncase=1200000000     cpu=342851.00  
+953 BladesXrayWindow_w953.egsdat   ncase=1200000000     cpu=343649.00  
+954 BladesXrayWindow_w954.egsdat   ncase=1200000000     cpu=343633.00  
+955 BladesXrayWindow_w955.egsdat   ncase=1200000000     cpu=341886.00  
+956 BladesXrayWindow_w956.egsdat   ncase=1350000000     cpu=377070.00  
+957 BladesXrayWindow_w957.egsdat   ncase=1200000000     cpu=345190.00  
+958 BladesXrayWindow_w958.egsdat   ncase=1200000000     cpu=345607.00  
+959 BladesXrayWindow_w959.egsdat   ncase=1200000000     cpu=344374.00  
+960 BladesXrayWindow_w960.egsdat   ncase=1200000000     cpu=352889.00  
+961 BladesXrayWindow_w961.egsdat   ncase=1200000000     cpu=340842.00  
+962 BladesXrayWindow_w962.egsdat   ncase=1200000000     cpu=339106.00  
+963 BladesXrayWindow_w963.egsdat   ncase=1200000000     cpu=339787.00  
+964 BladesXrayWindow_w964.egsdat   ncase=1200000000     cpu=346755.00  
+965 BladesXrayWindow_w965.egsdat   ncase=1200000000     cpu=347611.00  
+966 BladesXrayWindow_w966.egsdat   ncase=1200000000     cpu=344903.00  
+967 BladesXrayWindow_w967.egsdat   ncase=1200000000     cpu=344961.00  
+968 BladesXrayWindow_w968.egsdat   ncase=1200000000     cpu=342381.00  
+969 BladesXrayWindow_w969.egsdat   ncase=1200000000     cpu=343321.00  
+970 BladesXrayWindow_w970.egsdat   ncase=1050000000     cpu=316124.00  
+971 BladesXrayWindow_w971.egsdat   ncase=1050000000     cpu=311768.00  
+972 BladesXrayWindow_w972.egsdat   ncase=1050000000     cpu=318795.00  
+973 BladesXrayWindow_w973.egsdat   ncase=1050000000     cpu=310463.00  
+974 BladesXrayWindow_w974.egsdat   ncase=900000000      cpu=253084.00  
+975 BladesXrayWindow_w975.egsdat   ncase=900000000      cpu=259715.00  
+976 BladesXrayWindow_w976.egsdat   ncase=900000000      cpu=261091.00  
+977 BladesXrayWindow_w977.egsdat   ncase=900000000      cpu=252913.00  
+978 BladesXrayWindow_w978.egsdat   ncase=900000000      cpu=251630.00  
+979 BladesXrayWindow_w979.egsdat   ncase=750000000      cpu=231469.00  
+980 BladesXrayWindow_w980.egsdat   ncase=750000000      cpu=227967.00  
+981 BladesXrayWindow_w981.egsdat   ncase=900000000      cpu=255587.00  
+982 BladesXrayWindow_w982.egsdat   ncase=900000000      cpu=255823.00  
+983 BladesXrayWindow_w983.egsdat   ncase=750000000      cpu=230446.00  
+984 BladesXrayWindow_w984.egsdat   ncase=750000000      cpu=214270.00  
+985 BladesXrayWindow_w985.egsdat   ncase=750000000      cpu=220644.00  
+986 BladesXrayWindow_w986.egsdat   ncase=750000000      cpu=215681.00  
+987 BladesXrayWindow_w987.egsdat   ncase=900000000      cpu=244859.00  
+988 BladesXrayWindow_w988.egsdat   ncase=900000000      cpu=250171.00  
+989 BladesXrayWindow_w989.egsdat   ncase=750000000      cpu=229983.00  
+990 BladesXrayWindow_w990.egsdat   ncase=750000000      cpu=220302.00  
+991 BladesXrayWindow_w991.egsdat   ncase=750000000      cpu=225157.00  
+992 BladesXrayWindow_w992.egsdat   ncase=750000000      cpu=221895.00  
+993 BladesXrayWindow_w993.egsdat   ncase=750000000      cpu=227852.00  
+994 BladesXrayWindow_w994.egsdat   ncase=900000000      cpu=246888.00  
+995 BladesXrayWindow_w995.egsdat   ncase=900000000      cpu=248571.00  
+996 BladesXrayWindow_w996.egsdat   ncase=750000000      cpu=228739.00  
+997 BladesXrayWindow_w997.egsdat   ncase=750000000      cpu=227823.00  
+998 BladesXrayWindow_w998.egsdat   ncase=750000000      cpu=229353.00  
+999 BladesXrayWindow_w999.egsdat   ncase=750000000      cpu=224959.00  
+1000 BladesXrayWindow_w1000.egsdat  ncase=750000000      cpu=243335.00  
+=======================================================================
+                            Total ncase=1500000000000  cpu=467671544.00
+
+
+
+Finished simulation
+
+Total cpu time for this run:            1.57 (sec.) 0.0004(hours)
+CPU time including previous runs:       467671545.57 (sec.) 129908.7627 (hours)
+Histories per hour:                     1.15466e+07   
+Number of random numbers used:          4780935947199976
+Number of electron CH steps:            6.48241e+13   
+Number of all electron steps:           9.55102e+14   
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     10000
+   Total tracks scored:     758
+   Still being scored:      0
+   Output file name:        /home/rsmina/EGSnrc/egs_home/TB/BladesXrayWindow_w608_w608.ptracks
+
+
+======================================================
+Dose Scoring Object(profilexFilm)
+======================================================
+=> last case = 1500000000000 fluence = 1.5e+12
+
+
+==> Summary of region dosimetry (per particle)
+  ir  medium         rho/[g/cm3]  V/cm3      Edep/[MeV]              D/[Gy]            
+---------------------------------------------------------------------------------------
+   0 film              1.140     1.0000 5.4734e-13 +/- 17.966 % 7.6916e-23 +/- 17.966 %
+   1 film              1.140     1.0000 6.0107e-13 +/- 16.656 % 8.4466e-23 +/- 16.656 %
+   2 film              1.140     1.0000 8.2185e-13 +/- 14.911 % 1.1549e-22 +/- 14.911 %
+   3 film              1.140     1.0000 8.6059e-13 +/- 14.350 % 1.2094e-22 +/- 14.350 %
+   4 film              1.140     1.0000 1.4244e-12 +/- 11.517 % 2.0017e-22 +/- 11.517 %
+   5 film              1.140     1.0000 1.2367e-12 +/- 11.847 % 1.7379e-22 +/- 11.847 %
+   6 film              1.140     1.0000 3.4004e-12 +/- 7.257  % 4.7784e-22 +/- 7.257  %
+   7 film              1.140     1.0000 6.9866e-12 +/- 4.923  % 9.8180e-22 +/- 4.923  %
+   8 film              1.140     1.0000 9.0661e-12 +/- 4.282  % 1.2740e-21 +/- 4.282  %
+   9 film              1.140     1.0000 9.6997e-12 +/- 4.053  % 1.3631e-21 +/- 4.053  %
+  10 film              1.140     1.0000 1.0650e-11 +/- 3.939  % 1.4966e-21 +/- 3.939  %
+  11 film              1.140     1.0000 1.1236e-11 +/- 3.881  % 1.5790e-21 +/- 3.881  %
+  12 film              1.140     1.0000 1.0868e-11 +/- 3.893  % 1.5273e-21 +/- 3.893  %
+  13 film              1.140     1.0000 1.0503e-11 +/- 3.957  % 1.4759e-21 +/- 3.957  %
+  14 film              1.140     1.0000 1.1002e-11 +/- 3.887  % 1.5460e-21 +/- 3.887  %
+  15 film              1.140     1.0000 1.1527e-11 +/- 3.857  % 1.6199e-21 +/- 3.857  %
+  16 film              1.140     1.0000 1.1161e-11 +/- 3.890  % 1.5684e-21 +/- 3.890  %
+  17 film              1.140     1.0000 1.0529e-11 +/- 3.955  % 1.4796e-21 +/- 3.955  %
+  18 film              1.140     1.0000 1.0759e-11 +/- 3.990  % 1.5120e-21 +/- 3.990  %
+  19 film              1.140     1.0000 1.1277e-11 +/- 3.898  % 1.5847e-21 +/- 3.898  %
+  20 film              1.140     1.0000 1.1196e-11 +/- 4.018  % 1.5734e-21 +/- 4.018  %
+  21 film              1.140     1.0000 1.1213e-11 +/- 3.964  % 1.5757e-21 +/- 3.964  %
+  22 film              1.140     1.0000 1.0798e-11 +/- 3.886  % 1.5174e-21 +/- 3.886  %
+  23 film              1.140     1.0000 1.1108e-11 +/- 3.831  % 1.5609e-21 +/- 3.831  %
+  24 film              1.140     1.0000 1.0963e-11 +/- 3.922  % 1.5406e-21 +/- 3.922  %
+  25 film              1.140     1.0000 1.0299e-11 +/- 4.053  % 1.4472e-21 +/- 4.053  %
+  26 film              1.140     1.0000 1.1585e-11 +/- 3.845  % 1.6280e-21 +/- 3.845  %
+  27 film              1.140     1.0000 1.0708e-11 +/- 4.043  % 1.5048e-21 +/- 4.043  %
+  28 film              1.140     1.0000 1.0234e-11 +/- 4.005  % 1.4381e-21 +/- 4.005  %
+  29 film              1.140     1.0000 1.0011e-11 +/- 4.044  % 1.4068e-21 +/- 4.044  %
+  30 film              1.140     1.0000 9.6359e-12 +/- 4.123  % 1.3541e-21 +/- 4.123  %
+  31 film              1.140     1.0000 1.0559e-11 +/- 4.097  % 1.4838e-21 +/- 4.097  %
+  32 film              1.140     1.0000 7.6625e-12 +/- 4.743  % 1.0768e-21 +/- 4.743  %
+  33 film              1.140     1.0000 3.4864e-12 +/- 7.015  % 4.8993e-22 +/- 7.015  %
+  34 film              1.140     1.0000 1.5655e-12 +/- 10.928 % 2.1999e-22 +/- 10.928 %
+  35 film              1.140     1.0000 9.4922e-13 +/- 12.457 % 1.3339e-22 +/- 12.457 %
+  36 film              1.140     1.0000 9.8465e-13 +/- 13.865 % 1.3837e-22 +/- 13.865 %
+  37 film              1.140     1.0000 6.8665e-13 +/- 15.193 % 9.6492e-23 +/- 15.193 %
+  38 film              1.140     1.0000 4.5869e-13 +/- 18.285 % 6.4458e-23 +/- 18.285 %
+  39 film              1.140     1.0000 3.6948e-13 +/- 20.737 % 5.1922e-23 +/- 20.737 %
+ 432 graphite          2.000     1.0000 1.6021e-08 +/- 0.148  % 1.2833e-18 +/- 0.148  %
+ 433 graphite          2.000     1.0000 1.1634e-11 +/- 3.811  % 9.3188e-22 +/- 3.811  %
+ 434 graphite          2.000     1.0000 1.6049e-08 +/- 0.147  % 1.2855e-18 +/- 0.147  %
+ 435 molybdenum       10.220     1.0000 9.6436e-09 +/- 0.186  % 1.5116e-19 +/- 0.186  %
+ 436 molybdenum       10.220     1.0000 1.2803e-11 +/- 5.116  % 2.0068e-22 +/- 5.116  %
+ 437 molybdenum       10.220     1.0000 9.6192e-09 +/- 0.186  % 1.5078e-19 +/- 0.186  %
+ 438 molybdenum       10.220     1.0000 1.5042e-07 +/- 0.047  % 2.3578e-18 +/- 0.047  %
+ 439 molybdenum       10.220     1.0000 1.0303e-06 +/- 0.018  % 1.6150e-17 +/- 0.018  %
+ 440 molybdenum       10.220     1.0000 1.5028e-07 +/- 0.047  % 2.3556e-18 +/- 0.047  %
+ 441 graphite          2.000     1.0000 2.2255e-07 +/- 0.040  % 1.7826e-17 +/- 0.040  %
+ 442 graphite          2.000     1.0000 8.9402e-10 +/- 0.413  % 7.1611e-20 +/- 0.413  %
+ 443 graphite          2.000     1.0000 2.2254e-07 +/- 0.040  % 1.7825e-17 +/- 0.040  %
+ 444 molybdenum       10.220     1.0000 1.4807e-07 +/- 0.048  % 2.3210e-18 +/- 0.048  %
+ 445 molybdenum       10.220     1.0000 3.6559e-08 +/- 0.108  % 5.7307e-19 +/- 0.108  %
+ 446 molybdenum       10.220     1.0000 1.4796e-07 +/- 0.048  % 2.3193e-18 +/- 0.048  %
+ 447 molybdenum       10.220     1.0000 1.7236e-06 +/- 0.014  % 2.7018e-17 +/- 0.014  %
+ 448 target_material  19.386     1.0000 6.0029e-02 +/- 0.000  % 4.9606e-13 +/- 0.000  %
+ 449 molybdenum       10.220     1.0000 1.7239e-06 +/- 0.014  % 2.7022e-17 +/- 0.014  %
+ 450 graphite          2.000     1.0000 3.2227e-07 +/- 0.033  % 2.5814e-17 +/- 0.033  %
+ 451 graphite          2.000     1.0000 1.6331e-06 +/- 0.015  % 1.3081e-16 +/- 0.015  %
+ 452 graphite          2.000     1.0000 3.2225e-07 +/- 0.033  % 2.5813e-17 +/- 0.033  %
+ 453 molybdenum       10.220     1.0000 2.6172e-07 +/- 0.035  % 4.1024e-18 +/- 0.035  %
+ 454 molybdenum       10.220     1.0000 1.3045e-06 +/- 0.016  % 2.0449e-17 +/- 0.016  %
+ 455 molybdenum       10.220     1.0000 2.6183e-07 +/- 0.035  % 4.1043e-18 +/- 0.035  %
+ 456 molybdenum       10.220     1.0000 4.4303e-07 +/- 0.028  % 6.9446e-18 +/- 0.028  %
+ 457 molybdenum       10.220     1.0000 2.7732e-06 +/- 0.011  % 4.3470e-17 +/- 0.011  %
+ 458 molybdenum       10.220     1.0000 4.4295e-07 +/- 0.028  % 6.9433e-18 +/- 0.028  %
+ 468 (null)            0.000     1.0000 1.5226e-08 +/- 0.021  %        inf +/- 0.021  %
+ 470 beryllium         1.848     1.0000 3.0333e-03 +/- 0.000  % 2.6295e-13 +/- 0.000  %
+ 471 steel             8.060     1.0000 1.5941e-03 +/- 0.001  % 3.1684e-14 +/- 0.001  %
+ 472 oil               1.154     1.0000 4.1135e-06 +/- 0.005  % 5.7105e-16 +/- 0.005  %
+ 474 aluminum          2.699     1.0000 6.5280e-06 +/- 0.006  % 3.8749e-16 +/- 0.006  %
+ 504 air               0.001     1.0000 2.3441e-09 +/- 0.248  % 3.1169e-16 +/- 0.248  %
+ 516 pb               11.350     1.0000 6.7185e-06 +/- 0.007  % 9.4828e-17 +/- 0.007  %
+ 517 aluminum          2.699     1.0000 1.1752e-07 +/- 0.048  % 6.9760e-18 +/- 0.048  %
+ 519 air               0.001     1.0000 3.6720e-10 +/- 0.540  % 4.8826e-17 +/- 0.540  %
+ 520 pb               11.350     1.0000 7.6622e-08 +/- 0.070  % 1.0815e-18 +/- 0.070  %
+ 521 aluminum          2.699     1.0000 9.0897e-08 +/- 0.056  % 5.3954e-18 +/- 0.056  %
+ 522 air               0.001     1.0000 5.4591e-10 +/- 0.457  % 7.2589e-17 +/- 0.457  %
+ 523 pb               11.350     1.0000 1.0549e-07 +/- 0.058  % 1.4890e-18 +/- 0.058  %
+ 524 aluminum          2.699     1.0000 3.0768e-09 +/- 0.324  % 1.8263e-19 +/- 0.324  %
+ 525 air               0.001     1.0000 1.0510e-10 +/- 0.743  % 1.3975e-17 +/- 0.743  %
+ 526 pb               11.350     1.0000 6.1309e-09 +/- 0.254  % 8.6534e-20 +/- 0.254  %
+ 528 aluminum          2.699     1.0000 4.5225e-11 +/- 2.627  % 2.6845e-21 +/- 2.627  %
+ 540 pb               11.350     1.0000 1.1200e-06 +/- 0.018  % 1.5808e-17 +/- 0.018  %
+ 541 air               0.001     1.0000 7.2614e-10 +/- 0.355  % 9.6555e-17 +/- 0.355  %
+ 542 pb               11.350     1.0000 1.9496e-06 +/- 0.014  % 2.7518e-17 +/- 0.014  %
+ 543 steel             8.060     1.0000 1.5609e-08 +/- 0.147  % 3.1024e-19 +/- 0.147  %
+ 544 air               0.001     1.0000 3.5481e-10 +/- 0.452  % 4.7179e-17 +/- 0.452  %
+ 545 steel             8.060     1.0000 1.5994e-08 +/- 0.144  % 3.1790e-19 +/- 0.144  %
+ 549 pb               11.350     1.0000 4.6067e-07 +/- 0.028  % 6.5021e-18 +/- 0.028  %
+ 550 air               0.001     1.0000 2.1661e-10 +/- 0.654  % 2.8802e-17 +/- 0.654  %
+ 551 pb               11.350     1.0000 4.6044e-07 +/- 0.028  % 6.4989e-18 +/- 0.028  %
+ 552 steel             8.060     1.0000 5.6350e-09 +/- 0.241  % 1.1200e-19 +/- 0.241  %
+ 553 air               0.001     1.0000 9.8390e-11 +/- 0.867  % 1.3083e-17 +/- 0.867  %
+ 554 steel             8.060     1.0000 5.6448e-09 +/- 0.240  % 1.1220e-19 +/- 0.240  %
+ 558 steel             8.060     1.0000 1.6533e-11 +/- 4.893  % 3.2860e-22 +/- 4.893  %
+ 559 steel             8.060     1.0000 3.6994e-10 +/- 0.961  % 7.3530e-21 +/- 0.961  %
+ 560 steel             8.060     1.0000 1.5364e-11 +/- 5.022  % 3.0537e-22 +/- 5.022  %
+ 561 steel             8.060     1.0000 5.3986e-08 +/- 0.081  % 1.0730e-18 +/- 0.081  %
+ 562 air               0.001     1.0000 8.0133e-10 +/- 0.359  % 1.0655e-16 +/- 0.359  %
+ 563 steel             8.060     1.0000 5.4034e-08 +/- 0.081  % 1.0740e-18 +/- 0.081  %
+ 564 steel             8.060     1.0000 1.5699e-11 +/- 5.029  % 3.1202e-22 +/- 5.029  %
+ 565 steel             8.060     1.0000 3.7491e-10 +/- 0.961  % 7.4517e-21 +/- 0.961  %
+ 566 steel             8.060     1.0000 1.5397e-11 +/- 5.033  % 3.0603e-22 +/- 5.033  %
+ 576 air               0.001     1.0000 7.1227e-09 +/- 0.170  % 9.4710e-16 +/- 0.170  %
+ 720 air               0.001     1.0000 4.3372e-09 +/- 0.152  % 5.7672e-16 +/- 0.152  %
+ 864 polystyrene       1.060     1.0000 5.1695e-07 +/- 0.024  % 7.8127e-17 +/- 0.024  %
+1296 air               0.001     1.0000 6.2759e-09 +/- 0.178  % 8.3450e-16 +/- 0.178  %
+---------------------------------------------------------------------------------------
+
+ EGS_DoseScoring: Writing dose data for EGS_XYZGeometry profilex... 
+ Output file name: /home/rsmina/EGSnrc/egs_home/TB/profilexFilm.3ddose
+
+======================================================
+
+
+ last case = 1056413696 Etot = 1.5e+11
+
+
+======================================================
+ Energy fractions
+======================================================
+The first and last items in the following list of energy fractions are the reflected and transmitted energy, respectively. These two values are only meaningful if the source is directed in the positive z-direction. The remaining values are the deposited energy fractions in the regions of the geometry, but notice that the identifying index is the region number offset by 1 (ir+1).
+
+ir+1 | Reflected, deposited, or transmitted energy fraction for 1500000000000 particles:
+
+  0  1.553958e-01 +/- 2.626813e-07  
+  1  5.473417e-12 +/- 9.833659e-13  
+  2  6.010673e-12 +/- 1.001133e-12  
+  3  8.218463e-12 +/- 1.225493e-12  
+  4  8.605900e-12 +/- 1.234989e-12  
+  5  1.424416e-11 +/- 1.640524e-12  
+  6  1.236683e-11 +/- 1.465039e-12  
+  7  3.400389e-11 +/- 2.467588e-12  
+  8  6.986589e-11 +/- 3.439344e-12  
+  9  9.066148e-11 +/- 3.881924e-12  
+  10  9.699687e-11 +/- 3.931362e-12  
+  11  1.064993e-10 +/- 4.194597e-12  
+  12  1.123598e-10 +/- 4.360602e-12  
+  13  1.086827e-10 +/- 4.231558e-12  
+  14  1.050273e-10 +/- 4.155904e-12  
+  15  1.100169e-10 +/- 4.276105e-12  
+  16  1.152729e-10 +/- 4.445515e-12  
+  17  1.116061e-10 +/- 4.341796e-12  
+  18  1.052915e-10 +/- 4.164772e-12  
+  19  1.075939e-10 +/- 4.292995e-12  
+  20  1.127664e-10 +/- 4.395892e-12  
+  21  1.119619e-10 +/- 4.498435e-12  
+  22  1.121312e-10 +/- 4.444850e-12  
+  23  1.079779e-10 +/- 4.195786e-12  
+  24  1.110758e-10 +/- 4.254788e-12  
+  25  1.096320e-10 +/- 4.300009e-12  
+  26  1.029856e-10 +/- 4.174083e-12  
+  27  1.158518e-10 +/- 4.454890e-12  
+  28  1.070844e-10 +/- 4.329185e-12  
+  29  1.023370e-10 +/- 4.099108e-12  
+  30  1.001076e-10 +/- 4.048762e-12  
+  31  9.635890e-11 +/- 3.972525e-12  
+  32  1.055882e-10 +/- 4.326368e-12  
+  33  7.662503e-11 +/- 3.634370e-12  
+  34  3.486410e-11 +/- 2.445678e-12  
+  35  1.565488e-11 +/- 1.710699e-12  
+  36  9.492227e-12 +/- 1.182400e-12  
+  37  9.846522e-12 +/- 1.365190e-12  
+  38  6.866484e-12 +/- 1.043199e-12  
+  39  4.586912e-12 +/- 8.387345e-13  
+  40  3.694793e-12 +/- 7.661780e-13  
+  41  0.000000e+00 +/- 0.000000e+00  
+  42  0.000000e+00 +/- 0.000000e+00  
+  43  0.000000e+00 +/- 0.000000e+00  
+  44  0.000000e+00 +/- 0.000000e+00  
+  45  0.000000e+00 +/- 0.000000e+00  
+  46  0.000000e+00 +/- 0.000000e+00  
+  47  0.000000e+00 +/- 0.000000e+00  
+  48  0.000000e+00 +/- 0.000000e+00  
+  49  0.000000e+00 +/- 0.000000e+00  
+  50  0.000000e+00 +/- 0.000000e+00  
+  51  0.000000e+00 +/- 0.000000e+00  
+  52  0.000000e+00 +/- 0.000000e+00  
+  53  0.000000e+00 +/- 0.000000e+00  
+  54  0.000000e+00 +/- 0.000000e+00  
+  55  0.000000e+00 +/- 0.000000e+00  
+  56  0.000000e+00 +/- 0.000000e+00  
+  57  0.000000e+00 +/- 0.000000e+00  
+  58  0.000000e+00 +/- 0.000000e+00  
+  59  0.000000e+00 +/- 0.000000e+00  
+  60  0.000000e+00 +/- 0.000000e+00  
+  61  0.000000e+00 +/- 0.000000e+00  
+  62  0.000000e+00 +/- 0.000000e+00  
+  63  0.000000e+00 +/- 0.000000e+00  
+  64  0.000000e+00 +/- 0.000000e+00  
+  65  0.000000e+00 +/- 0.000000e+00  
+  66  0.000000e+00 +/- 0.000000e+00  
+  67  0.000000e+00 +/- 0.000000e+00  
+  68  0.000000e+00 +/- 0.000000e+00  
+  69  0.000000e+00 +/- 0.000000e+00  
+  70  0.000000e+00 +/- 0.000000e+00  
+  71  0.000000e+00 +/- 0.000000e+00  
+  72  0.000000e+00 +/- 0.000000e+00  
+  73  0.000000e+00 +/- 0.000000e+00  
+  74  0.000000e+00 +/- 0.000000e+00  
+  75  0.000000e+00 +/- 0.000000e+00  
+  76  0.000000e+00 +/- 0.000000e+00  
+  77  0.000000e+00 +/- 0.000000e+00  
+  78  0.000000e+00 +/- 0.000000e+00  
+  79  0.000000e+00 +/- 0.000000e+00  
+  80  0.000000e+00 +/- 0.000000e+00  
+  81  0.000000e+00 +/- 0.000000e+00  
+  82  0.000000e+00 +/- 0.000000e+00  
+  83  0.000000e+00 +/- 0.000000e+00  
+  84  0.000000e+00 +/- 0.000000e+00  
+  85  0.000000e+00 +/- 0.000000e+00  
+  86  0.000000e+00 +/- 0.000000e+00  
+  87  0.000000e+00 +/- 0.000000e+00  
+  88  0.000000e+00 +/- 0.000000e+00  
+  89  0.000000e+00 +/- 0.000000e+00  
+  90  0.000000e+00 +/- 0.000000e+00  
+  91  0.000000e+00 +/- 0.000000e+00  
+  92  0.000000e+00 +/- 0.000000e+00  
+  93  0.000000e+00 +/- 0.000000e+00  
+  94  0.000000e+00 +/- 0.000000e+00  
+  95  0.000000e+00 +/- 0.000000e+00  
+  96  0.000000e+00 +/- 0.000000e+00  
+  97  0.000000e+00 +/- 0.000000e+00  
+  98  0.000000e+00 +/- 0.000000e+00  
+  99  0.000000e+00 +/- 0.000000e+00  
+  100  0.000000e+00 +/- 0.000000e+00  
+  101  0.000000e+00 +/- 0.000000e+00  
+  102  0.000000e+00 +/- 0.000000e+00  
+  103  0.000000e+00 +/- 0.000000e+00  
+  104  0.000000e+00 +/- 0.000000e+00  
+  105  0.000000e+00 +/- 0.000000e+00  
+  106  0.000000e+00 +/- 0.000000e+00  
+  107  0.000000e+00 +/- 0.000000e+00  
+  108  0.000000e+00 +/- 0.000000e+00  
+  109  0.000000e+00 +/- 0.000000e+00  
+  110  0.000000e+00 +/- 0.000000e+00  
+  111  0.000000e+00 +/- 0.000000e+00  
+  112  0.000000e+00 +/- 0.000000e+00  
+  113  0.000000e+00 +/- 0.000000e+00  
+  114  0.000000e+00 +/- 0.000000e+00  
+  115  0.000000e+00 +/- 0.000000e+00  
+  116  0.000000e+00 +/- 0.000000e+00  
+  117  0.000000e+00 +/- 0.000000e+00  
+  118  0.000000e+00 +/- 0.000000e+00  
+  119  0.000000e+00 +/- 0.000000e+00  
+  120  0.000000e+00 +/- 0.000000e+00  
+  121  0.000000e+00 +/- 0.000000e+00  
+  122  0.000000e+00 +/- 0.000000e+00  
+  123  0.000000e+00 +/- 0.000000e+00  
+  124  0.000000e+00 +/- 0.000000e+00  
+  125  0.000000e+00 +/- 0.000000e+00  
+  126  0.000000e+00 +/- 0.000000e+00  
+  127  0.000000e+00 +/- 0.000000e+00  
+  128  0.000000e+00 +/- 0.000000e+00  
+  129  0.000000e+00 +/- 0.000000e+00  
+  130  0.000000e+00 +/- 0.000000e+00  
+  131  0.000000e+00 +/- 0.000000e+00  
+  132  0.000000e+00 +/- 0.000000e+00  
+  133  0.000000e+00 +/- 0.000000e+00  
+  134  0.000000e+00 +/- 0.000000e+00  
+  135  0.000000e+00 +/- 0.000000e+00  
+  136  0.000000e+00 +/- 0.000000e+00  
+  137  0.000000e+00 +/- 0.000000e+00  
+  138  0.000000e+00 +/- 0.000000e+00  
+  139  0.000000e+00 +/- 0.000000e+00  
+  140  0.000000e+00 +/- 0.000000e+00  
+  141  0.000000e+00 +/- 0.000000e+00  
+  142  0.000000e+00 +/- 0.000000e+00  
+  143  0.000000e+00 +/- 0.000000e+00  
+  144  0.000000e+00 +/- 0.000000e+00  
+  145  0.000000e+00 +/- 0.000000e+00  
+  146  0.000000e+00 +/- 0.000000e+00  
+  147  0.000000e+00 +/- 0.000000e+00  
+  148  0.000000e+00 +/- 0.000000e+00  
+  149  0.000000e+00 +/- 0.000000e+00  
+  150  0.000000e+00 +/- 0.000000e+00  
+  151  0.000000e+00 +/- 0.000000e+00  
+  152  0.000000e+00 +/- 0.000000e+00  
+  153  0.000000e+00 +/- 0.000000e+00  
+  154  0.000000e+00 +/- 0.000000e+00  
+  155  0.000000e+00 +/- 0.000000e+00  
+  156  0.000000e+00 +/- 0.000000e+00  
+  157  0.000000e+00 +/- 0.000000e+00  
+  158  0.000000e+00 +/- 0.000000e+00  
+  159  0.000000e+00 +/- 0.000000e+00  
+  160  0.000000e+00 +/- 0.000000e+00  
+  161  0.000000e+00 +/- 0.000000e+00  
+  162  0.000000e+00 +/- 0.000000e+00  
+  163  0.000000e+00 +/- 0.000000e+00  
+  164  0.000000e+00 +/- 0.000000e+00  
+  165  0.000000e+00 +/- 0.000000e+00  
+  166  0.000000e+00 +/- 0.000000e+00  
+  167  0.000000e+00 +/- 0.000000e+00  
+  168  0.000000e+00 +/- 0.000000e+00  
+  169  0.000000e+00 +/- 0.000000e+00  
+  170  0.000000e+00 +/- 0.000000e+00  
+  171  0.000000e+00 +/- 0.000000e+00  
+  172  0.000000e+00 +/- 0.000000e+00  
+  173  0.000000e+00 +/- 0.000000e+00  
+  174  0.000000e+00 +/- 0.000000e+00  
+  175  0.000000e+00 +/- 0.000000e+00  
+  176  0.000000e+00 +/- 0.000000e+00  
+  177  0.000000e+00 +/- 0.000000e+00  
+  178  0.000000e+00 +/- 0.000000e+00  
+  179  0.000000e+00 +/- 0.000000e+00  
+  180  0.000000e+00 +/- 0.000000e+00  
+  181  0.000000e+00 +/- 0.000000e+00  
+  182  0.000000e+00 +/- 0.000000e+00  
+  183  0.000000e+00 +/- 0.000000e+00  
+  184  0.000000e+00 +/- 0.000000e+00  
+  185  0.000000e+00 +/- 0.000000e+00  
+  186  0.000000e+00 +/- 0.000000e+00  
+  187  0.000000e+00 +/- 0.000000e+00  
+  188  0.000000e+00 +/- 0.000000e+00  
+  189  0.000000e+00 +/- 0.000000e+00  
+  190  0.000000e+00 +/- 0.000000e+00  
+  191  0.000000e+00 +/- 0.000000e+00  
+  192  0.000000e+00 +/- 0.000000e+00  
+  193  0.000000e+00 +/- 0.000000e+00  
+  194  0.000000e+00 +/- 0.000000e+00  
+  195  0.000000e+00 +/- 0.000000e+00  
+  196  0.000000e+00 +/- 0.000000e+00  
+  197  0.000000e+00 +/- 0.000000e+00  
+  198  0.000000e+00 +/- 0.000000e+00  
+  199  0.000000e+00 +/- 0.000000e+00  
+  200  0.000000e+00 +/- 0.000000e+00  
+  201  0.000000e+00 +/- 0.000000e+00  
+  202  0.000000e+00 +/- 0.000000e+00  
+  203  0.000000e+00 +/- 0.000000e+00  
+  204  0.000000e+00 +/- 0.000000e+00  
+  205  0.000000e+00 +/- 0.000000e+00  
+  206  0.000000e+00 +/- 0.000000e+00  
+  207  0.000000e+00 +/- 0.000000e+00  
+  208  0.000000e+00 +/- 0.000000e+00  
+  209  0.000000e+00 +/- 0.000000e+00  
+  210  0.000000e+00 +/- 0.000000e+00  
+  211  0.000000e+00 +/- 0.000000e+00  
+  212  0.000000e+00 +/- 0.000000e+00  
+  213  0.000000e+00 +/- 0.000000e+00  
+  214  0.000000e+00 +/- 0.000000e+00  
+  215  0.000000e+00 +/- 0.000000e+00  
+  216  0.000000e+00 +/- 0.000000e+00  
+  217  0.000000e+00 +/- 0.000000e+00  
+  218  0.000000e+00 +/- 0.000000e+00  
+  219  0.000000e+00 +/- 0.000000e+00  
+  220  0.000000e+00 +/- 0.000000e+00  
+  221  0.000000e+00 +/- 0.000000e+00  
+  222  0.000000e+00 +/- 0.000000e+00  
+  223  0.000000e+00 +/- 0.000000e+00  
+  224  0.000000e+00 +/- 0.000000e+00  
+  225  0.000000e+00 +/- 0.000000e+00  
+  226  0.000000e+00 +/- 0.000000e+00  
+  227  0.000000e+00 +/- 0.000000e+00  
+  228  0.000000e+00 +/- 0.000000e+00  
+  229  0.000000e+00 +/- 0.000000e+00  
+  230  0.000000e+00 +/- 0.000000e+00  
+  231  0.000000e+00 +/- 0.000000e+00  
+  232  0.000000e+00 +/- 0.000000e+00  
+  233  0.000000e+00 +/- 0.000000e+00  
+  234  0.000000e+00 +/- 0.000000e+00  
+  235  0.000000e+00 +/- 0.000000e+00  
+  236  0.000000e+00 +/- 0.000000e+00  
+  237  0.000000e+00 +/- 0.000000e+00  
+  238  0.000000e+00 +/- 0.000000e+00  
+  239  0.000000e+00 +/- 0.000000e+00  
+  240  0.000000e+00 +/- 0.000000e+00  
+  241  0.000000e+00 +/- 0.000000e+00  
+  242  0.000000e+00 +/- 0.000000e+00  
+  243  0.000000e+00 +/- 0.000000e+00  
+  244  0.000000e+00 +/- 0.000000e+00  
+  245  0.000000e+00 +/- 0.000000e+00  
+  246  0.000000e+00 +/- 0.000000e+00  
+  247  0.000000e+00 +/- 0.000000e+00  
+  248  0.000000e+00 +/- 0.000000e+00  
+  249  0.000000e+00 +/- 0.000000e+00  
+  250  0.000000e+00 +/- 0.000000e+00  
+  251  0.000000e+00 +/- 0.000000e+00  
+  252  0.000000e+00 +/- 0.000000e+00  
+  253  0.000000e+00 +/- 0.000000e+00  
+  254  0.000000e+00 +/- 0.000000e+00  
+  255  0.000000e+00 +/- 0.000000e+00  
+  256  0.000000e+00 +/- 0.000000e+00  
+  257  0.000000e+00 +/- 0.000000e+00  
+  258  0.000000e+00 +/- 0.000000e+00  
+  259  0.000000e+00 +/- 0.000000e+00  
+  260  0.000000e+00 +/- 0.000000e+00  
+  261  0.000000e+00 +/- 0.000000e+00  
+  262  0.000000e+00 +/- 0.000000e+00  
+  263  0.000000e+00 +/- 0.000000e+00  
+  264  0.000000e+00 +/- 0.000000e+00  
+  265  0.000000e+00 +/- 0.000000e+00  
+  266  0.000000e+00 +/- 0.000000e+00  
+  267  0.000000e+00 +/- 0.000000e+00  
+  268  0.000000e+00 +/- 0.000000e+00  
+  269  0.000000e+00 +/- 0.000000e+00  
+  270  0.000000e+00 +/- 0.000000e+00  
+  271  0.000000e+00 +/- 0.000000e+00  
+  272  0.000000e+00 +/- 0.000000e+00  
+  273  0.000000e+00 +/- 0.000000e+00  
+  274  0.000000e+00 +/- 0.000000e+00  
+  275  0.000000e+00 +/- 0.000000e+00  
+  276  0.000000e+00 +/- 0.000000e+00  
+  277  0.000000e+00 +/- 0.000000e+00  
+  278  0.000000e+00 +/- 0.000000e+00  
+  279  0.000000e+00 +/- 0.000000e+00  
+  280  0.000000e+00 +/- 0.000000e+00  
+  281  0.000000e+00 +/- 0.000000e+00  
+  282  0.000000e+00 +/- 0.000000e+00  
+  283  0.000000e+00 +/- 0.000000e+00  
+  284  0.000000e+00 +/- 0.000000e+00  
+  285  0.000000e+00 +/- 0.000000e+00  
+  286  0.000000e+00 +/- 0.000000e+00  
+  287  0.000000e+00 +/- 0.000000e+00  
+  288  0.000000e+00 +/- 0.000000e+00  
+  289  0.000000e+00 +/- 0.000000e+00  
+  290  0.000000e+00 +/- 0.000000e+00  
+  291  0.000000e+00 +/- 0.000000e+00  
+  292  0.000000e+00 +/- 0.000000e+00  
+  293  0.000000e+00 +/- 0.000000e+00  
+  294  0.000000e+00 +/- 0.000000e+00  
+  295  0.000000e+00 +/- 0.000000e+00  
+  296  0.000000e+00 +/- 0.000000e+00  
+  297  0.000000e+00 +/- 0.000000e+00  
+  298  0.000000e+00 +/- 0.000000e+00  
+  299  0.000000e+00 +/- 0.000000e+00  
+  300  0.000000e+00 +/- 0.000000e+00  
+  301  0.000000e+00 +/- 0.000000e+00  
+  302  0.000000e+00 +/- 0.000000e+00  
+  303  0.000000e+00 +/- 0.000000e+00  
+  304  0.000000e+00 +/- 0.000000e+00  
+  305  0.000000e+00 +/- 0.000000e+00  
+  306  0.000000e+00 +/- 0.000000e+00  
+  307  0.000000e+00 +/- 0.000000e+00  
+  308  0.000000e+00 +/- 0.000000e+00  
+  309  0.000000e+00 +/- 0.000000e+00  
+  310  0.000000e+00 +/- 0.000000e+00  
+  311  0.000000e+00 +/- 0.000000e+00  
+  312  0.000000e+00 +/- 0.000000e+00  
+  313  0.000000e+00 +/- 0.000000e+00  
+  314  0.000000e+00 +/- 0.000000e+00  
+  315  0.000000e+00 +/- 0.000000e+00  
+  316  0.000000e+00 +/- 0.000000e+00  
+  317  0.000000e+00 +/- 0.000000e+00  
+  318  0.000000e+00 +/- 0.000000e+00  
+  319  0.000000e+00 +/- 0.000000e+00  
+  320  0.000000e+00 +/- 0.000000e+00  
+  321  0.000000e+00 +/- 0.000000e+00  
+  322  0.000000e+00 +/- 0.000000e+00  
+  323  0.000000e+00 +/- 0.000000e+00  
+  324  0.000000e+00 +/- 0.000000e+00  
+  325  0.000000e+00 +/- 0.000000e+00  
+  326  0.000000e+00 +/- 0.000000e+00  
+  327  0.000000e+00 +/- 0.000000e+00  
+  328  0.000000e+00 +/- 0.000000e+00  
+  329  0.000000e+00 +/- 0.000000e+00  
+  330  0.000000e+00 +/- 0.000000e+00  
+  331  0.000000e+00 +/- 0.000000e+00  
+  332  0.000000e+00 +/- 0.000000e+00  
+  333  0.000000e+00 +/- 0.000000e+00  
+  334  0.000000e+00 +/- 0.000000e+00  
+  335  0.000000e+00 +/- 0.000000e+00  
+  336  0.000000e+00 +/- 0.000000e+00  
+  337  0.000000e+00 +/- 0.000000e+00  
+  338  0.000000e+00 +/- 0.000000e+00  
+  339  0.000000e+00 +/- 0.000000e+00  
+  340  0.000000e+00 +/- 0.000000e+00  
+  341  0.000000e+00 +/- 0.000000e+00  
+  342  0.000000e+00 +/- 0.000000e+00  
+  343  0.000000e+00 +/- 0.000000e+00  
+  344  0.000000e+00 +/- 0.000000e+00  
+  345  0.000000e+00 +/- 0.000000e+00  
+  346  0.000000e+00 +/- 0.000000e+00  
+  347  0.000000e+00 +/- 0.000000e+00  
+  348  0.000000e+00 +/- 0.000000e+00  
+  349  0.000000e+00 +/- 0.000000e+00  
+  350  0.000000e+00 +/- 0.000000e+00  
+  351  0.000000e+00 +/- 0.000000e+00  
+  352  0.000000e+00 +/- 0.000000e+00  
+  353  0.000000e+00 +/- 0.000000e+00  
+  354  0.000000e+00 +/- 0.000000e+00  
+  355  0.000000e+00 +/- 0.000000e+00  
+  356  0.000000e+00 +/- 0.000000e+00  
+  357  0.000000e+00 +/- 0.000000e+00  
+  358  0.000000e+00 +/- 0.000000e+00  
+  359  0.000000e+00 +/- 0.000000e+00  
+  360  0.000000e+00 +/- 0.000000e+00  
+  361  0.000000e+00 +/- 0.000000e+00  
+  362  0.000000e+00 +/- 0.000000e+00  
+  363  0.000000e+00 +/- 0.000000e+00  
+  364  0.000000e+00 +/- 0.000000e+00  
+  365  0.000000e+00 +/- 0.000000e+00  
+  366  0.000000e+00 +/- 0.000000e+00  
+  367  0.000000e+00 +/- 0.000000e+00  
+  368  0.000000e+00 +/- 0.000000e+00  
+  369  0.000000e+00 +/- 0.000000e+00  
+  370  0.000000e+00 +/- 0.000000e+00  
+  371  0.000000e+00 +/- 0.000000e+00  
+  372  0.000000e+00 +/- 0.000000e+00  
+  373  0.000000e+00 +/- 0.000000e+00  
+  374  0.000000e+00 +/- 0.000000e+00  
+  375  0.000000e+00 +/- 0.000000e+00  
+  376  0.000000e+00 +/- 0.000000e+00  
+  377  0.000000e+00 +/- 0.000000e+00  
+  378  0.000000e+00 +/- 0.000000e+00  
+  379  0.000000e+00 +/- 0.000000e+00  
+  380  0.000000e+00 +/- 0.000000e+00  
+  381  0.000000e+00 +/- 0.000000e+00  
+  382  0.000000e+00 +/- 0.000000e+00  
+  383  0.000000e+00 +/- 0.000000e+00  
+  384  0.000000e+00 +/- 0.000000e+00  
+  385  0.000000e+00 +/- 0.000000e+00  
+  386  0.000000e+00 +/- 0.000000e+00  
+  387  0.000000e+00 +/- 0.000000e+00  
+  388  0.000000e+00 +/- 0.000000e+00  
+  389  0.000000e+00 +/- 0.000000e+00  
+  390  0.000000e+00 +/- 0.000000e+00  
+  391  0.000000e+00 +/- 0.000000e+00  
+  392  0.000000e+00 +/- 0.000000e+00  
+  393  0.000000e+00 +/- 0.000000e+00  
+  394  0.000000e+00 +/- 0.000000e+00  
+  395  0.000000e+00 +/- 0.000000e+00  
+  396  0.000000e+00 +/- 0.000000e+00  
+  397  0.000000e+00 +/- 0.000000e+00  
+  398  0.000000e+00 +/- 0.000000e+00  
+  399  0.000000e+00 +/- 0.000000e+00  
+  400  0.000000e+00 +/- 0.000000e+00  
+  401  0.000000e+00 +/- 0.000000e+00  
+  402  0.000000e+00 +/- 0.000000e+00  
+  403  0.000000e+00 +/- 0.000000e+00  
+  404  0.000000e+00 +/- 0.000000e+00  
+  405  0.000000e+00 +/- 0.000000e+00  
+  406  0.000000e+00 +/- 0.000000e+00  
+  407  0.000000e+00 +/- 0.000000e+00  
+  408  0.000000e+00 +/- 0.000000e+00  
+  409  0.000000e+00 +/- 0.000000e+00  
+  410  0.000000e+00 +/- 0.000000e+00  
+  411  0.000000e+00 +/- 0.000000e+00  
+  412  0.000000e+00 +/- 0.000000e+00  
+  413  0.000000e+00 +/- 0.000000e+00  
+  414  0.000000e+00 +/- 0.000000e+00  
+  415  0.000000e+00 +/- 0.000000e+00  
+  416  0.000000e+00 +/- 0.000000e+00  
+  417  0.000000e+00 +/- 0.000000e+00  
+  418  0.000000e+00 +/- 0.000000e+00  
+  419  0.000000e+00 +/- 0.000000e+00  
+  420  0.000000e+00 +/- 0.000000e+00  
+  421  0.000000e+00 +/- 0.000000e+00  
+  422  0.000000e+00 +/- 0.000000e+00  
+  423  0.000000e+00 +/- 0.000000e+00  
+  424  0.000000e+00 +/- 0.000000e+00  
+  425  0.000000e+00 +/- 0.000000e+00  
+  426  0.000000e+00 +/- 0.000000e+00  
+  427  0.000000e+00 +/- 0.000000e+00  
+  428  0.000000e+00 +/- 0.000000e+00  
+  429  0.000000e+00 +/- 0.000000e+00  
+  430  0.000000e+00 +/- 0.000000e+00  
+  431  0.000000e+00 +/- 0.000000e+00  
+  432  0.000000e+00 +/- 0.000000e+00  
+  433  1.602077e-07 +/- 2.363369e-10  
+  434  1.163392e-10 +/- 4.433365e-12  
+  435  1.604882e-07 +/- 2.365598e-10  
+  436  9.643595e-08 +/- 1.789882e-10  
+  437  1.280264e-10 +/- 6.549719e-12  
+  438  9.619178e-08 +/- 1.786282e-10  
+  439  1.504191e-06 +/- 7.105529e-10  
+  440  1.030297e-05 +/- 1.856811e-09  
+  441  1.502773e-06 +/- 7.101405e-10  
+  442  2.225521e-06 +/- 8.907993e-10  
+  443  8.940209e-09 +/- 3.688306e-11  
+  444  2.225353e-06 +/- 8.906278e-10  
+  445  1.480696e-06 +/- 7.053075e-10  
+  446  3.655896e-07 +/- 3.965860e-10  
+  447  1.479592e-06 +/- 7.050140e-10  
+  448  1.723602e-05 +/- 2.420075e-09  
+  449  6.002914e-01 +/- 3.381915e-07  
+  450  1.723902e-05 +/- 2.420357e-09  
+  451  3.222705e-06 +/- 1.070497e-09  
+  452  1.633127e-05 +/- 2.381469e-09  
+  453  3.222538e-06 +/- 1.070513e-09  
+  454  2.617150e-06 +/- 9.273278e-10  
+  455  1.304549e-05 +/- 2.039482e-09  
+  456  2.618345e-06 +/- 9.275760e-10  
+  457  4.430342e-06 +/- 1.228255e-09  
+  458  2.773206e-05 +/- 3.057675e-09  
+  459  4.429486e-06 +/- 1.228035e-09  
+  460  0.000000e+00 +/- 0.000000e+00  
+  461  0.000000e+00 +/- 0.000000e+00  
+  462  0.000000e+00 +/- 0.000000e+00  
+  463  0.000000e+00 +/- 0.000000e+00  
+  464  0.000000e+00 +/- 0.000000e+00  
+  465  0.000000e+00 +/- 0.000000e+00  
+  466  0.000000e+00 +/- 0.000000e+00  
+  467  0.000000e+00 +/- 0.000000e+00  
+  468  0.000000e+00 +/- 0.000000e+00  
+  469  1.522621e-07 +/- 3.183597e-11  
+  470  0.000000e+00 +/- 0.000000e+00  
+  471  3.033277e-02 +/- 1.272009e-07  
+  472  1.594098e-02 +/- 8.890888e-08  
+  473  4.113520e-05 +/- 1.879816e-09  
+  474  0.000000e+00 +/- 0.000000e+00  
+  475  6.528009e-05 +/- 3.628964e-09  
+  476  0.000000e+00 +/- 0.000000e+00  
+  477  0.000000e+00 +/- 0.000000e+00  
+  478  0.000000e+00 +/- 0.000000e+00  
+  479  0.000000e+00 +/- 0.000000e+00  
+  480  0.000000e+00 +/- 0.000000e+00  
+  481  0.000000e+00 +/- 0.000000e+00  
+  482  0.000000e+00 +/- 0.000000e+00  
+  483  0.000000e+00 +/- 0.000000e+00  
+  484  0.000000e+00 +/- 0.000000e+00  
+  485  0.000000e+00 +/- 0.000000e+00  
+  486  0.000000e+00 +/- 0.000000e+00  
+  487  0.000000e+00 +/- 0.000000e+00  
+  488  0.000000e+00 +/- 0.000000e+00  
+  489  0.000000e+00 +/- 0.000000e+00  
+  490  0.000000e+00 +/- 0.000000e+00  
+  491  0.000000e+00 +/- 0.000000e+00  
+  492  0.000000e+00 +/- 0.000000e+00  
+  493  0.000000e+00 +/- 0.000000e+00  
+  494  0.000000e+00 +/- 0.000000e+00  
+  495  0.000000e+00 +/- 0.000000e+00  
+  496  0.000000e+00 +/- 0.000000e+00  
+  497  0.000000e+00 +/- 0.000000e+00  
+  498  0.000000e+00 +/- 0.000000e+00  
+  499  0.000000e+00 +/- 0.000000e+00  
+  500  0.000000e+00 +/- 0.000000e+00  
+  501  0.000000e+00 +/- 0.000000e+00  
+  502  0.000000e+00 +/- 0.000000e+00  
+  503  0.000000e+00 +/- 0.000000e+00  
+  504  0.000000e+00 +/- 0.000000e+00  
+  505  2.344057e-08 +/- 5.808978e-11  
+  506  0.000000e+00 +/- 0.000000e+00  
+  507  0.000000e+00 +/- 0.000000e+00  
+  508  0.000000e+00 +/- 0.000000e+00  
+  509  0.000000e+00 +/- 0.000000e+00  
+  510  0.000000e+00 +/- 0.000000e+00  
+  511  0.000000e+00 +/- 0.000000e+00  
+  512  0.000000e+00 +/- 0.000000e+00  
+  513  0.000000e+00 +/- 0.000000e+00  
+  514  0.000000e+00 +/- 0.000000e+00  
+  515  0.000000e+00 +/- 0.000000e+00  
+  516  0.000000e+00 +/- 0.000000e+00  
+  517  6.718498e-05 +/- 4.940341e-09  
+  518  1.175245e-06 +/- 5.603207e-10  
+  519  0.000000e+00 +/- 0.000000e+00  
+  520  3.671976e-09 +/- 1.981919e-11  
+  521  7.662215e-07 +/- 5.337434e-10  
+  522  9.089682e-07 +/- 5.082124e-10  
+  523  5.459094e-09 +/- 2.496370e-11  
+  524  1.054945e-06 +/- 6.135618e-10  
+  525  3.076837e-08 +/- 9.957701e-11  
+  526  1.050961e-09 +/- 7.808683e-12  
+  527  6.130871e-08 +/- 1.556239e-10  
+  528  0.000000e+00 +/- 0.000000e+00  
+  529  4.522519e-10 +/- 1.187921e-11  
+  530  0.000000e+00 +/- 0.000000e+00  
+  531  0.000000e+00 +/- 0.000000e+00  
+  532  0.000000e+00 +/- 0.000000e+00  
+  533  0.000000e+00 +/- 0.000000e+00  
+  534  0.000000e+00 +/- 0.000000e+00  
+  535  0.000000e+00 +/- 0.000000e+00  
+  536  0.000000e+00 +/- 0.000000e+00  
+  537  0.000000e+00 +/- 0.000000e+00  
+  538  0.000000e+00 +/- 0.000000e+00  
+  539  0.000000e+00 +/- 0.000000e+00  
+  540  0.000000e+00 +/- 0.000000e+00  
+  541  1.119997e-05 +/- 2.053040e-09  
+  542  7.261419e-09 +/- 2.578546e-11  
+  543  1.949608e-05 +/- 2.656417e-09  
+  544  1.560878e-07 +/- 2.296211e-10  
+  545  3.548110e-09 +/- 1.604177e-11  
+  546  1.599411e-07 +/- 2.309398e-10  
+  547  0.000000e+00 +/- 0.000000e+00  
+  548  0.000000e+00 +/- 0.000000e+00  
+  549  0.000000e+00 +/- 0.000000e+00  
+  550  4.606658e-06 +/- 1.303189e-09  
+  551  2.166101e-09 +/- 1.417246e-11  
+  552  4.604411e-06 +/- 1.302915e-09  
+  553  5.634996e-08 +/- 1.355384e-10  
+  554  9.839006e-10 +/- 8.527342e-12  
+  555  5.644792e-08 +/- 1.356702e-10  
+  556  0.000000e+00 +/- 0.000000e+00  
+  557  0.000000e+00 +/- 0.000000e+00  
+  558  0.000000e+00 +/- 0.000000e+00  
+  559  1.653280e-10 +/- 8.089476e-12  
+  560  3.699435e-09 +/- 3.556073e-11  
+  561  1.536365e-10 +/- 7.715195e-12  
+  562  5.398611e-07 +/- 4.350387e-10  
+  563  8.013273e-09 +/- 2.879257e-11  
+  564  5.403371e-07 +/- 4.353080e-10  
+  565  1.569850e-10 +/- 7.894927e-12  
+  566  3.749122e-09 +/- 3.603708e-11  
+  567  1.539678e-10 +/- 7.748678e-12  
+  568  0.000000e+00 +/- 0.000000e+00  
+  569  0.000000e+00 +/- 0.000000e+00  
+  570  0.000000e+00 +/- 0.000000e+00  
+  571  0.000000e+00 +/- 0.000000e+00  
+  572  0.000000e+00 +/- 0.000000e+00  
+  573  0.000000e+00 +/- 0.000000e+00  
+  574  0.000000e+00 +/- 0.000000e+00  
+  575  0.000000e+00 +/- 0.000000e+00  
+  576  0.000000e+00 +/- 0.000000e+00  
+  577  7.122719e-08 +/- 1.212305e-10  
+  578  0.000000e+00 +/- 0.000000e+00  
+  579  0.000000e+00 +/- 0.000000e+00  
+  580  0.000000e+00 +/- 0.000000e+00  
+  581  0.000000e+00 +/- 0.000000e+00  
+  582  0.000000e+00 +/- 0.000000e+00  
+  583  0.000000e+00 +/- 0.000000e+00  
+  584  0.000000e+00 +/- 0.000000e+00  
+  585  0.000000e+00 +/- 0.000000e+00  
+  586  0.000000e+00 +/- 0.000000e+00  
+  587  0.000000e+00 +/- 0.000000e+00  
+  588  0.000000e+00 +/- 0.000000e+00  
+  589  0.000000e+00 +/- 0.000000e+00  
+  590  0.000000e+00 +/- 0.000000e+00  
+  591  0.000000e+00 +/- 0.000000e+00  
+  592  0.000000e+00 +/- 0.000000e+00  
+  593  0.000000e+00 +/- 0.000000e+00  
+  594  0.000000e+00 +/- 0.000000e+00  
+  595  0.000000e+00 +/- 0.000000e+00  
+  596  0.000000e+00 +/- 0.000000e+00  
+  597  0.000000e+00 +/- 0.000000e+00  
+  598  0.000000e+00 +/- 0.000000e+00  
+  599  0.000000e+00 +/- 0.000000e+00  
+  600  0.000000e+00 +/- 0.000000e+00  
+  601  0.000000e+00 +/- 0.000000e+00  
+  602  0.000000e+00 +/- 0.000000e+00  
+  603  0.000000e+00 +/- 0.000000e+00  
+  604  0.000000e+00 +/- 0.000000e+00  
+  605  0.000000e+00 +/- 0.000000e+00  
+  606  0.000000e+00 +/- 0.000000e+00  
+  607  0.000000e+00 +/- 0.000000e+00  
+  608  0.000000e+00 +/- 0.000000e+00  
+  609  0.000000e+00 +/- 0.000000e+00  
+  610  0.000000e+00 +/- 0.000000e+00  
+  611  0.000000e+00 +/- 0.000000e+00  
+  612  0.000000e+00 +/- 0.000000e+00  
+  613  0.000000e+00 +/- 0.000000e+00  
+  614  0.000000e+00 +/- 0.000000e+00  
+  615  0.000000e+00 +/- 0.000000e+00  
+  616  0.000000e+00 +/- 0.000000e+00  
+  617  0.000000e+00 +/- 0.000000e+00  
+  618  0.000000e+00 +/- 0.000000e+00  
+  619  0.000000e+00 +/- 0.000000e+00  
+  620  0.000000e+00 +/- 0.000000e+00  
+  621  0.000000e+00 +/- 0.000000e+00  
+  622  0.000000e+00 +/- 0.000000e+00  
+  623  0.000000e+00 +/- 0.000000e+00  
+  624  0.000000e+00 +/- 0.000000e+00  
+  625  0.000000e+00 +/- 0.000000e+00  
+  626  0.000000e+00 +/- 0.000000e+00  
+  627  0.000000e+00 +/- 0.000000e+00  
+  628  0.000000e+00 +/- 0.000000e+00  
+  629  0.000000e+00 +/- 0.000000e+00  
+  630  0.000000e+00 +/- 0.000000e+00  
+  631  0.000000e+00 +/- 0.000000e+00  
+  632  0.000000e+00 +/- 0.000000e+00  
+  633  0.000000e+00 +/- 0.000000e+00  
+  634  0.000000e+00 +/- 0.000000e+00  
+  635  0.000000e+00 +/- 0.000000e+00  
+  636  0.000000e+00 +/- 0.000000e+00  
+  637  0.000000e+00 +/- 0.000000e+00  
+  638  0.000000e+00 +/- 0.000000e+00  
+  639  0.000000e+00 +/- 0.000000e+00  
+  640  0.000000e+00 +/- 0.000000e+00  
+  641  0.000000e+00 +/- 0.000000e+00  
+  642  0.000000e+00 +/- 0.000000e+00  
+  643  0.000000e+00 +/- 0.000000e+00  
+  644  0.000000e+00 +/- 0.000000e+00  
+  645  0.000000e+00 +/- 0.000000e+00  
+  646  0.000000e+00 +/- 0.000000e+00  
+  647  0.000000e+00 +/- 0.000000e+00  
+  648  0.000000e+00 +/- 0.000000e+00  
+  649  0.000000e+00 +/- 0.000000e+00  
+  650  0.000000e+00 +/- 0.000000e+00  
+  651  0.000000e+00 +/- 0.000000e+00  
+  652  0.000000e+00 +/- 0.000000e+00  
+  653  0.000000e+00 +/- 0.000000e+00  
+  654  0.000000e+00 +/- 0.000000e+00  
+  655  0.000000e+00 +/- 0.000000e+00  
+  656  0.000000e+00 +/- 0.000000e+00  
+  657  0.000000e+00 +/- 0.000000e+00  
+  658  0.000000e+00 +/- 0.000000e+00  
+  659  0.000000e+00 +/- 0.000000e+00  
+  660  0.000000e+00 +/- 0.000000e+00  
+  661  0.000000e+00 +/- 0.000000e+00  
+  662  0.000000e+00 +/- 0.000000e+00  
+  663  0.000000e+00 +/- 0.000000e+00  
+  664  0.000000e+00 +/- 0.000000e+00  
+  665  0.000000e+00 +/- 0.000000e+00  
+  666  0.000000e+00 +/- 0.000000e+00  
+  667  0.000000e+00 +/- 0.000000e+00  
+  668  0.000000e+00 +/- 0.000000e+00  
+  669  0.000000e+00 +/- 0.000000e+00  
+  670  0.000000e+00 +/- 0.000000e+00  
+  671  0.000000e+00 +/- 0.000000e+00  
+  672  0.000000e+00 +/- 0.000000e+00  
+  673  0.000000e+00 +/- 0.000000e+00  
+  674  0.000000e+00 +/- 0.000000e+00  
+  675  0.000000e+00 +/- 0.000000e+00  
+  676  0.000000e+00 +/- 0.000000e+00  
+  677  0.000000e+00 +/- 0.000000e+00  
+  678  0.000000e+00 +/- 0.000000e+00  
+  679  0.000000e+00 +/- 0.000000e+00  
+  680  0.000000e+00 +/- 0.000000e+00  
+  681  0.000000e+00 +/- 0.000000e+00  
+  682  0.000000e+00 +/- 0.000000e+00  
+  683  0.000000e+00 +/- 0.000000e+00  
+  684  0.000000e+00 +/- 0.000000e+00  
+  685  0.000000e+00 +/- 0.000000e+00  
+  686  0.000000e+00 +/- 0.000000e+00  
+  687  0.000000e+00 +/- 0.000000e+00  
+  688  0.000000e+00 +/- 0.000000e+00  
+  689  0.000000e+00 +/- 0.000000e+00  
+  690  0.000000e+00 +/- 0.000000e+00  
+  691  0.000000e+00 +/- 0.000000e+00  
+  692  0.000000e+00 +/- 0.000000e+00  
+  693  0.000000e+00 +/- 0.000000e+00  
+  694  0.000000e+00 +/- 0.000000e+00  
+  695  0.000000e+00 +/- 0.000000e+00  
+  696  0.000000e+00 +/- 0.000000e+00  
+  697  0.000000e+00 +/- 0.000000e+00  
+  698  0.000000e+00 +/- 0.000000e+00  
+  699  0.000000e+00 +/- 0.000000e+00  
+  700  0.000000e+00 +/- 0.000000e+00  
+  701  0.000000e+00 +/- 0.000000e+00  
+  702  0.000000e+00 +/- 0.000000e+00  
+  703  0.000000e+00 +/- 0.000000e+00  
+  704  0.000000e+00 +/- 0.000000e+00  
+  705  0.000000e+00 +/- 0.000000e+00  
+  706  0.000000e+00 +/- 0.000000e+00  
+  707  0.000000e+00 +/- 0.000000e+00  
+  708  0.000000e+00 +/- 0.000000e+00  
+  709  0.000000e+00 +/- 0.000000e+00  
+  710  0.000000e+00 +/- 0.000000e+00  
+  711  0.000000e+00 +/- 0.000000e+00  
+  712  0.000000e+00 +/- 0.000000e+00  
+  713  0.000000e+00 +/- 0.000000e+00  
+  714  0.000000e+00 +/- 0.000000e+00  
+  715  0.000000e+00 +/- 0.000000e+00  
+  716  0.000000e+00 +/- 0.000000e+00  
+  717  0.000000e+00 +/- 0.000000e+00  
+  718  0.000000e+00 +/- 0.000000e+00  
+  719  0.000000e+00 +/- 0.000000e+00  
+  720  0.000000e+00 +/- 0.000000e+00  
+  721  4.337212e-08 +/- 6.603390e-11  
+  722  0.000000e+00 +/- 0.000000e+00  
+  723  0.000000e+00 +/- 0.000000e+00  
+  724  0.000000e+00 +/- 0.000000e+00  
+  725  0.000000e+00 +/- 0.000000e+00  
+  726  0.000000e+00 +/- 0.000000e+00  
+  727  0.000000e+00 +/- 0.000000e+00  
+  728  0.000000e+00 +/- 0.000000e+00  
+  729  0.000000e+00 +/- 0.000000e+00  
+  730  0.000000e+00 +/- 0.000000e+00  
+  731  0.000000e+00 +/- 0.000000e+00  
+  732  0.000000e+00 +/- 0.000000e+00  
+  733  0.000000e+00 +/- 0.000000e+00  
+  734  0.000000e+00 +/- 0.000000e+00  
+  735  0.000000e+00 +/- 0.000000e+00  
+  736  0.000000e+00 +/- 0.000000e+00  
+  737  0.000000e+00 +/- 0.000000e+00  
+  738  0.000000e+00 +/- 0.000000e+00  
+  739  0.000000e+00 +/- 0.000000e+00  
+  740  0.000000e+00 +/- 0.000000e+00  
+  741  0.000000e+00 +/- 0.000000e+00  
+  742  0.000000e+00 +/- 0.000000e+00  
+  743  0.000000e+00 +/- 0.000000e+00  
+  744  0.000000e+00 +/- 0.000000e+00  
+  745  0.000000e+00 +/- 0.000000e+00  
+  746  0.000000e+00 +/- 0.000000e+00  
+  747  0.000000e+00 +/- 0.000000e+00  
+  748  0.000000e+00 +/- 0.000000e+00  
+  749  0.000000e+00 +/- 0.000000e+00  
+  750  0.000000e+00 +/- 0.000000e+00  
+  751  0.000000e+00 +/- 0.000000e+00  
+  752  0.000000e+00 +/- 0.000000e+00  
+  753  0.000000e+00 +/- 0.000000e+00  
+  754  0.000000e+00 +/- 0.000000e+00  
+  755  0.000000e+00 +/- 0.000000e+00  
+  756  0.000000e+00 +/- 0.000000e+00  
+  757  0.000000e+00 +/- 0.000000e+00  
+  758  0.000000e+00 +/- 0.000000e+00  
+  759  0.000000e+00 +/- 0.000000e+00  
+  760  0.000000e+00 +/- 0.000000e+00  
+  761  0.000000e+00 +/- 0.000000e+00  
+  762  0.000000e+00 +/- 0.000000e+00  
+  763  0.000000e+00 +/- 0.000000e+00  
+  764  0.000000e+00 +/- 0.000000e+00  
+  765  0.000000e+00 +/- 0.000000e+00  
+  766  0.000000e+00 +/- 0.000000e+00  
+  767  0.000000e+00 +/- 0.000000e+00  
+  768  0.000000e+00 +/- 0.000000e+00  
+  769  0.000000e+00 +/- 0.000000e+00  
+  770  0.000000e+00 +/- 0.000000e+00  
+  771  0.000000e+00 +/- 0.000000e+00  
+  772  0.000000e+00 +/- 0.000000e+00  
+  773  0.000000e+00 +/- 0.000000e+00  
+  774  0.000000e+00 +/- 0.000000e+00  
+  775  0.000000e+00 +/- 0.000000e+00  
+  776  0.000000e+00 +/- 0.000000e+00  
+  777  0.000000e+00 +/- 0.000000e+00  
+  778  0.000000e+00 +/- 0.000000e+00  
+  779  0.000000e+00 +/- 0.000000e+00  
+  780  0.000000e+00 +/- 0.000000e+00  
+  781  0.000000e+00 +/- 0.000000e+00  
+  782  0.000000e+00 +/- 0.000000e+00  
+  783  0.000000e+00 +/- 0.000000e+00  
+  784  0.000000e+00 +/- 0.000000e+00  
+  785  0.000000e+00 +/- 0.000000e+00  
+  786  0.000000e+00 +/- 0.000000e+00  
+  787  0.000000e+00 +/- 0.000000e+00  
+  788  0.000000e+00 +/- 0.000000e+00  
+  789  0.000000e+00 +/- 0.000000e+00  
+  790  0.000000e+00 +/- 0.000000e+00  
+  791  0.000000e+00 +/- 0.000000e+00  
+  792  0.000000e+00 +/- 0.000000e+00  
+  793  0.000000e+00 +/- 0.000000e+00  
+  794  0.000000e+00 +/- 0.000000e+00  
+  795  0.000000e+00 +/- 0.000000e+00  
+  796  0.000000e+00 +/- 0.000000e+00  
+  797  0.000000e+00 +/- 0.000000e+00  
+  798  0.000000e+00 +/- 0.000000e+00  
+  799  0.000000e+00 +/- 0.000000e+00  
+  800  0.000000e+00 +/- 0.000000e+00  
+  801  0.000000e+00 +/- 0.000000e+00  
+  802  0.000000e+00 +/- 0.000000e+00  
+  803  0.000000e+00 +/- 0.000000e+00  
+  804  0.000000e+00 +/- 0.000000e+00  
+  805  0.000000e+00 +/- 0.000000e+00  
+  806  0.000000e+00 +/- 0.000000e+00  
+  807  0.000000e+00 +/- 0.000000e+00  
+  808  0.000000e+00 +/- 0.000000e+00  
+  809  0.000000e+00 +/- 0.000000e+00  
+  810  0.000000e+00 +/- 0.000000e+00  
+  811  0.000000e+00 +/- 0.000000e+00  
+  812  0.000000e+00 +/- 0.000000e+00  
+  813  0.000000e+00 +/- 0.000000e+00  
+  814  0.000000e+00 +/- 0.000000e+00  
+  815  0.000000e+00 +/- 0.000000e+00  
+  816  0.000000e+00 +/- 0.000000e+00  
+  817  0.000000e+00 +/- 0.000000e+00  
+  818  0.000000e+00 +/- 0.000000e+00  
+  819  0.000000e+00 +/- 0.000000e+00  
+  820  0.000000e+00 +/- 0.000000e+00  
+  821  0.000000e+00 +/- 0.000000e+00  
+  822  0.000000e+00 +/- 0.000000e+00  
+  823  0.000000e+00 +/- 0.000000e+00  
+  824  0.000000e+00 +/- 0.000000e+00  
+  825  0.000000e+00 +/- 0.000000e+00  
+  826  0.000000e+00 +/- 0.000000e+00  
+  827  0.000000e+00 +/- 0.000000e+00  
+  828  0.000000e+00 +/- 0.000000e+00  
+  829  0.000000e+00 +/- 0.000000e+00  
+  830  0.000000e+00 +/- 0.000000e+00  
+  831  0.000000e+00 +/- 0.000000e+00  
+  832  0.000000e+00 +/- 0.000000e+00  
+  833  0.000000e+00 +/- 0.000000e+00  
+  834  0.000000e+00 +/- 0.000000e+00  
+  835  0.000000e+00 +/- 0.000000e+00  
+  836  0.000000e+00 +/- 0.000000e+00  
+  837  0.000000e+00 +/- 0.000000e+00  
+  838  0.000000e+00 +/- 0.000000e+00  
+  839  0.000000e+00 +/- 0.000000e+00  
+  840  0.000000e+00 +/- 0.000000e+00  
+  841  0.000000e+00 +/- 0.000000e+00  
+  842  0.000000e+00 +/- 0.000000e+00  
+  843  0.000000e+00 +/- 0.000000e+00  
+  844  0.000000e+00 +/- 0.000000e+00  
+  845  0.000000e+00 +/- 0.000000e+00  
+  846  0.000000e+00 +/- 0.000000e+00  
+  847  0.000000e+00 +/- 0.000000e+00  
+  848  0.000000e+00 +/- 0.000000e+00  
+  849  0.000000e+00 +/- 0.000000e+00  
+  850  0.000000e+00 +/- 0.000000e+00  
+  851  0.000000e+00 +/- 0.000000e+00  
+  852  0.000000e+00 +/- 0.000000e+00  
+  853  0.000000e+00 +/- 0.000000e+00  
+  854  0.000000e+00 +/- 0.000000e+00  
+  855  0.000000e+00 +/- 0.000000e+00  
+  856  0.000000e+00 +/- 0.000000e+00  
+  857  0.000000e+00 +/- 0.000000e+00  
+  858  0.000000e+00 +/- 0.000000e+00  
+  859  0.000000e+00 +/- 0.000000e+00  
+  860  0.000000e+00 +/- 0.000000e+00  
+  861  0.000000e+00 +/- 0.000000e+00  
+  862  0.000000e+00 +/- 0.000000e+00  
+  863  0.000000e+00 +/- 0.000000e+00  
+  864  0.000000e+00 +/- 0.000000e+00  
+  865  5.169482e-06 +/- 1.260523e-09  
+  866  0.000000e+00 +/- 0.000000e+00  
+  867  0.000000e+00 +/- 0.000000e+00  
+  868  0.000000e+00 +/- 0.000000e+00  
+  869  0.000000e+00 +/- 0.000000e+00  
+  870  0.000000e+00 +/- 0.000000e+00  
+  871  0.000000e+00 +/- 0.000000e+00  
+  872  0.000000e+00 +/- 0.000000e+00  
+  873  0.000000e+00 +/- 0.000000e+00  
+  874  0.000000e+00 +/- 0.000000e+00  
+  875  0.000000e+00 +/- 0.000000e+00  
+  876  0.000000e+00 +/- 0.000000e+00  
+  877  0.000000e+00 +/- 0.000000e+00  
+  878  0.000000e+00 +/- 0.000000e+00  
+  879  0.000000e+00 +/- 0.000000e+00  
+  880  0.000000e+00 +/- 0.000000e+00  
+  881  0.000000e+00 +/- 0.000000e+00  
+  882  0.000000e+00 +/- 0.000000e+00  
+  883  0.000000e+00 +/- 0.000000e+00  
+  884  0.000000e+00 +/- 0.000000e+00  
+  885  0.000000e+00 +/- 0.000000e+00  
+  886  0.000000e+00 +/- 0.000000e+00  
+  887  0.000000e+00 +/- 0.000000e+00  
+  888  0.000000e+00 +/- 0.000000e+00  
+  889  0.000000e+00 +/- 0.000000e+00  
+  890  0.000000e+00 +/- 0.000000e+00  
+  891  0.000000e+00 +/- 0.000000e+00  
+  892  0.000000e+00 +/- 0.000000e+00  
+  893  0.000000e+00 +/- 0.000000e+00  
+  894  0.000000e+00 +/- 0.000000e+00  
+  895  0.000000e+00 +/- 0.000000e+00  
+  896  0.000000e+00 +/- 0.000000e+00  
+  897  0.000000e+00 +/- 0.000000e+00  
+  898  0.000000e+00 +/- 0.000000e+00  
+  899  0.000000e+00 +/- 0.000000e+00  
+  900  0.000000e+00 +/- 0.000000e+00  
+  901  0.000000e+00 +/- 0.000000e+00  
+  902  0.000000e+00 +/- 0.000000e+00  
+  903  0.000000e+00 +/- 0.000000e+00  
+  904  0.000000e+00 +/- 0.000000e+00  
+  905  0.000000e+00 +/- 0.000000e+00  
+  906  0.000000e+00 +/- 0.000000e+00  
+  907  0.000000e+00 +/- 0.000000e+00  
+  908  0.000000e+00 +/- 0.000000e+00  
+  909  0.000000e+00 +/- 0.000000e+00  
+  910  0.000000e+00 +/- 0.000000e+00  
+  911  0.000000e+00 +/- 0.000000e+00  
+  912  0.000000e+00 +/- 0.000000e+00  
+  913  0.000000e+00 +/- 0.000000e+00  
+  914  0.000000e+00 +/- 0.000000e+00  
+  915  0.000000e+00 +/- 0.000000e+00  
+  916  0.000000e+00 +/- 0.000000e+00  
+  917  0.000000e+00 +/- 0.000000e+00  
+  918  0.000000e+00 +/- 0.000000e+00  
+  919  0.000000e+00 +/- 0.000000e+00  
+  920  0.000000e+00 +/- 0.000000e+00  
+  921  0.000000e+00 +/- 0.000000e+00  
+  922  0.000000e+00 +/- 0.000000e+00  
+  923  0.000000e+00 +/- 0.000000e+00  
+  924  0.000000e+00 +/- 0.000000e+00  
+  925  0.000000e+00 +/- 0.000000e+00  
+  926  0.000000e+00 +/- 0.000000e+00  
+  927  0.000000e+00 +/- 0.000000e+00  
+  928  0.000000e+00 +/- 0.000000e+00  
+  929  0.000000e+00 +/- 0.000000e+00  
+  930  0.000000e+00 +/- 0.000000e+00  
+  931  0.000000e+00 +/- 0.000000e+00  
+  932  0.000000e+00 +/- 0.000000e+00  
+  933  0.000000e+00 +/- 0.000000e+00  
+  934  0.000000e+00 +/- 0.000000e+00  
+  935  0.000000e+00 +/- 0.000000e+00  
+  936  0.000000e+00 +/- 0.000000e+00  
+  937  0.000000e+00 +/- 0.000000e+00  
+  938  0.000000e+00 +/- 0.000000e+00  
+  939  0.000000e+00 +/- 0.000000e+00  
+  940  0.000000e+00 +/- 0.000000e+00  
+  941  0.000000e+00 +/- 0.000000e+00  
+  942  0.000000e+00 +/- 0.000000e+00  
+  943  0.000000e+00 +/- 0.000000e+00  
+  944  0.000000e+00 +/- 0.000000e+00  
+  945  0.000000e+00 +/- 0.000000e+00  
+  946  0.000000e+00 +/- 0.000000e+00  
+  947  0.000000e+00 +/- 0.000000e+00  
+  948  0.000000e+00 +/- 0.000000e+00  
+  949  0.000000e+00 +/- 0.000000e+00  
+  950  0.000000e+00 +/- 0.000000e+00  
+  951  0.000000e+00 +/- 0.000000e+00  
+  952  0.000000e+00 +/- 0.000000e+00  
+  953  0.000000e+00 +/- 0.000000e+00  
+  954  0.000000e+00 +/- 0.000000e+00  
+  955  0.000000e+00 +/- 0.000000e+00  
+  956  0.000000e+00 +/- 0.000000e+00  
+  957  0.000000e+00 +/- 0.000000e+00  
+  958  0.000000e+00 +/- 0.000000e+00  
+  959  0.000000e+00 +/- 0.000000e+00  
+  960  0.000000e+00 +/- 0.000000e+00  
+  961  0.000000e+00 +/- 0.000000e+00  
+  962  0.000000e+00 +/- 0.000000e+00  
+  963  0.000000e+00 +/- 0.000000e+00  
+  964  0.000000e+00 +/- 0.000000e+00  
+  965  0.000000e+00 +/- 0.000000e+00  
+  966  0.000000e+00 +/- 0.000000e+00  
+  967  0.000000e+00 +/- 0.000000e+00  
+  968  0.000000e+00 +/- 0.000000e+00  
+  969  0.000000e+00 +/- 0.000000e+00  
+  970  0.000000e+00 +/- 0.000000e+00  
+  971  0.000000e+00 +/- 0.000000e+00  
+  972  0.000000e+00 +/- 0.000000e+00  
+  973  0.000000e+00 +/- 0.000000e+00  
+  974  0.000000e+00 +/- 0.000000e+00  
+  975  0.000000e+00 +/- 0.000000e+00  
+  976  0.000000e+00 +/- 0.000000e+00  
+  977  0.000000e+00 +/- 0.000000e+00  
+  978  0.000000e+00 +/- 0.000000e+00  
+  979  0.000000e+00 +/- 0.000000e+00  
+  980  0.000000e+00 +/- 0.000000e+00  
+  981  0.000000e+00 +/- 0.000000e+00  
+  982  0.000000e+00 +/- 0.000000e+00  
+  983  0.000000e+00 +/- 0.000000e+00  
+  984  0.000000e+00 +/- 0.000000e+00  
+  985  0.000000e+00 +/- 0.000000e+00  
+  986  0.000000e+00 +/- 0.000000e+00  
+  987  0.000000e+00 +/- 0.000000e+00  
+  988  0.000000e+00 +/- 0.000000e+00  
+  989  0.000000e+00 +/- 0.000000e+00  
+  990  0.000000e+00 +/- 0.000000e+00  
+  991  0.000000e+00 +/- 0.000000e+00  
+  992  0.000000e+00 +/- 0.000000e+00  
+  993  0.000000e+00 +/- 0.000000e+00  
+  994  0.000000e+00 +/- 0.000000e+00  
+  995  0.000000e+00 +/- 0.000000e+00  
+  996  0.000000e+00 +/- 0.000000e+00  
+  997  0.000000e+00 +/- 0.000000e+00  
+  998  0.000000e+00 +/- 0.000000e+00  
+  999  0.000000e+00 +/- 0.000000e+00  
+  1000  0.000000e+00 +/- 0.000000e+00  
+  1001  0.000000e+00 +/- 0.000000e+00  
+  1002  0.000000e+00 +/- 0.000000e+00  
+  1003  0.000000e+00 +/- 0.000000e+00  
+  1004  0.000000e+00 +/- 0.000000e+00  
+  1005  0.000000e+00 +/- 0.000000e+00  
+  1006  0.000000e+00 +/- 0.000000e+00  
+  1007  0.000000e+00 +/- 0.000000e+00  
+  1008  0.000000e+00 +/- 0.000000e+00  
+  1009  0.000000e+00 +/- 0.000000e+00  
+  1010  0.000000e+00 +/- 0.000000e+00  
+  1011  0.000000e+00 +/- 0.000000e+00  
+  1012  0.000000e+00 +/- 0.000000e+00  
+  1013  0.000000e+00 +/- 0.000000e+00  
+  1014  0.000000e+00 +/- 0.000000e+00  
+  1015  0.000000e+00 +/- 0.000000e+00  
+  1016  0.000000e+00 +/- 0.000000e+00  
+  1017  0.000000e+00 +/- 0.000000e+00  
+  1018  0.000000e+00 +/- 0.000000e+00  
+  1019  0.000000e+00 +/- 0.000000e+00  
+  1020  0.000000e+00 +/- 0.000000e+00  
+  1021  0.000000e+00 +/- 0.000000e+00  
+  1022  0.000000e+00 +/- 0.000000e+00  
+  1023  0.000000e+00 +/- 0.000000e+00  
+  1024  0.000000e+00 +/- 0.000000e+00  
+  1025  0.000000e+00 +/- 0.000000e+00  
+  1026  0.000000e+00 +/- 0.000000e+00  
+  1027  0.000000e+00 +/- 0.000000e+00  
+  1028  0.000000e+00 +/- 0.000000e+00  
+  1029  0.000000e+00 +/- 0.000000e+00  
+  1030  0.000000e+00 +/- 0.000000e+00  
+  1031  0.000000e+00 +/- 0.000000e+00  
+  1032  0.000000e+00 +/- 0.000000e+00  
+  1033  0.000000e+00 +/- 0.000000e+00  
+  1034  0.000000e+00 +/- 0.000000e+00  
+  1035  0.000000e+00 +/- 0.000000e+00  
+  1036  0.000000e+00 +/- 0.000000e+00  
+  1037  0.000000e+00 +/- 0.000000e+00  
+  1038  0.000000e+00 +/- 0.000000e+00  
+  1039  0.000000e+00 +/- 0.000000e+00  
+  1040  0.000000e+00 +/- 0.000000e+00  
+  1041  0.000000e+00 +/- 0.000000e+00  
+  1042  0.000000e+00 +/- 0.000000e+00  
+  1043  0.000000e+00 +/- 0.000000e+00  
+  1044  0.000000e+00 +/- 0.000000e+00  
+  1045  0.000000e+00 +/- 0.000000e+00  
+  1046  0.000000e+00 +/- 0.000000e+00  
+  1047  0.000000e+00 +/- 0.000000e+00  
+  1048  0.000000e+00 +/- 0.000000e+00  
+  1049  0.000000e+00 +/- 0.000000e+00  
+  1050  0.000000e+00 +/- 0.000000e+00  
+  1051  0.000000e+00 +/- 0.000000e+00  
+  1052  0.000000e+00 +/- 0.000000e+00  
+  1053  0.000000e+00 +/- 0.000000e+00  
+  1054  0.000000e+00 +/- 0.000000e+00  
+  1055  0.000000e+00 +/- 0.000000e+00  
+  1056  0.000000e+00 +/- 0.000000e+00  
+  1057  0.000000e+00 +/- 0.000000e+00  
+  1058  0.000000e+00 +/- 0.000000e+00  
+  1059  0.000000e+00 +/- 0.000000e+00  
+  1060  0.000000e+00 +/- 0.000000e+00  
+  1061  0.000000e+00 +/- 0.000000e+00  
+  1062  0.000000e+00 +/- 0.000000e+00  
+  1063  0.000000e+00 +/- 0.000000e+00  
+  1064  0.000000e+00 +/- 0.000000e+00  
+  1065  0.000000e+00 +/- 0.000000e+00  
+  1066  0.000000e+00 +/- 0.000000e+00  
+  1067  0.000000e+00 +/- 0.000000e+00  
+  1068  0.000000e+00 +/- 0.000000e+00  
+  1069  0.000000e+00 +/- 0.000000e+00  
+  1070  0.000000e+00 +/- 0.000000e+00  
+  1071  0.000000e+00 +/- 0.000000e+00  
+  1072  0.000000e+00 +/- 0.000000e+00  
+  1073  0.000000e+00 +/- 0.000000e+00  
+  1074  0.000000e+00 +/- 0.000000e+00  
+  1075  0.000000e+00 +/- 0.000000e+00  
+  1076  0.000000e+00 +/- 0.000000e+00  
+  1077  0.000000e+00 +/- 0.000000e+00  
+  1078  0.000000e+00 +/- 0.000000e+00  
+  1079  0.000000e+00 +/- 0.000000e+00  
+  1080  0.000000e+00 +/- 0.000000e+00  
+  1081  0.000000e+00 +/- 0.000000e+00  
+  1082  0.000000e+00 +/- 0.000000e+00  
+  1083  0.000000e+00 +/- 0.000000e+00  
+  1084  0.000000e+00 +/- 0.000000e+00  
+  1085  0.000000e+00 +/- 0.000000e+00  
+  1086  0.000000e+00 +/- 0.000000e+00  
+  1087  0.000000e+00 +/- 0.000000e+00  
+  1088  0.000000e+00 +/- 0.000000e+00  
+  1089  0.000000e+00 +/- 0.000000e+00  
+  1090  0.000000e+00 +/- 0.000000e+00  
+  1091  0.000000e+00 +/- 0.000000e+00  
+  1092  0.000000e+00 +/- 0.000000e+00  
+  1093  0.000000e+00 +/- 0.000000e+00  
+  1094  0.000000e+00 +/- 0.000000e+00  
+  1095  0.000000e+00 +/- 0.000000e+00  
+  1096  0.000000e+00 +/- 0.000000e+00  
+  1097  0.000000e+00 +/- 0.000000e+00  
+  1098  0.000000e+00 +/- 0.000000e+00  
+  1099  0.000000e+00 +/- 0.000000e+00  
+  1100  0.000000e+00 +/- 0.000000e+00  
+  1101  0.000000e+00 +/- 0.000000e+00  
+  1102  0.000000e+00 +/- 0.000000e+00  
+  1103  0.000000e+00 +/- 0.000000e+00  
+  1104  0.000000e+00 +/- 0.000000e+00  
+  1105  0.000000e+00 +/- 0.000000e+00  
+  1106  0.000000e+00 +/- 0.000000e+00  
+  1107  0.000000e+00 +/- 0.000000e+00  
+  1108  0.000000e+00 +/- 0.000000e+00  
+  1109  0.000000e+00 +/- 0.000000e+00  
+  1110  0.000000e+00 +/- 0.000000e+00  
+  1111  0.000000e+00 +/- 0.000000e+00  
+  1112  0.000000e+00 +/- 0.000000e+00  
+  1113  0.000000e+00 +/- 0.000000e+00  
+  1114  0.000000e+00 +/- 0.000000e+00  
+  1115  0.000000e+00 +/- 0.000000e+00  
+  1116  0.000000e+00 +/- 0.000000e+00  
+  1117  0.000000e+00 +/- 0.000000e+00  
+  1118  0.000000e+00 +/- 0.000000e+00  
+  1119  0.000000e+00 +/- 0.000000e+00  
+  1120  0.000000e+00 +/- 0.000000e+00  
+  1121  0.000000e+00 +/- 0.000000e+00  
+  1122  0.000000e+00 +/- 0.000000e+00  
+  1123  0.000000e+00 +/- 0.000000e+00  
+  1124  0.000000e+00 +/- 0.000000e+00  
+  1125  0.000000e+00 +/- 0.000000e+00  
+  1126  0.000000e+00 +/- 0.000000e+00  
+  1127  0.000000e+00 +/- 0.000000e+00  
+  1128  0.000000e+00 +/- 0.000000e+00  
+  1129  0.000000e+00 +/- 0.000000e+00  
+  1130  0.000000e+00 +/- 0.000000e+00  
+  1131  0.000000e+00 +/- 0.000000e+00  
+  1132  0.000000e+00 +/- 0.000000e+00  
+  1133  0.000000e+00 +/- 0.000000e+00  
+  1134  0.000000e+00 +/- 0.000000e+00  
+  1135  0.000000e+00 +/- 0.000000e+00  
+  1136  0.000000e+00 +/- 0.000000e+00  
+  1137  0.000000e+00 +/- 0.000000e+00  
+  1138  0.000000e+00 +/- 0.000000e+00  
+  1139  0.000000e+00 +/- 0.000000e+00  
+  1140  0.000000e+00 +/- 0.000000e+00  
+  1141  0.000000e+00 +/- 0.000000e+00  
+  1142  0.000000e+00 +/- 0.000000e+00  
+  1143  0.000000e+00 +/- 0.000000e+00  
+  1144  0.000000e+00 +/- 0.000000e+00  
+  1145  0.000000e+00 +/- 0.000000e+00  
+  1146  0.000000e+00 +/- 0.000000e+00  
+  1147  0.000000e+00 +/- 0.000000e+00  
+  1148  0.000000e+00 +/- 0.000000e+00  
+  1149  0.000000e+00 +/- 0.000000e+00  
+  1150  0.000000e+00 +/- 0.000000e+00  
+  1151  0.000000e+00 +/- 0.000000e+00  
+  1152  0.000000e+00 +/- 0.000000e+00  
+  1153  0.000000e+00 +/- 0.000000e+00  
+  1154  0.000000e+00 +/- 0.000000e+00  
+  1155  0.000000e+00 +/- 0.000000e+00  
+  1156  0.000000e+00 +/- 0.000000e+00  
+  1157  0.000000e+00 +/- 0.000000e+00  
+  1158  0.000000e+00 +/- 0.000000e+00  
+  1159  0.000000e+00 +/- 0.000000e+00  
+  1160  0.000000e+00 +/- 0.000000e+00  
+  1161  0.000000e+00 +/- 0.000000e+00  
+  1162  0.000000e+00 +/- 0.000000e+00  
+  1163  0.000000e+00 +/- 0.000000e+00  
+  1164  0.000000e+00 +/- 0.000000e+00  
+  1165  0.000000e+00 +/- 0.000000e+00  
+  1166  0.000000e+00 +/- 0.000000e+00  
+  1167  0.000000e+00 +/- 0.000000e+00  
+  1168  0.000000e+00 +/- 0.000000e+00  
+  1169  0.000000e+00 +/- 0.000000e+00  
+  1170  0.000000e+00 +/- 0.000000e+00  
+  1171  0.000000e+00 +/- 0.000000e+00  
+  1172  0.000000e+00 +/- 0.000000e+00  
+  1173  0.000000e+00 +/- 0.000000e+00  
+  1174  0.000000e+00 +/- 0.000000e+00  
+  1175  0.000000e+00 +/- 0.000000e+00  
+  1176  0.000000e+00 +/- 0.000000e+00  
+  1177  0.000000e+00 +/- 0.000000e+00  
+  1178  0.000000e+00 +/- 0.000000e+00  
+  1179  0.000000e+00 +/- 0.000000e+00  
+  1180  0.000000e+00 +/- 0.000000e+00  
+  1181  0.000000e+00 +/- 0.000000e+00  
+  1182  0.000000e+00 +/- 0.000000e+00  
+  1183  0.000000e+00 +/- 0.000000e+00  
+  1184  0.000000e+00 +/- 0.000000e+00  
+  1185  0.000000e+00 +/- 0.000000e+00  
+  1186  0.000000e+00 +/- 0.000000e+00  
+  1187  0.000000e+00 +/- 0.000000e+00  
+  1188  0.000000e+00 +/- 0.000000e+00  
+  1189  0.000000e+00 +/- 0.000000e+00  
+  1190  0.000000e+00 +/- 0.000000e+00  
+  1191  0.000000e+00 +/- 0.000000e+00  
+  1192  0.000000e+00 +/- 0.000000e+00  
+  1193  0.000000e+00 +/- 0.000000e+00  
+  1194  0.000000e+00 +/- 0.000000e+00  
+  1195  0.000000e+00 +/- 0.000000e+00  
+  1196  0.000000e+00 +/- 0.000000e+00  
+  1197  0.000000e+00 +/- 0.000000e+00  
+  1198  0.000000e+00 +/- 0.000000e+00  
+  1199  0.000000e+00 +/- 0.000000e+00  
+  1200  0.000000e+00 +/- 0.000000e+00  
+  1201  0.000000e+00 +/- 0.000000e+00  
+  1202  0.000000e+00 +/- 0.000000e+00  
+  1203  0.000000e+00 +/- 0.000000e+00  
+  1204  0.000000e+00 +/- 0.000000e+00  
+  1205  0.000000e+00 +/- 0.000000e+00  
+  1206  0.000000e+00 +/- 0.000000e+00  
+  1207  0.000000e+00 +/- 0.000000e+00  
+  1208  0.000000e+00 +/- 0.000000e+00  
+  1209  0.000000e+00 +/- 0.000000e+00  
+  1210  0.000000e+00 +/- 0.000000e+00  
+  1211  0.000000e+00 +/- 0.000000e+00  
+  1212  0.000000e+00 +/- 0.000000e+00  
+  1213  0.000000e+00 +/- 0.000000e+00  
+  1214  0.000000e+00 +/- 0.000000e+00  
+  1215  0.000000e+00 +/- 0.000000e+00  
+  1216  0.000000e+00 +/- 0.000000e+00  
+  1217  0.000000e+00 +/- 0.000000e+00  
+  1218  0.000000e+00 +/- 0.000000e+00  
+  1219  0.000000e+00 +/- 0.000000e+00  
+  1220  0.000000e+00 +/- 0.000000e+00  
+  1221  0.000000e+00 +/- 0.000000e+00  
+  1222  0.000000e+00 +/- 0.000000e+00  
+  1223  0.000000e+00 +/- 0.000000e+00  
+  1224  0.000000e+00 +/- 0.000000e+00  
+  1225  0.000000e+00 +/- 0.000000e+00  
+  1226  0.000000e+00 +/- 0.000000e+00  
+  1227  0.000000e+00 +/- 0.000000e+00  
+  1228  0.000000e+00 +/- 0.000000e+00  
+  1229  0.000000e+00 +/- 0.000000e+00  
+  1230  0.000000e+00 +/- 0.000000e+00  
+  1231  0.000000e+00 +/- 0.000000e+00  
+  1232  0.000000e+00 +/- 0.000000e+00  
+  1233  0.000000e+00 +/- 0.000000e+00  
+  1234  0.000000e+00 +/- 0.000000e+00  
+  1235  0.000000e+00 +/- 0.000000e+00  
+  1236  0.000000e+00 +/- 0.000000e+00  
+  1237  0.000000e+00 +/- 0.000000e+00  
+  1238  0.000000e+00 +/- 0.000000e+00  
+  1239  0.000000e+00 +/- 0.000000e+00  
+  1240  0.000000e+00 +/- 0.000000e+00  
+  1241  0.000000e+00 +/- 0.000000e+00  
+  1242  0.000000e+00 +/- 0.000000e+00  
+  1243  0.000000e+00 +/- 0.000000e+00  
+  1244  0.000000e+00 +/- 0.000000e+00  
+  1245  0.000000e+00 +/- 0.000000e+00  
+  1246  0.000000e+00 +/- 0.000000e+00  
+  1247  0.000000e+00 +/- 0.000000e+00  
+  1248  0.000000e+00 +/- 0.000000e+00  
+  1249  0.000000e+00 +/- 0.000000e+00  
+  1250  0.000000e+00 +/- 0.000000e+00  
+  1251  0.000000e+00 +/- 0.000000e+00  
+  1252  0.000000e+00 +/- 0.000000e+00  
+  1253  0.000000e+00 +/- 0.000000e+00  
+  1254  0.000000e+00 +/- 0.000000e+00  
+  1255  0.000000e+00 +/- 0.000000e+00  
+  1256  0.000000e+00 +/- 0.000000e+00  
+  1257  0.000000e+00 +/- 0.000000e+00  
+  1258  0.000000e+00 +/- 0.000000e+00  
+  1259  0.000000e+00 +/- 0.000000e+00  
+  1260  0.000000e+00 +/- 0.000000e+00  
+  1261  0.000000e+00 +/- 0.000000e+00  
+  1262  0.000000e+00 +/- 0.000000e+00  
+  1263  0.000000e+00 +/- 0.000000e+00  
+  1264  0.000000e+00 +/- 0.000000e+00  
+  1265  0.000000e+00 +/- 0.000000e+00  
+  1266  0.000000e+00 +/- 0.000000e+00  
+  1267  0.000000e+00 +/- 0.000000e+00  
+  1268  0.000000e+00 +/- 0.000000e+00  
+  1269  0.000000e+00 +/- 0.000000e+00  
+  1270  0.000000e+00 +/- 0.000000e+00  
+  1271  0.000000e+00 +/- 0.000000e+00  
+  1272  0.000000e+00 +/- 0.000000e+00  
+  1273  0.000000e+00 +/- 0.000000e+00  
+  1274  0.000000e+00 +/- 0.000000e+00  
+  1275  0.000000e+00 +/- 0.000000e+00  
+  1276  0.000000e+00 +/- 0.000000e+00  
+  1277  0.000000e+00 +/- 0.000000e+00  
+  1278  0.000000e+00 +/- 0.000000e+00  
+  1279  0.000000e+00 +/- 0.000000e+00  
+  1280  0.000000e+00 +/- 0.000000e+00  
+  1281  0.000000e+00 +/- 0.000000e+00  
+  1282  0.000000e+00 +/- 0.000000e+00  
+  1283  0.000000e+00 +/- 0.000000e+00  
+  1284  0.000000e+00 +/- 0.000000e+00  
+  1285  0.000000e+00 +/- 0.000000e+00  
+  1286  0.000000e+00 +/- 0.000000e+00  
+  1287  0.000000e+00 +/- 0.000000e+00  
+  1288  0.000000e+00 +/- 0.000000e+00  
+  1289  0.000000e+00 +/- 0.000000e+00  
+  1290  0.000000e+00 +/- 0.000000e+00  
+  1291  0.000000e+00 +/- 0.000000e+00  
+  1292  0.000000e+00 +/- 0.000000e+00  
+  1293  0.000000e+00 +/- 0.000000e+00  
+  1294  0.000000e+00 +/- 0.000000e+00  
+  1295  0.000000e+00 +/- 0.000000e+00  
+  1296  0.000000e+00 +/- 0.000000e+00  
+  1297  6.275852e-08 +/- 1.120206e-10  
+  1298  0.000000e+00 +/- 0.000000e+00  
+  1299  0.000000e+00 +/- 0.000000e+00  
+  1300  0.000000e+00 +/- 0.000000e+00  
+  1301  0.000000e+00 +/- 0.000000e+00  
+  1302  0.000000e+00 +/- 0.000000e+00  
+  1303  0.000000e+00 +/- 0.000000e+00  
+  1304  0.000000e+00 +/- 0.000000e+00  
+  1305  0.000000e+00 +/- 0.000000e+00  
+  1306  0.000000e+00 +/- 0.000000e+00  
+  1307  0.000000e+00 +/- 0.000000e+00  
+  1308  0.000000e+00 +/- 0.000000e+00  
+  1309  0.000000e+00 +/- 0.000000e+00  
+  1310  0.000000e+00 +/- 0.000000e+00  
+  1311  0.000000e+00 +/- 0.000000e+00  
+  1312  0.000000e+00 +/- 0.000000e+00  
+  1313  0.000000e+00 +/- 0.000000e+00  
+  1314  0.000000e+00 +/- 0.000000e+00  
+  1315  0.000000e+00 +/- 0.000000e+00  
+  1316  0.000000e+00 +/- 0.000000e+00  
+  1317  0.000000e+00 +/- 0.000000e+00  
+  1318  0.000000e+00 +/- 0.000000e+00  
+  1319  0.000000e+00 +/- 0.000000e+00  
+  1320  0.000000e+00 +/- 0.000000e+00  
+  1321  0.000000e+00 +/- 0.000000e+00  
+  1322  0.000000e+00 +/- 0.000000e+00  
+  1323  0.000000e+00 +/- 0.000000e+00  
+  1324  0.000000e+00 +/- 0.000000e+00  
+  1325  0.000000e+00 +/- 0.000000e+00  
+  1326  0.000000e+00 +/- 0.000000e+00  
+  1327  0.000000e+00 +/- 0.000000e+00  
+  1328  0.000000e+00 +/- 0.000000e+00  
+  1329  0.000000e+00 +/- 0.000000e+00  
+  1330  0.000000e+00 +/- 0.000000e+00  
+  1331  0.000000e+00 +/- 0.000000e+00  
+  1332  0.000000e+00 +/- 0.000000e+00  
+  1333  0.000000e+00 +/- 0.000000e+00  
+  1334  0.000000e+00 +/- 0.000000e+00  
+  1335  0.000000e+00 +/- 0.000000e+00  
+  1336  0.000000e+00 +/- 0.000000e+00  
+  1337  0.000000e+00 +/- 0.000000e+00  
+  1338  0.000000e+00 +/- 0.000000e+00  
+  1339  0.000000e+00 +/- 0.000000e+00  
+  1340  0.000000e+00 +/- 0.000000e+00  
+  1341  0.000000e+00 +/- 0.000000e+00  
+  1342  0.000000e+00 +/- 0.000000e+00  
+  1343  0.000000e+00 +/- 0.000000e+00  
+  1344  0.000000e+00 +/- 0.000000e+00  
+  1345  0.000000e+00 +/- 0.000000e+00  
+  1346  0.000000e+00 +/- 0.000000e+00  
+  1347  0.000000e+00 +/- 0.000000e+00  
+  1348  0.000000e+00 +/- 0.000000e+00  
+  1349  0.000000e+00 +/- 0.000000e+00  
+  1350  0.000000e+00 +/- 0.000000e+00  
+  1351  0.000000e+00 +/- 0.000000e+00  
+  1352  0.000000e+00 +/- 0.000000e+00  
+  1353  0.000000e+00 +/- 0.000000e+00  
+  1354  0.000000e+00 +/- 0.000000e+00  
+  1355  0.000000e+00 +/- 0.000000e+00  
+  1356  0.000000e+00 +/- 0.000000e+00  
+  1357  0.000000e+00 +/- 0.000000e+00  
+  1358  0.000000e+00 +/- 0.000000e+00  
+  1359  0.000000e+00 +/- 0.000000e+00  
+  1360  0.000000e+00 +/- 0.000000e+00  
+  1361  0.000000e+00 +/- 0.000000e+00  
+  1362  0.000000e+00 +/- 0.000000e+00  
+  1363  0.000000e+00 +/- 0.000000e+00  
+  1364  0.000000e+00 +/- 0.000000e+00  
+  1365  0.000000e+00 +/- 0.000000e+00  
+  1366  0.000000e+00 +/- 0.000000e+00  
+  1367  0.000000e+00 +/- 0.000000e+00  
+  1368  0.000000e+00 +/- 0.000000e+00  
+  1369  0.000000e+00 +/- 0.000000e+00  
+  1370  0.000000e+00 +/- 0.000000e+00  
+  1371  0.000000e+00 +/- 0.000000e+00  
+  1372  0.000000e+00 +/- 0.000000e+00  
+  1373  0.000000e+00 +/- 0.000000e+00  
+  1374  0.000000e+00 +/- 0.000000e+00  
+  1375  0.000000e+00 +/- 0.000000e+00  
+  1376  0.000000e+00 +/- 0.000000e+00  
+  1377  0.000000e+00 +/- 0.000000e+00  
+  1378  0.000000e+00 +/- 0.000000e+00  
+  1379  0.000000e+00 +/- 0.000000e+00  
+  1380  0.000000e+00 +/- 0.000000e+00  
+  1381  0.000000e+00 +/- 0.000000e+00  
+  1382  0.000000e+00 +/- 0.000000e+00  
+  1383  0.000000e+00 +/- 0.000000e+00  
+  1384  0.000000e+00 +/- 0.000000e+00  
+  1385  0.000000e+00 +/- 0.000000e+00  
+  1386  0.000000e+00 +/- 0.000000e+00  
+  1387  0.000000e+00 +/- 0.000000e+00  
+  1388  0.000000e+00 +/- 0.000000e+00  
+  1389  0.000000e+00 +/- 0.000000e+00  
+  1390  0.000000e+00 +/- 0.000000e+00  
+  1391  0.000000e+00 +/- 0.000000e+00  
+  1392  0.000000e+00 +/- 0.000000e+00  
+  1393  0.000000e+00 +/- 0.000000e+00  
+  1394  0.000000e+00 +/- 0.000000e+00  
+  1395  0.000000e+00 +/- 0.000000e+00  
+  1396  0.000000e+00 +/- 0.000000e+00  
+  1397  0.000000e+00 +/- 0.000000e+00  
+  1398  0.000000e+00 +/- 0.000000e+00  
+  1399  0.000000e+00 +/- 0.000000e+00  
+  1400  0.000000e+00 +/- 0.000000e+00  
+  1401  0.000000e+00 +/- 0.000000e+00  
+  1402  0.000000e+00 +/- 0.000000e+00  
+  1403  0.000000e+00 +/- 0.000000e+00  
+  1404  0.000000e+00 +/- 0.000000e+00  
+  1405  0.000000e+00 +/- 0.000000e+00  
+  1406  0.000000e+00 +/- 0.000000e+00  
+  1407  0.000000e+00 +/- 0.000000e+00  
+  1408  0.000000e+00 +/- 0.000000e+00  
+  1409  0.000000e+00 +/- 0.000000e+00  
+  1410  0.000000e+00 +/- 0.000000e+00  
+  1411  0.000000e+00 +/- 0.000000e+00  
+  1412  0.000000e+00 +/- 0.000000e+00  
+  1413  0.000000e+00 +/- 0.000000e+00  
+  1414  0.000000e+00 +/- 0.000000e+00  
+  1415  0.000000e+00 +/- 0.000000e+00  
+  1416  0.000000e+00 +/- 0.000000e+00  
+  1417  0.000000e+00 +/- 0.000000e+00  
+  1418  0.000000e+00 +/- 0.000000e+00  
+  1419  0.000000e+00 +/- 0.000000e+00  
+  1420  0.000000e+00 +/- 0.000000e+00  
+  1421  0.000000e+00 +/- 0.000000e+00  
+  1422  0.000000e+00 +/- 0.000000e+00  
+  1423  0.000000e+00 +/- 0.000000e+00  
+  1424  0.000000e+00 +/- 0.000000e+00  
+  1425  0.000000e+00 +/- 0.000000e+00  
+  1426  0.000000e+00 +/- 0.000000e+00  
+  1427  0.000000e+00 +/- 0.000000e+00  
+  1428  0.000000e+00 +/- 0.000000e+00  
+  1429  0.000000e+00 +/- 0.000000e+00  
+  1430  0.000000e+00 +/- 0.000000e+00  
+  1431  0.000000e+00 +/- 0.000000e+00  
+  1432  0.000000e+00 +/- 0.000000e+00  
+  1433  0.000000e+00 +/- 0.000000e+00  
+  1434  0.000000e+00 +/- 0.000000e+00  
+  1435  0.000000e+00 +/- 0.000000e+00  
+  1436  0.000000e+00 +/- 0.000000e+00  
+  1437  0.000000e+00 +/- 0.000000e+00  
+  1438  0.000000e+00 +/- 0.000000e+00  
+  1439  0.000000e+00 +/- 0.000000e+00  
+  1440  0.000000e+00 +/- 0.000000e+00  
+  1441  0.000000e+00 +/- 0.000000e+00  
+  1442  0.000000e+00 +/- 0.000000e+00  
+  1443  0.000000e+00 +/- 0.000000e+00  
+  1444  0.000000e+00 +/- 0.000000e+00  
+  1445  0.000000e+00 +/- 0.000000e+00  
+  1446  0.000000e+00 +/- 0.000000e+00  
+  1447  0.000000e+00 +/- 0.000000e+00  
+  1448  0.000000e+00 +/- 0.000000e+00  
+  1449  0.000000e+00 +/- 0.000000e+00  
+  1450  0.000000e+00 +/- 0.000000e+00  
+  1451  0.000000e+00 +/- 0.000000e+00  
+  1452  0.000000e+00 +/- 0.000000e+00  
+  1453  0.000000e+00 +/- 0.000000e+00  
+  1454  0.000000e+00 +/- 0.000000e+00  
+  1455  0.000000e+00 +/- 0.000000e+00  
+  1456  0.000000e+00 +/- 0.000000e+00  
+  1457  0.000000e+00 +/- 0.000000e+00  
+  1458  0.000000e+00 +/- 0.000000e+00  
+  1459  0.000000e+00 +/- 0.000000e+00  
+  1460  0.000000e+00 +/- 0.000000e+00  
+  1461  0.000000e+00 +/- 0.000000e+00  
+  1462  0.000000e+00 +/- 0.000000e+00  
+  1463  0.000000e+00 +/- 0.000000e+00  
+  1464  0.000000e+00 +/- 0.000000e+00  
+  1465  0.000000e+00 +/- 0.000000e+00  
+  1466  0.000000e+00 +/- 0.000000e+00  
+  1467  0.000000e+00 +/- 0.000000e+00  
+  1468  0.000000e+00 +/- 0.000000e+00  
+  1469  0.000000e+00 +/- 0.000000e+00  
+  1470  0.000000e+00 +/- 0.000000e+00  
+  1471  0.000000e+00 +/- 0.000000e+00  
+  1472  0.000000e+00 +/- 0.000000e+00  
+  1473  0.000000e+00 +/- 0.000000e+00  
+  1474  0.000000e+00 +/- 0.000000e+00  
+  1475  0.000000e+00 +/- 0.000000e+00  
+  1476  0.000000e+00 +/- 0.000000e+00  
+  1477  0.000000e+00 +/- 0.000000e+00  
+  1478  0.000000e+00 +/- 0.000000e+00  
+  1479  0.000000e+00 +/- 0.000000e+00  
+  1480  0.000000e+00 +/- 0.000000e+00  
+  1481  0.000000e+00 +/- 0.000000e+00  
+  1482  0.000000e+00 +/- 0.000000e+00  
+  1483  0.000000e+00 +/- 0.000000e+00  
+  1484  0.000000e+00 +/- 0.000000e+00  
+  1485  0.000000e+00 +/- 0.000000e+00  
+  1486  0.000000e+00 +/- 0.000000e+00  
+  1487  0.000000e+00 +/- 0.000000e+00  
+  1488  0.000000e+00 +/- 0.000000e+00  
+  1489  0.000000e+00 +/- 0.000000e+00  
+  1490  0.000000e+00 +/- 0.000000e+00  
+  1491  0.000000e+00 +/- 0.000000e+00  
+  1492  0.000000e+00 +/- 0.000000e+00  
+  1493  0.000000e+00 +/- 0.000000e+00  
+  1494  0.000000e+00 +/- 0.000000e+00  
+  1495  0.000000e+00 +/- 0.000000e+00  
+  1496  0.000000e+00 +/- 0.000000e+00  
+  1497  0.000000e+00 +/- 0.000000e+00  
+  1498  0.000000e+00 +/- 0.000000e+00  
+  1499  0.000000e+00 +/- 0.000000e+00  
+  1500  0.000000e+00 +/- 0.000000e+00  
+  1501  0.000000e+00 +/- 0.000000e+00  
+  1502  0.000000e+00 +/- 0.000000e+00  
+  1503  0.000000e+00 +/- 0.000000e+00  
+  1504  0.000000e+00 +/- 0.000000e+00  
+  1505  0.000000e+00 +/- 0.000000e+00  
+  1506  0.000000e+00 +/- 0.000000e+00  
+  1507  0.000000e+00 +/- 0.000000e+00  
+  1508  0.000000e+00 +/- 0.000000e+00  
+  1509  0.000000e+00 +/- 0.000000e+00  
+  1510  0.000000e+00 +/- 0.000000e+00  
+  1511  0.000000e+00 +/- 0.000000e+00  
+  1512  0.000000e+00 +/- 0.000000e+00  
+  1513  0.000000e+00 +/- 0.000000e+00  
+  1514  0.000000e+00 +/- 0.000000e+00  
+  1515  0.000000e+00 +/- 0.000000e+00  
+  1516  0.000000e+00 +/- 0.000000e+00  
+  1517  0.000000e+00 +/- 0.000000e+00  
+  1518  0.000000e+00 +/- 0.000000e+00  
+  1519  0.000000e+00 +/- 0.000000e+00  
+  1520  0.000000e+00 +/- 0.000000e+00  
+  1521  0.000000e+00 +/- 0.000000e+00  
+  1522  0.000000e+00 +/- 0.000000e+00  
+  1523  0.000000e+00 +/- 0.000000e+00  
+  1524  0.000000e+00 +/- 0.000000e+00  
+  1525  0.000000e+00 +/- 0.000000e+00  
+  1526  0.000000e+00 +/- 0.000000e+00  
+  1527  0.000000e+00 +/- 0.000000e+00  
+  1528  0.000000e+00 +/- 0.000000e+00  
+  1529  0.000000e+00 +/- 0.000000e+00  
+  1530  0.000000e+00 +/- 0.000000e+00  
+  1531  0.000000e+00 +/- 0.000000e+00  
+  1532  0.000000e+00 +/- 0.000000e+00  
+  1533  0.000000e+00 +/- 0.000000e+00  
+  1534  0.000000e+00 +/- 0.000000e+00  
+  1535  0.000000e+00 +/- 0.000000e+00  
+  1536  0.000000e+00 +/- 0.000000e+00  
+  1537  0.000000e+00 +/- 0.000000e+00  
+  1538  0.000000e+00 +/- 0.000000e+00  
+  1539  0.000000e+00 +/- 0.000000e+00  
+  1540  0.000000e+00 +/- 0.000000e+00  
+  1541  0.000000e+00 +/- 0.000000e+00  
+  1542  0.000000e+00 +/- 0.000000e+00  
+  1543  0.000000e+00 +/- 0.000000e+00  
+  1544  0.000000e+00 +/- 0.000000e+00  
+  1545  0.000000e+00 +/- 0.000000e+00  
+  1546  0.000000e+00 +/- 0.000000e+00  
+  1547  0.000000e+00 +/- 0.000000e+00  
+  1548  0.000000e+00 +/- 0.000000e+00  
+  1549  0.000000e+00 +/- 0.000000e+00  
+  1550  0.000000e+00 +/- 0.000000e+00  
+  1551  0.000000e+00 +/- 0.000000e+00  
+  1552  0.000000e+00 +/- 0.000000e+00  
+  1553  0.000000e+00 +/- 0.000000e+00  
+  1554  0.000000e+00 +/- 0.000000e+00  
+  1555  0.000000e+00 +/- 0.000000e+00  
+  1556  0.000000e+00 +/- 0.000000e+00  
+  1557  0.000000e+00 +/- 0.000000e+00  
+  1558  0.000000e+00 +/- 0.000000e+00  
+  1559  0.000000e+00 +/- 0.000000e+00  
+  1560  0.000000e+00 +/- 0.000000e+00  
+  1561  0.000000e+00 +/- 0.000000e+00  
+  1562  0.000000e+00 +/- 0.000000e+00  
+  1563  0.000000e+00 +/- 0.000000e+00  
+  1564  0.000000e+00 +/- 0.000000e+00  
+  1565  0.000000e+00 +/- 0.000000e+00  
+  1566  0.000000e+00 +/- 0.000000e+00  
+  1567  0.000000e+00 +/- 0.000000e+00  
+  1568  0.000000e+00 +/- 0.000000e+00  
+  1569  0.000000e+00 +/- 0.000000e+00  
+  1570  0.000000e+00 +/- 0.000000e+00  
+  1571  0.000000e+00 +/- 0.000000e+00  
+  1572  0.000000e+00 +/- 0.000000e+00  
+  1573  0.000000e+00 +/- 0.000000e+00  
+  1574  0.000000e+00 +/- 0.000000e+00  
+  1575  0.000000e+00 +/- 0.000000e+00  
+  1576  0.000000e+00 +/- 0.000000e+00  
+  1577  0.000000e+00 +/- 0.000000e+00  
+  1578  0.000000e+00 +/- 0.000000e+00  
+  1579  0.000000e+00 +/- 0.000000e+00  
+  1580  0.000000e+00 +/- 0.000000e+00  
+  1581  0.000000e+00 +/- 0.000000e+00  
+  1582  0.000000e+00 +/- 0.000000e+00  
+  1583  0.000000e+00 +/- 0.000000e+00  
+  1584  0.000000e+00 +/- 0.000000e+00  
+  1585  0.000000e+00 +/- 0.000000e+00  
+  1586  0.000000e+00 +/- 0.000000e+00  
+  1587  0.000000e+00 +/- 0.000000e+00  
+  1588  0.000000e+00 +/- 0.000000e+00  
+  1589  0.000000e+00 +/- 0.000000e+00  
+  1590  0.000000e+00 +/- 0.000000e+00  
+  1591  0.000000e+00 +/- 0.000000e+00  
+  1592  0.000000e+00 +/- 0.000000e+00  
+  1593  0.000000e+00 +/- 0.000000e+00  
+  1594  0.000000e+00 +/- 0.000000e+00  
+  1595  0.000000e+00 +/- 0.000000e+00  
+  1596  0.000000e+00 +/- 0.000000e+00  
+  1597  0.000000e+00 +/- 0.000000e+00  
+  1598  0.000000e+00 +/- 0.000000e+00  
+  1599  0.000000e+00 +/- 0.000000e+00  
+  1600  0.000000e+00 +/- 0.000000e+00  
+  1601  0.000000e+00 +/- 0.000000e+00  
+  1602  0.000000e+00 +/- 0.000000e+00  
+  1603  0.000000e+00 +/- 0.000000e+00  
+  1604  0.000000e+00 +/- 0.000000e+00  
+  1605  0.000000e+00 +/- 0.000000e+00  
+  1606  0.000000e+00 +/- 0.000000e+00  
+  1607  0.000000e+00 +/- 0.000000e+00  
+  1608  0.000000e+00 +/- 0.000000e+00  
+  1609  0.000000e+00 +/- 0.000000e+00  
+  1610  0.000000e+00 +/- 0.000000e+00  
+  1611  0.000000e+00 +/- 0.000000e+00  
+  1612  0.000000e+00 +/- 0.000000e+00  
+  1613  0.000000e+00 +/- 0.000000e+00  
+  1614  0.000000e+00 +/- 0.000000e+00  
+  1615  0.000000e+00 +/- 0.000000e+00  
+  1616  0.000000e+00 +/- 0.000000e+00  
+  1617  0.000000e+00 +/- 0.000000e+00  
+  1618  0.000000e+00 +/- 0.000000e+00  
+  1619  0.000000e+00 +/- 0.000000e+00  
+  1620  0.000000e+00 +/- 0.000000e+00  
+  1621  0.000000e+00 +/- 0.000000e+00  
+  1622  0.000000e+00 +/- 0.000000e+00  
+  1623  0.000000e+00 +/- 0.000000e+00  
+  1624  0.000000e+00 +/- 0.000000e+00  
+  1625  0.000000e+00 +/- 0.000000e+00  
+  1626  0.000000e+00 +/- 0.000000e+00  
+  1627  0.000000e+00 +/- 0.000000e+00  
+  1628  0.000000e+00 +/- 0.000000e+00  
+  1629  0.000000e+00 +/- 0.000000e+00  
+  1630  0.000000e+00 +/- 0.000000e+00  
+  1631  0.000000e+00 +/- 0.000000e+00  
+  1632  0.000000e+00 +/- 0.000000e+00  
+  1633  0.000000e+00 +/- 0.000000e+00  
+  1634  0.000000e+00 +/- 0.000000e+00  
+  1635  0.000000e+00 +/- 0.000000e+00  
+  1636  0.000000e+00 +/- 0.000000e+00  
+  1637  0.000000e+00 +/- 0.000000e+00  
+  1638  0.000000e+00 +/- 0.000000e+00  
+  1639  0.000000e+00 +/- 0.000000e+00  
+  1640  0.000000e+00 +/- 0.000000e+00  
+  1641  0.000000e+00 +/- 0.000000e+00  
+  1642  0.000000e+00 +/- 0.000000e+00  
+  1643  0.000000e+00 +/- 0.000000e+00  
+  1644  0.000000e+00 +/- 0.000000e+00  
+  1645  0.000000e+00 +/- 0.000000e+00  
+  1646  0.000000e+00 +/- 0.000000e+00  
+  1647  0.000000e+00 +/- 0.000000e+00  
+  1648  0.000000e+00 +/- 0.000000e+00  
+  1649  0.000000e+00 +/- 0.000000e+00  
+  1650  0.000000e+00 +/- 0.000000e+00  
+  1651  0.000000e+00 +/- 0.000000e+00  
+  1652  0.000000e+00 +/- 0.000000e+00  
+  1653  0.000000e+00 +/- 0.000000e+00  
+  1654  0.000000e+00 +/- 0.000000e+00  
+  1655  0.000000e+00 +/- 0.000000e+00  
+  1656  0.000000e+00 +/- 0.000000e+00  
+  1657  0.000000e+00 +/- 0.000000e+00  
+  1658  0.000000e+00 +/- 0.000000e+00  
+  1659  0.000000e+00 +/- 0.000000e+00  
+  1660  0.000000e+00 +/- 0.000000e+00  
+  1661  0.000000e+00 +/- 0.000000e+00  
+  1662  0.000000e+00 +/- 0.000000e+00  
+  1663  0.000000e+00 +/- 0.000000e+00  
+  1664  0.000000e+00 +/- 0.000000e+00  
+  1665  0.000000e+00 +/- 0.000000e+00  
+  1666  0.000000e+00 +/- 0.000000e+00  
+  1667  0.000000e+00 +/- 0.000000e+00  
+  1668  0.000000e+00 +/- 0.000000e+00  
+  1669  0.000000e+00 +/- 0.000000e+00  
+  1670  0.000000e+00 +/- 0.000000e+00  
+  1671  0.000000e+00 +/- 0.000000e+00  
+  1672  0.000000e+00 +/- 0.000000e+00  
+  1673  0.000000e+00 +/- 0.000000e+00  
+  1674  0.000000e+00 +/- 0.000000e+00  
+  1675  0.000000e+00 +/- 0.000000e+00  
+  1676  0.000000e+00 +/- 0.000000e+00  
+  1677  0.000000e+00 +/- 0.000000e+00  
+  1678  0.000000e+00 +/- 0.000000e+00  
+  1679  0.000000e+00 +/- 0.000000e+00  
+  1680  0.000000e+00 +/- 0.000000e+00  
+  1681  0.000000e+00 +/- 0.000000e+00  
+  1682  0.000000e+00 +/- 0.000000e+00  
+  1683  0.000000e+00 +/- 0.000000e+00  
+  1684  0.000000e+00 +/- 0.000000e+00  
+  1685  0.000000e+00 +/- 0.000000e+00  
+  1686  0.000000e+00 +/- 0.000000e+00  
+  1687  0.000000e+00 +/- 0.000000e+00  
+  1688  0.000000e+00 +/- 0.000000e+00  
+  1689  0.000000e+00 +/- 0.000000e+00  
+  1690  0.000000e+00 +/- 0.000000e+00  
+  1691  0.000000e+00 +/- 0.000000e+00  
+  1692  0.000000e+00 +/- 0.000000e+00  
+  1693  0.000000e+00 +/- 0.000000e+00  
+  1694  0.000000e+00 +/- 0.000000e+00  
+  1695  0.000000e+00 +/- 0.000000e+00  
+  1696  0.000000e+00 +/- 0.000000e+00  
+  1697  0.000000e+00 +/- 0.000000e+00  
+  1698  0.000000e+00 +/- 0.000000e+00  
+  1699  0.000000e+00 +/- 0.000000e+00  
+  1700  0.000000e+00 +/- 0.000000e+00  
+  1701  0.000000e+00 +/- 0.000000e+00  
+  1702  0.000000e+00 +/- 0.000000e+00  
+  1703  0.000000e+00 +/- 0.000000e+00  
+  1704  0.000000e+00 +/- 0.000000e+00  
+  1705  0.000000e+00 +/- 0.000000e+00  
+  1706  0.000000e+00 +/- 0.000000e+00  
+  1707  0.000000e+00 +/- 0.000000e+00  
+  1708  0.000000e+00 +/- 0.000000e+00  
+  1709  0.000000e+00 +/- 0.000000e+00  
+  1710  0.000000e+00 +/- 0.000000e+00  
+  1711  0.000000e+00 +/- 0.000000e+00  
+  1712  0.000000e+00 +/- 0.000000e+00  
+  1713  0.000000e+00 +/- 0.000000e+00  
+  1714  0.000000e+00 +/- 0.000000e+00  
+  1715  0.000000e+00 +/- 0.000000e+00  
+  1716  0.000000e+00 +/- 0.000000e+00  
+  1717  0.000000e+00 +/- 0.000000e+00  
+  1718  0.000000e+00 +/- 0.000000e+00  
+  1719  0.000000e+00 +/- 0.000000e+00  
+  1720  0.000000e+00 +/- 0.000000e+00  
+  1721  0.000000e+00 +/- 0.000000e+00  
+  1722  0.000000e+00 +/- 0.000000e+00  
+  1723  0.000000e+00 +/- 0.000000e+00  
+  1724  0.000000e+00 +/- 0.000000e+00  
+  1725  0.000000e+00 +/- 0.000000e+00  
+  1726  0.000000e+00 +/- 0.000000e+00  
+  1727  0.000000e+00 +/- 0.000000e+00  
+  1728  0.000000e+00 +/- 0.000000e+00  
+  1729  1.976808e-01 +/- 2.870925e-07  
+
+
+End of run                                             Sat Apr  1 11:44:16 2023
+================================================================================
