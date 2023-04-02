@@ -9,7 +9,7 @@
 ################################
 :start run control:
     ncase = 1.5E12
-    #calculation = combine
+    calculation = combine
     #nchunk = 50
     nbatch = 3
 :stop run control:
@@ -28,6 +28,7 @@
         include file = anode.egsinp
     :stop geometry:
 
+
     ################################
     ### X-ray window
     ################################
@@ -36,6 +37,7 @@
         name = xray_window
         include file = x-ray_window.egsinp
     :stop geometry:
+    
 
     ################################
     ### Pb port
@@ -45,25 +47,59 @@
         name = pb_port
         include file = pb_port.egsinp
     :stop geometry:
+	
 
     ################################
-    ### Blades
+    ### Faceplate
+    ################################
+
+    :start geometry:
+        library = egs_glib
+        name = faceplate
+        include file = faceplateReal.egsinp
+    :stop geometry:
+
+    ################################
+    ### Primary collimator
     ################################
     :start geometry:
         library = egs_glib
-        name = blades
-        include file = blades13_5x10.egsinp
+        name = primary_collimator
+        include file = primary_collimator.egsinp
+    :stop geometry:
+
+    ################################
+    ### phsp plate
+    ################################
+    :start geometry:
+        name = phsp_plate
+        library = egs_ndgeometry
+        type = EGS_XYZGeometry
+        x-planes = -6 6
+        y-planes = -6 6
+        z-planes = 6.0 6.1
+        :start media input:
+            media = air
+        :stop media input:
     :stop geometry:
 
     ################################
 	### Combining
 	################################
 
+	### Adding x-ray window and pb port
+	:start geometry:
+        name = window_and_pb_port
+        library = egs_gstack
+        geometries = xray_window pb_port
+        tolerance = 1e-4
+    :stop geometry:
+
 	### Adding anode, x-ray window, pb port, primary collimator and faceplate
     :start geometry:
-        name = model
+        name = to_primary_collimator
         library = egs_gunion
-		geometries = anode xray_window pb_port blades
+		geometries = anode window_and_pb_port phsp_plate
     :stop geometry:
 
     ### Air between x-ray window and faceplate
@@ -79,72 +115,10 @@
         :stop media input:
     :stop geometry:
 
-    ### Air block from faceplate to end
     :start geometry:
-        name = air_block
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -6.9 6.9
-        y-planes = -6.9 6.9
-        z-planes = 8.8 12.1
-        :start media input:
-            media = air
-        :stop media input:
-    :stop geometry:
-
-    :start geometry:
-        name = obi
+        name = sourcePhsp
         library = egs_gunion
-        geometries = model air air_block
-    :stop geometry:
-
-    ### Air between source and water
-    :start geometry:
-        name = air_prim_to_detector
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -30 30
-        y-planes = -30 30
-        z-planes = 12 120
-        :start media input:
-            media = air
-        :stop media input:
-    :stop geometry:
-
-    ### styrox
-    :start geometry:
-        name = styrox
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -35 35
-        y-planes = -35 35
-        z-planes = 100 121
-        :start media input:
-            media = polystyrene
-        :stop media input:
-    :stop geometry:
-
-    ### Profile x direction
-    :start geometry:
-        name = profilex
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-slabs = -20 1 40
-	    #x-slabs = -20 0.2 200
-        y-slabs = -0.5 1 1
-        z-slabs = 100 0.1 1
-        :start media input:
-            media = film
-        :stop media input:
-        set label = Prof 4
-    :stop geometry:
-
-    ### Testing all System
-    :start geometry:
-        name = obi_system
-        library = egs_gunion
-	    ### Add profilex, profiley or pdd
-        geometries = profilex obi styrox air_prim_to_detector
+        geometries = to_primary_collimator air
     :stop geometry:
 
 	################################
@@ -171,21 +145,12 @@
         geometries = anode src
     :stop geometry:
 
-    :start geometry:
-        name = profilexRR
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -20.5 20.5
-        y-planes = -1 1
-        z-planes = 99.5 101
-    :stop geometry:
-
 	################################
 	### SIMULATION GEOMETRY
 	################################
 
 	### Testing source
-	simulation geometry = obi_system
+	simulation geometry = sourcePhsp
 
 :stop geometry definition:
 
@@ -247,18 +212,6 @@
 		density correction file=titanium
 	:stop titanium:
 
-    ### polystyrene
-	:start polystyrene:
-		bremsstrahlung correction=NRC
-		density correction file= polystyrene
-	:stop polystyrene:
-
-    ### Film
-	:start film:
-		bremsstrahlung correction=NRC
-		density correction file= radiochromicdyefilm_nylonbase
-	:stop film:
-
 	### Water
 	:start water:
 		bremsstrahlung correction=NRC
@@ -314,9 +267,9 @@
                 ## Large electron spot on the target: Length [5.78699mm, 8.26713mm] -> avg. 0.703 cm, Width [4.13357mm, 5.78699mm] -> avg 0.4$
                 #halfaxis = 0.248014 0.351353
                 ## Small electron spot on the target: Length [2.48014mm, 3.51353mm] -> avg 0.30 cm, Width [1.65343mm, 2.48014mm] -> avg 0.206$
-                halfaxis = 0.10333925 0.14984175
+                #halfaxis = 0.10333925 0.14984175
                 ## The smallest large electron spot on the target: Length = 5.78699mm, Width = 4.13357mm
-                #halfaxis = 0.2066785 0.2893495
+                halfaxis = 0.2066785 0.2893495
                 midpoint = 0 0
             :stop shape:
             ## sigma = FWHM/(2*sqrt(2*ln(2)))
@@ -364,7 +317,7 @@
 	:start ausgab object:
 		name = tracks
 		library = egs_track_scoring
-		score electrons = no
+		score electrons = yes
 		score positrons = no
     	stop scoring   = 10000
 	:stop ausgab object:
@@ -375,17 +328,26 @@
         splitting = 1000
     :stop ausgab object:
 
-    ### Dose scoring object to x profile
     :start ausgab object:
-        library = egs_dose_scoring
-        name = profilexFilm
-        medium dose = no
-        region dose = yes
-        :start output dose file:
-            geometry name = profilex
-            file type = 3ddose
-        :stop output dose file:
+          library                  = egs_phsp_scoring
+          name                     = anodeXRayWPbPort
+          output format            = IAEA
+          particle type            = all
+          #output directory         =
+          phase space geometry     = phsp_plate
+          score particles on       = entry
+          constant Z               = 6.0
     :stop ausgab object:
+
+    ### Dose scoring object
+	:start ausgab object:
+		name = dose
+		library = egs_dose_scoring
+		medium dose = no
+		region dose = yes
+		volume = 1
+		dose regions = 360
+	:stop ausgab object:
 
 :stop ausgab object definition:
 
@@ -409,7 +371,6 @@
     Bound Compton scattering= On
     Compton cross sections= default
     Radiative Compton corrections= On
-    Radiative Compton corrections= On
     Pair angular sampling= KM
     Pair cross sections= NRC
     Photoelectron angular sampling= On
@@ -430,8 +391,8 @@
     calculation type = dose
 
     :start calculation geometry:
-        geometry name    = obi_system
-        cavity regions   = Prof
+        geometry name    = sourcePhsp
+        cavity regions   = 360
         #excluded regions = 0  # exclude particles passing through these regions
         cavity mass      = 1  # 5 cm radius air sphere
     :stop calculation geometry:
@@ -445,12 +406,6 @@
     split brem photons = 100
     bcse medium = anode 100
     photon splitting = 100
-    :start range rejection:
-        rejection = 100
-        Esave     = 1
-        cavity geometry = profilexRR
-        rejection range medium = water
-    :stop range rejection:
 :stop variance reduction:
 
 
@@ -473,5 +428,4 @@
     set color = molybdenum 0 170 225 200
 	set color = graphite 170 85 127 200
 	set color = vacuum 225 225 225 50
-    set color = polystyrene 150 115 225 200
 :stop view control:
