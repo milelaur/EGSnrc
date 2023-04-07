@@ -1,0 +1,1173 @@
+
+               ***************************************************
+               *                                                 *
+               *                  TB                       *
+               *                                                 *
+               ***************************************************
+
+This is TB   based on
+      EGS_AdvancedApplication  
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = sourcePhsp
+ number of regions = 432
+ geometries:
+   to_primary_collimator (type EGS_UnionGeometry)
+   air (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Transformed Transformed Parallel beam from a shape of type ellipse with monoenergetic 0.1 MeV, electrons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 1037
+  numbers used so far = 4302351651968
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = YES
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 10000
+ - Track buffer size           = 1024
+ - Output file name            = /home/rsmina/EGSnrc/egs_home/TB/sourceXrayWindowPbPort_w941_w941.ptracks
+
+
+===========================================
+Radiative splitting Object (splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Phase Space Scoring Object (anodeXRayWPbPort)
+*******************************************
+
+ Will output phase space for particles crossing surfaces of geometry:
+phsp_plate
+ Particles scored on: entering phase space geometry
+ Data will be output in IAEA format.
+
+ Phase space file names:
+  Header file: /home/rsmina/EGSnrc/egs_home/TB/anodeXRayWPbPort_w941.1.IAEAheader
+  Data file: /home/rsmina/EGSnrc/egs_home/TB/anodeXRayWPbPort_w941.1.IAEAphsp
+ Data scored at constant Z = 6 cm
+ Particles scored: all
+*******************************************
+Dose Scoring Object (dose)
+*******************************************
+
+ - Regions in dose calculator :1
+
+
+--------------------------------------
+ medium         rho/[g/cm**3]
+--------------------------------------
+graphite         2.00
+target_material 19.39
+molybdenum      10.22
+beryllium        1.85
+steel            8.06
+oil              1.15
+aluminum         2.70
+air              0.00
+pb              11.35
+--------------------------------------
+
+*******************************************
+
+
+
+
+
+The following media are defined:
+================================
+
+  0  graphite                 AE= 0.5120 AP= 0.0010 0
+  1  target_material          AE= 0.5120 AP= 0.0010 1
+  2  molybdenum               AE= 0.5120 AP= 0.0010 2
+  3  beryllium                AE= 0.5120 AP= 0.0010 3
+  4  steel                    AE= 0.5120 AP= 0.0010 4
+  5  oil                      AE= 0.5120 AP= 0.0010 5
+  6  aluminum                 AE= 0.5120 AP= 0.0010 6
+  7  air                      AE= 0.5120 AP= 0.0010 7
+  8  pb                       AE= 0.5120 AP= 0.0010 8
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          Off
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 sourceXrayWindowPbPort_w1.egsdat ncase=1650000000     cpu=405559.00  
+ 2 sourceXrayWindowPbPort_w2.egsdat ncase=1800000000     cpu=430989.00  
+ 3 sourceXrayWindowPbPort_w3.egsdat ncase=1800000000     cpu=436846.00  
+ 4 sourceXrayWindowPbPort_w4.egsdat ncase=1650000000     cpu=413439.00  
+ 5 sourceXrayWindowPbPort_w5.egsdat ncase=1650000000     cpu=432786.00  
+ 6 sourceXrayWindowPbPort_w6.egsdat ncase=1500000000     cpu=406255.00  
+ 7 sourceXrayWindowPbPort_w7.egsdat ncase=1500000000     cpu=412776.00  
+ 8 sourceXrayWindowPbPort_w8.egsdat ncase=1650000000     cpu=437156.00  
+ 9 sourceXrayWindowPbPort_w9.egsdat ncase=1650000000     cpu=437096.00  
+10 sourceXrayWindowPbPort_w10.egsdat ncase=1500000000     cpu=409109.00  
+11 sourceXrayWindowPbPort_w11.egsdat ncase=1500000000     cpu=409345.00  
+12 sourceXrayWindowPbPort_w12.egsdat ncase=1650000000     cpu=436017.00  
+13 sourceXrayWindowPbPort_w13.egsdat ncase=1500000000     cpu=408443.00  
+14 sourceXrayWindowPbPort_w14.egsdat ncase=1500000000     cpu=403858.00  
+15 sourceXrayWindowPbPort_w15.egsdat ncase=1650000000     cpu=431966.00  
+16 sourceXrayWindowPbPort_w16.egsdat ncase=1500000000     cpu=403337.00  
+17 sourceXrayWindowPbPort_w17.egsdat ncase=1800000000     cpu=428621.00  
+18 sourceXrayWindowPbPort_w18.egsdat ncase=1800000000     cpu=420837.00  
+19 sourceXrayWindowPbPort_w19.egsdat ncase=1800000000     cpu=428666.00  
+20 sourceXrayWindowPbPort_w20.egsdat ncase=1800000000     cpu=428686.00  
+21 sourceXrayWindowPbPort_w21.egsdat ncase=1800000000     cpu=422058.00  
+22 sourceXrayWindowPbPort_w22.egsdat ncase=1800000000     cpu=424896.00  
+23 sourceXrayWindowPbPort_w23.egsdat ncase=1800000000     cpu=437693.00  
+24 sourceXrayWindowPbPort_w24.egsdat ncase=1800000000     cpu=422141.00  
+25 sourceXrayWindowPbPort_w25.egsdat ncase=1800000000     cpu=426427.00  
+26 sourceXrayWindowPbPort_w26.egsdat ncase=1800000000     cpu=420352.00  
+27 sourceXrayWindowPbPort_w27.egsdat ncase=1800000000     cpu=425601.00  
+28 sourceXrayWindowPbPort_w28.egsdat ncase=1650000000     cpu=411236.00  
+29 sourceXrayWindowPbPort_w29.egsdat ncase=1800000000     cpu=425880.00  
+30 sourceXrayWindowPbPort_w30.egsdat ncase=1800000000     cpu=424668.00  
+31 sourceXrayWindowPbPort_w31.egsdat ncase=1650000000     cpu=403539.00  
+32 sourceXrayWindowPbPort_w32.egsdat ncase=1800000000     cpu=436281.00  
+33 sourceXrayWindowPbPort_w33.egsdat ncase=1650000000     cpu=407619.00  
+34 sourceXrayWindowPbPort_w34.egsdat ncase=1800000000     cpu=433182.00  
+35 sourceXrayWindowPbPort_w35.egsdat ncase=1650000000     cpu=414952.00  
+36 sourceXrayWindowPbPort_w36.egsdat ncase=1800000000     cpu=426002.00  
+37 sourceXrayWindowPbPort_w37.egsdat ncase=1650000000     cpu=405048.00  
+38 sourceXrayWindowPbPort_w38.egsdat ncase=1800000000     cpu=426480.00  
+39 sourceXrayWindowPbPort_w39.egsdat ncase=1800000000     cpu=412686.00  
+40 sourceXrayWindowPbPort_w40.egsdat ncase=1800000000     cpu=414586.00  
+41 sourceXrayWindowPbPort_w41.egsdat ncase=1800000000     cpu=409103.00  
+42 sourceXrayWindowPbPort_w42.egsdat ncase=1650000000     cpu=410058.00  
+43 sourceXrayWindowPbPort_w43.egsdat ncase=1650000000     cpu=411781.00  
+44 sourceXrayWindowPbPort_w44.egsdat ncase=1650000000     cpu=412977.00  
+45 sourceXrayWindowPbPort_w45.egsdat ncase=1650000000     cpu=419184.00  
+46 sourceXrayWindowPbPort_w46.egsdat ncase=1650000000     cpu=416276.00  
+47 sourceXrayWindowPbPort_w47.egsdat ncase=1650000000     cpu=425920.00  
+48 sourceXrayWindowPbPort_w48.egsdat ncase=1650000000     cpu=421774.00  
+49 sourceXrayWindowPbPort_w49.egsdat ncase=1650000000     cpu=408619.00  
+50 sourceXrayWindowPbPort_w50.egsdat ncase=1650000000     cpu=409402.00  
+51 sourceXrayWindowPbPort_w51.egsdat ncase=1650000000     cpu=414645.00  
+52 sourceXrayWindowPbPort_w52.egsdat ncase=1650000000     cpu=417840.00  
+53 sourceXrayWindowPbPort_w53.egsdat ncase=1650000000     cpu=406810.00  
+54 sourceXrayWindowPbPort_w54.egsdat ncase=1650000000     cpu=405191.00  
+55 sourceXrayWindowPbPort_w55.egsdat ncase=1800000000     cpu=435145.00  
+56 sourceXrayWindowPbPort_w56.egsdat ncase=1650000000     cpu=416196.00  
+57 sourceXrayWindowPbPort_w57.egsdat ncase=1650000000     cpu=408731.00  
+58 sourceXrayWindowPbPort_w58.egsdat ncase=1650000000     cpu=406410.00  
+59 sourceXrayWindowPbPort_w59.egsdat ncase=1650000000     cpu=414570.00  
+60 sourceXrayWindowPbPort_w60.egsdat ncase=1650000000     cpu=409565.00  
+61 sourceXrayWindowPbPort_w61.egsdat ncase=1650000000     cpu=412255.00  
+62 sourceXrayWindowPbPort_w62.egsdat ncase=1650000000     cpu=406975.00  
+63 sourceXrayWindowPbPort_w63.egsdat ncase=1650000000     cpu=412125.00  
+64 sourceXrayWindowPbPort_w64.egsdat ncase=1650000000     cpu=409592.00  
+65 sourceXrayWindowPbPort_w65.egsdat ncase=1650000000     cpu=410915.00  
+66 sourceXrayWindowPbPort_w66.egsdat ncase=1650000000     cpu=406022.00  
+67 sourceXrayWindowPbPort_w67.egsdat ncase=1650000000     cpu=405477.00  
+68 sourceXrayWindowPbPort_w68.egsdat ncase=1650000000     cpu=404928.00  
+69 sourceXrayWindowPbPort_w69.egsdat ncase=1800000000     cpu=431536.00  
+70 sourceXrayWindowPbPort_w70.egsdat ncase=1800000000     cpu=435686.00  
+71 sourceXrayWindowPbPort_w71.egsdat ncase=1650000000     cpu=411621.00  
+72 sourceXrayWindowPbPort_w72.egsdat ncase=1650000000     cpu=406318.00  
+73 sourceXrayWindowPbPort_w73.egsdat ncase=1800000000     cpu=434246.00  
+74 sourceXrayWindowPbPort_w74.egsdat ncase=1650000000     cpu=408477.00  
+75 sourceXrayWindowPbPort_w75.egsdat ncase=1800000000     cpu=435026.00  
+76 sourceXrayWindowPbPort_w76.egsdat ncase=1650000000     cpu=411562.00  
+77 sourceXrayWindowPbPort_w77.egsdat ncase=1500000000     cpu=402727.00  
+78 sourceXrayWindowPbPort_w78.egsdat ncase=1500000000     cpu=410554.00  
+79 sourceXrayWindowPbPort_w79.egsdat ncase=1500000000     cpu=406263.00  
+80 sourceXrayWindowPbPort_w80.egsdat ncase=1500000000     cpu=415785.00  
+81 sourceXrayWindowPbPort_w81.egsdat ncase=1500000000     cpu=408430.00  
+82 sourceXrayWindowPbPort_w82.egsdat ncase=1500000000     cpu=412419.00  
+83 sourceXrayWindowPbPort_w83.egsdat ncase=1650000000     cpu=434594.00  
+84 sourceXrayWindowPbPort_w84.egsdat ncase=1500000000     cpu=407564.00  
+85 sourceXrayWindowPbPort_w85.egsdat ncase=1650000000     cpu=436217.00  
+86 sourceXrayWindowPbPort_w86.egsdat ncase=1500000000     cpu=411796.00  
+87 sourceXrayWindowPbPort_w87.egsdat ncase=1500000000     cpu=411778.00  
+88 sourceXrayWindowPbPort_w88.egsdat ncase=1500000000     cpu=407685.00  
+89 sourceXrayWindowPbPort_w89.egsdat ncase=1650000000     cpu=437202.00  
+90 sourceXrayWindowPbPort_w90.egsdat ncase=1500000000     cpu=418647.00  
+91 sourceXrayWindowPbPort_w91.egsdat ncase=1500000000     cpu=419169.00  
+92 sourceXrayWindowPbPort_w92.egsdat ncase=1500000000     cpu=407320.00  
+93 sourceXrayWindowPbPort_w93.egsdat ncase=1500000000     cpu=412297.00  
+94 sourceXrayWindowPbPort_w94.egsdat ncase=1500000000     cpu=404459.00  
+95 sourceXrayWindowPbPort_w95.egsdat ncase=1500000000     cpu=408155.00  
+96 sourceXrayWindowPbPort_w96.egsdat ncase=1500000000     cpu=405460.00  
+97 sourceXrayWindowPbPort_w97.egsdat ncase=1650000000     cpu=414986.00  
+98 sourceXrayWindowPbPort_w98.egsdat ncase=1800000000     cpu=436923.00  
+99 sourceXrayWindowPbPort_w99.egsdat ncase=1800000000     cpu=433698.00  
+100 sourceXrayWindowPbPort_w100.egsdat ncase=1650000000     cpu=403822.00  
+101 sourceXrayWindowPbPort_w101.egsdat ncase=1800000000     cpu=437792.00  
+102 sourceXrayWindowPbPort_w102.egsdat ncase=1800000000     cpu=438466.00  
+103 sourceXrayWindowPbPort_w103.egsdat ncase=1800000000     cpu=435330.00  
+104 sourceXrayWindowPbPort_w104.egsdat ncase=1800000000     cpu=430540.00  
+105 sourceXrayWindowPbPort_w105.egsdat ncase=1800000000     cpu=434269.00  
+106 sourceXrayWindowPbPort_w106.egsdat ncase=1650000000     cpu=437743.00  
+107 sourceXrayWindowPbPort_w107.egsdat ncase=1650000000     cpu=437887.00  
+108 sourceXrayWindowPbPort_w108.egsdat ncase=1650000000     cpu=439604.00  
+109 sourceXrayWindowPbPort_w109.egsdat ncase=1650000000     cpu=431407.00  
+110 sourceXrayWindowPbPort_w110.egsdat ncase=1500000000     cpu=406052.00  
+111 sourceXrayWindowPbPort_w111.egsdat ncase=1650000000     cpu=434206.00  
+112 sourceXrayWindowPbPort_w112.egsdat ncase=1500000000     cpu=404170.00  
+113 sourceXrayWindowPbPort_w113.egsdat ncase=1500000000     cpu=406218.00  
+114 sourceXrayWindowPbPort_w114.egsdat ncase=1650000000     cpu=438818.00  
+115 sourceXrayWindowPbPort_w115.egsdat ncase=1500000000     cpu=408782.00  
+116 sourceXrayWindowPbPort_w116.egsdat ncase=1650000000     cpu=436185.00  
+117 sourceXrayWindowPbPort_w117.egsdat ncase=1500000000     cpu=409086.00  
+118 sourceXrayWindowPbPort_w118.egsdat ncase=1650000000     cpu=439879.00  
+119 sourceXrayWindowPbPort_w119.egsdat ncase=1650000000     cpu=433716.00  
+120 sourceXrayWindowPbPort_w120.egsdat ncase=1650000000     cpu=436435.00  
+121 sourceXrayWindowPbPort_w121.egsdat ncase=1650000000     cpu=436283.00  
+122 sourceXrayWindowPbPort_w122.egsdat ncase=1650000000     cpu=439341.00  
+123 sourceXrayWindowPbPort_w123.egsdat ncase=1500000000     cpu=404510.00  
+124 sourceXrayWindowPbPort_w124.egsdat ncase=1650000000     cpu=434593.00  
+125 sourceXrayWindowPbPort_w125.egsdat ncase=1800000000     cpu=428693.00  
+126 sourceXrayWindowPbPort_w126.egsdat ncase=1800000000     cpu=430444.00  
+127 sourceXrayWindowPbPort_w127.egsdat ncase=1800000000     cpu=431179.00  
+128 sourceXrayWindowPbPort_w128.egsdat ncase=1800000000     cpu=421514.00  
+129 sourceXrayWindowPbPort_w129.egsdat ncase=1800000000     cpu=429522.00  
+130 sourceXrayWindowPbPort_w130.egsdat ncase=1800000000     cpu=431840.00  
+131 sourceXrayWindowPbPort_w131.egsdat ncase=1650000000     cpu=416410.00  
+132 sourceXrayWindowPbPort_w132.egsdat ncase=1650000000     cpu=419589.00  
+133 sourceXrayWindowPbPort_w133.egsdat ncase=1650000000     cpu=430609.00  
+134 sourceXrayWindowPbPort_w134.egsdat ncase=1650000000     cpu=414049.00  
+135 sourceXrayWindowPbPort_w135.egsdat ncase=1650000000     cpu=416257.00  
+136 sourceXrayWindowPbPort_w136.egsdat ncase=1650000000     cpu=414654.00  
+137 sourceXrayWindowPbPort_w137.egsdat ncase=1650000000     cpu=426001.00  
+138 sourceXrayWindowPbPort_w138.egsdat ncase=1650000000     cpu=422329.00  
+139 sourceXrayWindowPbPort_w139.egsdat ncase=1650000000     cpu=429260.00  
+140 sourceXrayWindowPbPort_w140.egsdat ncase=1650000000     cpu=421579.00  
+141 sourceXrayWindowPbPort_w141.egsdat ncase=1650000000     cpu=423168.00  
+142 sourceXrayWindowPbPort_w142.egsdat ncase=1650000000     cpu=415434.00  
+143 sourceXrayWindowPbPort_w143.egsdat ncase=1650000000     cpu=419922.00  
+144 sourceXrayWindowPbPort_w144.egsdat ncase=1650000000     cpu=422254.00  
+145 sourceXrayWindowPbPort_w145.egsdat ncase=1650000000     cpu=424318.00  
+146 sourceXrayWindowPbPort_w146.egsdat ncase=1650000000     cpu=423664.00  
+147 sourceXrayWindowPbPort_w147.egsdat ncase=1650000000     cpu=403286.00  
+148 sourceXrayWindowPbPort_w148.egsdat ncase=1800000000     cpu=435110.00  
+149 sourceXrayWindowPbPort_w149.egsdat ncase=1800000000     cpu=427681.00  
+150 sourceXrayWindowPbPort_w150.egsdat ncase=1800000000     cpu=426435.00  
+151 sourceXrayWindowPbPort_w151.egsdat ncase=1800000000     cpu=427860.00  
+152 sourceXrayWindowPbPort_w152.egsdat ncase=1800000000     cpu=424994.00  
+153 sourceXrayWindowPbPort_w153.egsdat ncase=1800000000     cpu=428081.00  
+154 sourceXrayWindowPbPort_w154.egsdat ncase=1800000000     cpu=436221.00  
+155 sourceXrayWindowPbPort_w155.egsdat ncase=1800000000     cpu=432358.00  
+156 sourceXrayWindowPbPort_w156.egsdat ncase=1800000000     cpu=426722.00  
+157 sourceXrayWindowPbPort_w157.egsdat ncase=1800000000     cpu=426645.00  
+158 sourceXrayWindowPbPort_w158.egsdat ncase=1800000000     cpu=432496.00  
+159 sourceXrayWindowPbPort_w159.egsdat ncase=1650000000     cpu=433539.00  
+160 sourceXrayWindowPbPort_w160.egsdat ncase=1650000000     cpu=426828.00  
+161 sourceXrayWindowPbPort_w161.egsdat ncase=1650000000     cpu=428919.00  
+162 sourceXrayWindowPbPort_w162.egsdat ncase=1650000000     cpu=419791.00  
+163 sourceXrayWindowPbPort_w163.egsdat ncase=1650000000     cpu=428425.00  
+164 sourceXrayWindowPbPort_w164.egsdat ncase=1650000000     cpu=425373.00  
+165 sourceXrayWindowPbPort_w165.egsdat ncase=1650000000     cpu=421327.00  
+166 sourceXrayWindowPbPort_w166.egsdat ncase=1650000000     cpu=434370.00  
+167 sourceXrayWindowPbPort_w167.egsdat ncase=1650000000     cpu=423245.00  
+168 sourceXrayWindowPbPort_w168.egsdat ncase=1650000000     cpu=433403.00  
+169 sourceXrayWindowPbPort_w169.egsdat ncase=1650000000     cpu=426687.00  
+170 sourceXrayWindowPbPort_w170.egsdat ncase=1650000000     cpu=426779.00  
+171 sourceXrayWindowPbPort_w171.egsdat ncase=1650000000     cpu=430489.00  
+172 sourceXrayWindowPbPort_w172.egsdat ncase=1650000000     cpu=419807.00  
+173 sourceXrayWindowPbPort_w173.egsdat ncase=1650000000     cpu=429615.00  
+174 sourceXrayWindowPbPort_w174.egsdat ncase=1650000000     cpu=422172.00  
+175 sourceXrayWindowPbPort_w175.egsdat ncase=1800000000     cpu=435355.00  
+176 sourceXrayWindowPbPort_w176.egsdat ncase=1800000000     cpu=437316.00  
+177 sourceXrayWindowPbPort_w177.egsdat ncase=1650000000     cpu=402921.00  
+178 sourceXrayWindowPbPort_w178.egsdat ncase=1800000000     cpu=436102.00  
+179 sourceXrayWindowPbPort_w179.egsdat ncase=1800000000     cpu=434637.00  
+180 sourceXrayWindowPbPort_w180.egsdat ncase=1800000000     cpu=435576.00  
+181 sourceXrayWindowPbPort_w181.egsdat ncase=1650000000     cpu=416409.00  
+182 sourceXrayWindowPbPort_w182.egsdat ncase=1650000000     cpu=414140.00  
+183 sourceXrayWindowPbPort_w183.egsdat ncase=1650000000     cpu=428101.00  
+184 sourceXrayWindowPbPort_w184.egsdat ncase=1650000000     cpu=426509.00  
+185 sourceXrayWindowPbPort_w185.egsdat ncase=1650000000     cpu=435384.00  
+186 sourceXrayWindowPbPort_w186.egsdat ncase=1650000000     cpu=433925.00  
+187 sourceXrayWindowPbPort_w187.egsdat ncase=1650000000     cpu=433603.00  
+188 sourceXrayWindowPbPort_w188.egsdat ncase=1650000000     cpu=423964.00  
+189 sourceXrayWindowPbPort_w189.egsdat ncase=1650000000     cpu=426144.00  
+190 sourceXrayWindowPbPort_w190.egsdat ncase=1650000000     cpu=420368.00  
+191 sourceXrayWindowPbPort_w191.egsdat ncase=1650000000     cpu=430780.00  
+192 sourceXrayWindowPbPort_w192.egsdat ncase=1650000000     cpu=417072.00  
+193 sourceXrayWindowPbPort_w193.egsdat ncase=1650000000     cpu=417153.00  
+194 sourceXrayWindowPbPort_w194.egsdat ncase=1650000000     cpu=431350.00  
+195 sourceXrayWindowPbPort_w195.egsdat ncase=1650000000     cpu=427608.00  
+196 sourceXrayWindowPbPort_w196.egsdat ncase=1650000000     cpu=420322.00  
+197 sourceXrayWindowPbPort_w197.egsdat ncase=1650000000     cpu=427160.00  
+198 sourceXrayWindowPbPort_w198.egsdat ncase=1650000000     cpu=418694.00  
+199 sourceXrayWindowPbPort_w199.egsdat ncase=1650000000     cpu=422878.00  
+200 sourceXrayWindowPbPort_w200.egsdat ncase=1650000000     cpu=410420.00  
+201 sourceXrayWindowPbPort_w201.egsdat ncase=1650000000     cpu=406384.00  
+202 sourceXrayWindowPbPort_w202.egsdat ncase=1650000000     cpu=413025.00  
+203 sourceXrayWindowPbPort_w203.egsdat ncase=1650000000     cpu=417490.00  
+204 sourceXrayWindowPbPort_w204.egsdat ncase=1650000000     cpu=407563.00  
+205 sourceXrayWindowPbPort_w205.egsdat ncase=1650000000     cpu=415608.00  
+206 sourceXrayWindowPbPort_w206.egsdat ncase=1650000000     cpu=417436.00  
+207 sourceXrayWindowPbPort_w207.egsdat ncase=1650000000     cpu=422084.00  
+208 sourceXrayWindowPbPort_w208.egsdat ncase=1650000000     cpu=407011.00  
+209 sourceXrayWindowPbPort_w209.egsdat ncase=1650000000     cpu=420531.00  
+210 sourceXrayWindowPbPort_w210.egsdat ncase=1650000000     cpu=434372.00  
+211 sourceXrayWindowPbPort_w211.egsdat ncase=1650000000     cpu=411750.00  
+212 sourceXrayWindowPbPort_w212.egsdat ncase=1650000000     cpu=416684.00  
+213 sourceXrayWindowPbPort_w213.egsdat ncase=1650000000     cpu=418419.00  
+214 sourceXrayWindowPbPort_w214.egsdat ncase=1650000000     cpu=421109.00  
+215 sourceXrayWindowPbPort_w215.egsdat ncase=1650000000     cpu=427715.00  
+216 sourceXrayWindowPbPort_w216.egsdat ncase=1500000000     cpu=414369.00  
+217 sourceXrayWindowPbPort_w217.egsdat ncase=1500000000     cpu=408097.00  
+218 sourceXrayWindowPbPort_w218.egsdat ncase=1500000000     cpu=408804.00  
+219 sourceXrayWindowPbPort_w219.egsdat ncase=1500000000     cpu=405983.00  
+220 sourceXrayWindowPbPort_w220.egsdat ncase=1500000000     cpu=431827.00  
+221 sourceXrayWindowPbPort_w221.egsdat ncase=1500000000     cpu=405952.00  
+222 sourceXrayWindowPbPort_w222.egsdat ncase=1500000000     cpu=404726.00  
+223 sourceXrayWindowPbPort_w223.egsdat ncase=1500000000     cpu=416926.00  
+224 sourceXrayWindowPbPort_w224.egsdat ncase=1500000000     cpu=413423.00  
+225 sourceXrayWindowPbPort_w225.egsdat ncase=1500000000     cpu=417939.00  
+226 sourceXrayWindowPbPort_w226.egsdat ncase=1500000000     cpu=404886.00  
+227 sourceXrayWindowPbPort_w227.egsdat ncase=1500000000     cpu=411568.00  
+228 sourceXrayWindowPbPort_w228.egsdat ncase=1500000000     cpu=421189.00  
+229 sourceXrayWindowPbPort_w229.egsdat ncase=1500000000     cpu=408839.00  
+230 sourceXrayWindowPbPort_w230.egsdat ncase=1500000000     cpu=409410.00  
+231 sourceXrayWindowPbPort_w231.egsdat ncase=1500000000     cpu=406748.00  
+232 sourceXrayWindowPbPort_w232.egsdat ncase=1500000000     cpu=418530.00  
+233 sourceXrayWindowPbPort_w233.egsdat ncase=1500000000     cpu=408813.00  
+234 sourceXrayWindowPbPort_w234.egsdat ncase=1500000000     cpu=408178.00  
+235 sourceXrayWindowPbPort_w235.egsdat ncase=1500000000     cpu=409650.00  
+236 sourceXrayWindowPbPort_w236.egsdat ncase=1500000000     cpu=407784.00  
+237 sourceXrayWindowPbPort_w237.egsdat ncase=1500000000     cpu=406467.00  
+238 sourceXrayWindowPbPort_w238.egsdat ncase=1500000000     cpu=419406.00  
+239 sourceXrayWindowPbPort_w239.egsdat ncase=1500000000     cpu=413148.00  
+240 sourceXrayWindowPbPort_w240.egsdat ncase=1500000000     cpu=405806.00  
+241 sourceXrayWindowPbPort_w241.egsdat ncase=1500000000     cpu=416068.00  
+242 sourceXrayWindowPbPort_w242.egsdat ncase=1500000000     cpu=411843.00  
+243 sourceXrayWindowPbPort_w243.egsdat ncase=1500000000     cpu=406103.00  
+244 sourceXrayWindowPbPort_w244.egsdat ncase=1500000000     cpu=408364.00  
+245 sourceXrayWindowPbPort_w245.egsdat ncase=1500000000     cpu=418052.00  
+246 sourceXrayWindowPbPort_w246.egsdat ncase=1500000000     cpu=409639.00  
+247 sourceXrayWindowPbPort_w247.egsdat ncase=1500000000     cpu=404513.00  
+248 sourceXrayWindowPbPort_w248.egsdat ncase=1500000000     cpu=415095.00  
+249 sourceXrayWindowPbPort_w249.egsdat ncase=1500000000     cpu=419597.00  
+250 sourceXrayWindowPbPort_w250.egsdat ncase=1500000000     cpu=412442.00  
+251 sourceXrayWindowPbPort_w251.egsdat ncase=1500000000     cpu=403105.00  
+252 sourceXrayWindowPbPort_w252.egsdat ncase=1500000000     cpu=407349.00  
+253 sourceXrayWindowPbPort_w253.egsdat ncase=1650000000     cpu=436735.00  
+254 sourceXrayWindowPbPort_w254.egsdat ncase=1500000000     cpu=408788.00  
+255 sourceXrayWindowPbPort_w255.egsdat ncase=1500000000     cpu=406936.00  
+256 sourceXrayWindowPbPort_w256.egsdat ncase=1500000000     cpu=416889.00  
+257 sourceXrayWindowPbPort_w257.egsdat ncase=1500000000     cpu=403341.00  
+258 sourceXrayWindowPbPort_w258.egsdat ncase=1500000000     cpu=408749.00  
+259 sourceXrayWindowPbPort_w259.egsdat ncase=1500000000     cpu=416170.00  
+260 sourceXrayWindowPbPort_w260.egsdat ncase=1500000000     cpu=414515.00  
+261 sourceXrayWindowPbPort_w261.egsdat ncase=1500000000     cpu=404057.00  
+262 sourceXrayWindowPbPort_w262.egsdat ncase=1500000000     cpu=409664.00  
+263 sourceXrayWindowPbPort_w263.egsdat ncase=1500000000     cpu=403924.00  
+264 sourceXrayWindowPbPort_w264.egsdat ncase=1500000000     cpu=402892.00  
+265 sourceXrayWindowPbPort_w265.egsdat ncase=1500000000     cpu=417494.00  
+266 sourceXrayWindowPbPort_w266.egsdat ncase=1500000000     cpu=404035.00  
+267 sourceXrayWindowPbPort_w267.egsdat ncase=1500000000     cpu=415035.00  
+268 sourceXrayWindowPbPort_w268.egsdat ncase=1500000000     cpu=408566.00  
+269 sourceXrayWindowPbPort_w269.egsdat ncase=1650000000     cpu=434602.00  
+270 sourceXrayWindowPbPort_w270.egsdat ncase=1500000000     cpu=406102.00  
+271 sourceXrayWindowPbPort_w271.egsdat ncase=1500000000     cpu=407345.00  
+272 sourceXrayWindowPbPort_w272.egsdat ncase=1650000000     cpu=430826.00  
+273 sourceXrayWindowPbPort_w273.egsdat ncase=1650000000     cpu=432080.00  
+274 sourceXrayWindowPbPort_w274.egsdat ncase=1650000000     cpu=417679.00  
+275 sourceXrayWindowPbPort_w275.egsdat ncase=1650000000     cpu=417681.00  
+276 sourceXrayWindowPbPort_w276.egsdat ncase=1650000000     cpu=417409.00  
+277 sourceXrayWindowPbPort_w277.egsdat ncase=1650000000     cpu=417124.00  
+278 sourceXrayWindowPbPort_w278.egsdat ncase=1650000000     cpu=421616.00  
+279 sourceXrayWindowPbPort_w279.egsdat ncase=1650000000     cpu=410548.00  
+280 sourceXrayWindowPbPort_w280.egsdat ncase=1650000000     cpu=409707.00  
+281 sourceXrayWindowPbPort_w281.egsdat ncase=1650000000     cpu=414762.00  
+282 sourceXrayWindowPbPort_w282.egsdat ncase=1650000000     cpu=415304.00  
+283 sourceXrayWindowPbPort_w283.egsdat ncase=1650000000     cpu=426276.00  
+284 sourceXrayWindowPbPort_w284.egsdat ncase=1500000000     cpu=405046.00  
+285 sourceXrayWindowPbPort_w285.egsdat ncase=1650000000     cpu=427192.00  
+286 sourceXrayWindowPbPort_w286.egsdat ncase=1650000000     cpu=431893.00  
+287 sourceXrayWindowPbPort_w287.egsdat ncase=1650000000     cpu=435058.00  
+288 sourceXrayWindowPbPort_w288.egsdat ncase=1650000000     cpu=423400.00  
+289 sourceXrayWindowPbPort_w289.egsdat ncase=1650000000     cpu=424826.00  
+290 sourceXrayWindowPbPort_w290.egsdat ncase=1650000000     cpu=424581.00  
+291 sourceXrayWindowPbPort_w291.egsdat ncase=1650000000     cpu=431435.00  
+292 sourceXrayWindowPbPort_w292.egsdat ncase=1650000000     cpu=430188.00  
+293 sourceXrayWindowPbPort_w293.egsdat ncase=1650000000     cpu=426098.00  
+294 sourceXrayWindowPbPort_w294.egsdat ncase=1650000000     cpu=425728.00  
+295 sourceXrayWindowPbPort_w295.egsdat ncase=1650000000     cpu=416723.00  
+296 sourceXrayWindowPbPort_w296.egsdat ncase=1650000000     cpu=423197.00  
+297 sourceXrayWindowPbPort_w297.egsdat ncase=1650000000     cpu=414904.00  
+298 sourceXrayWindowPbPort_w298.egsdat ncase=1650000000     cpu=413353.00  
+299 sourceXrayWindowPbPort_w299.egsdat ncase=1650000000     cpu=420566.00  
+300 sourceXrayWindowPbPort_w300.egsdat ncase=1650000000     cpu=428643.00  
+301 sourceXrayWindowPbPort_w301.egsdat ncase=1650000000     cpu=422687.00  
+302 sourceXrayWindowPbPort_w302.egsdat ncase=1650000000     cpu=435115.00  
+303 sourceXrayWindowPbPort_w303.egsdat ncase=1650000000     cpu=419764.00  
+304 sourceXrayWindowPbPort_w304.egsdat ncase=1650000000     cpu=427542.00  
+305 sourceXrayWindowPbPort_w305.egsdat ncase=1650000000     cpu=425881.00  
+306 sourceXrayWindowPbPort_w306.egsdat ncase=1650000000     cpu=433031.00  
+307 sourceXrayWindowPbPort_w307.egsdat ncase=1650000000     cpu=428041.00  
+308 sourceXrayWindowPbPort_w308.egsdat ncase=1650000000     cpu=432792.00  
+309 sourceXrayWindowPbPort_w309.egsdat ncase=1650000000     cpu=432352.00  
+310 sourceXrayWindowPbPort_w310.egsdat ncase=1650000000     cpu=429319.00  
+311 sourceXrayWindowPbPort_w311.egsdat ncase=1650000000     cpu=428036.00  
+312 sourceXrayWindowPbPort_w312.egsdat ncase=1650000000     cpu=420568.00  
+313 sourceXrayWindowPbPort_w313.egsdat ncase=1500000000     cpu=417849.00  
+314 sourceXrayWindowPbPort_w314.egsdat ncase=1500000000     cpu=424904.00  
+315 sourceXrayWindowPbPort_w315.egsdat ncase=1500000000     cpu=415254.00  
+316 sourceXrayWindowPbPort_w316.egsdat ncase=1500000000     cpu=409855.00  
+317 sourceXrayWindowPbPort_w317.egsdat ncase=1500000000     cpu=415977.00  
+318 sourceXrayWindowPbPort_w318.egsdat ncase=1500000000     cpu=412234.00  
+319 sourceXrayWindowPbPort_w319.egsdat ncase=1500000000     cpu=409501.00  
+320 sourceXrayWindowPbPort_w320.egsdat ncase=1500000000     cpu=411578.00  
+321 sourceXrayWindowPbPort_w321.egsdat ncase=1500000000     cpu=416584.00  
+322 sourceXrayWindowPbPort_w322.egsdat ncase=1500000000     cpu=417455.00  
+323 sourceXrayWindowPbPort_w323.egsdat ncase=1500000000     cpu=404665.00  
+324 sourceXrayWindowPbPort_w324.egsdat ncase=1500000000     cpu=406107.00  
+325 sourceXrayWindowPbPort_w325.egsdat ncase=1500000000     cpu=411662.00  
+326 sourceXrayWindowPbPort_w326.egsdat ncase=1500000000     cpu=411777.00  
+327 sourceXrayWindowPbPort_w327.egsdat ncase=1500000000     cpu=405906.00  
+328 sourceXrayWindowPbPort_w328.egsdat ncase=1500000000     cpu=418180.00  
+329 sourceXrayWindowPbPort_w329.egsdat ncase=1500000000     cpu=413923.00  
+330 sourceXrayWindowPbPort_w330.egsdat ncase=1500000000     cpu=413784.00  
+331 sourceXrayWindowPbPort_w331.egsdat ncase=1500000000     cpu=415817.00  
+332 sourceXrayWindowPbPort_w332.egsdat ncase=1500000000     cpu=417370.00  
+333 sourceXrayWindowPbPort_w333.egsdat ncase=1650000000     cpu=417942.00  
+334 sourceXrayWindowPbPort_w334.egsdat ncase=1650000000     cpu=412552.00  
+335 sourceXrayWindowPbPort_w335.egsdat ncase=1650000000     cpu=414033.00  
+336 sourceXrayWindowPbPort_w336.egsdat ncase=1650000000     cpu=411897.00  
+337 sourceXrayWindowPbPort_w337.egsdat ncase=1650000000     cpu=418891.00  
+338 sourceXrayWindowPbPort_w338.egsdat ncase=1650000000     cpu=411729.00  
+339 sourceXrayWindowPbPort_w339.egsdat ncase=1650000000     cpu=422733.00  
+340 sourceXrayWindowPbPort_w340.egsdat ncase=1650000000     cpu=420104.00  
+341 sourceXrayWindowPbPort_w341.egsdat ncase=1650000000     cpu=421819.00  
+342 sourceXrayWindowPbPort_w342.egsdat ncase=1500000000     cpu=409587.00  
+343 sourceXrayWindowPbPort_w343.egsdat ncase=1650000000     cpu=434643.00  
+344 sourceXrayWindowPbPort_w344.egsdat ncase=1650000000     cpu=431111.00  
+345 sourceXrayWindowPbPort_w345.egsdat ncase=1650000000     cpu=434926.00  
+346 sourceXrayWindowPbPort_w346.egsdat ncase=1650000000     cpu=426705.00  
+347 sourceXrayWindowPbPort_w347.egsdat ncase=1500000000     cpu=408468.00  
+348 sourceXrayWindowPbPort_w348.egsdat ncase=1650000000     cpu=427738.00  
+349 sourceXrayWindowPbPort_w349.egsdat ncase=1650000000     cpu=433063.00  
+350 sourceXrayWindowPbPort_w350.egsdat ncase=1500000000     cpu=403923.00  
+351 sourceXrayWindowPbPort_w351.egsdat ncase=1650000000     cpu=422802.00  
+352 sourceXrayWindowPbPort_w352.egsdat ncase=1650000000     cpu=429859.00  
+353 sourceXrayWindowPbPort_w353.egsdat ncase=1650000000     cpu=431982.00  
+354 sourceXrayWindowPbPort_w354.egsdat ncase=1650000000     cpu=430993.00  
+355 sourceXrayWindowPbPort_w355.egsdat ncase=1650000000     cpu=431383.00  
+356 sourceXrayWindowPbPort_w356.egsdat ncase=1650000000     cpu=418205.00  
+357 sourceXrayWindowPbPort_w357.egsdat ncase=1650000000     cpu=411561.00  
+358 sourceXrayWindowPbPort_w358.egsdat ncase=1650000000     cpu=429588.00  
+359 sourceXrayWindowPbPort_w359.egsdat ncase=1650000000     cpu=428957.00  
+360 sourceXrayWindowPbPort_w360.egsdat ncase=1650000000     cpu=419692.00  
+361 sourceXrayWindowPbPort_w361.egsdat ncase=1650000000     cpu=419232.00  
+362 sourceXrayWindowPbPort_w362.egsdat ncase=1650000000     cpu=417492.00  
+363 sourceXrayWindowPbPort_w363.egsdat ncase=1650000000     cpu=414512.00  
+364 sourceXrayWindowPbPort_w364.egsdat ncase=1650000000     cpu=422991.00  
+365 sourceXrayWindowPbPort_w365.egsdat ncase=1650000000     cpu=424099.00  
+366 sourceXrayWindowPbPort_w366.egsdat ncase=1650000000     cpu=418902.00  
+367 sourceXrayWindowPbPort_w367.egsdat ncase=1650000000     cpu=429869.00  
+368 sourceXrayWindowPbPort_w368.egsdat ncase=1500000000     cpu=426901.00  
+369 sourceXrayWindowPbPort_w369.egsdat ncase=1500000000     cpu=424843.00  
+370 sourceXrayWindowPbPort_w370.egsdat ncase=1500000000     cpu=428249.00  
+371 sourceXrayWindowPbPort_w371.egsdat ncase=1500000000     cpu=436438.00  
+372 sourceXrayWindowPbPort_w372.egsdat ncase=1500000000     cpu=439394.00  
+373 sourceXrayWindowPbPort_w373.egsdat ncase=1500000000     cpu=432584.00  
+374 sourceXrayWindowPbPort_w374.egsdat ncase=1500000000     cpu=441320.00  
+375 sourceXrayWindowPbPort_w375.egsdat ncase=1500000000     cpu=428741.00  
+376 sourceXrayWindowPbPort_w376.egsdat ncase=1500000000     cpu=437013.00  
+377 sourceXrayWindowPbPort_w377.egsdat ncase=1500000000     cpu=437637.00  
+378 sourceXrayWindowPbPort_w378.egsdat ncase=1500000000     cpu=435431.00  
+379 sourceXrayWindowPbPort_w379.egsdat ncase=1500000000     cpu=435984.00  
+380 sourceXrayWindowPbPort_w380.egsdat ncase=1500000000     cpu=426037.00  
+381 sourceXrayWindowPbPort_w381.egsdat ncase=1500000000     cpu=440369.00  
+382 sourceXrayWindowPbPort_w382.egsdat ncase=1500000000     cpu=430551.00  
+383 sourceXrayWindowPbPort_w383.egsdat ncase=1500000000     cpu=426146.00  
+384 sourceXrayWindowPbPort_w384.egsdat ncase=1500000000     cpu=425213.00  
+385 sourceXrayWindowPbPort_w385.egsdat ncase=1500000000     cpu=430415.00  
+386 sourceXrayWindowPbPort_w386.egsdat ncase=1500000000     cpu=441698.00  
+387 sourceXrayWindowPbPort_w387.egsdat ncase=1500000000     cpu=440010.00  
+388 sourceXrayWindowPbPort_w388.egsdat ncase=1650000000     cpu=429380.00  
+389 sourceXrayWindowPbPort_w389.egsdat ncase=1650000000     cpu=418565.00  
+390 sourceXrayWindowPbPort_w390.egsdat ncase=1650000000     cpu=422957.00  
+391 sourceXrayWindowPbPort_w391.egsdat ncase=1650000000     cpu=422592.00  
+392 sourceXrayWindowPbPort_w392.egsdat ncase=1650000000     cpu=426601.00  
+393 sourceXrayWindowPbPort_w393.egsdat ncase=1650000000     cpu=423607.00  
+394 sourceXrayWindowPbPort_w394.egsdat ncase=1650000000     cpu=432667.00  
+395 sourceXrayWindowPbPort_w395.egsdat ncase=1500000000     cpu=433738.00  
+396 sourceXrayWindowPbPort_w396.egsdat ncase=1500000000     cpu=439762.00  
+397 sourceXrayWindowPbPort_w397.egsdat ncase=1500000000     cpu=427584.00  
+398 sourceXrayWindowPbPort_w398.egsdat ncase=1500000000     cpu=434749.00  
+399 sourceXrayWindowPbPort_w399.egsdat ncase=1500000000     cpu=436918.00  
+400 sourceXrayWindowPbPort_w400.egsdat ncase=1500000000     cpu=436782.00  
+401 sourceXrayWindowPbPort_w401.egsdat ncase=1500000000     cpu=434952.00  
+402 sourceXrayWindowPbPort_w402.egsdat ncase=1500000000     cpu=438688.00  
+403 sourceXrayWindowPbPort_w403.egsdat ncase=1500000000     cpu=436422.00  
+404 sourceXrayWindowPbPort_w404.egsdat ncase=1500000000     cpu=435259.00  
+405 sourceXrayWindowPbPort_w405.egsdat ncase=1500000000     cpu=444205.00  
+406 sourceXrayWindowPbPort_w406.egsdat ncase=1500000000     cpu=441293.00  
+407 sourceXrayWindowPbPort_w407.egsdat ncase=1500000000     cpu=433061.00  
+408 sourceXrayWindowPbPort_w408.egsdat ncase=1500000000     cpu=436138.00  
+409 sourceXrayWindowPbPort_w409.egsdat ncase=1500000000     cpu=439713.00  
+410 sourceXrayWindowPbPort_w410.egsdat ncase=1500000000     cpu=431042.00  
+411 sourceXrayWindowPbPort_w411.egsdat ncase=1500000000     cpu=433310.00  
+412 sourceXrayWindowPbPort_w412.egsdat ncase=1500000000     cpu=435745.00  
+413 sourceXrayWindowPbPort_w413.egsdat ncase=1500000000     cpu=432966.00  
+414 sourceXrayWindowPbPort_w414.egsdat ncase=1500000000     cpu=433097.00  
+415 sourceXrayWindowPbPort_w415.egsdat ncase=1650000000     cpu=408140.00  
+416 sourceXrayWindowPbPort_w416.egsdat ncase=1650000000     cpu=407205.00  
+417 sourceXrayWindowPbPort_w417.egsdat ncase=1650000000     cpu=418858.00  
+418 sourceXrayWindowPbPort_w418.egsdat ncase=1650000000     cpu=409051.00  
+419 sourceXrayWindowPbPort_w419.egsdat ncase=1650000000     cpu=411752.00  
+420 sourceXrayWindowPbPort_w420.egsdat ncase=1650000000     cpu=413465.00  
+421 sourceXrayWindowPbPort_w421.egsdat ncase=1650000000     cpu=408039.00  
+422 sourceXrayWindowPbPort_w422.egsdat ncase=1650000000     cpu=412206.00  
+423 sourceXrayWindowPbPort_w423.egsdat ncase=1650000000     cpu=436252.00  
+424 sourceXrayWindowPbPort_w424.egsdat ncase=1500000000     cpu=414065.00  
+425 sourceXrayWindowPbPort_w425.egsdat ncase=1500000000     cpu=416709.00  
+426 sourceXrayWindowPbPort_w426.egsdat ncase=1500000000     cpu=413842.00  
+427 sourceXrayWindowPbPort_w427.egsdat ncase=1500000000     cpu=411204.00  
+428 sourceXrayWindowPbPort_w428.egsdat ncase=1500000000     cpu=416049.00  
+429 sourceXrayWindowPbPort_w429.egsdat ncase=1500000000     cpu=407130.00  
+430 sourceXrayWindowPbPort_w430.egsdat ncase=1500000000     cpu=407493.00  
+431 sourceXrayWindowPbPort_w431.egsdat ncase=1500000000     cpu=410668.00  
+432 sourceXrayWindowPbPort_w432.egsdat ncase=1500000000     cpu=403051.00  
+433 sourceXrayWindowPbPort_w433.egsdat ncase=1500000000     cpu=417537.00  
+434 sourceXrayWindowPbPort_w434.egsdat ncase=1500000000     cpu=412221.00  
+435 sourceXrayWindowPbPort_w435.egsdat ncase=1500000000     cpu=420714.00  
+436 sourceXrayWindowPbPort_w436.egsdat ncase=1500000000     cpu=416607.00  
+437 sourceXrayWindowPbPort_w437.egsdat ncase=1500000000     cpu=409391.00  
+438 sourceXrayWindowPbPort_w438.egsdat ncase=1500000000     cpu=409195.00  
+439 sourceXrayWindowPbPort_w439.egsdat ncase=1500000000     cpu=410128.00  
+440 sourceXrayWindowPbPort_w440.egsdat ncase=1500000000     cpu=413770.00  
+441 sourceXrayWindowPbPort_w441.egsdat ncase=1500000000     cpu=412632.00  
+442 sourceXrayWindowPbPort_w442.egsdat ncase=1500000000     cpu=419059.00  
+443 sourceXrayWindowPbPort_w443.egsdat ncase=1650000000     cpu=436311.00  
+444 sourceXrayWindowPbPort_w444.egsdat ncase=1650000000     cpu=433678.00  
+445 sourceXrayWindowPbPort_w445.egsdat ncase=1500000000     cpu=404869.00  
+446 sourceXrayWindowPbPort_w446.egsdat ncase=1500000000     cpu=412734.00  
+447 sourceXrayWindowPbPort_w447.egsdat ncase=1650000000     cpu=439252.00  
+448 sourceXrayWindowPbPort_w448.egsdat ncase=1650000000     cpu=437889.00  
+449 sourceXrayWindowPbPort_w449.egsdat ncase=1500000000     cpu=402672.00  
+450 sourceXrayWindowPbPort_w450.egsdat ncase=1650000000     cpu=436802.00  
+451 sourceXrayWindowPbPort_w451.egsdat ncase=1500000000     cpu=403526.00  
+452 sourceXrayWindowPbPort_w452.egsdat ncase=1650000000     cpu=437551.00  
+453 sourceXrayWindowPbPort_w453.egsdat ncase=1500000000     cpu=403972.00  
+454 sourceXrayWindowPbPort_w454.egsdat ncase=1650000000     cpu=434431.00  
+455 sourceXrayWindowPbPort_w455.egsdat ncase=1500000000     cpu=412223.00  
+456 sourceXrayWindowPbPort_w456.egsdat ncase=1500000000     cpu=405220.00  
+457 sourceXrayWindowPbPort_w457.egsdat ncase=1500000000     cpu=407192.00  
+458 sourceXrayWindowPbPort_w458.egsdat ncase=1650000000     cpu=438873.00  
+459 sourceXrayWindowPbPort_w459.egsdat ncase=1500000000     cpu=406370.00  
+460 sourceXrayWindowPbPort_w460.egsdat ncase=1500000000     cpu=409744.00  
+461 sourceXrayWindowPbPort_w461.egsdat ncase=1500000000     cpu=408392.00  
+462 sourceXrayWindowPbPort_w462.egsdat ncase=1500000000     cpu=409424.00  
+463 sourceXrayWindowPbPort_w463.egsdat ncase=1500000000     cpu=409723.00  
+464 sourceXrayWindowPbPort_w464.egsdat ncase=1500000000     cpu=413646.00  
+465 sourceXrayWindowPbPort_w465.egsdat ncase=1500000000     cpu=407431.00  
+466 sourceXrayWindowPbPort_w466.egsdat ncase=1500000000     cpu=407332.00  
+467 sourceXrayWindowPbPort_w467.egsdat ncase=1500000000     cpu=410483.00  
+468 sourceXrayWindowPbPort_w468.egsdat ncase=1500000000     cpu=412487.00  
+469 sourceXrayWindowPbPort_w469.egsdat ncase=1500000000     cpu=408472.00  
+470 sourceXrayWindowPbPort_w470.egsdat ncase=1500000000     cpu=405773.00  
+471 sourceXrayWindowPbPort_w471.egsdat ncase=1500000000     cpu=410615.00  
+472 sourceXrayWindowPbPort_w472.egsdat ncase=1500000000     cpu=409120.00  
+473 sourceXrayWindowPbPort_w473.egsdat ncase=1500000000     cpu=406386.00  
+474 sourceXrayWindowPbPort_w474.egsdat ncase=1500000000     cpu=405401.00  
+475 sourceXrayWindowPbPort_w475.egsdat ncase=1500000000     cpu=415851.00  
+476 sourceXrayWindowPbPort_w476.egsdat ncase=1500000000     cpu=408806.00  
+477 sourceXrayWindowPbPort_w477.egsdat ncase=1500000000     cpu=439527.00  
+478 sourceXrayWindowPbPort_w478.egsdat ncase=1500000000     cpu=416506.00  
+479 sourceXrayWindowPbPort_w479.egsdat ncase=1500000000     cpu=430501.00  
+480 sourceXrayWindowPbPort_w480.egsdat ncase=1500000000     cpu=415696.00  
+481 sourceXrayWindowPbPort_w481.egsdat ncase=1500000000     cpu=428697.00  
+482 sourceXrayWindowPbPort_w482.egsdat ncase=1500000000     cpu=428768.00  
+483 sourceXrayWindowPbPort_w483.egsdat ncase=1500000000     cpu=420296.00  
+484 sourceXrayWindowPbPort_w484.egsdat ncase=1500000000     cpu=420965.00  
+485 sourceXrayWindowPbPort_w485.egsdat ncase=1500000000     cpu=416880.00  
+486 sourceXrayWindowPbPort_w486.egsdat ncase=1500000000     cpu=422600.00  
+487 sourceXrayWindowPbPort_w487.egsdat ncase=1500000000     cpu=419059.00  
+488 sourceXrayWindowPbPort_w488.egsdat ncase=1500000000     cpu=416413.00  
+489 sourceXrayWindowPbPort_w489.egsdat ncase=1500000000     cpu=413462.00  
+490 sourceXrayWindowPbPort_w490.egsdat ncase=1500000000     cpu=429486.00  
+491 sourceXrayWindowPbPort_w491.egsdat ncase=1500000000     cpu=433324.00  
+492 sourceXrayWindowPbPort_w492.egsdat ncase=1500000000     cpu=424692.00  
+493 sourceXrayWindowPbPort_w493.egsdat ncase=1500000000     cpu=434721.00  
+494 sourceXrayWindowPbPort_w494.egsdat ncase=1500000000     cpu=424635.00  
+495 sourceXrayWindowPbPort_w495.egsdat ncase=1500000000     cpu=424774.00  
+496 sourceXrayWindowPbPort_w496.egsdat ncase=1500000000     cpu=420015.00  
+497 sourceXrayWindowPbPort_w497.egsdat ncase=1500000000     cpu=426157.00  
+498 sourceXrayWindowPbPort_w498.egsdat ncase=1500000000     cpu=419155.00  
+499 sourceXrayWindowPbPort_w499.egsdat ncase=1500000000     cpu=426551.00  
+500 sourceXrayWindowPbPort_w500.egsdat ncase=1500000000     cpu=417060.00  
+501 sourceXrayWindowPbPort_w501.egsdat ncase=1500000000     cpu=416654.00  
+502 sourceXrayWindowPbPort_w502.egsdat ncase=1500000000     cpu=420361.00  
+503 sourceXrayWindowPbPort_w503.egsdat ncase=1500000000     cpu=421947.00  
+504 sourceXrayWindowPbPort_w504.egsdat ncase=1500000000     cpu=429423.00  
+505 sourceXrayWindowPbPort_w505.egsdat ncase=1500000000     cpu=416928.00  
+506 sourceXrayWindowPbPort_w506.egsdat ncase=1650000000     cpu=402488.00  
+507 sourceXrayWindowPbPort_w507.egsdat ncase=1650000000     cpu=411962.00  
+508 sourceXrayWindowPbPort_w508.egsdat ncase=1650000000     cpu=421162.00  
+509 sourceXrayWindowPbPort_w509.egsdat ncase=1800000000     cpu=436779.00  
+510 sourceXrayWindowPbPort_w510.egsdat ncase=1500000000     cpu=412665.00  
+511 sourceXrayWindowPbPort_w511.egsdat ncase=1500000000     cpu=420533.00  
+512 sourceXrayWindowPbPort_w512.egsdat ncase=1500000000     cpu=409586.00  
+513 sourceXrayWindowPbPort_w513.egsdat ncase=1500000000     cpu=422830.00  
+514 sourceXrayWindowPbPort_w514.egsdat ncase=1500000000     cpu=410403.00  
+515 sourceXrayWindowPbPort_w515.egsdat ncase=1500000000     cpu=411116.00  
+516 sourceXrayWindowPbPort_w516.egsdat ncase=1500000000     cpu=420796.00  
+517 sourceXrayWindowPbPort_w517.egsdat ncase=1500000000     cpu=418926.00  
+518 sourceXrayWindowPbPort_w518.egsdat ncase=1500000000     cpu=417123.00  
+519 sourceXrayWindowPbPort_w519.egsdat ncase=1500000000     cpu=411225.00  
+520 sourceXrayWindowPbPort_w520.egsdat ncase=1500000000     cpu=407007.00  
+521 sourceXrayWindowPbPort_w521.egsdat ncase=1500000000     cpu=418324.00  
+522 sourceXrayWindowPbPort_w522.egsdat ncase=1500000000     cpu=409190.00  
+523 sourceXrayWindowPbPort_w523.egsdat ncase=1500000000     cpu=420617.00  
+524 sourceXrayWindowPbPort_w524.egsdat ncase=1500000000     cpu=410032.00  
+525 sourceXrayWindowPbPort_w525.egsdat ncase=1500000000     cpu=406198.00  
+526 sourceXrayWindowPbPort_w526.egsdat ncase=1500000000     cpu=417901.00  
+527 sourceXrayWindowPbPort_w527.egsdat ncase=1500000000     cpu=408239.00  
+528 sourceXrayWindowPbPort_w528.egsdat ncase=1500000000     cpu=415556.00  
+529 sourceXrayWindowPbPort_w529.egsdat ncase=1650000000     cpu=421457.00  
+530 sourceXrayWindowPbPort_w530.egsdat ncase=1650000000     cpu=410206.00  
+531 sourceXrayWindowPbPort_w531.egsdat ncase=1650000000     cpu=413420.00  
+532 sourceXrayWindowPbPort_w532.egsdat ncase=1650000000     cpu=417091.00  
+533 sourceXrayWindowPbPort_w533.egsdat ncase=1650000000     cpu=422124.00  
+534 sourceXrayWindowPbPort_w534.egsdat ncase=1650000000     cpu=426615.00  
+535 sourceXrayWindowPbPort_w535.egsdat ncase=1650000000     cpu=409961.00  
+536 sourceXrayWindowPbPort_w536.egsdat ncase=1650000000     cpu=411951.00  
+537 sourceXrayWindowPbPort_w537.egsdat ncase=1500000000     cpu=421146.00  
+538 sourceXrayWindowPbPort_w538.egsdat ncase=1650000000     cpu=427743.00  
+539 sourceXrayWindowPbPort_w539.egsdat ncase=1650000000     cpu=431003.00  
+540 sourceXrayWindowPbPort_w540.egsdat ncase=1500000000     cpu=403414.00  
+541 sourceXrayWindowPbPort_w541.egsdat ncase=1650000000     cpu=428151.00  
+542 sourceXrayWindowPbPort_w542.egsdat ncase=1650000000     cpu=434904.00  
+543 sourceXrayWindowPbPort_w543.egsdat ncase=1650000000     cpu=436105.00  
+544 sourceXrayWindowPbPort_w544.egsdat ncase=1650000000     cpu=439746.00  
+545 sourceXrayWindowPbPort_w545.egsdat ncase=1650000000     cpu=424525.00  
+546 sourceXrayWindowPbPort_w546.egsdat ncase=1650000000     cpu=426807.00  
+547 sourceXrayWindowPbPort_w547.egsdat ncase=1650000000     cpu=428863.00  
+548 sourceXrayWindowPbPort_w548.egsdat ncase=1650000000     cpu=433882.00  
+549 sourceXrayWindowPbPort_w549.egsdat ncase=1650000000     cpu=436489.00  
+550 sourceXrayWindowPbPort_w550.egsdat ncase=1650000000     cpu=435131.00  
+551 sourceXrayWindowPbPort_w551.egsdat ncase=1650000000     cpu=434024.00  
+552 sourceXrayWindowPbPort_w552.egsdat ncase=1650000000     cpu=427931.00  
+553 sourceXrayWindowPbPort_w553.egsdat ncase=1650000000     cpu=406899.00  
+554 sourceXrayWindowPbPort_w554.egsdat ncase=1650000000     cpu=411688.00  
+555 sourceXrayWindowPbPort_w555.egsdat ncase=1650000000     cpu=409068.00  
+556 sourceXrayWindowPbPort_w556.egsdat ncase=1650000000     cpu=405454.00  
+557 sourceXrayWindowPbPort_w557.egsdat ncase=1650000000     cpu=415147.00  
+558 sourceXrayWindowPbPort_w558.egsdat ncase=1650000000     cpu=417185.00  
+559 sourceXrayWindowPbPort_w559.egsdat ncase=1500000000     cpu=410830.00  
+560 sourceXrayWindowPbPort_w560.egsdat ncase=1650000000     cpu=412857.00  
+561 sourceXrayWindowPbPort_w561.egsdat ncase=1500000000     cpu=403519.00  
+562 sourceXrayWindowPbPort_w562.egsdat ncase=1500000000     cpu=409736.00  
+563 sourceXrayWindowPbPort_w563.egsdat ncase=1500000000     cpu=408083.00  
+564 sourceXrayWindowPbPort_w564.egsdat ncase=1500000000     cpu=404332.00  
+565 sourceXrayWindowPbPort_w565.egsdat ncase=1500000000     cpu=409923.00  
+566 sourceXrayWindowPbPort_w566.egsdat ncase=1500000000     cpu=415484.00  
+567 sourceXrayWindowPbPort_w567.egsdat ncase=1500000000     cpu=407017.00  
+568 sourceXrayWindowPbPort_w568.egsdat ncase=1500000000     cpu=407873.00  
+569 sourceXrayWindowPbPort_w569.egsdat ncase=1500000000     cpu=411178.00  
+570 sourceXrayWindowPbPort_w570.egsdat ncase=1500000000     cpu=409229.00  
+571 sourceXrayWindowPbPort_w571.egsdat ncase=1500000000     cpu=412643.00  
+572 sourceXrayWindowPbPort_w572.egsdat ncase=1500000000     cpu=414207.00  
+573 sourceXrayWindowPbPort_w573.egsdat ncase=1500000000     cpu=402998.00  
+574 sourceXrayWindowPbPort_w574.egsdat ncase=1500000000     cpu=406020.00  
+575 sourceXrayWindowPbPort_w575.egsdat ncase=1500000000     cpu=418356.00  
+576 sourceXrayWindowPbPort_w576.egsdat ncase=1650000000     cpu=436327.00  
+577 sourceXrayWindowPbPort_w577.egsdat ncase=1500000000     cpu=407365.00  
+578 sourceXrayWindowPbPort_w578.egsdat ncase=1500000000     cpu=415080.00  
+579 sourceXrayWindowPbPort_w579.egsdat ncase=1500000000     cpu=410201.00  
+580 sourceXrayWindowPbPort_w580.egsdat ncase=1500000000     cpu=411876.00  
+581 sourceXrayWindowPbPort_w581.egsdat ncase=1650000000     cpu=435886.00  
+582 sourceXrayWindowPbPort_w582.egsdat ncase=1650000000     cpu=436516.00  
+583 sourceXrayWindowPbPort_w583.egsdat ncase=1500000000     cpu=406710.00  
+584 sourceXrayWindowPbPort_w584.egsdat ncase=1650000000     cpu=430161.00  
+585 sourceXrayWindowPbPort_w585.egsdat ncase=1650000000     cpu=429452.00  
+586 sourceXrayWindowPbPort_w586.egsdat ncase=1650000000     cpu=427872.00  
+587 sourceXrayWindowPbPort_w587.egsdat ncase=1650000000     cpu=435639.00  
+588 sourceXrayWindowPbPort_w588.egsdat ncase=1500000000     cpu=422831.00  
+589 sourceXrayWindowPbPort_w589.egsdat ncase=1650000000     cpu=436678.00  
+590 sourceXrayWindowPbPort_w590.egsdat ncase=1500000000     cpu=404706.00  
+591 sourceXrayWindowPbPort_w591.egsdat ncase=1500000000     cpu=405643.00  
+592 sourceXrayWindowPbPort_w592.egsdat ncase=1500000000     cpu=405090.00  
+593 sourceXrayWindowPbPort_w593.egsdat ncase=1500000000     cpu=405812.00  
+594 sourceXrayWindowPbPort_w594.egsdat ncase=1650000000     cpu=438276.00  
+595 sourceXrayWindowPbPort_w595.egsdat ncase=1650000000     cpu=433682.00  
+596 sourceXrayWindowPbPort_w596.egsdat ncase=1500000000     cpu=406540.00  
+597 sourceXrayWindowPbPort_w597.egsdat ncase=1650000000     cpu=420761.00  
+598 sourceXrayWindowPbPort_w598.egsdat ncase=1650000000     cpu=415343.00  
+599 sourceXrayWindowPbPort_w599.egsdat ncase=1650000000     cpu=414675.00  
+600 sourceXrayWindowPbPort_w600.egsdat ncase=1650000000     cpu=427120.00  
+601 sourceXrayWindowPbPort_w601.egsdat ncase=1650000000     cpu=421870.00  
+602 sourceXrayWindowPbPort_w602.egsdat ncase=1650000000     cpu=414717.00  
+603 sourceXrayWindowPbPort_w603.egsdat ncase=1650000000     cpu=421615.00  
+604 sourceXrayWindowPbPort_w604.egsdat ncase=1650000000     cpu=429098.00  
+605 sourceXrayWindowPbPort_w605.egsdat ncase=1650000000     cpu=417521.00  
+606 sourceXrayWindowPbPort_w606.egsdat ncase=1650000000     cpu=421817.00  
+607 sourceXrayWindowPbPort_w607.egsdat ncase=1650000000     cpu=430724.00  
+608 sourceXrayWindowPbPort_w608.egsdat ncase=1650000000     cpu=420398.00  
+609 sourceXrayWindowPbPort_w609.egsdat ncase=1350000000     cpu=422952.00  
+610 sourceXrayWindowPbPort_w610.egsdat ncase=1350000000     cpu=428330.00  
+611 sourceXrayWindowPbPort_w611.egsdat ncase=1350000000     cpu=422729.00  
+612 sourceXrayWindowPbPort_w612.egsdat ncase=1350000000     cpu=432945.00  
+613 sourceXrayWindowPbPort_w613.egsdat ncase=1350000000     cpu=434199.00  
+614 sourceXrayWindowPbPort_w614.egsdat ncase=1350000000     cpu=421074.00  
+615 sourceXrayWindowPbPort_w615.egsdat ncase=1350000000     cpu=425010.00  
+616 sourceXrayWindowPbPort_w616.egsdat ncase=1350000000     cpu=432702.00  
+617 sourceXrayWindowPbPort_w617.egsdat ncase=1350000000     cpu=419325.00  
+618 sourceXrayWindowPbPort_w618.egsdat ncase=1350000000     cpu=424250.00  
+619 sourceXrayWindowPbPort_w619.egsdat ncase=1350000000     cpu=423016.00  
+620 sourceXrayWindowPbPort_w620.egsdat ncase=1350000000     cpu=428497.00  
+621 sourceXrayWindowPbPort_w621.egsdat ncase=1350000000     cpu=423397.00  
+622 sourceXrayWindowPbPort_w622.egsdat ncase=1200000000     cpu=406393.00  
+623 sourceXrayWindowPbPort_w623.egsdat ncase=1350000000     cpu=424530.00  
+624 sourceXrayWindowPbPort_w624.egsdat ncase=1350000000     cpu=431571.00  
+625 sourceXrayWindowPbPort_w625.egsdat ncase=1350000000     cpu=427702.00  
+626 sourceXrayWindowPbPort_w626.egsdat ncase=1350000000     cpu=438118.00  
+627 sourceXrayWindowPbPort_w627.egsdat ncase=1350000000     cpu=429196.00  
+628 sourceXrayWindowPbPort_w628.egsdat ncase=1350000000     cpu=427214.00  
+629 sourceXrayWindowPbPort_w629.egsdat ncase=1350000000     cpu=425351.00  
+630 sourceXrayWindowPbPort_w630.egsdat ncase=1350000000     cpu=431523.00  
+631 sourceXrayWindowPbPort_w631.egsdat ncase=1350000000     cpu=425035.00  
+632 sourceXrayWindowPbPort_w632.egsdat ncase=1350000000     cpu=422067.00  
+633 sourceXrayWindowPbPort_w633.egsdat ncase=1350000000     cpu=431426.00  
+634 sourceXrayWindowPbPort_w634.egsdat ncase=1350000000     cpu=425967.00  
+635 sourceXrayWindowPbPort_w635.egsdat ncase=1350000000     cpu=430655.00  
+636 sourceXrayWindowPbPort_w636.egsdat ncase=1350000000     cpu=427758.00  
+637 sourceXrayWindowPbPort_w637.egsdat ncase=1350000000     cpu=419161.00  
+638 sourceXrayWindowPbPort_w638.egsdat ncase=1350000000     cpu=428154.00  
+639 sourceXrayWindowPbPort_w639.egsdat ncase=1350000000     cpu=422061.00  
+640 sourceXrayWindowPbPort_w640.egsdat ncase=1350000000     cpu=422429.00  
+641 sourceXrayWindowPbPort_w641.egsdat ncase=1350000000     cpu=422401.00  
+642 sourceXrayWindowPbPort_w642.egsdat ncase=1350000000     cpu=427150.00  
+643 sourceXrayWindowPbPort_w643.egsdat ncase=1350000000     cpu=430344.00  
+644 sourceXrayWindowPbPort_w644.egsdat ncase=1350000000     cpu=426046.00  
+645 sourceXrayWindowPbPort_w645.egsdat ncase=1350000000     cpu=426350.00  
+646 sourceXrayWindowPbPort_w646.egsdat ncase=1350000000     cpu=448813.00  
+647 sourceXrayWindowPbPort_w647.egsdat ncase=1350000000     cpu=432066.00  
+648 sourceXrayWindowPbPort_w648.egsdat ncase=1350000000     cpu=438496.00  
+649 sourceXrayWindowPbPort_w649.egsdat ncase=1350000000     cpu=430260.00  
+650 sourceXrayWindowPbPort_w650.egsdat ncase=1350000000     cpu=425245.00  
+651 sourceXrayWindowPbPort_w651.egsdat ncase=1350000000     cpu=429022.00  
+652 sourceXrayWindowPbPort_w652.egsdat ncase=1350000000     cpu=430275.00  
+653 sourceXrayWindowPbPort_w653.egsdat ncase=1350000000     cpu=433062.00  
+654 sourceXrayWindowPbPort_w654.egsdat ncase=1350000000     cpu=431340.00  
+655 sourceXrayWindowPbPort_w655.egsdat ncase=1350000000     cpu=432088.00  
+656 sourceXrayWindowPbPort_w656.egsdat ncase=1350000000     cpu=422382.00  
+657 sourceXrayWindowPbPort_w657.egsdat ncase=1350000000     cpu=437300.00  
+658 sourceXrayWindowPbPort_w658.egsdat ncase=1350000000     cpu=420381.00  
+659 sourceXrayWindowPbPort_w659.egsdat ncase=1350000000     cpu=425529.00  
+660 sourceXrayWindowPbPort_w660.egsdat ncase=1350000000     cpu=424600.00  
+661 sourceXrayWindowPbPort_w661.egsdat ncase=1350000000     cpu=427599.00  
+662 sourceXrayWindowPbPort_w662.egsdat ncase=1350000000     cpu=439387.00  
+663 sourceXrayWindowPbPort_w663.egsdat ncase=1350000000     cpu=420387.00  
+664 sourceXrayWindowPbPort_w664.egsdat ncase=1350000000     cpu=442023.00  
+665 sourceXrayWindowPbPort_w665.egsdat ncase=1350000000     cpu=439568.00  
+666 sourceXrayWindowPbPort_w666.egsdat ncase=1350000000     cpu=428476.00  
+667 sourceXrayWindowPbPort_w667.egsdat ncase=1350000000     cpu=421112.00  
+668 sourceXrayWindowPbPort_w668.egsdat ncase=1350000000     cpu=427481.00  
+669 sourceXrayWindowPbPort_w669.egsdat ncase=1350000000     cpu=432984.00  
+670 sourceXrayWindowPbPort_w670.egsdat ncase=1350000000     cpu=435416.00  
+671 sourceXrayWindowPbPort_w671.egsdat ncase=1350000000     cpu=421663.00  
+672 sourceXrayWindowPbPort_w672.egsdat ncase=1350000000     cpu=431554.00  
+673 sourceXrayWindowPbPort_w673.egsdat ncase=1350000000     cpu=424559.00  
+674 sourceXrayWindowPbPort_w674.egsdat ncase=1350000000     cpu=427373.00  
+675 sourceXrayWindowPbPort_w675.egsdat ncase=1350000000     cpu=435586.00  
+676 sourceXrayWindowPbPort_w676.egsdat ncase=1350000000     cpu=426961.00  
+677 sourceXrayWindowPbPort_w677.egsdat ncase=1350000000     cpu=441626.00  
+678 sourceXrayWindowPbPort_w678.egsdat ncase=1350000000     cpu=440733.00  
+679 sourceXrayWindowPbPort_w679.egsdat ncase=1350000000     cpu=429516.00  
+680 sourceXrayWindowPbPort_w680.egsdat ncase=1350000000     cpu=442168.00  
+681 sourceXrayWindowPbPort_w681.egsdat ncase=1350000000     cpu=431425.00  
+682 sourceXrayWindowPbPort_w682.egsdat ncase=1350000000     cpu=433697.00  
+683 sourceXrayWindowPbPort_w683.egsdat ncase=1350000000     cpu=444037.00  
+684 sourceXrayWindowPbPort_w684.egsdat ncase=1350000000     cpu=432354.00  
+685 sourceXrayWindowPbPort_w685.egsdat ncase=1350000000     cpu=441153.00  
+686 sourceXrayWindowPbPort_w686.egsdat ncase=1350000000     cpu=436631.00  
+687 sourceXrayWindowPbPort_w687.egsdat ncase=1350000000     cpu=428326.00  
+688 sourceXrayWindowPbPort_w688.egsdat ncase=1350000000     cpu=420444.00  
+689 sourceXrayWindowPbPort_w689.egsdat ncase=1350000000     cpu=422268.00  
+690 sourceXrayWindowPbPort_w690.egsdat ncase=1350000000     cpu=427435.00  
+691 sourceXrayWindowPbPort_w691.egsdat ncase=1350000000     cpu=426673.00  
+692 sourceXrayWindowPbPort_w692.egsdat ncase=1350000000     cpu=421300.00  
+693 sourceXrayWindowPbPort_w693.egsdat ncase=1350000000     cpu=418449.00  
+694 sourceXrayWindowPbPort_w694.egsdat ncase=1350000000     cpu=422737.00  
+695 sourceXrayWindowPbPort_w695.egsdat ncase=1350000000     cpu=417912.00  
+696 sourceXrayWindowPbPort_w696.egsdat ncase=1350000000     cpu=432303.00  
+697 sourceXrayWindowPbPort_w697.egsdat ncase=1350000000     cpu=434309.00  
+698 sourceXrayWindowPbPort_w698.egsdat ncase=1350000000     cpu=435214.00  
+699 sourceXrayWindowPbPort_w699.egsdat ncase=1350000000     cpu=429425.00  
+700 sourceXrayWindowPbPort_w700.egsdat ncase=1350000000     cpu=435026.00  
+701 sourceXrayWindowPbPort_w701.egsdat ncase=1350000000     cpu=436594.00  
+702 sourceXrayWindowPbPort_w702.egsdat ncase=1350000000     cpu=428253.00  
+703 sourceXrayWindowPbPort_w703.egsdat ncase=1350000000     cpu=427243.00  
+704 sourceXrayWindowPbPort_w704.egsdat ncase=1350000000     cpu=438337.00  
+705 sourceXrayWindowPbPort_w705.egsdat ncase=1350000000     cpu=430715.00  
+706 sourceXrayWindowPbPort_w706.egsdat ncase=1350000000     cpu=430242.00  
+707 sourceXrayWindowPbPort_w707.egsdat ncase=1350000000     cpu=434902.00  
+708 sourceXrayWindowPbPort_w708.egsdat ncase=1350000000     cpu=428952.00  
+709 sourceXrayWindowPbPort_w709.egsdat ncase=1350000000     cpu=435257.00  
+710 sourceXrayWindowPbPort_w710.egsdat ncase=1350000000     cpu=428781.00  
+711 sourceXrayWindowPbPort_w711.egsdat ncase=1350000000     cpu=421041.00  
+712 sourceXrayWindowPbPort_w712.egsdat ncase=1350000000     cpu=426838.00  
+713 sourceXrayWindowPbPort_w713.egsdat ncase=1350000000     cpu=440052.00  
+714 sourceXrayWindowPbPort_w714.egsdat ncase=1350000000     cpu=428588.00  
+715 sourceXrayWindowPbPort_w715.egsdat ncase=1350000000     cpu=439597.00  
+716 sourceXrayWindowPbPort_w716.egsdat ncase=1350000000     cpu=425786.00  
+717 sourceXrayWindowPbPort_w717.egsdat ncase=1350000000     cpu=432120.00  
+718 sourceXrayWindowPbPort_w718.egsdat ncase=1350000000     cpu=422197.00  
+719 sourceXrayWindowPbPort_w719.egsdat ncase=1350000000     cpu=432924.00  
+720 sourceXrayWindowPbPort_w720.egsdat ncase=1350000000     cpu=437343.00  
+721 sourceXrayWindowPbPort_w721.egsdat ncase=1350000000     cpu=436557.00  
+722 sourceXrayWindowPbPort_w722.egsdat ncase=1350000000     cpu=428193.00  
+723 sourceXrayWindowPbPort_w723.egsdat ncase=1350000000     cpu=438315.00  
+724 sourceXrayWindowPbPort_w724.egsdat ncase=1350000000     cpu=437083.00  
+725 sourceXrayWindowPbPort_w725.egsdat ncase=1350000000     cpu=431225.00  
+726 sourceXrayWindowPbPort_w726.egsdat ncase=1350000000     cpu=423036.00  
+727 sourceXrayWindowPbPort_w727.egsdat ncase=1350000000     cpu=420196.00  
+728 sourceXrayWindowPbPort_w728.egsdat ncase=1350000000     cpu=435242.00  
+729 sourceXrayWindowPbPort_w729.egsdat ncase=1350000000     cpu=419110.00  
+730 sourceXrayWindowPbPort_w730.egsdat ncase=1350000000     cpu=436065.00  
+731 sourceXrayWindowPbPort_w731.egsdat ncase=1350000000     cpu=431703.00  
+732 sourceXrayWindowPbPort_w732.egsdat ncase=1350000000     cpu=435607.00  
+733 sourceXrayWindowPbPort_w733.egsdat ncase=1350000000     cpu=430046.00  
+734 sourceXrayWindowPbPort_w734.egsdat ncase=1350000000     cpu=435915.00  
+735 sourceXrayWindowPbPort_w735.egsdat ncase=1350000000     cpu=424777.00  
+736 sourceXrayWindowPbPort_w736.egsdat ncase=1350000000     cpu=425107.00  
+737 sourceXrayWindowPbPort_w737.egsdat ncase=1350000000     cpu=424290.00  
+738 sourceXrayWindowPbPort_w738.egsdat ncase=1350000000     cpu=430605.00  
+739 sourceXrayWindowPbPort_w739.egsdat ncase=1350000000     cpu=425265.00  
+740 sourceXrayWindowPbPort_w740.egsdat ncase=1350000000     cpu=432475.00  
+741 sourceXrayWindowPbPort_w741.egsdat ncase=1350000000     cpu=421428.00  
+742 sourceXrayWindowPbPort_w742.egsdat ncase=1350000000     cpu=434643.00  
+743 sourceXrayWindowPbPort_w743.egsdat ncase=1350000000     cpu=422384.00  
+744 sourceXrayWindowPbPort_w744.egsdat ncase=1350000000     cpu=424694.00  
+745 sourceXrayWindowPbPort_w745.egsdat ncase=1350000000     cpu=426159.00  
+746 sourceXrayWindowPbPort_w746.egsdat ncase=1350000000     cpu=422739.00  
+747 sourceXrayWindowPbPort_w747.egsdat ncase=1350000000     cpu=425215.00  
+748 sourceXrayWindowPbPort_w748.egsdat ncase=1200000000     cpu=438673.00  
+749 sourceXrayWindowPbPort_w749.egsdat ncase=1350000000     cpu=426890.00  
+750 sourceXrayWindowPbPort_w750.egsdat ncase=1350000000     cpu=433663.00  
+751 sourceXrayWindowPbPort_w751.egsdat ncase=1350000000     cpu=425850.00  
+752 sourceXrayWindowPbPort_w752.egsdat ncase=1350000000     cpu=420993.00  
+753 sourceXrayWindowPbPort_w753.egsdat ncase=1350000000     cpu=421892.00  
+754 sourceXrayWindowPbPort_w754.egsdat ncase=1350000000     cpu=423237.00  
+755 sourceXrayWindowPbPort_w755.egsdat ncase=1350000000     cpu=418577.00  
+756 sourceXrayWindowPbPort_w756.egsdat ncase=1350000000     cpu=418421.00  
+757 sourceXrayWindowPbPort_w757.egsdat ncase=1350000000     cpu=424549.00  
+758 sourceXrayWindowPbPort_w758.egsdat ncase=1350000000     cpu=431931.00  
+759 sourceXrayWindowPbPort_w759.egsdat ncase=1350000000     cpu=418028.00  
+760 sourceXrayWindowPbPort_w760.egsdat ncase=1350000000     cpu=428011.00  
+761 sourceXrayWindowPbPort_w761.egsdat ncase=1350000000     cpu=423111.00  
+762 sourceXrayWindowPbPort_w762.egsdat ncase=1350000000     cpu=432048.00  
+763 sourceXrayWindowPbPort_w763.egsdat ncase=1350000000     cpu=418646.00  
+764 sourceXrayWindowPbPort_w764.egsdat ncase=1350000000     cpu=428677.00  
+765 sourceXrayWindowPbPort_w765.egsdat ncase=1350000000     cpu=430637.00  
+766 sourceXrayWindowPbPort_w766.egsdat ncase=1350000000     cpu=425537.00  
+767 sourceXrayWindowPbPort_w767.egsdat ncase=1350000000     cpu=422491.00  
+768 sourceXrayWindowPbPort_w768.egsdat ncase=1350000000     cpu=431574.00  
+769 sourceXrayWindowPbPort_w769.egsdat ncase=1350000000     cpu=421461.00  
+770 sourceXrayWindowPbPort_w770.egsdat ncase=1350000000     cpu=426905.00  
+771 sourceXrayWindowPbPort_w771.egsdat ncase=1350000000     cpu=425027.00  
+772 sourceXrayWindowPbPort_w772.egsdat ncase=1350000000     cpu=431468.00  
+773 sourceXrayWindowPbPort_w773.egsdat ncase=1350000000     cpu=422838.00  
+774 sourceXrayWindowPbPort_w774.egsdat ncase=1350000000     cpu=427467.00  
+775 sourceXrayWindowPbPort_w775.egsdat ncase=1350000000     cpu=422624.00  
+776 sourceXrayWindowPbPort_w776.egsdat ncase=1350000000     cpu=434676.00  
+777 sourceXrayWindowPbPort_w777.egsdat ncase=1350000000     cpu=420470.00  
+778 sourceXrayWindowPbPort_w778.egsdat ncase=1350000000     cpu=427138.00  
+779 sourceXrayWindowPbPort_w779.egsdat ncase=1350000000     cpu=421914.00  
+780 sourceXrayWindowPbPort_w780.egsdat ncase=1350000000     cpu=427114.00  
+781 sourceXrayWindowPbPort_w781.egsdat ncase=1350000000     cpu=430281.00  
+782 sourceXrayWindowPbPort_w782.egsdat ncase=1350000000     cpu=427805.00  
+783 sourceXrayWindowPbPort_w783.egsdat ncase=1350000000     cpu=427503.00  
+784 sourceXrayWindowPbPort_w784.egsdat ncase=1350000000     cpu=429582.00  
+785 sourceXrayWindowPbPort_w785.egsdat ncase=1350000000     cpu=424381.00  
+786 sourceXrayWindowPbPort_w786.egsdat ncase=1350000000     cpu=421533.00  
+787 sourceXrayWindowPbPort_w787.egsdat ncase=1350000000     cpu=434536.00  
+788 sourceXrayWindowPbPort_w788.egsdat ncase=1350000000     cpu=434170.00  
+789 sourceXrayWindowPbPort_w789.egsdat ncase=1350000000     cpu=424668.00  
+790 sourceXrayWindowPbPort_w790.egsdat ncase=1350000000     cpu=427507.00  
+791 sourceXrayWindowPbPort_w791.egsdat ncase=1350000000     cpu=428289.00  
+792 sourceXrayWindowPbPort_w792.egsdat ncase=1350000000     cpu=425905.00  
+793 sourceXrayWindowPbPort_w793.egsdat ncase=1350000000     cpu=420673.00  
+794 sourceXrayWindowPbPort_w794.egsdat ncase=1350000000     cpu=421521.00  
+795 sourceXrayWindowPbPort_w795.egsdat ncase=1350000000     cpu=420209.00  
+796 sourceXrayWindowPbPort_w796.egsdat ncase=1350000000     cpu=426693.00  
+797 sourceXrayWindowPbPort_w797.egsdat ncase=1350000000     cpu=428967.00  
+798 sourceXrayWindowPbPort_w798.egsdat ncase=1350000000     cpu=424658.00  
+799 sourceXrayWindowPbPort_w799.egsdat ncase=1350000000     cpu=437432.00  
+800 sourceXrayWindowPbPort_w800.egsdat ncase=1350000000     cpu=421480.00  
+801 sourceXrayWindowPbPort_w801.egsdat ncase=1350000000     cpu=434820.00  
+802 sourceXrayWindowPbPort_w802.egsdat ncase=1350000000     cpu=429251.00  
+803 sourceXrayWindowPbPort_w803.egsdat ncase=1350000000     cpu=418856.00  
+804 sourceXrayWindowPbPort_w804.egsdat ncase=1350000000     cpu=429498.00  
+805 sourceXrayWindowPbPort_w805.egsdat ncase=1350000000     cpu=434981.00  
+806 sourceXrayWindowPbPort_w806.egsdat ncase=1350000000     cpu=425196.00  
+807 sourceXrayWindowPbPort_w807.egsdat ncase=1350000000     cpu=429495.00  
+808 sourceXrayWindowPbPort_w808.egsdat ncase=1350000000     cpu=428376.00  
+809 sourceXrayWindowPbPort_w809.egsdat ncase=1350000000     cpu=425761.00  
+810 sourceXrayWindowPbPort_w810.egsdat ncase=1350000000     cpu=419943.00  
+811 sourceXrayWindowPbPort_w811.egsdat ncase=1350000000     cpu=418084.00  
+812 sourceXrayWindowPbPort_w812.egsdat ncase=1350000000     cpu=422126.00  
+813 sourceXrayWindowPbPort_w813.egsdat ncase=1350000000     cpu=433372.00  
+814 sourceXrayWindowPbPort_w814.egsdat ncase=1350000000     cpu=418430.00  
+815 sourceXrayWindowPbPort_w815.egsdat ncase=1350000000     cpu=416600.00  
+816 sourceXrayWindowPbPort_w816.egsdat ncase=1350000000     cpu=430001.00  
+817 sourceXrayWindowPbPort_w817.egsdat ncase=1350000000     cpu=448980.00  
+818 sourceXrayWindowPbPort_w818.egsdat ncase=1350000000     cpu=427101.00  
+819 sourceXrayWindowPbPort_w819.egsdat ncase=1350000000     cpu=429470.00  
+820 sourceXrayWindowPbPort_w820.egsdat ncase=1350000000     cpu=419112.00  
+821 sourceXrayWindowPbPort_w821.egsdat ncase=1350000000     cpu=423610.00  
+822 sourceXrayWindowPbPort_w822.egsdat ncase=1350000000     cpu=424269.00  
+823 sourceXrayWindowPbPort_w823.egsdat ncase=1350000000     cpu=434046.00  
+824 sourceXrayWindowPbPort_w824.egsdat ncase=1350000000     cpu=430678.00  
+825 sourceXrayWindowPbPort_w825.egsdat ncase=1350000000     cpu=434141.00  
+826 sourceXrayWindowPbPort_w826.egsdat ncase=1350000000     cpu=426225.00  
+827 sourceXrayWindowPbPort_w827.egsdat ncase=1350000000     cpu=421952.00  
+828 sourceXrayWindowPbPort_w828.egsdat ncase=1350000000     cpu=423305.00  
+829 sourceXrayWindowPbPort_w829.egsdat ncase=1350000000     cpu=424373.00  
+830 sourceXrayWindowPbPort_w830.egsdat ncase=1350000000     cpu=424024.00  
+831 sourceXrayWindowPbPort_w831.egsdat ncase=1350000000     cpu=419802.00  
+832 sourceXrayWindowPbPort_w832.egsdat ncase=1350000000     cpu=421917.00  
+833 sourceXrayWindowPbPort_w833.egsdat ncase=1350000000     cpu=434543.00  
+834 sourceXrayWindowPbPort_w834.egsdat ncase=1350000000     cpu=423993.00  
+835 sourceXrayWindowPbPort_w835.egsdat ncase=1350000000     cpu=428881.00  
+836 sourceXrayWindowPbPort_w836.egsdat ncase=1350000000     cpu=435287.00  
+837 sourceXrayWindowPbPort_w837.egsdat ncase=1350000000     cpu=424556.00  
+838 sourceXrayWindowPbPort_w838.egsdat ncase=1350000000     cpu=436342.00  
+839 sourceXrayWindowPbPort_w839.egsdat ncase=1350000000     cpu=433808.00  
+840 sourceXrayWindowPbPort_w840.egsdat ncase=1350000000     cpu=424670.00  
+841 sourceXrayWindowPbPort_w841.egsdat ncase=1350000000     cpu=429502.00  
+842 sourceXrayWindowPbPort_w842.egsdat ncase=1350000000     cpu=427388.00  
+843 sourceXrayWindowPbPort_w843.egsdat ncase=1350000000     cpu=432463.00  
+844 sourceXrayWindowPbPort_w844.egsdat ncase=1350000000     cpu=422545.00  
+845 sourceXrayWindowPbPort_w845.egsdat ncase=1350000000     cpu=418990.00  
+846 sourceXrayWindowPbPort_w846.egsdat ncase=1350000000     cpu=422789.00  
+847 sourceXrayWindowPbPort_w847.egsdat ncase=1350000000     cpu=432943.00  
+848 sourceXrayWindowPbPort_w848.egsdat ncase=1350000000     cpu=429117.00  
+849 sourceXrayWindowPbPort_w849.egsdat ncase=1350000000     cpu=429885.00  
+850 sourceXrayWindowPbPort_w850.egsdat ncase=1350000000     cpu=429110.00  
+851 sourceXrayWindowPbPort_w851.egsdat ncase=1350000000     cpu=423320.00  
+852 sourceXrayWindowPbPort_w852.egsdat ncase=1350000000     cpu=429243.00  
+853 sourceXrayWindowPbPort_w853.egsdat ncase=1350000000     cpu=429888.00  
+854 sourceXrayWindowPbPort_w854.egsdat ncase=1350000000     cpu=431314.00  
+855 sourceXrayWindowPbPort_w855.egsdat ncase=1350000000     cpu=427071.00  
+856 sourceXrayWindowPbPort_w856.egsdat ncase=1350000000     cpu=432828.00  
+857 sourceXrayWindowPbPort_w857.egsdat ncase=1350000000     cpu=425063.00  
+858 sourceXrayWindowPbPort_w858.egsdat ncase=1350000000     cpu=423363.00  
+859 sourceXrayWindowPbPort_w859.egsdat ncase=1350000000     cpu=423238.00  
+860 sourceXrayWindowPbPort_w860.egsdat ncase=1350000000     cpu=435421.00  
+861 sourceXrayWindowPbPort_w861.egsdat ncase=1350000000     cpu=425870.00  
+862 sourceXrayWindowPbPort_w862.egsdat ncase=1350000000     cpu=427015.00  
+863 sourceXrayWindowPbPort_w863.egsdat ncase=1350000000     cpu=437343.00  
+864 sourceXrayWindowPbPort_w864.egsdat ncase=1350000000     cpu=431103.00  
+865 sourceXrayWindowPbPort_w865.egsdat ncase=1350000000     cpu=429070.00  
+866 sourceXrayWindowPbPort_w866.egsdat ncase=1350000000     cpu=424164.00  
+867 sourceXrayWindowPbPort_w867.egsdat ncase=1350000000     cpu=427324.00  
+868 sourceXrayWindowPbPort_w868.egsdat ncase=1350000000     cpu=429789.00  
+869 sourceXrayWindowPbPort_w869.egsdat ncase=1350000000     cpu=430753.00  
+870 sourceXrayWindowPbPort_w870.egsdat ncase=1350000000     cpu=421921.00  
+871 sourceXrayWindowPbPort_w871.egsdat ncase=1350000000     cpu=427502.00  
+872 sourceXrayWindowPbPort_w872.egsdat ncase=1350000000     cpu=425394.00  
+873 sourceXrayWindowPbPort_w873.egsdat ncase=1350000000     cpu=436152.00  
+874 sourceXrayWindowPbPort_w874.egsdat ncase=1350000000     cpu=433456.00  
+875 sourceXrayWindowPbPort_w875.egsdat ncase=1350000000     cpu=438969.00  
+876 sourceXrayWindowPbPort_w876.egsdat ncase=1350000000     cpu=423936.00  
+877 sourceXrayWindowPbPort_w877.egsdat ncase=1350000000     cpu=426747.00  
+878 sourceXrayWindowPbPort_w878.egsdat ncase=1350000000     cpu=428589.00  
+879 sourceXrayWindowPbPort_w879.egsdat ncase=1350000000     cpu=419999.00  
+880 sourceXrayWindowPbPort_w880.egsdat ncase=1350000000     cpu=420938.00  
+881 sourceXrayWindowPbPort_w881.egsdat ncase=1350000000     cpu=428955.00  
+882 sourceXrayWindowPbPort_w882.egsdat ncase=1350000000     cpu=421984.00  
+883 sourceXrayWindowPbPort_w883.egsdat ncase=1350000000     cpu=419285.00  
+884 sourceXrayWindowPbPort_w884.egsdat ncase=1350000000     cpu=423072.00  
+885 sourceXrayWindowPbPort_w885.egsdat ncase=1350000000     cpu=421439.00  
+886 sourceXrayWindowPbPort_w886.egsdat ncase=1350000000     cpu=436058.00  
+887 sourceXrayWindowPbPort_w887.egsdat ncase=1350000000     cpu=441407.00  
+888 sourceXrayWindowPbPort_w888.egsdat ncase=1350000000     cpu=434905.00  
+889 sourceXrayWindowPbPort_w889.egsdat ncase=1350000000     cpu=429608.00  
+890 sourceXrayWindowPbPort_w890.egsdat ncase=1350000000     cpu=418797.00  
+891 sourceXrayWindowPbPort_w891.egsdat ncase=1350000000     cpu=425846.00  
+892 sourceXrayWindowPbPort_w892.egsdat ncase=1350000000     cpu=429876.00  
+893 sourceXrayWindowPbPort_w893.egsdat ncase=1350000000     cpu=430626.00  
+894 sourceXrayWindowPbPort_w894.egsdat ncase=1350000000     cpu=426517.00  
+895 sourceXrayWindowPbPort_w895.egsdat ncase=1350000000     cpu=420427.00  
+896 sourceXrayWindowPbPort_w896.egsdat ncase=1350000000     cpu=420681.00  
+897 sourceXrayWindowPbPort_w897.egsdat ncase=1350000000     cpu=423714.00  
+898 sourceXrayWindowPbPort_w898.egsdat ncase=1350000000     cpu=434311.00  
+899 sourceXrayWindowPbPort_w899.egsdat ncase=1350000000     cpu=428618.00  
+900 sourceXrayWindowPbPort_w900.egsdat ncase=1350000000     cpu=424364.00  
+901 sourceXrayWindowPbPort_w901.egsdat ncase=1350000000     cpu=428163.00  
+902 sourceXrayWindowPbPort_w902.egsdat ncase=1350000000     cpu=417803.00  
+903 sourceXrayWindowPbPort_w903.egsdat ncase=1350000000     cpu=431318.00  
+904 sourceXrayWindowPbPort_w904.egsdat ncase=1350000000     cpu=423974.00  
+905 sourceXrayWindowPbPort_w905.egsdat ncase=1350000000     cpu=417808.00  
+906 sourceXrayWindowPbPort_w906.egsdat ncase=1350000000     cpu=424917.00  
+907 sourceXrayWindowPbPort_w907.egsdat ncase=1350000000     cpu=424166.00  
+908 sourceXrayWindowPbPort_w908.egsdat ncase=1350000000     cpu=439240.00  
+909 sourceXrayWindowPbPort_w909.egsdat ncase=1350000000     cpu=427535.00  
+910 sourceXrayWindowPbPort_w910.egsdat ncase=1350000000     cpu=433767.00  
+911 sourceXrayWindowPbPort_w911.egsdat ncase=1350000000     cpu=427862.00  
+912 sourceXrayWindowPbPort_w912.egsdat ncase=1350000000     cpu=428269.00  
+913 sourceXrayWindowPbPort_w913.egsdat ncase=1350000000     cpu=438398.00  
+914 sourceXrayWindowPbPort_w914.egsdat ncase=1350000000     cpu=435039.00  
+915 sourceXrayWindowPbPort_w915.egsdat ncase=1350000000     cpu=429981.00  
+916 sourceXrayWindowPbPort_w916.egsdat ncase=1350000000     cpu=425922.00  
+917 sourceXrayWindowPbPort_w917.egsdat ncase=1350000000     cpu=432934.00  
+918 sourceXrayWindowPbPort_w918.egsdat ncase=1350000000     cpu=426949.00  
+919 sourceXrayWindowPbPort_w919.egsdat ncase=1350000000     cpu=426239.00  
+920 sourceXrayWindowPbPort_w920.egsdat ncase=1350000000     cpu=426987.00  
+921 sourceXrayWindowPbPort_w921.egsdat ncase=1350000000     cpu=430823.00  
+922 sourceXrayWindowPbPort_w922.egsdat ncase=1350000000     cpu=433655.00  
+923 sourceXrayWindowPbPort_w923.egsdat ncase=1350000000     cpu=423136.00  
+924 sourceXrayWindowPbPort_w924.egsdat ncase=1350000000     cpu=417960.00  
+925 sourceXrayWindowPbPort_w925.egsdat ncase=1350000000     cpu=419264.00  
+926 sourceXrayWindowPbPort_w926.egsdat ncase=1350000000     cpu=426097.00  
+927 sourceXrayWindowPbPort_w927.egsdat ncase=1350000000     cpu=430216.00  
+928 sourceXrayWindowPbPort_w928.egsdat ncase=1350000000     cpu=434712.00  
+929 sourceXrayWindowPbPort_w929.egsdat ncase=1350000000     cpu=423257.00  
+930 sourceXrayWindowPbPort_w930.egsdat ncase=1350000000     cpu=432693.00  
+931 sourceXrayWindowPbPort_w931.egsdat ncase=1350000000     cpu=436305.00  
+932 sourceXrayWindowPbPort_w932.egsdat ncase=1350000000     cpu=421430.00  
+933 sourceXrayWindowPbPort_w933.egsdat ncase=1350000000     cpu=424856.00  
+934 sourceXrayWindowPbPort_w934.egsdat ncase=1350000000     cpu=432450.00  
+935 sourceXrayWindowPbPort_w935.egsdat ncase=1350000000     cpu=433774.00  
+936 sourceXrayWindowPbPort_w936.egsdat ncase=1350000000     cpu=437151.00  
+937 sourceXrayWindowPbPort_w937.egsdat ncase=1350000000     cpu=427037.00  
+938 sourceXrayWindowPbPort_w938.egsdat ncase=1350000000     cpu=436032.00  
+939 sourceXrayWindowPbPort_w939.egsdat ncase=1350000000     cpu=424394.00  
+940 sourceXrayWindowPbPort_w940.egsdat ncase=1350000000     cpu=427439.00  
+941 sourceXrayWindowPbPort_w941.egsdat ncase=1350000000     cpu=449759.00  
+942 sourceXrayWindowPbPort_w942.egsdat ncase=1350000000     cpu=427329.00  
+943 sourceXrayWindowPbPort_w943.egsdat ncase=1350000000     cpu=431073.00  
+944 sourceXrayWindowPbPort_w944.egsdat ncase=1350000000     cpu=434898.00  
+945 sourceXrayWindowPbPort_w945.egsdat ncase=1350000000     cpu=424474.00  
+946 sourceXrayWindowPbPort_w946.egsdat ncase=1350000000     cpu=424598.00  
+947 sourceXrayWindowPbPort_w947.egsdat ncase=1350000000     cpu=436711.00  
+948 sourceXrayWindowPbPort_w948.egsdat ncase=1350000000     cpu=427399.00  
+949 sourceXrayWindowPbPort_w949.egsdat ncase=1350000000     cpu=434291.00  
+950 sourceXrayWindowPbPort_w950.egsdat ncase=1350000000     cpu=428582.00  
+951 sourceXrayWindowPbPort_w951.egsdat ncase=1350000000     cpu=431668.00  
+952 sourceXrayWindowPbPort_w952.egsdat ncase=1350000000     cpu=428249.00  
+953 sourceXrayWindowPbPort_w953.egsdat ncase=1200000000     cpu=407716.00  
+954 sourceXrayWindowPbPort_w954.egsdat ncase=1350000000     cpu=438099.00  
+955 sourceXrayWindowPbPort_w955.egsdat ncase=1350000000     cpu=425094.00  
+956 sourceXrayWindowPbPort_w956.egsdat ncase=1350000000     cpu=429069.00  
+957 sourceXrayWindowPbPort_w957.egsdat ncase=1350000000     cpu=430822.00  
+958 sourceXrayWindowPbPort_w958.egsdat ncase=1350000000     cpu=420648.00  
+959 sourceXrayWindowPbPort_w959.egsdat ncase=1350000000     cpu=427567.00  
+960 sourceXrayWindowPbPort_w960.egsdat ncase=1350000000     cpu=422815.00  
+961 sourceXrayWindowPbPort_w961.egsdat ncase=1350000000     cpu=426200.00  
+962 sourceXrayWindowPbPort_w962.egsdat ncase=1350000000     cpu=425012.00  
+963 sourceXrayWindowPbPort_w963.egsdat ncase=1350000000     cpu=426054.00  
+964 sourceXrayWindowPbPort_w964.egsdat ncase=1350000000     cpu=432709.00  
+965 sourceXrayWindowPbPort_w965.egsdat ncase=1350000000     cpu=429777.00  
+966 sourceXrayWindowPbPort_w966.egsdat ncase=1350000000     cpu=428413.00  
+967 sourceXrayWindowPbPort_w967.egsdat ncase=1350000000     cpu=428519.00  
+968 sourceXrayWindowPbPort_w968.egsdat ncase=1350000000     cpu=434272.00  
+969 sourceXrayWindowPbPort_w969.egsdat ncase=1350000000     cpu=429194.00  
+970 sourceXrayWindowPbPort_w970.egsdat ncase=1350000000     cpu=429241.00  
+971 sourceXrayWindowPbPort_w971.egsdat ncase=1350000000     cpu=423412.00  
+972 sourceXrayWindowPbPort_w972.egsdat ncase=1350000000     cpu=425265.00  
+973 sourceXrayWindowPbPort_w973.egsdat ncase=1350000000     cpu=427533.00  
+974 sourceXrayWindowPbPort_w974.egsdat ncase=1350000000     cpu=425256.00  
+975 sourceXrayWindowPbPort_w975.egsdat ncase=1350000000     cpu=424878.00  
+976 sourceXrayWindowPbPort_w976.egsdat ncase=1350000000     cpu=424766.00  
+977 sourceXrayWindowPbPort_w977.egsdat ncase=1350000000     cpu=418075.00  
+978 sourceXrayWindowPbPort_w978.egsdat ncase=1350000000     cpu=422695.00  
+979 sourceXrayWindowPbPort_w979.egsdat ncase=1350000000     cpu=434643.00  
+980 sourceXrayWindowPbPort_w980.egsdat ncase=1350000000     cpu=425420.00  
+981 sourceXrayWindowPbPort_w981.egsdat ncase=1350000000     cpu=426056.00  
+982 sourceXrayWindowPbPort_w982.egsdat ncase=1350000000     cpu=427432.00  
+983 sourceXrayWindowPbPort_w983.egsdat ncase=1350000000     cpu=418188.00  
+984 sourceXrayWindowPbPort_w984.egsdat ncase=1350000000     cpu=424033.00  
+985 sourceXrayWindowPbPort_w985.egsdat ncase=1350000000     cpu=432616.00  
+986 sourceXrayWindowPbPort_w986.egsdat ncase=1350000000     cpu=443089.00  
+987 sourceXrayWindowPbPort_w987.egsdat ncase=1350000000     cpu=421727.00  
+988 sourceXrayWindowPbPort_w988.egsdat ncase=1350000000     cpu=420863.00  
+989 sourceXrayWindowPbPort_w989.egsdat ncase=1350000000     cpu=427399.00  
+990 sourceXrayWindowPbPort_w990.egsdat ncase=1350000000     cpu=432678.00  
+991 sourceXrayWindowPbPort_w991.egsdat ncase=1350000000     cpu=431967.00  
+992 sourceXrayWindowPbPort_w992.egsdat ncase=1350000000     cpu=428556.00  
+993 sourceXrayWindowPbPort_w993.egsdat ncase=1350000000     cpu=430871.00  
+994 sourceXrayWindowPbPort_w994.egsdat ncase=1350000000     cpu=423001.00  
+995 sourceXrayWindowPbPort_w995.egsdat ncase=1350000000     cpu=423633.00  
+996 sourceXrayWindowPbPort_w996.egsdat ncase=1350000000     cpu=427302.00  
+997 sourceXrayWindowPbPort_w997.egsdat ncase=1350000000     cpu=426758.00  
+998 sourceXrayWindowPbPort_w998.egsdat ncase=1350000000     cpu=432290.00  
+999 sourceXrayWindowPbPort_w999.egsdat ncase=1350000000     cpu=422475.00  
+1000 sourceXrayWindowPbPort_w1000.egsdat ncase=1350000000     cpu=436829.00  
+=======================================================================
+                            Total ncase=1500000000000  cpu=423270879.00
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.74 (sec.) 0.0002(hours)
+CPU time including previous runs:       423270879.74 (sec.) 117575.2444 (hours)
+Histories per hour:                     1.27578e+07   
+Number of random numbers used:          4780488226300524
+Number of electron CH steps:            6.48216e+13   
+Number of all electron steps:           9.55e+14      
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     10000
+   Total tracks scored:     2338209
+   Still being scored:      0
+   Output file name:        /home/rsmina/EGSnrc/egs_home/TB/sourceXrayWindowPbPort_w941_w941.ptracks
+
