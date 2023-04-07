@@ -66,6 +66,20 @@
 		geometries = anode xray_window pb_port blades
     :stop geometry:
 
+    ### air in x ray window
+    :start geometry:
+        name = air_window
+        library = egs_cones
+        type = EGS_ConeStack
+        axis = 0 0 3 0 0 4.075
+        :start layer:
+            thickness = 1.075
+            top radii = 2.7261
+            bottom radii = 2.7261
+            media = air
+        :stop layer:
+    :stop geometry:
+
     ### Air between x-ray window and faceplate
     :start geometry:
         name = air
@@ -95,7 +109,7 @@
     :start geometry:
         name = obi
         library = egs_gunion
-        geometries = model air air_block
+        geometries = model air air_block air_window
     :stop geometry:
 
     ### Air between source and water
