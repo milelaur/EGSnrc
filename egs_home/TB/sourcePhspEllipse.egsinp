@@ -181,17 +181,17 @@
 	
 	### Oil CrossTrans™ 206 (https://www.recarroll.com/cw3/Assets/product_files/Crosstrans%20206%20spec.pdf)
 	:start oil:
-		#elements = H,C
-		#number of atoms = 10,20
-		#rho=0.891
-		bremsstrahlung correction = NRC
-        density correction file = napthalene
+		elements = C,H
+		number of atoms = 10,22
+		rho=0.891
+		#bremsstrahlung correction = NRC
+        #density correction file = napthalene
 	:stop oil:
 
 	### Aluminum
 	:start aluminum:
 		bremsstrahlung correction=NRC
-		density correction file = aluminum
+		density correction file = aluminumalloy_type1100.density
 	:stop aluminum:
 
 	### Stainless steel
