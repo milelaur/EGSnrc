@@ -63,7 +63,7 @@
     :start geometry:
         name = model
         library = egs_gunion
-		geometries = xray_window pb_port
+		geometries = anode xray_window pb_port blades
     :stop geometry:
 
     ### Air between x-ray window and faceplate
@@ -185,7 +185,7 @@
 	################################
 
 	### Testing source
-	simulation geometry = model
+	simulation geometry = obi_system
 
 :stop geometry definition:
 
@@ -216,17 +216,17 @@
 	
 	### Oil CrossTrans™ 206 (https://www.recarroll.com/cw3/Assets/product_files/Crosstrans%20206%20spec.pdf)
 	:start oil:
-		#elements = H,C
-		#number of atoms = 10,20
-		#rho=0.891
-		bremsstrahlung correction = NRC
-        density correction file = napthalene
+		elements = C,H
+		number of atoms = 10,22
+		rho=0.891
+		#bremsstrahlung correction = NRC
+        #density correction file = napthalene
 	:stop oil:
 
 	### Aluminum
 	:start aluminum:
 		bremsstrahlung correction=NRC
-		density correction file = aluminum
+		density correction file = aluminumalloy_type1100
 	:stop aluminum:
 
 	### Stainless steel
