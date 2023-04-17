@@ -1197,6 +1197,7 @@ C*****************************************************************************
       END IF
       pos2 = min(pos2,80-lnblnk1(tmp_string))
       pos2 = min(pos2,80-lnblnk1(host_name))
+      pos2 = min(pos2,80-lnblnk1('unknown'))
       IF((have_input))pos2 = min(pos2,80-lnblnk1(input_file))
       pos2 = min(pos2,80-lnblnk1(output_file))
       IF((pos2 .LT. pos1+2))pos2 = pos1 + 2
@@ -1204,8 +1205,20 @@ C*****************************************************************************
       l = pos2 - lnblnk1('configuration')
       write(i_log,'(a,$)') line1(:l)
       write(i_log,'(a)') 'linux64'
-      write(i_log,'(a,$)') 'user code'
-      l = pos2 - lnblnk1('user code')
+      write(i_log,'(a,$)') 'configuration time'
+      l = pos2 - lnblnk1('configuration time')
+      write(i_log,'(a,$)') line1(:l)
+      write(i_log,'(a)') 'unknown'
+      write(i_log,'(a,$)') 'app compile time'
+      l = pos2 - lnblnk1('app compile time')
+      write(i_log,'(a,$)') line1(:l)
+      write(i_log,'(a)') COMPILE_TIME
+      write(i_log,'(a,$)') 'git commit hash'
+      l = pos2 - lnblnk1('git commit hash')
+      write(i_log,'(a,$)') line1(:l)
+      write(i_log,'(a)') GIT_HASH
+      write(i_log,'(a,$)') 'application'
+      l = pos2 - lnblnk1('application')
       write(i_log,'(a,$)') line1(:l)
       write(i_log,'(a)') user_code(:lnblnk1(user_code))
       write(i_log,'(a,$)') 'pegs file'
@@ -2474,6 +2487,9 @@ C*****************************************************************************
      *    (extension)), ' is already opened and connected to unit ',the_
      *    unit, ' Will not try to re-open this file, assuming it has bee
      *n opened', ' by the .io file.'
+        ELSE IF(( rl .EQ. -1 )) THEN
+          open(the_unit,file=extension,status='unknown',form='unformatte
+     *d', access='stream')
         ELSE IF(( rl .EQ. 0 )) THEN
           open(the_unit,file=extension,status='unknown')
         ELSE
@@ -2504,6 +2520,9 @@ C*****************************************************************************
      *  1(tmp_string)), ' is already opened and connected to unit ',the_
      *  unit, ' Will not try to re-open this file, assuming it has been
      *opened', ' by specifying it in the .io file.'
+      ELSE IF(( rl .EQ. -1 )) THEN
+        open(the_unit,file=tmp_string,status='unknown',form='unformatted
+     *', access='stream')
       ELSE IF(( rl .EQ. 0 )) THEN
         open(the_unit,file=tmp_string,status='unknown',err=1960)
       ELSE

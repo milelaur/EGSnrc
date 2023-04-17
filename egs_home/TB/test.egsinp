@@ -29,42 +29,8 @@
     :stop geometry:
 
     ################################
-    ### X-ray window
-    ################################
-    :start geometry:
-        library = egs_glib
-        name = xray_window
-        include file = x-ray_window.egsinp
-    :stop geometry:
-
-    ################################
-    ### Pb port
-    ################################
-    :start geometry:
-        library = egs_glib
-        name = pb_port
-        include file = pb_port.egsinp
-    :stop geometry:
-
-    ################################
-    ### Blades
-    ################################
-    :start geometry:
-        library = egs_glib
-        name = blades
-        include file = blades13_5x10.egsinp
-    :stop geometry:
-
-    ################################
 	### Combining
 	################################
-
-	### Adding anode, x-ray window, pb port, primary collimator and faceplate
-    :start geometry:
-        name = model
-        library = egs_gunion
-		geometries = anode xray_window pb_port blades
-    :stop geometry:
 
     ### Air between x-ray window and faceplate
     :start geometry:
@@ -95,7 +61,7 @@
     :start geometry:
         name = obi
         library = egs_gunion
-        geometries = model air air_block
+        geometries = anode air air_block
     :stop geometry:
 
     ### Air between source and water
@@ -371,7 +337,7 @@
 
     :start ausgab object:
         library = egs_radiative_splitting
-        name = my_splitting
+        name = splitting
         splitting = 1000
     :stop ausgab object:
 
@@ -449,7 +415,7 @@
         rejection = 100
         Esave     = 1
         cavity geometry = profilexRR
-        rejection range medium = film
+        rejection range medium = water
     :stop range rejection:
 :stop variance reduction:
 
