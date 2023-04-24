@@ -9,7 +9,7 @@
 ################################
 :start run control:
     ncase = 1.5E12
-    calculation = combine
+    #calculation = combine
     #nchunk = 50
     nbatch = 3
 :stop run control:
@@ -28,7 +28,6 @@
         include file = anode.egsinp
     :stop geometry:
 
-
     ################################
     ### X-ray window
     ################################
@@ -37,7 +36,6 @@
         name = xray_window
         include file = x-ray_window.egsinp
     :stop geometry:
-    
 
     ################################
     ### Pb port
@@ -46,26 +44,6 @@
         library = egs_glib
         name = pb_port
         include file = pb_port.egsinp
-    :stop geometry:
-	
-
-    ################################
-    ### Faceplate
-    ################################
-
-    :start geometry:
-        library = egs_glib
-        name = faceplate
-        include file = faceplateReal.egsinp
-    :stop geometry:
-
-    ################################
-    ### Primary collimator
-    ################################
-    :start geometry:
-        library = egs_glib
-        name = primary_collimator
-        include file = primary_collimator.egsinp
     :stop geometry:
 
     ################################
@@ -181,17 +159,17 @@
 	
 	### Oil CrossTrans™ 206 (https://www.recarroll.com/cw3/Assets/product_files/Crosstrans%20206%20spec.pdf)
 	:start oil:
-		#elements = H,C
-		#number of atoms = 10,20
-		#rho=0.891
-		bremsstrahlung correction = NRC
-        density correction file = napthalene
+		elements = C,H
+		number of atoms = 10,22
+		rho=0.891
+		#bremsstrahlung correction = NRC
+        #density correction file = napthalene
 	:stop oil:
 
 	### Aluminum
 	:start aluminum:
 		bremsstrahlung correction=NRC
-		density correction file = aluminum
+		density correction file = aluminumalloy_type1100
 	:stop aluminum:
 
 	### Stainless steel
@@ -211,6 +189,18 @@
 		bremsstrahlung correction=NRC
 		density correction file=titanium
 	:stop titanium:
+
+    ### polystyrene
+	:start polystyrene:
+		bremsstrahlung correction=NRC
+		density correction file= polystyrene
+	:stop polystyrene:
+
+    ### Film
+	:start film:
+		bremsstrahlung correction=NRC
+		density correction file= radiochromicdyefilm_nylonbase
+	:stop film:
 
 	### Water
 	:start water:
@@ -267,9 +257,9 @@
                 ## Large electron spot on the target: Length [5.78699mm, 8.26713mm] -> avg. 0.703 cm, Width [4.13357mm, 5.78699mm] -> avg 0.4$
                 #halfaxis = 0.248014 0.351353
                 ## Small electron spot on the target: Length [2.48014mm, 3.51353mm] -> avg 0.30 cm, Width [1.65343mm, 2.48014mm] -> avg 0.206$
-                #halfaxis = 0.10333925 0.14984175
+                halfaxis = 0.10333925 0.14984175
                 ## The smallest large electron spot on the target: Length = 5.78699mm, Width = 4.13357mm
-                halfaxis = 0.2066785 0.2893495
+                #halfaxis = 0.2066785 0.2893495
                 midpoint = 0 0
             :stop shape:
             ## sigma = FWHM/(2*sqrt(2*ln(2)))
