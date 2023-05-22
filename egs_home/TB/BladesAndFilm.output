@@ -1,0 +1,1950 @@
+In EGS_Application::initSimulation()
+ phsp size = 9071038296
+================================================================================
+EGSnrc version 4 for x86_64-unknown-linux-gnu          Mon May 15 11:17:56 2023
+================================================================================
+configuration....................................................linux
+configuration time...............................................unknown
+app compile time.................................................2023-04-17 09:57:37 UTC
+git commit hash..................................................e2cef22
+application......................................................TB
+pegs file........................................................
+using host.......................................................narvi.cc.tut.fi
+input file.......................................................BladesAndFilm
+output file(s)...................................................BladesAndFilm
+================================================================================
+
+               ***************************************************
+               *                                                 *
+               *                  TB                       *
+               *                                                 *
+               ***************************************************
+
+This is TB   based on
+      EGS_AdvancedApplication  
+
+In initCrossSections(): spin effects = 1
+Property Photon cross-sections output: 0
+Property Photonuclear attenuation: 0
+Property Bound Compton scattering: 1
+Property Radiative Compton corrections: 1
+Property Rayleigh scattering: 1
+Property Atomic relaxations: 1
+Property Photoelectron angular sampling: 1
+Property Spin effects: 1
+Property Triplet production: 1
+Property Brems cross sections: 2
+Property Brems angular sampling: 1
+Property Pair cross sections: 1
+Property Pair angular sampling: 2
+Property Electron-step algorithm: 2
+Property Boundary crossing algorithm: 0
+ ===> Photonuclear flag:   0
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  1
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  2
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  3
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  4
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  5
+
+  PEGSLESS INPUT.  CALCULATING ELECTRON CROSS-SECTIONS.
+  density_file lead                                                                                                                                                                                                                                                            
+  density_file steel_stainless_type302                                                                                                                                                                                                                                         
+  density_file air_dry_nearsealevel                                                                                                                                                                                                                                            
+  density_file polystyrene                                                                                                                                                                                                                                                     
+  density_file radiochromicdyefilm_nylonbase                                                                                                                                                                                                                                   
+
+  Medium data: 
+
+ AE =    5.12000E-01 MeV,  UE =    1.51100E+00 MeV
+ AP =    1.00000E-03 MeV,  UP =    1.00000E+00 MeV
+
+  No material data file supplied.  Material data obtained from
+  .egsinp file or density correction file.
+
+   Medium: pb                      
+ Sterncid: pb                      
+     rho:    1.13500E+01 g/cm^3
+ Elements: PB  
+    rhoz:    1.00000E+00
+      pz:    4.82649E-03
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/lead.density
+
+   Medium: steel                   
+ Sterncid: steel                   
+     rho:    8.06000E+00 g/cm^3
+ Elements: C   SI  CR  MN  FE  NI  
+    rhoz:    1.00000E-03   7.00000E-03   1.80000E-01   1.00000E-02   7.12000E-01   9.00000E-02
+      pz:    8.32560E-05   2.49217E-04   3.46167E-03   1.82023E-04   1.27491E-02   1.53296E-03
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/steel_stainless_type302.density
+
+   Medium: air                     
+ Sterncid: air                     
+     rho:    1.20479E-03 g/cm^3
+ Elements: C   N   O   AR  
+    rhoz:    1.24000E-04   7.55267E-01   2.31781E-01   1.28270E-02
+      pz:    1.03237E-05   5.39218E-02   1.44869E-02   3.21092E-04
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/air_dry_nearsealevel.density
+
+   Medium: polystyrene             
+ Sterncid: polystyrene             
+     rho:    1.06000E+00 g/cm^3
+ Elements: H   C   
+    rhoz:    7.74180E-02   9.22582E-01
+      pz:    7.68059E-02   7.68105E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/polystyrene.density
+
+   Medium: film                    
+ Sterncid: film                    
+     rho:    1.14000E+00 g/cm^3
+ Elements: H   C   N   O   
+    rhoz:    1.05000E-01   6.56000E-01   1.11000E-01   1.28000E-01
+      pz:    1.04170E-01   5.46159E-02   7.92478E-03   8.00030E-03
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /home/rsmina/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/radiochromicdyefilm_nylonbase.density
+
+
+(Re)-initializing photon cross sections with files from the series: xcom
+
+ Compton cross sections: default
+ Using Compton cross sections from /home/rsmina/EGSnrc/HEN_HOUSE/data/compton_sigma.data
+
+ Reading renormalized photoelectric cross sections ...... done
+
+ Working on medium   1 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   2 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   3 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   4 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   5 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+
+Reading screened Rutherford MS data ...............  done 
+
+
+Reading spin data base from /home/rsmina/EGSnrc/HEN_HOUSE/data/spinms.data
+EGSnrc spin data, version 2.0   
+Data generated on a machine with 1234 endianess
+The endianess of this CPU is 1234
+Ranges:      1.00   100.00  0.30054  1.00000
+
+
+  medium    1 .....................  done
+  medium    2 .....................  done
+  medium    3 .....................  done
+  medium    4 .....................  done
+  medium    5 .....................  done
+  
+  Medium            1  sige =    172.75604562338430        235.60337980532134       monotone =  F F
+  Medium            2  sige =    123.18338032147462        151.05228366131078       monotone =  F F
+  Medium            3  sige =    89.591859601344183        103.21541676401796       monotone =  F F
+  Medium            4  sige =    85.799574936291847        98.126563048670249       monotone =  F F
+  Medium            5  sige =    84.596696459844324        96.521242628028816       monotone =  F F
+  
+  Initializing tmxs for estepe =   0.25000000000000000       and ximax =   0.50000000000000000     
+  
+  
+ Radiative Compton corrections requested:
+    Reading radiative Compton data ...  OK
+    Modifying cross sections and branching ratios ... OK
+
+Bound Compton scattering requested, reading data ......  Done
+
+ Initializing Bound Compton scattering ......
+ Medium   1 has  23 shells: 
+   1 1054   1  0.02439 0.121E+01    88.004
+   2 1055   2  0.02439 0.430E+01    15.861
+   3 1056   3  0.02439 0.210E+01    15.200
+   4 1057   4  0.04878 0.238E+01    13.035
+   5 1058   5  0.02439 0.944E+01     3.851
+   6 1059   6  0.02439 0.552E+01     3.554
+   7 1060   7  0.04878 0.600E+01     3.066
+   8 1061   8  0.04878 0.388E+01     2.586
+   9 1062   9  0.07317 0.397E+01     2.484
+  10 1063  10  0.02439 0.193E+02     0.894
+  11 1064  11  0.02439 0.121E+02     0.764
+  12 1065  12  0.04878 0.131E+02     0.645
+  13 1066  13  0.04878 0.984E+01     0.434
+  14 1067  14  0.07317 0.101E+02     0.412
+  15 1068  15  0.02439 0.445E+02     0.148
+  16 1069  16  0.02439 0.295E+02     0.105
+  17 1070  17  0.04878 0.325E+02     0.086
+  18 1071  18  0.07317 0.830E+01     0.141
+  19 1072  19  0.09756 0.841E+01     0.136
+  20 1073  20  0.04878 0.303E+02     0.020
+  21 1074  21  0.07317 0.311E+02     0.018
+  22 1075  22  0.02439 0.142E+03     0.007
+  23 1076  23  0.02439 0.111E+03     0.007
+ Medium   2 has  45 shells: 
+   1   10   1  0.00036 0.210E+02     0.285
+   2   11   2  0.00036 0.110E+03     0.011
+   3   12   3  0.00036 0.669E+02     0.011
+   4   45   1  0.00107 0.870E+01     1.839
+   5   46   2  0.00107 0.377E+02     0.149
+   6   47   3  0.00107 0.204E+02     0.100
+   7   48   4  0.00214 0.204E+02     0.099
+   8   49   5  0.00107 0.142E+03     0.008
+   9   50   6  0.00107 0.102E+03     0.008
+  10  120   1  0.01486 0.500E+01     5.989
+  11  121   2  0.01486 0.192E+02     0.698
+  12  122   3  0.01486 0.981E+01     0.585
+  13  123   4  0.02971 0.981E+01     0.576
+  14  124   5  0.01486 0.545E+02     0.075
+  15  125   6  0.01486 0.347E+02     0.043
+  16  126   7  0.02971 0.347E+02     0.043
+  17  127   8  0.02971 0.721E+02     0.007
+  18  128   9  0.01486 0.721E+02     0.007
+  19  129   1  0.00078 0.480E+01     6.539
+  20  130   2  0.00078 0.182E+02     0.769
+  21  131   3  0.00078 0.933E+01     0.651
+  22  132   4  0.00156 0.933E+01     0.639
+  23  133   5  0.00078 0.511E+02     0.082
+  24  134   6  0.00078 0.322E+02     0.047
+  25  135   7  0.00156 0.322E+02     0.047
+  26  136   8  0.00156 0.833E+02     0.007
+  27  137   9  0.00117 0.833E+02     0.007
+  28  138   1  0.05471 0.460E+01     7.112
+  29  139   2  0.05471 0.174E+02     0.848
+  30  140   3  0.05471 0.891E+01     0.721
+  31  141   4  0.10943 0.891E+01     0.708
+  32  142   5  0.05471 0.486E+02     0.092
+  33  143   6  0.05471 0.306E+02     0.053
+  34  144   7  0.10943 0.306E+02     0.053
+  35  145   8  0.10943 0.737E+02     0.008
+  36  146   9  0.10943 0.737E+02     0.008
+  37  156   1  0.00658 0.426E+01     8.333
+  38  157   2  0.00658 0.160E+02     1.008
+  39  158   3  0.00658 0.815E+01     0.871
+  40  159   4  0.01316 0.815E+01     0.854
+  41  160   5  0.00658 0.445E+02     0.111
+  42  161   6  0.00658 0.277E+02     0.067
+  43  162   7  0.01316 0.277E+02     0.067
+  44  163   8  0.01316 0.599E+02     0.008
+  45  164   9  0.01974 0.599E+02     0.008
+ Medium   3 has  18 shells: 
+   1   10   1  0.00004 0.210E+02     0.285
+   2   11   2  0.00004 0.110E+03     0.011
+   3   12   3  0.00004 0.669E+02     0.011
+   4   13   1  0.21604 0.178E+02     0.410
+   5   14   2  0.21604 0.921E+02     0.015
+   6   15   3  0.21604 0.558E+02     0.014
+   7   16   4  0.10802 0.558E+02     0.014
+   8   17   1  0.05804 0.155E+02     0.543
+   9   18   2  0.05804 0.793E+02     0.024
+  10   19   3  0.05804 0.479E+02     0.014
+  11   20   4  0.05804 0.479E+02     0.014
+  12   72   1  0.00129 0.671E+01     3.203
+  13   73   2  0.00129 0.271E+02     0.326
+  14   74   3  0.00129 0.142E+02     0.251
+  15   75   4  0.00257 0.142E+02     0.249
+  16   76   5  0.00129 0.889E+02     0.029
+  17   77   6  0.00129 0.606E+02     0.016
+  18   78   7  0.00257 0.606E+02     0.016
+ Medium   4 has   4 shells: 
+   1    1   1  0.14285 0.116E+03     0.014
+   2   10   1  0.28572 0.210E+02     0.285
+   3   11   2  0.28572 0.110E+03     0.011
+   4   12   3  0.28572 0.669E+02     0.011
+ Medium   5 has  12 shells: 
+   1    1   1  0.18894 0.116E+03     0.014
+   2   10   1  0.19812 0.210E+02     0.285
+   3   11   2  0.19812 0.110E+03     0.011
+   4   12   3  0.19812 0.669E+02     0.011
+   5   13   1  0.02875 0.178E+02     0.410
+   6   14   2  0.02875 0.921E+02     0.015
+   7   15   3  0.02875 0.558E+02     0.014
+   8   16   4  0.01437 0.558E+02     0.014
+   9   17   1  0.02902 0.155E+02     0.543
+  10   18   2  0.02902 0.793E+02     0.024
+  11   19   3  0.02902 0.479E+02     0.014
+  12   20   4  0.02902 0.479E+02     0.014
+ ...... Done.
+
+Output from subroutine EDGSET:
+==============================
+ Atomic relaxations requested! 
+
+ Reading simplified photo-absorption data ..... Done
+
+ Reading simplified relaxation data ..... Done
+
+ Reading parametrized XCOM photo cross section data ..... Done
+
+ Reading EADL relaxation data ......
+  Z =  82 has 24 shells
+  Z =   6 has  4 shells
+  Z =  14 has  7 shells
+  Z =  24 has 10 shells
+  Z =  25 has 10 shells
+  Z =  26 has 10 shells
+  Z =  28 has 10 shells
+  Z =   7 has  4 shells
+  Z =   8 has  4 shells
+  Z =  18 has  7 shells
+  Z =   1 has  1 shells
+ ...... Done.
+
+  
+ Using NRC brems cross sections! 
+  
+  Initializing brems data for medium            1 ...
+  Max. new cross sections per energy loss:    172.71375768187906        235.60728196646150     
+  Initializing brems data for medium            2 ...
+  Max. new cross sections per energy loss:    123.18746932258490        151.05333992476235     
+  Initializing brems data for medium            3 ...
+  Max. new cross sections per energy loss:    89.603753795943703        103.21767115908033     
+  Initializing brems data for medium            4 ...
+  Max. new cross sections per energy loss:    85.809486150447540        98.128639733994149     
+  Initializing brems data for medium            5 ...
+  Max. new cross sections per energy loss:    84.606352682595968        96.523228134703402     
+  
+  
+
+
+Reading NRC pair data base from /home/rsmina/EGSnrc/HEN_HOUSE/data/pair_nrc1.data
+Data generated on a machine with 1234 endianess
+The endianess of this CPU is 1234
+Energy range of the data:     2.010  168.603
+  medium    1 .....................  done
+  medium    2 .....................  done
+  medium    3 .....................  done
+  medium    4 .....................  done
+  medium    5 .....................  done
+  
+  
+ eii_init: minimum threshold energy found:    1.0000000000000000E-003
+ eii_init: number of shells to simulate EII:           11
+
+
+Opened EII data file /home/rsmina/EGSnrc/HEN_HOUSE/data/eii_ik.data
+ eii_init: reading EII data ...   OK 
+  
+ eii_init: for medium            1  adjusted sige =    172.18788716669485       monotone =  F
+ eii_init: for medium            2  adjusted sige =    114.81674165871627       monotone =  F
+ eii_init: for medium            3  adjusted sige =    89.567863404624333       monotone =  F
+ init_triplet: reading triplet data ...  OK
+   Preparing triplet fraction data for medium   1 ...  OK
+   Preparing triplet fraction data for medium   2 ...  OK
+   Preparing triplet fraction data for medium   3 ...  OK
+   Preparing triplet fraction data for medium   4 ...  OK
+   Preparing triplet fraction data for medium   5 ...  OK
+EGSnrc SUCCESSFULLY 'HATCHED' FOR     5 MEDIA.
+
+
+The following media are defined:
+================================
+
+  0  pb                       AE= 0.5120 AP= 0.0010 0
+  1  steel                    AE= 0.5120 AP= 0.0010 1
+  2  air                      AE= 0.5120 AP= 0.0010 2
+  3  polystyrene              AE= 0.5120 AP= 0.0010 3
+  4  film                     AE= 0.5120 AP= 0.0010 4
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                eadl
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          Off
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+initScoring(): you must provide both, 'regions' and 'bins' input
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 324
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ IAEA phase space source from anodeXRayWPbPortPhsp.1
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 97
+  numbers used so far = 0
+
+
+Run Control Object (RCO):
+=========================
+  type = simple
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = NO
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 10000
+ - Track buffer size           = 1024
+ - Output file name            = /home/rsmina/EGSnrc/egs_home/TB/BladesAndFilm.ptracks
+
+
+===========================================
+Radiative splitting Object (my_splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Dose Scoring Object (profilexFilm)
+*******************************************
+
+ - Regions in dose calculator :324
+
+
+--------------------------------------
+medium       rho/[g/cm**3]
+--------------------------------------
+pb          11.35
+steel        8.06
+air          0.00
+polystyrene  1.06
+film         1.14
+--------------------------------------
+
+*******************************************
+
+
+ Will output dose to file:
+ EGS_XYZGeometry: profilex
+ file format:  3ddose
+ file name: /home/rsmina/EGSnrc/egs_home/TB/profilexFilm.3ddose
+
+
+
+Combine results only
+
+calling combineResults()
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 BladesAndFilm_w1.egsdat        ncase=10999989       cpu=3247.79    
+ 2 BladesAndFilm_w2.egsdat        ncase=11999988       cpu=3410.10    
+ 3 BladesAndFilm_w3.egsdat        ncase=10999989       cpu=3238.95    
+ 4 BladesAndFilm_w4.egsdat        ncase=10999989       cpu=3280.66    
+ 5 BladesAndFilm_w5.egsdat        ncase=10999989       cpu=3230.98    
+ 6 BladesAndFilm_w6.egsdat        ncase=10999989       cpu=3217.34    
+ 7 BladesAndFilm_w7.egsdat        ncase=11999988       cpu=3452.43    
+ 8 BladesAndFilm_w8.egsdat        ncase=11999988       cpu=3423.88    
+ 9 BladesAndFilm_w9.egsdat        ncase=11999988       cpu=3427.70    
+10 BladesAndFilm_w10.egsdat       ncase=11999988       cpu=3406.89    
+11 BladesAndFilm_w11.egsdat       ncase=10999989       cpu=3221.41    
+12 BladesAndFilm_w12.egsdat       ncase=11999988       cpu=3454.75    
+13 BladesAndFilm_w13.egsdat       ncase=10999989       cpu=3200.69    
+14 BladesAndFilm_w14.egsdat       ncase=11999988       cpu=3397.91    
+15 BladesAndFilm_w15.egsdat       ncase=10999989       cpu=3235.31    
+16 BladesAndFilm_w16.egsdat       ncase=10999989       cpu=3184.47    
+17 BladesAndFilm_w17.egsdat       ncase=11999988       cpu=3317.20    
+18 BladesAndFilm_w18.egsdat       ncase=11999988       cpu=3343.32    
+19 BladesAndFilm_w19.egsdat       ncase=11999988       cpu=3390.73    
+20 BladesAndFilm_w20.egsdat       ncase=11999988       cpu=3330.57    
+21 BladesAndFilm_w21.egsdat       ncase=11999988       cpu=3319.46    
+22 BladesAndFilm_w22.egsdat       ncase=11999988       cpu=3322.25    
+23 BladesAndFilm_w23.egsdat       ncase=11999988       cpu=3353.94    
+24 BladesAndFilm_w24.egsdat       ncase=11999988       cpu=3351.35    
+25 BladesAndFilm_w25.egsdat       ncase=11999988       cpu=3365.45    
+26 BladesAndFilm_w26.egsdat       ncase=11999988       cpu=3345.76    
+27 BladesAndFilm_w27.egsdat       ncase=11999988       cpu=3360.19    
+28 BladesAndFilm_w28.egsdat       ncase=11999988       cpu=3422.63    
+29 BladesAndFilm_w29.egsdat       ncase=11999988       cpu=3359.35    
+30 BladesAndFilm_w30.egsdat       ncase=11999988       cpu=3332.69    
+31 BladesAndFilm_w31.egsdat       ncase=11999988       cpu=3424.07    
+32 BladesAndFilm_w32.egsdat       ncase=11999988       cpu=3349.17    
+33 BladesAndFilm_w33.egsdat       ncase=11999988       cpu=3360.30    
+34 BladesAndFilm_w34.egsdat       ncase=11999988       cpu=3369.42    
+35 BladesAndFilm_w35.egsdat       ncase=11999988       cpu=3408.82    
+36 BladesAndFilm_w36.egsdat       ncase=11999988       cpu=3389.88    
+37 BladesAndFilm_w37.egsdat       ncase=11999988       cpu=3393.45    
+38 BladesAndFilm_w38.egsdat       ncase=10999989       cpu=3165.47    
+39 BladesAndFilm_w39.egsdat       ncase=10999989       cpu=3088.59    
+40 BladesAndFilm_w40.egsdat       ncase=11999988       cpu=3377.59    
+41 BladesAndFilm_w41.egsdat       ncase=10999989       cpu=3154.06    
+42 BladesAndFilm_w42.egsdat       ncase=11999988       cpu=3387.74    
+43 BladesAndFilm_w43.egsdat       ncase=11999988       cpu=3401.90    
+44 BladesAndFilm_w44.egsdat       ncase=11999988       cpu=3380.15    
+45 BladesAndFilm_w45.egsdat       ncase=10999989       cpu=3152.02    
+46 BladesAndFilm_w46.egsdat       ncase=11999988       cpu=3394.83    
+47 BladesAndFilm_w47.egsdat       ncase=11999988       cpu=3370.64    
+48 BladesAndFilm_w48.egsdat       ncase=10999989       cpu=3147.15    
+49 BladesAndFilm_w49.egsdat       ncase=10999989       cpu=3170.54    
+50 BladesAndFilm_w50.egsdat       ncase=10999989       cpu=3196.67    
+51 BladesAndFilm_w51.egsdat       ncase=11999988       cpu=3350.99    
+52 BladesAndFilm_w52.egsdat       ncase=11999988       cpu=3368.65    
+53 BladesAndFilm_w53.egsdat       ncase=11999988       cpu=3334.29    
+54 BladesAndFilm_w54.egsdat       ncase=11999988       cpu=3387.83    
+55 BladesAndFilm_w55.egsdat       ncase=11999988       cpu=3315.83    
+56 BladesAndFilm_w56.egsdat       ncase=11999988       cpu=3296.87    
+57 BladesAndFilm_w57.egsdat       ncase=11999988       cpu=3366.97    
+58 BladesAndFilm_w58.egsdat       ncase=11999988       cpu=3340.86    
+59 BladesAndFilm_w59.egsdat       ncase=11999988       cpu=3327.61    
+60 BladesAndFilm_w60.egsdat       ncase=11999988       cpu=3370.06    
+61 BladesAndFilm_w61.egsdat       ncase=11999988       cpu=3320.39    
+62 BladesAndFilm_w62.egsdat       ncase=11999988       cpu=3320.51    
+63 BladesAndFilm_w63.egsdat       ncase=11999988       cpu=3312.95    
+64 BladesAndFilm_w64.egsdat       ncase=11999988       cpu=3349.28    
+65 BladesAndFilm_w65.egsdat       ncase=11999988       cpu=3329.12    
+66 BladesAndFilm_w66.egsdat       ncase=10999989       cpu=3134.27    
+67 BladesAndFilm_w67.egsdat       ncase=10999989       cpu=3216.88    
+68 BladesAndFilm_w68.egsdat       ncase=11999988       cpu=3337.19    
+69 BladesAndFilm_w69.egsdat       ncase=11999988       cpu=3362.96    
+70 BladesAndFilm_w70.egsdat       ncase=10999989       cpu=3150.10    
+71 BladesAndFilm_w71.egsdat       ncase=11999988       cpu=3345.34    
+72 BladesAndFilm_w72.egsdat       ncase=11999988       cpu=3360.28    
+73 BladesAndFilm_w73.egsdat       ncase=11999988       cpu=3357.67    
+74 BladesAndFilm_w74.egsdat       ncase=11999988       cpu=3352.13    
+75 BladesAndFilm_w75.egsdat       ncase=10999989       cpu=3142.44    
+76 BladesAndFilm_w76.egsdat       ncase=10999989       cpu=3151.33    
+77 BladesAndFilm_w77.egsdat       ncase=10999989       cpu=3118.76    
+78 BladesAndFilm_w78.egsdat       ncase=10999989       cpu=3128.55    
+79 BladesAndFilm_w79.egsdat       ncase=10999989       cpu=3175.49    
+80 BladesAndFilm_w80.egsdat       ncase=11999988       cpu=3348.54    
+81 BladesAndFilm_w81.egsdat       ncase=10999989       cpu=3118.95    
+82 BladesAndFilm_w82.egsdat       ncase=11999988       cpu=3346.44    
+83 BladesAndFilm_w83.egsdat       ncase=11999988       cpu=3350.03    
+84 BladesAndFilm_w84.egsdat       ncase=10999989       cpu=3219.92    
+85 BladesAndFilm_w85.egsdat       ncase=11999988       cpu=3336.34    
+86 BladesAndFilm_w86.egsdat       ncase=11999988       cpu=3302.26    
+87 BladesAndFilm_w87.egsdat       ncase=11999988       cpu=3292.46    
+88 BladesAndFilm_w88.egsdat       ncase=11999988       cpu=3290.93    
+89 BladesAndFilm_w89.egsdat       ncase=11999988       cpu=3331.32    
+90 BladesAndFilm_w90.egsdat       ncase=10999989       cpu=3110.22    
+91 BladesAndFilm_w91.egsdat       ncase=11999988       cpu=3294.65    
+92 BladesAndFilm_w92.egsdat       ncase=11999988       cpu=3315.13    
+93 BladesAndFilm_w93.egsdat       ncase=11999988       cpu=3302.72    
+94 BladesAndFilm_w94.egsdat       ncase=11999988       cpu=3303.17    
+95 BladesAndFilm_w95.egsdat       ncase=10999989       cpu=3100.74    
+96 BladesAndFilm_w96.egsdat       ncase=10999989       cpu=3155.89    
+97 BladesAndFilm_w97.egsdat       ncase=11999988       cpu=3287.60    
+98 BladesAndFilm_w98.egsdat       ncase=11999988       cpu=3287.05    
+99 BladesAndFilm_w99.egsdat       ncase=11999988       cpu=3314.06    
+100 BladesAndFilm_w100.egsdat      ncase=11999988       cpu=3329.33    
+101 BladesAndFilm_w101.egsdat      ncase=11999988       cpu=3312.31    
+102 BladesAndFilm_w102.egsdat      ncase=11999988       cpu=3323.23    
+103 BladesAndFilm_w103.egsdat      ncase=11999988       cpu=3293.14    
+104 BladesAndFilm_w104.egsdat      ncase=11999988       cpu=3346.10    
+105 BladesAndFilm_w105.egsdat      ncase=11999988       cpu=3308.25    
+106 BladesAndFilm_w106.egsdat      ncase=10999989       cpu=3136.31    
+107 BladesAndFilm_w107.egsdat      ncase=10999989       cpu=3086.91    
+108 BladesAndFilm_w108.egsdat      ncase=10999989       cpu=3136.90    
+109 BladesAndFilm_w109.egsdat      ncase=10999989       cpu=3128.68    
+110 BladesAndFilm_w110.egsdat      ncase=10999989       cpu=3097.36    
+111 BladesAndFilm_w111.egsdat      ncase=10999989       cpu=3105.89    
+112 BladesAndFilm_w112.egsdat      ncase=10999989       cpu=3195.87    
+113 BladesAndFilm_w113.egsdat      ncase=9999990        cpu=3117.57    
+114 BladesAndFilm_w114.egsdat      ncase=10999989       cpu=3093.38    
+115 BladesAndFilm_w115.egsdat      ncase=10999989       cpu=3127.84    
+116 BladesAndFilm_w116.egsdat      ncase=10999989       cpu=3103.61    
+117 BladesAndFilm_w117.egsdat      ncase=10999989       cpu=3094.61    
+118 BladesAndFilm_w118.egsdat      ncase=10999989       cpu=3157.09    
+119 BladesAndFilm_w119.egsdat      ncase=10999989       cpu=3095.26    
+120 BladesAndFilm_w120.egsdat      ncase=10999989       cpu=3134.41    
+121 BladesAndFilm_w121.egsdat      ncase=10999989       cpu=3109.54    
+122 BladesAndFilm_w122.egsdat      ncase=10999989       cpu=3090.16    
+123 BladesAndFilm_w123.egsdat      ncase=10999989       cpu=3111.72    
+124 BladesAndFilm_w124.egsdat      ncase=10999989       cpu=3131.38    
+125 BladesAndFilm_w125.egsdat      ncase=10999989       cpu=3162.67    
+126 BladesAndFilm_w126.egsdat      ncase=11999988       cpu=3301.00    
+127 BladesAndFilm_w127.egsdat      ncase=11999988       cpu=3288.58    
+128 BladesAndFilm_w128.egsdat      ncase=11999988       cpu=3299.20    
+129 BladesAndFilm_w129.egsdat      ncase=11999988       cpu=3282.61    
+130 BladesAndFilm_w130.egsdat      ncase=11999988       cpu=3267.95    
+131 BladesAndFilm_w131.egsdat      ncase=11999988       cpu=3308.31    
+132 BladesAndFilm_w132.egsdat      ncase=11999988       cpu=3290.68    
+133 BladesAndFilm_w133.egsdat      ncase=10999989       cpu=3063.54    
+134 BladesAndFilm_w134.egsdat      ncase=10999989       cpu=3071.52    
+135 BladesAndFilm_w135.egsdat      ncase=11999988       cpu=3307.12    
+136 BladesAndFilm_w136.egsdat      ncase=11999988       cpu=3319.00    
+137 BladesAndFilm_w137.egsdat      ncase=11999988       cpu=3290.59    
+138 BladesAndFilm_w138.egsdat      ncase=10999989       cpu=3065.34    
+139 BladesAndFilm_w139.egsdat      ncase=11999988       cpu=3278.96    
+140 BladesAndFilm_w140.egsdat      ncase=11999988       cpu=3285.50    
+141 BladesAndFilm_w141.egsdat      ncase=11999988       cpu=3308.78    
+142 BladesAndFilm_w142.egsdat      ncase=11999988       cpu=3268.52    
+143 BladesAndFilm_w143.egsdat      ncase=11999988       cpu=3282.96    
+144 BladesAndFilm_w144.egsdat      ncase=11999988       cpu=3283.21    
+145 BladesAndFilm_w145.egsdat      ncase=11999988       cpu=3269.16    
+146 BladesAndFilm_w146.egsdat      ncase=10999989       cpu=3065.47    
+147 BladesAndFilm_w147.egsdat      ncase=10999989       cpu=3066.56    
+148 BladesAndFilm_w148.egsdat      ncase=10999989       cpu=3071.30    
+149 BladesAndFilm_w149.egsdat      ncase=10999989       cpu=3067.59    
+150 BladesAndFilm_w150.egsdat      ncase=10999989       cpu=3059.36    
+151 BladesAndFilm_w151.egsdat      ncase=10999989       cpu=3080.75    
+152 BladesAndFilm_w152.egsdat      ncase=10999989       cpu=3065.53    
+153 BladesAndFilm_w153.egsdat      ncase=10999989       cpu=3071.75    
+154 BladesAndFilm_w154.egsdat      ncase=10999989       cpu=3100.33    
+155 BladesAndFilm_w155.egsdat      ncase=10999989       cpu=3144.50    
+156 BladesAndFilm_w156.egsdat      ncase=10999989       cpu=3076.73    
+157 BladesAndFilm_w157.egsdat      ncase=10999989       cpu=3125.59    
+158 BladesAndFilm_w158.egsdat      ncase=10999989       cpu=3137.33    
+159 BladesAndFilm_w159.egsdat      ncase=10999989       cpu=3074.84    
+160 BladesAndFilm_w160.egsdat      ncase=10999989       cpu=3082.96    
+161 BladesAndFilm_w161.egsdat      ncase=10999989       cpu=3054.08    
+162 BladesAndFilm_w162.egsdat      ncase=10999989       cpu=3084.83    
+163 BladesAndFilm_w163.egsdat      ncase=10999989       cpu=3079.89    
+164 BladesAndFilm_w164.egsdat      ncase=10999989       cpu=3127.76    
+165 BladesAndFilm_w165.egsdat      ncase=10999989       cpu=3063.64    
+166 BladesAndFilm_w166.egsdat      ncase=11999988       cpu=3258.87    
+167 BladesAndFilm_w167.egsdat      ncase=10999989       cpu=3091.24    
+168 BladesAndFilm_w168.egsdat      ncase=10999989       cpu=3038.83    
+169 BladesAndFilm_w169.egsdat      ncase=11999988       cpu=3258.09    
+170 BladesAndFilm_w170.egsdat      ncase=10999989       cpu=3065.93    
+171 BladesAndFilm_w171.egsdat      ncase=11999988       cpu=3239.60    
+172 BladesAndFilm_w172.egsdat      ncase=10999989       cpu=3031.38    
+173 BladesAndFilm_w173.egsdat      ncase=11999988       cpu=3248.58    
+174 BladesAndFilm_w174.egsdat      ncase=11999988       cpu=3238.29    
+175 BladesAndFilm_w175.egsdat      ncase=11999988       cpu=3244.21    
+176 BladesAndFilm_w176.egsdat      ncase=11999988       cpu=3238.14    
+177 BladesAndFilm_w177.egsdat      ncase=10999989       cpu=3111.74    
+178 BladesAndFilm_w178.egsdat      ncase=11999988       cpu=3245.30    
+179 BladesAndFilm_w179.egsdat      ncase=10999989       cpu=3016.89    
+180 BladesAndFilm_w180.egsdat      ncase=10999989       cpu=3042.69    
+181 BladesAndFilm_w181.egsdat      ncase=10999989       cpu=3084.61    
+182 BladesAndFilm_w182.egsdat      ncase=10999989       cpu=3019.40    
+183 BladesAndFilm_w183.egsdat      ncase=10999989       cpu=3065.44    
+184 BladesAndFilm_w184.egsdat      ncase=10999989       cpu=3016.08    
+185 BladesAndFilm_w185.egsdat      ncase=10999989       cpu=3006.37    
+186 BladesAndFilm_w186.egsdat      ncase=10999989       cpu=3049.58    
+187 BladesAndFilm_w187.egsdat      ncase=10999989       cpu=3012.21    
+188 BladesAndFilm_w188.egsdat      ncase=10999989       cpu=3066.27    
+189 BladesAndFilm_w189.egsdat      ncase=10999989       cpu=3046.39    
+190 BladesAndFilm_w190.egsdat      ncase=10999989       cpu=3006.96    
+191 BladesAndFilm_w191.egsdat      ncase=10999989       cpu=3023.33    
+192 BladesAndFilm_w192.egsdat      ncase=10999989       cpu=3021.27    
+193 BladesAndFilm_w193.egsdat      ncase=10999989       cpu=3002.03    
+194 BladesAndFilm_w194.egsdat      ncase=10999989       cpu=3016.70    
+195 BladesAndFilm_w195.egsdat      ncase=10999989       cpu=3001.03    
+196 BladesAndFilm_w196.egsdat      ncase=10999989       cpu=3003.09    
+197 BladesAndFilm_w197.egsdat      ncase=10999989       cpu=3061.82    
+198 BladesAndFilm_w198.egsdat      ncase=10999989       cpu=3053.37    
+199 BladesAndFilm_w199.egsdat      ncase=10999989       cpu=3021.32    
+200 BladesAndFilm_w200.egsdat      ncase=10999989       cpu=3020.30    
+201 BladesAndFilm_w201.egsdat      ncase=10999989       cpu=3030.50    
+202 BladesAndFilm_w202.egsdat      ncase=10999989       cpu=3055.66    
+203 BladesAndFilm_w203.egsdat      ncase=10999989       cpu=3023.28    
+204 BladesAndFilm_w204.egsdat      ncase=10999989       cpu=3006.22    
+205 BladesAndFilm_w205.egsdat      ncase=10999989       cpu=3017.46    
+206 BladesAndFilm_w206.egsdat      ncase=10999989       cpu=3083.47    
+207 BladesAndFilm_w207.egsdat      ncase=10999989       cpu=3006.14    
+208 BladesAndFilm_w208.egsdat      ncase=10999989       cpu=3041.33    
+209 BladesAndFilm_w209.egsdat      ncase=10999989       cpu=3003.29    
+210 BladesAndFilm_w210.egsdat      ncase=10999989       cpu=3075.31    
+211 BladesAndFilm_w211.egsdat      ncase=10999989       cpu=3032.99    
+212 BladesAndFilm_w212.egsdat      ncase=10999989       cpu=3073.32    
+213 BladesAndFilm_w213.egsdat      ncase=10999989       cpu=3050.51    
+214 BladesAndFilm_w214.egsdat      ncase=10999989       cpu=3032.07    
+215 BladesAndFilm_w215.egsdat      ncase=10999989       cpu=3067.43    
+216 BladesAndFilm_w216.egsdat      ncase=10999989       cpu=3027.11    
+217 BladesAndFilm_w217.egsdat      ncase=10999989       cpu=3009.37    
+218 BladesAndFilm_w218.egsdat      ncase=10999989       cpu=3008.87    
+219 BladesAndFilm_w219.egsdat      ncase=10999989       cpu=3048.31    
+220 BladesAndFilm_w220.egsdat      ncase=10999989       cpu=2996.66    
+221 BladesAndFilm_w221.egsdat      ncase=10999989       cpu=3010.56    
+222 BladesAndFilm_w222.egsdat      ncase=10999989       cpu=3059.00    
+223 BladesAndFilm_w223.egsdat      ncase=10999989       cpu=3011.33    
+224 BladesAndFilm_w224.egsdat      ncase=10999989       cpu=3007.61    
+225 BladesAndFilm_w225.egsdat      ncase=10999989       cpu=3002.74    
+226 BladesAndFilm_w226.egsdat      ncase=10999989       cpu=3063.88    
+227 BladesAndFilm_w227.egsdat      ncase=10999989       cpu=3033.33    
+228 BladesAndFilm_w228.egsdat      ncase=10999989       cpu=3006.30    
+229 BladesAndFilm_w229.egsdat      ncase=10999989       cpu=3005.77    
+230 BladesAndFilm_w230.egsdat      ncase=10999989       cpu=2998.64    
+231 BladesAndFilm_w231.egsdat      ncase=10999989       cpu=3026.78    
+232 BladesAndFilm_w232.egsdat      ncase=10999989       cpu=2998.25    
+233 BladesAndFilm_w233.egsdat      ncase=10999989       cpu=2994.52    
+234 BladesAndFilm_w234.egsdat      ncase=10999989       cpu=3019.36    
+235 BladesAndFilm_w235.egsdat      ncase=10999989       cpu=3054.01    
+236 BladesAndFilm_w236.egsdat      ncase=10999989       cpu=3018.91    
+237 BladesAndFilm_w237.egsdat      ncase=10999989       cpu=3006.35    
+238 BladesAndFilm_w238.egsdat      ncase=10999989       cpu=3067.43    
+239 BladesAndFilm_w239.egsdat      ncase=10999989       cpu=3014.36    
+240 BladesAndFilm_w240.egsdat      ncase=10999989       cpu=3003.09    
+241 BladesAndFilm_w241.egsdat      ncase=10999989       cpu=3018.05    
+242 BladesAndFilm_w242.egsdat      ncase=10999989       cpu=3004.95    
+243 BladesAndFilm_w243.egsdat      ncase=10999989       cpu=3058.52    
+244 BladesAndFilm_w244.egsdat      ncase=10999989       cpu=2993.02    
+245 BladesAndFilm_w245.egsdat      ncase=10999989       cpu=3085.11    
+246 BladesAndFilm_w246.egsdat      ncase=10999989       cpu=2972.35    
+247 BladesAndFilm_w247.egsdat      ncase=10999989       cpu=2978.90    
+248 BladesAndFilm_w248.egsdat      ncase=10999989       cpu=3001.37    
+249 BladesAndFilm_w249.egsdat      ncase=10999989       cpu=2956.25    
+250 BladesAndFilm_w250.egsdat      ncase=10999989       cpu=2958.94    
+251 BladesAndFilm_w251.egsdat      ncase=10999989       cpu=3004.44    
+252 BladesAndFilm_w252.egsdat      ncase=10999989       cpu=3003.30    
+253 BladesAndFilm_w253.egsdat      ncase=10999989       cpu=2942.46    
+254 BladesAndFilm_w254.egsdat      ncase=10999989       cpu=3040.29    
+255 BladesAndFilm_w255.egsdat      ncase=10999989       cpu=2954.31    
+256 BladesAndFilm_w256.egsdat      ncase=10999989       cpu=2962.18    
+257 BladesAndFilm_w257.egsdat      ncase=10999989       cpu=2939.83    
+258 BladesAndFilm_w258.egsdat      ncase=10999989       cpu=2967.30    
+259 BladesAndFilm_w259.egsdat      ncase=10999989       cpu=2960.90    
+260 BladesAndFilm_w260.egsdat      ncase=10999989       cpu=2945.81    
+261 BladesAndFilm_w261.egsdat      ncase=10999989       cpu=2957.70    
+262 BladesAndFilm_w262.egsdat      ncase=10999989       cpu=2970.14    
+263 BladesAndFilm_w263.egsdat      ncase=10999989       cpu=2941.61    
+264 BladesAndFilm_w264.egsdat      ncase=10999989       cpu=2982.74    
+265 BladesAndFilm_w265.egsdat      ncase=10999989       cpu=2953.37    
+266 BladesAndFilm_w266.egsdat      ncase=10999989       cpu=3049.61    
+267 BladesAndFilm_w267.egsdat      ncase=10999989       cpu=3084.59    
+268 BladesAndFilm_w268.egsdat      ncase=10999989       cpu=3018.93    
+269 BladesAndFilm_w269.egsdat      ncase=10999989       cpu=3048.37    
+270 BladesAndFilm_w270.egsdat      ncase=10999989       cpu=3046.55    
+271 BladesAndFilm_w271.egsdat      ncase=10999989       cpu=3052.74    
+272 BladesAndFilm_w272.egsdat      ncase=10999989       cpu=3024.54    
+273 BladesAndFilm_w273.egsdat      ncase=10999989       cpu=3007.20    
+274 BladesAndFilm_w274.egsdat      ncase=10999989       cpu=3024.41    
+275 BladesAndFilm_w275.egsdat      ncase=10999989       cpu=3030.89    
+276 BladesAndFilm_w276.egsdat      ncase=10999989       cpu=3006.27    
+277 BladesAndFilm_w277.egsdat      ncase=10999989       cpu=3015.72    
+278 BladesAndFilm_w278.egsdat      ncase=10999989       cpu=3043.72    
+279 BladesAndFilm_w279.egsdat      ncase=10999989       cpu=3080.87    
+280 BladesAndFilm_w280.egsdat      ncase=10999989       cpu=3041.07    
+281 BladesAndFilm_w281.egsdat      ncase=10999989       cpu=3001.12    
+282 BladesAndFilm_w282.egsdat      ncase=10999989       cpu=3027.57    
+283 BladesAndFilm_w283.egsdat      ncase=10999989       cpu=3025.92    
+284 BladesAndFilm_w284.egsdat      ncase=10999989       cpu=3003.61    
+285 BladesAndFilm_w285.egsdat      ncase=10999989       cpu=3018.40    
+286 BladesAndFilm_w286.egsdat      ncase=10999989       cpu=3007.12    
+287 BladesAndFilm_w287.egsdat      ncase=10999989       cpu=3080.28    
+288 BladesAndFilm_w288.egsdat      ncase=10999989       cpu=3038.47    
+289 BladesAndFilm_w289.egsdat      ncase=10999989       cpu=3032.84    
+290 BladesAndFilm_w290.egsdat      ncase=10999989       cpu=3021.07    
+291 BladesAndFilm_w291.egsdat      ncase=10999989       cpu=3030.42    
+292 BladesAndFilm_w292.egsdat      ncase=10999989       cpu=3017.54    
+293 BladesAndFilm_w293.egsdat      ncase=10999989       cpu=3012.88    
+294 BladesAndFilm_w294.egsdat      ncase=10999989       cpu=3074.61    
+295 BladesAndFilm_w295.egsdat      ncase=10999989       cpu=3135.04    
+296 BladesAndFilm_w296.egsdat      ncase=10999989       cpu=3021.49    
+297 BladesAndFilm_w297.egsdat      ncase=10999989       cpu=3016.50    
+298 BladesAndFilm_w298.egsdat      ncase=10999989       cpu=3047.47    
+299 BladesAndFilm_w299.egsdat      ncase=10999989       cpu=3074.40    
+300 BladesAndFilm_w300.egsdat      ncase=10999989       cpu=3038.94    
+301 BladesAndFilm_w301.egsdat      ncase=10999989       cpu=2998.92    
+302 BladesAndFilm_w302.egsdat      ncase=10999989       cpu=3001.32    
+303 BladesAndFilm_w303.egsdat      ncase=10999989       cpu=3035.09    
+304 BladesAndFilm_w304.egsdat      ncase=10999989       cpu=3003.49    
+305 BladesAndFilm_w305.egsdat      ncase=10999989       cpu=3023.21    
+306 BladesAndFilm_w306.egsdat      ncase=10999989       cpu=3118.93    
+307 BladesAndFilm_w307.egsdat      ncase=10999989       cpu=3112.44    
+308 BladesAndFilm_w308.egsdat      ncase=10999989       cpu=3118.89    
+309 BladesAndFilm_w309.egsdat      ncase=10999989       cpu=3117.33    
+310 BladesAndFilm_w310.egsdat      ncase=9999990        cpu=2894.62    
+311 BladesAndFilm_w311.egsdat      ncase=9999990        cpu=2883.48    
+312 BladesAndFilm_w312.egsdat      ncase=9999990        cpu=2923.38    
+313 BladesAndFilm_w313.egsdat      ncase=9999990        cpu=2910.32    
+314 BladesAndFilm_w314.egsdat      ncase=10999989       cpu=3119.79    
+315 BladesAndFilm_w315.egsdat      ncase=10999989       cpu=3129.02    
+316 BladesAndFilm_w316.egsdat      ncase=10999989       cpu=3127.69    
+317 BladesAndFilm_w317.egsdat      ncase=10999989       cpu=3094.45    
+318 BladesAndFilm_w318.egsdat      ncase=10999989       cpu=3097.07    
+319 BladesAndFilm_w319.egsdat      ncase=10999989       cpu=3108.24    
+320 BladesAndFilm_w320.egsdat      ncase=10999989       cpu=3125.63    
+321 BladesAndFilm_w321.egsdat      ncase=10999989       cpu=3100.13    
+322 BladesAndFilm_w322.egsdat      ncase=9999990        cpu=2881.62    
+323 BladesAndFilm_w323.egsdat      ncase=10999989       cpu=3102.67    
+324 BladesAndFilm_w324.egsdat      ncase=10999989       cpu=3115.02    
+325 BladesAndFilm_w325.egsdat      ncase=9999990        cpu=2871.94    
+326 BladesAndFilm_w326.egsdat      ncase=9999990        cpu=2903.42    
+327 BladesAndFilm_w327.egsdat      ncase=10999989       cpu=3098.13    
+328 BladesAndFilm_w328.egsdat      ncase=9999990        cpu=2878.81    
+329 BladesAndFilm_w329.egsdat      ncase=9999990        cpu=2867.91    
+330 BladesAndFilm_w330.egsdat      ncase=10999989       cpu=3070.38    
+331 BladesAndFilm_w331.egsdat      ncase=10999989       cpu=3084.88    
+332 BladesAndFilm_w332.egsdat      ncase=10999989       cpu=3068.36    
+333 BladesAndFilm_w333.egsdat      ncase=10999989       cpu=3093.21    
+334 BladesAndFilm_w334.egsdat      ncase=10999989       cpu=3093.79    
+335 BladesAndFilm_w335.egsdat      ncase=9999990        cpu=2865.20    
+336 BladesAndFilm_w336.egsdat      ncase=9999990        cpu=2884.11    
+337 BladesAndFilm_w337.egsdat      ncase=10999989       cpu=3106.25    
+338 BladesAndFilm_w338.egsdat      ncase=10999989       cpu=3094.50    
+339 BladesAndFilm_w339.egsdat      ncase=9999990        cpu=2853.34    
+340 BladesAndFilm_w340.egsdat      ncase=10999989       cpu=3102.30    
+341 BladesAndFilm_w341.egsdat      ncase=10999989       cpu=3091.24    
+342 BladesAndFilm_w342.egsdat      ncase=10999989       cpu=3072.72    
+343 BladesAndFilm_w343.egsdat      ncase=10999989       cpu=3094.42    
+344 BladesAndFilm_w344.egsdat      ncase=10999989       cpu=3087.73    
+345 BladesAndFilm_w345.egsdat      ncase=8999991        cpu=2841.69    
+346 BladesAndFilm_w346.egsdat      ncase=10999989       cpu=3067.59    
+347 BladesAndFilm_w347.egsdat      ncase=10999989       cpu=3036.47    
+348 BladesAndFilm_w348.egsdat      ncase=9999990        cpu=2859.43    
+349 BladesAndFilm_w349.egsdat      ncase=10999989       cpu=3036.96    
+350 BladesAndFilm_w350.egsdat      ncase=9999990        cpu=2847.23    
+351 BladesAndFilm_w351.egsdat      ncase=10999989       cpu=3073.19    
+352 BladesAndFilm_w352.egsdat      ncase=10999989       cpu=3068.85    
+353 BladesAndFilm_w353.egsdat      ncase=10999989       cpu=3041.57    
+354 BladesAndFilm_w354.egsdat      ncase=10999989       cpu=3064.20    
+355 BladesAndFilm_w355.egsdat      ncase=10999989       cpu=3078.90    
+356 BladesAndFilm_w356.egsdat      ncase=10999989       cpu=3063.74    
+357 BladesAndFilm_w357.egsdat      ncase=9999990        cpu=2852.72    
+358 BladesAndFilm_w358.egsdat      ncase=9999990        cpu=2847.09    
+359 BladesAndFilm_w359.egsdat      ncase=9999990        cpu=2827.42    
+360 BladesAndFilm_w360.egsdat      ncase=10999989       cpu=3073.34    
+361 BladesAndFilm_w361.egsdat      ncase=10999989       cpu=3058.10    
+362 BladesAndFilm_w362.egsdat      ncase=10999989       cpu=3051.71    
+363 BladesAndFilm_w363.egsdat      ncase=10999989       cpu=3080.72    
+364 BladesAndFilm_w364.egsdat      ncase=10999989       cpu=3037.45    
+365 BladesAndFilm_w365.egsdat      ncase=10999989       cpu=3070.09    
+366 BladesAndFilm_w366.egsdat      ncase=9999990        cpu=2885.69    
+367 BladesAndFilm_w367.egsdat      ncase=9999990        cpu=2848.90    
+368 BladesAndFilm_w368.egsdat      ncase=9999990        cpu=2826.06    
+369 BladesAndFilm_w369.egsdat      ncase=9999990        cpu=2830.09    
+370 BladesAndFilm_w370.egsdat      ncase=9999990        cpu=2902.82    
+371 BladesAndFilm_w371.egsdat      ncase=9999990        cpu=2879.70    
+372 BladesAndFilm_w372.egsdat      ncase=9999990        cpu=2845.53    
+373 BladesAndFilm_w373.egsdat      ncase=9999990        cpu=2841.04    
+374 BladesAndFilm_w374.egsdat      ncase=9999990        cpu=2883.17    
+375 BladesAndFilm_w375.egsdat      ncase=9999990        cpu=2843.99    
+376 BladesAndFilm_w376.egsdat      ncase=9999990        cpu=2821.25    
+377 BladesAndFilm_w377.egsdat      ncase=9999990        cpu=2847.61    
+378 BladesAndFilm_w378.egsdat      ncase=9999990        cpu=2820.30    
+379 BladesAndFilm_w379.egsdat      ncase=9999990        cpu=2847.79    
+380 BladesAndFilm_w380.egsdat      ncase=9999990        cpu=2837.19    
+381 BladesAndFilm_w381.egsdat      ncase=9999990        cpu=2832.59    
+382 BladesAndFilm_w382.egsdat      ncase=9999990        cpu=2833.07    
+383 BladesAndFilm_w383.egsdat      ncase=9999990        cpu=2845.03    
+384 BladesAndFilm_w384.egsdat      ncase=9999990        cpu=2885.09    
+385 BladesAndFilm_w385.egsdat      ncase=9999990        cpu=2887.46    
+386 BladesAndFilm_w386.egsdat      ncase=9999990        cpu=2938.23    
+387 BladesAndFilm_w387.egsdat      ncase=9999990        cpu=2887.71    
+388 BladesAndFilm_w388.egsdat      ncase=9999990        cpu=2961.88    
+389 BladesAndFilm_w389.egsdat      ncase=9999990        cpu=2946.46    
+390 BladesAndFilm_w390.egsdat      ncase=9999990        cpu=2930.88    
+391 BladesAndFilm_w391.egsdat      ncase=9999990        cpu=2907.54    
+392 BladesAndFilm_w392.egsdat      ncase=9999990        cpu=2914.22    
+393 BladesAndFilm_w393.egsdat      ncase=9999990        cpu=2919.93    
+394 BladesAndFilm_w394.egsdat      ncase=9999990        cpu=2899.33    
+395 BladesAndFilm_w395.egsdat      ncase=9999990        cpu=2941.09    
+396 BladesAndFilm_w396.egsdat      ncase=9999990        cpu=2913.69    
+397 BladesAndFilm_w397.egsdat      ncase=9999990        cpu=2892.47    
+398 BladesAndFilm_w398.egsdat      ncase=9999990        cpu=2991.79    
+399 BladesAndFilm_w399.egsdat      ncase=9999990        cpu=2902.85    
+400 BladesAndFilm_w400.egsdat      ncase=9999990        cpu=2912.58    
+401 BladesAndFilm_w401.egsdat      ncase=9999990        cpu=2921.12    
+402 BladesAndFilm_w402.egsdat      ncase=9999990        cpu=2948.47    
+403 BladesAndFilm_w403.egsdat      ncase=9999990        cpu=2944.24    
+404 BladesAndFilm_w404.egsdat      ncase=9999990        cpu=2885.08    
+405 BladesAndFilm_w405.egsdat      ncase=9999990        cpu=2945.00    
+406 BladesAndFilm_w406.egsdat      ncase=9999990        cpu=2821.55    
+407 BladesAndFilm_w407.egsdat      ncase=9999990        cpu=2796.32    
+408 BladesAndFilm_w408.egsdat      ncase=9999990        cpu=2817.86    
+409 BladesAndFilm_w409.egsdat      ncase=9999990        cpu=2792.06    
+410 BladesAndFilm_w410.egsdat      ncase=9999990        cpu=2828.15    
+411 BladesAndFilm_w411.egsdat      ncase=9999990        cpu=2796.08    
+412 BladesAndFilm_w412.egsdat      ncase=9999990        cpu=2789.99    
+413 BladesAndFilm_w413.egsdat      ncase=9999990        cpu=2845.63    
+414 BladesAndFilm_w414.egsdat      ncase=9999990        cpu=2820.43    
+415 BladesAndFilm_w415.egsdat      ncase=9999990        cpu=2854.55    
+416 BladesAndFilm_w416.egsdat      ncase=9999990        cpu=2816.53    
+417 BladesAndFilm_w417.egsdat      ncase=9999990        cpu=2804.24    
+418 BladesAndFilm_w418.egsdat      ncase=9999990        cpu=2813.87    
+419 BladesAndFilm_w419.egsdat      ncase=9999990        cpu=2811.04    
+420 BladesAndFilm_w420.egsdat      ncase=9999990        cpu=2794.74    
+421 BladesAndFilm_w421.egsdat      ncase=9999990        cpu=2796.05    
+422 BladesAndFilm_w422.egsdat      ncase=9999990        cpu=2816.08    
+423 BladesAndFilm_w423.egsdat      ncase=9999990        cpu=2846.98    
+424 BladesAndFilm_w424.egsdat      ncase=9999990        cpu=2796.08    
+425 BladesAndFilm_w425.egsdat      ncase=9999990        cpu=2837.18    
+426 BladesAndFilm_w426.egsdat      ncase=9999990        cpu=2898.56    
+427 BladesAndFilm_w427.egsdat      ncase=9999990        cpu=2886.52    
+428 BladesAndFilm_w428.egsdat      ncase=9999990        cpu=2926.09    
+429 BladesAndFilm_w429.egsdat      ncase=9999990        cpu=2874.39    
+430 BladesAndFilm_w430.egsdat      ncase=9999990        cpu=2920.32    
+431 BladesAndFilm_w431.egsdat      ncase=9999990        cpu=2882.16    
+432 BladesAndFilm_w432.egsdat      ncase=9999990        cpu=2873.78    
+433 BladesAndFilm_w433.egsdat      ncase=9999990        cpu=2905.21    
+434 BladesAndFilm_w434.egsdat      ncase=9999990        cpu=2880.51    
+435 BladesAndFilm_w435.egsdat      ncase=9999990        cpu=2883.12    
+436 BladesAndFilm_w436.egsdat      ncase=9999990        cpu=2857.87    
+437 BladesAndFilm_w437.egsdat      ncase=9999990        cpu=2904.88    
+438 BladesAndFilm_w438.egsdat      ncase=9999990        cpu=2954.68    
+439 BladesAndFilm_w439.egsdat      ncase=9999990        cpu=2909.57    
+440 BladesAndFilm_w440.egsdat      ncase=9999990        cpu=2868.53    
+441 BladesAndFilm_w441.egsdat      ncase=9999990        cpu=2863.16    
+442 BladesAndFilm_w442.egsdat      ncase=9999990        cpu=2880.91    
+443 BladesAndFilm_w443.egsdat      ncase=9999990        cpu=2863.15    
+444 BladesAndFilm_w444.egsdat      ncase=9999990        cpu=2901.69    
+445 BladesAndFilm_w445.egsdat      ncase=9999990        cpu=2859.34    
+446 BladesAndFilm_w446.egsdat      ncase=9999990        cpu=2806.56    
+447 BladesAndFilm_w447.egsdat      ncase=9999990        cpu=2796.51    
+448 BladesAndFilm_w448.egsdat      ncase=9999990        cpu=2789.28    
+449 BladesAndFilm_w449.egsdat      ncase=9999990        cpu=2785.53    
+450 BladesAndFilm_w450.egsdat      ncase=9999990        cpu=2803.34    
+451 BladesAndFilm_w451.egsdat      ncase=9999990        cpu=2773.02    
+452 BladesAndFilm_w452.egsdat      ncase=9999990        cpu=2790.00    
+453 BladesAndFilm_w453.egsdat      ncase=9999990        cpu=2770.40    
+454 BladesAndFilm_w454.egsdat      ncase=9999990        cpu=2810.56    
+455 BladesAndFilm_w455.egsdat      ncase=9999990        cpu=2811.19    
+456 BladesAndFilm_w456.egsdat      ncase=9999990        cpu=2818.88    
+457 BladesAndFilm_w457.egsdat      ncase=9999990        cpu=2814.44    
+458 BladesAndFilm_w458.egsdat      ncase=9999990        cpu=2793.50    
+459 BladesAndFilm_w459.egsdat      ncase=9999990        cpu=2821.42    
+460 BladesAndFilm_w460.egsdat      ncase=9999990        cpu=2791.49    
+461 BladesAndFilm_w461.egsdat      ncase=9999990        cpu=2780.96    
+462 BladesAndFilm_w462.egsdat      ncase=9999990        cpu=2822.40    
+463 BladesAndFilm_w463.egsdat      ncase=9999990        cpu=2804.29    
+464 BladesAndFilm_w464.egsdat      ncase=9999990        cpu=2797.55    
+465 BladesAndFilm_w465.egsdat      ncase=9999990        cpu=2795.40    
+466 BladesAndFilm_w466.egsdat      ncase=9999990        cpu=2770.46    
+467 BladesAndFilm_w467.egsdat      ncase=9999990        cpu=2744.90    
+468 BladesAndFilm_w468.egsdat      ncase=9999990        cpu=2777.99    
+469 BladesAndFilm_w469.egsdat      ncase=9999990        cpu=2762.44    
+470 BladesAndFilm_w470.egsdat      ncase=9999990        cpu=2803.37    
+471 BladesAndFilm_w471.egsdat      ncase=9999990        cpu=2782.70    
+472 BladesAndFilm_w472.egsdat      ncase=9999990        cpu=2786.89    
+473 BladesAndFilm_w473.egsdat      ncase=9999990        cpu=2759.58    
+474 BladesAndFilm_w474.egsdat      ncase=9999990        cpu=2767.69    
+475 BladesAndFilm_w475.egsdat      ncase=9999990        cpu=2759.90    
+476 BladesAndFilm_w476.egsdat      ncase=9999990        cpu=2786.56    
+477 BladesAndFilm_w477.egsdat      ncase=9999990        cpu=2781.32    
+478 BladesAndFilm_w478.egsdat      ncase=9999990        cpu=2778.01    
+479 BladesAndFilm_w479.egsdat      ncase=9999990        cpu=2806.26    
+480 BladesAndFilm_w480.egsdat      ncase=9999990        cpu=2753.94    
+481 BladesAndFilm_w481.egsdat      ncase=9999990        cpu=2773.64    
+482 BladesAndFilm_w482.egsdat      ncase=9999990        cpu=2760.11    
+483 BladesAndFilm_w483.egsdat      ncase=9999990        cpu=2759.27    
+484 BladesAndFilm_w484.egsdat      ncase=9999990        cpu=2788.60    
+485 BladesAndFilm_w485.egsdat      ncase=9999990        cpu=2788.13    
+486 BladesAndFilm_w486.egsdat      ncase=9999990        cpu=2794.05    
+487 BladesAndFilm_w487.egsdat      ncase=9999990        cpu=2763.06    
+488 BladesAndFilm_w488.egsdat      ncase=9999990        cpu=2783.33    
+489 BladesAndFilm_w489.egsdat      ncase=9999990        cpu=2770.24    
+490 BladesAndFilm_w490.egsdat      ncase=9999990        cpu=2775.72    
+491 BladesAndFilm_w491.egsdat      ncase=9999990        cpu=2780.99    
+492 BladesAndFilm_w492.egsdat      ncase=9999990        cpu=2787.64    
+493 BladesAndFilm_w493.egsdat      ncase=9999990        cpu=2878.51    
+494 BladesAndFilm_w494.egsdat      ncase=9999990        cpu=2807.17    
+495 BladesAndFilm_w495.egsdat      ncase=9999990        cpu=2762.27    
+496 BladesAndFilm_w496.egsdat      ncase=9999990        cpu=2782.76    
+497 BladesAndFilm_w497.egsdat      ncase=9999990        cpu=2769.82    
+498 BladesAndFilm_w498.egsdat      ncase=9999990        cpu=2778.05    
+499 BladesAndFilm_w499.egsdat      ncase=9999990        cpu=2762.09    
+500 BladesAndFilm_w500.egsdat      ncase=9999990        cpu=2799.90    
+501 BladesAndFilm_w501.egsdat      ncase=9999990        cpu=2795.14    
+502 BladesAndFilm_w502.egsdat      ncase=9999990        cpu=2833.19    
+503 BladesAndFilm_w503.egsdat      ncase=9999990        cpu=2781.32    
+504 BladesAndFilm_w504.egsdat      ncase=9999990        cpu=2807.58    
+505 BladesAndFilm_w505.egsdat      ncase=9999990        cpu=2801.85    
+506 BladesAndFilm_w506.egsdat      ncase=9999990        cpu=2763.96    
+507 BladesAndFilm_w507.egsdat      ncase=9999990        cpu=2789.46    
+508 BladesAndFilm_w508.egsdat      ncase=9999990        cpu=2789.44    
+509 BladesAndFilm_w509.egsdat      ncase=9999990        cpu=2817.99    
+510 BladesAndFilm_w510.egsdat      ncase=9999990        cpu=2821.00    
+511 BladesAndFilm_w511.egsdat      ncase=9999990        cpu=2776.91    
+512 BladesAndFilm_w512.egsdat      ncase=9999990        cpu=2787.98    
+513 BladesAndFilm_w513.egsdat      ncase=9999990        cpu=2826.86    
+514 BladesAndFilm_w514.egsdat      ncase=9999990        cpu=2812.11    
+515 BladesAndFilm_w515.egsdat      ncase=9999990        cpu=2813.11    
+516 BladesAndFilm_w516.egsdat      ncase=9999990        cpu=2774.99    
+517 BladesAndFilm_w517.egsdat      ncase=9999990        cpu=2786.23    
+518 BladesAndFilm_w518.egsdat      ncase=9999990        cpu=2782.91    
+519 BladesAndFilm_w519.egsdat      ncase=9999990        cpu=2812.16    
+520 BladesAndFilm_w520.egsdat      ncase=9999990        cpu=2786.57    
+521 BladesAndFilm_w521.egsdat      ncase=9999990        cpu=2767.10    
+522 BladesAndFilm_w522.egsdat      ncase=9999990        cpu=2788.85    
+523 BladesAndFilm_w523.egsdat      ncase=9999990        cpu=2819.32    
+524 BladesAndFilm_w524.egsdat      ncase=9999990        cpu=2771.99    
+525 BladesAndFilm_w525.egsdat      ncase=9999990        cpu=2781.55    
+526 BladesAndFilm_w526.egsdat      ncase=9999990        cpu=2747.88    
+527 BladesAndFilm_w527.egsdat      ncase=9999990        cpu=2773.27    
+528 BladesAndFilm_w528.egsdat      ncase=9999990        cpu=2740.30    
+529 BladesAndFilm_w529.egsdat      ncase=9999990        cpu=2794.92    
+530 BladesAndFilm_w530.egsdat      ncase=9999990        cpu=2752.23    
+531 BladesAndFilm_w531.egsdat      ncase=9999990        cpu=2742.84    
+532 BladesAndFilm_w532.egsdat      ncase=9999990        cpu=2766.32    
+533 BladesAndFilm_w533.egsdat      ncase=9999990        cpu=2768.15    
+534 BladesAndFilm_w534.egsdat      ncase=9999990        cpu=2760.79    
+535 BladesAndFilm_w535.egsdat      ncase=9999990        cpu=2748.10    
+536 BladesAndFilm_w536.egsdat      ncase=9999990        cpu=2757.90    
+537 BladesAndFilm_w537.egsdat      ncase=9999990        cpu=2748.39    
+538 BladesAndFilm_w538.egsdat      ncase=8999991        cpu=2864.23    
+539 BladesAndFilm_w539.egsdat      ncase=9999990        cpu=2811.12    
+540 BladesAndFilm_w540.egsdat      ncase=9999990        cpu=2748.35    
+541 BladesAndFilm_w541.egsdat      ncase=9999990        cpu=2758.79    
+542 BladesAndFilm_w542.egsdat      ncase=9999990        cpu=2757.72    
+543 BladesAndFilm_w543.egsdat      ncase=9999990        cpu=2759.22    
+544 BladesAndFilm_w544.egsdat      ncase=9999990        cpu=2739.88    
+545 BladesAndFilm_w545.egsdat      ncase=9999990        cpu=2756.93    
+546 BladesAndFilm_w546.egsdat      ncase=9999990        cpu=2822.50    
+547 BladesAndFilm_w547.egsdat      ncase=9999990        cpu=2860.04    
+548 BladesAndFilm_w548.egsdat      ncase=9999990        cpu=2832.33    
+549 BladesAndFilm_w549.egsdat      ncase=9999990        cpu=2856.28    
+550 BladesAndFilm_w550.egsdat      ncase=9999990        cpu=2854.47    
+551 BladesAndFilm_w551.egsdat      ncase=9999990        cpu=2886.24    
+552 BladesAndFilm_w552.egsdat      ncase=9999990        cpu=2844.72    
+553 BladesAndFilm_w553.egsdat      ncase=9999990        cpu=2822.03    
+554 BladesAndFilm_w554.egsdat      ncase=9999990        cpu=2863.91    
+555 BladesAndFilm_w555.egsdat      ncase=8999991        cpu=2761.96    
+556 BladesAndFilm_w556.egsdat      ncase=9999990        cpu=2883.53    
+557 BladesAndFilm_w557.egsdat      ncase=9999990        cpu=2825.08    
+558 BladesAndFilm_w558.egsdat      ncase=9999990        cpu=2882.26    
+559 BladesAndFilm_w559.egsdat      ncase=9999990        cpu=2844.09    
+560 BladesAndFilm_w560.egsdat      ncase=9999990        cpu=2833.44    
+561 BladesAndFilm_w561.egsdat      ncase=9999990        cpu=2835.77    
+562 BladesAndFilm_w562.egsdat      ncase=9999990        cpu=2830.57    
+563 BladesAndFilm_w563.egsdat      ncase=9999990        cpu=2836.68    
+564 BladesAndFilm_w564.egsdat      ncase=9999990        cpu=2854.51    
+565 BladesAndFilm_w565.egsdat      ncase=9999990        cpu=2826.93    
+566 BladesAndFilm_w566.egsdat      ncase=9999990        cpu=2863.94    
+567 BladesAndFilm_w567.egsdat      ncase=9999990        cpu=2826.88    
+568 BladesAndFilm_w568.egsdat      ncase=9999990        cpu=2812.60    
+569 BladesAndFilm_w569.egsdat      ncase=9999990        cpu=2811.35    
+570 BladesAndFilm_w570.egsdat      ncase=9999990        cpu=2805.19    
+571 BladesAndFilm_w571.egsdat      ncase=9999990        cpu=2862.27    
+572 BladesAndFilm_w572.egsdat      ncase=8999991        cpu=2612.23    
+573 BladesAndFilm_w573.egsdat      ncase=9999990        cpu=2851.41    
+574 BladesAndFilm_w574.egsdat      ncase=9999990        cpu=2799.22    
+575 BladesAndFilm_w575.egsdat      ncase=8999991        cpu=2621.31    
+576 BladesAndFilm_w576.egsdat      ncase=9999990        cpu=2808.27    
+577 BladesAndFilm_w577.egsdat      ncase=9999990        cpu=2799.15    
+578 BladesAndFilm_w578.egsdat      ncase=9999990        cpu=2814.04    
+579 BladesAndFilm_w579.egsdat      ncase=9999990        cpu=2853.19    
+580 BladesAndFilm_w580.egsdat      ncase=9999990        cpu=2866.56    
+581 BladesAndFilm_w581.egsdat      ncase=9999990        cpu=2826.80    
+582 BladesAndFilm_w582.egsdat      ncase=9999990        cpu=2803.71    
+583 BladesAndFilm_w583.egsdat      ncase=9999990        cpu=2873.73    
+584 BladesAndFilm_w584.egsdat      ncase=9999990        cpu=2804.48    
+585 BladesAndFilm_w585.egsdat      ncase=9999990        cpu=2797.60    
+586 BladesAndFilm_w586.egsdat      ncase=9999990        cpu=2782.16    
+587 BladesAndFilm_w587.egsdat      ncase=9999990        cpu=2770.24    
+588 BladesAndFilm_w588.egsdat      ncase=9999990        cpu=2750.72    
+589 BladesAndFilm_w589.egsdat      ncase=8999991        cpu=2666.34    
+590 BladesAndFilm_w590.egsdat      ncase=9999990        cpu=2771.47    
+591 BladesAndFilm_w591.egsdat      ncase=9999990        cpu=2761.63    
+592 BladesAndFilm_w592.egsdat      ncase=9999990        cpu=2789.14    
+593 BladesAndFilm_w593.egsdat      ncase=9999990        cpu=2755.03    
+594 BladesAndFilm_w594.egsdat      ncase=9999990        cpu=2852.59    
+595 BladesAndFilm_w595.egsdat      ncase=9999990        cpu=2766.85    
+596 BladesAndFilm_w596.egsdat      ncase=9999990        cpu=2775.49    
+597 BladesAndFilm_w597.egsdat      ncase=9999990        cpu=2774.39    
+598 BladesAndFilm_w598.egsdat      ncase=9999990        cpu=2758.94    
+599 BladesAndFilm_w599.egsdat      ncase=9999990        cpu=2755.50    
+600 BladesAndFilm_w600.egsdat      ncase=9999990        cpu=2795.71    
+601 BladesAndFilm_w601.egsdat      ncase=9999990        cpu=2755.64    
+602 BladesAndFilm_w602.egsdat      ncase=9999990        cpu=2787.95    
+603 BladesAndFilm_w603.egsdat      ncase=9999990        cpu=2768.01    
+604 BladesAndFilm_w604.egsdat      ncase=9999990        cpu=2755.51    
+605 BladesAndFilm_w605.egsdat      ncase=9999990        cpu=2753.84    
+606 BladesAndFilm_w606.egsdat      ncase=9999990        cpu=2776.01    
+607 BladesAndFilm_w607.egsdat      ncase=9999990        cpu=2754.46    
+608 BladesAndFilm_w608.egsdat      ncase=9999990        cpu=2752.15    
+609 BladesAndFilm_w609.egsdat      ncase=9999990        cpu=2763.58    
+610 BladesAndFilm_w610.egsdat      ncase=9999990        cpu=2818.08    
+611 BladesAndFilm_w611.egsdat      ncase=9999990        cpu=2761.23    
+612 BladesAndFilm_w612.egsdat      ncase=9999990        cpu=2751.51    
+613 BladesAndFilm_w613.egsdat      ncase=9999990        cpu=2815.80    
+614 BladesAndFilm_w614.egsdat      ncase=9999990        cpu=2741.24    
+615 BladesAndFilm_w615.egsdat      ncase=9999990        cpu=2741.23    
+616 BladesAndFilm_w616.egsdat      ncase=9999990        cpu=2802.68    
+617 BladesAndFilm_w617.egsdat      ncase=9999990        cpu=2792.13    
+618 BladesAndFilm_w618.egsdat      ncase=9999990        cpu=2782.53    
+619 BladesAndFilm_w619.egsdat      ncase=9999990        cpu=2758.00    
+620 BladesAndFilm_w620.egsdat      ncase=9999990        cpu=2826.04    
+621 BladesAndFilm_w621.egsdat      ncase=9999990        cpu=2775.91    
+622 BladesAndFilm_w622.egsdat      ncase=9999990        cpu=2823.76    
+623 BladesAndFilm_w623.egsdat      ncase=9999990        cpu=2762.92    
+624 BladesAndFilm_w624.egsdat      ncase=9999990        cpu=2739.63    
+625 BladesAndFilm_w625.egsdat      ncase=9999990        cpu=2742.75    
+626 BladesAndFilm_w626.egsdat      ncase=8999991        cpu=2572.29    
+627 BladesAndFilm_w627.egsdat      ncase=8999991        cpu=2579.97    
+628 BladesAndFilm_w628.egsdat      ncase=8999991        cpu=2598.29    
+629 BladesAndFilm_w629.egsdat      ncase=8999991        cpu=2565.71    
+630 BladesAndFilm_w630.egsdat      ncase=8999991        cpu=2576.97    
+631 BladesAndFilm_w631.egsdat      ncase=8999991        cpu=2747.06    
+632 BladesAndFilm_w632.egsdat      ncase=8999991        cpu=2575.57    
+633 BladesAndFilm_w633.egsdat      ncase=8999991        cpu=2603.18    
+634 BladesAndFilm_w634.egsdat      ncase=8999991        cpu=2610.98    
+635 BladesAndFilm_w635.egsdat      ncase=8999991        cpu=2572.76    
+636 BladesAndFilm_w636.egsdat      ncase=8999991        cpu=2604.05    
+637 BladesAndFilm_w637.egsdat      ncase=8999991        cpu=2589.86    
+638 BladesAndFilm_w638.egsdat      ncase=8999991        cpu=2639.46    
+639 BladesAndFilm_w639.egsdat      ncase=8999991        cpu=2579.38    
+640 BladesAndFilm_w640.egsdat      ncase=8999991        cpu=2598.31    
+641 BladesAndFilm_w641.egsdat      ncase=8999991        cpu=2592.90    
+642 BladesAndFilm_w642.egsdat      ncase=8999991        cpu=2571.92    
+643 BladesAndFilm_w643.egsdat      ncase=8999991        cpu=2624.99    
+644 BladesAndFilm_w644.egsdat      ncase=8999991        cpu=2584.41    
+645 BladesAndFilm_w645.egsdat      ncase=8999991        cpu=2580.91    
+646 BladesAndFilm_w646.egsdat      ncase=8999991        cpu=2537.67    
+647 BladesAndFilm_w647.egsdat      ncase=9999990        cpu=2763.70    
+648 BladesAndFilm_w648.egsdat      ncase=8999991        cpu=2541.59    
+649 BladesAndFilm_w649.egsdat      ncase=9999990        cpu=2772.33    
+650 BladesAndFilm_w650.egsdat      ncase=9999990        cpu=2745.05    
+651 BladesAndFilm_w651.egsdat      ncase=8999991        cpu=2540.69    
+652 BladesAndFilm_w652.egsdat      ncase=9999990        cpu=2786.61    
+653 BladesAndFilm_w653.egsdat      ncase=9999990        cpu=2749.50    
+654 BladesAndFilm_w654.egsdat      ncase=8999991        cpu=2527.20    
+655 BladesAndFilm_w655.egsdat      ncase=9999990        cpu=2757.48    
+656 BladesAndFilm_w656.egsdat      ncase=8999991        cpu=2586.79    
+657 BladesAndFilm_w657.egsdat      ncase=8999991        cpu=2529.67    
+658 BladesAndFilm_w658.egsdat      ncase=9999990        cpu=2750.89    
+659 BladesAndFilm_w659.egsdat      ncase=9999990        cpu=2745.74    
+660 BladesAndFilm_w660.egsdat      ncase=9999990        cpu=2749.85    
+661 BladesAndFilm_w661.egsdat      ncase=8999991        cpu=2534.93    
+662 BladesAndFilm_w662.egsdat      ncase=9999990        cpu=2747.54    
+663 BladesAndFilm_w663.egsdat      ncase=9999990        cpu=2771.57    
+664 BladesAndFilm_w664.egsdat      ncase=9999990        cpu=2755.94    
+665 BladesAndFilm_w665.egsdat      ncase=9999990        cpu=2769.50    
+666 BladesAndFilm_w666.egsdat      ncase=8999991        cpu=2720.41    
+667 BladesAndFilm_w667.egsdat      ncase=8999991        cpu=2537.48    
+668 BladesAndFilm_w668.egsdat      ncase=8999991        cpu=2581.93    
+669 BladesAndFilm_w669.egsdat      ncase=8999991        cpu=2552.02    
+670 BladesAndFilm_w670.egsdat      ncase=8999991        cpu=2539.34    
+671 BladesAndFilm_w671.egsdat      ncase=8999991        cpu=2609.26    
+672 BladesAndFilm_w672.egsdat      ncase=8999991        cpu=2571.24    
+673 BladesAndFilm_w673.egsdat      ncase=8999991        cpu=2586.54    
+674 BladesAndFilm_w674.egsdat      ncase=8999991        cpu=2550.86    
+675 BladesAndFilm_w675.egsdat      ncase=7999992        cpu=2517.47    
+676 BladesAndFilm_w676.egsdat      ncase=8999991        cpu=2554.71    
+677 BladesAndFilm_w677.egsdat      ncase=8999991        cpu=2537.71    
+678 BladesAndFilm_w678.egsdat      ncase=8999991        cpu=2554.94    
+679 BladesAndFilm_w679.egsdat      ncase=8999991        cpu=2531.82    
+680 BladesAndFilm_w680.egsdat      ncase=8999991        cpu=2592.57    
+681 BladesAndFilm_w681.egsdat      ncase=8999991        cpu=2589.98    
+682 BladesAndFilm_w682.egsdat      ncase=8999991        cpu=2576.16    
+683 BladesAndFilm_w683.egsdat      ncase=8999991        cpu=2566.70    
+684 BladesAndFilm_w684.egsdat      ncase=8999991        cpu=2582.10    
+685 BladesAndFilm_w685.egsdat      ncase=8999991        cpu=2589.62    
+686 BladesAndFilm_w686.egsdat      ncase=8999991        cpu=2553.63    
+687 BladesAndFilm_w687.egsdat      ncase=8999991        cpu=2534.33    
+688 BladesAndFilm_w688.egsdat      ncase=8999991        cpu=2582.76    
+689 BladesAndFilm_w689.egsdat      ncase=8999991        cpu=2551.98    
+690 BladesAndFilm_w690.egsdat      ncase=8999991        cpu=2601.75    
+691 BladesAndFilm_w691.egsdat      ncase=8999991        cpu=2544.68    
+692 BladesAndFilm_w692.egsdat      ncase=8999991        cpu=2570.95    
+693 BladesAndFilm_w693.egsdat      ncase=8999991        cpu=2585.28    
+694 BladesAndFilm_w694.egsdat      ncase=8999991        cpu=2539.62    
+695 BladesAndFilm_w695.egsdat      ncase=8999991        cpu=2551.10    
+696 BladesAndFilm_w696.egsdat      ncase=8999991        cpu=2561.46    
+697 BladesAndFilm_w697.egsdat      ncase=8999991        cpu=2540.86    
+698 BladesAndFilm_w698.egsdat      ncase=8999991        cpu=2577.08    
+699 BladesAndFilm_w699.egsdat      ncase=8999991        cpu=2537.10    
+700 BladesAndFilm_w700.egsdat      ncase=8999991        cpu=2549.96    
+701 BladesAndFilm_w701.egsdat      ncase=8999991        cpu=2532.48    
+702 BladesAndFilm_w702.egsdat      ncase=8999991        cpu=2548.22    
+703 BladesAndFilm_w703.egsdat      ncase=8999991        cpu=2544.47    
+704 BladesAndFilm_w704.egsdat      ncase=8999991        cpu=2532.79    
+705 BladesAndFilm_w705.egsdat      ncase=8999991        cpu=2556.45    
+706 BladesAndFilm_w706.egsdat      ncase=8999991        cpu=2658.42    
+707 BladesAndFilm_w707.egsdat      ncase=8999991        cpu=2692.78    
+708 BladesAndFilm_w708.egsdat      ncase=8999991        cpu=2685.42    
+709 BladesAndFilm_w709.egsdat      ncase=8999991        cpu=2662.08    
+710 BladesAndFilm_w710.egsdat      ncase=8999991        cpu=2693.15    
+711 BladesAndFilm_w711.egsdat      ncase=8999991        cpu=2658.20    
+712 BladesAndFilm_w712.egsdat      ncase=8999991        cpu=2676.71    
+713 BladesAndFilm_w713.egsdat      ncase=8999991        cpu=2670.43    
+714 BladesAndFilm_w714.egsdat      ncase=8999991        cpu=2696.79    
+715 BladesAndFilm_w715.egsdat      ncase=8999991        cpu=2673.79    
+716 BladesAndFilm_w716.egsdat      ncase=8999991        cpu=2706.12    
+717 BladesAndFilm_w717.egsdat      ncase=8999991        cpu=2681.71    
+718 BladesAndFilm_w718.egsdat      ncase=8999991        cpu=2697.83    
+719 BladesAndFilm_w719.egsdat      ncase=8999991        cpu=2671.77    
+720 BladesAndFilm_w720.egsdat      ncase=8999991        cpu=2710.80    
+721 BladesAndFilm_w721.egsdat      ncase=8999991        cpu=2673.88    
+722 BladesAndFilm_w722.egsdat      ncase=8999991        cpu=2706.75    
+723 BladesAndFilm_w723.egsdat      ncase=8999991        cpu=2662.02    
+724 BladesAndFilm_w724.egsdat      ncase=8999991        cpu=2664.62    
+725 BladesAndFilm_w725.egsdat      ncase=8999991        cpu=2739.11    
+726 BladesAndFilm_w726.egsdat      ncase=8999991        cpu=2654.57    
+727 BladesAndFilm_w727.egsdat      ncase=8999991        cpu=2684.60    
+728 BladesAndFilm_w728.egsdat      ncase=8999991        cpu=2662.20    
+729 BladesAndFilm_w729.egsdat      ncase=8999991        cpu=2662.12    
+730 BladesAndFilm_w730.egsdat      ncase=8999991        cpu=2669.39    
+731 BladesAndFilm_w731.egsdat      ncase=8999991        cpu=2680.10    
+732 BladesAndFilm_w732.egsdat      ncase=8999991        cpu=2649.94    
+733 BladesAndFilm_w733.egsdat      ncase=8999991        cpu=2647.72    
+734 BladesAndFilm_w734.egsdat      ncase=8999991        cpu=2633.43    
+735 BladesAndFilm_w735.egsdat      ncase=8999991        cpu=2622.23    
+736 BladesAndFilm_w736.egsdat      ncase=8999991        cpu=2592.39    
+737 BladesAndFilm_w737.egsdat      ncase=8999991        cpu=2572.07    
+738 BladesAndFilm_w738.egsdat      ncase=8999991        cpu=2618.25    
+739 BladesAndFilm_w739.egsdat      ncase=8999991        cpu=2557.15    
+740 BladesAndFilm_w740.egsdat      ncase=8999991        cpu=2592.08    
+741 BladesAndFilm_w741.egsdat      ncase=8999991        cpu=2601.84    
+742 BladesAndFilm_w742.egsdat      ncase=8999991        cpu=2581.28    
+743 BladesAndFilm_w743.egsdat      ncase=8999991        cpu=2580.18    
+744 BladesAndFilm_w744.egsdat      ncase=8999991        cpu=2701.82    
+745 BladesAndFilm_w745.egsdat      ncase=8999991        cpu=2588.32    
+746 BladesAndFilm_w746.egsdat      ncase=8999991        cpu=2563.06    
+747 BladesAndFilm_w747.egsdat      ncase=8999991        cpu=2620.91    
+748 BladesAndFilm_w748.egsdat      ncase=8999991        cpu=2622.51    
+749 BladesAndFilm_w749.egsdat      ncase=8999991        cpu=2580.74    
+750 BladesAndFilm_w750.egsdat      ncase=8999991        cpu=2600.56    
+751 BladesAndFilm_w751.egsdat      ncase=8999991        cpu=2594.11    
+752 BladesAndFilm_w752.egsdat      ncase=8999991        cpu=2568.80    
+753 BladesAndFilm_w753.egsdat      ncase=8999991        cpu=2611.74    
+754 BladesAndFilm_w754.egsdat      ncase=8999991        cpu=2494.05    
+755 BladesAndFilm_w755.egsdat      ncase=8999991        cpu=2541.58    
+756 BladesAndFilm_w756.egsdat      ncase=8999991        cpu=2486.06    
+757 BladesAndFilm_w757.egsdat      ncase=8999991        cpu=2488.91    
+758 BladesAndFilm_w758.egsdat      ncase=8999991        cpu=2507.25    
+759 BladesAndFilm_w759.egsdat      ncase=8999991        cpu=2518.09    
+760 BladesAndFilm_w760.egsdat      ncase=8999991        cpu=2482.01    
+761 BladesAndFilm_w761.egsdat      ncase=8999991        cpu=2500.27    
+762 BladesAndFilm_w762.egsdat      ncase=8999991        cpu=2529.19    
+763 BladesAndFilm_w763.egsdat      ncase=8999991        cpu=2501.20    
+764 BladesAndFilm_w764.egsdat      ncase=8999991        cpu=2509.99    
+765 BladesAndFilm_w765.egsdat      ncase=8999991        cpu=2494.62    
+766 BladesAndFilm_w766.egsdat      ncase=8999991        cpu=2561.27    
+767 BladesAndFilm_w767.egsdat      ncase=8999991        cpu=2492.59    
+768 BladesAndFilm_w768.egsdat      ncase=8999991        cpu=2493.40    
+769 BladesAndFilm_w769.egsdat      ncase=8999991        cpu=2494.89    
+770 BladesAndFilm_w770.egsdat      ncase=8999991        cpu=2495.38    
+771 BladesAndFilm_w771.egsdat      ncase=8999991        cpu=2502.63    
+772 BladesAndFilm_w772.egsdat      ncase=8999991        cpu=2503.50    
+773 BladesAndFilm_w773.egsdat      ncase=8999991        cpu=2483.42    
+774 BladesAndFilm_w774.egsdat      ncase=8999991        cpu=2509.74    
+775 BladesAndFilm_w775.egsdat      ncase=8999991        cpu=2488.38    
+776 BladesAndFilm_w776.egsdat      ncase=8999991        cpu=2519.92    
+777 BladesAndFilm_w777.egsdat      ncase=8999991        cpu=2488.14    
+778 BladesAndFilm_w778.egsdat      ncase=8999991        cpu=2556.77    
+779 BladesAndFilm_w779.egsdat      ncase=8999991        cpu=2530.19    
+780 BladesAndFilm_w780.egsdat      ncase=8999991        cpu=2497.68    
+781 BladesAndFilm_w781.egsdat      ncase=8999991        cpu=2493.02    
+782 BladesAndFilm_w782.egsdat      ncase=8999991        cpu=2520.85    
+783 BladesAndFilm_w783.egsdat      ncase=8999991        cpu=2485.22    
+784 BladesAndFilm_w784.egsdat      ncase=8999991        cpu=2552.39    
+785 BladesAndFilm_w785.egsdat      ncase=8999991        cpu=2530.20    
+786 BladesAndFilm_w786.egsdat      ncase=8999991        cpu=2502.87    
+787 BladesAndFilm_w787.egsdat      ncase=8999991        cpu=2503.08    
+788 BladesAndFilm_w788.egsdat      ncase=8999991        cpu=2493.79    
+789 BladesAndFilm_w789.egsdat      ncase=8999991        cpu=2523.62    
+790 BladesAndFilm_w790.egsdat      ncase=8999991        cpu=2505.22    
+791 BladesAndFilm_w791.egsdat      ncase=8999991        cpu=2553.87    
+792 BladesAndFilm_w792.egsdat      ncase=8999991        cpu=2544.39    
+793 BladesAndFilm_w793.egsdat      ncase=9999990        cpu=2494.18    
+794 BladesAndFilm_w794.egsdat      ncase=9999990        cpu=2521.00    
+795 BladesAndFilm_w795.egsdat      ncase=9999990        cpu=2512.22    
+796 BladesAndFilm_w796.egsdat      ncase=9999990        cpu=2529.81    
+797 BladesAndFilm_w797.egsdat      ncase=9999990        cpu=2525.84    
+798 BladesAndFilm_w798.egsdat      ncase=8999991        cpu=2648.42    
+799 BladesAndFilm_w799.egsdat      ncase=8999991        cpu=2587.20    
+800 BladesAndFilm_w800.egsdat      ncase=8999991        cpu=2611.23    
+801 BladesAndFilm_w801.egsdat      ncase=8999991        cpu=2603.50    
+802 BladesAndFilm_w802.egsdat      ncase=8999991        cpu=2614.15    
+803 BladesAndFilm_w803.egsdat      ncase=8999991        cpu=2619.98    
+804 BladesAndFilm_w804.egsdat      ncase=8999991        cpu=2602.74    
+805 BladesAndFilm_w805.egsdat      ncase=8999991        cpu=2603.83    
+806 BladesAndFilm_w806.egsdat      ncase=8999991        cpu=2609.28    
+807 BladesAndFilm_w807.egsdat      ncase=8999991        cpu=2642.14    
+808 BladesAndFilm_w808.egsdat      ncase=8999991        cpu=2615.78    
+809 BladesAndFilm_w809.egsdat      ncase=8999991        cpu=2584.07    
+810 BladesAndFilm_w810.egsdat      ncase=8999991        cpu=2608.43    
+811 BladesAndFilm_w811.egsdat      ncase=7999992        cpu=2373.83    
+812 BladesAndFilm_w812.egsdat      ncase=8999991        cpu=2612.50    
+813 BladesAndFilm_w813.egsdat      ncase=8999991        cpu=2615.22    
+814 BladesAndFilm_w814.egsdat      ncase=8999991        cpu=2610.53    
+815 BladesAndFilm_w815.egsdat      ncase=8999991        cpu=2585.26    
+816 BladesAndFilm_w816.egsdat      ncase=7999992        cpu=2359.35    
+817 BladesAndFilm_w817.egsdat      ncase=8999991        cpu=2588.18    
+818 BladesAndFilm_w818.egsdat      ncase=9999990        cpu=2515.34    
+819 BladesAndFilm_w819.egsdat      ncase=9999990        cpu=2532.38    
+820 BladesAndFilm_w820.egsdat      ncase=9999990        cpu=2491.72    
+821 BladesAndFilm_w821.egsdat      ncase=9999990        cpu=2509.01    
+822 BladesAndFilm_w822.egsdat      ncase=8999991        cpu=2571.55    
+823 BladesAndFilm_w823.egsdat      ncase=8999991        cpu=2571.03    
+824 BladesAndFilm_w824.egsdat      ncase=8999991        cpu=2555.81    
+825 BladesAndFilm_w825.egsdat      ncase=8999991        cpu=2564.80    
+826 BladesAndFilm_w826.egsdat      ncase=8999991        cpu=2581.17    
+827 BladesAndFilm_w827.egsdat      ncase=8999991        cpu=2562.02    
+828 BladesAndFilm_w828.egsdat      ncase=8999991        cpu=2563.63    
+829 BladesAndFilm_w829.egsdat      ncase=8999991        cpu=2593.51    
+830 BladesAndFilm_w830.egsdat      ncase=8999991        cpu=2540.85    
+831 BladesAndFilm_w831.egsdat      ncase=8999991        cpu=2567.93    
+832 BladesAndFilm_w832.egsdat      ncase=8999991        cpu=2559.53    
+833 BladesAndFilm_w833.egsdat      ncase=8999991        cpu=2555.77    
+834 BladesAndFilm_w834.egsdat      ncase=8999991        cpu=2578.48    
+835 BladesAndFilm_w835.egsdat      ncase=8999991        cpu=2584.01    
+836 BladesAndFilm_w836.egsdat      ncase=8999991        cpu=2543.28    
+837 BladesAndFilm_w837.egsdat      ncase=8999991        cpu=2577.31    
+838 BladesAndFilm_w838.egsdat      ncase=8999991        cpu=2564.26    
+839 BladesAndFilm_w839.egsdat      ncase=8999991        cpu=2617.54    
+840 BladesAndFilm_w840.egsdat      ncase=8999991        cpu=2548.14    
+841 BladesAndFilm_w841.egsdat      ncase=8999991        cpu=2609.46    
+842 BladesAndFilm_w842.egsdat      ncase=7999992        cpu=2382.71    
+843 BladesAndFilm_w843.egsdat      ncase=8999991        cpu=2490.54    
+844 BladesAndFilm_w844.egsdat      ncase=8999991        cpu=2533.27    
+845 BladesAndFilm_w845.egsdat      ncase=8999991        cpu=2481.11    
+846 BladesAndFilm_w846.egsdat      ncase=8999991        cpu=2492.94    
+847 BladesAndFilm_w847.egsdat      ncase=8999991        cpu=2465.36    
+848 BladesAndFilm_w848.egsdat      ncase=8999991        cpu=2527.15    
+849 BladesAndFilm_w849.egsdat      ncase=8999991        cpu=2461.18    
+850 BladesAndFilm_w850.egsdat      ncase=8999991        cpu=2475.65    
+851 BladesAndFilm_w851.egsdat      ncase=8999991        cpu=2512.29    
+852 BladesAndFilm_w852.egsdat      ncase=8999991        cpu=2509.25    
+853 BladesAndFilm_w853.egsdat      ncase=8999991        cpu=2465.78    
+854 BladesAndFilm_w854.egsdat      ncase=8999991        cpu=2511.56    
+855 BladesAndFilm_w855.egsdat      ncase=8999991        cpu=2536.10    
+856 BladesAndFilm_w856.egsdat      ncase=8999991        cpu=2478.40    
+857 BladesAndFilm_w857.egsdat      ncase=8999991        cpu=2497.86    
+858 BladesAndFilm_w858.egsdat      ncase=8999991        cpu=2534.06    
+859 BladesAndFilm_w859.egsdat      ncase=8999991        cpu=2506.90    
+860 BladesAndFilm_w860.egsdat      ncase=8999991        cpu=2499.17    
+861 BladesAndFilm_w861.egsdat      ncase=8999991        cpu=2508.32    
+862 BladesAndFilm_w862.egsdat      ncase=8999991        cpu=2545.27    
+863 BladesAndFilm_w863.egsdat      ncase=8999991        cpu=2526.69    
+864 BladesAndFilm_w864.egsdat      ncase=8999991        cpu=2525.94    
+865 BladesAndFilm_w865.egsdat      ncase=8999991        cpu=2541.56    
+866 BladesAndFilm_w866.egsdat      ncase=8999991        cpu=2538.77    
+867 BladesAndFilm_w867.egsdat      ncase=8999991        cpu=2532.10    
+868 BladesAndFilm_w868.egsdat      ncase=8999991        cpu=2565.31    
+869 BladesAndFilm_w869.egsdat      ncase=8999991        cpu=2525.26    
+870 BladesAndFilm_w870.egsdat      ncase=8999991        cpu=2534.55    
+871 BladesAndFilm_w871.egsdat      ncase=8999991        cpu=2533.87    
+872 BladesAndFilm_w872.egsdat      ncase=8999991        cpu=2529.26    
+873 BladesAndFilm_w873.egsdat      ncase=8999991        cpu=2534.95    
+874 BladesAndFilm_w874.egsdat      ncase=8999991        cpu=2532.31    
+875 BladesAndFilm_w875.egsdat      ncase=8999991        cpu=2527.56    
+876 BladesAndFilm_w876.egsdat      ncase=8999991        cpu=2510.18    
+877 BladesAndFilm_w877.egsdat      ncase=8999991        cpu=2536.30    
+878 BladesAndFilm_w878.egsdat      ncase=8999991        cpu=2572.00    
+879 BladesAndFilm_w879.egsdat      ncase=8999991        cpu=2542.70    
+880 BladesAndFilm_w880.egsdat      ncase=8999991        cpu=2534.00    
+881 BladesAndFilm_w881.egsdat      ncase=8999991        cpu=2517.62    
+882 BladesAndFilm_w882.egsdat      ncase=8999991        cpu=2553.25    
+883 BladesAndFilm_w883.egsdat      ncase=8999991        cpu=2529.30    
+884 BladesAndFilm_w884.egsdat      ncase=8999991        cpu=2528.46    
+885 BladesAndFilm_w885.egsdat      ncase=8999991        cpu=2553.53    
+886 BladesAndFilm_w886.egsdat      ncase=8999991        cpu=2503.54    
+887 BladesAndFilm_w887.egsdat      ncase=8999991        cpu=2518.37    
+888 BladesAndFilm_w888.egsdat      ncase=8999991        cpu=2521.22    
+889 BladesAndFilm_w889.egsdat      ncase=8999991        cpu=2546.87    
+890 BladesAndFilm_w890.egsdat      ncase=8999991        cpu=2523.89    
+891 BladesAndFilm_w891.egsdat      ncase=8999991        cpu=2528.56    
+892 BladesAndFilm_w892.egsdat      ncase=8999991        cpu=2535.47    
+893 BladesAndFilm_w893.egsdat      ncase=8999991        cpu=2540.05    
+894 BladesAndFilm_w894.egsdat      ncase=7999992        cpu=2291.06    
+895 BladesAndFilm_w895.egsdat      ncase=8999991        cpu=2510.33    
+896 BladesAndFilm_w896.egsdat      ncase=8999991        cpu=2539.74    
+897 BladesAndFilm_w897.egsdat      ncase=8999991        cpu=2542.16    
+898 BladesAndFilm_w898.egsdat      ncase=8999991        cpu=2509.44    
+899 BladesAndFilm_w899.egsdat      ncase=8999991        cpu=2520.15    
+900 BladesAndFilm_w900.egsdat      ncase=8999991        cpu=2543.89    
+901 BladesAndFilm_w901.egsdat      ncase=8999991        cpu=2536.15    
+902 BladesAndFilm_w902.egsdat      ncase=7999992        cpu=2326.24    
+903 BladesAndFilm_w903.egsdat      ncase=7999992        cpu=2330.31    
+904 BladesAndFilm_w904.egsdat      ncase=7999992        cpu=2329.74    
+905 BladesAndFilm_w905.egsdat      ncase=7999992        cpu=2478.43    
+906 BladesAndFilm_w906.egsdat      ncase=7999992        cpu=2321.01    
+907 BladesAndFilm_w907.egsdat      ncase=7999992        cpu=2320.46    
+908 BladesAndFilm_w908.egsdat      ncase=7999992        cpu=2332.39    
+909 BladesAndFilm_w909.egsdat      ncase=7999992        cpu=2336.78    
+910 BladesAndFilm_w910.egsdat      ncase=7999992        cpu=2346.68    
+911 BladesAndFilm_w911.egsdat      ncase=7999992        cpu=2333.85    
+912 BladesAndFilm_w912.egsdat      ncase=7999992        cpu=2364.50    
+913 BladesAndFilm_w913.egsdat      ncase=7999992        cpu=2351.14    
+914 BladesAndFilm_w914.egsdat      ncase=7999992        cpu=2403.31    
+915 BladesAndFilm_w915.egsdat      ncase=7999992        cpu=2325.84    
+916 BladesAndFilm_w916.egsdat      ncase=7999992        cpu=2325.89    
+917 BladesAndFilm_w917.egsdat      ncase=7999992        cpu=2318.39    
+918 BladesAndFilm_w918.egsdat      ncase=7999992        cpu=2359.34    
+919 BladesAndFilm_w919.egsdat      ncase=7999992        cpu=2320.21    
+920 BladesAndFilm_w920.egsdat      ncase=7999992        cpu=2317.77    
+921 BladesAndFilm_w921.egsdat      ncase=7999992        cpu=2342.35    
+922 BladesAndFilm_w922.egsdat      ncase=7999992        cpu=2285.53    
+923 BladesAndFilm_w923.egsdat      ncase=7999992        cpu=2253.31    
+924 BladesAndFilm_w924.egsdat      ncase=7999992        cpu=2280.70    
+925 BladesAndFilm_w925.egsdat      ncase=7999992        cpu=2318.60    
+926 BladesAndFilm_w926.egsdat      ncase=7999992        cpu=2286.66    
+927 BladesAndFilm_w927.egsdat      ncase=7999992        cpu=2247.38    
+928 BladesAndFilm_w928.egsdat      ncase=7999992        cpu=2285.90    
+929 BladesAndFilm_w929.egsdat      ncase=7999992        cpu=2273.57    
+930 BladesAndFilm_w930.egsdat      ncase=7999992        cpu=2251.41    
+931 BladesAndFilm_w931.egsdat      ncase=7999992        cpu=2306.31    
+932 BladesAndFilm_w932.egsdat      ncase=7999992        cpu=2257.04    
+933 BladesAndFilm_w933.egsdat      ncase=7999992        cpu=2253.88    
+934 BladesAndFilm_w934.egsdat      ncase=7999992        cpu=2252.35    
+935 BladesAndFilm_w935.egsdat      ncase=7999992        cpu=2255.58    
+936 BladesAndFilm_w936.egsdat      ncase=7999992        cpu=2263.91    
+937 BladesAndFilm_w937.egsdat      ncase=7999992        cpu=2273.60    
+938 BladesAndFilm_w938.egsdat      ncase=7999992        cpu=2263.84    
+939 BladesAndFilm_w939.egsdat      ncase=7999992        cpu=2320.84    
+940 BladesAndFilm_w940.egsdat      ncase=7999992        cpu=2329.65    
+941 BladesAndFilm_w941.egsdat      ncase=7999992        cpu=2273.44    
+942 BladesAndFilm_w942.egsdat      ncase=8999991        cpu=2466.27    
+943 BladesAndFilm_w943.egsdat      ncase=8999991        cpu=2479.22    
+944 BladesAndFilm_w944.egsdat      ncase=7999992        cpu=2262.81    
+945 BladesAndFilm_w945.egsdat      ncase=7999992        cpu=2233.17    
+946 BladesAndFilm_w946.egsdat      ncase=8999991        cpu=2454.05    
+947 BladesAndFilm_w947.egsdat      ncase=8999991        cpu=2480.92    
+948 BladesAndFilm_w948.egsdat      ncase=8999991        cpu=2470.61    
+949 BladesAndFilm_w949.egsdat      ncase=7999992        cpu=2248.12    
+950 BladesAndFilm_w950.egsdat      ncase=7999992        cpu=2268.96    
+951 BladesAndFilm_w951.egsdat      ncase=7999992        cpu=2246.80    
+952 BladesAndFilm_w952.egsdat      ncase=7999992        cpu=2226.04    
+953 BladesAndFilm_w953.egsdat      ncase=8999991        cpu=2463.61    
+954 BladesAndFilm_w954.egsdat      ncase=8999991        cpu=2454.96    
+955 BladesAndFilm_w955.egsdat      ncase=8999991        cpu=2466.94    
+956 BladesAndFilm_w956.egsdat      ncase=7999992        cpu=2268.73    
+957 BladesAndFilm_w957.egsdat      ncase=7999992        cpu=2229.69    
+958 BladesAndFilm_w958.egsdat      ncase=7999992        cpu=2229.77    
+959 BladesAndFilm_w959.egsdat      ncase=8999991        cpu=2463.66    
+960 BladesAndFilm_w960.egsdat      ncase=7999992        cpu=2260.79    
+961 BladesAndFilm_w961.egsdat      ncase=8999991        cpu=2463.69    
+962 BladesAndFilm_w962.egsdat      ncase=8999991        cpu=2460.90    
+963 BladesAndFilm_w963.egsdat      ncase=7999992        cpu=2239.32    
+964 BladesAndFilm_w964.egsdat      ncase=7999992        cpu=2227.40    
+965 BladesAndFilm_w965.egsdat      ncase=8999991        cpu=2441.62    
+966 BladesAndFilm_w966.egsdat      ncase=7999992        cpu=2212.78    
+967 BladesAndFilm_w967.egsdat      ncase=7999992        cpu=2248.35    
+968 BladesAndFilm_w968.egsdat      ncase=7999992        cpu=2218.54    
+969 BladesAndFilm_w969.egsdat      ncase=8999991        cpu=2444.85    
+970 BladesAndFilm_w970.egsdat      ncase=8999991        cpu=2448.27    
+971 BladesAndFilm_w971.egsdat      ncase=7999992        cpu=2199.89    
+972 BladesAndFilm_w972.egsdat      ncase=7999992        cpu=2245.61    
+973 BladesAndFilm_w973.egsdat      ncase=8999991        cpu=2446.64    
+974 BladesAndFilm_w974.egsdat      ncase=8999991        cpu=2444.74    
+975 BladesAndFilm_w975.egsdat      ncase=7999992        cpu=2213.52    
+976 BladesAndFilm_w976.egsdat      ncase=7999992        cpu=2206.30    
+977 BladesAndFilm_w977.egsdat      ncase=7999992        cpu=2218.62    
+978 BladesAndFilm_w978.egsdat      ncase=7999992        cpu=2199.60    
+979 BladesAndFilm_w979.egsdat      ncase=7999992        cpu=2235.87    
+980 BladesAndFilm_w980.egsdat      ncase=7999992        cpu=2206.57    
+981 BladesAndFilm_w981.egsdat      ncase=7999992        cpu=2193.91    
+982 BladesAndFilm_w982.egsdat      ncase=7999992        cpu=2346.52    
+983 BladesAndFilm_w983.egsdat      ncase=7999992        cpu=2306.08    
+984 BladesAndFilm_w984.egsdat      ncase=7999992        cpu=2313.11    
+985 BladesAndFilm_w985.egsdat      ncase=7999992        cpu=2304.61    
+986 BladesAndFilm_w986.egsdat      ncase=7999992        cpu=2309.15    
+987 BladesAndFilm_w987.egsdat      ncase=7999992        cpu=2303.50    
+988 BladesAndFilm_w988.egsdat      ncase=7999992        cpu=2297.08    
+989 BladesAndFilm_w989.egsdat      ncase=7999992        cpu=2320.42    
+990 BladesAndFilm_w990.egsdat      ncase=7999992        cpu=2292.42    
+991 BladesAndFilm_w991.egsdat      ncase=7999992        cpu=2304.94    
+992 BladesAndFilm_w992.egsdat      ncase=7999992        cpu=2337.76    
+993 BladesAndFilm_w993.egsdat      ncase=7999992        cpu=2325.90    
+994 BladesAndFilm_w994.egsdat      ncase=7999992        cpu=2305.53    
+995 BladesAndFilm_w995.egsdat      ncase=7999992        cpu=2307.05    
+996 BladesAndFilm_w996.egsdat      ncase=7999992        cpu=2286.67    
+997 BladesAndFilm_w997.egsdat      ncase=7999992        cpu=2300.74    
+998 BladesAndFilm_w998.egsdat      ncase=7999992        cpu=2359.20    
+999 BladesAndFilm_w999.egsdat      ncase=7999992        cpu=2365.99    
+1000 BladesAndFilm_w1000.egsdat     ncase=7999992        cpu=2372.21    
+=======================================================================
+                            Total ncase=9999990000     cpu=2813339.72 
+
+
+
+Finished simulation
+
+Total cpu time for this run:            1.44 (sec.) 0.0004(hours)
+CPU time including previous runs:       2813341.16 (sec.) 781.4837 (hours)
+Histories per hour:                     1.27962e+07   
+Number of random numbers used:          29261971123488
+Number of electron CH steps:            2.03586e+11   
+Number of all electron steps:           6.51431e+12   
+
+
+ last case = 302933730 Etot = 1.51542e+07
+
+
+======================================================
+ Energy fractions
+======================================================
+The first and last items in the following list of energy fractions are the reflected and transmitted energy, respectively. These two values are only meaningful if the source is directed in the positive z-direction. The remaining values are the deposited energy fractions in the regions of the geometry, but notice that the identifying index is the region number offset by 1 (ir+1).
+
+ir+1 | Reflected, deposited, or transmitted energy fraction for 302933730 particles:
+
+  0  5.755996e-02 +/- 9.973156e-06  
+  1  9.847153e-08 +/- 2.497309e-09  
+  2  1.211688e-07 +/- 2.681835e-09  
+  3  1.390430e-07 +/- 3.462567e-09  
+  4  1.616431e-07 +/- 3.278544e-09  
+  5  2.232094e-07 +/- 3.774766e-09  
+  6  2.756353e-07 +/- 4.137129e-09  
+  7  6.915234e-07 +/- 6.493512e-09  
+  8  1.499644e-06 +/- 9.652197e-09  
+  9  2.079389e-06 +/- 1.134004e-08  
+  10  1.925457e-06 +/- 1.091633e-08  
+  11  2.098968e-06 +/- 1.134090e-08  
+  12  2.005833e-06 +/- 1.105243e-08  
+  13  2.226532e-06 +/- 1.170965e-08  
+  14  2.042784e-06 +/- 1.128548e-08  
+  15  2.096705e-06 +/- 1.136044e-08  
+  16  2.064621e-06 +/- 1.131182e-08  
+  17  2.194857e-06 +/- 1.173749e-08  
+  18  2.096882e-06 +/- 1.124831e-08  
+  19  2.174267e-06 +/- 1.155284e-08  
+  20  2.125013e-06 +/- 1.143066e-08  
+  21  2.268098e-06 +/- 1.181194e-08  
+  22  2.172609e-06 +/- 1.151191e-08  
+  23  2.076801e-06 +/- 1.133072e-08  
+  24  2.089879e-06 +/- 1.134632e-08  
+  25  2.116903e-06 +/- 1.142648e-08  
+  26  2.203180e-06 +/- 1.163052e-08  
+  27  2.090088e-06 +/- 1.139427e-08  
+  28  2.034489e-06 +/- 1.110254e-08  
+  29  2.039591e-06 +/- 1.127089e-08  
+  30  2.015840e-06 +/- 1.115321e-08  
+  31  1.956278e-06 +/- 1.100040e-08  
+  32  2.004397e-06 +/- 1.113345e-08  
+  33  1.502650e-06 +/- 9.677264e-09  
+  34  7.362938e-07 +/- 6.823596e-09  
+  35  2.887719e-07 +/- 4.105443e-09  
+  36  2.048416e-07 +/- 3.483517e-09  
+  37  1.818320e-07 +/- 3.689227e-09  
+  38  1.369591e-07 +/- 3.398210e-09  
+  39  9.948963e-08 +/- 2.885545e-09  
+  40  8.769313e-08 +/- 2.567381e-09  
+  41  0.000000e+00 +/- 0.000000e+00  
+  42  0.000000e+00 +/- 0.000000e+00  
+  43  0.000000e+00 +/- 0.000000e+00  
+  44  0.000000e+00 +/- 0.000000e+00  
+  45  0.000000e+00 +/- 0.000000e+00  
+  46  0.000000e+00 +/- 0.000000e+00  
+  47  0.000000e+00 +/- 0.000000e+00  
+  48  0.000000e+00 +/- 0.000000e+00  
+  49  0.000000e+00 +/- 0.000000e+00  
+  50  0.000000e+00 +/- 0.000000e+00  
+  51  0.000000e+00 +/- 0.000000e+00  
+  52  0.000000e+00 +/- 0.000000e+00  
+  53  0.000000e+00 +/- 0.000000e+00  
+  54  0.000000e+00 +/- 0.000000e+00  
+  55  0.000000e+00 +/- 0.000000e+00  
+  56  0.000000e+00 +/- 0.000000e+00  
+  57  0.000000e+00 +/- 0.000000e+00  
+  58  0.000000e+00 +/- 0.000000e+00  
+  59  0.000000e+00 +/- 0.000000e+00  
+  60  0.000000e+00 +/- 0.000000e+00  
+  61  0.000000e+00 +/- 0.000000e+00  
+  62  0.000000e+00 +/- 0.000000e+00  
+  63  0.000000e+00 +/- 0.000000e+00  
+  64  0.000000e+00 +/- 0.000000e+00  
+  65  0.000000e+00 +/- 0.000000e+00  
+  66  0.000000e+00 +/- 0.000000e+00  
+  67  0.000000e+00 +/- 0.000000e+00  
+  68  0.000000e+00 +/- 0.000000e+00  
+  69  0.000000e+00 +/- 0.000000e+00  
+  70  0.000000e+00 +/- 0.000000e+00  
+  71  0.000000e+00 +/- 0.000000e+00  
+  72  0.000000e+00 +/- 0.000000e+00  
+  73  0.000000e+00 +/- 0.000000e+00  
+  74  0.000000e+00 +/- 0.000000e+00  
+  75  0.000000e+00 +/- 0.000000e+00  
+  76  0.000000e+00 +/- 0.000000e+00  
+  77  0.000000e+00 +/- 0.000000e+00  
+  78  0.000000e+00 +/- 0.000000e+00  
+  79  0.000000e+00 +/- 0.000000e+00  
+  80  0.000000e+00 +/- 0.000000e+00  
+  81  0.000000e+00 +/- 0.000000e+00  
+  82  2.230170e-01 +/- 2.563969e-05  
+  83  1.392482e-04 +/- 8.224640e-08  
+  84  3.842817e-01 +/- 2.956293e-05  
+  85  3.090419e-03 +/- 2.359405e-06  
+  86  6.859455e-05 +/- 4.444824e-08  
+  87  3.065440e-03 +/- 2.329891e-06  
+  88  0.000000e+00 +/- 0.000000e+00  
+  89  0.000000e+00 +/- 0.000000e+00  
+  90  0.000000e+00 +/- 0.000000e+00  
+  91  8.880594e-02 +/- 1.699367e-05  
+  92  4.076314e-05 +/- 4.186247e-08  
+  93  8.994643e-02 +/- 1.711262e-05  
+  94  1.081410e-03 +/- 1.408797e-06  
+  95  1.860204e-05 +/- 2.267014e-08  
+  96  1.089728e-03 +/- 1.415292e-06  
+  97  0.000000e+00 +/- 0.000000e+00  
+  98  0.000000e+00 +/- 0.000000e+00  
+  99  0.000000e+00 +/- 0.000000e+00  
+  100  3.319803e-06 +/- 2.270475e-08  
+  101  7.415442e-05 +/- 9.889706e-08  
+  102  3.451021e-06 +/- 2.346691e-08  
+  103  1.013939e-02 +/- 5.552115e-06  
+  104  1.558423e-04 +/- 7.260593e-08  
+  105  1.031111e-02 +/- 5.617274e-06  
+  106  3.334229e-06 +/- 2.264286e-08  
+  107  7.410829e-05 +/- 9.620005e-08  
+  108  3.330766e-06 +/- 2.238055e-08  
+  109  1.368020e-03 +/- 3.828488e-07  
+  110  0.000000e+00 +/- 0.000000e+00  
+  111  0.000000e+00 +/- 0.000000e+00  
+  112  0.000000e+00 +/- 0.000000e+00  
+  113  0.000000e+00 +/- 0.000000e+00  
+  114  0.000000e+00 +/- 0.000000e+00  
+  115  0.000000e+00 +/- 0.000000e+00  
+  116  0.000000e+00 +/- 0.000000e+00  
+  117  0.000000e+00 +/- 0.000000e+00  
+  118  0.000000e+00 +/- 0.000000e+00  
+  119  0.000000e+00 +/- 0.000000e+00  
+  120  0.000000e+00 +/- 0.000000e+00  
+  121  0.000000e+00 +/- 0.000000e+00  
+  122  0.000000e+00 +/- 0.000000e+00  
+  123  0.000000e+00 +/- 0.000000e+00  
+  124  0.000000e+00 +/- 0.000000e+00  
+  125  0.000000e+00 +/- 0.000000e+00  
+  126  0.000000e+00 +/- 0.000000e+00  
+  127  0.000000e+00 +/- 0.000000e+00  
+  128  0.000000e+00 +/- 0.000000e+00  
+  129  0.000000e+00 +/- 0.000000e+00  
+  130  0.000000e+00 +/- 0.000000e+00  
+  131  0.000000e+00 +/- 0.000000e+00  
+  132  0.000000e+00 +/- 0.000000e+00  
+  133  0.000000e+00 +/- 0.000000e+00  
+  134  0.000000e+00 +/- 0.000000e+00  
+  135  0.000000e+00 +/- 0.000000e+00  
+  136  8.523415e-04 +/- 1.727839e-07  
+  137  0.000000e+00 +/- 0.000000e+00  
+  138  0.000000e+00 +/- 0.000000e+00  
+  139  0.000000e+00 +/- 0.000000e+00  
+  140  0.000000e+00 +/- 0.000000e+00  
+  141  0.000000e+00 +/- 0.000000e+00  
+  142  0.000000e+00 +/- 0.000000e+00  
+  143  0.000000e+00 +/- 0.000000e+00  
+  144  0.000000e+00 +/- 0.000000e+00  
+  145  0.000000e+00 +/- 0.000000e+00  
+  146  0.000000e+00 +/- 0.000000e+00  
+  147  0.000000e+00 +/- 0.000000e+00  
+  148  0.000000e+00 +/- 0.000000e+00  
+  149  0.000000e+00 +/- 0.000000e+00  
+  150  0.000000e+00 +/- 0.000000e+00  
+  151  0.000000e+00 +/- 0.000000e+00  
+  152  0.000000e+00 +/- 0.000000e+00  
+  153  0.000000e+00 +/- 0.000000e+00  
+  154  0.000000e+00 +/- 0.000000e+00  
+  155  0.000000e+00 +/- 0.000000e+00  
+  156  0.000000e+00 +/- 0.000000e+00  
+  157  0.000000e+00 +/- 0.000000e+00  
+  158  0.000000e+00 +/- 0.000000e+00  
+  159  0.000000e+00 +/- 0.000000e+00  
+  160  0.000000e+00 +/- 0.000000e+00  
+  161  0.000000e+00 +/- 0.000000e+00  
+  162  0.000000e+00 +/- 0.000000e+00  
+  163  1.004633e-01 +/- 1.354129e-05  
+  164  0.000000e+00 +/- 0.000000e+00  
+  165  0.000000e+00 +/- 0.000000e+00  
+  166  0.000000e+00 +/- 0.000000e+00  
+  167  0.000000e+00 +/- 0.000000e+00  
+  168  0.000000e+00 +/- 0.000000e+00  
+  169  0.000000e+00 +/- 0.000000e+00  
+  170  0.000000e+00 +/- 0.000000e+00  
+  171  0.000000e+00 +/- 0.000000e+00  
+  172  0.000000e+00 +/- 0.000000e+00  
+  173  0.000000e+00 +/- 0.000000e+00  
+  174  0.000000e+00 +/- 0.000000e+00  
+  175  0.000000e+00 +/- 0.000000e+00  
+  176  0.000000e+00 +/- 0.000000e+00  
+  177  0.000000e+00 +/- 0.000000e+00  
+  178  0.000000e+00 +/- 0.000000e+00  
+  179  0.000000e+00 +/- 0.000000e+00  
+  180  0.000000e+00 +/- 0.000000e+00  
+  181  0.000000e+00 +/- 0.000000e+00  
+  182  0.000000e+00 +/- 0.000000e+00  
+  183  0.000000e+00 +/- 0.000000e+00  
+  184  0.000000e+00 +/- 0.000000e+00  
+  185  0.000000e+00 +/- 0.000000e+00  
+  186  0.000000e+00 +/- 0.000000e+00  
+  187  0.000000e+00 +/- 0.000000e+00  
+  188  0.000000e+00 +/- 0.000000e+00  
+  189  0.000000e+00 +/- 0.000000e+00  
+  190  0.000000e+00 +/- 0.000000e+00  
+  191  0.000000e+00 +/- 0.000000e+00  
+  192  0.000000e+00 +/- 0.000000e+00  
+  193  0.000000e+00 +/- 0.000000e+00  
+  194  0.000000e+00 +/- 0.000000e+00  
+  195  0.000000e+00 +/- 0.000000e+00  
+  196  0.000000e+00 +/- 0.000000e+00  
+  197  0.000000e+00 +/- 0.000000e+00  
+  198  0.000000e+00 +/- 0.000000e+00  
+  199  0.000000e+00 +/- 0.000000e+00  
+  200  0.000000e+00 +/- 0.000000e+00  
+  201  0.000000e+00 +/- 0.000000e+00  
+  202  0.000000e+00 +/- 0.000000e+00  
+  203  0.000000e+00 +/- 0.000000e+00  
+  204  0.000000e+00 +/- 0.000000e+00  
+  205  0.000000e+00 +/- 0.000000e+00  
+  206  0.000000e+00 +/- 0.000000e+00  
+  207  0.000000e+00 +/- 0.000000e+00  
+  208  0.000000e+00 +/- 0.000000e+00  
+  209  0.000000e+00 +/- 0.000000e+00  
+  210  0.000000e+00 +/- 0.000000e+00  
+  211  0.000000e+00 +/- 0.000000e+00  
+  212  0.000000e+00 +/- 0.000000e+00  
+  213  0.000000e+00 +/- 0.000000e+00  
+  214  0.000000e+00 +/- 0.000000e+00  
+  215  0.000000e+00 +/- 0.000000e+00  
+  216  0.000000e+00 +/- 0.000000e+00  
+  217  0.000000e+00 +/- 0.000000e+00  
+  218  0.000000e+00 +/- 0.000000e+00  
+  219  0.000000e+00 +/- 0.000000e+00  
+  220  0.000000e+00 +/- 0.000000e+00  
+  221  0.000000e+00 +/- 0.000000e+00  
+  222  0.000000e+00 +/- 0.000000e+00  
+  223  0.000000e+00 +/- 0.000000e+00  
+  224  0.000000e+00 +/- 0.000000e+00  
+  225  0.000000e+00 +/- 0.000000e+00  
+  226  0.000000e+00 +/- 0.000000e+00  
+  227  0.000000e+00 +/- 0.000000e+00  
+  228  0.000000e+00 +/- 0.000000e+00  
+  229  0.000000e+00 +/- 0.000000e+00  
+  230  0.000000e+00 +/- 0.000000e+00  
+  231  0.000000e+00 +/- 0.000000e+00  
+  232  0.000000e+00 +/- 0.000000e+00  
+  233  0.000000e+00 +/- 0.000000e+00  
+  234  0.000000e+00 +/- 0.000000e+00  
+  235  0.000000e+00 +/- 0.000000e+00  
+  236  0.000000e+00 +/- 0.000000e+00  
+  237  0.000000e+00 +/- 0.000000e+00  
+  238  0.000000e+00 +/- 0.000000e+00  
+  239  0.000000e+00 +/- 0.000000e+00  
+  240  0.000000e+00 +/- 0.000000e+00  
+  241  0.000000e+00 +/- 0.000000e+00  
+  242  0.000000e+00 +/- 0.000000e+00  
+  243  0.000000e+00 +/- 0.000000e+00  
+  244  1.250470e-03 +/- 6.104506e-07  
+  245  0.000000e+00 +/- 0.000000e+00  
+  246  0.000000e+00 +/- 0.000000e+00  
+  247  0.000000e+00 +/- 0.000000e+00  
+  248  0.000000e+00 +/- 0.000000e+00  
+  249  0.000000e+00 +/- 0.000000e+00  
+  250  0.000000e+00 +/- 0.000000e+00  
+  251  0.000000e+00 +/- 0.000000e+00  
+  252  0.000000e+00 +/- 0.000000e+00  
+  253  0.000000e+00 +/- 0.000000e+00  
+  254  0.000000e+00 +/- 0.000000e+00  
+  255  0.000000e+00 +/- 0.000000e+00  
+  256  0.000000e+00 +/- 0.000000e+00  
+  257  0.000000e+00 +/- 0.000000e+00  
+  258  0.000000e+00 +/- 0.000000e+00  
+  259  0.000000e+00 +/- 0.000000e+00  
+  260  0.000000e+00 +/- 0.000000e+00  
+  261  0.000000e+00 +/- 0.000000e+00  
+  262  0.000000e+00 +/- 0.000000e+00  
+  263  0.000000e+00 +/- 0.000000e+00  
+  264  0.000000e+00 +/- 0.000000e+00  
+  265  0.000000e+00 +/- 0.000000e+00  
+  266  0.000000e+00 +/- 0.000000e+00  
+  267  0.000000e+00 +/- 0.000000e+00  
+  268  0.000000e+00 +/- 0.000000e+00  
+  269  0.000000e+00 +/- 0.000000e+00  
+  270  0.000000e+00 +/- 0.000000e+00  
+  271  0.000000e+00 +/- 0.000000e+00  
+  272  0.000000e+00 +/- 0.000000e+00  
+  273  0.000000e+00 +/- 0.000000e+00  
+  274  0.000000e+00 +/- 0.000000e+00  
+  275  0.000000e+00 +/- 0.000000e+00  
+  276  0.000000e+00 +/- 0.000000e+00  
+  277  0.000000e+00 +/- 0.000000e+00  
+  278  0.000000e+00 +/- 0.000000e+00  
+  279  0.000000e+00 +/- 0.000000e+00  
+  280  0.000000e+00 +/- 0.000000e+00  
+  281  0.000000e+00 +/- 0.000000e+00  
+  282  0.000000e+00 +/- 0.000000e+00  
+  283  0.000000e+00 +/- 0.000000e+00  
+  284  0.000000e+00 +/- 0.000000e+00  
+  285  0.000000e+00 +/- 0.000000e+00  
+  286  0.000000e+00 +/- 0.000000e+00  
+  287  0.000000e+00 +/- 0.000000e+00  
+  288  0.000000e+00 +/- 0.000000e+00  
+  289  0.000000e+00 +/- 0.000000e+00  
+  290  0.000000e+00 +/- 0.000000e+00  
+  291  0.000000e+00 +/- 0.000000e+00  
+  292  0.000000e+00 +/- 0.000000e+00  
+  293  0.000000e+00 +/- 0.000000e+00  
+  294  0.000000e+00 +/- 0.000000e+00  
+  295  0.000000e+00 +/- 0.000000e+00  
+  296  0.000000e+00 +/- 0.000000e+00  
+  297  0.000000e+00 +/- 0.000000e+00  
+  298  0.000000e+00 +/- 0.000000e+00  
+  299  0.000000e+00 +/- 0.000000e+00  
+  300  0.000000e+00 +/- 0.000000e+00  
+  301  0.000000e+00 +/- 0.000000e+00  
+  302  0.000000e+00 +/- 0.000000e+00  
+  303  0.000000e+00 +/- 0.000000e+00  
+  304  0.000000e+00 +/- 0.000000e+00  
+  305  0.000000e+00 +/- 0.000000e+00  
+  306  0.000000e+00 +/- 0.000000e+00  
+  307  0.000000e+00 +/- 0.000000e+00  
+  308  0.000000e+00 +/- 0.000000e+00  
+  309  0.000000e+00 +/- 0.000000e+00  
+  310  0.000000e+00 +/- 0.000000e+00  
+  311  0.000000e+00 +/- 0.000000e+00  
+  312  0.000000e+00 +/- 0.000000e+00  
+  313  0.000000e+00 +/- 0.000000e+00  
+  314  0.000000e+00 +/- 0.000000e+00  
+  315  0.000000e+00 +/- 0.000000e+00  
+  316  0.000000e+00 +/- 0.000000e+00  
+  317  0.000000e+00 +/- 0.000000e+00  
+  318  0.000000e+00 +/- 0.000000e+00  
+  319  0.000000e+00 +/- 0.000000e+00  
+  320  0.000000e+00 +/- 0.000000e+00  
+  321  0.000000e+00 +/- 0.000000e+00  
+  322  0.000000e+00 +/- 0.000000e+00  
+  323  0.000000e+00 +/- 0.000000e+00  
+  324  0.000000e+00 +/- 0.000000e+00  
+  325  2.303604e-02 +/- 6.304306e-06  
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     0
+   Total tracks scored:     0
+   Still being scored:      0
+   Output file name:        /home/rsmina/EGSnrc/egs_home/TB/BladesAndFilm.ptracks
+
+
+======================================================
+Dose Scoring Object(profilexFilm)
+======================================================
+=> last case = 302933730 fluence = 2.90633e+12
+
+==> Summary of region dosimetry (per fluence)
+ ir medium       rho/[g/cm3]  V/cm3    Edep/[MeV*cm2]            D/[Gy*cm2]         
+------------------------------------------------------------------------------------
+  0 film          1.140     1.0000 5.1345e-13 +/- 2.536  % 7.2153e-23 +/- 2.536  %
+  1 film          1.140     1.0000 6.3180e-13 +/- 2.213  % 8.8785e-23 +/- 2.213  %
+  2 film          1.140     1.0000 7.2500e-13 +/- 2.490  % 1.0188e-22 +/- 2.490  %
+  3 film          1.140     1.0000 8.4284e-13 +/- 2.028  % 1.1844e-22 +/- 2.028  %
+  4 film          1.140     1.0000 1.1639e-12 +/- 1.691  % 1.6355e-22 +/- 1.691  %
+  5 film          1.140     1.0000 1.4372e-12 +/- 1.501  % 2.0197e-22 +/- 1.501  %
+  6 film          1.140     1.0000 3.6058e-12 +/- 0.939  % 5.0670e-22 +/- 0.939  %
+  7 film          1.140     1.0000 7.8195e-12 +/- 0.644  % 1.0988e-21 +/- 0.644  %
+  8 film          1.140     1.0000 1.0842e-11 +/- 0.545  % 1.5236e-21 +/- 0.545  %
+  9 film          1.140     1.0000 1.0040e-11 +/- 0.567  % 1.4108e-21 +/- 0.567  %
+ 10 film          1.140     1.0000 1.0944e-11 +/- 0.540  % 1.5380e-21 +/- 0.540  %
+ 11 film          1.140     1.0000 1.0459e-11 +/- 0.551  % 1.4697e-21 +/- 0.551  %
+ 12 film          1.140     1.0000 1.1610e-11 +/- 0.526  % 1.6315e-21 +/- 0.526  %
+ 13 film          1.140     1.0000 1.0652e-11 +/- 0.552  % 1.4968e-21 +/- 0.552  %
+ 14 film          1.140     1.0000 1.0933e-11 +/- 0.542  % 1.5363e-21 +/- 0.542  %
+ 15 film          1.140     1.0000 1.0765e-11 +/- 0.548  % 1.5128e-21 +/- 0.548  %
+ 16 film          1.140     1.0000 1.1444e-11 +/- 0.535  % 1.6082e-21 +/- 0.535  %
+ 17 film          1.140     1.0000 1.0934e-11 +/- 0.536  % 1.5365e-21 +/- 0.536  %
+ 18 film          1.140     1.0000 1.1337e-11 +/- 0.531  % 1.5932e-21 +/- 0.531  %
+ 19 film          1.140     1.0000 1.1080e-11 +/- 0.538  % 1.5571e-21 +/- 0.538  %
+ 20 film          1.140     1.0000 1.1826e-11 +/- 0.521  % 1.6619e-21 +/- 0.521  %
+ 21 film          1.140     1.0000 1.1328e-11 +/- 0.530  % 1.5919e-21 +/- 0.530  %
+ 22 film          1.140     1.0000 1.0829e-11 +/- 0.546  % 1.5217e-21 +/- 0.546  %
+ 23 film          1.140     1.0000 1.0897e-11 +/- 0.543  % 1.5313e-21 +/- 0.543  %
+ 24 film          1.140     1.0000 1.1038e-11 +/- 0.540  % 1.5511e-21 +/- 0.540  %
+ 25 film          1.140     1.0000 1.1488e-11 +/- 0.528  % 1.6143e-21 +/- 0.528  %
+ 26 film          1.140     1.0000 1.0898e-11 +/- 0.545  % 1.5315e-21 +/- 0.545  %
+ 27 film          1.140     1.0000 1.0608e-11 +/- 0.546  % 1.4907e-21 +/- 0.546  %
+ 28 film          1.140     1.0000 1.0635e-11 +/- 0.553  % 1.4945e-21 +/- 0.553  %
+ 29 film          1.140     1.0000 1.0511e-11 +/- 0.553  % 1.4771e-21 +/- 0.553  %
+ 30 film          1.140     1.0000 1.0200e-11 +/- 0.562  % 1.4334e-21 +/- 0.562  %
+ 31 film          1.140     1.0000 1.0451e-11 +/- 0.555  % 1.4687e-21 +/- 0.555  %
+ 32 film          1.140     1.0000 7.8351e-12 +/- 0.644  % 1.1010e-21 +/- 0.644  %
+ 33 film          1.140     1.0000 3.8392e-12 +/- 0.927  % 5.3951e-22 +/- 0.927  %
+ 34 film          1.140     1.0000 1.5057e-12 +/- 1.422  % 2.1159e-22 +/- 1.422  %
+ 35 film          1.140     1.0000 1.0681e-12 +/- 1.701  % 1.5009e-22 +/- 1.701  %
+ 36 film          1.140     1.0000 9.4811e-13 +/- 2.029  % 1.3323e-22 +/- 2.029  %
+ 37 film          1.140     1.0000 7.1413e-13 +/- 2.481  % 1.0035e-22 +/- 2.481  %
+ 38 film          1.140     1.0000 5.1876e-13 +/- 2.900  % 7.2899e-23 +/- 2.900  %
+ 39 film          1.140     1.0000 4.5725e-13 +/- 2.928  % 6.4256e-23 +/- 2.928  %
+ 81 pb           11.350     1.0000 1.1629e-06 +/- 0.011  % 1.6413e-17 +/- 0.011  %
+ 82 air           0.001     1.0000 7.2607e-10 +/- 0.059  % 9.6545e-17 +/- 0.059  %
+ 83 pb           11.350     1.0000 2.0037e-06 +/- 0.008  % 2.8282e-17 +/- 0.008  %
+ 84 steel         8.060     1.0000 1.6114e-08 +/- 0.076  % 3.2028e-19 +/- 0.076  %
+ 85 air           0.001     1.0000 3.5767e-10 +/- 0.065  % 4.7559e-17 +/- 0.065  %
+ 86 steel         8.060     1.0000 1.5984e-08 +/- 0.076  % 3.1769e-19 +/- 0.076  %
+ 90 pb           11.350     1.0000 4.6305e-07 +/- 0.019  % 6.5358e-18 +/- 0.019  %
+ 91 air           0.001     1.0000 2.1255e-10 +/- 0.103  % 2.8262e-17 +/- 0.103  %
+ 92 pb           11.350     1.0000 4.6900e-07 +/- 0.019  % 6.6197e-18 +/- 0.019  %
+ 93 steel         8.060     1.0000 5.6387e-09 +/- 0.130  % 1.1207e-19 +/- 0.130  %
+ 94 air           0.001     1.0000 9.6995e-11 +/- 0.122  % 1.2897e-17 +/- 0.122  %
+ 95 steel         8.060     1.0000 5.6821e-09 +/- 0.130  % 1.1294e-19 +/- 0.130  %
+ 99 steel         8.060     1.0000 1.7310e-11 +/- 0.684  % 3.4406e-22 +/- 0.684  %
+100 steel         8.060     1.0000 3.8666e-10 +/- 0.133  % 7.6852e-21 +/- 0.133  %
+101 steel         8.060     1.0000 1.7994e-11 +/- 0.680  % 3.5765e-22 +/- 0.680  %
+102 steel         8.060     1.0000 5.2869e-08 +/- 0.055  % 1.0508e-18 +/- 0.055  %
+103 air           0.001     1.0000 8.1260e-10 +/- 0.047  % 1.0805e-16 +/- 0.047  %
+104 steel         8.060     1.0000 5.3764e-08 +/- 0.054  % 1.0686e-18 +/- 0.054  %
+105 steel         8.060     1.0000 1.7385e-11 +/- 0.679  % 3.4555e-22 +/- 0.679  %
+106 steel         8.060     1.0000 3.8642e-10 +/- 0.130  % 7.6804e-21 +/- 0.130  %
+107 steel         8.060     1.0000 1.7367e-11 +/- 0.672  % 3.4519e-22 +/- 0.672  %
+108 air           0.001     1.0000 7.1331e-09 +/- 0.028  % 9.4849e-16 +/- 0.028  %
+135 air           0.001     1.0000 4.4443e-09 +/- 0.020  % 5.9095e-16 +/- 0.020  %
+162 polystyrene   1.060     1.0000 5.2384e-07 +/- 0.013  % 7.9169e-17 +/- 0.013  %
+243 air           0.001     1.0000 6.5202e-09 +/- 0.049  % 8.6699e-16 +/- 0.049  %
+------------------------------------------------------------------------------------
+
+ EGS_DoseScoring: Writing dose data for EGS_XYZGeometry profilex... 
+ Output file name: /home/rsmina/EGSnrc/egs_home/TB/profilexFilm.3ddose
+
+======================================================
+
+
+================================================================================
+Finished simulation
+
+  Elapsed time:                   17.2 s (  0.005 h)
+  CPU time:                        3.7 s (  0.001 h)
+  Ratio:                          4.679
+
+
+End of run                                             Mon May 15 11:18:13 2023
+================================================================================
+finishSimulation(TB) 0
