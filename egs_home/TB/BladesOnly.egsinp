@@ -8,7 +8,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 1.5E12
+    ncase = 2E12
     #calculation = combine
     #nchunk = 50
     nbatch = 3
@@ -120,10 +120,10 @@
         name = profilex
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-slabs = -20 1 40
-	    #x-slabs = -20 0.2 200
+        #x-slabs = -20 1 40
+	    x-slabs = -20 0.2 200
         y-slabs = -0.5 1 1
-        z-slabs = 100 0.1 1
+        z-slabs = 100 1 1
         :start media input:
             media = film
         :stop media input:
