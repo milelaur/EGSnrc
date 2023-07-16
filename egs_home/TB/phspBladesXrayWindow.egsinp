@@ -61,7 +61,7 @@
     :start geometry:
         name = obi
         library = egs_gunion
-        geometries = blades13_5x10 air air_block
+        geometries = blades air air_block
     :stop geometry:
 
     ### Air between source and water
@@ -116,26 +116,6 @@
 	################################
 	### TESTING GEOMETRY
 	################################
-
-	### Testing cathode anode
-	:start geometry:
-        name = src
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -1.5 1.5
-        y-planes = -1.3 2.5
-        z-planes = -1.5 10
-        :start media input:
-            media = vacuum
-        :stop media input:
-    :stop geometry:
-
-	### Geometry that contains testing geometry for source
-    :start geometry:
-        name = source_test
-        library = egs_gunion
-        geometries = anode src
-    :stop geometry:
 
     :start geometry:
         name = profilexRR
