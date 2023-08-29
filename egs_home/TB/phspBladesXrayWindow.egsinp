@@ -1,6 +1,7 @@
 ################################
 #
 # TrueBeam kV imaging System, Full fan option and focal spot either small or large
+# Summer 2023 Blades and film
 #
 ################################
 
@@ -8,7 +9,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 1.5E12
+    ncase = 2.38E10
     #calculation = combine
     #nchunk = 50
     nbatch = 3
@@ -247,14 +248,14 @@
    :start source:
         library = iaea_phsp_source
         name = my_source
-        iaea phase space file = sourcePhsp100kVPhoSplit.1
+        iaea phase space file = anodeXRayWPbPort.1
         particle type = all
         #cutout = x1 x2 y1 y2
         #weight window = 0.99 1.01
         recycle photons = 25
         recycle electrons = 25
-	reuse photons = 4
-	reuse electrons = 4
+	    #reuse photons = 4
+	    #reuse electrons = 4
     :stop source:
 
     simulation source = my_source
