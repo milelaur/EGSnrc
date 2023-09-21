@@ -1,0 +1,137 @@
+In EGS_Application::initSimulation()
+**********************************************
+**********************************************
+**********************************************
+**********************************************
+**********************************************
+getTransformation: the rotation specified by
+   1 0 0
+   0 0 1
+   0 1 0
+ is not a rotation
+EGS_RandomGenerator::createRNG: no 'RNG definition' input
+EGS_Application::initRNG(): using default RNG
+finishSimulation(TB) 1
+*** Error in `/home/rsmina/EGSnrc/egs_home//bin/linux/TB': double free or corruption (!prev): 0x0000000005e60300 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x81329)[0x2ab36fd6a329]
+/lib64/libc.so.6(fclose+0x177)[0x2ab36fd57247]
+/home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libiaea_phsp.so(iaea_destroy_source+0x43)[0x2ab371d3cd63]
+/home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_phsp_scoring.so(_ZN15EGS_PhspScoring13reportResultsEv+0x1ae)[0x2ab371b2de6e]
+/home/rsmina/EGSnrc/egs_home//bin/linux/TB[0x410318]
+/home/rsmina/EGSnrc/egs_home//bin/linux/TB[0x40435e]
+/lib64/libc.so.6(__libc_start_main+0xf5)[0x2ab36fd0b555]
+/home/rsmina/EGSnrc/egs_home//bin/linux/TB[0x40448b]
+======= Memory map: ========
+00400000-0048f000 r-xp 00000000 00:27 24502304803                        /home/rsmina/EGSnrc/egs_home/bin/linux/TB
+0068e000-0068f000 r--p 0008e000 00:27 24502304803                        /home/rsmina/EGSnrc/egs_home/bin/linux/TB
+0068f000-00695000 rw-p 0008f000 00:27 24502304803                        /home/rsmina/EGSnrc/egs_home/bin/linux/TB
+00695000-04d1e000 rw-p 00000000 00:00 0 
+05db9000-05f32000 rw-p 00000000 00:00 0                                  [heap]
+2ab36eab5000-2ab36ead7000 r-xp 00000000 fd:00 402656826                  /usr/lib64/ld-2.17.so
+2ab36ead7000-2ab36eadb000 rw-p 00000000 00:00 0 
+2ab36eaed000-2ab36eaf4000 rw-p 00000000 00:00 0 
+2ab36ecd6000-2ab36ecd7000 r--p 00021000 fd:00 402656826                  /usr/lib64/ld-2.17.so
+2ab36ecd7000-2ab36ecd8000 rw-p 00022000 fd:00 402656826                  /usr/lib64/ld-2.17.so
+2ab36ecd8000-2ab36ecd9000 rw-p 00000000 00:00 0 
+2ab36ecd9000-2ab36ed65000 r-xp 00000000 00:27 10987356164                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegspp.so
+2ab36ed65000-2ab36ef64000 ---p 0008c000 00:27 10987356164                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegspp.so
+2ab36ef64000-2ab36ef67000 r--p 0008b000 00:27 10987356164                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegspp.so
+2ab36ef67000-2ab36ef69000 rw-p 0008e000 00:27 10987356164                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegspp.so
+2ab36ef69000-2ab36ef6b000 rw-p 00000000 00:00 0 
+2ab36ef6b000-2ab36f08a000 r-xp 00000000 fd:00 402713858                  /usr/lib64/libgfortran.so.3.0.0
+2ab36f08a000-2ab36f28a000 ---p 0011f000 fd:00 402713858                  /usr/lib64/libgfortran.so.3.0.0
+2ab36f28a000-2ab36f28b000 r--p 0011f000 fd:00 402713858                  /usr/lib64/libgfortran.so.3.0.0
+2ab36f28b000-2ab36f28d000 rw-p 00120000 fd:00 402713858                  /usr/lib64/libgfortran.so.3.0.0
+2ab36f28d000-2ab36f2c8000 r-xp 00000000 fd:00 402712250                  /usr/lib64/libquadmath.so.0.0.0
+2ab36f2c8000-2ab36f4c7000 ---p 0003b000 fd:00 402712250                  /usr/lib64/libquadmath.so.0.0.0
+2ab36f4c7000-2ab36f4c8000 r--p 0003a000 fd:00 402712250                  /usr/lib64/libquadmath.so.0.0.0
+2ab36f4c8000-2ab36f4c9000 rw-p 0003b000 fd:00 402712250                  /usr/lib64/libquadmath.so.0.0.0
+2ab36f4c9000-2ab36f5b2000 r-xp 00000000 fd:00 402712027                  /usr/lib64/libstdc++.so.6.0.19
+2ab36f5b2000-2ab36f7b2000 ---p 000e9000 fd:00 402712027                  /usr/lib64/libstdc++.so.6.0.19
+2ab36f7b2000-2ab36f7ba000 r--p 000e9000 fd:00 402712027                  /usr/lib64/libstdc++.so.6.0.19
+2ab36f7ba000-2ab36f7bc000 rw-p 000f1000 fd:00 402712027                  /usr/lib64/libstdc++.so.6.0.19
+2ab36f7bc000-2ab36f7d1000 rw-p 00000000 00:00 0 
+2ab36f7d1000-2ab36f8d2000 r-xp 00000000 fd:00 402656882                  /usr/lib64/libm-2.17.so
+2ab36f8d2000-2ab36fad1000 ---p 00101000 fd:00 402656882                  /usr/lib64/libm-2.17.so
+2ab36fad1000-2ab36fad2000 r--p 00100000 fd:00 402656882                  /usr/lib64/libm-2.17.so
+2ab36fad2000-2ab36fad3000 rw-p 00101000 fd:00 402656882                  /usr/lib64/libm-2.17.so
+2ab36fad3000-2ab36fae8000 r-xp 00000000 fd:00 402686062                  /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2ab36fae8000-2ab36fce7000 ---p 00015000 fd:00 402686062                  /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2ab36fce7000-2ab36fce8000 r--p 00014000 fd:00 402686062                  /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2ab36fce8000-2ab36fce9000 rw-p 00015000 fd:00 402686062                  /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2ab36fce9000-2ab36fead000 r-xp 00000000 fd:00 402656872                  /usr/lib64/libc-2.17.so
+2ab36fead000-2ab3700ac000 ---p 001c4000 fd:00 402656872                  /usr/lib64/libc-2.17.so
+2ab3700ac000-2ab3700b0000 r--p 001c3000 fd:00 402656872                  /usr/lib64/libc-2.17.so
+2ab3700b0000-2ab3700b2000 rw-p 001c7000 fd:00 402656872                  /usr/lib64/libc-2.17.so
+2ab3700b2000-2ab3700b7000 rw-p 00000000 00:00 0 
+2ab3700b7000-2ab3700b9000 r-xp 00000000 fd:00 402656880                  /usr/lib64/libdl-2.17.so
+2ab3700b9000-2ab3702b9000 ---p 00002000 fd:00 402656880                  /usr/lib64/libdl-2.17.so
+2ab3702b9000-2ab3702ba000 r--p 00002000 fd:00 402656880                  /usr/lib64/libdl-2.17.so
+2ab3702ba000-2ab3702bb000 rw-p 00003000 fd:00 402656880                  /usr/lib64/libdl-2.17.so
+2ab3702bb000-2ab3702bc000 r-xp 00000000 00:27 12208750637                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_glib.so
+2ab3702bc000-2ab3704bc000 ---p 00001000 00:27 12208750637                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_glib.so
+2ab3704bc000-2ab3704bd000 r--p 00001000 00:27 12208750637                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_glib.so
+2ab3704bd000-2ab3704be000 rw-p 00002000 00:27 12208750637                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_glib.so
+2ab3704be000-2ab3704dd000 r-xp 00000000 00:27 12208750597                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_ndgeometry.so
+2ab3704dd000-2ab3706dd000 ---p 0001f000 00:27 12208750597                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_ndgeometry.so
+2ab3706dd000-2ab3706de000 r--p 0001f000 00:27 12208750597                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_ndgeometry.so
+2ab3706de000-2ab3706df000 rw-p 00020000 00:27 12208750597                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_ndgeometry.so
+2ab3706df000-2ab3706e9000 r-xp 00000000 00:27 10987356167                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_planes.so
+2ab3706e9000-2ab3708e9000 ---p 0000a000 00:27 10987356167                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_planes.so
+2ab3708e9000-2ab3708ea000 r--p 0000a000 00:27 10987356167                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_planes.so
+2ab3708ea000-2ab3708eb000 rw-p 0000b000 00:27 10987356167                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_planes.so
+2ab3708eb000-2ab3708ef000 r-xp 00000000 00:27 12208750595                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_gtransformed.so
+2ab3708ef000-2ab370aef000 ---p 00004000 00:27 12208750595                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_gtransformed.so
+2ab370aef000-2ab370af0000 r--p 00004000 00:27 12208750595                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_gtransformed.so
+2ab370af0000-2ab370af1000 rw-p 00005000 00:27 12208750595                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_gtransformed.so
+2ab370af1000-2ab370b00000 r-xp 00000000 00:27 12208750609                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_cones.so
+2ab370b00000-2ab370d00000 ---p 0000f000 00:27 12208750609                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_cones.so
+2ab370d00000-2ab370d01000 r--p 0000f000 00:27 12208750609                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_cones.so
+2ab370d01000-2ab370d02000 rw-p 00010000 00:27 12208750609                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_cones.so
+2ab370d02000-2ab370d07000 r-xp 00000000 00:27 12208750615                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_gunion.so
+2ab370d07000-2ab370f06000 ---p 00005000 00:27 12208750615                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_gunion.so
+2ab370f06000-2ab370f07000 r--p 00004000 00:27 12208750615                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_gunion.so
+2ab370f07000-2ab370f08000 rw-p 00005000 00:27 12208750615                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_gunion.so
+2ab370f08000-2ab370f0d000 r-xp 00000000 00:27 12208750611                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_gstack.so
+2ab370f0d000-2ab37110c000 ---p 00005000 00:27 12208750611                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_gstack.so
+2ab37110c000-2ab37110d000 r--p 00004000 00:27 12208750611                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_gstack.so
+2ab37110d000-2ab37110e000 rw-p 00005000 00:27 12208750611                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_gstack.so
+2ab37110e000-2ab371112000 r-xp 00000000 00:27 12208750645                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_parallel_beam.so
+2ab371112000-2ab371312000 ---p 00004000 00:27 12208750645                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_parallel_beam.so
+2ab371312000-2ab371313000 r--p 00004000 00:27 12208750645                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_parallel_beam.so
+2ab371313000-2ab371314000 rw-p 00005000 00:27 12208750645                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_parallel_beam.so
+2ab371314000-2ab371317000 r-xp 00000000 00:27 12208758797                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_ellipse.so
+2ab371317000-2ab371517000 ---p 00003000 00:27 12208758797                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_ellipse.so
+2ab371517000-2ab371518000 r--p 00003000 00:27 12208758797                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_ellipse.so
+2ab371518000-2ab371519000 rw-p 00004000 00:27 12208758797                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_ellipse.so
+2ab371519000-2ab37151c000 r-xp 00000000 00:27 12208750651                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_transformed_source.so
+2ab37151c000-2ab37171c000 ---p 00003000 00:27 12208750651                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_transformed_source.so
+2ab37171c000-2ab37171d000 r--p 00003000 00:27 12208750651                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_transformed_source.so
+2ab37171d000-2ab37171e000 rw-p 00004000 00:27 12208750651                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_transformed_source.so
+2ab37171e000-2ab371723000 r-xp 00000000 00:27 12208758819                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_track_scoring.so
+2ab371723000-2ab371923000 ---p 00005000 00:27 12208758819                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_track_scoring.so
+2ab371923000-2ab371924000 r--p 00005000 00:27 12208758819                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_track_scoring.so
+2ab371924000-2ab371925000 rw-p 00006000 00:27 12208758819                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_track_scoring.so
+2ab371925000-2ab371928000 r-xp 00000000 00:27 12208758823                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_radiative_splitting.so
+2ab371928000-2ab371b27000 ---p 00003000 00:27 12208758823                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_radiative_splitting.so
+2ab371b27000-2ab371b28000 r--p 00002000 00:27 12208758823                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_radiative_splitting.so
+2ab371b28000-2ab371b29000 rw-p 00003000 00:27 12208758823                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_radiative_splitting.so
+2ab371b29000-2ab371b35000 r-xp 00000000 00:27 12208758825                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_phsp_scoring.so
+2ab371b35000-2ab371d35000 ---p 0000c000 00:27 12208758825                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_phsp_scoring.so
+2ab371d35000-2ab371d36000 r--p 0000c000 00:27 12208758825                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_phsp_scoring.so
+2ab371d36000-2ab371d37000 rw-p 0000d000 00:27 12208758825                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_phsp_scoring.so
+2ab371d37000-2ab371d46000 r-xp 00000000 00:27 12208717878                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libiaea_phsp.so
+2ab371d46000-2ab371f45000 ---p 0000f000 00:27 12208717878                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libiaea_phsp.so
+2ab371f45000-2ab371f46000 r--p 0000e000 00:27 12208717878                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libiaea_phsp.so
+2ab371f46000-2ab371f47000 rw-p 0000f000 00:27 12208717878                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libiaea_phsp.so
+2ab371f47000-2ab371f52000 r-xp 00000000 00:27 12208758821                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_dose_scoring.so
+2ab371f52000-2ab372152000 ---p 0000b000 00:27 12208758821                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_dose_scoring.so
+2ab372152000-2ab372153000 r--p 0000b000 00:27 12208758821                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_dose_scoring.so
+2ab372153000-2ab372154000 rw-p 0000c000 00:27 12208758821                /home/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/linux/libegs_dose_scoring.so
+2ab374000000-2ab374021000 rw-p 00000000 00:00 0 
+2ab374021000-2ab378000000 ---p 00000000 00:00 0 
+7ffef4d44000-7ffef4d73000 rw-p 00000000 00:00 0                          [stack]
+7ffef4db5000-7ffef4db7000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+/var/spool/slurmd/job25660033/slurm_script: line 6: 26002 Aborted                 /home/rsmina/EGSnrc/egs_home//bin/linux/TB -b -i sourceXrayWindowPbPort -e /home/rsmina/EGSnrc/egs_home/ -H /home/rsmina/EGSnrc/HEN_HOUSE/ -P 1000 -j 637 -f 1
