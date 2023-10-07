@@ -100,30 +100,6 @@
     :stop geometry:
 
 	################################
-	### TESTING GEOMETRY
-	################################
-
-	### Testing cathode anode
-	:start geometry:
-        name = src
-        library = egs_ndgeometry
-        type = EGS_XYZGeometry
-        x-planes = -1.5 1.5
-        y-planes = -1.3 2.5
-        z-planes = -1.5 10
-        :start media input:
-            media = vacuum
-        :stop media input:
-    :stop geometry:
-
-	### Geometry that contains testing geometry for source
-    :start geometry:
-        name = source_test
-        library = egs_gunion
-        geometries = anode src
-    :stop geometry:
-
-	################################
 	### SIMULATION GEOMETRY
 	################################
 
@@ -328,16 +304,6 @@
           score particles on       = entry
           constant Z               = 6.0
     :stop ausgab object:
-
-    ### Dose scoring object
-	:start ausgab object:
-		name = dose
-		library = egs_dose_scoring
-		medium dose = no
-		region dose = yes
-		volume = 1
-		dose regions = 360
-	:stop ausgab object:
 
 :stop ausgab object definition:
 
