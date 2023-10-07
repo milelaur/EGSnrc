@@ -47,15 +47,34 @@
     :stop geometry:
 
     ################################
+    ### Faceplate
+    ################################
+
+    :start geometry:
+        library = egs_glib
+        name = faceplate
+        include file = faceplateReal.egsinp
+    :stop geometry:
+
+    ################################
+    ### Primary collimator
+    ################################
+	:start geometry:
+        library = egs_glib
+        name = primary_collimator
+        include file = primary_collimator.egsinp
+    :stop geometry:
+
+    ################################
     ### phsp plate
     ################################
     :start geometry:
         name = phsp_plate
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        x-planes = -6 6
-        y-planes = -6 6
-        z-planes = 6.0 6.1
+        x-planes = -3.5 3.5
+        y-planes = -3.5 3.5
+        z-planes = 5.6752 5.6753
         :start media input:
             media = air
         :stop media input:
@@ -77,7 +96,7 @@
     :start geometry:
         name = to_primary_collimator
         library = egs_gunion
-		geometries = anode window_and_pb_port phsp_plate
+		geometries = anode phsp_plate window_and_pb_port
     :stop geometry:
 
     ### Air between x-ray window and faceplate
@@ -87,7 +106,7 @@
         type = EGS_XYZGeometry
         x-planes = -6 6
         y-planes = -6 6
-        z-planes = 5.0 8.9
+        z-planes = 3.0 8.9
         :start media input:
             media = air
         :stop media input:
@@ -302,7 +321,7 @@
           #output directory         =
           phase space geometry     = phsp_plate
           score particles on       = entry
-          constant Z               = 6.0
+          constant Z               = 5.6752
     :stop ausgab object:
 
 :stop ausgab object definition:
