@@ -3,12 +3,13 @@ $IAEA_INDEX:
 
 $TITLE:
 PHASESPACE in IAEA format 
+ 
 
 $FILE_TYPE:
 0
 
 $CHECKSUM:
-0 
+4344309736 
 
 $RECORD_CONTENTS:
     1     // X is stored ?
@@ -32,10 +33,16 @@ $BYTE_ORDER:
 1234
 
 $ORIG_HISTORIES:
-3329884370120820025
+1442650096179
 
 $PARTICLES:
-0
+149803784
+
+$PHOTONS:
+149755965
+
+$ELECTRONS:
+47819
 
 $TRANSPORT_PARAMETERS:
 
@@ -77,7 +84,12 @@ report IAEA(NDS)-0484, Vienna, 2006
 
 $STATISTICAL_INFORMATION_PARTICLES:
 //        Weight        Wmin       Wmax       <E>         Emin         Emax    Particle
+      1.49739E+08          1          1    0.04998      0.001036     0.09999   PHOTONS
+            47819          1          1     0.5377         0.512      0.6075   ELECTRONS
 
 $STATISTICAL_INFORMATION_GEOMETRY:
- 32000  -32000
- 32000  -32000
+ -3.5  3.5
+ -3.49974  3.5
+
+
+995

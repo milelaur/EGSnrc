@@ -9,7 +9,7 @@
 ################################
 :start run control:
     ncase = 1.5E12
-    calculation = combine
+    #calculation = combine
     #nchunk = 50
     nbatch = 3
 :stop run control:
@@ -47,25 +47,6 @@
     :stop geometry:
 
     ################################
-    ### Faceplate
-    ################################
-
-    :start geometry:
-        library = egs_glib
-        name = faceplate
-        include file = faceplateReal.egsinp
-    :stop geometry:
-
-    ################################
-    ### Primary collimator
-    ################################
-	:start geometry:
-        library = egs_glib
-        name = primary_collimator
-        include file = primary_collimator.egsinp
-    :stop geometry:
-
-    ################################
     ### phsp plate
     ################################
     :start geometry:
@@ -74,7 +55,7 @@
         type = EGS_XYZGeometry
         x-planes = -3.5 3.5
         y-planes = -3.5 3.5
-        z-planes = 5.6752 5.6753
+        z-planes = 5.6752 5.68
         :start media input:
             media = air
         :stop media input:

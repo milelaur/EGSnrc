@@ -9,7 +9,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 2.5E10
+    ncase = 1.3E10
     #calculation = combine
     #nchunk = 50
     #nbatch = 3
@@ -248,12 +248,12 @@
    :start source:
         library = iaea_phsp_source
         name = my_source
-        iaea phase space file = anodeXRayWPbPortPhsp.1
+        iaea phase space file = anodeXRayWPbPortCombined.1
         particle type = all
         #cutout = x1 x2 y1 y2
         #weight window = 0.99 1.01
-        recycle photons = 20
-        recycle electrons = 20
+        recycle photons = 24
+        recycle electrons = 24
 	    reuse photons = 5
 	    reuse electrons = 5
     :stop source:
