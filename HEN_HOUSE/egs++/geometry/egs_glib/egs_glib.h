@@ -170,18 +170,18 @@ seeds_in_xyz_aenv.geom files.
 
 #ifdef WIN32
 
-    #define EGS_GLIB_EXPORT __declspec(dllexport)
-    #define EGS_GLIB_LOCAL
+#define EGS_GLIB_EXPORT __declspec(dllexport)
+#define EGS_GLIB_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_GLIB_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_GLIB_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_GLIB_EXPORT
-        #define EGS_GLIB_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_GLIB_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_GLIB_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_GLIB_EXPORT
+#define EGS_GLIB_LOCAL
+#endif
 
 #endif
 

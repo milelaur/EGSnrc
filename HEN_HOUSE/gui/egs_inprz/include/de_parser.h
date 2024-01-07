@@ -56,17 +56,17 @@ typedef float Float;
 using std::string;
 
 template <class X>
-int getinput(string &code, std::vector<string> &code_words,
-             std::vector<string> &results, std::vector<X> &result, bool remove = false);
+int getinput(string& code, std::vector<string>& code_words,
+             std::vector<string>& results, std::vector<X>& result, bool remove = false);
 
 template <class X>
-int getinput(string &code, std::vector<string> &code_words,
-             std::vector<string> &results, std::vector<X> &result,
+int getinput(string& code, std::vector<string>& code_words,
+             std::vector<string>& results, std::vector<X>& result,
              X xmin, X xmax, X xdef, bool remove = false);
 
 template <class X>
-X getinput(string &code, std::vector<string> &code_words,
-           std::vector<string> &results, X xmin, X xmax, X xdef,
+X getinput(string& code, std::vector<string>& code_words,
+           std::vector<string>& results, X xmin, X xmax, X xdef,
            bool remove = false);
 
 //!  An expression parser for the MORPH format.
@@ -77,9 +77,10 @@ It has been written to comply with the MORPH input format  used in the EGSnrc us
 
 */
 
-class DE_Parser {
+class DE_Parser
+{
 
-  private:
+private:
     int            output;
     string         delimeter;
     std::vector<string> code_words;
@@ -87,43 +88,52 @@ class DE_Parser {
     bool           decoded;
     bool           multiple_entries;
 
-  public:
+public:
 
-    DE_Parser(int out, char *delim, std::istream &stream, bool me = false);
-    DE_Parser(size_t &n, string codes[], int out,
-		char *delim, std::istream &stream, bool me = false);
-    DE_Parser(std::vector<string> &codes, int out, char *delim,
-		std::istream &stream, bool me = false);
-    DE_Parser(std::vector<string> &codes, string &section, int out,
-              const char *delim, bool me = false);
-    DE_Parser(size_t &n, char **codes, int out,
-		char *delim, std::istream &stream, bool me = false);
-    std::vector<string> get_data() { return results; };
-    string get_data(size_t i) { return results[i]; };
-    int out() { return output; };
+    DE_Parser(int out, char* delim, std::istream& stream, bool me = false);
+    DE_Parser(size_t& n, string codes[], int out,
+              char* delim, std::istream& stream, bool me = false);
+    DE_Parser(std::vector<string>& codes, int out, char* delim,
+              std::istream& stream, bool me = false);
+    DE_Parser(std::vector<string>& codes, string& section, int out,
+              const char* delim, bool me = false);
+    DE_Parser(size_t& n, char** codes, int out,
+              char* delim, std::istream& stream, bool me = false);
+    std::vector<string> get_data()
+    {
+        return results;
+    };
+    string get_data(size_t i)
+    {
+        return results[i];
+    };
+    int out()
+    {
+        return output;
+    };
 
-    void set_up(string &section, char *delim);
+    void set_up(string& section, char* delim);
 
-    int get_input(string &code, std::vector<int> &result);
-    int get_input(string &code, std::vector<Float> &result);
-    int get_input(string &code, std::vector<string> &result);
+    int get_input(string& code, std::vector<int>& result);
+    int get_input(string& code, std::vector<Float>& result);
+    int get_input(string& code, std::vector<string>& result);
 
-    int get_input(string &code, std::vector<int> &result,
+    int get_input(string& code, std::vector<int>& result,
                   int xmin, int xmax, int xdef);
-    int get_input(string &code, std::vector<Float> &result,
+    int get_input(string& code, std::vector<Float>& result,
                   Float xmin, Float xmax, Float xdef);
 
-    int get_input(string &code, int xmin, int xmax, int xdef);
-    Float get_input(string &code, Float xmin, Float xmax, Float xdef);
-    bool get_input(string &code, bool xmin, bool xmax, bool xdef);
+    int get_input(string& code, int xmin, int xmax, int xdef);
+    Float get_input(string& code, Float xmin, Float xmax, Float xdef);
+    bool get_input(string& code, bool xmin, bool xmax, bool xdef);
 
-    string get_section(std::istream &file);
-    bool   get_section(string &s, const char *delim);
+    string get_section(std::istream& file);
+    bool   get_section(string& s, const char* delim);
 
-  private:
-	  string get_line(std::istream &file);
-    size_t get_index(string &section, string &code, string &c1);
-    string get_tokens(string &section, string &code, bool remove = false);
+private:
+    string get_line(std::istream& file);
+    size_t get_index(string& section, string& code, string& c1);
+    string get_tokens(string& section, string& code, bool remove = false);
 
 };
 

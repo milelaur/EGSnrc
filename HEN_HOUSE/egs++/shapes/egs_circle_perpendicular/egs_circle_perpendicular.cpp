@@ -40,32 +40,39 @@
 
 extern "C" {
 
-    EGS_CIRCLE_PERPENDICULAR_EXPORT EGS_BaseShape *createShape(EGS_Input *input,
-            EGS_ObjectFactory *f) {
-        if (!input) {
+    EGS_CIRCLE_PERPENDICULAR_EXPORT EGS_BaseShape* createShape(EGS_Input* input,
+        EGS_ObjectFactory* f)
+    {
+        if (!input)
+        {
             egsWarning("createShape(circle): null input?\n");
             return 0;
         }
         EGS_Float radius;
-        int err = input->getInput("radius",radius);
-        if (err) {
+        int err = input->getInput("radius", radius);
+        if (err)
+        {
             egsWarning("createShape(circle): no 'radius' input\n");
             return 0;
         }
         EGS_Float Ro;
-        err = input->getInput("inner radius",Ro);
-        if (err) {
+        err = input->getInput("inner radius", Ro);
+        if (err)
+        {
             Ro = 0;
         }
         vector<EGS_Float> pos;
-        err = input->getInput("midpoint",pos);
-        if (err) {
+        err = input->getInput("midpoint", pos);
+        if (err)
+        {
             pos.clear();
             pos.push_back(0);
             pos.push_back(0);
         }
-        else {
-            if (pos.size() != 2) {
+        else
+        {
+            if (pos.size() != 2)
+            {
                 egsWarning("createShape(circle): 2 instead of %d inputs expected"
                            " for keyword 'midpoint'. Reseting midpoint to (0,0)\n",
                            pos.size());
@@ -74,7 +81,7 @@ extern "C" {
                 pos.push_back(0);
             }
         }
-        EGS_CirclePerpendicularShape *shape = new EGS_CirclePerpendicularShape(pos[0],pos[1],radius,Ro,"",f);
+        EGS_CirclePerpendicularShape* shape = new EGS_CirclePerpendicularShape(pos[0], pos[1], radius, Ro, "", f);
         shape->setName(input);
         shape->setTransformation(input);
         return shape;

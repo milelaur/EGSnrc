@@ -44,22 +44,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_CDGEOMETRY_DLL
-        #define EGS_CDGEOMETRY_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_CDGEOMETRY_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_CDGEOMETRY_LOCAL
+#ifdef BUILD_CDGEOMETRY_DLL
+#define EGS_CDGEOMETRY_EXPORT __declspec(dllexport)
+#else
+#define EGS_CDGEOMETRY_EXPORT __declspec(dllimport)
+#endif
+#define EGS_CDGEOMETRY_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_CDGEOMETRY_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_CDGEOMETRY_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_CDGEOMETRY_EXPORT
-        #define EGS_CDGEOMETRY_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_CDGEOMETRY_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_CDGEOMETRY_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_CDGEOMETRY_EXPORT
+#define EGS_CDGEOMETRY_LOCAL
+#endif
 
 #endif
 
@@ -260,13 +260,15 @@ A simple example:
 \endverbatim
 \image html egs_cd_geometry.png "A simple example with clipping plane 1,0,0,0"
 */
-class EGS_CDGEOMETRY_EXPORT EGS_CDGeometry : public EGS_BaseGeometry {
+class EGS_CDGEOMETRY_EXPORT EGS_CDGeometry : public EGS_BaseGeometry
+{
 
 public:
 
 
-    EGS_CDGeometry(EGS_BaseGeometry *G1, EGS_BaseGeometry **G,
-                   const string &Name = "", int indexing=0) : EGS_BaseGeometry(Name) {
+    EGS_CDGeometry(EGS_BaseGeometry* G1, EGS_BaseGeometry** G,
+                   const string& Name = "", int indexing = 0) : EGS_BaseGeometry(Name)
+    {
         nmax = 0;
         new_indexing = false;
         reg_to_base = 0;
@@ -274,30 +276,36 @@ public:
         nbase = G1->regions();
         g = new EGS_BaseGeometry* [nbase];
         bg = G1; //bg->ref();
-        for (int j=0; j<nbase; j++) {
+        for (int j = 0; j < nbase; j++)
+        {
             g[j] = G[j];
-            if (g[j]) {
+            if (g[j])
+            {
                 //g[j]->ref();
                 int n = g[j]->regions();
-                if (n > nmax) {
+                if (n > nmax)
+                {
                     nmax = n;
                 }
             }
         }
-        if (!nmax) {
+        if (!nmax)
+        {
             nmax = 1;
         }
-        nreg = nbase*nmax;
+        nreg = nbase * nmax;
         is_convex = false;
-        if (indexing) {
+        if (indexing)
+        {
             setUpIndexing();
         }
         setHasRhoScaling();
         setHasBScaling();
     };
 
-    EGS_CDGeometry(EGS_BaseGeometry *G1, const vector<EGS_BaseGeometry *> &G,
-                   const string &Name = "",int indexing=0) : EGS_BaseGeometry(Name) {
+    EGS_CDGeometry(EGS_BaseGeometry* G1, const vector<EGS_BaseGeometry*>& G,
+                   const string& Name = "", int indexing = 0) : EGS_BaseGeometry(Name)
+    {
         if (!G1) egsFatal("EGS_CDGeometry: got a null pointer to the"
                               " base geometry?\n");
         nbase = G1->regions();
@@ -306,26 +314,31 @@ public:
         local_start = 0;
         if (nbase != G.size()) egsFatal("EGS_CDGeometry: number of passed"
                                             " geometries (%d) is not the same as the number of regions (%d)\n",
-                                            nbase,G.size());
+                                            nbase, G.size());
         nmax = 0;
         g = new EGS_BaseGeometry* [nbase];
         bg = G1; //bg->ref();
-        for (int j=0; j<nbase; j++) {
+        for (int j = 0; j < nbase; j++)
+        {
             g[j] = G[j];
-            if (g[j]) {
+            if (g[j])
+            {
                 //g[j]->ref();
                 int n = g[j]->regions();
-                if (n > nmax) {
+                if (n > nmax)
+                {
                     nmax = n;
                 }
             }
         }
-        if (!nmax) {
+        if (!nmax)
+        {
             nmax = 1;
         }
-        nreg = nbase*nmax;
+        nreg = nbase * nmax;
         is_convex = false;
-        if (indexing) {
+        if (indexing)
+        {
             setUpIndexing();
         }
         setHasRhoScaling();
@@ -333,121 +346,150 @@ public:
     };
 
 
-    ~EGS_CDGeometry() {
-        for (int j=0; j<nbase; j++) {
-            if (g[j]) {
-                if (!g[j]->deref()) {
+    ~EGS_CDGeometry()
+    {
+        for (int j = 0; j < nbase; j++)
+        {
+            if (g[j])
+            {
+                if (!g[j]->deref())
+                {
                     delete g[j];
                 }
             }
         }
         delete [] g;
-        if (!bg->deref()) {
+        if (!bg->deref())
+        {
             delete bg;
         }
-        if (new_indexing) {
-            if (reg_to_base) {
+        if (new_indexing)
+        {
+            if (reg_to_base)
+            {
                 delete [] reg_to_base;
             }
-            if (local_start) {
+            if (local_start)
+            {
                 delete [] local_start;
             }
         }
     };
 
-    int medium(int ireg) const {
+    int medium(int ireg) const
+    {
         /*
         int ibase = ireg/nmax;
         if( g[ibase] ) return g[ibase]->medium(ireg-ibase*nmax);
         return bg->medium(ibase);
         */
         int ibase, ilocal;
-        if (new_indexing) {
+        if (new_indexing)
+        {
             ibase = reg_to_base[ireg];
             ilocal = ireg - local_start[ibase];
         }
-        else {
-            ibase = ireg/nmax;
-            ilocal = ireg-ibase*nmax;
+        else
+        {
+            ibase = ireg / nmax;
+            ilocal = ireg - ibase * nmax;
         }
         return g[ibase] ? g[ibase]->medium(ilocal) : bg->medium(ibase);
     };
 
-    bool isRealRegion(int ireg) const {
-        if (ireg < 0 || ireg >= nreg) {
+    bool isRealRegion(int ireg) const
+    {
+        if (ireg < 0 || ireg >= nreg)
+        {
             return false;
         }
         int ibase, icd;
-        if (new_indexing) {
+        if (new_indexing)
+        {
             ibase = reg_to_base[ireg];
-            icd = ireg-local_start[ibase];
+            icd = ireg - local_start[ibase];
         }
-        else {
-            ibase = ireg/nmax;
-            icd = ireg - ibase*nmax;
+        else
+        {
+            ibase = ireg / nmax;
+            icd = ireg - ibase * nmax;
         }
         return g[ibase] ? g[ibase]->isRealRegion(icd) :
                bg->isRealRegion(ibase);
     };
 
-    bool isInside(const EGS_Vector &x) {
+    bool isInside(const EGS_Vector& x)
+    {
         int ibase = bg->isWhere(x);
-        if (ibase < 0) {
+        if (ibase < 0)
+        {
             return false;
         }
-        if (g[ibase]) {
+        if (g[ibase])
+        {
             return g[ibase]->isInside(x);
         }
         return true;
     };
 
-    int isWhere(const EGS_Vector &x) {
+    int isWhere(const EGS_Vector& x)
+    {
         int ibase = bg->isWhere(x);
-        if (ibase < 0) {
+        if (ibase < 0)
+        {
             return ibase;
         }
         int ir = 0;
-        if (g[ibase]) {
+        if (g[ibase])
+        {
             ir = g[ibase]->isWhere(x);
-            if (ir < 0) {
+            if (ir < 0)
+            {
                 return ir;
             }
         }
-        return new_indexing ? local_start[ibase] + ir : ibase*nmax + ir;
+        return new_indexing ? local_start[ibase] + ir : ibase * nmax + ir;
     };
 
-    int inside(const EGS_Vector &x) {
+    int inside(const EGS_Vector& x)
+    {
         return isWhere(x);
     };
 
-    int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u,
-               EGS_Float &t, int *newmed = 0, EGS_Vector *normal = 0) {
-        if (ireg >= 0) {
+    int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u,
+               EGS_Float& t, int* newmed = 0, EGS_Vector* normal = 0)
+    {
+        if (ireg >= 0)
+        {
             //
             // *** We are inside and ibase is the current base geometry
             //     region and icd the local region of the geometry inscribed
             //     in ibase (if any)
             int ibase, icd;
-            if (new_indexing) {
+            if (new_indexing)
+            {
                 ibase = reg_to_base[ireg];
-                icd = ireg-local_start[ibase];
+                icd = ireg - local_start[ibase];
             }
-            else {
-                ibase = ireg/nmax;
-                icd = ireg - ibase*nmax;
+            else
+            {
+                ibase = ireg / nmax;
+                icd = ireg - ibase * nmax;
             }
             //
             // *** See if we will hit a boundary in the base geometry.
             //     If we do, newmed and normal will get set accordingly.
             //
-            int ibase_new = bg->howfar(ibase,x,u,t,newmed,normal);
-            if (g[ibase]) {
+            int ibase_new = bg->howfar(ibase, x, u, t, newmed, normal);
+            if (g[ibase])
+            {
                 //
                 // *** There is another geometry in this base geometry region.
                 //     See if will hit one of its boundaries first.
                 //
-                int icd_new = g[ibase]->howfar(icd,x,u,t,newmed,normal);
-                if (icd_new < 0) {
+                int icd_new = g[ibase]->howfar(icd, x, u, t, newmed, normal);
+                if (icd_new < 0)
+                {
                     return icd_new;
                 }
                 // above: yes we do but the new region is outside
@@ -455,39 +497,44 @@ public:
                 // must have been set accordingly.
                 if (icd_new != icd)
                     return new_indexing ? local_start[ibase] + icd_new :
-                           ibase*nmax + icd_new;
+                           ibase * nmax + icd_new;
                 // above: yes we do and we enter the local region icd_new
                 // => calculate the new region and return
                 // newmed and normal must have been set in g[ibase]->howfar
             }
-            if (ibase_new != ibase) {
+            if (ibase_new != ibase)
+            {
                 // we have entered a new base geometry region.
-                if (ibase_new < 0) {
+                if (ibase_new < 0)
+                {
                     return ibase_new;
                 }
                 // but this region is outside => just return.
-                if (g[ibase_new]) {
+                if (g[ibase_new])
+                {
                     // there is a geometry in this new base geometry region.
                     // are we already inside?
-                    EGS_Vector tmp(x + u*t);
+                    EGS_Vector tmp(x + u * t);
                     int icd_new = g[ibase_new]->isWhere(tmp);
-                    if (icd_new < 0) {
+                    if (icd_new < 0)
+                    {
                         return icd_new;
                     }
                     // above: no, we are not => we exit the entire geometry.
                     // below: yes, we are in local region icd_new
                     // simply calculate the new global region and return
                     // newmed and normal have been set in bg->howfar above
-                    if (newmed) {
+                    if (newmed)
+                    {
                         *newmed = g[ibase_new]->medium(icd_new);
                     }
                     return new_indexing ? local_start[ibase_new] + icd_new :
-                           ibase_new*nmax + icd_new;
+                           ibase_new * nmax + icd_new;
                 }
                 // there is no cd geometry in this base geometry region
                 // => simply calculate the new global region and return
                 // newmed and normal have been set in bg->howfar above
-                return new_indexing ? local_start[ibase_new] : ibase_new*nmax;
+                return new_indexing ? local_start[ibase_new] : ibase_new * nmax;
             }
             // new region is the same as old region (i.e. we don't reach
             // a boundary => simply return the old region.
@@ -499,13 +546,14 @@ public:
         //     Are we already inside the base geometry ?
         //
         int ibase = bg->isWhere(x);
-        EGS_Float tb=0, ttot=0;
+        EGS_Float tb = 0, ttot = 0;
         bool first_time = true;// first time checking base geometry?
         EGS_Vector n;
         int mednew;
-        EGS_Vector *pn = normal ? &n : 0;
-        int *pmednew = newmed ? &mednew : 0;
-        if (ibase >= 0) {
+        EGS_Vector* pn = normal ? &n : 0;
+        int* pmednew = newmed ? &mednew : 0;
+        if (ibase >= 0)
+        {
             //
             // IK Feb 22 2007:
             // The following seems flawed. Yes, if there is no inscribed
@@ -521,7 +569,8 @@ public:
             // check if we are inside the geometry inscribed in region
             // ibase.
             int icd = g[ibase] ? g[ibase]->isWhere(x) : 0;
-            if (icd >= 0) {
+            if (icd >= 0)
+            {
 
                 // We think we are outside, but isWhere(x) reports that we are
                 // inside. This can be caused by numerical roundoff.
@@ -543,22 +592,24 @@ public:
                 //
                 // 0. Proper check for a and b)
                 int ixold = new_indexing ? local_start[ibase] + icd :
-                            ibase*nmax + icd;
+                            ibase * nmax + icd;
                 //EGS_Float tb_neg = 1e30; int ixnew_neg = howfar(ixold,x,u*(-1),tb_neg,0,pn);
                 //EGS_Float tb_pos = 1e30; int ixnew_pos = howfar(ixold,x,u,tb_pos,0,pn);
                 // Call to CD geometry howfar with updated region ixold. If it is aimed away from
                 // geometry, it will return ixnew = -1 and assumption a) was correct. If it is
                 // aimed into geometry, it will return ixnew >=0 and assumption b) was correct.
                 tb = veryFar;
-                int ixnew = howfar(ixold,x,u,tb,0,pn);
+                int ixnew = howfar(ixold, x, u, tb, 0, pn);
                 // Enters geometry and at a boundary or very close to one.
                 //if( ixnew_pos >= 0 && ixnew_neg < 0 && tb_neg <= boundaryTolerance && tb_pos <= boundaryTolerance) {
-                if (ixnew >= 0 && tb <= boundaryTolerance) {                             // (b) is true
+                if (ixnew >= 0 && tb <= boundaryTolerance)                               // (b) is true
+                {
                     t = 0;
                     if (newmed) *newmed = g[ibase] ? g[ibase]->medium(icd) :
                                               bg->medium(ibase);
                     //if( normal ) *normal = (*pn)*(-1);
-                    if (normal) {
+                    if (normal)
+                    {
                         *normal = *pn;
                     }
                     return ixold;
@@ -577,14 +628,17 @@ public:
                 // If a particle approaching the geometry sits on a boundary, we look back to see
                 // if we just entered the geometry (the previous checks fail to catch this case).
                 EGS_Float tb_neg = veryFar;
-                int ixnew_neg = howfar(ixold,x,u*(-1),tb_neg,0,pn);
-                if (ixnew_neg < 0 && tb_neg <= epsilon) {                             // (b) is true
+                int ixnew_neg = howfar(ixold, x, u * (-1), tb_neg, 0, pn);
+                if (ixnew_neg < 0 && tb_neg <= epsilon)                               // (b) is true
+                {
                     t = 0;
-                    if (newmed) {
+                    if (newmed)
+                    {
                         *newmed = g[ibase] ? g[ibase]->medium(icd) : bg->medium(ibase);
                     }
-                    if (normal) {
-                        *normal = (*pn)*(-1);
+                    if (normal)
+                    {
+                        *normal = (*pn) * (-1);
                     }
                     return ixold;
                 }
@@ -593,17 +647,19 @@ public:
 
                 // 1. Check if we exit the base geometry after a sufficiently small
                 // distance.
-                EGS_Float t1=veryFar, t2 = veryFar;
-                int ibase_n, ic_n=0;
-                ibase_n = bg->howfar(ibase,x,u,t1);
-                if (ibase_n < 0 && t1 < boundaryTolerance) {
+                EGS_Float t1 = veryFar, t2 = veryFar;
+                int ibase_n, ic_n = 0;
+                ibase_n = bg->howfar(ibase, x, u, t1);
+                if (ibase_n < 0 && t1 < boundaryTolerance)
+                {
                     // Yes we do => we assume that it was a roundoff problem
                     // and in reality the particle was outside the base geometry.
                     // We then check if it will enter the base geometry.
-                    EGS_Vector xtmp(x + u*t1);
-                    tb = t-t1;
-                    ibase_n = bg->howfar(ibase_n,xtmp,u,tb,pmednew,pn);
-                    if (ibase_n < 0) {
+                    EGS_Vector xtmp(x + u * t1);
+                    tb = t - t1;
+                    ibase_n = bg->howfar(ibase_n, xtmp, u, tb, pmednew, pn);
+                    if (ibase_n < 0)
+                    {
                         return ibase_n;    // no, so just return.
                     }
                     // yes, so transport to entry point and follow normal outside logic
@@ -617,36 +673,43 @@ public:
                 // very soon. So, we must do check 2.:
                 // 2. Check if we exit the inscribed geometry after a sufficiently small
                 // distance.
-                if (g[ibase]) {
-                    ic_n = g[ibase]->howfar(icd,x,u,t2);
-                    if (ic_n < 0 && t2 < boundaryTolerance) {
+                if (g[ibase])
+                {
+                    ic_n = g[ibase]->howfar(icd, x, u, t2);
+                    if (ic_n < 0 && t2 < boundaryTolerance)
+                    {
                         // Yes we do => we assume that it was a roundoff problem
                         // and in reality the particle was outside the inscribed geometry.
                         // We move to the boundary and check again the base geometry.
-                        EGS_Vector xtmp(x + u*t2);
+                        EGS_Vector xtmp(x + u * t2);
                         ibase = bg->isWhere(xtmp);
-                        if (ibase < 0) {
+                        if (ibase < 0)
+                        {
                             tb = t - t2;
-                            ibase = bg->howfar(ibase,xtmp,u,tb,pmednew,pn);
-                            if (ibase < 0) {
+                            ibase = bg->howfar(ibase, xtmp, u, tb, pmednew, pn);
+                            if (ibase < 0)
+                            {
                                 return ibase;
                             }
                             tb += t2;
                             ttot = tb;
                             first_time = false;
                         }
-                        else {
+                        else
+                        {
                             tb = t2;
                             ttot = tb;
                         }
                         goto do_checks;
                     }
                 }
-                if (t1 < boundaryTolerance && ibase_n >= 0 && g[ibase_n]) {
+                if (t1 < boundaryTolerance && ibase_n >= 0 && g[ibase_n])
+                {
                     // last resort.
-                    EGS_Vector xtmp(x + u*t1);
+                    EGS_Vector xtmp(x + u * t1);
                     int icdx = g[ibase_n]->isWhere(xtmp);
-                    if (icdx < 0) {
+                    if (icdx < 0)
+                    {
                         tb = t1;
                         ttot = tb;
                         ibase = ibase_n;
@@ -654,29 +717,33 @@ public:
                         goto do_checks;
                     }
                 }
-                if (t1 > boundaryTolerance && t2 > boundaryTolerance) {
+                if (t1 > boundaryTolerance && t2 > boundaryTolerance)
+                {
                     error_flag = 1;
                     egsWarning("EGS_CDGeometry::howfar: ireg<0, but position appears inside\n");
-                    egsWarning(" name=%s base name=%s inscribed name=%s\n",name.c_str(),
-                               bg->getName().c_str(),g[ibase] ? g[ibase]->getName().c_str() : "none");
+                    egsWarning(" name=%s base name=%s inscribed name=%s\n", name.c_str(),
+                               bg->getName().c_str(), g[ibase] ? g[ibase]->getName().c_str() : "none");
                     egsWarning(" x=(%g,%g,%g) u=(%g,%g,%g) ibase=%d icd=%d\n",
-                               x.x,x.y,x.z,u.x,u.y,u.z,ibase,icd);
+                               x.x, x.y, x.z, u.x, u.y, u.z, ibase, icd);
                     egsWarning(" distance to boundaries: base=(%d,%g) inscribed=(%d,%g)\n",
-                               ibase_n,t1,ic_n,t2);
+                               ibase_n, t1, ic_n, t2);
                 }
             }
-            if (icd >= 0) {
+            if (icd >= 0)
+            {
                 return ireg;
             }
             tb = 0;
             ttot = 0;
         } // yes, we are.
-        else {
+        else
+        {
             // no, we are not. Check if we will enter the base geometry.
             first_time = false;
             tb = t;
-            ibase = bg->howfar(ireg,x,u,tb,pmednew,pn);
-            if (ibase < 0) {
+            ibase = bg->howfar(ireg, x, u, tb, pmednew, pn);
+            if (ibase < 0)
+            {
                 return ibase;    // no, we will not.
             }
             ttot = tb; // i.e. we enter the base geometry after a
@@ -686,74 +753,89 @@ public:
         }
 
 do_checks:
-        EGS_Vector tmp(x + u*tb);  // position at which we are inside
+        EGS_Vector tmp(x + u * tb); // position at which we are inside
         // the base geometry
-        for (EGS_I64 loopCount=0; loopCount<=loopMax; ++loopCount) {
-            if (loopCount == loopMax) {
+        for (EGS_I64 loopCount = 0; loopCount <= loopMax; ++loopCount)
+        {
+            if (loopCount == loopMax)
+            {
                 egsFatal("EGS_CDGeometry::howfar: Too many iterations were required! Input may be invalid, or consider increasing loopMax.");
                 return -1;
             }
-            if (!g[ibase]) { // no inscribed geometry in this base geometry region
+            if (!g[ibase])   // no inscribed geometry in this base geometry region
+            {
                 t = ttot;
-                if (newmed) {
+                if (newmed)
+                {
                     *newmed = mednew;
                 }
-                if (normal) {
+                if (normal)
+                {
                     *normal = n;
                 }
-                return new_indexing ? local_start[ibase] : ibase*nmax;
+                return new_indexing ? local_start[ibase] : ibase * nmax;
             }
             // => we have entered.
             int icd = -1;
-            if (!first_time) { // already howfar-checked base geometry
+            if (!first_time)   // already howfar-checked base geometry
+            {
                 icd = g[ibase]->isWhere(tmp);
-                if (icd >= 0) {
+                if (icd >= 0)
+                {
                     // already inside of the geometry of this base geometry
                     // region.
                     t = ttot;
-                    if (newmed) {
+                    if (newmed)
+                    {
                         *newmed = g[ibase]->medium(icd);
                     }
-                    if (normal) {
+                    if (normal)
+                    {
                         *normal = n;
                     }
                     return new_indexing ? local_start[ibase] + icd :
-                           ibase*nmax + icd;
+                           ibase * nmax + icd;
                 }
                 first_time = false;
             }
 
             // see if we will enter a new base geometry region before t
             EGS_Float tnew = t - ttot;
-            int ibase_new = bg->howfar(ibase,tmp,u,tnew,pmednew,pn);
+            int ibase_new = bg->howfar(ibase, tmp, u, tnew, pmednew, pn);
             // see if we will enter the cd geometry of this base geometry
             // region.
-            int icd_new = g[ibase]->howfar(-1,tmp,u,tnew,pmednew,pn);
-            if (icd_new >= 0) {
+            int icd_new = g[ibase]->howfar(-1, tmp, u, tnew, pmednew, pn);
+            if (icd_new >= 0)
+            {
                 // yes, we will.
                 t = ttot + tnew;
-                if (newmed) {
+                if (newmed)
+                {
                     *newmed = mednew;
                 }
-                if (normal) {
+                if (normal)
+                {
                     *normal = n;
                 }
                 return new_indexing ? local_start[ibase] + icd_new :
-                       ibase*nmax + icd_new;
+                       ibase * nmax + icd_new;
             }
             // if the base region is the same or we have exited the
             // base geometry, the particle never enters.
 
             //if( ibase_new == ibase || ibase_new < 0 ) return -1;
-            if (ibase_new == ibase) {
+            if (ibase_new == ibase)
+            {
                 return -1;
             }
-            if (ibase_new < 0) {
-                tmp += u*tnew;
+            if (ibase_new < 0)
+            {
+                tmp += u * tnew;
                 ttot += tnew;
                 tnew = t - ttot;
-                ibase_new = bg->howfar(-1,tmp,u,tnew,pmednew,pn);
-                if (ibase_new < 0) {
+                ibase_new = bg->howfar(-1, tmp, u, tnew, pmednew, pn);
+                if (ibase_new < 0)
+                {
                     return -1;
                 }
                 //tb = tnew; ttot += tnew; first_time = false;
@@ -761,10 +843,11 @@ do_checks:
             }
             // OK, we are in a new base geometry now, adjust
             // position and path-length so-far and retry.
-            if (tnew < boundaryTolerance) {
+            if (tnew < boundaryTolerance)
+            {
                 tnew = boundaryTolerance;
             }
-            tmp += u*tnew;
+            tmp += u * tnew;
             ttot += tnew;
             ibase = ibase_new;
             first_time = false;
@@ -773,106 +856,129 @@ do_checks:
         return ireg;
     };
 
-    EGS_Float hownear(int ireg, const EGS_Vector &x) {
-        if (ireg >= 0) {
+    EGS_Float hownear(int ireg, const EGS_Vector& x)
+    {
+        if (ireg >= 0)
+        {
             int ibase, icd;
-            if (new_indexing) {
+            if (new_indexing)
+            {
                 ibase = reg_to_base[ireg];
                 icd = ireg - local_start[ibase];
             }
-            else {
-                ibase = ireg/nmax;
-                icd = ireg - ibase*nmax;
+            else
+            {
+                ibase = ireg / nmax;
+                icd = ireg - ibase * nmax;
             }
-            EGS_Float t = bg->hownear(ibase,x);
-            if (!g[ibase] || t <= 0) {
+            EGS_Float t = bg->hownear(ibase, x);
+            if (!g[ibase] || t <= 0)
+            {
                 return t;
             }
-            EGS_Float t1 = g[ibase]->hownear(icd,x);
+            EGS_Float t1 = g[ibase]->hownear(icd, x);
             return (t1 < t ? t1 : t);
         }
         int ibase = bg->isWhere(x);
-        if (ibase < 0) {
-            EGS_Float tt = bg->hownear(ireg,x);
+        if (ibase < 0)
+        {
+            EGS_Float tt = bg->hownear(ireg, x);
             return tt;
         }
-        EGS_Float t = bg->hownear(ibase,x);
-        if (g[ibase]) {
-            EGS_Float t1 = g[ibase]->hownear(-1,x);
-            if (t1 < t) {
+        EGS_Float t = bg->hownear(ibase, x);
+        if (g[ibase])
+        {
+            EGS_Float t1 = g[ibase]->hownear(-1, x);
+            if (t1 < t)
+            {
                 t = t1;
             }
         }
         return t;
     };
 
-    int getMaxStep() const {
+    int getMaxStep() const
+    {
         int nstep = 0;
-        for (int j=0; j<bg->regions(); ++j) {
-            if (g[j]) {
+        for (int j = 0; j < bg->regions(); ++j)
+        {
+            if (g[j])
+            {
                 nstep += g[j]->getMaxStep();
             }
-            else {
+            else
+            {
                 ++nstep;
             }
         }
         return nstep + 1;
     }
 
-    bool hasBooleanProperty(int ireg, EGS_BPType prop) const {
-        if (ireg >= 0 && ireg < nreg) {
-            int ibase = ireg/nmax;
+    bool hasBooleanProperty(int ireg, EGS_BPType prop) const
+    {
+        if (ireg >= 0 && ireg < nreg)
+        {
+            int ibase = ireg / nmax;
             return g[ibase] ?
-                   g[ibase]->hasBooleanProperty(ireg - ibase*nmax,prop) :
-                   bg->hasBooleanProperty(ibase,prop);
+                   g[ibase]->hasBooleanProperty(ireg - ibase * nmax, prop) :
+                   bg->hasBooleanProperty(ibase, prop);
         }
         return false;
     };
-    void setBooleanProperty(EGS_BPType) {
+    void setBooleanProperty(EGS_BPType)
+    {
         setPropertError("setBooleanProperty()");
     };
-    void addBooleanProperty(int) {
+    void addBooleanProperty(int)
+    {
         setPropertError("addBooleanProperty()");
     };
-    void setBooleanProperty(EGS_BPType,int,int,int step=1) {
+    void setBooleanProperty(EGS_BPType, int, int, int step = 1)
+    {
         setPropertError("setBooleanProperty()");
     };
-    void addBooleanProperty(int,int,int,int step=1) {
+    void addBooleanProperty(int, int, int, int step = 1)
+    {
         setPropertError("addBooleanProperty()");
     };
 
-    const string &getType() const {
+    const string& getType() const
+    {
         return type;
     };
 
     void  setRelativeRho(int start, int end, EGS_Float rho);
-    void  setRelativeRho(EGS_Input *);
-    EGS_Float getRelativeRho(int ireg) const {
-        if (ireg < 0 || ireg >= nbase*nmax) {
+    void  setRelativeRho(EGS_Input*);
+    EGS_Float getRelativeRho(int ireg) const
+    {
+        if (ireg < 0 || ireg >= nbase * nmax)
+        {
             return 1;
         }
-        int ibase = ireg/nmax;
-        return g[ibase] ? g[ibase]->getRelativeRho(ireg-ibase*nmax) :
+        int ibase = ireg / nmax;
+        return g[ibase] ? g[ibase]->getRelativeRho(ireg - ibase * nmax) :
                bg->getRelativeRho(ibase);
     };
 
     void  setBScaling(int start, int end, EGS_Float bf);
-    void  setBScaling(EGS_Input *);
-    EGS_Float getBScaling(int ireg) const {
-        if (ireg < 0 || ireg >= nbase*nmax) {
+    void  setBScaling(EGS_Input*);
+    EGS_Float getBScaling(int ireg) const
+    {
+        if (ireg < 0 || ireg >= nbase * nmax)
+        {
             return 1;
         }
-        int ibase = ireg/nmax;
-        return g[ibase] ? g[ibase]->getBScaling(ireg-ibase*nmax) :
+        int ibase = ireg / nmax;
+        return g[ibase] ? g[ibase]->getBScaling(ireg - ibase * nmax) :
                bg->getBScaling(ibase);
     };
 
-    virtual void getLabelRegions(const string &str, vector<int> &regs);
+    virtual void getLabelRegions(const string& str, vector<int>& regs);
 
 protected:
 
-    EGS_BaseGeometry *bg;
-    EGS_BaseGeometry **g;
+    EGS_BaseGeometry* bg;
+    EGS_BaseGeometry** g;
     int              nbase, nmax;
     static string    type;
 
@@ -892,29 +998,35 @@ protected:
     bool             new_indexing;
     /*! If new indexing style is used, converts global region to
         base region */
-    int              *reg_to_base;
+    int*              reg_to_base;
     /*! If new indexing style is used, local_start[ibase] is the first
         region in base region ibase */
-    int              *local_start;
+    int*              local_start;
 
-    void setMedia(EGS_Input *inp, int, const int *);
+    void setMedia(EGS_Input* inp, int, const int*);
 
 private:
 
-    void setPropertError(const char *funcname) {
+    void setPropertError(const char* funcname)
+    {
         egsFatal("EGS_CDGeometry::%s: don't use this method\n  Define "
                  "properties in the constituent geometries instead\n");
     };
 
-    void setHasRhoScaling() {
+    void setHasRhoScaling()
+    {
         has_rho_scaling = false;
-        if (bg->hasRhoScaling()) {
+        if (bg->hasRhoScaling())
+        {
             has_rho_scaling = true;
             return;
         }
-        for (int j=0; j<nbase; j++) {
-            if (g[j]) {
-                if (g[j]->hasRhoScaling()) {
+        for (int j = 0; j < nbase; j++)
+        {
+            if (g[j])
+            {
+                if (g[j]->hasRhoScaling())
+                {
                     has_rho_scaling = true;
                     return;
                 }
@@ -922,15 +1034,20 @@ private:
         }
     };
 
-    void setHasBScaling() {
+    void setHasBScaling()
+    {
         has_B_scaling = false;
-        if (bg->hasBScaling()) {
+        if (bg->hasBScaling())
+        {
             has_B_scaling = true;
             return;
         }
-        for (int j=0; j<nbase; j++) {
-            if (g[j]) {
-                if (g[j]->hasBScaling()) {
+        for (int j = 0; j < nbase; j++)
+        {
+            if (g[j])
+            {
+                if (g[j]->hasBScaling())
+                {
                     has_B_scaling = true;
                     return;
                 }

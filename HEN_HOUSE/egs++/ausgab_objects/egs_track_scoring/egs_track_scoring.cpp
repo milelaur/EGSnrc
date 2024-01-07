@@ -38,47 +38,57 @@
 #include "egs_input.h"
 #include "egs_functions.h"
 
-EGS_TrackScoring::EGS_TrackScoring(const string &Name, EGS_ObjectFactory *f) :
-    EGS_AusgabObject(Name,f), m_pts(0), m_start(0), m_stop(1024), m_lastCase(-1),
+EGS_TrackScoring::EGS_TrackScoring(const string& Name, EGS_ObjectFactory* f) :
+    EGS_AusgabObject(Name, f), m_pts(0), m_start(0), m_stop(1024), m_lastCase(-1),
     m_nScore(0), m_bufSize(16), m_score(false), m_didScore(false),
-    m_score_photons(true), m_score_electrons(true), m_score_positrons(true), m_fnExtra("") {
+    m_score_photons(true), m_score_electrons(true), m_score_positrons(true), m_fnExtra("")
+{
     otype = "EGS_TrackScoring";
 }
 
-EGS_TrackScoring::~EGS_TrackScoring() {
-    if (m_pts) {
+EGS_TrackScoring::~EGS_TrackScoring()
+{
+    if (m_pts)
+    {
         delete m_pts;
     }
 }
 
-void EGS_TrackScoring::setApplication(EGS_Application *App) {
+void EGS_TrackScoring::setApplication(EGS_Application* App)
+{
     EGS_AusgabObject::setApplication(App);
-    if (!app) {
+    if (!app)
+    {
         return;
     }
-    if (m_pts) {
+    if (m_pts)
+    {
         delete m_pts;
         m_pts = 0;
     }
-    if (m_bufSize < 1) {
+    if (m_bufSize < 1)
+    {
         m_bufSize = 1024;
     }
     string fname(app->getOutputFile());
     fname += m_fnExtra;
-    if (!egsIsAbsolutePath(fname)) {
-        fname = egsJoinPath(app->getAppDir(),fname);
+    if (!egsIsAbsolutePath(fname))
+    {
+        fname = egsJoinPath(app->getAppDir(), fname);
     }
     int i_parallel = -1;
-    if (app->getNparallel() > 1) {
+    if (app->getNparallel() > 1)
+    {
         i_parallel = app->getIparallel();
     }
-    if (i_parallel >= 0) {
+    if (i_parallel >= 0)
+    {
         char buf[16];
-        sprintf(buf,"_w%d",i_parallel);
+        sprintf(buf, "_w%d", i_parallel);
         fname += buf;
     }
     fname += ".ptracks";
-    m_pts = new EGS_ParticleTrackContainer(fname.c_str(),m_bufSize);
+    m_pts = new EGS_ParticleTrackContainer(fname.c_str(), m_bufSize);
 
     description = "\nParticle Track Scoring (";
     description += name;
@@ -92,24 +102,26 @@ void EGS_TrackScoring::setApplication(EGS_Application *App) {
     description += m_score_positrons ? "YES\n" : "NO\n";
     description += " - First event to score        = ";
     char buf[32];
-    sprintf(buf,"%lld\n",m_start);
+    sprintf(buf, "%lld\n", m_start);
     description += buf;
     description += " - Last event to score         = ";
-    sprintf(buf,"%lld\n",m_stop);
+    sprintf(buf, "%lld\n", m_stop);
     description += buf;
     description += " - Track buffer size           = ";
-    sprintf(buf,"%d\n",m_bufSize);
+    sprintf(buf, "%d\n", m_bufSize);
     description += buf;
     description += " - Output file name            = ";
     description += fname;
     description += "\n\n";
 }
 
-void EGS_TrackScoring::reportResults() {
-    egsInformation("\nParticle Track Scoring (%s)\n",name.c_str());
+void EGS_TrackScoring::reportResults()
+{
+    egsInformation("\nParticle Track Scoring (%s)\n", name.c_str());
     egsInformation("======================================================\n");
-    egsInformation("   Total events scored:     %lld\n",m_nScore);
-    if (m_pts) {
+    egsInformation("   Total events scored:     %lld\n", m_nScore);
+    if (m_pts)
+    {
         m_pts->reportResults(false);
     }
 }
@@ -117,30 +129,33 @@ void EGS_TrackScoring::reportResults() {
 
 extern "C" {
 
-    EGS_TRACK_SCORING_EXPORT EGS_AusgabObject *createAusgabObject(EGS_Input *input,
-            EGS_ObjectFactory *f) {
-        const static char *func = "createAusgabObject(track_scoring)";
-        if (!input) {
-            egsWarning("%s: null input?\n",func);
+    EGS_TRACK_SCORING_EXPORT EGS_AusgabObject* createAusgabObject(EGS_Input* input,
+        EGS_ObjectFactory* f)
+    {
+        const static char* func = "createAusgabObject(track_scoring)";
+        if (!input)
+        {
+            egsWarning("%s: null input?\n", func);
             return 0;
         }
         vector<string> sc_options;
         sc_options.push_back("no");
         sc_options.push_back("yes");
-        bool scph = input->getInput("score photons",sc_options,true);
-        bool scel = input->getInput("score electrons",sc_options,true);
-        bool scpo = input->getInput("score positrons",sc_options,true);
-        if (!scph && !scel && !scpo) {
+        bool scph = input->getInput("score photons", sc_options, true);
+        bool scel = input->getInput("score electrons", sc_options, true);
+        bool scpo = input->getInput("score positrons", sc_options, true);
+        if (!scph && !scel && !scpo)
+        {
             return 0;
         }
         EGS_I64 first = 0, last = 1024;
-        input->getInput("start scoring",first);
-        input->getInput("stop scoring",last);
+        input->getInput("start scoring", first);
+        input->getInput("stop scoring", last);
         int bufSize = 1024;
-        input->getInput("buffer size",bufSize);
+        input->getInput("buffer size", bufSize);
         string fnExtra;
-        input->getInput("file name addition",fnExtra);
-        EGS_TrackScoring *result = new EGS_TrackScoring("",f);
+        input->getInput("file name addition", fnExtra);
+        EGS_TrackScoring* result = new EGS_TrackScoring("", f);
         result->setScorePhotons(scph);
         result->setScoreElectrons(scel);
         result->setScorePositrons(scpo);

@@ -37,37 +37,44 @@
 #include "egs_transformed_source.h"
 #include "egs_input.h"
 
-EGS_TransformedSource::EGS_TransformedSource(EGS_Input *input,
-        EGS_ObjectFactory *f) : EGS_BaseSource(input,f), source(0), T(0) {
-    EGS_Input *isource = input->takeInputItem("source",false);
-    if (isource) {
+EGS_TransformedSource::EGS_TransformedSource(EGS_Input* input,
+    EGS_ObjectFactory* f) : EGS_BaseSource(input, f), source(0), T(0)
+{
+    EGS_Input* isource = input->takeInputItem("source", false);
+    if (isource)
+    {
         source = EGS_BaseSource::createSource(isource);
         delete isource;
     }
-    if (!source) {
+    if (!source)
+    {
         string sname;
-        int err = input->getInput("source name",sname);
+        int err = input->getInput("source name", sname);
         if (err)
             egsWarning("EGS_TransformedSource: missing/wrong inline source "
                        "definition and missing wrong 'source name' input\n");
-        else {
+        else
+        {
             source = EGS_BaseSource::getSource(sname);
             if (!source) egsWarning("EGS_TransformedSource: a source named %s"
                                         " does not exist\n");
         }
     }
-    EGS_AffineTransform *t = EGS_AffineTransform::getTransformation(input);
+    EGS_AffineTransform* t = EGS_AffineTransform::getTransformation(input);
     setUp(t);
     delete t;
 }
 
-void EGS_TransformedSource::setUp(EGS_AffineTransform *t) {
+void EGS_TransformedSource::setUp(EGS_AffineTransform* t)
+{
     setTransformation(t);
     otype = "EGS_TransformedSource";
-    if (!isValid()) {
+    if (!isValid())
+    {
         description = "Invalid transformed source";
     }
-    else {
+    else
+    {
         description = "Transformed ";
         description += source->getSourceDescription();
         source->ref();
@@ -76,10 +83,11 @@ void EGS_TransformedSource::setUp(EGS_AffineTransform *t) {
 
 extern "C" {
 
-    EGS_TRANSFORMED_SOURCE_EXPORT EGS_BaseSource *createSource(EGS_Input *input,
-            EGS_ObjectFactory *f) {
+    EGS_TRANSFORMED_SOURCE_EXPORT EGS_BaseSource* createSource(EGS_Input* input,
+        EGS_ObjectFactory* f)
+    {
         return
-            createSourceTemplate<EGS_TransformedSource>(input,f,"transformed source");
+            createSourceTemplate<EGS_TransformedSource>(input, f, "transformed source");
     }
 
 }

@@ -60,7 +60,8 @@ using namespace std;
   65536. Hence, for real applications, it is easier to use
   the EGS_ScoringArray class even for a single quantity of interest.
   */
-class EGS_EXPORT EGS_ScoringSingle {
+class EGS_EXPORT EGS_ScoringSingle
+{
 
 public:
 
@@ -75,42 +76,49 @@ public:
       current event, otherwise a new statistically independent event
       is started.
      */
-    inline void score(unsigned short ncase, EGS_Float f) {
-        if (ncase == current_ncase) {
+    inline void score(unsigned short ncase, EGS_Float f)
+    {
+        if (ncase == current_ncase)
+        {
             tmp += f;
         }
-        else {
-            finishCase(ncase,f);
+        else
+        {
+            finishCase(ncase, f);
         }
     };
 
     /*! \brief Finish the current 'case' (event) and start a new event
     with index \a new_case and a score of \a new_result.
     */
-    inline void finishCase(unsigned short new_case, EGS_Float new_result) {
+    inline void finishCase(unsigned short new_case, EGS_Float new_result)
+    {
         current_ncase = new_case;
         sum += tmp;
-        sum2 += tmp*tmp;
+        sum2 += tmp * tmp;
         tmp = new_result;
     };
 
     /*! \brief Returns the score of the current event. */
-    EGS_Float currentScore() const {
+    EGS_Float currentScore() const
+    {
         return tmp;
     };
 
     /*! \brief Sets \a s to the score of the current event and \a ncase
       to the index of the current event. */
-    void      currentScore(EGS_Float &s, unsigned short &ncase) const {
+    void      currentScore(EGS_Float& s, unsigned short& ncase) const
+    {
         s = tmp;
         ncase = current_ncase;
     };
 
     /*! \brief Sets \a s to the sum of scores collected so far
       and \a s2 to the sum of scores squared */
-    void      currentScore(double &s, double &s2) {
-        s=sum;
-        s2=sum2;
+    void      currentScore(double& s, double& s2)
+    {
+        s = sum;
+        s2 = sum2;
     };
 
     /*! \brief Sets \a r to the current result and \a dr to its statistical
@@ -119,14 +127,16 @@ public:
       This function sets \a r to the ratio of the sum of scores collected
       so far and \a ncase and \a dr to the statistical uncertainty of \a r.
      */
-    void      currentResult(EGS_I64 ncase, double &r, double &dr) {
+    void      currentResult(EGS_I64 ncase, double& r, double& dr)
+    {
         r = sum + tmp;
-        dr = sum2 + tmp*tmp;
+        dr = sum2 + tmp * tmp;
         r /= ncase;
         dr /= ncase;
-        dr -= r*r;
-        if (dr > 0) {
-            dr = sqrt(dr/(ncase-1));
+        dr -= r * r;
+        if (dr > 0)
+        {
+            dr = sqrt(dr / (ncase - 1));
         }
     };
 
@@ -141,10 +151,11 @@ public:
 
       \sa setState().
     */
-    bool storeState(ostream &data) {
+    bool storeState(ostream& data)
+    {
         //sum += tmp; sum2 += tmp*tmp; tmp = 0;
         //data << current_ncase << "  " << sum << "  " << sum2 << endl;
-        data << current_ncase << "  " << sum+tmp << "  " << sum2+tmp *tmp
+        data << current_ncase << "  " << sum + tmp << "  " << sum2 + tmp* tmp
              << "\n";
         return data.good();
     };
@@ -158,7 +169,8 @@ public:
 
       \sa storeState()
      */
-    bool setState(istream &data) {
+    bool setState(istream& data)
+    {
         data >> current_ncase >> sum >> sum2;
         tmp = 0;
         return data.good();
@@ -167,7 +179,8 @@ public:
     /*! \brief Reset the scoring object to a pristine state (\em i.e. all
       counters set to zero).
      */
-    void reset() {
+    void reset()
+    {
         current_ncase = 0;
         tmp = 0;
         sum = 0;
@@ -181,9 +194,10 @@ public:
      \a x is statistically independent. This method is useful for
      combining parallel runs.
     */
-    EGS_ScoringSingle &operator+=(const EGS_ScoringSingle &x) {
+    EGS_ScoringSingle& operator+=(const EGS_ScoringSingle& x)
+    {
         sum += tmp + x.sum + x.tmp;
-        sum2 += tmp*tmp + x.sum2 + x.tmp*x.tmp;
+        sum2 += tmp * tmp + x.sum2 + x.tmp * x.tmp;
         current_ncase = 0;
         tmp = 0;
         return *this;
@@ -216,7 +230,8 @@ protected:
  a 64 bit integer indicating the last statistically independent event that
  contributed to any of the elements of the scoring array.
 */
-class EGS_EXPORT EGS_ScoringArray {
+class EGS_EXPORT EGS_ScoringArray
+{
 
 public:
 
@@ -241,8 +256,9 @@ public:
       Uses EGS_ScoringSingle::score() of the scoring object in the
       region \a ireg
      */
-    inline void score(int ireg, EGS_Float f) {
-        result[ireg].score(current_ncase_short,f);
+    inline void score(int ireg, EGS_Float f)
+    {
+        result[ireg].score(current_ncase_short, f);
     };
 
     /*! \brief Returns the score in element \a ireg from the last
@@ -251,15 +267,17 @@ public:
 
      \sa thisHistoryScore()
      */
-    EGS_Float currentScore(int ireg) const {
+    EGS_Float currentScore(int ireg) const
+    {
         return result[ireg].currentScore();
     };
 
     /*! \brief Returns the score in \a ireg in the current event. */
-    EGS_Float thisHistoryScore(int ireg) const {
+    EGS_Float thisHistoryScore(int ireg) const
+    {
         EGS_Float res;
         unsigned short nc;
-        result[ireg].currentScore(res,nc);
+        result[ireg].currentScore(res, nc);
         return nc == current_ncase_short ? res : 0;
     };
 
@@ -268,8 +286,9 @@ public:
 
       \sa EGS_ScoringSingle::currentScore(double,double).
      */
-    void currentScore(int ireg, double &s, double &s2) {
-        result[ireg].currentScore(s,s2);
+    void currentScore(int ireg, double& s, double& s2)
+    {
+        result[ireg].currentScore(s, s2);
     };
 
     /*! \brief Sets \a r to the result in region \a ireg and \a dr to its
@@ -277,8 +296,9 @@ public:
 
       \sa EGS_ScoringSingle::currentResult(double,double)
      */
-    void currentResult(int ireg, double &r, double &dr) {
-        result[ireg].currentResult(current_ncase,r,dr);
+    void currentResult(int ireg, double& r, double& dr)
+    {
+        result[ireg].currentResult(current_ncase, r, dr);
     };
 
     /*! Reports the results collected so far using egsInformation().
@@ -299,8 +319,8 @@ public:
      <code> %d  %g  +/-  %g</code>, this can be modified by passing a non-null
     pointer to a format string with \a format.
     */
-    void reportResults(double norm, const char *title, bool relative_error,
-                       const char *format = 0);
+    void reportResults(double norm, const char* title, bool relative_error,
+                       const char* format = 0);
 
     /*! \brief Stores the state of the scoring array object into the data
       stream \a data.
@@ -313,17 +333,22 @@ public:
       the data from each of the #nreg elements using their
       EGS_ScoringSingle::storeData function.
     */
-    bool storeState(ostream &data) {
+    bool storeState(ostream& data)
+    {
         data << nreg << "  " << current_ncase_short << "\n";
-        if (!egsStoreI64(data,current_ncase)) {
+        if (!egsStoreI64(data, current_ncase))
+        {
             return false;
         }
-        if (!egsStoreI64(data,current_ncase_65536)) {
+        if (!egsStoreI64(data, current_ncase_65536))
+        {
             return false;
         }
         data << "\n";
-        for (int j=0; j<nreg; j++) {
-            if (!result[j].storeState(data)) {
+        for (int j = 0; j < nreg; j++)
+        {
+            if (!result[j].storeState(data))
+            {
                 return false;
             }
         }
@@ -337,27 +362,35 @@ public:
       to a state previously stored using storeState() in \em e.g.
       restarted simulations.
     */
-    bool setState(istream &data) {
+    bool setState(istream& data)
+    {
         int nreg1;
         data >> nreg1 >> current_ncase_short;
-        if (!data.good() || nreg1 < 1) {
+        if (!data.good() || nreg1 < 1)
+        {
             return false;
         }
-        if (!egsGetI64(data,current_ncase)) {
+        if (!egsGetI64(data, current_ncase))
+        {
             return false;
         }
-        if (!egsGetI64(data,current_ncase_65536)) {
+        if (!egsGetI64(data, current_ncase_65536))
+        {
             return false;
         }
-        if (nreg1 != nreg) {
-            if (nreg > 0) {
+        if (nreg1 != nreg)
+        {
+            if (nreg > 0)
+            {
                 delete [] result;
             }
             nreg = nreg1;
             result = new EGS_ScoringSingle [nreg];
         }
-        for (int j=0; j<nreg; j++) {
-            if (!result[j].setState(data)) {
+        for (int j = 0; j < nreg; j++)
+        {
+            if (!result[j].setState(data))
+            {
                 return false;
             }
         }
@@ -365,11 +398,13 @@ public:
     };
 
     /*! \brief Reset the scoring array to a pristine state. */
-    void reset() {
+    void reset()
+    {
         current_ncase = 0;
         current_ncase_65536 = 0;
         current_ncase_short = 0;
-        for (int j=0; j<nreg; j++) {
+        for (int j = 0; j < nreg; j++)
+        {
             result[j].reset();
         }
     };
@@ -380,12 +415,14 @@ public:
       This operator is useful for \em e.g. combining the results of
       parallel runs.
     */
-    EGS_ScoringArray &operator+=(const EGS_ScoringArray &x) {
+    EGS_ScoringArray& operator+=(const EGS_ScoringArray& x)
+    {
         current_ncase += x.current_ncase;
         current_ncase_65536 = current_ncase >> 16;
         EGS_I64 aux = current_ncase - (current_ncase_65536 << 16);
         current_ncase_short = (unsigned short) aux;
-        for (int j=0; j<nreg; j++) {
+        for (int j = 0; j < nreg; j++)
+        {
             result[j] += x.result[j];
         }
         return *this;
@@ -395,7 +432,8 @@ public:
       most appropriate term depending on the way the scorring array is being
       used).
     */
-    int bins() const {
+    int bins() const
+    {
         return nreg;
     };
 
@@ -403,7 +441,8 @@ public:
       most appropriate term depending on the way the scorring array is being
       used).
     */
-    int regions() const {
+    int regions() const
+    {
         return nreg;
     };
 
@@ -417,7 +456,7 @@ protected:
       object constructor. */
     int               nreg;
     /*! The nreg scoring elements */
-    EGS_ScoringSingle *result;
+    EGS_ScoringSingle* result;
     /*! current_ncase%65536. This is needed because the individual elements
       of the array only use an unsigned 16 bit integer for their history
       number.

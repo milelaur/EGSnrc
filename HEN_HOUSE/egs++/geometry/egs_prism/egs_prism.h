@@ -43,22 +43,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_PRISM_DLL
-        #define EGS_PRISM_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_PRISM_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_PRISM_LOCAL
+#ifdef BUILD_PRISM_DLL
+#define EGS_PRISM_EXPORT __declspec(dllexport)
+#else
+#define EGS_PRISM_EXPORT __declspec(dllimport)
+#endif
+#define EGS_PRISM_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_PRISM_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_PRISM_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_PRISM_EXPORT
-        #define EGS_PRISM_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_PRISM_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_PRISM_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_PRISM_EXPORT
+#define EGS_PRISM_LOCAL
+#endif
 
 #endif
 
@@ -121,11 +121,12 @@ A simple example:
 \image html egs_prism.png "A simple example"
 */
 template <class T>
-class EGS_PRISM_EXPORT EGS_PrismT : public EGS_BaseGeometry {
+class EGS_PRISM_EXPORT EGS_PrismT : public EGS_BaseGeometry
+{
 
 protected:
 
-    T      *p;             //!< The base polygon
+    T*      p;             //!< The base polygon
     EGS_Vector a;          //!< The normal vector to the base plane
     EGS_Float
     d1, //!< Distance of the top plane to the base (for closed prisms)
@@ -140,8 +141,9 @@ public:
     The object takes ownership of the polygon pointed to by \a P
     (\em i.e. no copy is made).
     */
-    EGS_PrismT(T *P, const string &Name="") :
-        EGS_BaseGeometry(Name), p(P), a(p->getNormal()), open(true) {
+    EGS_PrismT(T* P, const string& Name = "") :
+        EGS_BaseGeometry(Name), p(P), a(p->getNormal()), open(true)
+    {
         is_convex = p->isConvex();
         nreg = 1;
     };
@@ -152,10 +154,12 @@ public:
     (\em i.e. no copy is made). The distances of the yop and bottom planes
     from the base are given by \a D1 and \a D2.
     */
-    EGS_PrismT(T *P, EGS_Float D1, EGS_Float D2, const string &Name="") :
+    EGS_PrismT(T* P, EGS_Float D1, EGS_Float D2, const string& Name = "") :
         EGS_BaseGeometry(Name), p(P), a(p->getNormal()),
-        d1(D1), d2(D2), open(false) {
-        if (d1 > d2) {
+        d1(D1), d2(D2), open(false)
+    {
+        if (d1 > d2)
+        {
             d1 = D2;
             d2 = D1;
         }
@@ -164,123 +168,159 @@ public:
     };
 
     /*! \brief Desctructor, deletes the base polygon */
-    ~EGS_PrismT() {
+    ~EGS_PrismT()
+    {
         delete p;
     };
 
-    bool isInside(const EGS_Vector &x) {
-        if (!open) {
+    bool isInside(const EGS_Vector& x)
+    {
+        if (!open)
+        {
             EGS_Float d = p->distance(x);
-            if (d < d1 || d > d2) {
+            if (d < d1 || d > d2)
+            {
                 return false;
             }
         }
         return p->isInside2D(x);
     };
 
-    int isWhere(const EGS_Vector &x) {
-        if (isInside(x)) {
+    int isWhere(const EGS_Vector& x)
+    {
+        if (isInside(x))
+        {
             return 0;
         }
-        else {
+        else
+        {
             return -1;
         }
     };
-    int inside(const EGS_Vector &x) {
+    int inside(const EGS_Vector& x)
+    {
         return isWhere(x);
     };
 
-    int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u,
-               EGS_Float &t, int *newmed = 0, EGS_Vector *normal = 0) {
+    int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u,
+               EGS_Float& t, int* newmed = 0, EGS_Vector* normal = 0)
+    {
         EGS_2DVector v;
-        EGS_2DVector *pv = normal ? &v : 0;
-        if (open) {
-            bool hit = p->howfar2D(ireg == 0 ? true : false,x,u,t,pv);
-            if (!hit) {
+        EGS_2DVector* pv = normal ? &v : 0;
+        if (open)
+        {
+            bool hit = p->howfar2D(ireg == 0 ? true : false, x, u, t, pv);
+            if (!hit)
+            {
                 return ireg;
             }
-            if (newmed) {
+            if (newmed)
+            {
                 *newmed = !ireg ? -1 : med;
             }
-            if (normal) {
+            if (normal)
+            {
                 *normal = p->getNormal(v);
             }
             return !ireg ? -1 : 0;
         }
-        EGS_Float up = a*u, d = p->distance(x);
-        if (!ireg) {  // inside
+        EGS_Float up = a * u, d = p->distance(x);
+        if (!ireg)    // inside
+        {
             EGS_Float tt = veryFar;
             int inew = ireg;
-            if (up > boundaryTolerance) {
-                tt = (d2 - d)/up;
+            if (up > boundaryTolerance)
+            {
+                tt = (d2 - d) / up;
             }
-            else if (up < -boundaryTolerance) {
-                tt = (d1 - d)/up;
+            else if (up < -boundaryTolerance)
+            {
+                tt = (d1 - d) / up;
             }
-            else {
+            else
+            {
                 tt = 0;
             }
-            if (tt <= t) {
-                if (tt > 0) {
-                    t = tt+boundaryTolerance;
+            if (tt <= t)
+            {
+                if (tt > 0)
+                {
+                    t = tt + boundaryTolerance;
                 }
-                else {
+                else
+                {
                     t = tt;
                 }
                 inew = -1;
-                if (normal) {
-                    *normal = up>0 ? a*(-1) : a;
+                if (normal)
+                {
+                    *normal = up > 0 ? a * (-1) : a;
                 }
-                if (newmed) {
+                if (newmed)
+                {
                     *newmed = -1;
                 }
             }
-            bool hit = p->howfar2D(true,x,u,t,pv);
-            if (!hit) {
+            bool hit = p->howfar2D(true, x, u, t, pv);
+            if (!hit)
+            {
                 return inew;
             }
-            if (newmed) {
+            if (newmed)
+            {
                 *newmed = -1;
             }
-            if (normal) {
+            if (normal)
+            {
                 *normal = p->getNormal(v);
             }
             return -1;
         }
-        if (d < d1 || d > d2) {
+        if (d < d1 || d > d2)
+        {
             EGS_Float tt = veryFar;
-            if (d < d1 && up > boundaryTolerance) {
-                tt = (d1 - d)/up;
+            if (d < d1 && up > boundaryTolerance)
+            {
+                tt = (d1 - d) / up;
             }
-            else if (d > d2 && up < -boundaryTolerance) {
-                tt = (d2 - d)/up;
+            else if (d > d2 && up < -boundaryTolerance)
+            {
+                tt = (d2 - d) / up;
             }
-            if (tt < t) {
-                EGS_Vector xp(x + u*tt);
-                if (p->isInside2D(xp)) {
+            if (tt < t)
+            {
+                EGS_Vector xp(x + u * tt);
+                if (p->isInside2D(xp))
+                {
                     t = tt;
-                    if (newmed) {
+                    if (newmed)
+                    {
                         *newmed = med;
                     }
-                    if (normal) {
-                        *normal = up>0 ? a*(-1) : a;
+                    if (normal)
+                    {
+                        *normal = up > 0 ? a * (-1) : a;
                     }
                     return 0;
                 }
             }
         }
         EGS_Float tt = t;
-        bool hit = p->howfar2D(false,x,u,tt,pv);
-        if (!hit) {
+        bool hit = p->howfar2D(false, x, u, tt, pv);
+        if (!hit)
+        {
             return ireg;
         }
-        d = p->distance(x+u*tt);
-        if (d >= d1 && d <= d2) {
+        d = p->distance(x + u * tt);
+        if (d >= d1 && d <= d2)
+        {
             t = tt;
-            if (newmed) {
+            if (newmed)
+            {
                 *newmed = med;
             }
-            if (normal) {
+            if (normal)
+            {
                 *normal = p->getNormal(v);
             }
             return 0;
@@ -288,55 +328,70 @@ public:
         return ireg;
     };
 
-    EGS_Float hownear(int ireg, const EGS_Vector &x) {
-        EGS_Float tperp = p->hownear2D(ireg == 0 ? true : false,x);
-        if (open) {
+    EGS_Float hownear(int ireg, const EGS_Vector& x)
+    {
+        EGS_Float tperp = p->hownear2D(ireg == 0 ? true : false, x);
+        if (open)
+        {
             return tperp;
         }
         EGS_Float d = p->distance(x);
-        if (!ireg) {  // inside
+        if (!ireg)    // inside
+        {
             EGS_Float t = d2 - d;
-            if (t < tperp) {
+            if (t < tperp)
+            {
                 tperp = t;
             }
             t = d - d1;
-            if (t < tperp) {
+            if (t < tperp)
+            {
                 tperp = t;
             }
         }
-        else {
+        else
+        {
             EGS_Float t;
-            if (d < d1) {
+            if (d < d1)
+            {
                 t = d1 - d;
             }
-            else if (d > d2) {
+            else if (d > d2)
+            {
                 t = d - d2;
             }
-            else {
+            else
+            {
                 return tperp;
             }
-            if (p->isInside2D(x)) {
+            if (p->isInside2D(x))
+            {
                 tperp = t;
             }
-            else {
-                tperp = sqrt(tperp*tperp + t*t);
+            else
+            {
+                tperp = sqrt(tperp * tperp + t * t);
             }
         }
         return tperp;
     };
 
     //const string &getType() const { return type; };
-    const string &getType() const {
+    const string& getType() const
+    {
         return p->getType();
     };
 
-    void printInfo() const {
+    void printInfo() const
+    {
         EGS_BaseGeometry::printInfo();
-        if (open) {
+        if (open)
+        {
             egsInformation("  open\n");
         }
-        else {
-            egsInformation("  closed with planes at %g and %g\n",d1,d2);
+        else
+        {
+            egsInformation("  closed with planes at %g and %g\n", d1, d2);
         }
         egsInformation("===================================================\n");
     };

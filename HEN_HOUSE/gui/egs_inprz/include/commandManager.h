@@ -58,11 +58,11 @@ class CommandManager : public QDialog
 
 public:
 //qt3to4 -- BW
-    CommandManager( QWidget * parent = 0, const char * name = 0, const QStringList & args = QStringList(""));
-    CommandManager( QWidget * parent = 0, const char * name = 0, int width = 0, int height = 0, const QStringList & args = QStringList("") );
-    CommandManager( QWidget * parent = 0, const char * name = 0, const QString & arg = 0 );
+    CommandManager(QWidget* parent = 0, const char* name = 0, const QStringList& args = QStringList(""));
+    CommandManager(QWidget* parent = 0, const char* name = 0, int width = 0, int height = 0, const QStringList& args = QStringList(""));
+    CommandManager(QWidget* parent = 0, const char* name = 0, const QString& arg = 0);
     ~CommandManager() {};
-    void setEndMessage(const QString& message );
+    void setEndMessage(const QString& message);
 
 public slots:
     void readFromStdout();

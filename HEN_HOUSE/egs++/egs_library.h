@@ -49,10 +49,11 @@ class EGS_PrivateLibrary;
   process of loading dynamic shared objects (DSO), a.k.a. DLLs and resolving
   the addresses of symbols exported by the library.
 */
-class EGS_EXPORT EGS_Library {
+class EGS_EXPORT EGS_Library
+{
 
     //! Pointer to the private class implementing the functionality.
-    EGS_PrivateLibrary *pl;
+    EGS_PrivateLibrary* pl;
 
 public:
 
@@ -66,7 +67,7 @@ public:
         path for DSOs. If path contains a valid path specification,
         the library name will be constracted from \a path and \a lib_name.
      */
-    EGS_Library(const char *lib_name, const char *path = 0);
+    EGS_Library(const char* lib_name, const char* path = 0);
 
     /*! \brief Destructs the library object.
 
@@ -89,7 +90,7 @@ public:
         the symbol on success or \c null if the symbol could not
         be resolved or the library could not be loaded.
      */
-    void *resolve(const char *func);
+    void* resolve(const char* func);
 
     /*! \brief Unloads the library.
 
@@ -115,11 +116,11 @@ public:
 
     /*! \brief Returns the name of the library object as given in the
       constructor. */
-    const char *libraryName() const;
+    const char* libraryName() const;
 
     /*! \brief Returns the name of the DSO, including full path and
       platform-specific prefix and extension. */
-    const char *libraryFile() const;
+    const char* libraryFile() const;
 
     /*! \brief Resolve the address of the symbol \a func from the DSO \a lname.
 
@@ -133,8 +134,8 @@ public:
 
     \sa EGS_Library::EGS_Library(), load(), resolve().
     */
-    static void *resolve(const char *lname, const char *func,
-                         const char *path = 0);
+    static void* resolve(const char* lname, const char* func,
+                         const char* path = 0);
 };
 
 #endif

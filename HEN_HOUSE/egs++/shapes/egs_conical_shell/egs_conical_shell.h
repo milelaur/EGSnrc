@@ -53,22 +53,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_CONICAL_SHELL_DLL
-        #define EGS_CONICAL_SHELL_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_CONICAL_SHELL_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_CONICAL_SHELL_LOCAL
+#ifdef BUILD_CONICAL_SHELL_DLL
+#define EGS_CONICAL_SHELL_EXPORT __declspec(dllexport)
+#else
+#define EGS_CONICAL_SHELL_EXPORT __declspec(dllimport)
+#endif
+#define EGS_CONICAL_SHELL_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_CONICAL_SHELL_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_CONICAL_SHELL_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_CONICAL_SHELL_EXPORT
-        #define EGS_CONICAL_SHELL_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_CONICAL_SHELL_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_CONICAL_SHELL_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_CONICAL_SHELL_EXPORT
+#define EGS_CONICAL_SHELL_LOCAL
+#endif
 
 #endif
 
@@ -172,7 +172,8 @@ An example shape specification looks like:
 */
 
 
-struct CSSSLayer {
+struct CSSSLayer
+{
 
 public:
 
@@ -189,13 +190,13 @@ public:
 
     CSSSLayer(EGS_Float t, EGS_Float rit, EGS_Float rot, EGS_Float rib, EGS_Float rob, EGS_Float z);
 
-    EGS_Vector getPoint(EGS_RandomGenerator *rndm);
+    EGS_Vector getPoint(EGS_RandomGenerator* rndm);
 
-    void getRZEqualWidth(EGS_RandomGenerator *rndm, EGS_Float &r, EGS_Float &z);
+    void getRZEqualWidth(EGS_RandomGenerator* rndm, EGS_Float& r, EGS_Float& z);
 
-    void getRZRejection(EGS_RandomGenerator *rndm, EGS_Float &r, EGS_Float &z);
+    void getRZRejection(EGS_RandomGenerator* rndm, EGS_Float& r, EGS_Float& z);
 
-    EGS_Vector getPointInCircleAtZ(EGS_RandomGenerator *rndm, EGS_Float r, EGS_Float z);
+    EGS_Vector getPointInCircleAtZ(EGS_RandomGenerator* rndm, EGS_Float r, EGS_Float z);
 
     EGS_Float getRoAtZ(EGS_Float z);
 
@@ -205,43 +206,48 @@ public:
 
 
 
-class EGS_CONICAL_SHELL_EXPORT EGS_ConicalShellStackShape : public EGS_BaseShape {
+class EGS_CONICAL_SHELL_EXPORT EGS_ConicalShellStackShape : public EGS_BaseShape
+{
 
 
 public:
 
     /*! \brief Construct a sphere of radius \a r with midpoint \a Xo */
-    EGS_ConicalShellStackShape(const EGS_Vector &Xo, const string &Name = "", EGS_ObjectFactory *f=0);
+    EGS_ConicalShellStackShape(const EGS_Vector& Xo, const string& Name = "", EGS_ObjectFactory* f = 0);
 
-    ~EGS_ConicalShellStackShape() {
-        for (size_t i = 0; i < layers.size(); i++) {
+    ~EGS_ConicalShellStackShape()
+    {
+        for (size_t i = 0; i < layers.size(); i++)
+        {
             delete layers[i];
         }
     };
 
     /*! \brief Returns a random point within the conical shell. */
-    EGS_Vector getPoint(EGS_RandomGenerator *rndm);
+    EGS_Vector getPoint(EGS_RandomGenerator* rndm);
 
-    bool supportsDirectionMethod() const {
+    bool supportsDirectionMethod() const
+    {
         return false;
     };
 
-    EGS_Float area() const {
+    EGS_Float area() const
+    {
         return surface_area;
     };
 
-    void addLayer(EGS_Float thick, EGS_Float ri_top, EGS_Float ro_top, EGS_Float ri_bot,EGS_Float ro_bot);
-    void addLayer(EGS_Float thick, EGS_Float ri_bot,EGS_Float ro_bot);
+    void addLayer(EGS_Float thick, EGS_Float ri_top, EGS_Float ro_top, EGS_Float ri_bot, EGS_Float ro_bot);
+    void addLayer(EGS_Float thick, EGS_Float ri_bot, EGS_Float ro_bot);
 
 protected:
 
     void setLayerSampler();
 
-    vector<CSSSLayer *> layers; // inner radii of shell stack
+    vector<CSSSLayer*> layers;  // inner radii of shell stack
 
     vector<EGS_Float> volumes;  // volume of each section of shell
     vector<EGS_Float> cum_volumes;  // cumulative volume of each section of shell (normed to 1)
-    EGS_SimpleAliasTable *layer_sampler;  // cumulative volume of each section of shell (normed to 1)
+    EGS_SimpleAliasTable* layer_sampler;  // cumulative volume of each section of shell (normed to 1)
 
     EGS_Vector xo;    // The midpoint
     EGS_Float surface_area;    // calculated total surface area of stack

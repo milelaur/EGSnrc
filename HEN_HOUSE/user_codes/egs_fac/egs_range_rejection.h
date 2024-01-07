@@ -41,19 +41,22 @@ class EGS_RandomGenerator;
 class EGS_Stack;
 class EGS_Input;
 
-class EGS_RangeRejection {
+class EGS_RangeRejection
+{
 
 public:
 
     /*! Rejection types */
-    enum RejectionType {
+    enum RejectionType
+    {
         None = 0,           //<! i.e., no rejection/RR
         RangeDiscard = 1,   //<! simple range discard
         RussianRoulette = 2 //<! RR and/or range discard
     };
 
     /*! The possible outcomes of a call to rangeDiscard(); */
-    enum RejectionAction {
+    enum RejectionAction
+    {
         NoAction = 0,    //!< do nothing
         Kill     = -1,   //!< kill particle
         Survive  = 2,    //!< survived RR
@@ -66,41 +69,59 @@ public:
     /*! \brief Perform range discard or Russian Roulette on e+/e-
     */
     RejectionAction rangeDiscard(int q,
-            const EGS_Vector &x, EGS_Float E, EGS_Float logE,
-            EGS_Float tperp, EGS_Float range, bool is_cav,
-            EGS_RandomGenerator *rndm, EGS_Float &wt) const;
+                                 const EGS_Vector& x, EGS_Float E, EGS_Float logE,
+                                 EGS_Float tperp, EGS_Float range, bool is_cav,
+                                 EGS_RandomGenerator* rndm, EGS_Float& wt) const;
 
-    RejectionAction rangeDiscard(int np, EGS_Stack *stack,
-            EGS_Float tperp, EGS_Float range, bool is_cav,
-            EGS_Float logE, EGS_RandomGenerator *rndm) const;
+    RejectionAction rangeDiscard(int np, EGS_Stack* stack,
+                                 EGS_Float tperp, EGS_Float range, bool is_cav,
+                                 EGS_Float logE, EGS_RandomGenerator* rndm) const;
 
-    EGS_Float getRange(int q, EGS_Float elke) {
+    EGS_Float getRange(int q, EGS_Float elke)
+    {
         return q == -1 ? erange.interpolateFast(elke) :
-                         prange.interpolateFast(elke);
+               prange.interpolateFast(elke);
     };
 
-    bool canEnterCavity(int q, EGS_Float elke, const EGS_Vector &x) {
-        EGS_Float range = getRange(q,elke);
-        return canEnterCavity(range,x);
+    bool canEnterCavity(int q, EGS_Float elke, const EGS_Vector& x)
+    {
+        EGS_Float range = getRange(q, elke);
+        return canEnterCavity(range, x);
     };
 
-    bool canEnterCavity(EGS_Float range, const EGS_Vector &x) {
-        return range >= cgeom->hownear(-1,x);
+    bool canEnterCavity(EGS_Float range, const EGS_Vector& x)
+    {
+        return range >= cgeom->hownear(-1, x);
     };
 
-    EGS_Float hownear(const EGS_Vector &x) { return cgeom->hownear(-1,x); };
+    EGS_Float hownear(const EGS_Vector& x)
+    {
+        return cgeom->hownear(-1, x);
+    };
 
-    static EGS_RangeRejection* getRangeRejection(EGS_Input *inp,
-            EGS_Interpolator *i_ededx, EGS_Interpolator *i_pdedx);
+    static EGS_RangeRejection* getRangeRejection(EGS_Input* inp,
+        EGS_Interpolator* i_ededx, EGS_Interpolator* i_pdedx);
 
-    RejectionType getType() const { return type; };
-    EGS_Float     getProbi() const { return probi; };
-    EGS_Float     getEsave() const { return Esave; };
-    EGS_BaseGeometry *getCavityGeometry() { return cgeom; };
+    RejectionType getType() const
+    {
+        return type;
+    };
+    EGS_Float     getProbi() const
+    {
+        return probi;
+    };
+    EGS_Float     getEsave() const
+    {
+        return Esave;
+    };
+    EGS_BaseGeometry* getCavityGeometry()
+    {
+        return cgeom;
+    };
 
 protected:
 
-    EGS_BaseGeometry *cgeom; //<! Cavity geometry
+    EGS_BaseGeometry* cgeom; //<! Cavity geometry
     EGS_Float         probi; //<! Inverse survival probability
     EGS_Float         Esave; //<! "Safe" energy
     RejectionType     type;  //<! Rejection type

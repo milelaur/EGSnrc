@@ -54,8 +54,8 @@ using namespace std;
 
 #define WARNING_USER      "couldn't guess user code\n using cavrznrc!"
 #define WARNING_DEFAULTS  "<b>Error reading input file, defaults used instead.<br>" \
-"(correct errors and press <i>Save</i> button to write defaults to file)</b><br>"\
-                          "<br>"
+    "(correct errors and press <i>Save</i> button to write defaults to file)</b><br>"\
+    "<br>"
 //                          "<hr><br>"
 #define WARNING_DEFAULT   "\nDefault used instead!"
 #define WARNING_IWATCH    "Wrong IWATCH in input file!\n"
@@ -87,17 +87,17 @@ typedef std::vector<string> v_string;
  *
  ***********************************************************
  */
-QString parseStr( std::ifstream & in, const QString & id );
+QString parseStr(std::ifstream& in, const QString& id);
 // defined in inputblock.cpp:
-QString getIt( string &code,
+QString getIt(string& code,
               QString def,
-              QString & error,
-              DE_Parser *p );
+              QString& error,
+              DE_Parser* p);
 //qt3to4 -- BW
-void print_delimeter( const QString& boundary,
-                      const QString& section,
-                      //Q3TextStream &t );
-                      QTextStream &t );
+void print_delimeter(const QString& boundary,
+                     const QString& section,
+                     //Q3TextStream &t );
+                     QTextStream& t);
 /*
 // defined in inputRZImplemantation.cpp :
 bool check_file( const QString & fname );
@@ -135,31 +135,33 @@ QTextStream & operator >> ( QTextStream & ts, string & str );
  */
 
 template <class X>
-std::vector<X> getThemAll( string &code, std::vector<X> mydef,
-                           QString & error, DE_Parser *p )
+std::vector<X> getThemAll(string& code, std::vector<X> mydef,
+                          QString& error, DE_Parser* p)
 {
     std::vector<X> result;
     X def = mydef[0];
-    if ( p->get_input( code, result ) )
+    if (p->get_input(code, result))
     {
-         error += "value sought not found for " ;
-         error += code.c_str(); error += "<br>";
-         return mydef;
+        error += "value sought not found for " ;
+        error += code.c_str();
+        error += "<br>";
+        return mydef;
     }
     else return result;
 }
 
 template <class X>
-std::vector<X> getThem( string &code, X min, X max, std::vector<X> mydef,
-                        QString & error, DE_Parser *p )
+std::vector<X> getThem(string& code, X min, X max, std::vector<X> mydef,
+                       QString& error, DE_Parser* p)
 {
     std::vector<X> result;
     X def = mydef[0];
-    if ( p->get_input( code, result, min, max, def ) )
+    if (p->get_input(code, result, min, max, def))
     {
-         error += "value sought not found for " ;
-         error += code.c_str(); error += "<br>";
-         return mydef;
+        error += "value sought not found for " ;
+        error += code.c_str();
+        error += "<br>";
+        return mydef;
     }
     else return result;
 }
@@ -168,68 +170,77 @@ std::vector<X> getThem( string &code, X min, X max, std::vector<X> mydef,
 // bool or float values if you are happy with just using the default,
 // call get_input directly instead
 template <class X>
-X getItsafe( string &code, X xmin, X xmax, X xdef,
-             QString & error, DE_Parser *p )
+X getItsafe(string& code, X xmin, X xmax, X xdef,
+            QString& error, DE_Parser* p)
 {
-	X res;
-	res = p->get_input( code, xmin, xmax, xdef );
-	if ( res == xdef )
-    	{
-	    error += "wrong value sought or not found for " ;
-            error += code.c_str(); error += "<br>";
-	}
-	return res;
+    X res;
+    res = p->get_input(code, xmin, xmax, xdef);
+    if (res == xdef)
+    {
+        error += "wrong value sought or not found for " ;
+        error += code.c_str();
+        error += "<br>";
+    }
+    return res;
 }
 
 template <class X>
-int delete_element( std::vector<X> * x, X e )
+int delete_element(std::vector<X>* x, X e)
 {
-     int i =0;
-     //std::vector<X>::iterator iter(x->begin());
-     typename vector<X>::iterator iter = x->begin();
-     while ( iter < x->end() ) {
-         if ( *iter == e ) {     // item detected
-              x->erase(iter);    // delete item
-              return i;           // return position
-         }
-         iter++;              // advance to next different item
-         i++;
-      }
-    return x->size()+1; // no item detected;
-                        // set vacuum position outside vector range
- }
+    int i = 0;
+    //std::vector<X>::iterator iter(x->begin());
+    typename vector<X>::iterator iter = x->begin();
+    while (iter < x->end())
+    {
+        if (*iter == e)         // item detected
+        {
+            x->erase(iter);    // delete item
+            return i;           // return position
+        }
+        iter++;              // advance to next different item
+        i++;
+    }
+    return x->size() + 1; // no item detected;
+    // set vacuum position outside vector range
+}
 
 template <class X>
-std::vector<X> del_element( std::vector<X> v, X e )
+std::vector<X> del_element(std::vector<X> v, X e)
 {
-     std::vector<X> x = v;
-     //std::vector<X>::iterator iter(x.begin());
-     typename vector<X>::iterator iter = x.begin();
-     while ( iter < x.end() ) {
-         if ( *iter == e ) {     // item detected
-              x.erase(iter);        // delete item
-         }
-         iter++;              // advance to next different item
-      }
+    std::vector<X> x = v;
+    //std::vector<X>::iterator iter(x.begin());
+    typename vector<X>::iterator iter = x.begin();
+    while (iter < x.end())
+    {
+        if (*iter == e)         // item detected
+        {
+            x.erase(iter);        // delete item
+        }
+        iter++;              // advance to next different item
+    }
 
-     return x;
- }
+    return x;
+}
 
 template <class X>
-std::vector<X> strip_repetitions( std::vector<X> v )
+std::vector<X> strip_repetitions(std::vector<X> v)
 {
     std::vector<X> x = v;
     //std::vector<X>::iterator iter1(x.begin());
     typename vector<X>::iterator iter1 = x.begin();
-    while ( iter1 != x.end() ) {
+    while (iter1 != x.end())
+    {
         //std::vector<X>::iterator iter2(iter1);
         typename vector<X>::iterator iter2 = iter1;
         iter2++;
-        while ( iter2 != x.end() ) {
-            if ( *iter1 == *iter2 ) { // item repetition detected
+        while (iter2 != x.end())
+        {
+            if (*iter1 == *iter2)     // item repetition detected
+            {
                 x.erase(iter2);        // delete repeated item
             }
-            else {
+            else
+            {
                 iter2++;
             }
         }
@@ -250,26 +261,29 @@ and convert it to \em any type trough the use of a TextStream. The content
 of column \col is passed to a vector of type X.
 */
 template <class X>
-void get_col_content( const int &col, QTableWidget* t, std::vector<X> &result)
+void get_col_content(const int& col, QTableWidget* t, std::vector<X>& result)
 {
     X val;
     result.clear(); // reseting values, so clear before
     //qt3to4 -- BW
     //for ( int i = 0; i < t->numRows(); i++ ){
-        //str = t->text(i,col);
-     for ( int i = 0; i < t->rowCount(); i++ ){
-        QTableWidgetItem *qtwi = t->item(i,col);
+    //str = t->text(i,col);
+    for (int i = 0; i < t->rowCount(); i++)
+    {
+        QTableWidgetItem* qtwi = t->item(i, col);
         QString str;
         if (qtwi) str = qtwi->text();
 
-        if (!str.isEmpty()) { // not an empty cell
+        if (!str.isEmpty())   // not an empty cell
+        {
             //qt3to4 -- BW
             //Q3TextStream ts( str, QIODevice::ReadWrite );
-            QTextStream ts( &str, QIODevice::ReadWrite );
+            QTextStream ts(&str, QIODevice::ReadWrite);
             ts >> val;
-            result.push_back( val );
+            result.push_back(val);
         }
-        else{// got empty cell
+        else // got empty cell
+        {
             //result.push_back( val );
         }
     }
@@ -286,26 +300,29 @@ value is used.
 template <class X>
 //qt3to4 -- BW
 //void get_col_explicit( const int &col, Q3Table* t, std::vector<X> &result, X def)
-void get_col_explicit( const int &col, QTableWidget* t, std::vector<X> &result, X def)
+void get_col_explicit(const int& col, QTableWidget* t, std::vector<X>& result, X def)
 {
     X val;
     result.clear(); // reseting values, so clear before
     //qt3to4 -- BW
     //for ( int i = 0; i < t->numRows(); i++ ){
-        //str = t->text(i,col);
-    for ( int i = 0; i < t->rowCount(); i++ ){
-        QTableWidgetItem *qtwi = t->item(i,col);
+    //str = t->text(i,col);
+    for (int i = 0; i < t->rowCount(); i++)
+    {
+        QTableWidgetItem* qtwi = t->item(i, col);
         QString str;
         if (qtwi) str = qtwi->text();
-        if (!str.isEmpty()) { // not an empty cell
+        if (!str.isEmpty())   // not an empty cell
+        {
             //qt3to4 -- BW
             //Q3TextStream ts( str, QIODevice::ReadWrite );
-            QTextStream ts( &str, QIODevice::ReadWrite );
+            QTextStream ts(&str, QIODevice::ReadWrite);
             ts >> val;
-            result.push_back( val );
+            result.push_back(val);
         }
-        else{// got empty cell
-            result.push_back( def );
+        else // got empty cell
+        {
+            result.push_back(def);
         }
     }
 
@@ -322,7 +339,7 @@ updated, it is used to set the text in the corresponding cell.
 template <class X>
 //qt3to4 -- BW
 //void update_table(std::vector<X> *v, int ini, int count, Q3Table* t)
-void update_table(std::vector<X> *v, int ini, int count, QTableWidget* t)
+void update_table(std::vector<X>* v, int ini, int count, QTableWidget* t)
 {
 
     //clear_table(t); ==> member of class inputRZImpl and this is global
@@ -331,31 +348,35 @@ void update_table(std::vector<X> *v, int ini, int count, QTableWidget* t)
 
     //qt3to4 -- BW
     //for ( i = 0; i < t->numRows(); i++){
-    for ( i = 0; i < t->rowCount(); i++){
-        for ( int j = ini; j < count; j++ ){
+    for (i = 0; i < t->rowCount(); i++)
+    {
+        for (int j = ini; j < count; j++)
+        {
             //qt3to4 -- BW
             //t->clearCell( i, j );
-            t->setItem(i,j,0);
+            t->setItem(i, j, 0);
         }
     }
 
-    for ( i = ini; i < count; i++) {
+    for (i = ini; i < count; i++)
+    {
         //std::vector<X>::iterator iter(v[i].begin());
         typename vector<X>::iterator iter = v[i].begin();
         int j = 0;
         unsigned short int vsize = v[i].size();
         //qt3to4 -- BW
         //if ( vsize > t->numRows()) t->setNumRows( vsize );
-        if ( vsize > t->rowCount()) t->setRowCount( vsize );
-        while ( iter != v[i].end()) {
+        if (vsize > t->rowCount()) t->setRowCount(vsize);
+        while (iter != v[i].end())
+        {
             QString str;
             //qt3to4 -- BW
             //Q3TextStream ts( &str, QIODevice::WriteOnly );
-            QTextStream ts( &str, QIODevice::WriteOnly );
+            QTextStream ts(&str, QIODevice::WriteOnly);
             ts << *iter++;
             //qt3to4 -- BW
             //t->setText( j, i, str );
-            t->setItem(j,i, new QTableWidgetItem(str));
+            t->setItem(j, i, new QTableWidgetItem(str));
             //t->setText( j, i, str.setNum(*iter++,10) );
             j++;
         }
@@ -364,4 +385,4 @@ void update_table(std::vector<X> *v, int ini, int count, QTableWidget* t)
 }
 
 
-#endif	// DATAINP_H
+#endif  // DATAINP_H

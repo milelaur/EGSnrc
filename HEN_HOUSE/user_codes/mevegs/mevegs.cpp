@@ -62,17 +62,19 @@
 using namespace std;
 
 // anonymous namespace
-namespace {
+namespace
+{
 // Whether the geometry is a plain mesh or inside an envelope
 enum class MevegsGeometry { Mesh, EnvelopedMesh };
 } // anonymous namespace
 
-class APP_EXPORT Mevegs_Application : public EGS_AdvancedApplication {
+class APP_EXPORT Mevegs_Application : public EGS_AdvancedApplication
+{
 
-    EGS_ScoringArray *score;    // scoring array with energies deposited
-    EGS_ScoringArray *eflu;     // scoring array for electron fluence at back of geometry
-    EGS_ScoringArray *gflu;     // scoring array for photon fluence at back of geometry
-    EGS_ScoringArray **pheight; // pulse height distributions.
+    EGS_ScoringArray* score;    // scoring array with energies deposited
+    EGS_ScoringArray* eflu;     // scoring array for electron fluence at back of geometry
+    EGS_ScoringArray* gflu;     // scoring array for photon fluence at back of geometry
+    EGS_ScoringArray** pheight; // pulse height distributions.
     int              nreg;      // number of regions in the geometry
     int              nph;       // number of pulse height objects.
     double           Etot;      // total energy that has entered the geometry
@@ -81,8 +83,8 @@ class APP_EXPORT Mevegs_Application : public EGS_AdvancedApplication {
     // is currently being simulated
     bool  deflect_brems;
 
-    EGS_Float        *ph_de;    // bin widths if the pulse height distributions.
-    int              *ph_regions; // region indeces of the ph-dsitributions
+    EGS_Float*        ph_de;    // bin widths if the pulse height distributions.
+    int*              ph_regions; // region indeces of the ph-dsitributions
     static string revision;    // the CVS revision number
 
 public:
@@ -92,25 +94,31 @@ public:
      contructor, which determines the input file, the pegs file, if the
      simulation is a parallel run, etc.
     */
-    Mevegs_Application(int argc, char **argv) :
-        EGS_AdvancedApplication(argc,argv), score(0), eflu(0), gflu(0), pheight(0),
+    Mevegs_Application(int argc, char** argv) :
+        EGS_AdvancedApplication(argc, argv), score(0), eflu(0), gflu(0), pheight(0),
         nreg(0), nph(0), Etot(0), rr_flag(0), current_weight(1), deflect_brems(false) { };
 
     /*! Destructor.
      Deallocate memory
      */
-    ~Mevegs_Application() {
-        if (score) {
+    ~Mevegs_Application()
+    {
+        if (score)
+        {
             delete score;
         }
-        if (eflu) {
+        if (eflu)
+        {
             delete eflu;
         }
-        if (gflu) {
+        if (gflu)
+        {
             delete gflu;
         }
-        if (nph > 0) {
-            for (int j=0; j<nph; j++) {
+        if (nph > 0)
+        {
+            for (int j = 0; j < nph; j++)
+            {
                 delete pheight[j];
             }
             delete [] pheight;
@@ -170,7 +178,7 @@ public:
      over parallel jobs. data is a reference to the currently opened
      data stream (basically the j'th .egsdat file).
      */
-    int addState(istream &data);
+    int addState(istream& data);
 
     /*! Output the results of a simulation. */
     void outputResults();
@@ -179,7 +187,7 @@ public:
     void writeMeshOutputFiles() const;
 
     /*! Write the results to a VTK legacy ASCII file. */
-    void writeVtk(const EGS_Mesh &mesh, std::size_t offset) const;
+    void writeVtk(const EGS_Mesh& mesh, std::size_t offset) const;
 
     /*! Get the current simulation result.
      This function is called from the run control object in parallel runs
@@ -192,8 +200,8 @@ public:
      this info in the log file. In our case we arbitrarily decide to return the
      reflected energy fraction as the single result of the simulation.
     */
-    void getCurrentResult(double &sum, double &sum2, double &norm,
-                          double &count);
+    void getCurrentResult(double& sum, double& sum2, double& norm,
+                          double& count);
 
 protected:
 
@@ -219,10 +227,11 @@ protected:
 
 string Mevegs_Application::revision = "0.1";
 
-extern "C" void F77_OBJ_(egs_scale_xcc,EGS_SCALE_XCC)(const int *,const EGS_Float *);
-extern "C" void F77_OBJ_(egs_scale_bc,EGS_SCALE_BC)(const int *,const EGS_Float *);
+extern "C" void F77_OBJ_(egs_scale_xcc, EGS_SCALE_XCC)(const int*, const EGS_Float*);
+extern "C" void F77_OBJ_(egs_scale_bc, EGS_SCALE_BC)(const int*, const EGS_Float*);
 
-void Mevegs_Application::describeUserCode() const {
+void Mevegs_Application::describeUserCode() const
+{
     egsInformation(
         "\n               ***************************************************"
         "\n               *                                                 *"
@@ -236,10 +245,11 @@ void Mevegs_Application::describeUserCode() const {
                    egsSimplifyCVSKey(base_revision).c_str());
 }
 
-int Mevegs_Application::initScoring() {
+int Mevegs_Application::initScoring()
+{
     // Get the numner of regions in the geometry.
     nreg = geometry->regions();
-    score = new EGS_ScoringArray(nreg+2);
+    score = new EGS_ScoringArray(nreg + 2);
     //i.e. we always score energy fractions
     eflu = new EGS_ScoringArray(200);
     gflu = new EGS_ScoringArray(200);
@@ -247,34 +257,41 @@ int Mevegs_Application::initScoring() {
     // Initialize with no russian roulette
     the_egsvr->i_do_rr = 1;
 
-    EGS_Input *options = input->takeInputItem("scoring options");
-    if (options) {
+    EGS_Input* options = input->takeInputItem("scoring options");
+    if (options)
+    {
 
-        EGS_Input *scale;
-        while ((scale = options->takeInputItem("scale xcc"))) {
+        EGS_Input* scale;
+        while ((scale = options->takeInputItem("scale xcc")))
+        {
             vector<string> tmp;
-            int err = scale->getInput("scale xcc",tmp);
+            int err = scale->getInput("scale xcc", tmp);
             //egsInformation("Found 'scale xcc', err=%d tmp.size()=%d\n",err,tmp.size());
-            if (!err && tmp.size() == 2) {
+            if (!err && tmp.size() == 2)
+            {
                 int imed = EGS_BaseGeometry::getMediumIndex(tmp[0]) + 1;
-                if (imed > 0) {
+                if (imed > 0)
+                {
                     EGS_Float fac = atof(tmp[1].c_str());
-                    egsInformation("\n ***** Scaling xcc of medium %d with %g\n",imed,fac);
-                    F77_OBJ_(egs_scale_xcc,EGS_SCALE_XCC)(&imed,&fac);
+                    egsInformation("\n ***** Scaling xcc of medium %d with %g\n", imed, fac);
+                    F77_OBJ_(egs_scale_xcc, EGS_SCALE_XCC)(&imed, &fac);
                 }
             }
             delete scale;
         }
-        while ((scale = options->takeInputItem("scale bc"))) {
+        while ((scale = options->takeInputItem("scale bc")))
+        {
             vector<string> tmp;
-            int err = scale->getInput("scale bc",tmp);
+            int err = scale->getInput("scale bc", tmp);
             //egsInformation("Found 'scale xcc', err=%d tmp.size()=%d\n",err,tmp.size());
-            if (!err && tmp.size() == 2) {
+            if (!err && tmp.size() == 2)
+            {
                 int imed = EGS_BaseGeometry::getMediumIndex(tmp[0]) + 1;
-                if (imed > 0) {
+                if (imed > 0)
+                {
                     EGS_Float fac = atof(tmp[1].c_str());
-                    egsInformation("\n ***** Scaling bc of medium %d with %g\n",imed,fac);
-                    F77_OBJ_(egs_scale_bc,EGS_SCALE_BC)(&imed,&fac);
+                    egsInformation("\n ***** Scaling bc of medium %d with %g\n", imed, fac);
+                    F77_OBJ_(egs_scale_bc, EGS_SCALE_BC)(&imed, &fac);
                 }
             }
             delete scale;
@@ -283,72 +300,85 @@ int Mevegs_Application::initScoring() {
         vector<string> choices;
         choices.push_back("no");
         choices.push_back("yes");
-        deflect_brems = options->getInput("deflect electron after brems",choices,0);
-        if (deflect_brems) {
+        deflect_brems = options->getInput("deflect electron after brems", choices, 0);
+        if (deflect_brems)
+        {
             egsInformation("\n *** Using electron deflection in brems events\n\n");
-            setAusgabCall(AfterBrems,true);
+            setAusgabCall(AfterBrems, true);
         }
 
         int n_rr;
-        if (!options->getInput("Russian Roulette",n_rr) && n_rr > 1) {
+        if (!options->getInput("Russian Roulette", n_rr) && n_rr > 1)
+        {
             the_egsvr->i_do_rr = n_rr;
-            setAusgabCall(BeforeBrems,true);
-            setAusgabCall(AfterBrems,true);
-            setAusgabCall(BeforeAnnihFlight,true);
-            setAusgabCall(AfterAnnihFlight,true);
-            setAusgabCall(BeforeAnnihRest,true);
-            setAusgabCall(AfterAnnihRest,true);
+            setAusgabCall(BeforeBrems, true);
+            setAusgabCall(AfterBrems, true);
+            setAusgabCall(BeforeAnnihFlight, true);
+            setAusgabCall(AfterAnnihFlight, true);
+            setAusgabCall(BeforeAnnihRest, true);
+            setAusgabCall(AfterAnnihRest, true);
             //setAusgabCall(FluorescentEvent,true);
-            egsInformation("\nUsing Russian Roulette with survival probability 1/%d\n",n_rr);
+            egsInformation("\nUsing Russian Roulette with survival probability 1/%d\n", n_rr);
         }
 
         // The user has provided scoring options input.
         // See where she/he wants to score a pulse height distribution
         // and how many bins to use for each pulse height distribution
         vector<int> regions;
-        int err = options->getInput("pulse height regions",regions);
+        int err = options->getInput("pulse height regions", regions);
         vector<int> nbins;
-        int err1 = options->getInput("pulse height bins",nbins);
-        if (!err && !err1) {
+        int err1 = options->getInput("pulse height bins", nbins);
+        if (!err && !err1)
+        {
             if (regions.size() != nbins.size() && nbins.size() != 1)
                 egsWarning("initScoring(): you must input the same "
                            "number of 'regions' and 'bins' inputs or a single 'bins'"
                            " input\n");
-            else {
-                EGS_ScoringArray **tmp = new EGS_ScoringArray* [nreg+2];
-                for (int i=0; i<nreg+2; i++) {
+            else
+            {
+                EGS_ScoringArray** tmp = new EGS_ScoringArray* [nreg + 2];
+                for (int i = 0; i < nreg + 2; i++)
+                {
                     tmp[i] = 0;
                 }
-                for (int j=0; j<regions.size(); j++) {
+                for (int j = 0; j < regions.size(); j++)
+                {
                     int nb = nbins.size() == 1 ? nbins[0] : nbins[j];
-                    if (nb < 1) {
-                        egsWarning("zero bins for region %d?\n",regions[j]);
+                    if (nb < 1)
+                    {
+                        egsWarning("zero bins for region %d?\n", regions[j]);
                     }
-                    if (regions[j] < -1 || regions[j] > nreg) {
-                        egsWarning("invalid region index %d\n",regions[j]);
+                    if (regions[j] < -1 || regions[j] > nreg)
+                    {
+                        egsWarning("invalid region index %d\n", regions[j]);
                     }
-                    if (nb > 0 && regions[j] >= 0 && regions[j] < nreg+2) {
+                    if (nb > 0 && regions[j] >= 0 && regions[j] < nreg + 2)
+                    {
                         int ij = regions[j];
                         if (tmp[ij]) egsInformation("There is already a "
-                                                        "PHD object in region %d => ignoring it\n",ij);
-                        else {
+                                                        "PHD object in region %d => ignoring it\n", ij);
+                        else
+                        {
                             tmp[ij] = new EGS_ScoringArray(nb);
                             ++nph;
                         }
                     }
                 }
-                if (nph > 0) {
+                if (nph > 0)
+                {
                     pheight = new EGS_ScoringArray* [nph];
                     ph_regions = new int [nph];
                     ph_de = new EGS_Float [nph];
                     EGS_Float Emax = source->getEmax();
                     int iph = 0;
-                    for (int j=0; j<nreg+2; j++) {
-                        if (tmp[j]) {
+                    for (int j = 0; j < nreg + 2; j++)
+                    {
+                        if (tmp[j])
+                        {
                             pheight[iph] = tmp[j];
                             ph_regions[iph] = j;
                             int nbin = pheight[iph]->bins();
-                            ph_de[iph++] = Emax/nbin;
+                            ph_de[iph++] = Emax / nbin;
                         }
                     }
                 }
@@ -362,72 +392,84 @@ int Mevegs_Application::initScoring() {
     return 0;
 }
 
-int Mevegs_Application::ausgab(int iarg) {
-    if (iarg <= 4) {
+int Mevegs_Application::ausgab(int iarg)
+{
+    if (iarg <= 4)
+    {
         int np = the_stack->np - 1;
 
         // Note: ir is the region number+1
-        int ir = the_stack->ir[np]-1;
+        int ir = the_stack->ir[np] - 1;
 
         // If the particle is outside the geometry and headed in the positive
         // z-direction, change the region to count it as "transmitted"
         // Note: This is only valid for certain source/geometry conditions!
         // If those conditions are not met, the reflected and transmitted
         // energy fractions will be wrong
-        if (ir == 0 && the_stack->w[np] > 0) {
-            ir = nreg+1;
+        if (ir == 0 && the_stack->w[np] > 0)
+        {
+            ir = nreg + 1;
         }
 
-        EGS_Float aux = the_epcont->edep*the_stack->wt[np];
-        if (aux > 0) {
-            score->score(ir,aux);
+        EGS_Float aux = the_epcont->edep * the_stack->wt[np];
+        if (aux > 0)
+        {
+            score->score(ir, aux);
         }
 
         // if( the_stack->iq[np] ) score->score(ir,the_epcont->edep*the_stack->wt[np]);
-        if (ir == nreg+1) {
-            EGS_ScoringArray *flu = the_stack->iq[np] ? eflu : gflu;
-            EGS_Float r2 = the_stack->x[np]*the_stack->x[np] + the_stack->y[np]*the_stack->y[np];
-            int bin = (int)(sqrt(r2)*10.);
-            if (bin < 200) {
+        if (ir == nreg + 1)
+        {
+            EGS_ScoringArray* flu = the_stack->iq[np] ? eflu : gflu;
+            EGS_Float r2 = the_stack->x[np] * the_stack->x[np] + the_stack->y[np] * the_stack->y[np];
+            int bin = (int)(sqrt(r2) * 10.);
+            if (bin < 200)
+            {
 
-                aux = the_stack->wt[np]/the_stack->w[np];
-                if (aux > 0) {
-                    flu->score(bin,aux);
+                aux = the_stack->wt[np] / the_stack->w[np];
+                if (aux > 0)
+                {
+                    flu->score(bin, aux);
                 }
             }
         }
         return 0;
     }
-    int np = the_stack->np-1;
+    int np = the_stack->np - 1;
     if (iarg == BeforeBrems || iarg == BeforeAnnihRest || (iarg == BeforeAnnihFlight &&
-            the_stack->latch[np] > 0)) {
+            the_stack->latch[np] > 0))
+    {
         the_stack->latch[np] = 0;
         rr_flag = 1;
         the_egsvr->nbr_split = the_egsvr->i_do_rr;
         return 0;
     }
-    if (iarg == AfterBrems && deflect_brems) {
-        EGS_Vector u(the_stack->u[np-1],the_stack->v[np-1],the_stack->w[np-1]);
-        EGS_Float tau = the_stack->E[np-1]/the_useful->rm - 1;
-        EGS_Float beta = sqrt(tau*(tau+2))/(tau+1);
-        EGS_Float eta = 2*rndm->getUniform()-1;
-        EGS_Float cost = (beta + eta)/(1 + beta*eta);
-        EGS_Float sint = 1 - cost*cost;
-        if (sint > 0) {
+    if (iarg == AfterBrems && deflect_brems)
+    {
+        EGS_Vector u(the_stack->u[np - 1], the_stack->v[np - 1], the_stack->w[np - 1]);
+        EGS_Float tau = the_stack->E[np - 1] / the_useful->rm - 1;
+        EGS_Float beta = sqrt(tau * (tau + 2)) / (tau + 1);
+        EGS_Float eta = 2 * rndm->getUniform() - 1;
+        EGS_Float cost = (beta + eta) / (1 + beta * eta);
+        EGS_Float sint = 1 - cost * cost;
+        if (sint > 0)
+        {
             sint = sqrt(sint);
             EGS_Float cphi, sphi;
-            rndm->getAzimuth(cphi,sphi);
-            u.rotate(cost,sint,cphi,sphi);
-            the_stack->u[np-1] = u.x;
-            the_stack->v[np-1] = u.y;
-            the_stack->w[np-1] = u.z;
+            rndm->getAzimuth(cphi, sphi);
+            u.rotate(cost, sint, cphi, sphi);
+            the_stack->u[np - 1] = u.x;
+            the_stack->v[np - 1] = u.y;
+            the_stack->w[np - 1] = u.z;
         }
     }
 
-    if (iarg == AfterBrems || iarg == AfterAnnihRest || iarg == AfterAnnihFlight) {
+    if (iarg == AfterBrems || iarg == AfterAnnihRest || iarg == AfterAnnihFlight)
+    {
         the_egsvr->nbr_split = 1;
-        if (iarg == AfterBrems && rr_flag) {
-            the_stack->latch[the_stack->npold-1] = 1;
+        if (iarg == AfterBrems && rr_flag)
+        {
+            the_stack->latch[the_stack->npold - 1] = 1;
         }
         rr_flag = 0;
         return 0;
@@ -461,83 +503,101 @@ int Mevegs_Application::ausgab(int iarg) {
     return 0;
 }
 
-int Mevegs_Application::outputData() {
+int Mevegs_Application::outputData()
+{
     // We first call the outputData() function of our base class.
     // This takes care of saving data related to the source, the random
     // number generator, CPU time used, number of histories, etc.
     int err = EGS_AdvancedApplication::outputData();
-    if (err) {
+    if (err)
+    {
         return err;
     }
     // We then write our own data to the data stream. data_out is
     // a pointer to a data stream that has been opened for writing
     // in the base class.
     (*data_out) << "  " << Etot << endl;
-    if (!score->storeState(*data_out)) {
+    if (!score->storeState(*data_out))
+    {
         return 101;
     }
-    for (int j=0; j<nph; j++) {
-        if (!pheight[j]->storeState(*data_out)) {
-            return 102+j;
+    for (int j = 0; j < nph; j++)
+    {
+        if (!pheight[j]->storeState(*data_out))
+        {
+            return 102 + j;
         }
     }
-    if (!eflu->storeState(*data_out)) {
+    if (!eflu->storeState(*data_out))
+    {
         return 301;
     }
-    if (!gflu->storeState(*data_out)) {
+    if (!gflu->storeState(*data_out))
+    {
         return 302;
     }
     return 0;
 }
 
-int Mevegs_Application::readData() {
+int Mevegs_Application::readData()
+{
     // We first call the readData() function of our base class.
     // This takes care of reading data related to the source, the random
     // number generator, CPU time used, number of histories, etc.
     // (everything that was stored by the base class outputData() method).
     int err = EGS_AdvancedApplication::readData();
-    if (err) {
+    if (err)
+    {
         return err;
     }
     // We then read our own data from the data stream.
     // data_in is a pointer to an input stream that has been opened
     // by the base class.
     (*data_in) >> Etot;
-    if (!score->setState(*data_in)) {
+    if (!score->setState(*data_in))
+    {
         return 101;
     }
-    for (int j=0; j<nph; j++) {
-        if (!pheight[j]->setState(*data_in)) {
-            return 102+j;
+    for (int j = 0; j < nph; j++)
+    {
+        if (!pheight[j]->setState(*data_in))
+        {
+            return 102 + j;
         }
     }
-    if (!eflu->setState(*data_in)) {
+    if (!eflu->setState(*data_in))
+    {
         return 301;
     }
-    if (!gflu->setState(*data_in)) {
+    if (!gflu->setState(*data_in))
+    {
         return 302;
     }
     return 0;
 }
 
-void Mevegs_Application::resetCounter() {
+void Mevegs_Application::resetCounter()
+{
     // Reset everything in the base class
     EGS_AdvancedApplication::resetCounter();
     // Reset our own data to zero.
     score->reset();
     Etot = 0;
-    for (int j=0; j<nph; j++) {
+    for (int j = 0; j < nph; j++)
+    {
         pheight[j]->reset();
     }
     eflu->reset();
     gflu->reset();
 }
 
-int Mevegs_Application::addState(istream &data) {
+int Mevegs_Application::addState(istream& data)
+{
     // Call first the base class addState() function to read and add
     // all data related to source, RNG, CPU time, etc.
     int err = EGS_AdvancedApplication::addState(data);
-    if (err) {
+    if (err)
+    {
         return err;
     }
     // Then read our own data to temporary variables and add to
@@ -545,102 +605,122 @@ int Mevegs_Application::addState(istream &data) {
     double etot_tmp;
     data >> etot_tmp;
     Etot += etot_tmp;
-    EGS_ScoringArray tmp(nreg+2);
-    if (!tmp.setState(data)) {
+    EGS_ScoringArray tmp(nreg + 2);
+    if (!tmp.setState(data))
+    {
         return 101;
     }
     (*score) += tmp;
-    for (int j=0; j<nph; j++) {
+    for (int j = 0; j < nph; j++)
+    {
         EGS_ScoringArray tmpj(pheight[j]->bins());
-        if (!tmpj.setState(data)) {
+        if (!tmpj.setState(data))
+        {
             return 102 + j;
         }
         (*pheight[j]) += tmpj;
     }
     EGS_ScoringArray tmp1(200);
-    if (!tmp1.setState(data)) {
+    if (!tmp1.setState(data))
+    {
         return 301;
     }
     (*eflu) += tmp1;
-    if (!tmp1.setState(data)) {
+    if (!tmp1.setState(data))
+    {
         return 302;
     }
     (*gflu) += tmp1;
     return 0;
 }
 
-void Mevegs_Application::outputResults() {
+void Mevegs_Application::outputResults()
+{
     egsInformation("\n\n last case = %d Etot = %g\n",
-                   (int)current_case,Etot);
+                   (int)current_case, Etot);
     writeMeshOutputFiles();
-    if (nreg > 100) {
+    if (nreg > 100)
+    {
         return;
     }
-    double norm = ((double)current_case)/Etot;
+    double norm = ((double)current_case) / Etot;
 
     egsInformation("\n\n======================================================\n");
     egsInformation(" Energy fractions\n");
     egsInformation("======================================================\n");
     egsInformation("The first and last items in the following list of energy fractions are the reflected and transmitted energy, respectively. These two values are only meaningful if the source is directed in the positive z-direction. The remaining values are the deposited energy fractions in the regions of the geometry, but notice that the identifying index is the region number offset by 1 (ir+1).");
     score->reportResults(norm,
-                         "ir+1 | Reflected, deposited, or transmitted energy fraction",false,
+                         "ir+1 | Reflected, deposited, or transmitted energy fraction", false,
                          "  %d  %12.6e +/- %12.6e %c\n");
-    if (nph > 0) {
-        if (nph > 1) {
+    if (nph > 0)
+    {
+        if (nph > 1)
+        {
             egsInformation("\n\n======================================================\n");
             egsInformation(" Pulse height distributions\n"
                            "======================================================\n\n");
         }
-        else {
+        else
+        {
             egsInformation("\n\n Pulse height distribution in region %d\n"
                            "======================================================\n\n",
                            ph_regions[0]);
         }
-        for (int j=0; j<nph; j++) {
+        for (int j = 0; j < nph; j++)
+        {
             if (nph > 1) egsInformation("\nRegion %d\n"
-                                            "----------------\n\n",ph_regions[j]);
-            double f,df;
-            for (int i=0; i<pheight[j]->bins(); i++) {
-                pheight[j]->currentResult(i,f,df);
-                egsInformation("%g   %g   %g\n",ph_de[j]*(0.5+i),
-                               f/ph_de[j],df/ph_de[j]);
+                                            "----------------\n\n", ph_regions[j]);
+            double f, df;
+            for (int i = 0; i < pheight[j]->bins(); i++)
+            {
+                pheight[j]->currentResult(i, f, df);
+                egsInformation("%g   %g   %g\n", ph_de[j] * (0.5 + i),
+                               f / ph_de[j], df / ph_de[j]);
             }
         }
     }
 }
 
-EGS_Mesh *extractEGSMesh(EGS_EnvelopeGeometry *env) {
-    if (!env) {
+EGS_Mesh* extractEGSMesh(EGS_EnvelopeGeometry* env)
+{
+    if (!env)
+    {
         return nullptr;
     }
     std::size_t nInscribed = 0;
-    EGS_BaseGeometry **geometries = env->getInscribedGeometries(nInscribed);
-    if (!geometries) {
+    EGS_BaseGeometry** geometries = env->getInscribedGeometries(nInscribed);
+    if (!geometries)
+    {
         return nullptr;
     }
     // don't allow more than one inscribed geometry to simplify score array
     // indexing
-    if (nInscribed != 1) {
+    if (nInscribed != 1)
+    {
         egsWarning("\nfound more than one inscribed geometry\n");
         return nullptr;
     }
-    EGS_Mesh *mesh = dynamic_cast<EGS_Mesh *>(geometries[0]);
-    if (!mesh) {
+    EGS_Mesh* mesh = dynamic_cast<EGS_Mesh*>(geometries[0]);
+    if (!mesh)
+    {
         return nullptr;
     }
     return mesh;
 }
 
-void Mevegs_Application::writeVtk(const EGS_Mesh &mesh,
-                                  std::size_t score_offset) const {
-    if (EGS_Application::getIparallel()) {
+void Mevegs_Application::writeVtk(const EGS_Mesh& mesh,
+                                  std::size_t score_offset) const
+{
+    if (EGS_Application::getIparallel())
+    {
         egsInformation("\n Mevegs_Application: This is one of a number of parallel jobs. Will only output VTK file on combining results.\n");
         return;
     }
 
     std::string vtk_out = getFinalOutputFile() + ".vtk";
     std::ofstream out(vtk_out);
-    if (!out) {
+    if (!out)
+    {
         egsWarning("\n couldn't open \"%s\" for writing\n", vtk_out.c_str());
         return;
     }
@@ -652,22 +732,25 @@ void Mevegs_Application::writeVtk(const EGS_Mesh &mesh,
         "DATASET UNSTRUCTURED_GRID\n"
         "POINTS " << mesh.num_nodes() << " double\n";
     // point data
-    for (int i = 0; i < mesh.num_nodes(); i++) {
-        const EGS_Vector &node = mesh.node_coordinates(i);
+    for (int i = 0; i < mesh.num_nodes(); i++)
+    {
+        const EGS_Vector& node = mesh.node_coordinates(i);
         out << node.x << " " << node.y << " " << node.z << "\n";
     }
     // 5 numbers per line
     out << "CELLS " << mesh.num_elements() << " "
         << 5 * mesh.num_elements() << "\n";
     // unstructured grid
-    for (int i = 0; i < mesh.num_elements(); i++) {
-        const auto &node_offsets = mesh.element_node_offsets(i);
+    for (int i = 0; i < mesh.num_elements(); i++)
+    {
+        const auto& node_offsets = mesh.element_node_offsets(i);
         // four nodes per tetrahedron
         out << "4 " << node_offsets[0] << " " << node_offsets[1] << " " <<
             node_offsets[2] << " " << node_offsets[3] << "\n";
     }
     out << "CELL_TYPES " << mesh.num_elements() << "\n";
-    for (int i = 0; i < mesh.num_elements(); i++) {
+    for (int i = 0; i < mesh.num_elements(); i++)
+    {
         // vtk code for tetrahedron
         out << "10\n";
     }
@@ -678,35 +761,42 @@ void Mevegs_Application::writeVtk(const EGS_Mesh &mesh,
     // %20 url-encoded space, Paraview errors on space character
     out << "dose%20[Gy] 1 " << mesh.num_elements() << " double\n";
     const double JOULES_PER_MEV = 1.602e-13;
-    for (int i = 0; i < mesh.num_elements(); i++) {
+    for (int i = 0; i < mesh.num_elements(); i++)
+    {
         double e_dep, uncert;
         score->currentResult(i + score_offset, e_dep, uncert);
         const auto mass_kg = mesh.element_density(i) * mesh.element_volume(i)
                              / 1000.0;
         // TODO zero out doses with uncertainty over 50%?
-        out << JOULES_PER_MEV *e_dep / mass_kg << "\n";
+        out << JOULES_PER_MEV* e_dep / mass_kg << "\n";
     }
     // uncertainties
     out << "uncertainty%20[%25] 1 " << mesh.num_elements() << " double\n";
-    for (int i = 0; i < mesh.num_elements(); i++) {
+    for (int i = 0; i < mesh.num_elements(); i++)
+    {
         double e_dep, uncert;
         score->currentResult(i + score_offset, e_dep, uncert);
         // if edep is exactly zero, there is 100% uncertainty
-        if (e_dep == 0.0) {
+        if (e_dep == 0.0)
+        {
             out << 100.0 << "\n";
         }
-        else {
+        else
+        {
             out << uncert / e_dep * 100.0 << "\n";
         }
     }
 }
 
-void Mevegs_Application::writeMeshOutputFiles() const {
+void Mevegs_Application::writeMeshOutputFiles() const
+{
     MevegsGeometry geo_type = MevegsGeometry::Mesh;
-    EGS_Mesh *mesh = dynamic_cast<EGS_Mesh *>(geometry);
-    if (!mesh) {
-        EGS_Mesh *inscribed_mesh = extractEGSMesh(dynamic_cast<EGS_EnvelopeGeometry *>(geometry));
-        if (!inscribed_mesh) {
+    EGS_Mesh* mesh = dynamic_cast<EGS_Mesh*>(geometry);
+    if (!mesh)
+    {
+        EGS_Mesh* inscribed_mesh = extractEGSMesh(dynamic_cast<EGS_EnvelopeGeometry*>(geometry));
+        if (!inscribed_mesh)
+        {
             egsWarning("\n No mesh geometry found, skipping mesh output step\n");
             return;
         }
@@ -716,52 +806,61 @@ void Mevegs_Application::writeMeshOutputFiles() const {
 
     // offset into score array
     std::size_t score_offset = 0;
-    switch (geo_type) {
-    // if it's a plain mesh being simulated, skip the first element (reflected energy)
-    case MevegsGeometry::Mesh:
-        assert(score->regions() == mesh->num_elements() + 2);
-        score_offset = 1;
-        break;
-    // if it's a mesh in an envelope being simulated, skip two elements:
-    // reflected energy and the envelope
-    case MevegsGeometry::EnvelopedMesh:
-        assert(score->regions() == mesh->num_elements() + 3);
-        score_offset = 2;
-        break;
-    default:
-        egsFatal("\nunhandled MevegsGeometry case\n");
+    switch (geo_type)
+    {
+        // if it's a plain mesh being simulated, skip the first element (reflected energy)
+        case MevegsGeometry::Mesh:
+            assert(score->regions() == mesh->num_elements() + 2);
+            score_offset = 1;
+            break;
+        // if it's a mesh in an envelope being simulated, skip two elements:
+        // reflected energy and the envelope
+        case MevegsGeometry::EnvelopedMesh:
+            assert(score->regions() == mesh->num_elements() + 3);
+            score_offset = 2;
+            break;
+        default:
+            egsFatal("\nunhandled MevegsGeometry case\n");
     }
 
     writeVtk(*mesh, score_offset);
 }
 
-void Mevegs_Application::getCurrentResult(double &sum, double &sum2,
-        double &norm, double &count) {
+void Mevegs_Application::getCurrentResult(double& sum, double& sum2,
+    double& norm, double& count)
+{
     count = current_case;
-    norm = Etot > 0 ? count/Etot : 0;
-    score->currentScore(0,sum,sum2);
+    norm = Etot > 0 ? count / Etot : 0;
+    score->currentScore(0, sum, sum2);
 }
 
-int Mevegs_Application::startNewShower() {
-    Etot += p.E*p.wt;
+int Mevegs_Application::startNewShower()
+{
+    Etot += p.E * p.wt;
     int res = EGS_Application::startNewShower();
-    if (res) {
+    if (res)
+    {
         return res;
     }
-    if (current_case != last_case) {
-        if (nph > 0) {
-            for (int j=0; j<nph; j++) {
+    if (current_case != last_case)
+    {
+        if (nph > 0)
+        {
+            for (int j = 0; j < nph; j++)
+            {
                 pheight[j]->setHistory(current_case);
                 int ireg = ph_regions[j];
 
                 // In ausgab the scoring array is offset by 1 to include
                 // the reflected and transmitted as the first and last regions
-                EGS_Float edep = score->currentScore(ireg+1);
+                EGS_Float edep = score->currentScore(ireg + 1);
 
-                if (edep > 0) {
-                    int ibin = min((int)(edep/(current_weight*ph_de[j])), pheight[j]->bins()-1);
-                    if (ibin >= 0 && ibin < pheight[j]->bins()) {
-                        pheight[j]->score(ibin,1);
+                if (edep > 0)
+                {
+                    int ibin = min((int)(edep / (current_weight * ph_de[j])), pheight[j]->bins() - 1);
+                    if (ibin >= 0 && ibin < pheight[j]->bins())
+                    {
+                        pheight[j]->score(ibin, 1);
                     }
 
                 }
@@ -777,7 +876,7 @@ int Mevegs_Application::startNewShower() {
 }
 
 #ifdef BUILD_APP_LIB
-    APP_LIB(Mevegs_Application);
+APP_LIB(Mevegs_Application);
 #else
-    APP_MAIN(Mevegs_Application);
+APP_MAIN(Mevegs_Application);
 #endif

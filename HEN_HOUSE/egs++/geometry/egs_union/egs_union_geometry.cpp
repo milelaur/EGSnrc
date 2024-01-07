@@ -44,34 +44,40 @@ using namespace std;
 
 string EGS_UNIONG_LOCAL EGS_UnionGeometry::type = "EGS_UnionGeometry";
 
-void EGS_UnionGeometry::setMedia(EGS_Input *,int,const int *) {
+void EGS_UnionGeometry::setMedia(EGS_Input*, int, const int*)
+{
     egsWarning("EGS_UnionGeometry::setMedia: don't use this method. Use the\n"
                " setMedia() methods of the geometry objects that make up this geometry\n");
 }
 
-void EGS_UnionGeometry::setRelativeRho(int start, int end, EGS_Float rho) {
+void EGS_UnionGeometry::setRelativeRho(int start, int end, EGS_Float rho)
+{
     setRelativeRho(0);
 }
 
-void EGS_UnionGeometry::setRelativeRho(EGS_Input *) {
+void EGS_UnionGeometry::setRelativeRho(EGS_Input*)
+{
     egsWarning("EGS_UnionGeometry::setRelativeRho(): don't use this method. "
                "Use the\n setRelativeRho() methods of the geometry objects that make "
                "up this geometry\n");
 }
 
-void EGS_UnionGeometry::setBScaling(int start, int end, EGS_Float bf) {
+void EGS_UnionGeometry::setBScaling(int start, int end, EGS_Float bf)
+{
     setBScaling(0);
 }
 
-void EGS_UnionGeometry::setBScaling(EGS_Input *) {
+void EGS_UnionGeometry::setBScaling(EGS_Input*)
+{
     egsWarning("EGS_UnionGeometry::setBScaling(): don't use this method. "
                "Use the\n setBScaling() methods of the geometry objects that make "
                "up this geometry\n");
 }
 
-EGS_UnionGeometry::EGS_UnionGeometry(const vector<EGS_BaseGeometry *> &geoms,
-                                     const int *priorities, const string &Name) :
-    EGS_BaseGeometry(Name) {
+EGS_UnionGeometry::EGS_UnionGeometry(const vector<EGS_BaseGeometry*>& geoms,
+                                     const int* priorities, const string& Name) :
+    EGS_BaseGeometry(Name)
+{
     ng = geoms.size();
     if (ng <= 0) egsFatal("EGS_UnionGeometry::EGS_UnionGeometry: attempt "
                               " to construct a union geometry from zero geometries\n");
@@ -81,22 +87,28 @@ EGS_UnionGeometry::EGS_UnionGeometry(const vector<EGS_BaseGeometry *> &geoms,
     g = new EGS_BaseGeometry* [ng];
     nmax = 0;
     int j;
-    int *order = new int [ng];
-    if (priorities) {
+    int* order = new int [ng];
+    if (priorities)
+    {
         // user has definied priorities
         // order them using a very simplistic algorithm
-        bool *is_used = new bool [ng];
-        for (j=0; j<ng; j++) {
+        bool* is_used = new bool [ng];
+        for (j = 0; j < ng; j++)
+        {
             is_used[j] = false;
         }
-        for (j=0; j<ng; j++) {
+        for (j = 0; j < ng; j++)
+        {
             int imax;
-            for (imax=0; imax<ng-1; imax++) if (!is_used[imax]) {
+            for (imax = 0; imax < ng - 1; imax++) if (!is_used[imax])
+                {
                     break;
                 }
             int pmax = priorities[imax];
-            for (int i=0; i<ng; i++) {
-                if (!is_used[i] && priorities[i] > pmax) {
+            for (int i = 0; i < ng; i++)
+            {
+                if (!is_used[i] && priorities[i] > pmax)
+                {
                     imax = i;
                     pmax = priorities[i];
                 }
@@ -106,131 +118,157 @@ EGS_UnionGeometry::EGS_UnionGeometry(const vector<EGS_BaseGeometry *> &geoms,
         }
         delete [] is_used;
     }
-    else {
+    else
+    {
         // user has not definied priorities
-        for (j=0; j<ng; j++) {
+        for (j = 0; j < ng; j++)
+        {
             order[j] = j;
         }
     }
     has_rho_scaling = false;
     // now put the geometries into the array of geometries in
     // decreasing priority order.
-    for (j=0; j<ng; j++) {
+    for (j = 0; j < ng; j++)
+    {
         int i = order[j];
         g[i] = geoms[j];
         g[i]->ref();
         int n = g[i]->regions();
-        if (n > nmax) {
+        if (n > nmax)
+        {
             nmax = n;
         }
-        if (!has_rho_scaling) {
+        if (!has_rho_scaling)
+        {
             has_rho_scaling = g[i]->hasRhoScaling();
         }
     }
     has_B_scaling = false;
     // now put the geometries into the array of geometries in
     // decreasing priority order.
-    for (j=0; j<ng; j++) {
+    for (j = 0; j < ng; j++)
+    {
         int i = order[j];
         g[i] = geoms[j];
         g[i]->ref();
         int n = g[i]->regions();
-        if (n > nmax) {
+        if (n > nmax)
+        {
             nmax = n;
         }
-        if (!has_B_scaling) {
+        if (!has_B_scaling)
+        {
             has_B_scaling = g[i]->hasBScaling();
         }
     }
     delete [] order;
     if (!nmax) egsFatal("EGS_UnionGeometry::EGS_UnionGeometry: all geometries"
                             " have zero regions?\n");
-    nreg = nmax*ng;
+    nreg = nmax * ng;
 }
 
-EGS_UnionGeometry::~EGS_UnionGeometry() {
-    for (int j=0; j<ng; j++) {
-        if (!g[j]->deref()) {
+EGS_UnionGeometry::~EGS_UnionGeometry()
+{
+    for (int j = 0; j < ng; j++)
+    {
+        if (!g[j]->deref())
+        {
             delete g[j];
         }
     }
     delete [] g;
 }
 
-void EGS_UnionGeometry::printInfo() const {
+void EGS_UnionGeometry::printInfo() const
+{
     EGS_BaseGeometry::printInfo();
     egsInformation(" geometries:\n");
-    for (int j=0; j<ng; j++) egsInformation("   %s (type %s)\n",
-                                                g[j]->getName().c_str(),g[j]->getType().c_str());
+    for (int j = 0; j < ng; j++) egsInformation("   %s (type %s)\n",
+            g[j]->getName().c_str(), g[j]->getType().c_str());
     egsInformation(
         "=======================================================\n");
 }
 
 extern "C" {
 
-    EGS_UNIONG_EXPORT EGS_BaseGeometry *createGeometry(EGS_Input *input) {
-        if (!input) {
+    EGS_UNIONG_EXPORT EGS_BaseGeometry* createGeometry(EGS_Input* input)
+    {
+        if (!input)
+        {
             egsWarning("createGeometry(union): null input?\n");
             return 0;
         }
-        vector<EGS_BaseGeometry *> geoms;
+        vector<EGS_BaseGeometry*> geoms;
         vector<string> gnames;
-        int err = input->getInput("geometries",gnames);
-        if (err || gnames.size() < 1) {
+        int err = input->getInput("geometries", gnames);
+        if (err || gnames.size() < 1)
+        {
             egsWarning("createGeometry(union): missing/wrong 'geometries' input\n");
             return 0;
         }
-        for (unsigned int j=0; j<gnames.size(); j++) {
-            EGS_BaseGeometry *gj = EGS_BaseGeometry::getGeometry(gnames[j]);
+        for (unsigned int j = 0; j < gnames.size(); j++)
+        {
+            EGS_BaseGeometry* gj = EGS_BaseGeometry::getGeometry(gnames[j]);
             if (!gj) egsWarning("createGeometry(union): no geometry named %s "
-                                    "defined\n",gnames[j].c_str());
-            else {
+                                    "defined\n", gnames[j].c_str());
+            else
+            {
                 geoms.push_back(gj);
             }
         }
-        if (geoms.size() < 1) {
+        if (geoms.size() < 1)
+        {
             egsWarning("createGeometry(union): must have at least one geometry\n");
             return 0;
         }
         vector<int> pri;
-        err = input->getInput("priorities",pri);
-        int *p = 0;
-        if (!err) {
-            if (pri.size() == geoms.size()) {
+        err = input->getInput("priorities", pri);
+        int* p = 0;
+        if (!err)
+        {
+            if (pri.size() == geoms.size())
+            {
                 p = new int [pri.size()];
-                for (int i=0; i<pri.size(); i++) {
+                for (int i = 0; i < pri.size(); i++)
+                {
                     p[i] = pri[i];
                 }
             }
             else egsWarning("createGeometry(union): the number of priorities (%d)"
                                 " is not the same as the number of geometries (%d) => ignoring\n",
-                                pri.size(),geoms.size());
+                                pri.size(), geoms.size());
         }
-        EGS_BaseGeometry *result = new EGS_UnionGeometry(geoms,p);
+        EGS_BaseGeometry* result = new EGS_UnionGeometry(geoms, p);
         result->setName(input);
         result->setBoundaryTolerance(input);
         result->setLabels(input);
-        if (p) {
+        if (p)
+        {
             delete [] p;
         }
         return result;
     }
 
-    void EGS_UnionGeometry::getLabelRegions(const string &str, vector<int> &regs) {
+    void EGS_UnionGeometry::getLabelRegions(const string& str, vector<int>& regs)
+    {
 
         // label defined in the sub-geometries
         vector<int> gregs;
-        for (int i=0; i<ng; i++) {
+        for (int i = 0; i < ng; i++)
+        {
 
             // add regions from set geometries
             gregs.clear();
-            if (g[i]) {
+            if (g[i])
+            {
                 g[i]->getLabelRegions(str, gregs);
             }
 
             // shift region numbers according to indexing style
-            for (int j=0; j<gregs.size(); j++) {
-                gregs[j] += i*nmax;
+            for (int j = 0; j < gregs.size(); j++)
+            {
+                gregs[j] += i * nmax;
             }
 
             // add regions to the list

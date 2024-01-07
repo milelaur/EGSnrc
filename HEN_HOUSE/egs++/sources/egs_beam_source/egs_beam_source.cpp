@@ -51,8 +51,9 @@
 #define F77_NAME(fname,FNAME) STRINGIFY(F77_OBJ(fname,FNAME))
 #define F77_NAME_(fname,FNAME) STRINGIFY(F77_OBJ_(fname,FNAME))
 
-EGS_BeamSource::EGS_BeamSource(EGS_Input *input, EGS_ObjectFactory *f) :
-    EGS_BaseSource(input,f) {
+EGS_BeamSource::EGS_BeamSource(EGS_Input* input, EGS_ObjectFactory* f) :
+    EGS_BaseSource(input, f)
+{
     n_reuse_photon = 0;
     n_reuse_electron = 0;
     i_reuse_photon = 0;
@@ -67,107 +68,127 @@ EGS_BeamSource::EGS_BeamSource(EGS_Input *input, EGS_ObjectFactory *f) :
     wmin = -veryFar;
     wmax = veryFar;
     string beam_code;
-    int err1 = input->getInput("beam code",beam_code);
+    int err1 = input->getInput("beam code", beam_code);
     string pegs_file;
-    int err2 = input->getInput("pegs file",pegs_file);
+    int err2 = input->getInput("pegs file", pegs_file);
     string input_file;
-    int err3 = input->getInput("input file",input_file);
-    if (err1) {
+    int err3 = input->getInput("input file", input_file);
+    if (err1)
+    {
         egsWarning("EGS_BeamSource: no 'beam code' input\n");
     }
-    if (err2) {
+    if (err2)
+    {
         egsWarning("EGS_BeamSource: no 'pegs file' input\n");
     }
-    if (err3) {
+    if (err3)
+    {
         egsWarning("EGS_BeamSource: no 'input file' input\n");
     }
-    if (err1 || err2 || err3) {
+    if (err1 || err2 || err3)
+    {
         return;
     }
     string egs_home;
-    int err_eh = input->getInput("egs_home",egs_home);
-    if (err_eh) {
-        char *eh = getenv("EGS_HOME");
-        if (!eh) {
+    int err_eh = input->getInput("egs_home", egs_home);
+    if (err_eh)
+    {
+        char* eh = getenv("EGS_HOME");
+        if (!eh)
+        {
             egsWarning("EGS_BeamSource: EGS_HOME is not defined\n");
             return;
         }
-        else {
+        else
+        {
             egs_home = eh;
         }
     }
-    else {
+    else
+    {
         egs_home = egsExpandPath(egs_home);
     }
     string hen_house;
-    int err_hh = input->getInput("hen_house",hen_house);
-    if (err_hh) {
-        char *hh = getenv("HEN_HOUSE");
-        if (!hh) {
+    int err_hh = input->getInput("hen_house", hen_house);
+    if (err_hh)
+    {
+        char* hh = getenv("HEN_HOUSE");
+        if (!hh)
+        {
             egsWarning("EGS_BeamSource: HEN_HOUSE is not defined\n");
             return;
         }
-        else {
+        else
+        {
             hen_house = hh;
         }
     }
-    else {
+    else
+    {
         hen_house = egsExpandPath(hen_house);
     }
     string path = egs_home;
     path += "bin/";
     path += CONFIG_NAME;
-    lib = new EGS_Library(beam_code.c_str(),path.c_str());
+    lib = new EGS_Library(beam_code.c_str(), path.c_str());
 
     InitFunction init = (InitFunction)
-                        lib->resolve(F77_NAME_(beamlib_init,BEAMLIB_INIT));
+                        lib->resolve(F77_NAME_(beamlib_init, BEAMLIB_INIT));
     finish = (FinishFunction)
-             lib->resolve(F77_NAME_(beamlib_finish,BEAMLIB_FINISH));
+             lib->resolve(F77_NAME_(beamlib_finish, BEAMLIB_FINISH));
     sample = (SampleFunction)
-             lib->resolve(F77_NAME_(beamlib_sample,BEAMLIB_SAMPLE));
+             lib->resolve(F77_NAME_(beamlib_sample, BEAMLIB_SAMPLE));
     motionsample = (MotionSampleFunction)
-                   lib->resolve(F77_NAME_(beamlib_motionsample,BEAMLIB_MOTIONSAMPLE));
+                   lib->resolve(F77_NAME_(beamlib_motionsample, BEAMLIB_MOTIONSAMPLE));
     MaxEnergyFunction maxenergy = (MaxEnergyFunction)
-                                  lib->resolve(F77_NAME_(beamlib_max_energy,BEAMLIB_MAX_ENERGY));
-    if (!init) {
+                                  lib->resolve(F77_NAME_(beamlib_max_energy, BEAMLIB_MAX_ENERGY));
+    if (!init)
+    {
         egsWarning("EGS_BeamSource: failed to resolve the init function\n");
     }
-    if (!sample) {
+    if (!sample)
+    {
         egsWarning("EGS_BeamSource: failed to resolve the sample function\n");
     }
-    if (!motionsample) {
+    if (!motionsample)
+    {
         egsWarning("EGS_BeamSource: failed to resolve the motionsample function\n");
     }
-    if (!finish) {
+    if (!finish)
+    {
         egsWarning("EGS_BeamSource: failed to resolve the finish function\n");
     }
-    if (!maxenergy) {
+    if (!maxenergy)
+    {
         egsWarning("EGS_BeamSource: failed to resolve the max. energy function\n");
     }
-    if (!init || !sample || !finish || !maxenergy) {
+    if (!init || !sample || !finish || !maxenergy)
+    {
         return;
     }
 
-    int ipar=0, ilog=6;
-    int npar=0;
-    EGS_Application *app = EGS_Application::activeApplication();
-    if (app) {
+    int ipar = 0, ilog = 6;
+    int npar = 0;
+    EGS_Application* app = EGS_Application::activeApplication();
+    if (app)
+    {
         ipar = app->getIparallel();
         npar = app->getNparallel();
     }
 
-    init(&ipar,&npar,&ilog,hen_house.c_str(),egs_home.c_str(),
-         beam_code.c_str(),pegs_file.c_str(),input_file.c_str(),
+    init(&ipar, &npar, &ilog, hen_house.c_str(), egs_home.c_str(),
+         beam_code.c_str(), pegs_file.c_str(), input_file.c_str(),
          hen_house.size(), egs_home.size(),
-         beam_code.size(),pegs_file.size(),input_file.size());
+         beam_code.size(), pegs_file.size(), input_file.size());
     maxenergy(&Emax);
 
     is_valid = true;
 
     vector<EGS_Float> cutout;
-    int err = input->getInput("cutout",cutout);
-    if (!err && cutout.size() == 4) {
-        setCutout(cutout[0],cutout[1],cutout[2],cutout[3]);
+    int err = input->getInput("cutout", cutout);
+    if (!err && cutout.size() == 4)
+    {
+        setCutout(cutout[0], cutout[1], cutout[2], cutout[3]);
     }
     vector<string> ptype;
     ptype.push_back("electrons");
@@ -175,22 +196,25 @@ EGS_BeamSource::EGS_BeamSource(EGS_Input *input, EGS_ObjectFactory *f) :
     ptype.push_back("positrons");
     ptype.push_back("all");
     ptype.push_back("charged");
-    particle_type = input->getInput("particle type",ptype,3)-1;
+    particle_type = input->getInput("particle type", ptype, 3) - 1;
 
     vector<EGS_Float> wwindow;
-    err = input->getInput("weight window",wwindow);
-    if (!err && wwindow.size() == 2) {
+    err = input->getInput("weight window", wwindow);
+    if (!err && wwindow.size() == 2)
+    {
         wmin = wwindow[0];
         wmax = wwindow[1];
     }
 
     int ntmp;
-    err = input->getInput("reuse photons",ntmp);
-    if (!err && ntmp > 1) {
+    err = input->getInput("reuse photons", ntmp);
+    if (!err && ntmp > 1)
+    {
         n_reuse_photon = ntmp;
     }
-    err = input->getInput("reuse electrons",ntmp);
-    if (!err && ntmp > 1) {
+    err = input->getInput("reuse electrons", ntmp);
+    if (!err && ntmp > 1)
+    {
         n_reuse_electron = ntmp;
     }
 
@@ -198,9 +222,11 @@ EGS_BeamSource::EGS_BeamSource(EGS_Input *input, EGS_ObjectFactory *f) :
     //use motionsample function, tmu will be -1 if not provided by BEAM
     //have to save the values read here to use as the first particle in the
     //simulation
-    motionsample(&tei,&txi,&tyi,&tzi,&tui,&tvi,&twi,&twti,&tqi,&tlatchi,&counti,&tiphati,&tmui);
-    if (!mu_stored) {
-        if (tmui >= 0.0 && tmui <= 1.0) {
+    motionsample(&tei, &txi, &tyi, &tzi, &tui, &tvi, &twi, &twti, &tqi, &tlatchi, &counti, &tiphati, &tmui);
+    if (!mu_stored)
+    {
+        if (tmui >= 0.0 && tmui <= 1.0)
+        {
             egsInformation("EGS_BeamSource:: Mu index passed from this source.\n");
             mu_stored = true;
         }
@@ -212,12 +238,14 @@ EGS_BeamSource::EGS_BeamSource(EGS_Input *input, EGS_ObjectFactory *f) :
     description += "(";
     description += input_file;
     description += ") simulation source";
-    otype="EGS_BeamSource";
+    otype = "EGS_BeamSource";
 }
 
-EGS_I64 EGS_BeamSource::getNextParticle(EGS_RandomGenerator *, int &q,
-                                        int &latch, EGS_Float &E, EGS_Float &wt, EGS_Vector &x, EGS_Vector &u) {
-    if (n_reuse_photon > 0 && i_reuse_photon < n_reuse_photon) {
+EGS_I64 EGS_BeamSource::getNextParticle(EGS_RandomGenerator*, int& q,
+                                        int& latch, EGS_Float& E, EGS_Float& wt, EGS_Vector& x, EGS_Vector& u)
+{
+    if (n_reuse_photon > 0 && i_reuse_photon < n_reuse_photon)
+    {
         q = q_save;
         latch = latch_save;
         E = E_save;
@@ -228,7 +256,8 @@ EGS_I64 EGS_BeamSource::getNextParticle(EGS_RandomGenerator *, int &q,
         ++i_reuse_photon;
         return count;
     }
-    if (n_reuse_electron > 0 && i_reuse_electron < n_reuse_electron) {
+    if (n_reuse_electron > 0 && i_reuse_electron < n_reuse_electron)
+    {
         q = q_save;
         latch = latch_save;
         E = E_save;
@@ -239,57 +268,67 @@ EGS_I64 EGS_BeamSource::getNextParticle(EGS_RandomGenerator *, int &q,
         ++i_reuse_electron;
         return count;
     }
-    EGS_Float te,tx,ty,tz,tu,tv,tw,twt,tmu;
-    int tq,tlatch,tiphat;
+    EGS_Float te, tx, ty, tz, tu, tv, tw, twt, tmu;
+    int tq, tlatch, tiphat;
     bool ok;
-    do {
-        if (use_iparticle) {
+    do
+    {
+        if (use_iparticle)
+        {
             //reuse data for first particle read in when setting up the source
-            te=tei;
-            tx=txi;
-            ty=tyi;
-            tz=tzi;
-            tu=tui;
-            tv=tvi;
-            tw=twi;
-            twt=twti;
-            tq=tqi;
-            tlatch=tlatchi;
-            count=counti;
-            tiphat=tiphati;
-            tmu=tmui;
-            use_iparticle=false;
+            te = tei;
+            tx = txi;
+            ty = tyi;
+            tz = tzi;
+            tu = tui;
+            tv = tvi;
+            tw = twi;
+            twt = twti;
+            tq = tqi;
+            tlatch = tlatchi;
+            count = counti;
+            tiphat = tiphati;
+            tmu = tmui;
+            use_iparticle = false;
         }
-        else {
-            motionsample(&te,&tx,&ty,&tz,&tu,&tv,&tw,&twt,&tq,&tlatch,&count,&tiphat,&tmu);
+        else
+        {
+            motionsample(&te, &tx, &ty, &tz, &tu, &tv, &tw, &twt, &tq, &tlatch, &count, &tiphat, &tmu);
             //sample(&te,&tx,&ty,&tz,&tu,&tv,&tw,&twt,&tq,&tlatch,&count,&tiphat);
             //egsInformation("EGS_BeamSource::getNextParticle: Got E=%g q=%d wt=%g"
             //    " x=(%g,%g,%g) latch=%d count=%lld\n",te,tq,twt,tx,ty,tz,
             //    tlatch,count);
-            if (mu_stored && (tmu < 0. || tmu > 1.0)) {
+            if (mu_stored && (tmu < 0. || tmu > 1.0))
+            {
                 //something's wrong
                 egsWarning("EGS_BeamSource::getNextParticle: Mu index is stored in this source but mu returned < 0\n");
                 egsWarning("Will no longer read mu.\n");
                 mu_stored = false;
             }
         }
-        if (tq) {
+        if (tq)
+        {
             te -= EGS_Application::activeApplication()->getRM();
         }
         ok = true;
-        if (te > Emax + epsilon) {
+        if (te > Emax + epsilon)
+        {
             ok = false;
         } //egsInformation("Emax rejection\n"); }
-        if (particle_type < 2 && tq != particle_type) {
+        if (particle_type < 2 && tq != particle_type)
+        {
             ok = false;
         } // egsInformation("charge rejection"); }
-        if (particle_type == 3 && !tq) {
+        if (particle_type == 3 && !tq)
+        {
             ok = false;
         }
-        if (tx < Xmin || tx > Xmax || ty < Ymin || ty > Ymax) {
+        if (tx < Xmin || tx > Xmax || ty < Ymin || ty > Ymax)
+        {
             ok = false;
         } // egsInformation("cutout rejection\n"); }
-        if (twt < wmin || twt > wmax) {
+        if (twt < wmin || twt > wmax)
+        {
             ok = false; // egsInformation("weight rejection\n");
         }
     }
@@ -301,21 +340,24 @@ EGS_I64 EGS_BeamSource::getNextParticle(EGS_RandomGenerator *, int &q,
     q = tq;
     latch = 0; //latch = tlatch;
     bool save_it = false;
-    if (n_reuse_photon > 1 && !tq) {
+    if (n_reuse_photon > 1 && !tq)
+    {
         twt /= n_reuse_photon;
         i_reuse_photon = 1;
         save_it = true;
     }
-    if (n_reuse_electron > 1 && tq) {
+    if (n_reuse_electron > 1 && tq)
+    {
         twt /= n_reuse_electron;
         i_reuse_electron = 1;
         save_it = true;
     }
     wt = twt;
-    x = EGS_Vector(tx,ty,tz);
-    u = EGS_Vector(tu,tv,tw);
+    x = EGS_Vector(tx, ty, tz);
+    u = EGS_Vector(tu, tv, tw);
     mu = tmu;
-    if (save_it) {
+    if (save_it)
+    {
         q_save = tq;
         latch_save = 0;
         E_save = E;
@@ -327,9 +369,12 @@ EGS_I64 EGS_BeamSource::getNextParticle(EGS_RandomGenerator *, int &q,
     return count;
 }
 
-EGS_BeamSource::~EGS_BeamSource() {
-    if (lib) {
-        if (is_valid) {
+EGS_BeamSource::~EGS_BeamSource()
+{
+    if (lib)
+    {
+        if (is_valid)
+        {
             finish();
         }
         delete lib;
@@ -338,10 +383,11 @@ EGS_BeamSource::~EGS_BeamSource() {
 
 extern "C" {
 
-    EGS_BEAM_SOURCE_EXPORT EGS_BaseSource *createSource(EGS_Input *input,
-            EGS_ObjectFactory *f) {
+    EGS_BEAM_SOURCE_EXPORT EGS_BaseSource* createSource(EGS_Input* input,
+        EGS_ObjectFactory* f)
+    {
         return
-            createSourceTemplate<EGS_BeamSource>(input,f,"beam source");
+            createSourceTemplate<EGS_BeamSource>(input, f, "beam source");
     }
 
 }

@@ -43,22 +43,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_CIRCLE_PERPENDICULAR_DLL
-        #define EGS_CIRCLE_PERPENDICULAR_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_CIRCLE_PERPENDICULAR_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_CIRCLE_PERPENDICULAR_LOCAL
+#ifdef BUILD_CIRCLE_PERPENDICULAR_DLL
+#define EGS_CIRCLE_PERPENDICULAR_EXPORT __declspec(dllexport)
+#else
+#define EGS_CIRCLE_PERPENDICULAR_EXPORT __declspec(dllimport)
+#endif
+#define EGS_CIRCLE_PERPENDICULAR_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_CIRCLE_PERPENDICULAR_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_CIRCLE_PERPENDICULAR_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_CIRCLE_PERPENDICULAR_EXPORT
-        #define EGS_CIRCLE_PERPENDICULAR_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_CIRCLE_PERPENDICULAR_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_CIRCLE_PERPENDICULAR_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_CIRCLE_PERPENDICULAR_EXPORT
+#define EGS_CIRCLE_PERPENDICULAR_LOCAL
+#endif
 
 #endif
 
@@ -106,42 +106,47 @@ than the xy-plane at z=0 can be obtained by attaching an
 \link EGS_AffineTransform affine transformation \endlink
 to the circle shape.
 */
-class EGS_CIRCLE_PERPENDICULAR_EXPORT EGS_CirclePerpendicularShape : public EGS_SurfaceShape {
+class EGS_CIRCLE_PERPENDICULAR_EXPORT EGS_CirclePerpendicularShape : public EGS_SurfaceShape
+{
 
 public:
 
     /*! \brief Conctruct a circle with midpoint given by \a Xo and \a Yo,
     radius \a R and innder radius \a R_i */
     EGS_CirclePerpendicularShape(EGS_Float Xo, EGS_Float Yo, EGS_Float R, EGS_Float R_i = 0,
-                                 const string &Name="",EGS_ObjectFactory *f=0) :
-        EGS_SurfaceShape(Name,f), xo(Xo), yo(Yo), ro(R_i), dr(R-R_i) {
+                                 const string& Name = "", EGS_ObjectFactory* f = 0) :
+        EGS_SurfaceShape(Name, f), xo(Xo), yo(Yo), ro(R_i), dr(R - R_i)
+    {
         otype = "circle";
-        if (dr < 0) {
+        if (dr < 0)
+        {
             ro = R;
             dr = R_i - R;
         }
-        A = M_PI*dr*(dr + 2*ro);
+        A = M_PI * dr * (dr + 2 * ro);
     };
     ~EGS_CirclePerpendicularShape() {};
-    EGS_Vector getPoint(EGS_RandomGenerator *rndm) {
-        EGS_Float r = ro + dr*sqrt(rndm->getUniform());
+    EGS_Vector getPoint(EGS_RandomGenerator* rndm)
+    {
+        EGS_Float r = ro + dr * sqrt(rndm->getUniform());
         EGS_Float cphi, sphi;
-        rndm->getAzimuth(cphi,sphi);
-        return EGS_Vector(xo + r*cphi, yo + r*sphi, 0);
+        rndm->getAzimuth(cphi, sphi);
+        return EGS_Vector(xo + r * cphi, yo + r * sphi, 0);
     };
 
-    void getPointSourceDirection(const EGS_Vector &Xo,
-                                 EGS_RandomGenerator *rndm, EGS_Vector &u, EGS_Float &wt) {
+    void getPointSourceDirection(const EGS_Vector& Xo,
+                                 EGS_RandomGenerator* rndm, EGS_Vector& u, EGS_Float& wt)
+    {
 
         // Perform user requested transformations to a point on the source surface
         // This is effectively the same as transforming the target position
         // because we're just calculating the direction between the two
-        EGS_Vector xo = T ? Xo*(*T) : Xo;
+        EGS_Vector xo = T ? Xo * (*T) : Xo;
 
         // Get a point on the circle target surface
         EGS_Vector x = getPoint(rndm);
         u = x - xo;
-        EGS_Float d2i = 1/u.length2(), di = sqrt(d2i);
+        EGS_Float d2i = 1 / u.length2(), di = sqrt(d2i);
         u *= di;
 
         // Calculate the angle between the normal to the circle surface and the u vector between points
@@ -151,15 +156,18 @@ public:
         // We will rotate about a vector perpendicular to u and the target surface normal
         // Check against fabs(u.z) to account for both parallel and anti-parallel cases
         EGS_Vector rotateAbout;
-        if ((fabs(u.z) - perpToCircle.z) < epsilon) {
+        if ((fabs(u.z) - perpToCircle.z) < epsilon)
+        {
             rotateAbout = perpToCircle;
         }
-        else {
+        else
+        {
             rotateAbout = u.times(perpToCircle);
         }
         EGS_RotationMatrix rotation = EGS_RotationMatrix::rotV(-angleBetween, rotateAbout);
-        EGS_AffineTransform *transform = new EGS_AffineTransform(rotation);
-        if (transform) {
+        EGS_AffineTransform* transform = new EGS_AffineTransform(rotation);
+        if (transform)
+        {
             // Transform the point on the target surface by this rotation
             transform->rotate(x);
 
@@ -168,10 +176,11 @@ public:
         }
         delete transform;
 
-        d2i = 1/u.length2(), di = sqrt(d2i);
+        d2i = 1 / u.length2(), di = sqrt(d2i);
         u *= di;
-        wt = A*u.length()*d2i;
-        if (T) {
+        wt = A * u.length() * d2i;
+        if (T)
+        {
             T->rotate(u);
         }
     };

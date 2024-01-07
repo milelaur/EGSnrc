@@ -37,23 +37,24 @@
 #include "array_sizes.h"
 #include "egs_functions.h"
 
-struct EGS_ExtraStack {
+struct EGS_ExtraStack
+{
     EGS_Float expmfp[MXSTACK];
     int       is_fat[MXSTACK];
     EGS_Float expmfpI;
     int       is_fatI;
 };
 
-extern struct EGS_ExtraStack *the_extra_stack;
+extern struct EGS_ExtraStack* the_extra_stack;
 
 #define calculatePhotonMFP F77_OBJ_(calculate_photon_mfp,CALCULATE_PHOTON_MFP)
-extern __extc__ void calculatePhotonMFP(EGS_Float *,EGS_Float *);
+extern __extc__ void calculatePhotonMFP(EGS_Float*, EGS_Float*);
 
 #define doRayleigh F77_OBJ_(do_rayleigh,DO_RAYLEIGH)
 extern __extc__ void doRayleigh();
 
 #define calculatePhotonBranching F77_OBJ_(calculate_photon_branching,CALCULATE_PHOTON_BRANCHING)
-extern __extc__ void calculatePhotonBranching(EGS_Float *gbr1,EGS_Float *gbr2);
+extern __extc__ void calculatePhotonBranching(EGS_Float* gbr1, EGS_Float* gbr2);
 
 #define doPair F77_OBJ(pair,PAIR)
 extern __extc__ void doPair();
@@ -65,19 +66,19 @@ extern __extc__ void doCompton();
 extern __extc__ void doPhoto();
 
 extern __extc__  void
-F77_OBJ_(select_photon_mfp,SELECT_PHOTON_MFP)(EGS_Float *dpmfp);
+F77_OBJ_(select_photon_mfp, SELECT_PHOTON_MFP)(EGS_Float* dpmfp);
 
-extern __extc__ void F77_OBJ_(range_discard,RANGE_DISCARD)(
-        const EGS_Float *tperp, const EGS_Float *range);
+extern __extc__ void F77_OBJ_(range_discard, RANGE_DISCARD)(
+    const EGS_Float* tperp, const EGS_Float* range);
 
-extern __extc__ void F77_OBJ_(egs_scale_xcc,EGS_SCALE_XCC)(const int *,
-                                  const EGS_Float *);
+extern __extc__ void F77_OBJ_(egs_scale_xcc, EGS_SCALE_XCC)(const int*,
+    const EGS_Float*);
 
 #define egsScaleXsection F77_OBJ_(egs_scale_photon_xsection,EGS_SCALE_PHOTON_XSECTION)
-extern __extc__ void egsScaleXsection(const int *imed, const EGS_Float *fac,
-                                      const int *which);
+extern __extc__ void egsScaleXsection(const int* imed, const EGS_Float* fac,
+                                      const int* which);
 
 #define computeRange F77_OBJ_(compute_range,COMPUTE_RANGE)
-extern __extc__ void computeRange(const EGS_Float *eke, const EGS_Float *elke,
-        const EGS_I32 *medium, const EGS_I32 *lelec, EGS_Float *range);
+extern __extc__ void computeRange(const EGS_Float* eke, const EGS_Float* elke,
+                                  const EGS_I32* medium, const EGS_I32* lelec, EGS_Float* range);
 #endif

@@ -80,16 +80,19 @@ int num_failed = 0;
         } \
     }
 
-static bool approx_eq(double a, double b, double e = 1e-8) {
+static bool approx_eq(double a, double b, double e = 1e-8)
+{
     return (std::abs(a - b) <= e * (std::abs(a) + std::abs(b) + 1.0));
 }
 
 // Floating point values must match exactly, no approximate equality is used.
-static bool egsvec_eq(EGS_Vector x, EGS_Vector y) {
+static bool egsvec_eq(EGS_Vector x, EGS_Vector y)
+{
     return x.x == y.x && x.y == y.y && x.z == y.z;
 }
 
-static std::string to_string_with_precision(double d, const int n = 17) {
+static std::string to_string_with_precision(double d, const int n = 17)
+{
     std::ostringstream out;
     out.precision(n);
     out << std::fixed << d;
@@ -97,17 +100,20 @@ static std::string to_string_with_precision(double d, const int n = 17) {
 }
 
 // RAII class for a temporary file used by some tests
-class TempFile {
+class TempFile
+{
 public:
-    TempFile(const std::string &filename, const std::string &contents)
-        : filename_(filename) {
+    TempFile(const std::string& filename, const std::string& contents)
+        : filename_(filename)
+    {
         {
             std::ofstream out(filename_);
             out << contents;
         }
     }
 
-    ~TempFile() {
+    ~TempFile()
+    {
         std::remove(this->filename_.c_str());
     }
 
@@ -162,7 +168,8 @@ $EndElements)";
 //
 // Not declared const because of EGS_BaseGeometry method requirements but
 // isn't mutated at any point.
-static EGS_Mesh test_mesh = []() {
+static EGS_Mesh test_mesh = []()
+{
     std::stringstream input(five_elt_mesh_str);
     return EGS_Mesh(msh_parser::parse_msh_file(input));
 }
@@ -170,10 +177,12 @@ static EGS_Mesh test_mesh = []() {
 
 // egs_mesh tests
 
-static void test_unknown_node() {
+static void test_unknown_node()
+{
     std::vector<EGS_MeshSpec::Tetrahedron> elt { EGS_MeshSpec::Tetrahedron(1, 0, 0, 1, 2, 100) };
     // no node 100 in nodes vector
-    std::vector<EGS_MeshSpec::Node> nodes {
+    std::vector<EGS_MeshSpec::Node> nodes
+    {
         EGS_MeshSpec::Node(0, 1.0, 1.0, -1.0),
         EGS_MeshSpec::Node(1, -1.0, 1.0, -1.0),
         EGS_MeshSpec::Node(2, 0.0, -1.0, -1.0),
@@ -183,47 +192,59 @@ static void test_unknown_node() {
     EXPECT_ERROR(EGS_Mesh(EGS_MeshSpec(elt, nodes, media)), "No mesh node with tag: 100");
 }
 
-static void test_boundary() {
+static void test_boundary()
+{
     // element 0 is surrounded by the other four elements
-    if (test_mesh.is_boundary(0)) {
+    if (test_mesh.is_boundary(0))
+    {
         throw std::runtime_error("expected region 0 not to be a surface element");
     }
-    for (auto i = 1; i < test_mesh.num_elements(); i++) {
-        if (!test_mesh.is_boundary(i)) {
+    for (auto i = 1; i < test_mesh.num_elements(); i++)
+    {
+        if (!test_mesh.is_boundary(i))
+        {
             throw std::runtime_error("expected region " + std::to_string(i) +
                                      " to be a surface element");
         }
     }
 }
 
-static void test_neighbours() {
+static void test_neighbours()
+{
     // element 0 is neighbours with the other four elements
     auto n0 = test_mesh.element_neighbours(0);
-    for (int i = 1; i <= 4; i++) {
-        if (std::count(n0.begin(), n0.end(), i) != 1) {
+    for (int i = 1; i <= 4; i++)
+    {
+        if (std::count(n0.begin(), n0.end(), i) != 1)
+        {
             throw std::runtime_error("expected region " + std::to_string(i) +
                                      " to be a neighbour of region 0");
         }
     }
 
-    for (int i = 1; i <= 4; i++) {
+    for (int i = 1; i <= 4; i++)
+    {
         auto ns = test_mesh.element_neighbours(i);
-        if (std::count(ns.begin(), ns.end(), 0) != 1) {
+        if (std::count(ns.begin(), ns.end(), 0) != 1)
+        {
             throw std::runtime_error("expected region " + std::to_string(i) +
                                      " to be a neighbour of region 0");
         }
-        if (std::count(ns.begin(), ns.end(), -1) != 3) {
+        if (std::count(ns.begin(), ns.end(), -1) != 3)
+        {
             throw std::runtime_error("expected region " + std::to_string(i) +
                                      " to have three surface faces");
         }
     }
 }
 
-class Tet {
+class Tet
+{
 public:
     Tet(EGS_Vector a, EGS_Vector b, EGS_Vector c, EGS_Vector d)
         : a(a), b(b), c(c), d(d) {}
-    EGS_Vector centroid() const {
+    EGS_Vector centroid() const
+    {
         return EGS_Vector(
                    (a.x + b.x + c.x + d.x) / 4.0,
                    (a.y + b.y + c.y + d.y) / 4.0,
@@ -237,50 +258,61 @@ private:
     EGS_Vector d;
 };
 
-static std::vector<Tet> get_tetrahedrons(const EGS_Mesh &mesh) {
+static std::vector<Tet> get_tetrahedrons(const EGS_Mesh& mesh)
+{
     std::vector<Tet> elts;
     elts.reserve(mesh.num_elements());
-    for (auto i = 0; i < mesh.num_elements(); i++) {
+    for (auto i = 0; i < mesh.num_elements(); i++)
+    {
         const auto elt_nodes = mesh.element_nodes(i);
         elts.emplace_back(Tet(elt_nodes.A, elt_nodes.B, elt_nodes.C, elt_nodes.D));
     }
     return elts;
 }
 
-static void test_isWhere() {
+static void test_isWhere()
+{
     // test the centroid of each tetrahedron is inside the tetrahedron
     auto elts = get_tetrahedrons(test_mesh);
-    for (int i = 0; i < (int)elts.size(); i++) {
+    for (int i = 0; i < (int)elts.size(); i++)
+    {
         auto c = elts.at(i).centroid();
         auto in_tet = test_mesh.isWhere(c);
-        if (in_tet != i) {
+        if (in_tet != i)
+        {
             throw std::runtime_error("expected point in tetrahedron " +
                                      std::to_string(i) + " got: " + std::to_string(in_tet));
         }
     }
     EGS_Vector out(1e10, 0, 0);
-    if (test_mesh.isWhere(out) != -1) {
+    if (test_mesh.isWhere(out) != -1)
+    {
         throw std::runtime_error("expected point to be outside (-1), got: " +
                                  std::to_string(test_mesh.isWhere(out)));
     }
 }
 
-static void test_hownear_interior() {
+static void test_hownear_interior()
+{
     auto elts = get_tetrahedrons(test_mesh);
-    for (int i = 0; i < (int)elts.size(); i++) {
+    for (int i = 0; i < (int)elts.size(); i++)
+    {
         auto c = elts.at(i).centroid();
         auto dist = test_mesh.hownear(i, c);
-        if (i < 4 && !approx_eq(dist, 0.144338, 1e-6)) {
+        if (i < 4 && !approx_eq(dist, 0.144338, 1e-6))
+        {
             throw std::runtime_error(
                 "expected min distance to be 0.144338, got: " +
                 std::to_string(dist));
         }
-        else if (i == 4 && !approx_eq(dist, 0.288675, 1e-6)) {
+        else if (i == 4 && !approx_eq(dist, 0.288675, 1e-6))
+        {
             throw std::runtime_error(
                 "expected min distance to be 0.288675, got: " +
                 std::to_string(dist));
         }
-        else if (i > 5) {
+        else if (i > 5)
+        {
             // test specific to five-tet.msh
             throw std::runtime_error(
                 "unknown mesh file for test_hownear_interior");
@@ -288,12 +320,14 @@ static void test_hownear_interior() {
     }
 }
 
-static void test_hownear_exterior() {
+static void test_hownear_exterior()
+{
     // known point 1.0 away from tetrahedron 1 with point (0.0, -1.0, 0.0)
     {
         EGS_Vector x(0.0, -2.0, 0.0);
         auto dist = test_mesh.hownear(-1, x);
-        if (!approx_eq(1.0, dist)) {
+        if (!approx_eq(1.0, dist))
+        {
             throw std::runtime_error("expected min distance to be 1.0, got: "
                                      + std::to_string(dist));
         }
@@ -302,23 +336,28 @@ static void test_hownear_exterior() {
     {
         EGS_Vector x(0.0, 0.0, -11.0);
         auto dist = test_mesh.hownear(-1, x);
-        if (!approx_eq(10.0, dist)) {
+        if (!approx_eq(10.0, dist))
+        {
             throw std::runtime_error("expected min distance to be 10.0, got: "
                                      + std::to_string(dist));
         }
     }
 }
 
-static void test_medium() {
-    for (auto i = 0; i < test_mesh.num_elements(); i++) {
-        if (0 != test_mesh.medium(i)) {
+static void test_medium()
+{
+    for (auto i = 0; i < test_mesh.num_elements(); i++)
+    {
+        if (0 != test_mesh.medium(i))
+        {
             throw std::runtime_error("expected medium index to be 0, got: "
                                      + std::to_string(test_mesh.medium(i)));
         }
     }
 }
 
-static void test_howfar_interior_basic() {
+static void test_howfar_interior_basic()
+{
     {
         // Element 3 (ireg = 3-1 = 2) of the test mesh has a boundary face at x = 0
         // For a point inside element 3, the distance along the x-axis to a boundary face is -p.x
@@ -329,15 +368,18 @@ static void test_howfar_interior_basic() {
         auto dist = 1e20;
         int newmed = -100;
         auto new_reg = test_mesh.howfar(reg, p, u, dist, &newmed);
-        if (new_reg != 0) {
+        if (new_reg != 0)
+        {
             throw std::runtime_error("expected new region index to be 0, got: "
                                      + std::to_string(new_reg));
         }
-        if (!approx_eq(dist, 0.1)) {
+        if (!approx_eq(dist, 0.1))
+        {
             throw std::runtime_error("expected distance to be 0.1, got: " +
                                      std::to_string(dist));
         }
-        if (newmed != 0) {
+        if (newmed != 0)
+        {
             throw std::runtime_error("expected medium index to be 0, got: " +
                                      std::to_string(newmed));
         }
@@ -352,15 +394,18 @@ static void test_howfar_interior_basic() {
         auto dist = 1e20;
         int newmed = -100;
         auto new_reg = test_mesh.howfar(reg, p, u, dist, &newmed);
-        if (new_reg != -1) {
+        if (new_reg != -1)
+        {
             throw std::runtime_error("expected new region index to be -1, got: "
                                      + std::to_string(new_reg));
         }
-        if (!approx_eq(dist, 0.1)) {
+        if (!approx_eq(dist, 0.1))
+        {
             throw std::runtime_error("expected distance to be 0.1, got: " +
                                      std::to_string(dist));
         }
-        if (newmed != -1) {
+        if (newmed != -1)
+        {
             throw std::runtime_error("expected medium index to be -1, got: " +
                                      std::to_string(newmed));
         }
@@ -373,22 +418,26 @@ static void test_howfar_interior_basic() {
         auto dist = 1e20;
         int newmed = -100;
         auto new_reg = test_mesh.howfar(reg, p, u, dist, &newmed);
-        if (new_reg != 3) {
+        if (new_reg != 3)
+        {
             throw std::runtime_error("expected new region index to be 3, got: "
                                      + std::to_string(new_reg));
         }
-        if (!approx_eq(dist, 0.3)) {
+        if (!approx_eq(dist, 0.3))
+        {
             throw std::runtime_error("expected distance to be 0.3, got: " +
                                      std::to_string(dist));
         }
-        if (newmed != 0) {
+        if (newmed != 0)
+        {
             throw std::runtime_error("expected medium index to be 0, got: " +
                                      std::to_string(newmed));
         }
     }
 }
 
-static void test_howfar_exterior() {
+static void test_howfar_exterior()
+{
     {
         // Element 3 (ireg = 2) has an exterior boundary with a point at x = -1
         auto reg = -1; // outside the mesh
@@ -397,15 +446,18 @@ static void test_howfar_exterior() {
         auto dist = 1e20;
         int newmed = -100;
         auto new_reg = test_mesh.howfar(reg, p, u, dist, &newmed);
-        if (new_reg != 2) {
+        if (new_reg != 2)
+        {
             throw std::runtime_error("expected new region index to be 2, got: "
                                      + std::to_string(new_reg));
         }
-        if (!approx_eq(dist, 1.0)) {
+        if (!approx_eq(dist, 1.0))
+        {
             throw std::runtime_error("expected distance to be 1.0, got: " +
                                      std::to_string(dist));
         }
-        if (newmed != 0) {
+        if (newmed != 0)
+        {
             throw std::runtime_error("expected medium index to be 0, got: " +
                                      std::to_string(newmed));
         }
@@ -413,7 +465,8 @@ static void test_howfar_exterior() {
 }
 
 // Test the egsinp `scale` key.
-static void test_mesh_scaling() {
+static void test_mesh_scaling()
+{
     std::string filename = "tmp_test_mesh_scaling.msh";
     TempFile tmp(filename, five_elt_mesh_str);
 
@@ -430,15 +483,18 @@ static void test_mesh_scaling() {
         ":stop geometry definition:\n"
     );
     egsinp.setContentFromString(egsinp_str);
-    EGS_BaseGeometry *geo = EGS_Mesh::createGeometry(&egsinp);
-    EGS_Mesh *scaled_mesh = dynamic_cast<EGS_Mesh *>(geo);
-    if (!scaled_mesh) {
+    EGS_BaseGeometry* geo = EGS_Mesh::createGeometry(&egsinp);
+    EGS_Mesh* scaled_mesh = dynamic_cast<EGS_Mesh*>(geo);
+    if (!scaled_mesh)
+    {
         throw std::runtime_error("dynamic_cast<EGS_Mesh*> failed!");
     }
 
-    auto mesh_volume = [](const EGS_Mesh& mesh) -> EGS_Float {
+    auto mesh_volume = [](const EGS_Mesh & mesh) -> EGS_Float
+    {
         EGS_Float vol = 0.0;
-        for (int i = 0; i < mesh.num_elements(); i++) {
+        for (int i = 0; i < mesh.num_elements(); i++)
+        {
             vol += mesh.element_volume(i);
         }
         return vol;
@@ -446,7 +502,8 @@ static void test_mesh_scaling() {
 
     auto scaled_vol = mesh_volume(*scaled_mesh);
     auto vol = mesh_volume(test_mesh) / 1000.0; // 10^3
-    if (!approx_eq(scaled_vol, vol)) {
+    if (!approx_eq(scaled_vol, vol))
+    {
         throw std::runtime_error("scaled volume " + std::to_string(scaled_vol) +
                                  ") != expected (" + std::to_string(vol) + ")");
     }
@@ -454,7 +511,8 @@ static void test_mesh_scaling() {
 }
 
 // Custom egsInfoFunction that throws error messages as exceptions for testing
-void egsInfoThrowing(const char *msg, ...) {
+void egsInfoThrowing(const char* msg, ...)
+{
     char buf[8192];
     va_list ap;
     va_start(ap, msg);
@@ -464,7 +522,8 @@ void egsInfoThrowing(const char *msg, ...) {
 }
 
 // Test egsinp `scale` key errors.
-static void test_mesh_scale_key_errors() {
+static void test_mesh_scale_key_errors()
+{
     egsSetInfoFunction(Fatal, egsInfoThrowing);
 
     std::string filename = "tmp_test_mesh_scaling.msh";
@@ -499,21 +558,25 @@ static void test_mesh_scale_key_errors() {
 //    / * -> X  /
 //   /________\/
 //
-static void test_howfar_interior_regular(EGS_Mesh &mesh) {
+static void test_howfar_interior_regular(EGS_Mesh& mesh)
+{
     EGS_Vector x(0.5, 0.5, 0.0);
     EGS_Vector u(1.0, 0.0, 0.0);
     EGS_Float dist = veryFar;
     int newmed = -1;
     auto newreg = mesh.howfar(0, x, u, dist, &newmed);
-    if (newreg != 1) {
+    if (newreg != 1)
+    {
         throw std::runtime_error(std::string("expected newreg = 1, got ") +
                                  std::to_string(newreg));
     }
-    if (!approx_eq(dist, 0.5)) {
+    if (!approx_eq(dist, 0.5))
+    {
         throw std::runtime_error(std::string("expected dist = 0.5, got ") +
                                  to_string_with_precision(dist));
     }
-    if (newmed != 0) {
+    if (newmed != 0)
+    {
         throw std::runtime_error(std::string("expected newmed = 0, got ") +
                                  std::to_string(newmed));
     }
@@ -532,21 +595,25 @@ static void test_howfar_interior_regular(EGS_Mesh &mesh) {
 // /---/
 //   d = distance along plane normal to plane >> EGS_Mesh::thick_plane_tolerance
 //
-static void test_howfar_interior_outside_thick_plane(EGS_Mesh &mesh) {
+static void test_howfar_interior_outside_thick_plane(EGS_Mesh& mesh)
+{
     EGS_Vector x(-0.5, 0.5, 0.0);
     EGS_Vector u(1.0, 0.0, 0.0);
     EGS_Float dist = veryFar;
     int newmed = -1;
     auto newreg = mesh.howfar(0, x, u, dist, &newmed);
-    if (newreg != -1) {
+    if (newreg != -1)
+    {
         throw std::runtime_error(std::string("expected newreg = -1, got ") +
                                  std::to_string(newreg));
     }
-    if (!approx_eq(dist, EGS_Mesh::get_min_step_size())) {
+    if (!approx_eq(dist, EGS_Mesh::get_min_step_size()))
+    {
         throw std::runtime_error(std::string("expected dist = 1e-10, got ") +
                                  to_string_with_precision(dist));
     }
-    if (newmed != -1) {
+    if (newmed != -1)
+    {
         throw std::runtime_error(std::string("expected newmed = 0, got ") +
                                  std::to_string(newmed));
     }
@@ -560,21 +627,25 @@ static void test_howfar_interior_outside_thick_plane(EGS_Mesh &mesh) {
 // <- *  /      \  /
 //      /________\/
 //
-static void test_howfar_interior_lost_particle(EGS_Mesh &mesh) {
+static void test_howfar_interior_lost_particle(EGS_Mesh& mesh)
+{
     EGS_Vector x(-0.5, 0.5, 0.0);
     EGS_Vector u(-1.0, 0.0, 0.0);
     EGS_Float dist = veryFar;
     int newmed = -1;
     auto newreg = mesh.howfar(0, x, u, dist, &newmed);
-    if (newreg != -1) {
+    if (newreg != -1)
+    {
         throw std::runtime_error(std::string("expected newreg = -1, got ") +
                                  std::to_string(newreg));
     }
-    if (dist != EGS_Mesh::get_min_step_size()) {
+    if (dist != EGS_Mesh::get_min_step_size())
+    {
         throw std::runtime_error(std::string("expected dist = 1e-10, got ") +
                                  to_string_with_precision(dist));
     }
-    if (newmed != -1) {
+    if (newmed != -1)
+    {
         throw std::runtime_error(std::string("expected newmed = -1, got ") +
                                  std::to_string(newmed));
     }
@@ -582,7 +653,8 @@ static void test_howfar_interior_lost_particle(EGS_Mesh &mesh) {
 
 // Test for a problematic case: particle exiting the geometry, but on the next
 // step considered to reenter the geometry along a very small step.
-static void test_howfar_interior_reentry() {
+static void test_howfar_interior_reentry()
+{
     EGS_MeshSpec spec;
     spec.elements = {EGS_MeshSpec::Tetrahedron(1, 0, 1, 2, 3, 4)};
     spec.nodes = {EGS_MeshSpec::Node(1, -12.664085999999999, 10.155149, -60.478188000000003),
@@ -592,12 +664,13 @@ static void test_howfar_interior_reentry() {
                  };
     spec.media = {EGS_MeshSpec::Medium(0, "H2O")};
     EGS_Mesh mesh(std::move(spec));
-    EGS_Vector x(-12.73449210566031,10.364445524278567,-59.830664698600309);
+    EGS_Vector x(-12.73449210566031, 10.364445524278567, -59.830664698600309);
     EGS_Vector u(-0.91563184997597713, -0.043079362143260982, -0.39970299456834102);
     // particle starts inside mesh and travels to boundary
     EGS_Float dist = 1e30;
     auto newreg = mesh.howfar(0, x, u, dist, nullptr);
-    if (newreg != -1) {
+    if (newreg != -1)
+    {
         throw std::runtime_error(std::string("expected newreg = -1, got ") +
                                  std::to_string(newreg));
     }
@@ -605,7 +678,8 @@ static void test_howfar_interior_reentry() {
     EGS_Vector x2(x.x + u.x * dist, x.y + u.y * dist, x.z + u.z * dist);
     dist = 1e30;
     auto boundary = mesh.howfar(-1, x2, u, dist, nullptr);
-    if (boundary != -1) {
+    if (boundary != -1)
+    {
         throw std::runtime_error(std::string("expected boundary = -1, got ") +
                                  std::to_string(boundary));
     }
@@ -621,18 +695,21 @@ static void test_howfar_interior_reentry() {
 //         |
 //    |----|
 //    d << 1
-static void test_howfar_interior_tolerance(/* const */ EGS_Mesh &mesh) {
+static void test_howfar_interior_tolerance(/* const */ EGS_Mesh& mesh)
+{
     EGS_Vector x(1.0 - 1e-15, 0.0, 0.0);
     EGS_Vector u(1.0, 0.0, 0.0);
     EGS_Float dist = veryFar;
     int newmed = -1;
     auto newreg = mesh.howfar(0, x, u, dist, &newmed);
-    if (newreg != 1) {
+    if (newreg != 1)
+    {
         throw std::runtime_error(std::string("expected newreg = 1, got ") +
                                  std::to_string(newreg));
     }
     // check we get a minimum step
-    if (dist != EGS_Mesh::get_min_step_size()) {
+    if (dist != EGS_Mesh::get_min_step_size())
+    {
         throw std::runtime_error(std::string("expected dist = 1e-10, got ") +
                                  to_string_with_precision(dist));
     }
@@ -647,7 +724,8 @@ static void test_howfar_interior_tolerance(/* const */ EGS_Mesh &mesh) {
          \  b
           \
 */
-static void test_howfar_interior_boundary_straddle() {
+static void test_howfar_interior_boundary_straddle()
+{
     EGS_MeshSpec::Tetrahedron a(1, 0, 1, 2, 3, 4);
     EGS_MeshSpec::Tetrahedron b(2, 0, 2, 3, 4, 5);
     EGS_MeshSpec::Node n1(1, 7.0657957133719744, 2.9344907960112301, 5.0000104685638238);
@@ -660,31 +738,36 @@ static void test_howfar_interior_boundary_straddle() {
     spec.nodes = {n1, n2, n3, n4, n5};
     spec.media = {EGS_MeshSpec::Medium(0, "H2O")};
     EGS_Mesh mesh(std::move(spec));
-    std::vector<EGS_Vector> xs {
-        EGS_Vector(7.2785250525479777,3.2806997454426994,4.8659208444750019),
-        EGS_Vector(7.2784383802325188,3.2807421180203833,4.8659209976387903),
-        EGS_Vector(7.2323212358066646,3.27632101005501,4.8885263860313106),
-        EGS_Vector(7.232250310905779,3.2763456480491859,4.8885780658269145),
-        EGS_Vector(7.2321865766360034,3.2763687101303014,4.8886269534653843)
+    std::vector<EGS_Vector> xs
+    {
+        EGS_Vector(7.2785250525479777, 3.2806997454426994, 4.8659208444750019),
+        EGS_Vector(7.2784383802325188, 3.2807421180203833, 4.8659209976387903),
+        EGS_Vector(7.2323212358066646, 3.27632101005501, 4.8885263860313106),
+        EGS_Vector(7.232250310905779, 3.2763456480491859, 4.8885780658269145),
+        EGS_Vector(7.2321865766360034, 3.2763687101303014, 4.8886269534653843)
     };
-    std::vector<EGS_Vector> us {
-        EGS_Vector(-0.89838549587000849,0.43920494119202419,0.0015875902833647274),
-        EGS_Vector(-0.90129953316251854,0.43319633941521896,0.00028816363187951824),
-        EGS_Vector(-0.77867313157333951,0.26853705234531422,0.56705908482578615),
-        EGS_Vector(-0.76264679745978736,0.27596177640776914,0.58499141898509754),
-        EGS_Vector(-0.75904947178523308,0.30259180325315083,0.57643915549393798)
+    std::vector<EGS_Vector> us
+    {
+        EGS_Vector(-0.89838549587000849, 0.43920494119202419, 0.0015875902833647274),
+        EGS_Vector(-0.90129953316251854, 0.43319633941521896, 0.00028816363187951824),
+        EGS_Vector(-0.77867313157333951, 0.26853705234531422, 0.56705908482578615),
+        EGS_Vector(-0.76264679745978736, 0.27596177640776914, 0.58499141898509754),
+        EGS_Vector(-0.75904947178523308, 0.30259180325315083, 0.57643915549393798)
     };
     int reg = 0;
-    for (std::size_t i = 0; i < xs.size(); i++) {
+    for (std::size_t i = 0; i < xs.size(); i++)
+    {
         EGS_Float dist = 1e30;
         reg = mesh.howfar(reg, xs[i], us[i], dist, nullptr);
-        if (reg == -1) {
+        if (reg == -1)
+        {
             throw std::runtime_error("clipped to outside");
         }
     }
 }
 
-void test_howfar_interior_stuck_on_boundary() {
+void test_howfar_interior_stuck_on_boundary()
+{
     EGS_MeshSpec::Tetrahedron e(1, 0, 1, 2, 3, 4);
     EGS_MeshSpec::Node a(1, 3.694681593168294, 0.2039078707572552, 9.025968029424174);
     EGS_MeshSpec::Node b(2, 3.666485868947344, 0, 9.025968029424174);
@@ -704,7 +787,8 @@ void test_howfar_interior_stuck_on_boundary() {
     EGS_Float dist = veryFar;
     int newmed = -1;
     int newreg = mesh.howfar(0, x, u, dist, &newmed);
-    if (newreg == 0) {
+    if (newreg == 0)
+    {
         throw std::runtime_error("test failed, stuck on boundary plane");
     }
 }
@@ -719,7 +803,8 @@ void test_howfar_interior_stuck_on_boundary() {
 //         ------
 //           e /
 //
-void test_howfar_interior_thick_plane_negative_intersection() {
+void test_howfar_interior_thick_plane_negative_intersection()
+{
     EGS_MeshSpec::Tetrahedron e(1, 0, 1, 2, 3, 4);
     EGS_MeshSpec::Node a(1, 9.4000000000000004, 5.0, 0.40000000000000002);
     EGS_MeshSpec::Node b(2, 9.5, 5.0, 0.5);
@@ -734,17 +819,19 @@ void test_howfar_interior_thick_plane_negative_intersection() {
     EGS_Mesh mesh(std::move(spec));
 
     // particle in a thick plane, and very near an edge.
-    EGS_Vector x(9.4293150393675766,5,0.42931503936757603);
-    EGS_Vector u(0.87678438068197007,0,0.48088371753692627);
+    EGS_Vector x(9.4293150393675766, 5, 0.42931503936757603);
+    EGS_Vector u(0.87678438068197007, 0, 0.48088371753692627);
     EGS_Float dist = veryFar;
     int newmed = -1;
     mesh.howfar(0, x, u, dist, &newmed);
-    if (dist < 0.0) {
+    if (dist < 0.0)
+    {
         throw std::runtime_error("test failed, got negative intersection");
     }
 }
 
-static void test_howfar_interior() {
+static void test_howfar_interior()
+{
     /* Create a simple two-element mesh and test the three howfar_interior cases
 
                 e1      e2
@@ -785,23 +872,28 @@ static void test_howfar_interior() {
 
 // neighbour-finding tests
 
-static void test_tetrahedron_face_eq() {
+static void test_tetrahedron_face_eq()
+{
     // tetrahedron faces with the same nodes will compare equal
     {
         mesh_neighbours::Tetrahedron a(1, 2, 3, 4);
         mesh_neighbours::Tetrahedron b(4, 2, 3, 1);
         auto a_faces = a.faces();
         auto b_faces = b.faces();
-        if (a_faces[0] != b_faces[3]) {
+        if (a_faces[0] != b_faces[3])
+        {
             throw std::runtime_error("a_faces[0] should equal b_faces[3]");
         }
-        if (a_faces[1] != b_faces[1]) {
+        if (a_faces[1] != b_faces[1])
+        {
             throw std::runtime_error("a_faces[1] should equal b_faces[1]");
         }
-        if (a_faces[2] != b_faces[2]) {
+        if (a_faces[2] != b_faces[2])
+        {
             throw std::runtime_error("a_faces[2] should equal b_faces[2]");
         }
-        if (a_faces[3] != b_faces[0]) {
+        if (a_faces[3] != b_faces[0])
+        {
             throw std::runtime_error("a_faces[3] should equal b_faces[0]");
         }
     }
@@ -811,71 +903,87 @@ static void test_tetrahedron_face_eq() {
         mesh_neighbours::Tetrahedron b(5, 2, 3, 1);
         auto a_faces = a.faces();
         auto b_faces = b.faces();
-        if (a_faces[0] == b_faces[3]) {
+        if (a_faces[0] == b_faces[3])
+        {
             throw std::runtime_error("a_faces[0] shouldn't equal b_faces[3]");
         }
-        if (a_faces[1] == b_faces[1]) {
+        if (a_faces[1] == b_faces[1])
+        {
             throw std::runtime_error("a_faces[1] shouldn't equal b_faces[1]");
         }
-        if (a_faces[2] == b_faces[2]) {
+        if (a_faces[2] == b_faces[2])
+        {
             throw std::runtime_error("a_faces[2] shouldn't equal b_faces[2]");
         }
-        if (a_faces[3] != b_faces[0]) {
+        if (a_faces[3] != b_faces[0])
+        {
             throw std::runtime_error("a_faces[3] should equal b_faces[0]");
         }
     }
 }
 
-static void test_tetrahedron_errors() {
+static void test_tetrahedron_errors()
+{
     // duplicate tetrahedron nodes are caught
     EXPECT_ERROR(mesh_neighbours::Tetrahedron(1, 1, 2, 3), "duplicate node 1");
     EXPECT_ERROR(mesh_neighbours::Tetrahedron(1, 2, 2, 3), "duplicate node 2");
 }
 
-static void test_tetrahedron_neighbours() {
+static void test_tetrahedron_neighbours()
+{
     using mesh_neighbours::NONE;
     egs_mesh::internal::PercentCounter null_logger(nullptr, "");
 
-    std::vector<mesh_neighbours::Tetrahedron> disjoint_tets {
+    std::vector<mesh_neighbours::Tetrahedron> disjoint_tets
+    {
         mesh_neighbours::Tetrahedron(1, 2, 3, 4),
         mesh_neighbours::Tetrahedron(5, 6, 7, 8)
     };
 
     if (mesh_neighbours::tetrahedron_neighbours(disjoint_tets, null_logger) !=
-    std::vector<std::array<int, 4>> {
+            std::vector<std::array<int, 4>>
+{
     std::array<int, 4>{NONE, NONE, NONE, NONE},
     std::array<int, 4>{NONE, NONE, NONE, NONE}
-}) {
+})
+    {
         throw std::runtime_error("disjoint_tets should have no neighbours");
     }
-    std::vector<mesh_neighbours::Tetrahedron> linked_tets {
+    std::vector<mesh_neighbours::Tetrahedron> linked_tets
+    {
         mesh_neighbours::Tetrahedron(1, 2, 3, 4),
         mesh_neighbours::Tetrahedron(1, 2, 3, 5)
     };
     if (mesh_neighbours::tetrahedron_neighbours(linked_tets, null_logger) !=
-    std::vector<std::array<int, 4>> {
+            std::vector<std::array<int, 4>>
+{
     std::array<int, 4>{NONE, NONE, NONE, 1},
     std::array<int, 4>{NONE, NONE, NONE, 0}
-}) {
+})
+    {
         throw std::runtime_error("bad neighbours for linked_tets");
     }
     // 0 nodes are OK
-    std::vector<mesh_neighbours::Tetrahedron> tets_with_0 {
+    std::vector<mesh_neighbours::Tetrahedron> tets_with_0
+    {
         mesh_neighbours::Tetrahedron(0, 2, 3, 4),
         mesh_neighbours::Tetrahedron(1, 2, 3, 4)
     };
     if (mesh_neighbours::tetrahedron_neighbours(tets_with_0, null_logger) !=
-    std::vector<std::array<int,4>> {
+            std::vector<std::array<int, 4>>
+{
     std::array<int, 4>{1, NONE, NONE, NONE},
     std::array<int, 4>{0, NONE, NONE, NONE}
-}) {
+})
+    {
         throw std::runtime_error("bad neighbours for tets_with_0");
     }
 }
 
 // msh_parser tests
 
-static void test_parse_msh_version() {
+static void test_parse_msh_version()
+{
     using namespace msh_parser::internal;
     // catch empty inputs
     {
@@ -940,7 +1048,8 @@ static void test_parse_msh_version() {
         );
         // might throw
         MshVersion vers = parse_msh_version(input);
-        if (vers != MshVersion::v41) {
+        if (vers != MshVersion::v41)
+        {
             throw std::runtime_error("expected version = v41");
         }
     }
@@ -953,14 +1062,16 @@ static void test_parse_msh_version() {
         );
         // might throw
         MshVersion vers = parse_msh_version(input);
-        if (vers != MshVersion::v41) {
+        if (vers != MshVersion::v41)
+        {
             throw std::runtime_error("expected version = v41");
         }
     }
 }
 
 // all cases assume $PhysicalNames header has already been parsed
-static void test_parse_msh41_groups() {
+static void test_parse_msh41_groups()
+{
     using namespace msh_parser::internal;
     // empty section is OK
     {
@@ -969,7 +1080,8 @@ static void test_parse_msh41_groups() {
             "$EndPhysicalNames\n"
         );
         std::vector<msh41::PhysicalGroup> groups = msh41::parse_groups(input);
-        if (groups.size() != 0) {
+        if (groups.size() != 0)
+        {
             throw std::runtime_error("expected 0 groups at line " +
                                      std::to_string(__LINE__));
         }
@@ -1035,12 +1147,14 @@ static void test_parse_msh41_groups() {
             "$EndPhysicalNames\n"
         );
         std::vector<msh41::PhysicalGroup> groups = msh41::parse_groups(input);
-        if (groups.size() != 1) {
+        if (groups.size() != 1)
+        {
             throw std::runtime_error("expected 1 group at line" +
                                      std::to_string(__LINE__));
         }
         std::string expected_name = "volume";
-        if (groups.at(0).name != expected_name) {
+        if (groups.at(0).name != expected_name)
+        {
             throw std::runtime_error("bad physical name parse, expected: " +
                                      expected_name + "but got: " + groups.at(0).name);
         }
@@ -1069,12 +1183,14 @@ static void test_parse_msh41_groups() {
             "$EndPhysicalNames\n"
         );
         std::vector<msh41::PhysicalGroup> groups = msh41::parse_groups(input);
-        if (groups.size() != 1) {
+        if (groups.size() != 1)
+        {
             throw std::runtime_error("expected 1 group at line" +
                                      std::to_string(__LINE__));
         }
         std::string expected_name = "a volume";
-        if (groups.at(0).name != expected_name) {
+        if (groups.at(0).name != expected_name)
+        {
             throw std::runtime_error("bad physical name parse, expected: " +
                                      expected_name + "but got: " + groups.at(0).name);
         }
@@ -1089,12 +1205,14 @@ static void test_parse_msh41_groups() {
             "$EndPhysicalNames\n"
         );
         std::vector<msh41::PhysicalGroup> groups = msh41::parse_groups(input);
-        if (groups.size() != 1) {
+        if (groups.size() != 1)
+        {
             throw std::runtime_error("expected 1 group at line" +
                                      std::to_string(__LINE__));
         }
         std::string expected_name = "a";
-        if (groups.at(0).name != expected_name) {
+        if (groups.at(0).name != expected_name)
+        {
             throw std::runtime_error("bad physical name parse, expected: " +
                                      expected_name + "but got: " + groups.at(0).name);
         }
@@ -1111,20 +1229,23 @@ static void test_parse_msh41_groups() {
             "$EndPhysicalNames\n"
         );
         std::vector<msh41::PhysicalGroup> groups = msh41::parse_groups(input);
-        if (groups.size() != 3) {
+        if (groups.size() != 3)
+        {
             throw std::runtime_error("expected 3 groups at line" +
                                      std::to_string(__LINE__));
         }
         if (!(groups.at(0).name == "Steel" && groups.at(0).tag == 3) &&
                 (groups.at(1).name == "Air" && groups.at(1).tag == 4) &&
-                (groups.at(2).name == "Water" && groups.at(2).tag == 5)) {
+                (groups.at(2).name == "Water" && groups.at(2).tag == 5))
+        {
             throw std::runtime_error(
                 "parsed physical groups didn't match reference values");
         }
     }
 }
 
-static void test_parse_msh41_node_bloc() {
+static void test_parse_msh41_node_bloc()
+{
     using namespace msh_parser::internal;
     // missing bloc metadata fails
     {
@@ -1169,7 +1290,8 @@ static void test_parse_msh41_node_bloc() {
         );
         std::string err_msg;
         std::vector<msh41::Node> nodes = msh41::parse_node_bloc(input);
-        if (nodes.size() != 3) {
+        if (nodes.size() != 3)
+        {
             throw std::runtime_error("expected 3 nodes, got " +
                                      std::to_string(nodes.size()));
         }
@@ -1178,14 +1300,16 @@ static void test_parse_msh41_node_bloc() {
         auto n2 = nodes.at(2);
         if (!(n0.tag == 1 && n0.x == 1.0 && n0.y == 0.0 && n0.z == 0.0 &&
                 n1.tag == 2 && n1.x == 0.0 && n1.y == 1.0 && n1.z == 0.0 &&
-                n2.tag == 3 && n2.x == 0.0 && n2.y == 0.0 && n2.z == 1.0)) {
+                n2.tag == 3 && n2.x == 0.0 && n2.y == 0.0 && n2.z == 1.0))
+        {
             throw std::runtime_error(
                 "parsed nodes didn't match reference value");
         }
     }
 }
 
-static void test_parse_msh41_nodes() {
+static void test_parse_msh41_nodes()
+{
     using namespace msh_parser::internal;
     // bad input stream fails
     {
@@ -1290,7 +1414,8 @@ static void test_parse_msh41_nodes() {
             "$EndNodes\n"
         );
         std::vector<msh41::Node> nodes = msh41::parse_nodes(input, nullptr);
-        if (nodes.size() != 7) {
+        if (nodes.size() != 7)
+        {
             throw std::runtime_error("expected 7 nodes at line" +
                                      std::to_string(__LINE__));
         }
@@ -1299,14 +1424,16 @@ static void test_parse_msh41_nodes() {
         auto n6 = nodes.at(6);
         if (!(n0.tag == 1 && n0.x == 1.0 && n0.y == 0.0 && n0.z == 0.0 &&
                 n1.tag == 2 && n1.x == 0.0 && n1.y == 1.0 && n1.z == 0.0 &&
-                n6.tag == 7 && n6.x == 0.0 && n6.y == 0.0 && n6.z == 1.0)) {
+                n6.tag == 7 && n6.x == 0.0 && n6.y == 0.0 && n6.z == 1.0))
+        {
             throw std::runtime_error(
                 "parsed nodes didn't match reference value");
         }
     }
 }
 
-static void test_parse_msh41_entities() {
+static void test_parse_msh41_entities()
+{
     using namespace msh_parser::internal;
     // bad input stream fails
     {
@@ -1396,19 +1523,22 @@ static void test_parse_msh41_entities() {
             "$EndEntities\n"
         );
         std::vector<msh41::MeshVolume> vols = msh41::parse_entities(input);
-        if (vols.size() != 2) {
+        if (vols.size() != 2)
+        {
             throw std::runtime_error("expected 2 volumes at line" +
                                      std::to_string(__LINE__));
         }
         if (!(vols.at(0).tag == 1 && vols.at(0).group == 100 &&
-                vols.at(1).tag == 2 && vols.at(1).group == 200)) {
+                vols.at(1).tag == 2 && vols.at(1).group == 200))
+        {
             throw std::runtime_error(
                 "parsed volumes didn't match reference value");
         }
     }
 }
 
-static void test_parse_msh41_element_bloc() {
+static void test_parse_msh41_element_bloc()
+{
     using namespace msh_parser::internal;
     // bad input stream fails
     {
@@ -1424,7 +1554,8 @@ static void test_parse_msh41_element_bloc() {
             "2 2 5 6 3\n"
         );
         std::vector<msh41::Tetrahedron> elts = msh41::parse_element_bloc(input);
-        if (elts.size() != 0) {
+        if (elts.size() != 0)
+        {
             throw std::runtime_error("expected 0 elements at line" +
                                      std::to_string(__LINE__));
         }
@@ -1462,7 +1593,8 @@ static void test_parse_msh41_element_bloc() {
             "11 5 6 7 8\n"
         );
         std::vector<msh41::Tetrahedron> elts = msh41::parse_element_bloc(input);
-        if (elts.size() != 3) {
+        if (elts.size() != 3)
+        {
             throw std::runtime_error("expected 3 elements at line" +
                                      std::to_string(__LINE__));
         }
@@ -1474,14 +1606,16 @@ static void test_parse_msh41_element_bloc() {
                 e1.tag == 10 && e1.volume == 1 &&
                 e1.a == 10 && e1.b == 20 && e1.c == 30 && e1.d == 40 &&
                 e2.tag == 11 && e2.volume == 1 &&
-                e2.a == 5 && e2.b == 6 && e2.c == 7 && e2.d == 8)) {
+                e2.a == 5 && e2.b == 6 && e2.c == 7 && e2.d == 8))
+        {
             throw std::runtime_error(
                 "parsed elements didn't match reference value");
         }
     }
 }
 
-static void test_parse_msh41_elements() {
+static void test_parse_msh41_elements()
+{
     using namespace msh_parser::internal;
     // bad input stream fails
     {
@@ -1532,7 +1666,8 @@ static void test_parse_msh41_elements() {
         );
         std::vector<msh41::Tetrahedron> elts = msh41::parse_elements(input,
                                                nullptr);
-        if (elts.size() != 2) {
+        if (elts.size() != 2)
+        {
             throw std::runtime_error("expected 2 elements at line" +
                                      std::to_string(__LINE__));
         }
@@ -1541,7 +1676,8 @@ static void test_parse_msh41_elements() {
         if (!(e0.tag == 1 && e0.volume == 50 &&
                 e0.a == 1 && e0.b == 2 && e0.c == 3 && e0.d == 4 &&
                 e1.tag == 2 && e1.volume == 50 &&
-                e1.a == 5 && e1.b == 6 && e1.c == 7 && e1.d == 8)) {
+                e1.a == 5 && e1.b == 6 && e1.c == 7 && e1.d == 8))
+        {
             throw std::runtime_error(
                 "parsed elements didn't match reference value");
         }
@@ -1578,7 +1714,8 @@ static void test_parse_msh41_elements() {
         );
         std::vector<msh41::Tetrahedron> elts = msh41::parse_elements(input,
                                                nullptr);
-        if (elts.size() != 4) {
+        if (elts.size() != 4)
+        {
             throw std::runtime_error("expected 4 elements at line" +
                                      std::to_string(__LINE__));
         }
@@ -1593,7 +1730,8 @@ static void test_parse_msh41_elements() {
                 e2.tag == 5 && e2.volume == 2 &&
                 e2.a == 1 && e2.b == 2 && e2.c == 3 && e2.d == 5 &&
                 e3.tag == 6 && e3.volume == 2 &&
-                e3.a == 5 && e3.b == 6 && e3.c == 7 && e3.d == 1)) {
+                e3.a == 5 && e3.b == 6 && e3.c == 7 && e3.d == 1))
+        {
             throw std::runtime_error(
                 "parsed elements didn't match reference value");
         }
@@ -1601,7 +1739,8 @@ static void test_parse_msh41_elements() {
 }
 
 // example mesh file for file tests
-struct MeshFile {
+struct MeshFile
+{
     const std::string header =
         "$MeshFormat\n"
         "4.1 0 8\n"
@@ -1650,7 +1789,8 @@ struct MeshFile {
         "$EndElements\n";
 };
 
-static void test_parse_msh41_file_errors(MeshFile file) {
+static void test_parse_msh41_file_errors(MeshFile file)
+{
     using namespace msh_parser::internal;
     // Unknown physical group tags assigned to entities are caught
     {
@@ -1692,7 +1832,8 @@ static void test_parse_msh41_file_errors(MeshFile file) {
     }
 }
 
-static void test_parse_msh41_file(MeshFile file) {
+static void test_parse_msh41_file(MeshFile file)
+{
     using namespace msh_parser::internal;
     // section errors bubble up
     {
@@ -1713,23 +1854,28 @@ static void test_parse_msh41_file(MeshFile file) {
 
         EGS_Mesh mesh(msh_parser::parse_msh_file(input));
         auto n_elts = mesh.num_elements();
-        if (n_elts != 4) {
+        if (n_elts != 4)
+        {
             throw std::runtime_error("expected 4 elements at line " +
                                      std::to_string(__LINE__));
         }
 
         // media
-        if (mesh.getMediumName(mesh.medium(0)) != std::string("Steel")) {
+        if (mesh.getMediumName(mesh.medium(0)) != std::string("Steel"))
+        {
             throw std::runtime_error("element 0 should be Steel");
         }
-        if (mesh.getMediumName(mesh.medium(1)) != std::string("Steel")) {
+        if (mesh.getMediumName(mesh.medium(1)) != std::string("Steel"))
+        {
             std::cout << mesh.medium(1) << "\n";
             throw std::runtime_error("element 1 should be Steel");
         }
-        if (mesh.getMediumName(mesh.medium(2)) != std::string("Water")) {
+        if (mesh.getMediumName(mesh.medium(2)) != std::string("Water"))
+        {
             throw std::runtime_error("element 2 should be Water");
         }
-        if (mesh.getMediumName(mesh.medium(3)) != std::string("Water")) {
+        if (mesh.getMediumName(mesh.medium(3)) != std::string("Water"))
+        {
             throw std::runtime_error("element 3 should be Water");
         }
 
@@ -1737,48 +1883,58 @@ static void test_parse_msh41_file(MeshFile file) {
         auto node_offsets = mesh.element_node_offsets(0);
         // offsets are node_tag - 1
         if (!(node_offsets[0] == 0 && node_offsets[1] == 1 &&
-                node_offsets[2] == 2 && node_offsets[3] == 3)) {
+                node_offsets[2] == 2 && node_offsets[3] == 3))
+        {
             throw std::runtime_error("bad node offsets for element 0");
         }
         node_offsets = mesh.element_node_offsets(1);
         if (!(node_offsets[0] == 0 && node_offsets[1] == 1 &&
-                node_offsets[2] == 2 && node_offsets[3] == 4)) {
+                node_offsets[2] == 2 && node_offsets[3] == 4))
+        {
             throw std::runtime_error("bad node offsets for element 1");
         }
         node_offsets = mesh.element_node_offsets(2);
         if (!(node_offsets[0] == 0 && node_offsets[1] == 1 &&
-                node_offsets[2] == 3 && node_offsets[3] == 4)) {
+                node_offsets[2] == 3 && node_offsets[3] == 4))
+        {
             throw std::runtime_error("bad node offsets for element 2");
         }
         node_offsets = mesh.element_node_offsets(3);
         if (!(node_offsets[0] == 1 && node_offsets[1] == 2 &&
-                node_offsets[2] == 3 && node_offsets[3] == 4)) {
+                node_offsets[2] == 3 && node_offsets[3] == 4))
+        {
             throw std::runtime_error("bad node offsets for element 3");
         }
 
-        if (mesh.num_nodes() != 5) {
+        if (mesh.num_nodes() != 5)
+        {
             throw std::runtime_error("expected 5 nodes at line " +
                                      std::to_string(__LINE__));
         }
 
         auto pos = mesh.node_coordinates(0);
-        if (!(pos.x == 0.0 && pos.y == 0.0 && pos.z == 0.0)) {
+        if (!(pos.x == 0.0 && pos.y == 0.0 && pos.z == 0.0))
+        {
             throw std::runtime_error("bad node coordinates for node 0");
         }
         pos = mesh.node_coordinates(1);
-        if (!(pos.x == 0.0 && pos.y == 1.0 && pos.z == 0.0)) {
+        if (!(pos.x == 0.0 && pos.y == 1.0 && pos.z == 0.0))
+        {
             throw std::runtime_error("bad node coordinates for node 1");
         }
         pos = mesh.node_coordinates(2);
-        if (!(pos.x == 1.0 && pos.y == 0.0 && pos.z == 0.0)) {
+        if (!(pos.x == 1.0 && pos.y == 0.0 && pos.z == 0.0))
+        {
             throw std::runtime_error("bad node coordinates for node 2");
         }
         pos = mesh.node_coordinates(3);
-        if (!(pos.x == 1.0 && pos.y == 1.0 && pos.z == 0.0)) {
+        if (!(pos.x == 1.0 && pos.y == 1.0 && pos.z == 0.0))
+        {
             throw std::runtime_error("bad node coordinates for node 3");
         }
         pos = mesh.node_coordinates(4);
-        if (!(pos.x == 1.0 && pos.y == 1.0 && pos.z == 1.0)) {
+        if (!(pos.x == 1.0 && pos.y == 1.0 && pos.z == 1.0))
+        {
             throw std::runtime_error("bad node coordinates for node 4");
         }
     }
@@ -1786,7 +1942,8 @@ static void test_parse_msh41_file(MeshFile file) {
 
 // tetgen_parser tests
 
-static void test_parse_tetgen_nodes() {
+static void test_parse_tetgen_nodes()
+{
     // blank file fails
     {
         std::istringstream input("");
@@ -1815,20 +1972,26 @@ static void test_parse_tetgen_nodes() {
                      "TetGen node file parsing failed, expected num_coords = 3");
     }
     // Helper to check correctness of parsed nodes
-    auto check_parsed_nodes = [](const std::vector<EGS_MeshSpec::Node> &nodes) -> bool {
-        if (nodes.size() != 4) {
+    auto check_parsed_nodes = [](const std::vector<EGS_MeshSpec::Node>& nodes) -> bool
+    {
+        if (nodes.size() != 4)
+        {
             return false;
         }
-        if (nodes[0].tag != 0 || nodes[0].x != 0.0 || nodes[0].y != 0.0 || nodes[0].z != 0.0) {
+        if (nodes[0].tag != 0 || nodes[0].x != 0.0 || nodes[0].y != 0.0 || nodes[0].z != 0.0)
+        {
             return false;
         }
-        if (nodes[1].tag != 1 || nodes[1].x != 1.0 || nodes[1].y != 2.0 || nodes[1].z != 3.0) {
+        if (nodes[1].tag != 1 || nodes[1].x != 1.0 || nodes[1].y != 2.0 || nodes[1].z != 3.0)
+        {
             return false;
         }
-        if (nodes[2].tag != 2 || nodes[2].x != 2.0 || nodes[2].y != 4.0 || nodes[2].z != 6.0) {
+        if (nodes[2].tag != 2 || nodes[2].x != 2.0 || nodes[2].y != 4.0 || nodes[2].z != 6.0)
+        {
             return false;
         }
-        if (nodes[3].tag != 3 || nodes[3].x != 3.0 || nodes[3].y != 6.0 || nodes[3].z != 9.0) {
+        if (nodes[3].tag != 3 || nodes[3].x != 3.0 || nodes[3].y != 6.0 || nodes[3].z != 9.0)
+        {
             return false;
         }
         return true;
@@ -1842,7 +2005,8 @@ static void test_parse_tetgen_nodes() {
             "2 2.0 4.0 6.0\n"
             "3 3.0 6.0 9.0\n"
         );
-        if (!check_parsed_nodes(tetgen_parser::internal::parse_tetgen_node_file(input, nullptr))) {
+        if (!check_parsed_nodes(tetgen_parser::internal::parse_tetgen_node_file(input, nullptr)))
+        {
             throw std::runtime_error("TetGen node parsing failed");
         }
     }
@@ -1855,7 +2019,8 @@ static void test_parse_tetgen_nodes() {
             "2 2.0 4.0 6.0 2.0 0 \n"
             "3 3.0 6.0 9.0 3.0 0 \n"
         );
-        if (!check_parsed_nodes(tetgen_parser::internal::parse_tetgen_node_file(input, nullptr))) {
+        if (!check_parsed_nodes(tetgen_parser::internal::parse_tetgen_node_file(input, nullptr)))
+        {
             throw std::runtime_error("TetGen node file attributes and boundary data aren't skipped");
         }
     }
@@ -1869,13 +2034,15 @@ static void test_parse_tetgen_nodes() {
             "2 2.0 4.0 6.0\n"
             "3 3.0 6.0 9.0\n"
         );
-        if (!check_parsed_nodes(tetgen_parser::internal::parse_tetgen_node_file(input, nullptr))) {
+        if (!check_parsed_nodes(tetgen_parser::internal::parse_tetgen_node_file(input, nullptr)))
+        {
             throw std::runtime_error("TetGen node file comments aren't skipped");
         }
     }
 }
 
-static void test_parse_tetgen_elements() {
+static void test_parse_tetgen_elements()
+{
     // blank file fails
     {
         std::istringstream input("");
@@ -1913,20 +2080,26 @@ static void test_parse_tetgen_elements() {
                      " one attribute (EGSnrc medium)");
     }
     // Helper to check correctness of parsed elts
-    auto check_parsed_elts = [](const std::vector<EGS_MeshSpec::Tetrahedron> &elts) -> bool {
-        if (elts.size() != 4) {
+    auto check_parsed_elts = [](const std::vector<EGS_MeshSpec::Tetrahedron>& elts) -> bool
+    {
+        if (elts.size() != 4)
+        {
             return false;
         }
-        if (elts[0].tag != 0 || elts[0].a != 0 || elts[0].b != 1 || elts[0].c != 2 || elts[0].d != 3 || elts[0].medium_tag != 1) {
+        if (elts[0].tag != 0 || elts[0].a != 0 || elts[0].b != 1 || elts[0].c != 2 || elts[0].d != 3 || elts[0].medium_tag != 1)
+        {
             return false;
         }
-        if (elts[1].tag != 1 || elts[1].a != 1 || elts[1].b != 2 || elts[1].c != 3 || elts[1].d != 4 || elts[1].medium_tag != 1) {
+        if (elts[1].tag != 1 || elts[1].a != 1 || elts[1].b != 2 || elts[1].c != 3 || elts[1].d != 4 || elts[1].medium_tag != 1)
+        {
             return false;
         }
-        if (elts[2].tag != 2 || elts[2].a != 2 || elts[2].b != 3 || elts[2].c != 4 || elts[2].d != 5 || elts[2].medium_tag != 2) {
+        if (elts[2].tag != 2 || elts[2].a != 2 || elts[2].b != 3 || elts[2].c != 4 || elts[2].d != 5 || elts[2].medium_tag != 2)
+        {
             return false;
         }
-        if (elts[3].tag != 3 || elts[3].a != 3 || elts[3].b != 4 || elts[3].c != 5 || elts[3].d != 6 || elts[3].medium_tag != 2) {
+        if (elts[3].tag != 3 || elts[3].a != 3 || elts[3].b != 4 || elts[3].c != 5 || elts[3].d != 6 || elts[3].medium_tag != 2)
+        {
             return false;
         }
         return true;
@@ -1941,7 +2114,8 @@ static void test_parse_tetgen_elements() {
             "2 2 3 4 5 2\n"
             "3 3 4 5 6 2\n"
         );
-        if (!check_parsed_elts(tetgen_parser::internal::parse_tetgen_ele_file(input, nullptr))) {
+        if (!check_parsed_elts(tetgen_parser::internal::parse_tetgen_ele_file(input, nullptr)))
+        {
             throw std::runtime_error("TetGen ele file parsing failed");
         }
     }
@@ -1955,13 +2129,15 @@ static void test_parse_tetgen_elements() {
             "2 2 3 4 5 2\n"
             "3 3 4 5 6 2\n"
         );
-        if (!check_parsed_elts(tetgen_parser::internal::parse_tetgen_ele_file(input, nullptr))) {
+        if (!check_parsed_elts(tetgen_parser::internal::parse_tetgen_ele_file(input, nullptr)))
+        {
             throw std::runtime_error("TetGen ele file comments aren't skipped");
         }
     }
 }
 
-static void test_tetgen_elt_media() {
+static void test_tetgen_elt_media()
+{
     // expecting two media:
     // EGS_MeshSpec::Medium(tag: 1, medium_name: "1")
     // EGS_MeshSpec::Medium(tag: 1, medium_name: "2")
@@ -1975,15 +2151,18 @@ static void test_tetgen_elt_media() {
     );
     auto elts = tetgen_parser::internal::parse_tetgen_ele_file(input, nullptr);
     auto media = tetgen_parser::internal::find_tetgen_elt_media(elts);
-    if (media.size() != 2) {
+    if (media.size() != 2)
+    {
         throw std::runtime_error("parsed wrong number of media, expected 2");
     }
     // Implementation uses std::set<int> so tags will be in numerical order. If
     // that changes, these checks could fail.
-    if (media[0].tag != 1 || media[0].medium_name != "1") {
+    if (media[0].tag != 1 || media[0].medium_name != "1")
+    {
         throw std::runtime_error("TetGen media finding failed");
     }
-    if (media[1].tag != 2 || media[1].medium_name != "2") {
+    if (media[1].tag != 2 || media[1].medium_name != "2")
+    {
         throw std::runtime_error("TetGen media finding failed");
     }
 }
@@ -2008,7 +2187,8 @@ static std::string tetgen_node_str =
 7 0 0 -1
 8 1 1 1)";
 
-static void test_parse_tetgen_file_errors() {
+static void test_parse_tetgen_file_errors()
+{
     // This test uses two files: model.ele and model.node
     // Various possible file errors are tested for proper error-handling.
     egsSetInfoFunction(Warning, egsInfoThrowing);
@@ -2056,7 +2236,8 @@ static void test_parse_tetgen_file_errors() {
     egsSetDefaultIOFunctions();
 }
 
-static void test_parse_tetgen_file() {
+static void test_parse_tetgen_file()
+{
     TempFile node_file("mesh.node", tetgen_node_str);
     TempFile ele_file("mesh.ele", tetgen_elt_str);
 
@@ -2072,81 +2253,104 @@ static void test_parse_tetgen_file() {
         ":stop geometry definition:\n"
     );
     egsinp.setContentFromString(egsinp_str);
-    EGS_BaseGeometry *geo = EGS_Mesh::createGeometry(&egsinp);
-    EGS_Mesh *mesh = dynamic_cast<EGS_Mesh *>(geo);
-    if (!mesh) {
+    EGS_BaseGeometry* geo = EGS_Mesh::createGeometry(&egsinp);
+    EGS_Mesh* mesh = dynamic_cast<EGS_Mesh*>(geo);
+    if (!mesh)
+    {
         throw std::runtime_error("dynamic_cast<EGS_Mesh*> failed!");
     }
-    if (mesh->num_elements() != 5) {
+    if (mesh->num_elements() != 5)
+    {
         throw std::runtime_error("TetGen parser: expected 5 elements");
     }
-    if (mesh->num_nodes() != 8) {
+    if (mesh->num_nodes() != 8)
+    {
         throw std::runtime_error("TetGen parser: expected 8 nodes");
     }
-    if (test_mesh.is_boundary(0)) {
+    if (test_mesh.is_boundary(0))
+    {
         throw std::runtime_error("TetGen parser: expected region 0 not to be a boundary element");
     }
-    for (auto i = 1; i < test_mesh.num_elements(); i++) {
-        if (!test_mesh.is_boundary(i)) {
+    for (auto i = 1; i < test_mesh.num_elements(); i++)
+    {
+        if (!test_mesh.is_boundary(i))
+        {
             throw std::runtime_error("TetGen parser: expected region " + std::to_string(i) +
                                      " to be a boundary element");
         }
     }
     // nodes
-    if (!egsvec_eq(mesh->node_coordinates(0), EGS_Vector(0, 0, 0))) {
+    if (!egsvec_eq(mesh->node_coordinates(0), EGS_Vector(0, 0, 0)))
+    {
         throw std::runtime_error("bad coordinates for node 0");
     }
-    if (!egsvec_eq(mesh->node_coordinates(1), EGS_Vector(1, 0, 0))) {
+    if (!egsvec_eq(mesh->node_coordinates(1), EGS_Vector(1, 0, 0)))
+    {
         throw std::runtime_error("bad coordinates for node 1");
     }
-    if (!egsvec_eq(mesh->node_coordinates(2), EGS_Vector(0, 1, 0))) {
+    if (!egsvec_eq(mesh->node_coordinates(2), EGS_Vector(0, 1, 0)))
+    {
         throw std::runtime_error("bad coordinates for node 2");
     }
-    if (!egsvec_eq(mesh->node_coordinates(3), EGS_Vector(0, 0, 1))) {
+    if (!egsvec_eq(mesh->node_coordinates(3), EGS_Vector(0, 0, 1)))
+    {
         throw std::runtime_error("bad coordinates for node 3");
     }
-    if (!egsvec_eq(mesh->node_coordinates(4), EGS_Vector(0, -1, 0))) {
+    if (!egsvec_eq(mesh->node_coordinates(4), EGS_Vector(0, -1, 0)))
+    {
         throw std::runtime_error("bad coordinates for node 4");
     }
-    if (!egsvec_eq(mesh->node_coordinates(5), EGS_Vector(-1, 0, 0))) {
+    if (!egsvec_eq(mesh->node_coordinates(5), EGS_Vector(-1, 0, 0)))
+    {
         throw std::runtime_error("bad coordinates for node 5");
     }
-    if (!egsvec_eq(mesh->node_coordinates(6), EGS_Vector(0, 0, -1))) {
+    if (!egsvec_eq(mesh->node_coordinates(6), EGS_Vector(0, 0, -1)))
+    {
         throw std::runtime_error("bad coordinates for node 6");
     }
-    if (!egsvec_eq(mesh->node_coordinates(7), EGS_Vector(1, 1, 1))) {
+    if (!egsvec_eq(mesh->node_coordinates(7), EGS_Vector(1, 1, 1)))
+    {
         throw std::runtime_error("bad coordinates for node 7");
     }
     // elements
-    if (mesh->element_node_offsets(0) != std::array<int, 4> {0, 1, 2, 3} || mesh->element_tag(0) != 1) {
+    if (mesh->element_node_offsets(0) != std::array<int, 4> {0, 1, 2, 3} || mesh->element_tag(0) != 1)
+    {
         throw std::runtime_error("bad region 0");
     }
-    if (mesh->element_node_offsets(1) != std::array<int, 4> {0, 1, 3, 4} || mesh->element_tag(1) != 2) {
+    if (mesh->element_node_offsets(1) != std::array<int, 4> {0, 1, 3, 4} || mesh->element_tag(1) != 2)
+    {
         throw std::runtime_error("bad region 1");
     }
-    if (mesh->element_node_offsets(2) != std::array<int, 4> {0, 2, 3, 5} || mesh->element_tag(2) != 3) {
+    if (mesh->element_node_offsets(2) != std::array<int, 4> {0, 2, 3, 5} || mesh->element_tag(2) != 3)
+    {
         throw std::runtime_error("bad region 2");
     }
-    if (mesh->element_node_offsets(3) != std::array<int, 4> {0, 1, 2, 6} || mesh->element_tag(3) != 4) {
+    if (mesh->element_node_offsets(3) != std::array<int, 4> {0, 1, 2, 6} || mesh->element_tag(3) != 4)
+    {
         throw std::runtime_error("bad region 3");
     }
-    if (mesh->element_node_offsets(4) != std::array<int, 4> {1, 2, 3, 7} || mesh->element_tag(4) != 5) {
+    if (mesh->element_node_offsets(4) != std::array<int, 4> {1, 2, 3, 7} || mesh->element_tag(4) != 5)
+    {
         throw std::runtime_error("bad region 4");
     }
     // media
-    for (auto i = 0; i < mesh->num_elements(); i++) {
-        if (i < 2 && mesh->getMediumName(mesh->medium(i)) != std::string("1")) {
+    for (auto i = 0; i < mesh->num_elements(); i++)
+    {
+        if (i < 2 && mesh->getMediumName(mesh->medium(i)) != std::string("1"))
+        {
             std::cout << "i: `" << mesh->getMediumName(mesh->medium(i)) << "`n";
             throw std::runtime_error("expected elements 1, 2 to have media 1");
         }
-        if (i >= 2 && mesh->getMediumName(mesh->medium(i)) != std::string("2")) {
+        if (i >= 2 && mesh->getMediumName(mesh->medium(i)) != std::string("2"))
+        {
             std::cout << "i: " << mesh->getMediumName(mesh->medium(i)) << "\n";
             throw std::runtime_error("expected elements 3, 4, 5 to have media 2");
         }
     }
 }
 
-static void test_unknown_mesh_file_extension() {
+static void test_unknown_mesh_file_extension()
+{
     egsSetInfoFunction(Warning, egsInfoThrowing);
 
     EGS_Input egsinp;
@@ -2169,7 +2373,8 @@ static void test_unknown_mesh_file_extension() {
     egsSetDefaultIOFunctions();
 }
 
-int main() {
+int main()
+{
 
     test_howfar_interior();
 

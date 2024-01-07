@@ -35,15 +35,16 @@
 
 #include "ui_saveimage.h" // for Ui::SaveImage
 
-class SaveImage : public QDialog, public Ui::SaveImage {
+class SaveImage : public QDialog, public Ui::SaveImage
+{
     Q_OBJECT
 
 public:
 
-    SaveImage(QWidget *parent=0, const char *name=0);
+    SaveImage(QWidget* parent = 0, const char* name = 0);
     virtual ~SaveImage();
 
-    virtual void getImageSize(int *, int *);
+    virtual void getImageSize(int*, int*);
     virtual QString getImageFormat();
     virtual QString getImageFileName();
 
@@ -51,15 +52,16 @@ public slots:
 
     virtual void selectFileName();
     virtual void enableOkButton();
-    virtual void fnameTextChanged(const QString &);
+    virtual void fnameTextChanged(const QString&);
 
 signals:
 
-    void saveFileSelected(const QString &fname, const QString &format);
+    void saveFileSelected(const QString& fname, const QString& format);
 
 protected slots:
 
-    virtual void languageChange() {
+    virtual void languageChange()
+    {
         retranslateUi(this);
     }
 };

@@ -52,22 +52,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_ISOTROPIC_SOURCE_DLL
-        #define EGS_ISOTROPIC_SOURCE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_ISOTROPIC_SOURCE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_ISOTROPIC_SOURCE_LOCAL
+#ifdef BUILD_ISOTROPIC_SOURCE_DLL
+#define EGS_ISOTROPIC_SOURCE_EXPORT __declspec(dllexport)
+#else
+#define EGS_ISOTROPIC_SOURCE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_ISOTROPIC_SOURCE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_ISOTROPIC_SOURCE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_ISOTROPIC_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_ISOTROPIC_SOURCE_EXPORT
-        #define EGS_ISOTROPIC_SOURCE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_ISOTROPIC_SOURCE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_ISOTROPIC_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_ISOTROPIC_SOURCE_EXPORT
+#define EGS_ISOTROPIC_SOURCE_LOCAL
+#endif
 
 #endif
 
@@ -220,12 +220,14 @@ the geometry and source blocks are provided:
 */
 
 class EGS_ISOTROPIC_SOURCE_EXPORT EGS_IsotropicSource :
-    public EGS_BaseSimpleSource {
+    public EGS_BaseSimpleSource
+{
 
 public:
 
     /*! \brief Geometry confinement options */
-    enum GeometryConfinement {
+    enum GeometryConfinement
+    {
         IncludeAll      = 0,
         ExcludeAll      = 1,
         IncludeSelected = 2,
@@ -237,13 +239,14 @@ public:
     Construct an isotropic source with charge \a Q, spectrum \a Spec
     and emitting particles from the shape \a Shape
     */
-    EGS_IsotropicSource(int Q, EGS_BaseSpectrum *Spec, EGS_BaseShape *Shape,
-                        EGS_BaseGeometry *geometry,
-                        const string &Name="", EGS_ObjectFactory *f=0) :
-        EGS_BaseSimpleSource(Q,Spec,Name,f), shape(Shape),
+    EGS_IsotropicSource(int Q, EGS_BaseSpectrum* Spec, EGS_BaseShape* Shape,
+                        EGS_BaseGeometry* geometry,
+                        const string& Name = "", EGS_ObjectFactory* f = 0) :
+        EGS_BaseSimpleSource(Q, Spec, Name, f), shape(Shape),
         geom(geometry), regions(0), min_theta(85.), max_theta(95.),
-        buf_1(1), buf_2(-1), min_phi(0), max_phi(2*M_PI),
-        nrs(0), gc(IncludeAll) {
+        buf_1(1), buf_2(-1), min_phi(0), max_phi(2 * M_PI),
+        nrs(0), gc(IncludeAll)
+    {
         setUp();
     };
 
@@ -251,46 +254,61 @@ public:
 
     Construct an isotropic source from the information pointed to by \a inp.
     */
-    EGS_IsotropicSource(EGS_Input *, EGS_ObjectFactory *f=0);
-    ~EGS_IsotropicSource() {
+    EGS_IsotropicSource(EGS_Input*, EGS_ObjectFactory* f = 0);
+    ~EGS_IsotropicSource()
+    {
         EGS_Object::deleteObject(shape);
-        if (geom) {
-            if (!geom->deref()) {
+        if (geom)
+        {
+            if (!geom->deref())
+            {
                 delete geom;
             }
         }
-        if (nrs > 0 && regions) {
+        if (nrs > 0 && regions)
+        {
             delete [] regions;
         }
     };
 
-    void getPositionDirection(EGS_RandomGenerator *rndm,
-                              EGS_Vector &x, EGS_Vector &u, EGS_Float &wt) {
+    void getPositionDirection(EGS_RandomGenerator* rndm,
+                              EGS_Vector& x, EGS_Vector& u, EGS_Float& wt)
+    {
         bool ok = true;
-        do {
+        do
+        {
             x = shape->getRandomPoint(rndm);
-            if (geom) {
-                if (gc == IncludeAll) {
+            if (geom)
+            {
+                if (gc == IncludeAll)
+                {
                     ok = geom->isInside(x);
                 }
-                else if (gc == ExcludeAll) {
+                else if (gc == ExcludeAll)
+                {
                     ok = !geom->isInside(x);
                 }
-                else if (gc == IncludeSelected) {
+                else if (gc == IncludeSelected)
+                {
                     ok = false;
                     int ireg = geom->isWhere(x);
-                    for (int j=0; j<nrs; ++j) {
-                        if (ireg == regions[j]) {
+                    for (int j = 0; j < nrs; ++j)
+                    {
+                        if (ireg == regions[j])
+                        {
                             ok = true;
                             break;
                         }
                     }
                 }
-                else {
+                else
+                {
                     ok = true;
                     int ireg = geom->isWhere(x);
-                    for (int j=0; j<nrs; ++j) {
-                        if (ireg == regions[j]) {
+                    for (int j = 0; j < nrs; ++j)
+                    {
+                        if (ireg == regions[j])
+                        {
                             ok = false;
                             break;
                         }
@@ -299,45 +317,51 @@ public:
             }
         }
         while (!ok);
-        u.z = buf_1 - rndm->getUniform()*(buf_1 - buf_2);
-        EGS_Float sinz = 1-u.z*u.z;
-        if (sinz > epsilon) {
+        u.z = buf_1 - rndm->getUniform() * (buf_1 - buf_2);
+        EGS_Float sinz = 1 - u.z * u.z;
+        if (sinz > epsilon)
+        {
             sinz = sqrt(sinz);
             EGS_Float cphi, sphi;
-            EGS_Float phi = min_phi +(max_phi - min_phi)*rndm->getUniform();
+            EGS_Float phi = min_phi + (max_phi - min_phi) * rndm->getUniform();
             cphi = cos(phi);
             sphi = sin(phi);
-            u.x = sinz*cphi;
-            u.y = sinz*sphi;
+            u.x = sinz * cphi;
+            u.y = sinz * sphi;
         }
-        else {
+        else
+        {
             u.x = 0;
             u.y = 0;
         }
         wt = 1;
     };
 
-    EGS_Float getFluence() const {
+    EGS_Float getFluence() const
+    {
         return count;
     };
 
-    bool storeFluenceState(ostream &) const {
+    bool storeFluenceState(ostream&) const
+    {
         return true;
     };
 
-    bool setFluenceState(istream &) {
+    bool setFluenceState(istream&)
+    {
         return true;
     };
 
-    bool isValid() const {
+    bool isValid() const
+    {
         return (s != 0 && shape != 0);
     };
 
 protected:
 
-    EGS_BaseShape    *shape;  //!< The shape from which particles are emitted.
-    EGS_BaseGeometry *geom;
-    int              *regions;
+    EGS_BaseShape*    shape;  //!< The shape from which particles are emitted.
+    EGS_BaseGeometry* geom;
+    int*              regions;
 
     void setUp();
 

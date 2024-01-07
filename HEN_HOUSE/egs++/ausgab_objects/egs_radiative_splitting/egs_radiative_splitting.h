@@ -52,22 +52,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_RADIATIVE_SPLITTING_DLL
-        #define EGS_RADIATIVE_SPLITTING_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_RADIATIVE_SPLITTING_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_RADIATIVE_SPLITTING_LOCAL
+#ifdef BUILD_RADIATIVE_SPLITTING_DLL
+#define EGS_RADIATIVE_SPLITTING_EXPORT __declspec(dllexport)
+#else
+#define EGS_RADIATIVE_SPLITTING_EXPORT __declspec(dllimport)
+#endif
+#define EGS_RADIATIVE_SPLITTING_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_RADIATIVE_SPLITTING_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_RADIATIVE_SPLITTING_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_RADIATIVE_SPLITTING_EXPORT
-        #define EGS_RADIATIVE_SPLITTING_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_RADIATIVE_SPLITTING_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_RADIATIVE_SPLITTING_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_RADIATIVE_SPLITTING_EXPORT
+#define EGS_RADIATIVE_SPLITTING_LOCAL
+#endif
 
 #endif
 
@@ -90,31 +90,36 @@ TODO:
 
 */
 
-class EGS_RADIATIVE_SPLITTING_EXPORT EGS_RadiativeSplitting : public EGS_AusgabObject {
+class EGS_RADIATIVE_SPLITTING_EXPORT EGS_RadiativeSplitting : public EGS_AusgabObject
+{
 
 public:
 
     /*! Splitting algortihm type */
-    enum Type {
+    enum Type
+    {
         URS, // EGSnrc Uniform Radiative Splitting
         DRS, // Directional Radiative Splitting
         DRSf // Directional Radiative Splitting (BEAMnrc)
     };
 
-    EGS_RadiativeSplitting(const string &Name="", EGS_ObjectFactory *f = 0);
+    EGS_RadiativeSplitting(const string& Name = "", EGS_ObjectFactory* f = 0);
 
     ~EGS_RadiativeSplitting();
 
-    void setApplication(EGS_Application *App);
+    void setApplication(EGS_Application* App);
 
-    void setSplitting(const int &n_s) {
+    void setSplitting(const int& n_s)
+    {
         nsplit = n_s;
     };
 
-    int processEvent(EGS_Application::AusgabCall iarg) {
+    int processEvent(EGS_Application::AusgabCall iarg)
+    {
         return 0;
     };
-    int processEvent(EGS_Application::AusgabCall iarg, int ir) {
+    int processEvent(EGS_Application::AusgabCall iarg, int ir)
+    {
         return 0;
     };
 

@@ -43,22 +43,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_TRACK_SCORING_DLL
-        #define EGS_TRACK_SCORING_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_TRACK_SCORING_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_TRACK_SCORING_LOCAL
+#ifdef BUILD_TRACK_SCORING_DLL
+#define EGS_TRACK_SCORING_EXPORT __declspec(dllexport)
+#else
+#define EGS_TRACK_SCORING_EXPORT __declspec(dllimport)
+#endif
+#define EGS_TRACK_SCORING_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_TRACK_SCORING_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_TRACK_SCORING_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_TRACK_SCORING_EXPORT
-        #define EGS_TRACK_SCORING_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_TRACK_SCORING_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_TRACK_SCORING_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_TRACK_SCORING_EXPORT
+#define EGS_TRACK_SCORING_LOCAL
+#endif
 
 #endif
 
@@ -91,89 +91,110 @@ Using <code>start scoring</code> and <code>stop scoring</code> one can select a
 range of histories for which to score the particle track info. One can also
 select specific particle type(s).
 */
-class EGS_TRACK_SCORING_EXPORT EGS_TrackScoring : public EGS_AusgabObject {
+class EGS_TRACK_SCORING_EXPORT EGS_TrackScoring : public EGS_AusgabObject
+{
 
 public:
 
-    EGS_TrackScoring(const string &Name="", EGS_ObjectFactory *f = 0);
+    EGS_TrackScoring(const string& Name = "", EGS_ObjectFactory* f = 0);
 
     ~EGS_TrackScoring();
 
-    int processEvent(EGS_Application::AusgabCall iarg) {
-        if (m_score) {
-            if (!m_didScore) {
+    int processEvent(EGS_Application::AusgabCall iarg)
+    {
+        if (m_score)
+        {
+            if (!m_didScore)
+            {
                 m_didScore = true;
                 ++m_nScore;
             }
             int np = app->Np;
-            if (m_pts->isScoringParticle(np)) {
-                if (iarg == EGS_Application::AfterTransport) {
-                    m_pts->addVertex(np,new EGS_ParticleTrack::Vertex(app->top_p.x,app->top_p.E));
+            if (m_pts->isScoringParticle(np))
+            {
+                if (iarg == EGS_Application::AfterTransport)
+                {
+                    m_pts->addVertex(np, new EGS_ParticleTrack::Vertex(app->top_p.x, app->top_p.E));
                 }
-                else if (iarg != EGS_Application::BeforeTransport) {
+                else if (iarg != EGS_Application::BeforeTransport)
+                {
                     m_pts->stopScoringParticle(np);
                 }
             }
-            else if (iarg == EGS_Application::BeforeTransport) {
+            else if (iarg == EGS_Application::BeforeTransport)
+            {
                 int q = app->top_p.q;
                 if ((q ==  0 && m_score_photons) ||
                         (q == -1 && m_score_electrons) ||
-                        (q ==  1 && m_score_positrons)) {
+                        (q ==  1 && m_score_positrons))
+                {
                     m_pts->startNewTrack(np);
                     m_pts->setCurrentParticleInfo(new EGS_ParticleTrack::ParticleInfo(q));
-                    m_pts->addVertex(np,new EGS_ParticleTrack::Vertex(app->top_p.x,app->top_p.E));
+                    m_pts->addVertex(np, new EGS_ParticleTrack::Vertex(app->top_p.x, app->top_p.E));
                 }
             }
         }
         return 0;
     };
 
-    bool needsCall(EGS_Application::AusgabCall iarg) const {
+    bool needsCall(EGS_Application::AusgabCall iarg) const
+    {
         return true;
     };
 
-    void setApplication(EGS_Application *App);
+    void setApplication(EGS_Application* App);
 
     void reportResults();
 
-    void setCurrentCase(EGS_I64 ncase) {
-        if (ncase != m_lastCase) {
+    void setCurrentCase(EGS_I64 ncase)
+    {
+        if (ncase != m_lastCase)
+        {
             m_lastCase = ncase;
             m_didScore = false;
         }
-        if (ncase < m_start || ncase > m_stop) {
+        if (ncase < m_start || ncase > m_stop)
+        {
             m_score = false;
         }
-        else {
+        else
+        {
             m_score = true;
         }
     };
 
-    void setScorePhotons(bool score)   {
+    void setScorePhotons(bool score)
+    {
         m_score_photons = score;
     };
-    void setScoreElectrons(bool score) {
+    void setScoreElectrons(bool score)
+    {
         m_score_electrons = score;
     };
-    void setScorePositrons(bool score) {
+    void setScorePositrons(bool score)
+    {
         m_score_positrons = score;
     };
-    void setFirstEvent(EGS_I64 first)  {
+    void setFirstEvent(EGS_I64 first)
+    {
         m_start = first;
     };
-    void setLastEvent(EGS_I64 last)    {
+    void setLastEvent(EGS_I64 last)
+    {
         m_stop = last;
     };
-    void setBufferSize(int size)       {
+    void setBufferSize(int size)
+    {
         m_bufSize = size;
     };
-    void setFileNameExtra(const string &extra) {
+    void setFileNameExtra(const string& extra)
+    {
         m_fnExtra = extra;
     };
 
 protected:
 
-    EGS_ParticleTrackContainer  *m_pts;               //!< The particle track container
+    EGS_ParticleTrackContainer*  m_pts;               //!< The particle track container
 
     EGS_I64                     m_start;              //!< Minimum event index for which to score tracks
     EGS_I64                     m_stop;               //!< Maximum event index for which to score tracks

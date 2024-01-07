@@ -48,22 +48,22 @@ using namespace std;
 
 #ifdef WIN32
 
-    #ifdef BUILD_PHSP_SOURCE_DLL
-        #define EGS_PHSP_SOURCE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_PHSP_SOURCE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_PHSP_SOURCE_LOCAL
+#ifdef BUILD_PHSP_SOURCE_DLL
+#define EGS_PHSP_SOURCE_EXPORT __declspec(dllexport)
+#else
+#define EGS_PHSP_SOURCE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_PHSP_SOURCE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_PHSP_SOURCE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_PHSP_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_PHSP_SOURCE_EXPORT
-        #define EGS_PHSP_SOURCE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_PHSP_SOURCE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_PHSP_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_PHSP_SOURCE_EXPORT
+#define EGS_PHSP_SOURCE_LOCAL
+#endif
 
 #endif
 
@@ -124,7 +124,8 @@ A simple example:
 
 \todo Fully implement latch filters
 */
-class EGS_PHSP_SOURCE_EXPORT EGS_PhspSource : public EGS_BaseSource {
+class EGS_PHSP_SOURCE_EXPORT EGS_PhspSource : public EGS_BaseSource
+{
 
 public:
 
@@ -133,102 +134,119 @@ public:
     Construct a phase-space file source delivering particles from the
     BEAMnrc phase-space file \a phsp_file.
     */
-    EGS_PhspSource(const string &phsp_file,
-                   const string &Name="", EGS_ObjectFactory *f=0);
+    EGS_PhspSource(const string& phsp_file,
+                   const string& Name = "", EGS_ObjectFactory* f = 0);
 
     /*! \brief Constructor
 
     Construct a phase-space file source from the information pointed to by
     \a inp. */
-    EGS_PhspSource(EGS_Input *, EGS_ObjectFactory *f=0);
+    EGS_PhspSource(EGS_Input*, EGS_ObjectFactory* f = 0);
     ~EGS_PhspSource() { };
 
-    EGS_I64 getNextParticle(EGS_RandomGenerator *rndm,
-                            int &q, int &latch, EGS_Float &E, EGS_Float &wt,
-                            EGS_Vector &x, EGS_Vector &u);
+    EGS_I64 getNextParticle(EGS_RandomGenerator* rndm,
+                            int& q, int& latch, EGS_Float& E, EGS_Float& wt,
+                            EGS_Vector& x, EGS_Vector& u);
     void setSimulationChunk(EGS_I64 nstart, EGS_I64 nrun);
-    EGS_Float getEmax() const {
+    EGS_Float getEmax() const
+    {
         return Emax;
     };
-    EGS_Float getFluence() const {
-        double aux = ((double) Nread)/((double) Nparticle);
-        return Pinc*aux;
+    EGS_Float getFluence() const
+    {
+        double aux = ((double) Nread) / ((double) Nparticle);
+        return Pinc * aux;
     };
-    bool storeState(ostream &data) const {
+    bool storeState(ostream& data) const
+    {
         data << endl;
-        bool res = egsStoreI64(data,Nread);
-        if (!res) {
+        bool res = egsStoreI64(data, Nread);
+        if (!res)
+        {
             return res;
         }
         data << "  ";
-        res = egsStoreI64(data,Nfirst);
-        if (!res) {
+        res = egsStoreI64(data, Nfirst);
+        if (!res)
+        {
             return res;
         }
         data << "  ";
-        res = egsStoreI64(data,Nlast);
-        if (!res) {
+        res = egsStoreI64(data, Nlast);
+        if (!res)
+        {
             return res;
         }
         data << "  ";
-        res = egsStoreI64(data,Npos);
-        if (!res) {
+        res = egsStoreI64(data, Npos);
+        if (!res)
+        {
             return res;
         }
         data << "  ";
-        res = egsStoreI64(data,count);
-        if (!res) {
+        res = egsStoreI64(data, count);
+        if (!res)
+        {
             return res;
         }
         data << "  ";
         return res;
     };
-    bool setState(istream &data) {
+    bool setState(istream& data)
+    {
         first = false;
-        bool res = egsGetI64(data,Nread);
-        if (!res) {
+        bool res = egsGetI64(data, Nread);
+        if (!res)
+        {
             return res;
         }
-        res = egsGetI64(data,Nfirst);
-        if (!res) {
+        res = egsGetI64(data, Nfirst);
+        if (!res)
+        {
             return res;
         }
-        res = egsGetI64(data,Nlast);
-        if (!res) {
+        res = egsGetI64(data, Nlast);
+        if (!res)
+        {
             return res;
         }
-        res = egsGetI64(data,Npos);
-        if (!res) {
+        res = egsGetI64(data, Npos);
+        if (!res)
+        {
             return res;
         }
-        the_file.seekg((Npos+1)*recl,ios::beg);
-        res = egsGetI64(data,count);
+        the_file.seekg((Npos + 1)*recl, ios::beg);
+        res = egsGetI64(data, count);
         return res;
     };
-    bool addState(istream &data) {
+    bool addState(istream& data)
+    {
         EGS_I64 tmp_Nread = Nread, tmp_count = count;
         bool res = setState(data);
         Nread += tmp_Nread;
         count += tmp_count;
         return res;
     };
-    void resetCounter() {
+    void resetCounter()
+    {
         Nread = 0;
         count = 0;
     };
 
-    bool isValid() const {
+    bool isValid() const
+    {
         return is_valid;
     };
 
     void setCutout(EGS_Float xmin, EGS_Float xmax, EGS_Float ymin,
-                   EGS_Float ymax) {
+                   EGS_Float ymax)
+    {
         Xmin = xmin;
         Xmax = xmax;
         Ymin = ymin;
         Ymax = ymax;
     };
-    void setFilter(int, int, int, const int *);
+    void setFilter(int, int, int, const int*);
 
 protected:
 
@@ -239,7 +257,7 @@ protected:
     bool        mode2;         //!< \c true, if a MODE2 file
     bool        swap_bytes;    /*!< \c true, if phase-space file was generated
                                 on a CPU with different endianness */
-    char       *record;        //!< Memory to read a particle into
+    char*       record;        //!< Memory to read a particle into
     EGS_Float   Emax,    //!< Maximum energy (obtained from the phsp file)
                 Emin,    //!< Minimum energy (obtained from the phsp file)
                 Pinc;    //!< Number of incident particles that created the file
@@ -266,11 +284,12 @@ protected:
     EGS_Float   Xmin, Xmax, Ymin, Ymax;
     EGS_Float   wmin, wmax; // weight window
 
-    void openFile(const string &);
+    void openFile(const string&);
     void init();
 
 #ifndef SKIP_DOXYGEN
-    struct EGS_LOCAL BeamParticle {
+    struct EGS_LOCAL BeamParticle
+    {
         int  latch, q;
         float E, u, v, x, y, wt;
     };

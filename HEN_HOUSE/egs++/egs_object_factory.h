@@ -78,7 +78,8 @@ class EGS_ObjectFactory;
   \link EGS_ObjectFactory object factories \endlink.
 
 */
-class EGS_EXPORT EGS_Object {
+class EGS_EXPORT EGS_Object
+{
 
 public:
 
@@ -89,7 +90,7 @@ public:
     initialized to zero. If \a Name is empty, the object name is det
     to a unique name obtained from getUniqueName().
     */
-    EGS_Object(const string &Name = "", EGS_ObjectFactory *f = 0);
+    EGS_Object(const string& Name = "", EGS_ObjectFactory* f = 0);
 
     /*! \brief Create an EGS_Object from the information pointed to
       by \a inp that belongs to object factory \a f.
@@ -97,21 +98,24 @@ public:
       The only difference to the previous constructor is that now
       the object name is set using setName().
     */
-    EGS_Object(EGS_Input *inp, EGS_ObjectFactory *f = 0);
+    EGS_Object(EGS_Input* inp, EGS_ObjectFactory* f = 0);
     virtual ~EGS_Object();
 
     /*! \brief Get the object name. */
-    const string &getObjectName() const {
+    const string& getObjectName() const
+    {
         return name;
     };
 
     /*! \brief Set the object name to \a Name */
-    void setObjectName(const string &Name) {
+    void setObjectName(const string& Name)
+    {
         name = Name;
     };
 
     /*! \brief Get the object type */
-    const string &getObjectType() const {
+    const string& getObjectType() const
+    {
         return otype;
     };
 
@@ -123,7 +127,8 @@ public:
       and to return a pointer to it. Otherwise the return value should be
       \a null (which is the default implementation)
     */
-    virtual EGS_Object *createObject(EGS_Input *inp) {
+    virtual EGS_Object* createObject(EGS_Input* inp)
+    {
         return 0;
     };
 
@@ -135,7 +140,7 @@ public:
       the resulting name will be "object_%d", with %d again
       filled with the number of objects created so far.
     */
-    static string getUniqueName(const EGS_Object *o = 0);
+    static string getUniqueName(const EGS_Object* o = 0);
 
     /*! \brief Set the name of the object from the information provided by
       \a inp.
@@ -143,14 +148,16 @@ public:
     If \a inp has a \c name key, the name is set to the value of this key.
     Otherwise the name is set using getUniqueName().
     */
-    void setName(EGS_Input *inp);
+    void setName(EGS_Input* inp);
 
     /*! \brief Increase the reference count to this object */
-    inline int ref() {
+    inline int ref()
+    {
         return ++nref;
     };
     /*! \brief Decrease the reference count to this object */
-    inline int deref() {
+    inline int deref()
+    {
         return --nref;
     };
     /*! \brief Set the factory to which the object belongs
@@ -158,18 +165,21 @@ public:
       If the object already belongs to a different factory, it is first
       removed from this factory and then added to \a f.
     */
-    void setFactory(EGS_ObjectFactory *f);
+    void setFactory(EGS_ObjectFactory* f);
 
     /*! \brief Delete an object.
 
       This function decreases the reference count of the object and
       deletes it, if the reference count is zero.
     */
-    static void deleteObject(EGS_Object *o) {
-        if (!o) {
+    static void deleteObject(EGS_Object* o)
+    {
+        if (!o)
+        {
             return;
         }
-        if (!o->deref()) {
+        if (!o->deref())
+        {
             delete o;
         }
     };
@@ -179,7 +189,7 @@ protected:
     string  name;    //!< The object name
     string  otype;   //!< The object type
     int     nref;    //!< Number of references to the object
-    EGS_ObjectFactory *factory; //!< The factory this object belongs to.
+    EGS_ObjectFactory* factory; //!< The factory this object belongs to.
 
 };
 
@@ -203,7 +213,8 @@ class EGS_Library;
   \link Shapes shapes \endlink.
 
 */
-class EGS_EXPORT EGS_ObjectFactory {
+class EGS_EXPORT EGS_ObjectFactory
+{
 
 public:
 
@@ -218,7 +229,7 @@ public:
       \c \$EGS_HOME and \a dsoPath. In such cases, a fatal error occurs
       if the environment variable \c HEN_HOUSE or \c EGS_HOME is not set.
     */
-    EGS_ObjectFactory(const string &dsoPath, int where=0);
+    EGS_ObjectFactory(const string& dsoPath, int where = 0);
 
     /*! \brief Destructor
 
@@ -236,8 +247,10 @@ public:
       adds \a o to the list. The list of known object is queried
       when constructing objects with createSingleObject().
     */
-    virtual void addKnownObject(EGS_Object *o) {
-        if (o) {
+    virtual void addKnownObject(EGS_Object* o)
+    {
+        if (o)
+        {
             o->ref();
             known_objects.push_back(o);
         }
@@ -265,8 +278,8 @@ public:
       argument. If this also suceeds, this function returns a pointer
       to the newly created object. In all other cases \c null is returned.
     */
-    virtual EGS_Object *createSingleObject(EGS_Input *inp,
-                                           const char *funcname = 0, bool unique = true);
+    virtual EGS_Object* createSingleObject(EGS_Input* inp,
+                                           const char* funcname = 0, bool unique = true);
 
     /*! \brief Create all objects specified by the information \a inp.
 
@@ -295,9 +308,9 @@ public:
       The meaning of the \a funcname and \a unique parameters is the same
       as in createSingleObject().
     */
-    EGS_Object *createObjects(EGS_Input *inp, const string &section_delimeter,
-                              const string &object_delimeter, const string &select_key,
-                              const char *funcname = 0, bool unique = true);
+    EGS_Object* createObjects(EGS_Input* inp, const string& section_delimeter,
+                              const string& object_delimeter, const string& select_key,
+                              const char* funcname = 0, bool unique = true);
 
     /*! \brief Does the factory own the object pointed to by \a o?
 
@@ -305,7 +318,7 @@ public:
       pointed to by \a o (\em i.e. the object is in the factory's list
       of objects), \c null otherwise.
     */
-    bool haveObject(const EGS_Object *o) const;
+    bool haveObject(const EGS_Object* o) const;
 
     /*! \brief Get the object named \a Name.
 
@@ -315,7 +328,7 @@ public:
 
      \sa takeObject()
      */
-    EGS_Object *getObject(const string &Name);
+    EGS_Object* getObject(const string& Name);
 
     /*! \brief Take the object named \a Name from the list of objects.
 
@@ -328,10 +341,10 @@ public:
 
       \sa getObject()
     */
-    EGS_Object *takeObject(const string &Name);
+    EGS_Object* takeObject(const string& Name);
 
     /*! \brief Remove \a o from the list of objects */
-    void removeObject(EGS_Object *o);
+    void removeObject(EGS_Object* o);
 
     /*! \brief Add the object \a o to the factory's list of objects.
 
@@ -340,28 +353,30 @@ public:
       not \c null and \a unique is \c false or \a unique is \c true \em and
       an object with the same name does not already exist in the list.
     */
-    virtual bool addObject(EGS_Object *o, bool unique = true);
+    virtual bool addObject(EGS_Object* o, bool unique = true);
 
     /*! \brief Add a known typeid to this factory.
 
     */
-    void addKnownTypeId(const char *typeid_name);
+    void addKnownTypeId(const char* typeid_name);
 
     /*! \brief Get the number of objects this factory has created so far */
-    int  nObjects() const {
+    int  nObjects() const
+    {
         return objects.size();
     };
 
     /*! \brief Get the \a j'th object */
-    EGS_Object *getObject(int j) {
-        return (j>=0 && j<objects.size()) ? objects[j] : 0;
+    EGS_Object* getObject(int j)
+    {
+        return (j >= 0 && j < objects.size()) ? objects[j] : 0;
     };
 
 protected:
 
-    vector<EGS_Library *> libs;          //!< DSOs loaded so far
-    vector<EGS_Object *>  known_objects; //!< known Objects
-    vector<EGS_Object *>  objects;       //!< Created objects
+    vector<EGS_Library*> libs;           //!< DSOs loaded so far
+    vector<EGS_Object*>  known_objects;  //!< known Objects
+    vector<EGS_Object*>  objects;        //!< Created objects
     vector<string>        known_typeids; //!< Known typeid's
     string dso_path;                     //!< The path to look for DSOs
 
@@ -378,55 +393,68 @@ protected:
   and not some other type of EGS_Object.
 */
 template <class T>
-class EGS_EXPORT EGS_TypedObjectFactory : public EGS_ObjectFactory {
+class EGS_EXPORT EGS_TypedObjectFactory : public EGS_ObjectFactory
+{
 
 public:
 
-    EGS_TypedObjectFactory(const string &dsoPath, const string &type,
-                           int where=0) :
-        EGS_ObjectFactory(dsoPath,where), otype(type) {};
+    EGS_TypedObjectFactory(const string& dsoPath, const string& type,
+                           int where = 0) :
+        EGS_ObjectFactory(dsoPath, where), otype(type) {};
     ~EGS_TypedObjectFactory() {};
 
-    bool isKnownTypeId(EGS_Object *o) const {
-        for (int j=0; j<known_typeids.size(); j++) {
-            if (known_typeids[j] == typeid(*o).name()) {
+    bool isKnownTypeId(EGS_Object* o) const
+    {
+        for (int j = 0; j < known_typeids.size(); j++)
+        {
+            if (known_typeids[j] == typeid(*o).name())
+            {
                 return true;
             }
         }
         return false;
     };
 
-    bool isMyObjectType(EGS_Object *o, const char *func) {
-        if (!o) {
+    bool isMyObjectType(EGS_Object* o, const char* func)
+    {
+        if (!o)
+        {
             return false;
         }
-        T *t = dynamic_cast<T *>(o);
+        T* t = dynamic_cast<T*>(o);
         bool res;
-        if (t) {
+        if (t)
+        {
             res = true;
         }
-        else {
+        else
+        {
             res = isKnownTypeId(o);
         }
         if (!res && func) egsWarning("EGS_TypedObjectFactory::%s:\n"
                                          "  dynamic_cast to %s fails for object of type %s\n"
                                          "  This object's typeid is also not in the list of know typeids\n",
-                                         func,otype.c_str(),o->getObjectType().c_str());
+                                         func, otype.c_str(), o->getObjectType().c_str());
         return res;
     };
 
-    void addKnownObject(EGS_Object *o) {
-        if (isMyObjectType(o,"addKnownObject()")) {
+    void addKnownObject(EGS_Object* o)
+    {
+        if (isMyObjectType(o, "addKnownObject()"))
+        {
             EGS_ObjectFactory::addKnownObject(o);
         }
         EGS_ObjectFactory::addKnownObject(o);
     };
 
-    EGS_Object *createSingleObject(EGS_Input *i,
-                                   const char *fname = 0, bool u = true) {
-        EGS_Object *o = EGS_ObjectFactory::createSingleObject(i,fname,u);
-        if (o) {
-            if (!isMyObjectType(o,"createSingleObject()")) {
+    EGS_Object* createSingleObject(EGS_Input* i,
+                                   const char* fname = 0, bool u = true)
+    {
+        EGS_Object* o = EGS_ObjectFactory::createSingleObject(i, fname, u);
+        if (o)
+        {
+            if (!isMyObjectType(o, "createSingleObject()"))
+            {
                 delete o;
                 o = 0;
             }
@@ -434,11 +462,13 @@ public:
         return o;
     };
 
-    bool addObject(EGS_Object *o, bool unique = true) {
-        if (!isMyObjectType(o,"addObject()")) {
+    bool addObject(EGS_Object* o, bool unique = true)
+    {
+        if (!isMyObjectType(o, "addObject()"))
+        {
             return false;
         }
-        return EGS_ObjectFactory::addObject(o,unique);
+        return EGS_ObjectFactory::addObject(o, unique);
     };
 
 private:

@@ -42,22 +42,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_EXTENDED_SHAPE_DLL
-        #define EGS_EXTENDED_SHAPE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_EXTENDED_SHAPE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_EXTENDED_SHAPE_LOCAL
+#ifdef BUILD_EXTENDED_SHAPE_DLL
+#define EGS_EXTENDED_SHAPE_EXPORT __declspec(dllexport)
+#else
+#define EGS_EXTENDED_SHAPE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_EXTENDED_SHAPE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_EXTENDED_SHAPE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_EXTENDED_SHAPE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_EXTENDED_SHAPE_EXPORT
-        #define EGS_EXTENDED_SHAPE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_EXTENDED_SHAPE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_EXTENDED_SHAPE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_EXTENDED_SHAPE_EXPORT
+#define EGS_EXTENDED_SHAPE_LOCAL
+#endif
 
 #endif
 
@@ -84,34 +84,40 @@ using
 \endverbatim
 
 */
-class EGS_EXTENDED_SHAPE_EXPORT EGS_ExtendedShape : public EGS_BaseShape {
+class EGS_EXTENDED_SHAPE_EXPORT EGS_ExtendedShape : public EGS_BaseShape
+{
 
 public:
 
-    EGS_ExtendedShape(EGS_BaseShape *Shape, EGS_Float H1, EGS_Float H2,
-                      const string &Name="",EGS_ObjectFactory *f=0) :
-        EGS_BaseShape(Name,f), shape(Shape), h1(H1), h2(H2), dh(h2-h1) {
-        if (shape) {
+    EGS_ExtendedShape(EGS_BaseShape* Shape, EGS_Float H1, EGS_Float H2,
+                      const string& Name = "", EGS_ObjectFactory* f = 0) :
+        EGS_BaseShape(Name, f), shape(Shape), h1(H1), h2(H2), dh(h2 - h1)
+    {
+        if (shape)
+        {
             shape->ref();
             otype = "Extended ";
             otype += shape->getObjectType();
         }
-        else {
+        else
+        {
             otype = "Invalid ExtendedShape";
         }
     };
-    ~EGS_ExtendedShape() {
+    ~EGS_ExtendedShape()
+    {
         EGS_Object::deleteObject(shape);
     };
-    EGS_Vector getPoint(EGS_RandomGenerator *rndm) {
+    EGS_Vector getPoint(EGS_RandomGenerator* rndm)
+    {
         EGS_Vector v(shape->getPoint(rndm));
-        v.z += h1 + dh*rndm->getUniform();
+        v.z += h1 + dh * rndm->getUniform();
         return v;
     };
 
 protected:
 
-    EGS_BaseShape  *shape;
+    EGS_BaseShape*  shape;
     EGS_Float      h1, h2, dh;
 
 };

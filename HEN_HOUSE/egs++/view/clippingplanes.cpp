@@ -37,74 +37,86 @@
 #include <qheaderview.h>
 
 #ifdef VIEW_DEBUG
-    extern void (* egsWarning)(const char *, ...);
+extern void (* egsWarning)(const char*, ...);
 #endif
 
-ClippingPlanesWidget::ClippingPlanesWidget(QWidget *parent, const char *name)
-    : QWidget(parent) {
+ClippingPlanesWidget::ClippingPlanesWidget(QWidget* parent, const char* name)
+    : QWidget(parent)
+{
     setObjectName(name);
     setupUi(this);
 
-    planeTable->setColumnWidth(0,60);
-    planeTable->setColumnWidth(1,60);
-    planeTable->setColumnWidth(2,60);
-    planeTable->setColumnWidth(3,60);
-    planeTable->setColumnWidth(4,28);
+    planeTable->setColumnWidth(0, 60);
+    planeTable->setColumnWidth(1, 60);
+    planeTable->setColumnWidth(2, 60);
+    planeTable->setColumnWidth(3, 60);
+    planeTable->setColumnWidth(4, 28);
 }
 
-ClippingPlanesWidget::~ClippingPlanesWidget() {
+ClippingPlanesWidget::~ClippingPlanesWidget()
+{
 }
 
-void ClippingPlanesWidget::applyClipping() {
+void ClippingPlanesWidget::applyClipping()
+{
     emit clippingPlanesChanged();
 }
 
 
-int ClippingPlanesWidget::numPlanes() {
+int ClippingPlanesWidget::numPlanes()
+{
     return planeTable->rowCount();
 }
 
-QTableWidgetItem *ClippingPlanesWidget::getItem(int i, int j) {
-    QTableWidgetItem *item = planeTable->item(i,j);
+QTableWidgetItem* ClippingPlanesWidget::getItem(int i, int j)
+{
+    QTableWidgetItem* item = planeTable->item(i, j);
     return item;
 }
 
 
-bool ClippingPlanesWidget::getPlane(int j, EGS_Vector &a, EGS_Float &d) {
+bool ClippingPlanesWidget::getPlane(int j, EGS_Vector& a, EGS_Float& d)
+{
     // check if all row items exist and are selected.
-    QTableWidgetItem *itemAx = planeTable->item(j,0),
-                      *itemAy = planeTable->item(j,1),
-                       *itemAz = planeTable->item(j,2),
-                        *itemD = planeTable->item(j,3),
-                         *itemApplied = planeTable->item(j,4);
+    QTableWidgetItem* itemAx = planeTable->item(j, 0),
+                      * itemAy = planeTable->item(j, 1),
+                        * itemAz = planeTable->item(j, 2),
+                          * itemD = planeTable->item(j, 3),
+                            * itemApplied = planeTable->item(j, 4);
 
     // Make sure all parameters for a plane exist
-    if (!itemAx || !itemAy || !itemAz  || !itemD || !itemApplied) {
+    if (!itemAx || !itemAy || !itemAz  || !itemD || !itemApplied)
+    {
         return false;
     }
 
     // See if the checkbox in the 4th column is checked
     // Only use the plane if it is checked
-    if (itemApplied->checkState() == Qt::Unchecked) {
+    if (itemApplied->checkState() == Qt::Unchecked)
+    {
         return false;
     }
 
     // transfer values from table
     bool ok;
     double ax = itemAx->text().toDouble(&ok);
-    if (!ok) {
+    if (!ok)
+    {
         return false;
     }
     double ay = itemAy->text().toDouble(&ok);
-    if (!ok) {
+    if (!ok)
+    {
         return false;
     }
     double az = itemAz->text().toDouble(&ok);
-    if (!ok) {
+    if (!ok)
+    {
         return false;
     }
     double nd = itemD->text().toDouble(&ok);
-    if (!ok) {
+    if (!ok)
+    {
         return false;
     }
 
@@ -116,32 +128,38 @@ bool ClippingPlanesWidget::getPlane(int j, EGS_Vector &a, EGS_Float &d) {
     return true;
 }
 
-void ClippingPlanesWidget::setCell(int i, int j, EGS_Float val) {
-    QTableWidgetItem *item = planeTable->item(i,j);
+void ClippingPlanesWidget::setCell(int i, int j, EGS_Float val)
+{
+    QTableWidgetItem* item = planeTable->item(i, j);
 
-    if (!item) {
+    if (!item)
+    {
         item = new QTableWidgetItem();
-        planeTable->setItem(i,j,item);
+        planeTable->setItem(i, j, item);
     }
 
     item->setText(QString::number(val));
 }
 
-void ClippingPlanesWidget::setCell(int i, int j, Qt::CheckState checked) {
-    QTableWidgetItem *item = planeTable->item(i,j);
+void ClippingPlanesWidget::setCell(int i, int j, Qt::CheckState checked)
+{
+    QTableWidgetItem* item = planeTable->item(i, j);
 
-    if (!item) {
+    if (!item)
+    {
         item = new QTableWidgetItem();
-        planeTable->setItem(i,j,item);
+        planeTable->setItem(i, j, item);
     }
 
     item->setCheckState(checked);
 }
 
-void ClippingPlanesWidget::clearCell(int i, int j) {
-    QTableWidgetItem *item = planeTable->item(i,j);
+void ClippingPlanesWidget::clearCell(int i, int j)
+{
+    QTableWidgetItem* item = planeTable->item(i, j);
 
-    if (item) {
+    if (item)
+    {
         delete item;
     }
 }

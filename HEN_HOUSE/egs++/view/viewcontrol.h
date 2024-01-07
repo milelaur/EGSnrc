@@ -50,12 +50,13 @@ class SaveImage;
 class ClippingPlanesWidget;
 
 
-class GeometryViewControl : public QMainWindow, public Ui::GeometryViewControl {
+class GeometryViewControl : public QMainWindow, public Ui::GeometryViewControl
+{
     Q_OBJECT
 
 public:
 
-    GeometryViewControl(QWidget *parent = 0, const char *name = 0);
+    GeometryViewControl(QWidget* parent = 0, const char* name = 0);
     virtual ~GeometryViewControl();
 
     virtual void setFilename(QString str);
@@ -67,14 +68,14 @@ public:
     virtual void updateLookAtLineEdit();
     virtual void setCameraLineEdit();
     virtual void updateCameraLineEdit();
-    virtual int setGeometry(EGS_BaseGeometry *geom, const std::vector<EGS_UserColor> &ucolors, EGS_Float xmin, EGS_Float xmax, EGS_Float ymin, EGS_Float ymax, EGS_Float zmin, EGS_Float zmax, bool justReloading);
+    virtual int setGeometry(EGS_BaseGeometry* geom, const std::vector<EGS_UserColor>& ucolors, EGS_Float xmin, EGS_Float xmax, EGS_Float ymin, EGS_Float ymax, EGS_Float zmin, EGS_Float zmax, bool justReloading);
     virtual void updateView(bool transform = false);
-    virtual bool loadInput(bool first_time, EGS_BaseGeometry *simGeom = 0);
+    virtual bool loadInput(bool first_time, EGS_BaseGeometry* simGeom = 0);
     virtual void loadConfig(QString configFilename);
     virtual EGS_Vector getHeatMapColor(EGS_Float value);
     virtual void updateRegionTable();
     virtual void updateRegionTable(int imed);
-    virtual void updateAusgabObjects(bool loadUserDose=false);
+    virtual void updateAusgabObjects(bool loadUserDose = false);
     virtual void initColorSwatches();
 
 public slots:
@@ -146,15 +147,15 @@ public slots:
 
 private:
 
-    ClippingPlanesWidget *cplanes;
-    ImageWindow *gview;
-    SaveImage *save_image;
+    ClippingPlanesWidget* cplanes;
+    ImageWindow* gview;
+    SaveImage* save_image;
 
     QString filename;
     QString filename_tracks;
     QString userDoseFile;
     int nmed;
-    QRgb *m_colors;
+    QRgb* m_colors;
     QColor  backgroundColor,
             textColor,
             axisColor,
@@ -187,7 +188,7 @@ private:
     EGS_Vector p_light;
     EGS_Vector look_at_home;
     EGS_Vector look_at;
-    EGS_BaseGeometry *g;
+    EGS_BaseGeometry* g;
     bool showAxes;
     bool showAxesLabels;
     bool showTracks;
@@ -199,11 +200,12 @@ private:
             energyScaling;
     vector<vector<EGS_Float>> scoreArrays;
     vector<string> geometryNames;
-    EGS_BaseGeometry *origSimGeom;
+    EGS_BaseGeometry* origSimGeom;
 
 protected slots:
 
-    virtual void languageChange() {
+    virtual void languageChange()
+    {
         retranslateUi(this);
     }
 

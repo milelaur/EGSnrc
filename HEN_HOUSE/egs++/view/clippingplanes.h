@@ -35,20 +35,21 @@
 
 #include <qwidget.h>
 
-class ClippingPlanesWidget : public QWidget, public Ui::ClippingPlanesWidget {
+class ClippingPlanesWidget : public QWidget, public Ui::ClippingPlanesWidget
+{
     Q_OBJECT
 
 public:
 
-    ClippingPlanesWidget(QWidget *parent = 0, const char *name = 0);
+    ClippingPlanesWidget(QWidget* parent = 0, const char* name = 0);
     ~ClippingPlanesWidget();
 
     virtual int numPlanes();
-    virtual bool getPlane(int j, EGS_Vector &a, EGS_Float &d);
+    virtual bool getPlane(int j, EGS_Vector& a, EGS_Float& d);
     virtual void setCell(int i, int j, EGS_Float val);
     virtual void setCell(int i, int j, Qt::CheckState checked);
     virtual void clearCell(int i, int j);
-    virtual QTableWidgetItem *getItem(int i, int j);
+    virtual QTableWidgetItem* getItem(int i, int j);
 
 signals:
 
@@ -56,7 +57,8 @@ signals:
 
 protected slots:
 
-    virtual void languageChange() {
+    virtual void languageChange()
+    {
         retranslateUi(this);
     }
     virtual void applyClipping();

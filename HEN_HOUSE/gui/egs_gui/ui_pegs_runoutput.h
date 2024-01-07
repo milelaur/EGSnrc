@@ -55,13 +55,13 @@ QT_BEGIN_NAMESPACE
 class Ui_PEGS_RunOutput
 {
 public:
-    QVBoxLayout *vboxLayout;
-    QTextEdit *run_output;
-    QHBoxLayout *hboxLayout;
-    QSpacerItem *spacer6;
-    QPushButton *pushButton8;
+    QVBoxLayout* vboxLayout;
+    QTextEdit* run_output;
+    QHBoxLayout* hboxLayout;
+    QSpacerItem* spacer6;
+    QPushButton* pushButton8;
 
-    void setupUi(QWidget *PEGS_RunOutput)
+    void setupUi(QWidget* PEGS_RunOutput)
     {
         if (PEGS_RunOutput->objectName().isEmpty())
             PEGS_RunOutput->setObjectName(QString::fromUtf8("PEGS_RunOutput"));
@@ -97,7 +97,7 @@ public:
         QMetaObject::connectSlotsByName(PEGS_RunOutput);
     } // setupUi
 
-    void retranslateUi(QWidget *PEGS_RunOutput)
+    void retranslateUi(QWidget* PEGS_RunOutput)
     {
         PEGS_RunOutput->setWindowTitle(QCoreApplication::translate("PEGS_RunOutput", "PEGS Output", nullptr));
         pushButton8->setText(QCoreApplication::translate("PEGS_RunOutput", "&Close", nullptr));
@@ -105,8 +105,9 @@ public:
 
 };
 
-namespace Ui {
-    class PEGS_RunOutput: public Ui_PEGS_RunOutput {};
+namespace Ui
+{
+class PEGS_RunOutput: public Ui_PEGS_RunOutput {};
 } // namespace Ui
 
 QT_END_NAMESPACE

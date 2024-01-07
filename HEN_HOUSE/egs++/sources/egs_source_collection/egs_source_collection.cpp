@@ -37,78 +37,96 @@
 #include "egs_source_collection.h"
 #include "egs_input.h"
 
-EGS_SourceCollection::EGS_SourceCollection(EGS_Input *input,
-        EGS_ObjectFactory *f) : EGS_BaseSource(input,f), nsource(0), count(0) {
-    vector<EGS_BaseSource *> s;
+EGS_SourceCollection::EGS_SourceCollection(EGS_Input* input,
+    EGS_ObjectFactory* f) : EGS_BaseSource(input, f), nsource(0), count(0)
+{
+    vector<EGS_BaseSource*> s;
     egsInformation("EGS_BaseSource::EGS_BaseSource: input is:\n");
-    input->print(0,cout);
-    EGS_Input *isource;
-    while ((isource = input->takeInputItem("source",false))) {
+    input->print(0, cout);
+    EGS_Input* isource;
+    while ((isource = input->takeInputItem("source", false)))
+    {
         egsInformation("EGS_SourceCollection: got input\n");
-        EGS_BaseSource *this_source = EGS_BaseSource::createSource(isource);
-        if (!this_source) {
+        EGS_BaseSource* this_source = EGS_BaseSource::createSource(isource);
+        if (!this_source)
+        {
             egsWarning("EGS_SourceCollection: got null source\n");
         }
-        else {
+        else
+        {
             s.push_back(this_source);
         }
         delete isource;
     }
     vector<string> snames;
-    int err = input->getInput("source names",snames);
-    if (!err) {
-        for (unsigned int j=0; j<snames.size(); j++) {
-            EGS_BaseSource *this_source = EGS_BaseSource::getSource(snames[j]);
-            if (!this_source) {
+    int err = input->getInput("source names", snames);
+    if (!err)
+    {
+        for (unsigned int j = 0; j < snames.size(); j++)
+        {
+            EGS_BaseSource* this_source = EGS_BaseSource::getSource(snames[j]);
+            if (!this_source)
+            {
                 egsWarning("EGS_SourceCollection: got null source\n");
             }
-            else {
+            else
+            {
                 s.push_back(this_source);
             }
         }
     }
-    if (s.size() < 1) {
+    if (s.size() < 1)
+    {
         egsWarning("EGS_SourceCollection: no sources\n");
         return;
     }
     vector<EGS_Float> prob;
-    err = input->getInput("weights",prob);
-    if (err) {
+    err = input->getInput("weights", prob);
+    if (err)
+    {
         egsWarning("EGS_SourceCollection: missing 'weights' input\n");
         return;
     }
-    if (prob.size() != s.size()) {
+    if (prob.size() != s.size())
+    {
         egsWarning("EGS_SourceCollection: the number of sources (%d) is not"
                    " the same as the number of input probabilities (%d)\n",
-                   s.size(),prob.size());
+                   s.size(), prob.size());
         return;
     }
-    setUp(s,prob);
+    setUp(s, prob);
 }
 
-void EGS_SourceCollection::setUp(const vector<EGS_BaseSource *> &S,
-                                 const vector<EGS_Float> &prob) {
+void EGS_SourceCollection::setUp(const vector<EGS_BaseSource*>& S,
+                                 const vector<EGS_Float>& prob)
+{
     otype = "EGS_SourceCollection";
     nsource = S.size();
-    if (prob.size() < nsource) {
+    if (prob.size() < nsource)
+    {
         nsource = prob.size();
     }
     description = "Invalid source collection";
-    if (isValid()) {
+    if (isValid())
+    {
         p = new EGS_Float [nsource];
         sources = new EGS_BaseSource* [nsource];
         Emax = 0;
-        for (int j=0; j<nsource; j++) {
+        for (int j = 0; j < nsource; j++)
+        {
             p[j] = prob[j];
             sources[j] = S[j];
-            if (p[j] < 0 || !sources[j]) {
+            if (p[j] < 0 || !sources[j])
+            {
                 if (p[j] < 0) egsWarning("EGS_SourceCollection: input "
-                                             "probability p[%d]=%g is less than zero.\n",j,p[j]);
-                else {
-                    egsWarning("EGS_SourceCollection: source %d is null\n",j);
+                                             "probability p[%d]=%g is less than zero.\n", j, p[j]);
+                else
+                {
+                    egsWarning("EGS_SourceCollection: source %d is null\n", j);
                 }
                 delete [] p;
-                for (int i=0; i<j; j++) {
+                for (int i = 0; i < j; j++)
+                {
                     EGS_Object::deleteObject(sources[i]);
                 }
                 delete [] sources;
@@ -117,14 +135,16 @@ void EGS_SourceCollection::setUp(const vector<EGS_BaseSource *> &S,
             }
             sources[j]->ref();
             EGS_Float e = sources[j]->getEmax();
-            if (e > Emax) {
+            if (e > Emax)
+            {
                 Emax = e;
             }
         }
-        table = new EGS_SimpleAliasTable(nsource,p);
+        table = new EGS_SimpleAliasTable(nsource, p);
         description = "Source collection";
         last_cases = new EGS_I64 [ nsource ];
-        for (int i=0; i<nsource; i++) {
+        for (int i = 0; i < nsource; i++)
+        {
             last_cases[i] = 0;
         }
     }
@@ -132,10 +152,11 @@ void EGS_SourceCollection::setUp(const vector<EGS_BaseSource *> &S,
 
 extern "C" {
 
-    EGS_SOURCE_COLLECTION_EXPORT EGS_BaseSource *createSource(EGS_Input *input,
-            EGS_ObjectFactory *f) {
+    EGS_SOURCE_COLLECTION_EXPORT EGS_BaseSource* createSource(EGS_Input* input,
+        EGS_ObjectFactory* f)
+    {
         return
-            createSourceTemplate<EGS_SourceCollection>(input,f,"source collection");
+            createSourceTemplate<EGS_SourceCollection>(input, f, "source collection");
     }
 
 }

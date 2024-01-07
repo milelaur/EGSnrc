@@ -51,22 +51,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_RADIONUCLIDE_SOURCE_DLL
-        #define EGS_RADIONUCLIDE_SOURCE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_RADIONUCLIDE_SOURCE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_RADIONUCLIDE_SOURCE_LOCAL
+#ifdef BUILD_RADIONUCLIDE_SOURCE_DLL
+#define EGS_RADIONUCLIDE_SOURCE_EXPORT __declspec(dllexport)
+#else
+#define EGS_RADIONUCLIDE_SOURCE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_RADIONUCLIDE_SOURCE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_RADIONUCLIDE_SOURCE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_RADIONUCLIDE_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_RADIONUCLIDE_SOURCE_EXPORT
-        #define EGS_RADIONUCLIDE_SOURCE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_RADIONUCLIDE_SOURCE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_RADIONUCLIDE_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_RADIONUCLIDE_SOURCE_EXPORT
+#define EGS_RADIONUCLIDE_SOURCE_LOCAL
+#endif
 
 #endif
 
@@ -267,46 +267,53 @@ results for non-disintegration emissions.
 */
 
 class EGS_RADIONUCLIDE_SOURCE_EXPORT EGS_RadionuclideSource :
-    public EGS_BaseSource {
+    public EGS_BaseSource
+{
 
 public:
 
     /*! \brief Constructor from input file */
-    EGS_RadionuclideSource(EGS_Input *, EGS_ObjectFactory *f=0);
+    EGS_RadionuclideSource(EGS_Input*, EGS_ObjectFactory* f = 0);
 
     /*! \brief Destructor */
-    ~EGS_RadionuclideSource() {
+    ~EGS_RadionuclideSource()
+    {
         if (baseSource)
-            if (!baseSource->deref()) {
+            if (!baseSource->deref())
+            {
                 delete baseSource;
             }
 
-        for (vector<EGS_RadionuclideSpectrum * >::iterator it =
+        for (vector<EGS_RadionuclideSpectrum* >::iterator it =
                     decays.begin();
-                it!=decays.end(); it++) {
+                it != decays.end(); it++)
+        {
             delete *it;
-            *it=0;
+            *it = 0;
         }
         decays.clear();
     };
 
     /*! \brief Gets the next particle from the radionuclide spectra */
-    EGS_I64 getNextParticle(EGS_RandomGenerator *rndm,
-                            int &q, int &latch, EGS_Float &E, EGS_Float &wt,
-                            EGS_Vector &x, EGS_Vector &u);
+    EGS_I64 getNextParticle(EGS_RandomGenerator* rndm,
+                            int& q, int& latch, EGS_Float& E, EGS_Float& wt,
+                            EGS_Vector& x, EGS_Vector& u);
 
     /*! \brief Returns the maximum energy out of all the spectra */
-    EGS_Float getEmax() const {
+    EGS_Float getEmax() const
+    {
         return Emax;
     };
 
     /*! \brief Returns the current fluence (number of disintegrations) */
-    EGS_Float getFluence() const {
-        return (ishower+1)*(baseSource->getFluence()/sCount); //!< Scale ishower+1 return by fluence ratio returned by file
+    EGS_Float getFluence() const
+    {
+        return (ishower + 1) * (baseSource->getFluence() / sCount); //!< Scale ishower+1 return by fluence ratio returned by file
     };
 
     /*! \brief Returns the emission time of the most recent particle */
-    double getTime() const {
+    double getTime() const
+    {
         return time;
     };
 
@@ -316,24 +323,29 @@ public:
      * This is used to exclude time-delayed source emissions that would occur
      * after the modelled experiment.
      */
-    double getExperimentTime() const {
+    double getExperimentTime() const
+    {
         return experimentTime;
     };
 
     /*! \brief Returns the shower index of the most recent particle */
-    EGS_I64 getShowerIndex() const {
+    EGS_I64 getShowerIndex() const
+    {
         return ishower;
     };
 
-    unsigned int getEmissionType() const {
+    unsigned int getEmissionType() const
+    {
         return emissionType;
     }
 
     /*! \brief Outputs the emission stats of the spectra */
-    void printSampledEmissions() {
+    void printSampledEmissions()
+    {
         egsInformation("\n======================================================\n");
         egsInformation("Start of source emissions statistics:\n");
-        for (unsigned int i=0; i<decays.size(); ++i) {
+        for (unsigned int i = 0; i < decays.size(); ++i)
+        {
             decays[i]->printSampledEmissions();
         }
         egsInformation("End of source emissions statistics\n");
@@ -341,7 +353,8 @@ public:
     };
 
     /*! \brief Checks the validity of the source */
-    bool isValid() const {
+    bool isValid() const
+    {
         return baseSource;
     };
 
@@ -350,7 +363,7 @@ public:
      * Uses the \link EGS_BaseSpectrum::storeState() storeState() \endlink
      * of the spectrum object and the storeFluenceState() virtual function.
      */
-    bool storeState(ostream &data_out) const;
+    bool storeState(ostream& data_out) const;
 
     /*! \brief Add the source state from the stream \a data to the
      * current state.
@@ -358,7 +371,7 @@ public:
      * Uses the \link EGS_BaseSpectrum::addState() addState() \endlink
      * of the spectrum object and the addFluenceData() virtual function.
      */
-    bool addState(istream &data);
+    bool addState(istream& data);
 
     /*! \brief Reset the source to a state with zero sampled particles.
      *
@@ -374,10 +387,10 @@ public:
      * method of the spectrum object and the setFluenceState() virtual
      * function.
      */
-    bool setState(istream &data);
+    bool setState(istream& data);
 
 private:
-    EGS_Application *app;
+    EGS_Application* app;
 
     EGS_I64             count; //!< Number of times the spectrum was sampled
     EGS_Float           Emax; //!< Maximum energy the spectrum may return
@@ -386,10 +399,10 @@ private:
 
     string sName; //!< Name of the base source
     EGS_I64 sCount; //!< Name of the base source
-    EGS_BaseSource *baseSource; //!< Pointer to the base source
+    EGS_BaseSource* baseSource; //!< Pointer to the base source
 
     vector<int>         q_allowed; //!< A list of allowed charges
-    vector<EGS_RadionuclideSpectrum *> decays; //!< The radionuclide decay structure
+    vector<EGS_RadionuclideSpectrum*> decays;  //!< The radionuclide decay structure
     EGS_Float           activity; //!< The activity of the source
 
     bool                q_allowAll; //!< Whether or not to allow all charges

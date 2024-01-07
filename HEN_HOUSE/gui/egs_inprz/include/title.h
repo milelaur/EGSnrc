@@ -40,15 +40,15 @@
 
 class MTitle  : public MInputBlock
 {
-   public:
-     MTitle();
-     ~MTitle();
-     QString str;
+public:
+    MTitle();
+    ~MTitle();
+    QString str;
     //QString errors;
 
 };
-std::ifstream & operator >> ( std::ifstream & in, MTitle* t );
+std::ifstream& operator >> (std::ifstream& in, MTitle* t);
 //Q3TextStream   & operator << ( Q3TextStream & ts, MTitle* t );
 //qt3to4 -- BW
-QTextStream   & operator << ( QTextStream & ts, MTitle* t );
-#endif	// TITLE_H
+QTextStream&    operator << (QTextStream& ts, MTitle* t);
+#endif  // TITLE_H

@@ -52,22 +52,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_SPHERICAL_SHELL_DLL
-        #define EGS_SPHERICAL_SHELL_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_SPHERICAL_SHELL_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_SPHERICAL_SHELL_LOCAL
+#ifdef BUILD_SPHERICAL_SHELL_DLL
+#define EGS_SPHERICAL_SHELL_EXPORT __declspec(dllexport)
+#else
+#define EGS_SPHERICAL_SHELL_EXPORT __declspec(dllimport)
+#endif
+#define EGS_SPHERICAL_SHELL_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_SPHERICAL_SHELL_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_SPHERICAL_SHELL_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_SPHERICAL_SHELL_EXPORT
-        #define EGS_SPHERICAL_SHELL_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_SPHERICAL_SHELL_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_SPHERICAL_SHELL_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_SPHERICAL_SHELL_EXPORT
+#define EGS_SPHERICAL_SHELL_LOCAL
+#endif
 
 #endif
 
@@ -98,23 +98,25 @@ spherical shell truncated by a conical section with the half angle specified.
 If `half angle` is negative the points will sampled with negative z coordinates.
 
  */
-class EGS_SPHERICAL_SHELL_EXPORT EGS_SphericalShellShape : public EGS_BaseShape {
+class EGS_SPHERICAL_SHELL_EXPORT EGS_SphericalShellShape : public EGS_BaseShape
+{
 
 public:
 
     /*! \brief Construct a sphere of radius \a r with midpoint \a Xo */
-    EGS_SphericalShellShape(EGS_Float ri, EGS_Float ro, int hemisph = 0, EGS_Float halfangle=0, const EGS_Vector &Xo = EGS_Vector(0,0,0),
-                            const string &Name="",EGS_ObjectFactory *f=0);
+    EGS_SphericalShellShape(EGS_Float ri, EGS_Float ro, int hemisph = 0, EGS_Float halfangle = 0, const EGS_Vector& Xo = EGS_Vector(0, 0, 0),
+                            const string& Name = "", EGS_ObjectFactory* f = 0);
 
     ~EGS_SphericalShellShape() { };
 
     /*! \brief Returns a random point within the spherical shell. */
-    EGS_Vector getPoint(EGS_RandomGenerator *rndm);
+    EGS_Vector getPoint(EGS_RandomGenerator* rndm);
 
     /*! \brief Returns \c true. (It is easy to implement the
      * getPointSourceDirection() method for a sphere.)
      */
-    bool supportsDirectionMethod() const {
+    bool supportsDirectionMethod() const
+    {
         return true;
     };
 
@@ -122,8 +124,8 @@ public:
      * on the sphere surface.
      * \sa EGS_BaseShape::getPointSourceDirection()
      */
-    void getPointSourceDirection(const EGS_Vector &Xo,
-                                 EGS_RandomGenerator *rndm, EGS_Vector &u, EGS_Float &wt);
+    void getPointSourceDirection(const EGS_Vector& Xo,
+                                 EGS_RandomGenerator* rndm, EGS_Vector& u, EGS_Float& wt);
 
     /*! \brief Returns the sphere surface area.*/
     EGS_Float area() const;

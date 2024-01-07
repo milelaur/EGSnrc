@@ -44,22 +44,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_GTRANSFORMED_DLL
-        #define EGS_GTRANSFORMED_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_GTRANSFORMED_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_GTRANSFORMED_LOCAL
+#ifdef BUILD_GTRANSFORMED_DLL
+#define EGS_GTRANSFORMED_EXPORT __declspec(dllexport)
+#else
+#define EGS_GTRANSFORMED_EXPORT __declspec(dllimport)
+#endif
+#define EGS_GTRANSFORMED_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_GTRANSFORMED_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_GTRANSFORMED_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_GTRANSFORMED_EXPORT
-        #define EGS_GTRANSFORMED_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_GTRANSFORMED_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_GTRANSFORMED_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_GTRANSFORMED_EXPORT
+#define EGS_GTRANSFORMED_LOCAL
+#endif
 
 #endif
 
@@ -129,11 +129,12 @@ A simple example:
 \image html egs_gtransformed.png "A simple example"
 */
 class EGS_GTRANSFORMED_EXPORT EGS_TransformedGeometry :
-    public EGS_BaseGeometry {
+    public EGS_BaseGeometry
+{
 
 protected:
 
-    EGS_BaseGeometry    *g;   //!< The geometry being transformed
+    EGS_BaseGeometry*    g;   //!< The geometry being transformed
     EGS_AffineTransform T;    //!< The affine transformation
     string              type; //!< The geometry type
 
@@ -142,8 +143,9 @@ public:
     /*! \brief Construct a geometry that is a copy of the geometry \a G
     transformed by \a t
     */
-    EGS_TransformedGeometry(EGS_BaseGeometry *G, const EGS_AffineTransform &t,
-                            const string &Name = "") : EGS_BaseGeometry(Name), g(G), T(t) {
+    EGS_TransformedGeometry(EGS_BaseGeometry* G, const EGS_AffineTransform& t,
+                            const string& Name = "") : EGS_BaseGeometry(Name), g(G), T(t)
+    {
         type = g->getType();
         type += "T";
         nreg = g->regions();
@@ -152,72 +154,86 @@ public:
         has_B_scaling = g->hasBScaling();
     };
 
-    ~EGS_TransformedGeometry() {
-        if (!g->deref()) {
+    ~EGS_TransformedGeometry()
+    {
+        if (!g->deref())
+        {
             delete g;
         }
     };
 
-    void setTransformation(const EGS_AffineTransform &t) {
+    void setTransformation(const EGS_AffineTransform& t)
+    {
         T = t;
     };
 
-    int computeIntersections(int ireg, int n, const EGS_Vector &x,
-                             const EGS_Vector &u, EGS_GeometryIntersections *isections) {
+    int computeIntersections(int ireg, int n, const EGS_Vector& x,
+                             const EGS_Vector& u, EGS_GeometryIntersections* isections)
+    {
         EGS_Vector xt(x), ut(u);
         T.inverseTransform(xt);
         T.rotateInverse(ut);
-        return g->computeIntersections(ireg,n,xt,ut,isections);
+        return g->computeIntersections(ireg, n, xt, ut, isections);
         //return g->computeIntersections(ireg,n,x*T,u*T.getRotation(),isections);
     };
-    bool isRealRegion(int ireg) const {
+    bool isRealRegion(int ireg) const
+    {
         return g->isRealRegion(ireg);
     };
-    bool isInside(const EGS_Vector &x) {
+    bool isInside(const EGS_Vector& x)
+    {
         EGS_Vector xt(x);
         T.inverseTransform(xt);
         return g->isInside(xt);
         //return g->isInside(x*T);
     };
-    int isWhere(const EGS_Vector &x) {
+    int isWhere(const EGS_Vector& x)
+    {
         EGS_Vector xt(x);
         T.inverseTransform(xt);
         return g->isWhere(xt);
         //return g->isWhere(x*T);
     };
-    int inside(const EGS_Vector &x) {
+    int inside(const EGS_Vector& x)
+    {
         return isWhere(x);
     };
 
-    int medium(int ireg) const {
+    int medium(int ireg) const
+    {
         return g->medium(ireg);
     };
 
-    EGS_Float howfarToOutside(int ireg, const EGS_Vector &x,
-                              const EGS_Vector &u) {
-        return ireg >= 0 ? g->howfarToOutside(ireg,x*T,u*T.getRotation()) : 0;
+    EGS_Float howfarToOutside(int ireg, const EGS_Vector& x,
+                              const EGS_Vector& u)
+    {
+        return ireg >= 0 ? g->howfarToOutside(ireg, x * T, u * T.getRotation()) : 0;
     };
-    int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u,
-               EGS_Float &t, int *newmed=0, EGS_Vector *normal=0) {
+    int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u,
+               EGS_Float& t, int* newmed = 0, EGS_Vector* normal = 0)
+    {
         EGS_Vector xt(x), ut(u);
         T.inverseTransform(xt);
         T.rotateInverse(ut);
-        int inew = g->howfar(ireg,xt,ut,t,newmed,normal);
+        int inew = g->howfar(ireg, xt, ut, t, newmed, normal);
         //int inew = g->howfar(ireg,x*T,u*T.getRotation(),t,newmed,normal);
-        if (inew != ireg && normal) {
-            *normal = T.getRotation()*(*normal);
+        if (inew != ireg && normal)
+        {
+            *normal = T.getRotation() * (*normal);
         }
         return inew;
     };
 
-    EGS_Float hownear(int ireg, const EGS_Vector &x) {
+    EGS_Float hownear(int ireg, const EGS_Vector& x)
+    {
         EGS_Vector xt(x);
         T.inverseTransform(xt);
-        return g->hownear(ireg,xt);
+        return g->hownear(ireg, xt);
         //return g->hownear(ireg,x*T);
     };
 
-    int getMaxStep() const {
+    int getMaxStep() const
+    {
         return g->getMaxStep();
     };
 
@@ -227,41 +243,49 @@ public:
     // what the user wants. So, I should implement both options:
     // all copies share the same properties and the user has the options
     // to define separate properties for each copy.
-    bool hasBooleanProperty(int ireg, EGS_BPType prop) const {
-        return g->hasBooleanProperty(ireg,prop);
+    bool hasBooleanProperty(int ireg, EGS_BPType prop) const
+    {
+        return g->hasBooleanProperty(ireg, prop);
     };
-    void setBooleanProperty(EGS_BPType prop) {
+    void setBooleanProperty(EGS_BPType prop)
+    {
         g->setBooleanProperty(prop);
     };
-    void addBooleanProperty(int bit) {
+    void addBooleanProperty(int bit)
+    {
         g->addBooleanProperty(bit);
     };
-    void setBooleanProperty(EGS_BPType prop, int start, int end, int step=1) {
-        g->setBooleanProperty(prop,start,end,step);
+    void setBooleanProperty(EGS_BPType prop, int start, int end, int step = 1)
+    {
+        g->setBooleanProperty(prop, start, end, step);
     };
-    void addBooleanProperty(int bit, int start, int end, int step=1) {
-        g->addBooleanProperty(bit,start,end,step);
+    void addBooleanProperty(int bit, int start, int end, int step = 1)
+    {
+        g->addBooleanProperty(bit, start, end, step);
     };
 
-    const string &getType() const {
+    const string& getType() const
+    {
         return type;
     };
 
-    EGS_Float getRelativeRho(int ireg) const {
+    EGS_Float getRelativeRho(int ireg) const
+    {
         return g->getRelativeRho(ireg);
     }
     void setRelativeRho(int start, int end, EGS_Float rho);
 
-    void setRelativeRho(EGS_Input *);
+    void setRelativeRho(EGS_Input*);
 
-    EGS_Float getBScaling(int ireg) const {
+    EGS_Float getBScaling(int ireg) const
+    {
         return g->getBScaling(ireg);
     }
     void setBScaling(int start, int end, EGS_Float bf);
 
-    void setBScaling(EGS_Input *);
+    void setBScaling(EGS_Input*);
 
-    virtual void getLabelRegions(const string &str, vector<int> &regs);
+    virtual void getLabelRegions(const string& str, vector<int>& regs);
 
 protected:
 
@@ -271,7 +295,7 @@ protected:
     media in the definition of a transformed geometry. Instead, media should
     be defined when specifying the geometry to be transformed.
     */
-    void setMedia(EGS_Input *inp,int,const int *);
+    void setMedia(EGS_Input* inp, int, const int*);
 
 };
 

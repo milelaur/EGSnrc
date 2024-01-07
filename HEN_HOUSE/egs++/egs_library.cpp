@@ -39,21 +39,21 @@
 
 #ifdef WIN32
 
-    #include <windows.h>
+#include <windows.h>
 
-    #define DLL_HANDLE HMODULE
-    #define LOAD_LIBRARY(fname) LoadLibrary(fname)
-    #define FREE_LIBRARY(lib)   FreeLibrary(lib);
-    #define RESOLVE_SYMBOL(lib,symb) (void *) GetProcAddress(lib,symb)
+#define DLL_HANDLE HMODULE
+#define LOAD_LIBRARY(fname) LoadLibrary(fname)
+#define FREE_LIBRARY(lib)   FreeLibrary(lib);
+#define RESOLVE_SYMBOL(lib,symb) (void *) GetProcAddress(lib,symb)
 
 #else
 
-    #include <dlfcn.h>
+#include <dlfcn.h>
 
-    #define DLL_HANDLE void*
-    #define LOAD_LIBRARY(fname) dlopen(fname,RTLD_LAZY)
-    #define FREE_LIBRARY(lib)   !dlclose(lib)
-    #define RESOLVE_SYMBOL(lib,symb) dlsym(lib,symb)
+#define DLL_HANDLE void*
+#define LOAD_LIBRARY(fname) dlopen(fname,RTLD_LAZY)
+#define FREE_LIBRARY(lib)   !dlclose(lib)
+#define RESOLVE_SYMBOL(lib,symb) dlsym(lib,symb)
 
 #endif
 
@@ -66,47 +66,52 @@ using namespace std;
 
   \internwarning
 */
-class EGS_LOCAL EGS_PrivateLibrary {
+class EGS_LOCAL EGS_PrivateLibrary
+{
 public:
     DLL_HANDLE lib;
     string name, fname;
     bool au;
-    EGS_PrivateLibrary(const char *lib_name, const char *path = 0);
+    EGS_PrivateLibrary(const char* lib_name, const char* path = 0);
     ~EGS_PrivateLibrary();
     bool load();
-    void *resolve(const char *symb);
+    void* resolve(const char* symb);
     bool unload();
     static char fs;
-    static const char *lib_prefix;
-    static const char *lib_suffix;
+    static const char* lib_prefix;
+    static const char* lib_suffix;
 };
 
 #ifdef WIN32
-    #ifdef CYGWIN
-        char EGS_PrivateLibrary::fs = '/';
-    #else
-        char EGS_PrivateLibrary::fs = '\\';
-    #endif
-    const char *EGS_PrivateLibrary::lib_prefix = "";
-    const char *EGS_PrivateLibrary::lib_suffix = ".dll";
+#ifdef CYGWIN
+char EGS_PrivateLibrary::fs = '/';
 #else
-    char EGS_PrivateLibrary::fs = '/';
-    const char *EGS_PrivateLibrary::lib_prefix = "lib";
-    const char *EGS_PrivateLibrary::lib_suffix = ".so";
+char EGS_PrivateLibrary::fs = '\\';
+#endif
+const char* EGS_PrivateLibrary::lib_prefix = "";
+const char* EGS_PrivateLibrary::lib_suffix = ".dll";
+#else
+char EGS_PrivateLibrary::fs = '/';
+const char* EGS_PrivateLibrary::lib_prefix = "lib";
+const char* EGS_PrivateLibrary::lib_suffix = ".so";
 #endif
 
 
-EGS_PrivateLibrary::EGS_PrivateLibrary(const char *lib_name, const char *path) {
+EGS_PrivateLibrary::EGS_PrivateLibrary(const char* lib_name, const char* path)
+{
     au = true;
     lib = 0;
-    if (!lib_name) {
+    if (!lib_name)
+    {
         egsWarning("EGS_Library::EGS_Library: null library name?\n");
         return;
     }
     name = lib_name;
-    if (path) {
+    if (path)
+    {
         fname = path;
-        if (fname[fname.size()-1] != fs) {
+        if (fname[fname.size() - 1] != fs)
+        {
             fname += fs;
         }
     }
@@ -114,18 +119,22 @@ EGS_PrivateLibrary::EGS_PrivateLibrary(const char *lib_name, const char *path) {
     fname += lib_name;
     fname += lib_suffix;
 #ifdef LIB_DEBUG
-    egsInformation("EGS_Library::EGS_Library: file name is <%s>\n",fname.c_str());
+    egsInformation("EGS_Library::EGS_Library: file name is <%s>\n", fname.c_str());
 #endif
 }
 
-EGS_PrivateLibrary::~EGS_PrivateLibrary() {
-    if (au) {
+EGS_PrivateLibrary::~EGS_PrivateLibrary()
+{
+    if (au)
+    {
         unload();
     }
 }
 
-bool EGS_PrivateLibrary::load() {
-    if (lib) {
+bool EGS_PrivateLibrary::load()
+{
+    if (lib)
+    {
         return true;
     }
     lib = LOAD_LIBRARY(fname.c_str());
@@ -136,94 +145,114 @@ bool EGS_PrivateLibrary::load() {
     */
 #ifdef DLL_DEBUG
     egsInformation("In EGS_PrivateLibrary::load(): name = %s lib = 0x%x\n",
-                   name.c_str(),lib);
+                   name.c_str(), lib);
 #endif
-    if (lib) {
+    if (lib)
+    {
         return true;
     }
-    else {
+    else
+    {
         egsWarning("EGS_Library::load(): failed to load library %s\n",
                    fname.c_str());
 #ifdef WIN32
-        egsWarning("  error was: %d\n",GetLastError());
+        egsWarning("  error was: %d\n", GetLastError());
 #else
-        egsWarning("  error was: %s\n",dlerror());
+        egsWarning("  error was: %s\n", dlerror());
 #endif
         return false;
     }
 }
 
-void *EGS_PrivateLibrary::resolve(const char *symb) {
-    if (!lib) {
-        if (!load()) {
+void* EGS_PrivateLibrary::resolve(const char* symb)
+{
+    if (!lib)
+    {
+        if (!load())
+        {
             return 0;
         }
     }
-    void *result = RESOLVE_SYMBOL(lib,symb);
+    void* result = RESOLVE_SYMBOL(lib, symb);
 #ifdef DLL_DEBUG
     egsInformation("In EGS_PrivateLibrary::resolve: symbol = %s result = 0x%x\n",
-                   symb,result);
+                   symb, result);
 #endif
     return result;
 }
 
-bool EGS_PrivateLibrary::unload() {
-    if (!lib) {
+bool EGS_PrivateLibrary::unload()
+{
+    if (!lib)
+    {
         return true;
     }
     bool result = FREE_LIBRARY(lib);
-    if (result) {
+    if (result)
+    {
         lib = 0;
     }
     return result;
 }
 #endif
 
-EGS_Library::EGS_Library(const char *lib_name, const char *path) {
-    pl = new EGS_PrivateLibrary(lib_name,path);
+EGS_Library::EGS_Library(const char* lib_name, const char* path)
+{
+    pl = new EGS_PrivateLibrary(lib_name, path);
 }
 
-EGS_Library::~EGS_Library() {
+EGS_Library::~EGS_Library()
+{
     delete pl;
 }
 
-bool EGS_Library::load() {
+bool EGS_Library::load()
+{
     return pl->load();
 }
 
-void *EGS_Library::resolve(const char *symb) {
+void* EGS_Library::resolve(const char* symb)
+{
     return pl->resolve(symb);
 }
 
-bool EGS_Library::unload() {
+bool EGS_Library::unload()
+{
     return pl->unload();
 }
 
-bool EGS_Library::isLoaded() const {
+bool EGS_Library::isLoaded() const
+{
     return (bool) pl->lib;
 }
 
-bool EGS_Library::autoUnload() const {
+bool EGS_Library::autoUnload() const
+{
     return pl->au;
 }
 
-void EGS_Library::setUnload(bool u) {
+void EGS_Library::setUnload(bool u)
+{
     pl->au = u;
 }
 
-const char *EGS_Library::libraryName() const {
+const char* EGS_Library::libraryName() const
+{
     return pl->name.c_str();
 }
 
-const char *EGS_Library::libraryFile() const {
+const char* EGS_Library::libraryFile() const
+{
     return pl->fname.c_str();
 }
 
-void *EGS_Library::resolve(const char *lname, const char *func,
-                           const char *path) {
-    EGS_PrivateLibrary p(lname,path);
+void* EGS_Library::resolve(const char* lname, const char* func,
+                           const char* path)
+{
+    EGS_PrivateLibrary p(lname, path);
     p.au = false;
-    if (!p.load()) {
+    if (!p.load())
+    {
         return 0;
     }
     return p.resolve(func);

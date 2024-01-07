@@ -39,53 +39,62 @@
 #include "egs_input.h"
 #include "egs_math.h"
 
-EGS_IsotropicSource::EGS_IsotropicSource(EGS_Input *input,
-        EGS_ObjectFactory *f) : EGS_BaseSimpleSource(input,f), shape(0), geom(0),
-    regions(0), min_theta(0), max_theta(M_PI), min_phi(0), max_phi(2*M_PI),
-    nrs(0), gc(IncludeAll) {
+EGS_IsotropicSource::EGS_IsotropicSource(EGS_Input* input,
+    EGS_ObjectFactory* f) : EGS_BaseSimpleSource(input, f), shape(0), geom(0),
+    regions(0), min_theta(0), max_theta(M_PI), min_phi(0), max_phi(2 * M_PI),
+    nrs(0), gc(IncludeAll)
+{
     vector<EGS_Float> pos;
-    EGS_Input *ishape = input->takeInputItem("shape");
-    if (ishape) {
+    EGS_Input* ishape = input->takeInputItem("shape");
+    if (ishape)
+    {
         shape = EGS_BaseShape::createShape(ishape);
         delete ishape;
     }
-    if (!shape) {
+    if (!shape)
+    {
         string sname;
-        int err = input->getInput("shape name",sname);
+        int err = input->getInput("shape name", sname);
         if (err)
             egsWarning("EGS_IsotropicSource: missing/wrong inline shape "
                        "definition and missing wrong 'shape name' input\n");
-        else {
+        else
+        {
             shape = EGS_BaseShape::getShape(sname);
             if (!shape) egsWarning("EGS_IsotropicSource: a shape named %s"
                                        " does not exist\n");
         }
     }
     string geom_name;
-    int err = input->getInput("geometry",geom_name);
-    if (!err) {
+    int err = input->getInput("geometry", geom_name);
+    if (!err)
+    {
         geom = EGS_BaseGeometry::getGeometry(geom_name);
         if (!geom) egsWarning("EGS_IsotropicSource: no geometry named %s\n",
                                   geom_name.c_str());
-        else {
+        else
+        {
             vector<string> reg_options;
             reg_options.push_back("IncludeAll");
             reg_options.push_back("ExcludeAll");
             reg_options.push_back("IncludeSelected");
             reg_options.push_back("ExcludeSelected");
-            gc = (GeometryConfinement) input->getInput("region selection",reg_options,0);
-            if (gc == IncludeSelected || gc == ExcludeSelected) {
+            gc = (GeometryConfinement) input->getInput("region selection", reg_options, 0);
+            if (gc == IncludeSelected || gc == ExcludeSelected)
+            {
                 vector<int> regs;
-                err = input->getInput("selected regions",regs);
-                if (err || regs.size() < 1) {
+                err = input->getInput("selected regions", regs);
+                if (err || regs.size() < 1)
+                {
                     egsWarning("EGS_IsotropicSource: region selection %d used "
-                               "but no 'selected regions' input found\n",gc);
+                               "but no 'selected regions' input found\n", gc);
                     gc = gc == IncludeSelected ? IncludeAll : ExcludeAll;
-                    egsWarning(" using %d\n",gc);
+                    egsWarning(" using %d\n", gc);
                 }
                 nrs = regs.size();
                 regions = new int [nrs];
-                for (int j=0; j<nrs; j++) {
+                for (int j = 0; j < nrs; j++)
+                {
                     regions[j] = regs[j];
                 }
             }
@@ -93,23 +102,27 @@ EGS_IsotropicSource::EGS_IsotropicSource(EGS_Input *input,
     }
     EGS_Float tmp_theta;
     err = input->getInput("min theta", tmp_theta);
-    if (!err) {
-        min_theta = tmp_theta/180.0*M_PI;
+    if (!err)
+    {
+        min_theta = tmp_theta / 180.0 * M_PI;
     }
 
     err = input->getInput("max theta", tmp_theta);
-    if (!err) {
-        max_theta = tmp_theta/180.0*M_PI;
+    if (!err)
+    {
+        max_theta = tmp_theta / 180.0 * M_PI;
     }
 
     err = input->getInput("min phi", tmp_theta);
-    if (!err) {
-        min_phi = tmp_theta/180.0*M_PI;
+    if (!err)
+    {
+        min_phi = tmp_theta / 180.0 * M_PI;
     }
 
     err = input->getInput("max phi", tmp_theta);
-    if (!err) {
-        max_phi = tmp_theta/180.0*M_PI;
+    if (!err)
+    {
+        max_phi = tmp_theta / 180.0 * M_PI;
     }
 
     buf_1 = cos(min_theta);
@@ -118,30 +131,38 @@ EGS_IsotropicSource::EGS_IsotropicSource(EGS_Input *input,
     setUp();
 }
 
-void EGS_IsotropicSource::setUp() {
+void EGS_IsotropicSource::setUp()
+{
     otype = "EGS_IsotropicSource";
-    if (!isValid()) {
+    if (!isValid())
+    {
         description = "Invalid isotropic source";
     }
-    else {
+    else
+    {
         description = "Isotropic source from a shape of type ";
         description += shape->getObjectType();
         description += " with ";
         description += s->getType();
-        if (q == -1) {
+        if (q == -1)
+        {
             description += ", electrons";
         }
-        else if (q == 0) {
+        else if (q == 0)
+        {
             description += ", photons";
         }
-        else if (q == 1) {
+        else if (q == 1)
+        {
             description += ", positrons";
         }
-        else {
+        else
+        {
             description += ", unknown particle type";
         }
 
-        if (geom) {
+        if (geom)
+        {
             geom->ref();
         }
     }
@@ -149,10 +170,11 @@ void EGS_IsotropicSource::setUp() {
 
 extern "C" {
 
-    EGS_ISOTROPIC_SOURCE_EXPORT EGS_BaseSource *createSource(EGS_Input *input,
-            EGS_ObjectFactory *f) {
+    EGS_ISOTROPIC_SOURCE_EXPORT EGS_BaseSource* createSource(EGS_Input* input,
+        EGS_ObjectFactory* f)
+    {
         return
-            createSourceTemplate<EGS_IsotropicSource>(input,f,"isotropic source");
+            createSourceTemplate<EGS_IsotropicSource>(input, f, "isotropic source");
     }
 
 }

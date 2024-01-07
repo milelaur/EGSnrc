@@ -45,22 +45,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_POINT_SOURCE_DLL
-        #define EGS_POINT_SOURCE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_POINT_SOURCE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_POINT_SOURCE_LOCAL
+#ifdef BUILD_POINT_SOURCE_DLL
+#define EGS_POINT_SOURCE_EXPORT __declspec(dllexport)
+#else
+#define EGS_POINT_SOURCE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_POINT_SOURCE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_POINT_SOURCE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_POINT_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_POINT_SOURCE_EXPORT
-        #define EGS_POINT_SOURCE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_POINT_SOURCE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_POINT_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_POINT_SOURCE_EXPORT
+#define EGS_POINT_SOURCE_LOCAL
+#endif
 
 #endif
 
@@ -107,7 +107,8 @@ A simple example:
 \endverbatim
 \image html egs_point_source.png "A simple example"
 */
-class EGS_POINT_SOURCE_EXPORT EGS_PointSource : public EGS_BaseSimpleSource {
+class EGS_POINT_SOURCE_EXPORT EGS_PointSource : public EGS_BaseSimpleSource
+{
 
     EGS_Vector xo;      //!< The point source position
     bool       valid;   //!< Is the object a valid source?
@@ -119,9 +120,10 @@ public:
     Construct a point source with charge \a Q, spectrum \a Spec and
     position \a Xo. The source object takes ownership of the spectrum.
     */
-    EGS_PointSource(int Q, EGS_BaseSpectrum *Spec, const EGS_Vector &Xo,
-                    const string &Name="", EGS_ObjectFactory *f=0) :
-        EGS_BaseSimpleSource(Q,Spec,Name,f), xo(Xo), valid(true) {
+    EGS_PointSource(int Q, EGS_BaseSpectrum* Spec, const EGS_Vector& Xo,
+                    const string& Name = "", EGS_ObjectFactory* f = 0) :
+        EGS_BaseSimpleSource(Q, Spec, Name, f), xo(Xo), valid(true)
+    {
         setUp();
     };
 
@@ -129,41 +131,48 @@ public:
 
     Construct a point source from the information pointed to by \a inp.
     */
-    EGS_PointSource(EGS_Input *, EGS_ObjectFactory *f=0);
+    EGS_PointSource(EGS_Input*, EGS_ObjectFactory* f = 0);
     ~EGS_PointSource() {};
 
-    void getPositionDirection(EGS_RandomGenerator *rndm,
-                              EGS_Vector &x, EGS_Vector &u, EGS_Float &wt) {
+    void getPositionDirection(EGS_RandomGenerator* rndm,
+                              EGS_Vector& x, EGS_Vector& u, EGS_Float& wt)
+    {
         x = xo;
-        u.z = 2*rndm->getUniform()-1;
-        EGS_Float sinz = 1-u.z*u.z;
-        if (sinz > epsilon) {
+        u.z = 2 * rndm->getUniform() - 1;
+        EGS_Float sinz = 1 - u.z * u.z;
+        if (sinz > epsilon)
+        {
             sinz = sqrt(sinz);
             EGS_Float cphi, sphi;
-            rndm->getAzimuth(cphi,sphi);
-            u.x = sinz*cphi;
-            u.y = sinz*sphi;
+            rndm->getAzimuth(cphi, sphi);
+            u.x = sinz * cphi;
+            u.y = sinz * sphi;
         }
-        else {
+        else
+        {
             u.x = 0;
             u.y = 0;
         }
         wt = 1;
     };
 
-    EGS_Float getFluence() const {
+    EGS_Float getFluence() const
+    {
         return count;
     };
 
-    bool storeFluenceState(ostream &) const {
+    bool storeFluenceState(ostream&) const
+    {
         return true;
     };
 
-    bool setFluenceState(istream &) {
+    bool setFluenceState(istream&)
+    {
         return true;
     };
 
-    bool isValid() const {
+    bool isValid() const
+    {
         return (valid && s != 0);
     };
 

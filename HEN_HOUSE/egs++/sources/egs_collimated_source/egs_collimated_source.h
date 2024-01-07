@@ -48,22 +48,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_COLLIMATED_SOURCE_DLL
-        #define EGS_COLLIMATED_SOURCE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_COLLIMATED_SOURCE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_COLLIMATED_SOURCE_LOCAL
+#ifdef BUILD_COLLIMATED_SOURCE_DLL
+#define EGS_COLLIMATED_SOURCE_EXPORT __declspec(dllexport)
+#else
+#define EGS_COLLIMATED_SOURCE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_COLLIMATED_SOURCE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_COLLIMATED_SOURCE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_COLLIMATED_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_COLLIMATED_SOURCE_EXPORT
-        #define EGS_COLLIMATED_SOURCE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_COLLIMATED_SOURCE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_COLLIMATED_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_COLLIMATED_SOURCE_EXPORT
+#define EGS_COLLIMATED_SOURCE_LOCAL
+#endif
 
 #endif
 
@@ -157,7 +157,8 @@ A simple example:
 \image html egs_collimated_source.png "A simple example"
 */
 class EGS_COLLIMATED_SOURCE_EXPORT EGS_CollimatedSource :
-    public EGS_BaseSimpleSource {
+    public EGS_BaseSimpleSource
+{
 
 public:
 
@@ -166,11 +167,12 @@ public:
     Construct a collimated source with charge \a Q, spectrum \a Spec,
     source shape \a sshape and target shape \a tshape.
     */
-    EGS_CollimatedSource(int Q, EGS_BaseSpectrum *Spec,
-                         EGS_BaseShape *sshape, EGS_BaseShape *tshape,
-                         const string &Name="", EGS_ObjectFactory *f=0) :
-        EGS_BaseSimpleSource(Q,Spec,Name,f), source_shape(sshape),
-        target_shape(tshape), ctry(0), dist(1) {
+    EGS_CollimatedSource(int Q, EGS_BaseSpectrum* Spec,
+                         EGS_BaseShape* sshape, EGS_BaseShape* tshape,
+                         const string& Name = "", EGS_ObjectFactory* f = 0) :
+        EGS_BaseSimpleSource(Q, Spec, Name, f), source_shape(sshape),
+        target_shape(tshape), ctry(0), dist(1)
+    {
         setUp();
     };
 
@@ -178,19 +180,22 @@ public:
 
     Construct a collimated source from the information pointed to by \a inp.
     */
-    EGS_CollimatedSource(EGS_Input *, EGS_ObjectFactory *f=0);
-    ~EGS_CollimatedSource() {
+    EGS_CollimatedSource(EGS_Input*, EGS_ObjectFactory* f = 0);
+    ~EGS_CollimatedSource()
+    {
         EGS_Object::deleteObject(source_shape);
         EGS_Object::deleteObject(target_shape);
     };
 
-    void getPositionDirection(EGS_RandomGenerator *rndm,
-                              EGS_Vector &x, EGS_Vector &u, EGS_Float &wt) {
+    void getPositionDirection(EGS_RandomGenerator* rndm,
+                              EGS_Vector& x, EGS_Vector& u, EGS_Float& wt)
+    {
         //x = source_shape->getPoint(rndm);
         x = source_shape->getRandomPoint(rndm);
         int ntry = 0;
-        do {
-            target_shape->getPointSourceDirection(x,rndm,u,wt);
+        do
+        {
+            target_shape->getPointSourceDirection(x, rndm, u, wt);
             ntry++;
             if (ntry > 10000)
                 egsFatal("EGS_CollimatedSource::getPositionDirection:\n"
@@ -205,42 +210,49 @@ public:
         ctry += ntry;
     };
 
-    EGS_Float getFluence() const {
+    EGS_Float getFluence() const
+    {
         double res = ctry;
-        return res/(dist*dist);
+        return res / (dist * dist);
     };
 
-    bool storeFluenceState(ostream &data) const {
-        return egsStoreI64(data,ctry);
+    bool storeFluenceState(ostream& data) const
+    {
+        return egsStoreI64(data, ctry);
     };
 
-    bool setFluenceState(istream &data) {
-        return egsGetI64(data,ctry);
+    bool setFluenceState(istream& data)
+    {
+        return egsGetI64(data, ctry);
     };
 
-    bool addFluenceData(istream &data) {
+    bool addFluenceData(istream& data)
+    {
         EGS_I64 tmp;
-        bool ok = egsGetI64(data,tmp);
-        if (!ok) {
+        bool ok = egsGetI64(data, tmp);
+        if (!ok)
+        {
             return false;
         }
         ctry += tmp;
         return true;
     };
 
-    bool isValid() const {
+    bool isValid() const
+    {
         return (s != 0 && source_shape != 0 && target_shape != 0 &&
                 target_shape->supportsDirectionMethod());
     };
 
-    void resetFluenceCounter() {
+    void resetFluenceCounter()
+    {
         ctry = 0;
     };
 
 protected:
 
-    EGS_BaseShape *source_shape,  //!< the source shape
-                  *target_shape;  //!< the target shape
+    EGS_BaseShape* source_shape,  //!< the source shape
+                   *target_shape;  //!< the target shape
     EGS_I64       ctry;           //!< number of attempts to sample a particle
     EGS_Float     dist;           //!< source-target shape min. distance
 

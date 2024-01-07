@@ -91,7 +91,8 @@ class EGS_Input;
      happen when jobs do not start sequentially. In such cases the JCF may not be
      available if job number 1 is not started first.
 */
-class EGS_EXPORT EGS_RunControl {
+class EGS_EXPORT EGS_RunControl
+{
 
 public:
 
@@ -101,47 +102,56 @@ public:
     (available to the application as an EGS_Input object) and looks
     for
     */
-    EGS_RunControl(EGS_Application *app);
+    EGS_RunControl(EGS_Application* app);
 
     /*! \brief Destructor.  */
     virtual ~EGS_RunControl();
 
     /*! \brief Set the number of particles to be simulated to \a n */
-    void setNcase(EGS_I64 n) {
-        if (n > 0) {
+    void setNcase(EGS_I64 n)
+    {
+        if (n > 0)
+        {
             ncase = n;
         }
     };
 
     /*! \brief Set the number of batches to \a n */
-    void setNbatch(int n) {
-        if (n > 0) {
+    void setNbatch(int n)
+    {
+        if (n > 0)
+        {
             nbatch = n;
         }
     };
 
     /*! \brief Set the maximum CPU time for the simulation to \a t */
-    void setMaxTime(EGS_Float t) {
+    void setMaxTime(EGS_Float t)
+    {
         maxt = t;
     };
 
     /*! \brief Set the required statistical uncertainty to \a a */
-    void setRequiredUncertainty(EGS_Float a) {
+    void setRequiredUncertainty(EGS_Float a)
+    {
         accu = a;
     };
 
     /*! \brief Returns the total number of particles to be simulated */
-    EGS_I64 getNcase() const {
+    EGS_I64 getNcase() const
+    {
         return ncase;
     };
 
     /*! \brief Returns the number of batches per simulation chunk */
-    int     getNbatch() const {
+    int     getNbatch() const
+    {
         return nbatch;
     };
 
     /*! \brief Returns the number of simulation chunks */
-    int     getNchunk() const {
+    int     getNchunk() const
+    {
         return nchunk;
     };
 
@@ -163,7 +173,8 @@ public:
       are in such a chunk. This function is called from within the
       runSimulation() function of EGS_Application.
     */
-    virtual EGS_I64 getNextChunk() {
+    virtual EGS_I64 getNextChunk()
+    {
         return getNcase() - ndone;
     };
 
@@ -185,7 +196,7 @@ public:
     new batch. Returns \c true, if the simulation is to proceed,
     \c false if the simulation is to be terminated immediately.
     */
-    virtual bool    startBatch(int,EGS_I64);
+    virtual bool    startBatch(int, EGS_I64);
 
     /*! \brief Finish a batch
 
@@ -196,45 +207,51 @@ public:
     virtual bool    finishBatch();
 
     virtual void    describeRCO();
-    virtual bool    storeState(ostream &data);
-    virtual bool    setState(istream &data);
-    virtual bool    addState(istream &data);
+    virtual bool    storeState(ostream& data);
+    virtual bool    setState(istream& data);
+    virtual bool    addState(istream& data);
     virtual void    resetCounter();
-    virtual bool    getCombinedResult(double &, double &) const {
+    virtual bool    getCombinedResult(double&, double&) const
+    {
         return false;
     };
 
-    virtual EGS_I64 getNdone() const {
+    virtual EGS_I64 getNdone() const
+    {
         return ndone;
     };
 
-    virtual void    setNdone(EGS_I64 Ndone) {
+    virtual void    setNdone(EGS_I64 Ndone)
+    {
         ndone = Ndone;
     };
 
-    virtual void    incrementNdone() {
+    virtual void    incrementNdone()
+    {
         ++ndone;
     };
 
-    virtual EGS_Float getCPUTime() const {
-        return cpu_time+previous_cpu_time;
+    virtual EGS_Float getCPUTime() const
+    {
+        return cpu_time + previous_cpu_time;
     };
 
     /*! \brief Define RCO types */
-    enum RCOType {
+    enum RCOType
+    {
         simple,   //!< single job or multiple independent jobs
         uniform,  //!< parallel jobs with same numbe of histories
         balanced  //!< parallel jobs with balanced load via JCF
     };
 
-    static EGS_RunControl *getRunControlObject(EGS_Application *);
+    static EGS_RunControl* getRunControlObject(EGS_Application*);
 
     int             geomErrorCount, geomErrorMax;
 
 protected:
 
-    EGS_Application *app;
-    EGS_Input       *input;
+    EGS_Application* app;
+    EGS_Input*       input;
 
     EGS_I64         ncase;  // number of histories.
     EGS_I64         ndone;  // histories done so far.
@@ -274,21 +291,24 @@ class EGS_FileLocking;
 
 */
 
-class EGS_EXPORT EGS_JCFControl : public EGS_RunControl {
+class EGS_EXPORT EGS_JCFControl : public EGS_RunControl
+{
 
 public:
 
-    EGS_JCFControl(EGS_Application *, int Nbuf=1024);
+    EGS_JCFControl(EGS_Application*, int Nbuf = 1024);
     ~EGS_JCFControl();
-    void setNchunkForParallel(int n) {
-        if (n > 0) {
+    void setNchunkForParallel(int n)
+    {
+        if (n > 0)
+        {
             nchunk = n;
         }
     };
     int  startSimulation();
     EGS_I64 getNextChunk();
     int  finishSimulation();
-    bool getCombinedResult(double &, double &) const;
+    bool getCombinedResult(double&, double&) const;
 
 protected:
 
@@ -303,9 +323,9 @@ protected:
     bool   first_time;
     bool   removed_jcf;
     int    nbuf;
-    char   *buf;
+    char*   buf;
 
-    EGS_FileLocking *p;
+    EGS_FileLocking* p;
 
     bool   createControlFile();
     bool   openControlFile();
@@ -362,11 +382,12 @@ protected:
 
 */
 
-class EGS_EXPORT EGS_UniformRunControl : public EGS_RunControl {
+class EGS_EXPORT EGS_UniformRunControl : public EGS_RunControl
+{
 
 public:
 
-    EGS_UniformRunControl(EGS_Application *app);
+    EGS_UniformRunControl(EGS_Application* app);
     ~EGS_UniformRunControl() {};
 
     void  describeRCO();

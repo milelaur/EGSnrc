@@ -32,20 +32,21 @@
 #include "main_widget.h"
 #include <QtGlobal>
 #if QT_VERSION >= 0x050000
-    #include <QtWidgets>
+#include <QtWidgets>
 #else
-    #include <QWidget>
+#include <QWidget>
 #endif
 #include <QMainWindow>
 
 #include <qapplication.h>
 
-int main(int argc, char **argv) {
-   QApplication::setStyle("windows");
-   QApplication a(argc,argv);
-   EGS_MainWidget mw(0);
-   a.connect(&mw,SIGNAL(quit()),SLOT(quit()));
-   mw.show();
-   return a.exec();
+int main(int argc, char** argv)
+{
+    QApplication::setStyle("windows");
+    QApplication a(argc, argv);
+    EGS_MainWidget mw(0);
+    a.connect(&mw, SIGNAL(quit()), SLOT(quit()));
+    mw.show();
+    return a.exec();
 
 }

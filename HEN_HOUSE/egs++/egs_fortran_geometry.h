@@ -52,8 +52,8 @@
    that later can be used to call the geometry methods of this geometry.
    If an error occures, \a igeom is set to a negative error code.
 */
-extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_init_geometry,EGSPP_INIT_GEOMETRY)(
-    EGS_I32 *igeom, const char *file_name, int flength);
+extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_init_geometry, EGSPP_INIT_GEOMETRY)(
+    EGS_I32* igeom, const char* file_name, int flength);
 
 /* \brief The howfar function.
 
@@ -64,11 +64,11 @@ extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_init_geometry,EGSPP_INIT_GEOMETRY
    region index, \a newmed to the new medium index, and \a ustep to the
    distance to the intersection. Else, \a inew is set to \a ireg.
 */
-extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_howfar,EGSPP_HOWFAR)(
-    const EGS_I32 *igeom, const EGS_I32 *ireg,
-    const EGS_Float *x, const EGS_Float *y, const EGS_Float *z,
-    const EGS_Float *u, const EGS_Float *v, const EGS_Float *w,
-    EGS_I32 *inew, EGS_I32 *newmed, EGS_Float *ustep);
+extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_howfar, EGSPP_HOWFAR)(
+    const EGS_I32* igeom, const EGS_I32* ireg,
+    const EGS_Float* x, const EGS_Float* y, const EGS_Float* z,
+    const EGS_Float* u, const EGS_Float* v, const EGS_Float* w,
+    EGS_I32* inew, EGS_I32* newmed, EGS_Float* ustep);
 
 /* \brief The hownear function.
 
@@ -76,20 +76,20 @@ extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_howfar,EGSPP_HOWFAR)(
    this function sets \a tperp to the minimum perpendicular
    distance to a boundary for the geometry with index \a igeom.
 */
-extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_hownear,EGSPP_HOWNEAR)(
-    const EGS_I32 *igeom, const EGS_I32 *ireg,
-    const EGS_Float *x, const EGS_Float *y, const EGS_Float *z,
-    EGS_Float *tperp);
+extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_hownear, EGSPP_HOWNEAR)(
+    const EGS_I32* igeom, const EGS_I32* ireg,
+    const EGS_Float* x, const EGS_Float* y, const EGS_Float* z,
+    EGS_Float* tperp);
 
 /* \brief The is_where function.
 
    Given position \a x, \a y, \a z, this function sets \ireg
    to the region number in geometry \a igeom (or -1 if outside).
 */
-extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_is_where,EGSPP_IS_WHERE)(
-    const EGS_I32 *igeom,
-    const EGS_Float *x, const EGS_Float *y, const EGS_Float *z,
-    EGS_I32 *ireg);
+extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_is_where, EGSPP_IS_WHERE)(
+    const EGS_I32* igeom,
+    const EGS_Float* x, const EGS_Float* y, const EGS_Float* z,
+    EGS_I32* ireg);
 
 
 /* \brief Get the number of regions in a geometry.
@@ -97,23 +97,23 @@ extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_is_where,EGSPP_IS_WHERE)(
    Sets \a nreg to the number of regions in the geometry with index
    \a igeom.
 */
-extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_n_regions,EGSPP_N_REGIONS)(
-    const EGS_I32 *igeom, EGS_I32 *nreg);
+extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_n_regions, EGSPP_N_REGIONS)(
+    const EGS_I32* igeom, EGS_I32* nreg);
 
 /* \brief Get a description of a geometry.
 
    This function prints information about the geometry with index
    \a igeom using egsInformation().
 */
-extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_describe_geometry,EGSPP_DESCRIBE_GEOMETRY)(
-    const EGS_I32 *igeom);
+extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_describe_geometry, EGSPP_DESCRIBE_GEOMETRY)(
+    const EGS_I32* igeom);
 
 /* \brief Get the number of media defined in all egspp geometries
 
    This function sets \a nmed to the total number of media definied
    in all egspp geometries constructed so far.
 */
-extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_n_media,EGSPP_N_MEDIA)(EGS_I32 *nmed);
+extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_n_media, EGSPP_N_MEDIA)(EGS_I32* nmed);
 
 /* \brief Get the name of medium \a imed
 
@@ -121,7 +121,7 @@ extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_n_media,EGSPP_N_MEDIA)(EGS_I32 *n
   \a medname (length is \a mlength). Note that Fortran style medium indexing is
   used, i.e., first medium is 1 instead of 0.
 */
-extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_get_medium_name,EGSPP_GET_MEDIUM_NAME)(
-    const EGS_I32 *imed, char *medname, int mlength);
+extern __extc__ void EGS_EXPORT F77_OBJ_(egspp_get_medium_name, EGSPP_GET_MEDIUM_NAME)(
+    const EGS_I32* imed, char* medname, int mlength);
 
 #endif

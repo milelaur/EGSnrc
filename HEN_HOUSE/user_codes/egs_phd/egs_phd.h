@@ -42,7 +42,8 @@
 
 
 // application class
-class APP_EXPORT phd_app : public EGS_AdvancedApplication {
+class APP_EXPORT phd_app : public EGS_AdvancedApplication
+{
 
     int                 nbin;                  // number of bins to score spectra
     EGS_Float           Emin, Emax, Ebin;      // spectrum minimum, maximum, and bin size
@@ -51,14 +52,14 @@ class APP_EXPORT phd_app : public EGS_AdvancedApplication {
     double              Etot;                  // total energy that has entered the geometry
     int                 nreg;                  // number of regions in the geometry
 
-    EGS_ScoringArray    *score;                // scoring array for deposited energy
-    EGS_ScoringArray    *spectrum;             // scoring array for spectrum
+    EGS_ScoringArray*    score;                // scoring array for deposited energy
+    EGS_ScoringArray*    spectrum;             // scoring array for spectrum
     EGS_Float           initial_weight;        // the weight of the incident particle
 
 public:
 
     // constructor
-    phd_app(int argc, char **argv) :
+    phd_app(int argc, char** argv) :
         EGS_AdvancedApplication(argc, argv),
         nbin(100),
         Emin(0),
@@ -72,11 +73,14 @@ public:
 
 
     // destructor
-    ~phd_app() {
-        if (score) {
+    ~phd_app()
+    {
+        if (score)
+        {
             delete score;
         }
-        if (spectrum) {
+        if (spectrum)
+        {
             delete spectrum;
         }
     }
@@ -105,19 +109,19 @@ private:
     void resetCounter();
 
     // add simulation results
-    int addState(istream &data);
+    int addState(istream& data);
 
     // output the results of a simulation
     void outputResults();
 
     // get the current simulation result
-    void getCurrentResult(double &sum,
-                          double &sum2,
-                          double &norm,
-                          double &count);
+    void getCurrentResult(double& sum,
+                          double& sum2,
+                          double& norm,
+                          double& count);
 
     // write spectrum to file
-    void outputResponse(EGS_ScoringArray *spec);
+    void outputResponse(EGS_ScoringArray* spec);
 
     // start a new shower
     int startNewShower();

@@ -49,24 +49,26 @@ class QProcess;
 class PEGS_RunOutput;
 class QTableWidget;
 
-struct Element {
-  int   Z;
-  std::string symbol;
- float  aw;
- float  Iev;
- float  rho;
+struct Element
+{
+    int   Z;
+    std::string symbol;
+    float  aw;
+    float  Iev;
+    float  rho;
 };
 
 const int n_element = 100;
 
 extern Element element_data[];
 
-class TableEventHandler : public QObject {
+class TableEventHandler : public QObject
+{
     Q_OBJECT
 public:
-    TableEventHandler(QTableWidget *parent);
+    TableEventHandler(QTableWidget* parent);
 protected:
-    bool eventFilter(QObject *o, QEvent *e);
+    bool eventFilter(QObject* o, QEvent* e);
 private:
     QStringList itemCopy;
     QList<QTableWidgetSelectionRange> copyRange;
@@ -77,31 +79,35 @@ class ComboBoxDelegate : public QItemDelegate
     Q_OBJECT
 
 public:
-    ComboBoxDelegate( QObject *parent = 0) ;
-    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option,
-                          const QModelIndex &index) const;
-    void setEditorData(QWidget *editor, const QModelIndex &index) const;
-    void setModelData(QWidget *editor, QAbstractItemModel *model,
-                      const QModelIndex &index) const;
+    ComboBoxDelegate(QObject* parent = 0) ;
+    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option,
+                          const QModelIndex& index) const;
+    void setEditorData(QWidget* editor, const QModelIndex& index) const;
+    void setModelData(QWidget* editor, QAbstractItemModel* model,
+                      const QModelIndex& index) const;
 
-    void updateEditorGeometry(QWidget *editor,
-        const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    void updateEditorGeometry(QWidget* editor,
+                              const QStyleOptionViewItem& option, const QModelIndex& index) const;
 };
 
 class EGS_PegsPage: public QWidget, public Ui::EGS_PegsPage
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
 
-EGS_PegsPage(QWidget* parent): QWidget(parent){setupUi(this);init();};
-~EGS_PegsPage(){}
+    EGS_PegsPage(QWidget* parent): QWidget(parent)
+    {
+        setupUi(this);
+        init();
+    };
+    ~EGS_PegsPage() {}
 
 public slots:
 
     void initializeCompositionTable();
-    void densityIcruChanged( bool is_on);
-    void medtypeChanged( const QString &s );
+    void densityIcruChanged(bool is_on);
+    void medtypeChanged(const QString& s);
     void getDensityFile();
     void newDataFileChecked(bool b);
     void appendDataFileChecked(bool b);
@@ -114,7 +120,7 @@ public slots:
     void showHideDetails();
     void outputClosed();
     void launchReturned();
-    void setConfigReader(EGS_ConfigReader *r);
+    void setConfigReader(EGS_ConfigReader* r);
     void enable_gaspEdit();
 
 protected:
@@ -122,11 +128,11 @@ protected:
     void readDensityFile(QString dfile);
 private:
     bool output_is_active;
-    PEGS_RunOutput *run_output;
-    QProcess *pegs_process;
-    double ae,ap,ue,up;
+    PEGS_RunOutput* run_output;
+    QProcess* pegs_process;
+    double ae, ap, ue, up;
     int nelem;
-    EGS_ConfigReader *config_reader;
+    EGS_ConfigReader* config_reader;
     bool checkFields();
     bool frt_err;
     bool gasp_err;

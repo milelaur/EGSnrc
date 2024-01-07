@@ -34,22 +34,25 @@
 
 // for now, we just use the diffuse component of a GL type light.
 
-class EGS_Light {
+class EGS_Light
+{
 
 public:
 
-    EGS_Light(const EGS_Vector &pos, const EGS_Vector &color) :
+    EGS_Light(const EGS_Vector& pos, const EGS_Vector& color) :
         xl(pos), diffuse_c(color) {};
 
     // get the light reflection at vertex x with notmal n that has
     // the color d.
-    EGS_Vector getColor(const EGS_Vector &x, const EGS_Vector &n,
-                        const EGS_Vector &d_color) {
-        EGS_Vector L(xl-x);
-        EGS_Float Lxn = L*n;
-        if (Lxn > 0) {
+    EGS_Vector getColor(const EGS_Vector& x, const EGS_Vector& n,
+                        const EGS_Vector& d_color)
+    {
+        EGS_Vector L(xl - x);
+        EGS_Float Lxn = L * n;
+        if (Lxn > 0)
+        {
             Lxn /= L.length();
-            return diffuse_c.getScaled(d_color)*Lxn;
+            return diffuse_c.getScaled(d_color) * Lxn;
         }
         return EGS_Vector();
     };
@@ -64,12 +67,13 @@ protected:
 // for now, the ambient color of a material is the same as the diffuse
 // color and there is no specular component.
 
-class EGS_MaterialColor {
+class EGS_MaterialColor
+{
 
 public:
 
-    EGS_MaterialColor(EGS_Float Alpha=1) : d(EGS_Vector()), alpha(Alpha) {};
-    EGS_MaterialColor(const EGS_Vector &d_color, EGS_Float Alpha=1) :
+    EGS_MaterialColor(EGS_Float Alpha = 1) : d(EGS_Vector()), alpha(Alpha) {};
+    EGS_MaterialColor(const EGS_Vector& d_color, EGS_Float Alpha = 1) :
         d(d_color), alpha(Alpha) {};
 
     EGS_Vector d;        // material color as a r,g,b triplet, should be

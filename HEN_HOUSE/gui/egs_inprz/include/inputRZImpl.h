@@ -49,21 +49,21 @@
 
 #include <QTextStream>
 
-std::ifstream & operator >> ( std::ifstream & in, MInputRZ * r );
+std::ifstream& operator >> (std::ifstream& in, MInputRZ* r);
 template <class X>
-void get_col_content( const int &col, QTableWidget* t, std::vector<X> &result );
+void get_col_content(const int& col, QTableWidget* t, std::vector<X>& result);
 
 template <class X>
-void get_col_explicit( const int &col, QTableWidget* t, std::vector<X> &result, X def);
+void get_col_explicit(const int& col, QTableWidget* t, std::vector<X>& result, X def);
 
 template <class X>
-void update_table( std::vector<X> *v, int ini, int count, QTableWidget* t );
+void update_table(std::vector<X>* v, int ini, int count, QTableWidget* t);
 
 template <class X>
-std::vector<X> strip_repetitions( std::vector<X> v );
+std::vector<X> strip_repetitions(std::vector<X> v);
 
 template <class X>
-std::vector<X> del_element( std::vector<X> v, X e );
+std::vector<X> del_element(std::vector<X> v, X e);
 
 
 //!  Implementation of the Graphical User Interface class.
@@ -77,161 +77,161 @@ std::vector<X> del_element( std::vector<X> v, X e );
 */
 class inputRZImpl : public QWidget, public Ui::InputRZForm
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
 
-inputRZImpl( QWidget* parent, const char* name,
-             bool modal, Qt::WindowFlags f );
+    inputRZImpl(QWidget* parent, const char* name,
+                bool modal, Qt::WindowFlags f);
 
-~inputRZImpl();
+    ~inputRZImpl();
 
-QString confErrors;
-QString formErrors;
-QString openErrors;
-QString pegsErrors;
-QString geoErrors;
-QString previewErrors;
-QString EGSfileName;
-QString PEGSfileName;
-QString EGSdir;
-QString PEGSdir;
-QString SPECdir;
-QString CONFdir;
-QString RDISTdir;
-QString PHSPdir;
-QString HEN_HOUSE;
-QString HOME;
-QString EGS_HOME;
-QString EGS_CONFIG;
-QString GUI_HOME;
-QString usercodename;
-QString The_Other_PEGS;
-QString The_Other_Area;
+    QString confErrors;
+    QString formErrors;
+    QString openErrors;
+    QString pegsErrors;
+    QString geoErrors;
+    QString previewErrors;
+    QString EGSfileName;
+    QString PEGSfileName;
+    QString EGSdir;
+    QString PEGSdir;
+    QString SPECdir;
+    QString CONFdir;
+    QString RDISTdir;
+    QString PHSPdir;
+    QString HEN_HOUSE;
+    QString HOME;
+    QString EGS_HOME;
+    QString EGS_CONFIG;
+    QString GUI_HOME;
+    QString usercodename;
+    QString The_Other_PEGS;
+    QString The_Other_Area;
 
-bool egs_run_exists;
-bool pprocess_exists;
-bool previewRZ_exists;
-bool egs_dir_changed;
-bool pegs_dir_changed;
-bool egs_compile_exists;
-bool is_pegsless;
-UserCodeType usercode;
+    bool egs_run_exists;
+    bool pprocess_exists;
+    bool previewRZ_exists;
+    bool egs_dir_changed;
+    bool pegs_dir_changed;
+    bool egs_compile_exists;
+    bool is_pegsless;
+    UserCodeType usercode;
 
-bool    run_parallel;
-int     num_jobs;
-int     ini_job;
-QString queue;
+    bool    run_parallel;
+    int     num_jobs;
+    int     ini_job;
+    QString queue;
 
 //public access stuff for PEGSless inputs
-PEGSLESSInputs* Ppgls;
+    PEGSLESSInputs* Ppgls;
 
 // a push button for the beam source
 
-QPushButton* beamButton;
+    QPushButton* beamButton;
 
 // Application clipboard
-QClipboard *clipBoard;
+    QClipboard* clipBoard;
 
 //event filter for media definition combo box
-ComboEvents *im_events;
+    ComboEvents* im_events;
 
-v_string listMedia;
+    v_string listMedia;
 
-void Initialize();
-void UpDateInputRZForm(  const MInputRZ*    Input );
-void update_IOControl  ( const MIOInputs*   EGSio );
-void update_MCInputs   ( const MMCInputs*   EGSmc );
-void update_GEOInputs  ( const MGEOInputs*  EGSgeo );
-void update_PHDInputs  ( const MPHDInputs*  EGSphd );
-void update_CAVInputs  ( const MCAVInputs*  EGScav );
-void update_SRCInputs  ( const MSRCInputs*  EGSsrc );
-void update_MCTParam   ( const MMCPInputs*  EGSmcp );
-void update_PEGSLESSParam   ( const PEGSLESSInputs*  EGSpgls );
-void update_VarParam   ( const MVARInputs*  EGSvar );
-void update_PlotControl( const MPLOTInputs* EGSplot );
+    void Initialize();
+    void UpDateInputRZForm(const MInputRZ*    Input);
+    void update_IOControl(const MIOInputs*   EGSio);
+    void update_MCInputs(const MMCInputs*   EGSmc);
+    void update_GEOInputs(const MGEOInputs*  EGSgeo);
+    void update_PHDInputs(const MPHDInputs*  EGSphd);
+    void update_CAVInputs(const MCAVInputs*  EGScav);
+    void update_SRCInputs(const MSRCInputs*  EGSsrc);
+    void update_MCTParam(const MMCPInputs*  EGSmcp);
+    void update_PEGSLESSParam(const PEGSLESSInputs*  EGSpgls);
+    void update_VarParam(const MVARInputs*  EGSvar);
+    void update_PlotControl(const MPLOTInputs* EGSplot);
 
-void updateConfiguration( const QString & conf );
+    void updateConfiguration(const QString& conf);
 
-void clear_table( QTableWidget* t );
-void clear_col( QTableWidget* t, int col);
-int  Add_New_Item( const char* ItemName, QComboBox* cb );
-int  Get_Item_Index( const char* ItemName, QComboBox* cb );
-void validate_combo( const char* entry, QString error, QComboBox* cb );
-void validate_radio( const char* entry, QString error, int count, QRadioButton **r );
-void SetValidator( );
-void rearrange_media( MGEOInputs* geo, v_string* med );
+    void clear_table(QTableWidget* t);
+    void clear_col(QTableWidget* t, int col);
+    int  Add_New_Item(const char* ItemName, QComboBox* cb);
+    int  Get_Item_Index(const char* ItemName, QComboBox* cb);
+    void validate_combo(const char* entry, QString error, QComboBox* cb);
+    void validate_radio(const char* entry, QString error, int count, QRadioButton** r);
+    void SetValidator();
+    void rearrange_media(MGEOInputs* geo, v_string* med);
 
-void open();
-MInputRZ*       GetInputRZ();
-MTitle*         GetTitle();
-MIOInputs*      GetIO();
-MMCInputs*      GetMC();
-MGEOInputs*     GetGEO();
-MPHDInputs*     GetPHD();
-MCAVInputs*     GetCAV();
-MSRCInputs*     GetSRC();
-MMCPInputs*     GetMCP();
-PEGSLESSInputs* GetPEGSLESS();
-MVARInputs*     GetVAR();
-MPLOTInputs*    GetPLOT();
-void save();
+    void open();
+    MInputRZ*       GetInputRZ();
+    MTitle*         GetTitle();
+    MIOInputs*      GetIO();
+    MMCInputs*      GetMC();
+    MGEOInputs*     GetGEO();
+    MPHDInputs*     GetPHD();
+    MCAVInputs*     GetCAV();
+    MSRCInputs*     GetSRC();
+    MMCPInputs*     GetMCP();
+    PEGSLESSInputs* GetPEGSLESS();
+    MVARInputs*     GetVAR();
+    MPLOTInputs*    GetPLOT();
+    void save();
 
 
-int TotalTextLines( const QString& fname);
+    int TotalTextLines(const QString& fname);
 
-void update_mediaTable( const MGEOInputs* EGSgeo );
-void fill_media_table( const MGEOInputs* EGSgeo );
-void print_delimeter( const char* boundary , const char* section, QTextStream &t );
-void SetInitialDir();
-void DeactivateTable( QTableWidget* table );
-void InitializeTwoColumnTable( QTableWidget* table);
-void InitializeThreeColumnTable( QTableWidget* table, const QString& rvalue);
-void InitializeTable( QTableWidget* t, const QStringList& s);
-void InitializeTable( QTableWidget* t, const QStringList& s, v_float frac);
-void InitializeTable( QTableWidget* t, const QString& s0, const QString& s1);
-void InitializeTable( QTableWidget* t, const QString& s0, const QString& s1, const QString& s2);
+    void update_mediaTable(const MGEOInputs* EGSgeo);
+    void fill_media_table(const MGEOInputs* EGSgeo);
+    void print_delimeter(const char* boundary, const char* section, QTextStream& t);
+    void SetInitialDir();
+    void DeactivateTable(QTableWidget* table);
+    void InitializeTwoColumnTable(QTableWidget* table);
+    void InitializeThreeColumnTable(QTableWidget* table, const QString& rvalue);
+    void InitializeTable(QTableWidget* t, const QStringList& s);
+    void InitializeTable(QTableWidget* t, const QStringList& s, v_float frac);
+    void InitializeTable(QTableWidget* t, const QString& s0, const QString& s1);
+    void InitializeTable(QTableWidget* t, const QString& s0, const QString& s1, const QString& s2);
 
-void InitializePhotonXSection();
-void InitializeEIIXSection();
+    void InitializePhotonXSection();
+    void InitializeEIIXSection();
 
-UserCodeType GetUserCode();
+    UserCodeType GetUserCode();
 
-QString  getExecutable();
-QString  readVarFromConf( const QString& var );
-QString  expandEnvVar( const QString& dirStr );
-QString  find_usercode_name( const QString& dir );
-QString  get_initial_usercode_area( QString* name );
-QString  GetCurrentDir( const QString& rCodeName, const QString& rHome, const QString& rHenHouse );
-QString  GetPEGSDir( const QString& rCodeName, const QString& rHome, const QString& rHenHouse );
-QString  GetUserCodeDir( const QString& rCodeName);
-QString  TextRadioBChecked( int count, QRadioButton **r );
-QString  FToQStr( float Item );
-QString  IntToQStr( int Item );
-QStringList StrListToQStrList( v_string Item );
+    QString  getExecutable();
+    QString  readVarFromConf(const QString& var);
+    QString  expandEnvVar(const QString& dirStr);
+    QString  find_usercode_name(const QString& dir);
+    QString  get_initial_usercode_area(QString* name);
+    QString  GetCurrentDir(const QString& rCodeName, const QString& rHome, const QString& rHenHouse);
+    QString  GetPEGSDir(const QString& rCodeName, const QString& rHome, const QString& rHenHouse);
+    QString  GetUserCodeDir(const QString& rCodeName);
+    QString  TextRadioBChecked(int count, QRadioButton** r);
+    QString  FToQStr(float Item);
+    QString  IntToQStr(int Item);
+    QStringList StrListToQStrList(v_string Item);
 
-v_int    assign_medium_number(v_string med_list, v_string med_entry);
-v_string getPEGSMedia( const QString& fname );
-v_string getPEGSLESSMedia();
-void     update_from_user_area();
-void     update_from_data_area();
-void     updateMediaLists();
-void     update_files( const QString & rDirName, QComboBox* cb, const QString & rFilter );
-void     update_EGSdir( const QString& newDir );
-void     update_caption( const QString& str );
+    v_int    assign_medium_number(v_string med_list, v_string med_entry);
+    v_string getPEGSMedia(const QString& fname);
+    v_string getPEGSLESSMedia();
+    void     update_from_user_area();
+    void     update_from_data_area();
+    void     updateMediaLists();
+    void     update_files(const QString& rDirName, QComboBox* cb, const QString& rFilter);
+    void     update_EGSdir(const QString& newDir);
+    void     update_caption(const QString& str);
 
-bool pegs_is_ok( QString fname );
-bool pegsless_is_ok();
-bool IsByRegionsEnabled( QComboBox* cb, QTableWidget* table );
-bool IsByRegionsEnabled( QCheckBox* chk, QTableWidget* table );
-bool IsByRegionsEnabled( QRadioButton* rbOn, QRadioButton* rbOff, QTableWidget* table );
-bool configLibExists();
-void SetInpfileName( QString inp_name );
-void update_conf_files();
+    bool pegs_is_ok(QString fname);
+    bool pegsless_is_ok();
+    bool IsByRegionsEnabled(QComboBox* cb, QTableWidget* table);
+    bool IsByRegionsEnabled(QCheckBox* chk, QTableWidget* table);
+    bool IsByRegionsEnabled(QRadioButton* rbOn, QRadioButton* rbOff, QTableWidget* table);
+    bool configLibExists();
+    void SetInpfileName(QString inp_name);
+    void update_conf_files();
 
-void reset_mediaTable();
-void reset_customFFTable();
-bool GetMedFromDCfile(QString f);
+    void reset_mediaTable();
+    void reset_customFFTable();
+    bool GetMedFromDCfile(QString f);
 
 public slots:
     virtual void activate_fluence_table();
@@ -284,36 +284,36 @@ public slots:
     virtual void show_help();
     virtual void show_about();
     virtual void checkErrors();
-    virtual void checkErrors( const QString& fun );
-    virtual void cleanChecked( bool status );
+    virtual void checkErrors(const QString& fun);
+    virtual void cleanChecked(bool status);
     virtual void change_pegs4_name();
     virtual void change_input_file();
     virtual void change_config_file();
-    virtual void EGSFileNameChanged( const QString& str );
-    virtual void PEGSFileNameChanged( const QString& str );
-    virtual void update_range_rejection( );
-    virtual void update_photon_forcing( );
+    virtual void EGSFileNameChanged(const QString& str);
+    virtual void PEGSFileNameChanged(const QString& str);
+    virtual void update_range_rejection();
+    virtual void update_photon_forcing();
     virtual void update_usercode_open();
     virtual void setupDefaultSettingsEditor();
     virtual void configure();
-            void print();
-            void setupBeamSource();
-            void getBeamSource();
-            void updateBeamSource(const QString& uc,
-                                  const QString& pegs);
+    void print();
+    void setupBeamSource();
+    void getBeamSource();
+    void updateBeamSource(const QString& uc,
+                          const QString& pegs);
 
-            void checkConfigLib();
-            void checkExecutionAbility();
-            void checkCompilationAbility();
-            void checkPreviewRZ();
-            void checkPrintAbility();
-            void caught_errors();
-            bool isTclTkInstalled();
+    void checkConfigLib();
+    void checkExecutionAbility();
+    void checkCompilationAbility();
+    void checkPreviewRZ();
+    void checkPrintAbility();
+    void caught_errors();
+    bool isTclTkInstalled();
 
 protected:
-  bool        eventFilter(QObject *obj, QEvent *ev);
-  QStringList itemCopy;
-  QList<QTableWidgetSelectionRange> copyRange;
+    bool        eventFilter(QObject* obj, QEvent* ev);
+    QStringList itemCopy;
+    QList<QTableWidgetSelectionRange> copyRange;
 
 private:
 

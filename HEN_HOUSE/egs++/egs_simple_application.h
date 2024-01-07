@@ -58,7 +58,8 @@ class EGS_Input;
   A better way of developing C++ user codes for EGSnrc is to derive
   from the EGS_AdvancedApplication class.
 */
-class APP_EXPORT EGS_SimpleApplication {
+class APP_EXPORT EGS_SimpleApplication
+{
 
 public:
 
@@ -80,7 +81,7 @@ public:
     Finally, a check is made that the cross section data files cover
     the energy range needed based on the maximum energy of the source.
     */
-    EGS_SimpleApplication(int argc, char **argv);
+    EGS_SimpleApplication(int argc, char** argv);
 
     /*! Destructor.
 
@@ -94,17 +95,20 @@ public:
     //
     /*! \brief See the EGSnrc \link EGS_BaseGeometry::howfar() howfar
       geometry specification \endlink */
-    inline int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u,
-                      EGS_Float &t, int *newmed) {
-        return g->howfar(ireg,x,u,t,newmed);
+    inline int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u,
+                      EGS_Float& t, int* newmed)
+    {
+        return g->howfar(ireg, x, u, t, newmed);
     };
     /*! \brief See the EGSnrc \link EGS_BaseGeometry::hownear() hownear
       geometry specification \endlink */
-    inline EGS_Float hownear(int ireg,const EGS_Vector &x) {
-        return g->hownear(ireg,x);
+    inline EGS_Float hownear(int ireg, const EGS_Vector& x)
+    {
+        return g->hownear(ireg, x);
     };
     /*! \brief Get the medium index in region \a ireg */
-    inline int getMedium(int ireg) {
+    inline int getMedium(int ireg)
+    {
         return g->medium(ireg);
     };
 
@@ -118,7 +122,8 @@ public:
     ausgab() is called with a corresponding integer argument on various
     events during the simulation (see PIRS-701).
     */
-    virtual int ausgab(int) {
+    virtual int ausgab(int)
+    {
         return 0;
     };
 
@@ -152,7 +157,8 @@ public:
     /*! \brief Set the number of times the shower loop in run() reports
       the progress of the simulation to \a nprog.
      */
-    void setNProgress(int nprog) {
+    void setNProgress(int nprog)
+    {
         nreport = nprog;
     };
 
@@ -182,25 +188,25 @@ public:
     //
     /*! \brief Fill the array pointed to by \a r with \a n random numbers.
      */
-    void fillRandomArray(int n, EGS_Float *r);
+    void fillRandomArray(int n, EGS_Float* r);
 
     //
     // ******** get various directories and file names
     //
     /*! Get the \c EGS_HOME directory */
-    const char *egsHome() const;
+    const char* egsHome() const;
     /*! Get the \c HEN_HOUSE directory */
-    const char *henHouse() const;
+    const char* henHouse() const;
     /*! Get the name of the PEGS file */
-    const char *pegsFile() const;
+    const char* pegsFile() const;
     /*! Get the name of the input file */
-    const char *inputFile() const;
+    const char* inputFile() const;
     /*! Get the name of the output file */
-    const char *outputFile() const;
+    const char* outputFile() const;
     /*! Get the name of the user code */
-    const char *userCode() const;
+    const char* userCode() const;
     /*! Get the working directory */
-    const char *workDir() const;
+    const char* workDir() const;
 
     //
     // ******** the parallel run index and number of parallel jobs
@@ -214,10 +220,10 @@ protected:
 
     EGS_I64             ncase;    //!< Number of showers to simulate
     int                 nreport;  //!< How often to report the progress
-    EGS_BaseGeometry    *g;       //!< The simulation geometry
-    EGS_BaseSource      *source;  //!< The particle source
-    EGS_RandomGenerator *rndm;    //!< The random number generator.
-    EGS_Input           *input;   //!< The input found in the input file.
+    EGS_BaseGeometry*    g;       //!< The simulation geometry
+    EGS_BaseSource*      source;  //!< The particle source
+    EGS_RandomGenerator* rndm;    //!< The random number generator.
+    EGS_Input*           input;   //!< The input found in the input file.
     double              sum_E,  //!< sum of E*wt of particles from the source
                         sum_E2, //!< sum of E*E*wt of particles from the source
                         sum_w,  //!< sum of weights

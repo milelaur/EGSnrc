@@ -49,37 +49,37 @@ using namespace std;
 
 #ifdef WIN32
 
-    #ifdef BUILD_BEAM_SOURCE_DLL
-        #define EGS_BEAM_SOURCE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_BEAM_SOURCE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_BEAM_SOURCE_LOCAL
+#ifdef BUILD_BEAM_SOURCE_DLL
+#define EGS_BEAM_SOURCE_EXPORT __declspec(dllexport)
+#else
+#define EGS_BEAM_SOURCE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_BEAM_SOURCE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_BEAM_SOURCE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_BEAM_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_BEAM_SOURCE_EXPORT
-        #define EGS_BEAM_SOURCE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_BEAM_SOURCE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_BEAM_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_BEAM_SOURCE_EXPORT
+#define EGS_BEAM_SOURCE_LOCAL
+#endif
 
 #endif
 
 class EGS_Library;
-typedef void (*InitFunction)(const int *, const int *, const int *,
-                             const char *, const char *, const char *,
-                             const char *, const char *, int,int,int,int,int);
+typedef void (*InitFunction)(const int*, const int*, const int*,
+                             const char*, const char*, const char*,
+                             const char*, const char*, int, int, int, int, int);
 typedef void (*FinishFunction)();
-typedef void (*SampleFunction)(EGS_Float *, EGS_Float *, EGS_Float *,
-                               EGS_Float *, EGS_Float *, EGS_Float *, EGS_Float *, EGS_Float *,
-                               EGS_I32 *, EGS_I32 *, EGS_I64 *, EGS_I32 *);
-typedef void (*MotionSampleFunction)(EGS_Float *, EGS_Float *, EGS_Float *,
-                                     EGS_Float *, EGS_Float *, EGS_Float *, EGS_Float *, EGS_Float *,
-                                     EGS_I32 *, EGS_I32 *, EGS_I64 *, EGS_I32 *, EGS_Float *);
-typedef void (*MaxEnergyFunction)(EGS_Float *);
+typedef void (*SampleFunction)(EGS_Float*, EGS_Float*, EGS_Float*,
+                               EGS_Float*, EGS_Float*, EGS_Float*, EGS_Float*, EGS_Float*,
+                               EGS_I32*, EGS_I32*, EGS_I64*, EGS_I32*);
+typedef void (*MotionSampleFunction)(EGS_Float*, EGS_Float*, EGS_Float*,
+                                     EGS_Float*, EGS_Float*, EGS_Float*, EGS_Float*, EGS_Float*,
+                                     EGS_I32*, EGS_I32*, EGS_I64*, EGS_I32*, EGS_Float*);
+typedef void (*MaxEnergyFunction)(EGS_Float*);
 
 /*! \brief A BEAM simulation source
 
@@ -134,53 +134,65 @@ directory).
 \endverbatim
 \image html egs_beam_source.png "A simple example"
 */
-class EGS_BEAM_SOURCE_EXPORT EGS_BeamSource : public EGS_BaseSource {
+class EGS_BEAM_SOURCE_EXPORT EGS_BeamSource : public EGS_BaseSource
+{
 
 public:
 
     /*! \brief Create a BEAM simulation source from the input \a inp */
-    EGS_BeamSource(EGS_Input *, EGS_ObjectFactory *f=0);
+    EGS_BeamSource(EGS_Input*, EGS_ObjectFactory* f = 0);
     ~EGS_BeamSource();
 
-    EGS_I64 getNextParticle(EGS_RandomGenerator *rndm,
-                            int &q, int &latch, EGS_Float &E, EGS_Float &wt,
-                            EGS_Vector &x, EGS_Vector &u);
-    EGS_Float getEmax() const {
+    EGS_I64 getNextParticle(EGS_RandomGenerator* rndm,
+                            int& q, int& latch, EGS_Float& E, EGS_Float& wt,
+                            EGS_Vector& x, EGS_Vector& u);
+    EGS_Float getEmax() const
+    {
         return Emax;
     };
-    EGS_Float getFluence() const {
+    EGS_Float getFluence() const
+    {
         return count;
     };
-    EGS_Float getMu() {
-        if (mu_stored) {
+    EGS_Float getMu()
+    {
+        if (mu_stored)
+        {
             return mu;
         }
-        else {
+        else
+        {
             return -1.0;
         }
     };
-    bool storeState(ostream &data) const {
-        return egsStoreI64(data,count);
+    bool storeState(ostream& data) const
+    {
+        return egsStoreI64(data, count);
     };
-    bool setState(istream &data) {
-        return egsGetI64(data,count);
+    bool setState(istream& data)
+    {
+        return egsGetI64(data, count);
     };
-    bool addState(istream &data) {
+    bool addState(istream& data)
+    {
         EGS_I64 tmp;
-        bool res = egsGetI64(data,tmp);
+        bool res = egsGetI64(data, tmp);
         count += tmp;
         return res;
     };
-    void resetCounter() {
+    void resetCounter()
+    {
         count = 0;
     };
 
-    bool isValid() const {
+    bool isValid() const
+    {
         return is_valid;
     };
 
     void setCutout(EGS_Float xmin, EGS_Float xmax, EGS_Float ymin,
-                   EGS_Float ymax) {
+                   EGS_Float ymax)
+    {
         Xmin = xmin;
         Xmax = xmax;
         Ymin = ymin;
@@ -189,7 +201,7 @@ public:
 
 protected:
 
-    EGS_Library    *lib;    //!< The BEAMnrc user code library
+    EGS_Library*    lib;    //!< The BEAMnrc user code library
     FinishFunction finish;  /*!< The function to be called at the end of the
                                  simulation */
     SampleFunction sample;  //!< The function that returns the next particle
@@ -221,8 +233,8 @@ protected:
     // stored info for first particle read in
     // need this because we now query the data to see
     // if mu index is passed by the source
-    EGS_Float tei,txi,tyi,tzi,tui,tvi,twi,twti,tmui;
-    int tqi,tlatchi,tiphati;
+    EGS_Float tei, txi, tyi, tzi, tui, tvi, twi, twti, tmui;
+    int tqi, tlatchi, tiphati;
     EGS_I64     counti;
     bool  use_iparticle; // true if we want to use the above data instead
     // of calling motionsample

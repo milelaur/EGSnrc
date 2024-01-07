@@ -37,9 +37,10 @@
 #include "egs_box.h"
 #include "egs_input.h"
 
-void EGS_Box::printInfo() const {
+void EGS_Box::printInfo() const
+{
     EGS_BaseGeometry::printInfo();
-    egsInformation(" box size = %g %g %g\n",ax,ay,az);
+    egsInformation(" box size = %g %g %g\n", ax, ay, az);
     egsInformation("=======================================================\n");
 }
 
@@ -54,33 +55,41 @@ static char EGS_BOX_LOCAL ebox_key1[] = "box size";
 
 extern "C" {
 
-    EGS_BOX_EXPORT EGS_BaseGeometry *createGeometry(EGS_Input *input) {
-        if (!input) {
-            egsWarning(ebox_message1,ebox_message2);
+    EGS_BOX_EXPORT EGS_BaseGeometry* createGeometry(EGS_Input* input)
+    {
+        if (!input)
+        {
+            egsWarning(ebox_message1, ebox_message2);
             return 0;
         }
         vector<EGS_Float> s;
-        int err = input->getInput(ebox_key1,s);
-        if (err) {
-            egsWarning(ebox_message1,ebox_message3);
+        int err = input->getInput(ebox_key1, s);
+        if (err)
+        {
+            egsWarning(ebox_message1, ebox_message3);
             return 0;
         }
-        EGS_AffineTransform *t = EGS_AffineTransform::getTransformation(input);
-        EGS_Box *result;
-        if (s.size() == 1) {
-            result = new EGS_Box(s[0],t);
+        EGS_AffineTransform* t = EGS_AffineTransform::getTransformation(input);
+        EGS_Box* result;
+        if (s.size() == 1)
+        {
+            result = new EGS_Box(s[0], t);
         }
-        else if (s.size() == 3) {
-            result = new EGS_Box(s[0],s[1],s[2],t);
+        else if (s.size() == 3)
+        {
+            result = new EGS_Box(s[0], s[1], s[2], t);
         }
-        else {
-            egsWarning(ebox_message1,ebox_message4);
-            if (t) {
+        else
+        {
+            egsWarning(ebox_message1, ebox_message4);
+            if (t)
+            {
                 delete t;
             }
             return 0;
         }
-        if (t) {
+        if (t)
+        {
             delete t;
         }
         result->setName(input);

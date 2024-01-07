@@ -46,101 +46,110 @@ class EGS_PrivateVisualizer;
 
 
 // Clipping plane class
-class EGS_ClippingPlane {
+class EGS_ClippingPlane
+{
 public:
     EGS_Vector a;
     EGS_Float  d;
 
-    EGS_ClippingPlane() : a(0.,0.,0.), d(0.) {}
-    EGS_ClippingPlane(const EGS_Vector &A, EGS_Float D) : a(A), d(D) {
-        EGS_Float norm = 1/a.length();
+    EGS_ClippingPlane() : a(0., 0., 0.), d(0.) {}
+    EGS_ClippingPlane(const EGS_Vector& A, EGS_Float D) : a(A), d(D)
+    {
+        EGS_Float norm = 1 / a.length();
         d *= norm;
         a *= norm;
     };
-    bool isInside(const EGS_Vector &x) const {
-        return (x*a >= d);
+    bool isInside(const EGS_Vector& x) const
+    {
+        return (x * a >= d);
     };
-    bool howfar(const EGS_Vector &x, const EGS_Vector &u, EGS_Float &t) const {
-        EGS_Float xp = a*x, up = a*u;
-        if ((xp >= d && up < 0) || (xp < d && up > 0)) {
-            EGS_Float tt = (d-xp)/up;
-            if (tt <= t) {
+    bool howfar(const EGS_Vector& x, const EGS_Vector& u, EGS_Float& t) const
+    {
+        EGS_Float xp = a * x, up = a * u;
+        if ((xp >= d && up < 0) || (xp < d && up > 0))
+        {
+            EGS_Float tt = (d - xp) / up;
+            if (tt <= t)
+            {
                 t = tt;
                 return true;
             }
         }
         return false;
     };
-    EGS_Float hownear(const EGS_Vector &x) const {
-        return fabs(x*a-d);
+    EGS_Float hownear(const EGS_Vector& x) const
+    {
+        return fabs(x * a - d);
     };
-    const EGS_Vector &getNormal() const {
+    const EGS_Vector& getNormal() const
+    {
         return a;
     };
 };
 
 
 // GeometryVisualizer class
-class EGS_GeometryVisualizer {
+class EGS_GeometryVisualizer
+{
 
 public:
 
     EGS_GeometryVisualizer();
     ~EGS_GeometryVisualizer();
 
-    vector<size_t> loadTracksData(const char *fname);
+    vector<size_t> loadTracksData(const char* fname);
 
-    void setProjection(const EGS_Vector &camera_pos,
-                       const EGS_Vector &camera_look_at, EGS_Float distance,
+    void setProjection(const EGS_Vector& camera_pos,
+                       const EGS_Vector& camera_look_at, EGS_Float distance,
                        EGS_Float size_x, EGS_Float size_y);
-    void setProjection(const EGS_Vector &camera_pos,
-                       const EGS_Vector &Xo_screen, const EGS_Vector &V1_screen,
-                       const EGS_Vector &V2_screen, EGS_Float size_x, EGS_Float size_y);
+    void setProjection(const EGS_Vector& camera_pos,
+                       const EGS_Vector& Xo_screen, const EGS_Vector& V1_screen,
+                       const EGS_Vector& V2_screen, EGS_Float size_x, EGS_Float size_y);
 
-    void setGlobalAmbientLight(const EGS_Vector &light);
+    void setGlobalAmbientLight(const EGS_Vector& light);
 
-    void addLight(const EGS_Vector &pos, const EGS_Vector &color);
-    void addLight(EGS_Light *l);
-    void setLight(int light, const EGS_Vector &pos, const EGS_Vector &color);
-    void setLight(int light, EGS_Light *l);
+    void addLight(const EGS_Vector& pos, const EGS_Vector& color);
+    void addLight(EGS_Light* l);
+    void setLight(int light, const EGS_Vector& pos, const EGS_Vector& color);
+    void setLight(int light, EGS_Light* l);
 
-    void addClippingPlane(EGS_ClippingPlane *p);
-    void addClippingPlane(const EGS_Vector &A, EGS_Float D);
+    void addClippingPlane(EGS_ClippingPlane* p);
+    void addClippingPlane(const EGS_Vector& A, EGS_Float D);
     void clearClippingPlanes();
 
-    void setMaterialColor(int imed, const EGS_MaterialColor &Mat);
-    void setMaterialColor(int imed, const EGS_Vector &d_color,
-                          EGS_Float Alpha=1);
-    void setShowRegions(const vector<bool> &show_regions);
+    void setMaterialColor(int imed, const EGS_MaterialColor& Mat);
+    void setMaterialColor(int imed, const EGS_Vector& d_color,
+                          EGS_Float Alpha = 1);
+    void setShowRegions(const vector<bool>& show_regions);
     void setAllowRegionSelection(bool allow);
-    void setScoreColors(const unordered_map<size_t, EGS_Vector> &scoreColor);
+    void setScoreColors(const unordered_map<size_t, EGS_Vector>& scoreColor);
     void setDoseTransparency(EGS_Float doseTransparency);
-    void setTrackIndices(const vector<size_t> &trackIndices);
+    void setTrackIndices(const vector<size_t>& trackIndices);
 
     //EGS_Vector *renderImage(EGS_BaseGeometry *, int xsize, int ysize);
-    bool renderImage(EGS_BaseGeometry *, int nx, int ny, EGS_Vector *image, int *abort_location=NULL);
-    bool renderTracks(int nx, int ny, EGS_Vector *image, int *abort_location=NULL);
-    EGS_Vector getColor(const EGS_Vector &x, EGS_BaseGeometry *g, const EGS_Float axis_distance, const EGS_Float track_alpha);
-    void getRegions(const EGS_Vector &x, EGS_BaseGeometry *g, int *regions, EGS_Vector *colors, int maxreg, EGS_Vector &hitCoord, const unordered_map<size_t, EGS_Float> &score, EGS_Float &hitScore);
-    void getFirstHit(const EGS_Vector &x, EGS_BaseGeometry *g, EGS_Vector &hitCoord);
+    bool renderImage(EGS_BaseGeometry*, int nx, int ny, EGS_Vector* image, int* abort_location = NULL);
+    bool renderTracks(int nx, int ny, EGS_Vector* image, int* abort_location = NULL);
+    EGS_Vector getColor(const EGS_Vector& x, EGS_BaseGeometry* g, const EGS_Float axis_distance, const EGS_Float track_alpha);
+    void getRegions(const EGS_Vector& x, EGS_BaseGeometry* g, int* regions, EGS_Vector* colors, int maxreg, EGS_Vector& hitCoord, const unordered_map<size_t, EGS_Float>& score, EGS_Float& hitScore);
+    void getFirstHit(const EGS_Vector& x, EGS_BaseGeometry* g, EGS_Vector& hitCoord);
 
-    void setDisplayColors(const vector<EGS_Vector> &displayColors);
-    void setEnergyScaling(const bool &scaling);
+    void setDisplayColors(const vector<EGS_Vector>& displayColors);
+    void setEnergyScaling(const bool& scaling);
 
 
     // region picking
     void regionPick(int x, int y);
 
 #ifdef HAVE_PNG
-    bool makePngImage(EGS_BaseGeometry *, int xsize, int ysize,
-                      const char *fname);
+    bool makePngImage(EGS_BaseGeometry*, int xsize, int ysize,
+                      const char* fname);
 #endif
 
     void setParticleVisibility(int particle, bool vis);
 
 private:
 
-    EGS_PrivateVisualizer  *p;
+    EGS_PrivateVisualizer*  p;
 
 };
 

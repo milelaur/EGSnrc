@@ -34,26 +34,26 @@
 #include <QPushButton>
 
 //qt3to4 -- BW
-MyRichText::MyRichText( QWidget *parent, const char *name )
+MyRichText::MyRichText(QWidget* parent, const char* name)
 //    : Q3VBox( parent, name )
-      : QWidget(parent)
+    : QWidget(parent)
 {
     //setMargin( 5 );
 
     //qt3to4 -- BW
     //view = new Q3TextView( this );
     view = new QTextEdit(this);
-    view->setText( name );
-    view->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
-    view->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
+    view->setText(name);
+    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     //Q3HBox *buttons = new Q3HBox( this );
     QWidget* bbox = new QWidget;
-    QHBoxLayout *buttons = new QHBoxLayout( bbox );
+    QHBoxLayout* buttons = new QHBoxLayout(bbox);
     //buttons->setMargin( 5 );
-    bClose = new QPushButton( "&Close" );
+    bClose = new QPushButton("&Close");
     buttons->addWidget(bClose);
 
-    connect( bClose, SIGNAL( clicked() ), parent, SLOT( close() ) );
+    connect(bClose, SIGNAL(clicked()), parent, SLOT(close()));
 
     //qt3to4 -- BW
     //now arrange things vertically
@@ -64,5 +64,5 @@ MyRichText::MyRichText( QWidget *parent, const char *name )
 
 MyRichText::~MyRichText()
 {
-   zap(view);
+    zap(view);
 }

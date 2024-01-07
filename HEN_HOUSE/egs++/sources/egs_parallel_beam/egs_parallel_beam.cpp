@@ -37,43 +37,51 @@
 #include "egs_parallel_beam.h"
 #include "egs_input.h"
 
-EGS_ParallelBeam::EGS_ParallelBeam(EGS_Input *input,
-                                   EGS_ObjectFactory *f) : EGS_BaseSimpleSource(input,f), shape(0), uo(0,0,1) {
+EGS_ParallelBeam::EGS_ParallelBeam(EGS_Input* input,
+                                   EGS_ObjectFactory* f) : EGS_BaseSimpleSource(input, f), shape(0), uo(0, 0, 1)
+{
     vector<EGS_Float> dir;
-    if (!input->getInput("direction",dir)) {
+    if (!input->getInput("direction", dir))
+    {
         if (dir.size() != 3) egsWarning("EGS_ParallelBeam: you must input"
                                             " 3 numbers in the 'direction' input\n"
-                                            "  but I got %d => ignoring the input\n",dir.size());
-        else {
+                                            "  but I got %d => ignoring the input\n", dir.size());
+        else
+        {
             uo.x = dir[0];
             uo.y = dir[1];
             uo.z = dir[2];
             EGS_Float norm = uo.length();
-            if (norm < epsilon) {
+            if (norm < epsilon)
+            {
                 egsWarning("EGS_ParallelBeam: the length of the direction"
                            " vector can not be zero => ignoring your input\n");
                 uo.x = 0;
                 uo.y = 0;
                 uo.z = 1;
             }
-            else {
-                uo *= (1./norm);
+            else
+            {
+                uo *= (1. / norm);
             }
         }
     }
-    EGS_Input *ishape = input->takeInputItem("shape");
-    if (ishape) {
+    EGS_Input* ishape = input->takeInputItem("shape");
+    if (ishape)
+    {
         //egsWarning("EGS_ParallelBeam: trying to construct the shape\n");
         shape = EGS_BaseShape::createShape(ishape);
         delete ishape;
     }
-    if (!shape) {
+    if (!shape)
+    {
         string sname;
-        int err = input->getInput("shape name",sname);
+        int err = input->getInput("shape name", sname);
         if (err)
             egsWarning("EGS_ParallelBeam: missing/wrong inline shape "
                        "definition and missing wrong 'shape name' input\n");
-        else {
+        else
+        {
             shape = EGS_BaseShape::getShape(sname);
             if (!shape) egsWarning("EGS_ParallelBeam: a shape named %s"
                                        " does not exist\n");
@@ -82,26 +90,33 @@ EGS_ParallelBeam::EGS_ParallelBeam(EGS_Input *input,
     setUp();
 }
 
-void EGS_ParallelBeam::setUp() {
+void EGS_ParallelBeam::setUp()
+{
     otype = "EGS_ParallelBeam";
-    if (!isValid()) {
+    if (!isValid())
+    {
         description = "Invalid parallel beam";
     }
-    else {
+    else
+    {
         description = "Parallel beam from a shape of type ";
         description += shape->getObjectType();
         description += " with ";
         description += s->getType();
-        if (q == -1) {
+        if (q == -1)
+        {
             description += ", electrons";
         }
-        else if (q == 0) {
+        else if (q == 0)
+        {
             description += ", photons";
         }
-        else if (q == 1) {
+        else if (q == 1)
+        {
             description += ", positrons";
         }
-        else {
+        else
+        {
             description += ", unknown particle type";
         }
     }
@@ -109,9 +124,10 @@ void EGS_ParallelBeam::setUp() {
 
 extern "C" {
 
-    EGS_PARALLEL_BEAM_EXPORT EGS_BaseSource *createSource(EGS_Input *input,
-            EGS_ObjectFactory *f) {
-        return createSourceTemplate<EGS_ParallelBeam>(input,f,"parallel beam");
+    EGS_PARALLEL_BEAM_EXPORT EGS_BaseSource* createSource(EGS_Input* input,
+        EGS_ObjectFactory* f)
+    {
+        return createSourceTemplate<EGS_ParallelBeam>(input, f, "parallel beam");
     }
 
 }

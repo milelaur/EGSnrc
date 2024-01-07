@@ -41,89 +41,111 @@
 
 
 /*! A very simple, lightweight container. */
-template <class T> class EGS_EXPORT EGS_SimpleContainer {
+template <class T> class EGS_EXPORT EGS_SimpleContainer
+{
 
 public:
 
     EGS_SimpleContainer() : n_have(0), n_tot(0), n_start(4), n_max(1000000) {};
 
     EGS_SimpleContainer(int size) : n_have(0), n_tot(size), n_start(4),
-        n_max(1000000) {
-        if (n_tot > 0) {
+        n_max(1000000)
+    {
+        if (n_tot > 0)
+        {
             array = new T [n_tot];
         }
-        else {
+        else
+        {
             n_tot = 0;
         }
     };
 
-    ~EGS_SimpleContainer() {
-        if (n_tot > 0) {
+    ~EGS_SimpleContainer()
+    {
+        if (n_tot > 0)
+        {
             delete [] array;
         }
     };
 
-    void add(const T &t) {
-        if (n_have >= n_tot) {
+    void add(const T& t)
+    {
+        if (n_have >= n_tot)
+        {
             grow();
         }
         array[n_have++] = t;
     };
 
-    void clear() {
+    void clear()
+    {
         n_have = 0;
     };
 
-    T &operator[](int j) {
+    T& operator[](int j)
+    {
         return array[j];
     };
 
-    const T &operator[](int j) const {
+    const T& operator[](int j) const
+    {
         return array[j];
     };
 
-    void  setNmax(int Nmax) {
-        if (Nmax > n_tot) {
+    void  setNmax(int Nmax)
+    {
+        if (Nmax > n_tot)
+        {
             n_max = Nmax;
         }
     };
 
-    T &pop() {
+    T& pop()
+    {
         return array[--n_have];
     }
 
-    unsigned int size() const {
+    unsigned int size() const
+    {
         return n_have;
     };
 
-    unsigned int maxSize() const {
+    unsigned int maxSize() const
+    {
         return n_tot;
     };
 
-    unsigned int maxAllowedSize() const {
+    unsigned int maxAllowedSize() const
+    {
         return n_max;
     };
 
 
 protected:
 
-    void   grow() {
-        if (n_tot > 0) {
-            int nnew = 2*n_tot;
-            if (nnew > n_max) {
+    void   grow()
+    {
+        if (n_tot > 0)
+        {
+            int nnew = 2 * n_tot;
+            if (nnew > n_max)
+            {
                 nnew = n_max;
                 if (nnew <= n_tot) egsFatal("EGS_SimpleContainer::grow(): "
-                                                "reached maximum allowed size of %d\n",n_max);
+                                                "reached maximum allowed size of %d\n", n_max);
             }
-            T *tmp = new T [nnew];
-            for (int j=0; j<n_have; j++) {
+            T* tmp = new T [nnew];
+            for (int j = 0; j < n_have; j++)
+            {
                 tmp[j] = array[j];
             }
             delete [] array;
             array = tmp;
             n_tot = nnew;
         }
-        else {
+        else
+        {
             array = new T [n_start];
             n_tot = n_start;
         }
@@ -133,7 +155,7 @@ protected:
     int    n_tot;
     int    n_start;
     int    n_max;
-    T     *array;
+    T*     array;
 
 };
 

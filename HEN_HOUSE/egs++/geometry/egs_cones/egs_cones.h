@@ -47,22 +47,22 @@ using namespace std;
 
 #ifdef WIN32
 
-    #ifdef BUILD_CONES_DLL
-        #define EGS_CONES_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_CONES_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_CONES_LOCAL
+#ifdef BUILD_CONES_DLL
+#define EGS_CONES_EXPORT __declspec(dllexport)
+#else
+#define EGS_CONES_EXPORT __declspec(dllimport)
+#endif
+#define EGS_CONES_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_CONES_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_CONES_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_CONES_EXPORT
-        #define EGS_CONES_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_CONES_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_CONES_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_CONES_EXPORT
+#define EGS_CONES_LOCAL
+#endif
 
 #endif
 
@@ -121,7 +121,8 @@ A simple example:
 \image html egs_simplecone.png "A simple example"
 */
 
-class EGS_CONES_EXPORT EGS_SimpleCone : public EGS_BaseGeometry {
+class EGS_CONES_EXPORT EGS_SimpleCone : public EGS_BaseGeometry
+{
 
 protected:
 
@@ -138,24 +139,28 @@ protected:
 public:
 
     // constructor
-    EGS_SimpleCone(const EGS_Vector &Xo, const EGS_Vector &A, EGS_Float Gamma,
-                   const EGS_Float *distance=0, const string &N="")
+    EGS_SimpleCone(const EGS_Vector& Xo, const EGS_Vector& A, EGS_Float Gamma,
+                   const EGS_Float* distance = 0, const string& N = "")
 
-        : EGS_BaseGeometry(N), xo(Xo), a(A), gamma(Gamma), g12(1+Gamma*Gamma),
-          open(true), is_cyl(false) {
+        : EGS_BaseGeometry(N), xo(Xo), a(A), gamma(Gamma), g12(1 + Gamma * Gamma),
+          open(true), is_cyl(false)
+    {
 
         a.normalize();
-        g12i = 1/sqrt(g12);
+        g12i = 1 / sqrt(g12);
 
         // closed cone
-        if (distance) {
-            if (*distance > 0) {
+        if (distance)
+        {
+            if (*distance > 0)
+            {
                 open = false;
                 d1 = -(*distance);
-                Ro = -d1*gamma;
-                Ro2 = Ro*Ro;
+                Ro = -d1 * gamma;
+                Ro2 = Ro * Ro;
             }
-            else {
+            else
+            {
                 egsWarning("EGS_SimpleCone: the distance to the closing plane must be positive\n");
             }
         }
@@ -163,40 +168,44 @@ public:
     }
 
     // constructor
-    EGS_SimpleCone(const EGS_Vector &Xo, const EGS_Vector &A, EGS_Float dz,
-                   EGS_Float Rtop, EGS_Float Rbottom, bool Open=true, const string &N="")
+    EGS_SimpleCone(const EGS_Vector& Xo, const EGS_Vector& A, EGS_Float dz,
+                   EGS_Float Rtop, EGS_Float Rbottom, bool Open = true, const string& N = "")
 
-        : EGS_BaseGeometry(N), a(A), open(Open), is_cyl(false) {
+        : EGS_BaseGeometry(N), a(A), open(Open), is_cyl(false)
+    {
 
         a.normalize();
 
         // avoid round-off problems.
-        if (fabs(Rtop - Rbottom) < boundaryTolerance) {          // flag cylinders to avoid round-off problems
+        if (fabs(Rtop - Rbottom) < boundaryTolerance)            // flag cylinders to avoid round-off problems
+        {
             is_cyl = true;
             xo = Xo;
             Ro = Rtop;
-            Ro2 = Ro*Ro;
+            Ro2 = Ro * Ro;
             gamma = 0;
             g12 = 1;
             g12i = 1;
             d1 = -dz;
         }
-        else if (Rtop < Rbottom) {                  // cone is opening along axis vector a
-            EGS_Float aux = dz*Rtop/(Rbottom-Rtop);
-            xo = Xo - a*aux;
-            gamma = Rbottom/(aux+dz);
-            g12 = 1 + gamma*gamma;
-            g12i = 1/sqrt(g12);
-            d1 = -dz-aux;
+        else if (Rtop < Rbottom)                    // cone is opening along axis vector a
+        {
+            EGS_Float aux = dz * Rtop / (Rbottom - Rtop);
+            xo = Xo - a * aux;
+            gamma = Rbottom / (aux + dz);
+            g12 = 1 + gamma * gamma;
+            g12i = 1 / sqrt(g12);
+            d1 = -dz - aux;
         }
-        else {                                      // cone is closing along axis vector a
-            EGS_Float aux = dz*Rbottom/(Rtop-Rbottom);
-            xo = Xo + a*(aux+dz);
+        else                                        // cone is closing along axis vector a
+        {
+            EGS_Float aux = dz * Rbottom / (Rtop - Rbottom);
+            xo = Xo + a * (aux + dz);
             a *= (-1);
-            gamma = Rtop/(aux+dz);
-            g12 = 1 + gamma*gamma;
-            g12i = 1/sqrt(g12);
-            d1 = -dz-aux;
+            gamma = Rtop / (aux + dz);
+            g12 = 1 + gamma * gamma;
+            g12i = 1 / sqrt(g12);
+            d1 = -dz - aux;
         }
     }
 
@@ -204,20 +213,24 @@ public:
     ~EGS_SimpleCone() {}
 
     // isInside
-    bool isInside(const EGS_Vector &x) {
+    bool isInside(const EGS_Vector& x)
+    {
 
-        EGS_Vector xp(x-xo);                        // vector from cone apex xo to test point x
-        EGS_Float  aa = xp*a;                       // projection of xp on axis vector a
+        EGS_Vector xp(x - xo);                      // vector from cone apex xo to test point x
+        EGS_Float  aa = xp * a;                     // projection of xp on axis vector a
 
         // check bounds along cone axis
-        if (!open && (aa < 0 || aa+d1 > 0)) {
+        if (!open && (aa < 0 || aa + d1 > 0))
+        {
             return false;
         }
 
         // check cylinder radius
-        if (is_cyl) {
-            EGS_Float r2 = xp.length2() - aa*aa;
-            if (r2 <= Ro2) {
+        if (is_cyl)
+        {
+            EGS_Float r2 = xp.length2() - aa * aa;
+            if (r2 <= Ro2)
+            {
                 return true;
             }
             return false;
@@ -225,143 +238,176 @@ public:
 
         // check cone radius
         EGS_Float r2 = xp.length2();
-        if (r2 <= aa*aa*g12) {
+        if (r2 <= aa * aa * g12)
+        {
             return true;
         }
         return false;
     }
 
     // isWhere
-    int isWhere(const EGS_Vector &x) {
-        if (isInside(x)) {
+    int isWhere(const EGS_Vector& x)
+    {
+        if (isInside(x))
+        {
             return 0;
         }
         return -1;
     }
 
     // inside
-    int inside(const EGS_Vector &x) {
+    int inside(const EGS_Vector& x)
+    {
         return isWhere(x);
     }
 
     // howfar
-    int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u,
-               EGS_Float &t, int *newmed=0, EGS_Vector *normal=0) {
+    int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u,
+               EGS_Float& t, int* newmed = 0, EGS_Vector* normal = 0)
+    {
 
-        EGS_Vector  xp(x-xo);                       // vector from cone apex xo to test point x
-        EGS_Float   aa = xp*a;                      // projection of xp on cone axis a
-        EGS_Float   b  = u*a;                       // cos(t) between axis a and step vector u
+        EGS_Vector  xp(x - xo);                     // vector from cone apex xo to test point x
+        EGS_Float   aa = xp * a;                    // projection of xp on cone axis a
+        EGS_Float   b  = u * a;                     // cos(t) between axis a and step vector u
         EGS_Float   r2 = xp.length2();              // length^2 of xp
-        EGS_Float   c  = u*xp;                      // projection of xp on step vector u
+        EGS_Float   c  = u * xp;                    // projection of xp on step vector u
 
         // handle cylinder
-        if (is_cyl) {
+        if (is_cyl)
+        {
 
             // u is parallel to a (u and a are normalized)
-            if (fabs(b) >= 1) {
+            if (fabs(b) >= 1)
+            {
                 return ireg;
             }
 
-            EGS_Float A = 1 - b*b;                  // A = 1-cos^2(t) = sin^2(t)
-            EGS_Float B = c - b*aa;                 // B = u * [xp - (xp*a)a] =  u * n
-            EGS_Float C = r2 - aa*aa - Ro2;         // C = n^2 - R0^2
+            EGS_Float A = 1 - b * b;                // A = 1-cos^2(t) = sin^2(t)
+            EGS_Float B = c - b * aa;               // B = u * [xp - (xp*a)a] =  u * n
+            EGS_Float C = r2 - aa * aa - Ro2;       // C = n^2 - R0^2
             EGS_Float d;                            // distance to cylinder along u
 
             // from inside cylinder
-            if (!ireg) {
-                EGS_Float D = B*B-A*C;              // R0^2 - [ n^2 - ((n*u)/sint)^2 ]
-                if (D < 0 || (C > 0 && B > 0)) {
+            if (!ireg)
+            {
+                EGS_Float D = B * B - A * C;        // R0^2 - [ n^2 - ((n*u)/sint)^2 ]
+                if (D < 0 || (C > 0 && B > 0))
+                {
                     d = 0;
                 }
                 // ^ hopefully a precision problem.
-                else {
-                    d = B<=0 ? (sqrt(D)-B)/A : -C/(sqrt(D)+B);
+                else
+                {
+                    d = B <= 0 ? (sqrt(D) - B) / A : -C / (sqrt(D) + B);
                 }
             }
             // from outside cylinder
-            else {
-                if (C < 0) {                        // inside cylinder: fp precision error
-                    if (B < 0) {
+            else
+            {
+                if (C < 0)                          // inside cylinder: fp precision error
+                {
+                    if (B < 0)
+                    {
                         d = 0;    // assume we are on the cylinder
                     }
-                    else {
+                    else
+                    {
                         return ireg;    // u points away from cylinder
                     }
                 }
-                else {
-                    if (B >= 0) {
+                else
+                {
+                    if (B >= 0)
+                    {
                         return ireg;    // u points away from cylinder
                     }
-                    EGS_Float D = B*B-A*C;          // R0^2 - [ n^2 - ((n*u)/sint)^2 ]
-                    if (D < 0) {
+                    EGS_Float D = B * B - A * C;    // R0^2 - [ n^2 - ((n*u)/sint)^2 ]
+                    if (D < 0)
+                    {
                         return ireg;    // u line does not intersect cylinder
                     }
-                    d = C/(sqrt(D)-B);              // solve (n + d*(u-a(u*a)))^2 - R0^2 = 0
+                    d = C / (sqrt(D) - B);          // solve (n + d*(u-a(u*a)))^2 - R0^2 = 0
                 }
             }
 
             // distance to cylinder is longer than step length
-            if (d > t) {
+            if (d > t)
+            {
                 return ireg;
             }
 
             // intersection with cylinder is beyond boundary planes
-            if (!open) {
-                EGS_Float aux = aa + d*b;
-                if (aux < 0 || aux+d1 > 0) {
+            if (!open)
+            {
+                EGS_Float aux = aa + d * b;
+                if (aux < 0 || aux + d1 > 0)
+                {
                     return ireg;
                 }
             }
 
             // intersect with cylinder
             t = d;
-            if (newmed && ireg < 0) {
+            if (newmed && ireg < 0)
+            {
                 *newmed = med;
             }
-            if (normal) {
-                EGS_Float lam = aa+b*d;
-                EGS_Vector aux(xp+u*d-a*lam);
+            if (normal)
+            {
+                EGS_Float lam = aa + b * d;
+                EGS_Vector aux(xp + u * d - a * lam);
                 aux.normalize();
-                *normal = ireg < 0 ? aux : aux*(-1);
+                *normal = ireg < 0 ? aux : aux * (-1);
             }
 
             return (!ireg ? -1 : 0);
         }
 
         // handle odd case where position numerically coincides with apex
-        if (!xp.length2()) {
+        if (!xp.length2())
+        {
 
             int inew;
 
             // u is aiming inside the cone angle
-            if (b >= g12i) {                        // g12i = cos(t_cone); b = cos(t)
+            if (b >= g12i)                          // g12i = cos(t_cone); b = cos(t)
+            {
                 inew = 0;
-                if (ireg < 0) {                     // we are coming from outside
+                if (ireg < 0)                       // we are coming from outside
+                {
                     t = 0;
-                    if (newmed) {
+                    if (newmed)
+                    {
                         *newmed = med;
                     }
-                    if (normal) {
-                        *normal = a*(-1);
+                    if (normal)
+                    {
+                        *normal = a * (-1);
                     }
                 }
-                else if (!open && b>0) {            // check closing plane
-                    EGS_Float tt = -d1/b;           // tt = -(aa + d1)/b but aa=0 if here
-                    if (tt <= t) {
+                else if (!open && b > 0)            // check closing plane
+                {
+                    EGS_Float tt = -d1 / b;         // tt = -(aa + d1)/b but aa=0 if here
+                    if (tt <= t)
+                    {
                         t = tt;
                         inew = -1;
-                        if (normal) {
-                            *normal = a*(-1);
+                        if (normal)
+                        {
+                            *normal = a * (-1);
                         }
                     }
                 }
             }
             // u is aiming outside the cone angle
-            else {
+            else
+            {
                 inew = -1;
-                if (ireg >= 0) {                    // we are coming from inside
+                if (ireg >= 0)                      // we are coming from inside
+                {
                     t = 0;
-                    if (normal) {
+                    if (normal)
+                    {
                         *normal = a;
                     }
                 }
@@ -372,19 +418,26 @@ public:
         }
 
         // handle closing plane
-        if (!open) {
+        if (!open)
+        {
 
             // from outside cone
-            if (ireg < 0) {
-                if (aa+d1 > 0 && b < 0) {           // outside closing plane, moving towards it
-                    EGS_Float tt = -(aa+d1)/b;      // distance to closing plane
-                    if (tt <= t) {
-                        EGS_Float r2p = r2 + tt*(tt + 2*c);
-                        if (r2p <= d1*d1*g12) {     // enter via the closing plane
-                            if (newmed) {
+            if (ireg < 0)
+            {
+                if (aa + d1 > 0 && b < 0)           // outside closing plane, moving towards it
+                {
+                    EGS_Float tt = -(aa + d1) / b;  // distance to closing plane
+                    if (tt <= t)
+                    {
+                        EGS_Float r2p = r2 + tt * (tt + 2 * c);
+                        if (r2p <= d1 * d1 * g12)   // enter via the closing plane
+                        {
+                            if (newmed)
+                            {
                                 *newmed = med;
                             }
-                            if (normal) {
+                            if (normal)
+                            {
                                 *normal = a;
                             }
                             t = tt;
@@ -394,23 +447,30 @@ public:
 
                     // if we are inside the conical surface, the only way to enter is via the
                     // closing plane. but if (r2 <= aa*aa*g12), we didn't enter: simply return
-                    if (r2 <= aa*aa*g12) {
+                    if (r2 <= aa * aa * g12)
+                    {
                         return ireg;
                     }
                 }
             }
             // from inside cone
-            else {
-                if (b > 0) {                        // moving towards the closing plane.
-                    EGS_Float tt = -(aa+d1)/b;      // distance to closing plane
-                    if (tt <= t) {
-                        EGS_Float r2p = r2 + tt*(tt + 2*c);
-                        if (r2p <= d1*d1*g12) {     // exit via the closing plane
-                            if (newmed) {
+            else
+            {
+                if (b > 0)                          // moving towards the closing plane.
+                {
+                    EGS_Float tt = -(aa + d1) / b;  // distance to closing plane
+                    if (tt <= t)
+                    {
+                        EGS_Float r2p = r2 + tt * (tt + 2 * c);
+                        if (r2p <= d1 * d1 * g12)   // exit via the closing plane
+                        {
+                            if (newmed)
+                            {
                                 *newmed = -1;
                             }
-                            if (normal) {
-                                *normal = a*(-1);
+                            if (normal)
+                            {
+                                *normal = a * (-1);
                             }
                             // avoid negative distances to the exit plane,
                             // which may lead to endless loops in CD geometries
@@ -427,25 +487,29 @@ public:
         // x+t*u is on cone surface).
         // solution: t = (-B +- sqrt(B^2-A*C))/A
 
-        EGS_Float A   = 1 - b*b*g12;                // 1 - cos^2(t)/cos^2(t_cone)
-        EGS_Float B   = c - aa*b*g12;
-        EGS_Float C   = r2 - aa*aa*g12;
+        EGS_Float A   = 1 - b * b * g12;            // 1 - cos^2(t)/cos^2(t_cone)
+        EGS_Float B   = c - aa * b * g12;
+        EGS_Float C   = r2 - aa * aa * g12;
         EGS_Float tt  = veryFar;
         EGS_Float lam = -1;
 
-        if (fabs(A) < boundaryTolerance) {
+        if (fabs(A) < boundaryTolerance)
+        {
             // moving parallel to the cone surface (A=0, within hard-coded tolerance):
             // solution: t = -C/(2*B), if t>0
 
-            if ((!ireg && B>0) || (ireg && B<0)) {
-                EGS_Float ttt = -C/(2*B);           // solution
-                lam = aa+b*ttt;                     // (x+t*u)*a >= 0: on "positive" cone
-                if (ttt >= 0 && lam >= 0) {
+            if ((!ireg && B > 0) || (ireg && B < 0))
+            {
+                EGS_Float ttt = -C / (2 * B);       // solution
+                lam = aa + b * ttt;                 // (x+t*u)*a >= 0: on "positive" cone
+                if (ttt >= 0 && lam >= 0)
+                {
                     tt = ttt;    // distance to cone surface
                 }
             }
         }
-        else {
+        else
+        {
             // general solution, guarding against numerical instability
             // solution: t = (-B +- sqrt(B^2-A*C))/A
             //
@@ -466,39 +530,49 @@ public:
             // 2) reverse the choice for the upper cone: largest positive root or negative one.
 
             EGS_Float ttt = -1;
-            EGS_Float D = B*B-A*C;                  // determinant
-            if (D<0) {
+            EGS_Float D = B * B - A * C;            // determinant
+            if (D < 0)
+            {
                 return ireg;    // no real solution: no intersection
             }
 
-            if (!ireg && !(A<0 && B<0)) {           // inside cone
-                if (B>0) {
-                    ttt = -C/(B+sqrt(D));
+            if (!ireg && !(A < 0 && B < 0))         // inside cone
+            {
+                if (B > 0)
+                {
+                    ttt = -C / (B + sqrt(D));
                 }
-                else {
-                    ttt = (sqrt(D)-B)/A;
-                }
-            }
-            else if (ireg && !(A>0 && B>0)) {       // outside cone
-                if (B<0) {
-                    ttt = C/(sqrt(D)-B);
-                }
-                else {
-                    ttt = -(sqrt(D)+B)/A;
+                else
+                {
+                    ttt = (sqrt(D) - B) / A;
                 }
             }
-            else {
+            else if (ireg && !(A > 0 && B > 0))     // outside cone
+            {
+                if (B < 0)
+                {
+                    ttt = C / (sqrt(D) - B);
+                }
+                else
+                {
+                    ttt = -(sqrt(D) + B) / A;
+                }
+            }
+            else
+            {
                 return ireg;    // no intersection
             }
 
-            lam = aa+b*ttt;                         // (x+t*u)*a >= 0: on "positive" cone
-            if (ttt >= -boundaryTolerance && lam >= 0) {
+            lam = aa + b * ttt;                     // (x+t*u)*a >= 0: on "positive" cone
+            if (ttt >= -boundaryTolerance && lam >= 0)
+            {
                 tt = ttt;
             }
         }
 
         // distance too far, or intersection beyond bounding plane
-        if (tt > t || (!open && ireg && d1 + aa + tt*b > 0)) {
+        if (tt > t || (!open && ireg && d1 + aa + tt * b > 0))
+        {
             return ireg;
         }
 
@@ -508,13 +582,16 @@ public:
         int inew = ireg ? 0 : -1;
 
         // set medium and surface normal
-        if (newmed) {
+        if (newmed)
+        {
             *newmed = inew ? -1 : med;
         }
-        if (normal) {
-            *normal = xp + u*t - a*(lam*g12);
+        if (normal)
+        {
+            *normal = xp + u * t - a * (lam * g12);
             normal->normalize();
-            if (!ireg) {
+            if (!ireg)
+            {
                 *normal *= (-1);
             }
         }
@@ -525,88 +602,105 @@ public:
 
 
     // hownear
-    EGS_Float hownear(int ireg, const EGS_Vector &x) {
+    EGS_Float hownear(int ireg, const EGS_Vector& x)
+    {
 
-        EGS_Vector xp(x-xo);                        // position with respect to cone origin
-        EGS_Float aa = xp*a;                        // position along cone axis
-        EGS_Float ag = aa*gamma;                    // cone radius at axis position
+        EGS_Vector xp(x - xo);                      // position with respect to cone origin
+        EGS_Float aa = xp * a;                      // position along cone axis
+        EGS_Float ag = aa * gamma;                  // cone radius at axis position
         EGS_Float r2 = xp.length2();                // distance squared to cone origin
 
         // cylindrical case
-        if (is_cyl) {
+        if (is_cyl)
+        {
 
             // open, or within bounding planes
-            if (open || (aa > 0 && aa+d1 < 0)) {
-                r2 = sqrt(r2 - aa*aa);              // radial distance from axis
-                if (ireg) {
-                    return r2-Ro;    // from outside
+            if (open || (aa > 0 && aa + d1 < 0))
+            {
+                r2 = sqrt(r2 - aa * aa);            // radial distance from axis
+                if (ireg)
+                {
+                    return r2 - Ro;  // from outside
                 }
-                else {
-                    return Ro-r2;    // from inside
+                else
+                {
+                    return Ro - r2;  // from inside
                 }
             }
 
-            r2 = sqrt(r2 - aa*aa);                  // radial distance from axis
+            r2 = sqrt(r2 - aa * aa);                // radial distance from axis
 
             // inside the radius of cylinder: shortest distance is to closing plane
-            if (r2 < Ro) {
-                if (aa<0) {
+            if (r2 < Ro)
+            {
+                if (aa < 0)
+                {
                     return -aa;    // distance to "0" closing plane
                 }
-                else {
-                    return aa+d1;    // distance to "d1" closing plane
+                else
+                {
+                    return aa + d1;  // distance to "d1" closing plane
                 }
             }
 
             // outside the radius of cylinder: shortest distance is to cylinder cap "corner"
-            EGS_Float aux = r2-Ro;
-            if (aa<0) {
-                return sqrt(aa*aa + aux*aux);    // distance to "0" cap
+            EGS_Float aux = r2 - Ro;
+            if (aa < 0)
+            {
+                return sqrt(aa * aa + aux * aux); // distance to "0" cap
             }
-            EGS_Float tp = aa+d1;
-            return sqrt(tp*tp + aux*aux);           // distance to "d1" cap
+            EGS_Float tp = aa + d1;
+            return sqrt(tp * tp + aux * aux);       // distance to "d1" cap
 
         }
 
         // inside "negative" cone lobe
-        if (aa < 0 && ag*ag > r2*g12) {             // cone tip is the nearest point
+        if (aa < 0 && ag * ag > r2 * g12)           // cone tip is the nearest point
+        {
             return sqrt(r2);
         }
 
         // compute useful distances
-        EGS_Float r2a2 = r2-aa*aa;                  // distance^2 to cone axis
+        EGS_Float r2a2 = r2 - aa * aa;              // distance^2 to cone axis
         EGS_Float r2a  = sqrt(r2a2);                // distance to cone axis
-        EGS_Float tc = fabs((ag-r2a)*g12i);         // distance to cone (perp. to cone surface)
+        EGS_Float tc = fabs((ag - r2a) * g12i);     // distance to cone (perp. to cone surface)
 
         // open cone: tc is the shortest distance
-        if (open) {
+        if (open)
+        {
             return tc;
         }
 
         // closed cone: check closing plane
-        EGS_Float tp = d1+aa;                       // signed axial distance to closing plane
+        EGS_Float tp = d1 + aa;                     // signed axial distance to closing plane
 
         // inside cone
-        if (!ireg) {
+        if (!ireg)
+        {
             tp = -tp;                               // adjust sign of distance
-            if (tp < tc) {
+            if (tp < tc)
+            {
                 tc = tp;    // pick shortest distance
             }
         }
         // outside, but inside conical surface
-        else if (tp > 0 && r2 < aa*aa*g12) {
-            if (r2a2 > Ro2) {                       // outside the cone base cylinder
+        else if (tp > 0 && r2 < aa * aa * g12)
+        {
+            if (r2a2 > Ro2)                         // outside the cone base cylinder
+            {
                 EGS_Float aux = r2a - Ro;
-                tc = sqrt(tp*tp + aux*aux);         // nearest point is cone base "corner"
+                tc = sqrt(tp * tp + aux * aux);     // nearest point is cone base "corner"
             }
-            else {
+            else
+            {
                 tc = tp;    // inside the cone base cylinder
             }
         }
         // outside, and outside conical surface
-        else if (tp + tc*gamma*g12i > 0) {          // nearest point is cone base "corner"
-            EGS_Float aux = r2a + d1*gamma;         // distance to cone base cylinder
-            tc = sqrt(aux*aux + tp*tp);             // distance to cone base "corner"
+        else if (tp + tc * gamma * g12i > 0)        // nearest point is cone base "corner"
+        {
+            EGS_Float aux = r2a + d1 * gamma;       // distance to cone base cylinder
+            tc = sqrt(aux * aux + tp * tp);         // distance to cone base "corner"
         }
 
         // return shortest distance to cone
@@ -614,7 +708,8 @@ public:
     }
 
     // getType accessor
-    const string &getType() const {
+    const string& getType() const
+    {
         return type;
     }
 
@@ -622,30 +717,36 @@ public:
     void printInfo() const;
 
     // getApex accessor
-    EGS_Vector getApex() const {
+    EGS_Vector getApex() const
+    {
         return xo;
     }
 
     // getAxis accessor
-    EGS_Vector getAxis() const {
+    EGS_Vector getAxis() const
+    {
         return a;
     }
 
     // getGamma accessor
-    EGS_Float getGamma() const {
+    EGS_Float getGamma() const
+    {
         return gamma;
     }
 
     // getRadius accessor
-    EGS_Float getRadius(const EGS_Vector &x) const {
-        if (is_cyl) {
+    EGS_Float getRadius(const EGS_Vector& x) const
+    {
+        if (is_cyl)
+        {
             return Ro;
         }
-        EGS_Float xp = (x-xo)*a;
-        if (xp <= 0) {
+        EGS_Float xp = (x - xo) * a;
+        if (xp <= 0)
+        {
             return 0;
         }
-        return xp*gamma;
+        return xp * gamma;
     }
 };
 
@@ -736,201 +837,240 @@ A simple example:
 \endverbatim
 \image html egs_parallelcones.png "A simple example"
 */
-class EGS_ParallelCones : public EGS_BaseGeometry {
+class EGS_ParallelCones : public EGS_BaseGeometry
+{
 
-    EGS_Vector   *xo;           // the cone apexes
+    EGS_Vector*   xo;           // the cone apexes
     EGS_Vector   a;             // the cone axis.
     EGS_Float    gamma, g12;    // tangent of opening angle and 1 + gamma^2
     EGS_Float    g12i;          // 1/sqrt(g12)
-    EGS_Float    *d;            // distances from the first apex.
+    EGS_Float*    d;            // distances from the first apex.
     int          nc;            // number of cones
     static string type;
 
 public:
 
     // constructor
-    EGS_ParallelCones(int Nc, const EGS_Vector &Xo, const EGS_Vector &A, EGS_Float Gamma,
-                      const EGS_Float *distances, const string &N="")
+    EGS_ParallelCones(int Nc, const EGS_Vector& Xo, const EGS_Vector& A, EGS_Float Gamma,
+                      const EGS_Float* distances, const string& N = "")
 
-        : EGS_BaseGeometry(N), a(A), gamma(Gamma), g12(1+Gamma*Gamma), nc(Nc) {
+        : EGS_BaseGeometry(N), a(A), gamma(Gamma), g12(1 + Gamma * Gamma), nc(Nc)
+    {
 
         a.normalize();
-        g12i = 1/sqrt(g12);
+        g12i = 1 / sqrt(g12);
 
-        if (nc < 1) {
-            nc=1;    // enforce nc >= 1
+        if (nc < 1)
+        {
+            nc = 1;  // enforce nc >= 1
         }
         nreg = nc;                                  // one region per cone
         xo = new EGS_Vector[nc];                    // vector of cone apex positions
         xo[0] = Xo;                                 // apex of first cone
 
         // more than one cone
-        if (nc > 1) {
+        if (nc > 1)
+        {
             EGS_Float
             d_old = 0;
-            d = new EGS_Float [nc-1];
-            for (int j=1; j<nc; j++) {
-                d[j-1] = distances[j-1];
-                if (d[j-1] <= d_old) {
+            d = new EGS_Float [nc - 1];
+            for (int j = 1; j < nc; j++)
+            {
+                d[j - 1] = distances[j - 1];
+                if (d[j - 1] <= d_old)
+                {
                     egsFatal("EGS_ParallelCones: " "distances must be in increasing order\n");
                 }
-                xo[j] = xo[0] + a*d[j-1];
-                d_old = d[j-1];
+                xo[j] = xo[0] + a * d[j - 1];
+                d_old = d[j - 1];
             }
         }
     }
 
     // destructor
-    ~EGS_ParallelCones() {
+    ~EGS_ParallelCones()
+    {
         delete [] xo;
-        if (nc > 1) {
+        if (nc > 1)
+        {
             delete [] d;
         }
     }
 
     // isInside
-    bool isInside(const EGS_Vector &x) {
-        EGS_Vector xp(x-xo[0]);                     // current position with respect to apex
-        EGS_Float aa = xp*a;                        // current axial position
-        if (aa < 0) {
+    bool isInside(const EGS_Vector& x)
+    {
+        EGS_Vector xp(x - xo[0]);                   // current position with respect to apex
+        EGS_Float aa = xp * a;                      // current axial position
+        if (aa < 0)
+        {
             return false;    // on "negative" side of cones
         }
         EGS_Float r2 = xp.length2();                // distance^2 to apex
-        if (r2 <= aa*aa*g12) {
+        if (r2 <= aa * aa * g12)
+        {
             return true;    // inside outer cone
         }
         return false;
     };
 
     // isWhere
-    int isWhere(const EGS_Vector &x) {
-        EGS_Vector xp(x-xo[0]);                     // current position with respect to apex
-        EGS_Float aa = xp*a;                        // current axial position
-        if (aa < 0) {
+    int isWhere(const EGS_Vector& x)
+    {
+        EGS_Vector xp(x - xo[0]);                   // current position with respect to apex
+        EGS_Float aa = xp * a;                      // current axial position
+        if (aa < 0)
+        {
             return -1;    // on "negative" side of apex
         }
         EGS_Float r2 = xp.length2();                // distance^2 to apex
-        if (r2 > aa*aa*g12) {
+        if (r2 > aa * aa * g12)
+        {
             return -1;    // outside outer cone
         }
-        EGS_Float r2a2 = r2 - aa*aa;                // distance to cone set axis
-        for (int j=0; j<nc-1; j++) {                // loop over all inner cones
+        EGS_Float r2a2 = r2 - aa * aa;              // distance to cone set axis
+        for (int j = 0; j < nc - 1; j++)            // loop over all inner cones
+        {
             EGS_Float aj  = aa - d[j];              // distance to apex of cone j
-            EGS_Float ajg = aj*gamma;               // length of cone j'th side up to aj
-            if (aj < 0 || r2a2 > ajg*ajg) {
+            EGS_Float ajg = aj * gamma;             // length of cone j'th side up to aj
+            if (aj < 0 || r2a2 > ajg * ajg)
+            {
                 return j;    // on "negative" side or outside of cone j
             }
         }
-        return nc-1;                                // then it must be in last cone
+        return nc - 1;                              // then it must be in last cone
     }
 
     // inside
-    int inside(const EGS_Vector &x) {
+    int inside(const EGS_Vector& x)
+    {
         return isWhere(x);
     }
 
     // howfar
-    int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u, EGS_Float &t,
-               int *newmed=0, EGS_Vector *normal=0) {
+    int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u, EGS_Float& t,
+               int* newmed = 0, EGS_Vector* normal = 0)
+    {
 
         // not in innermost cone
-        if (ireg < nc-1) {
+        if (ireg < nc - 1)
+        {
             EGS_Vector xp;                          // a position
             bool hit = false;                       // howfar hit flag
 
             // apex position of "next" inner cone
-            if (ireg < 0) {
-                xp = x-xo[0];    // apex of outer cone
+            if (ireg < 0)
+            {
+                xp = x - xo[0];  // apex of outer cone
             }
-            else {
-                xp = x-xo[ireg+1];    // apex of next inner cone
+            else
+            {
+                xp = x - xo[ireg + 1]; // apex of next inner cone
             }
 
             // general solution
-            EGS_Float aa = xp*a;                    // axial position in current cone
-            EGS_Float b  = u*a;                     // cos(t), t = angle between a and u
+            EGS_Float aa = xp * a;                  // axial position in current cone
+            EGS_Float b  = u * a;                   // cos(t), t = angle between a and u
             EGS_Float r2 = xp.length2();            // distance^2 to current cone apex
-            EGS_Float c  = u*xp;                    // projection of xp on u
-            EGS_Float A  = 1 - b*b*g12;
-            EGS_Float B  = c - aa*b*g12;
-            EGS_Float C  = r2 - aa*aa*g12;
+            EGS_Float c  = u * xp;                  // projection of xp on u
+            EGS_Float A  = 1 - b * b * g12;
+            EGS_Float B  = c - aa * b * g12;
+            EGS_Float C  = r2 - aa * aa * g12;
             EGS_Float tt = veryFar;
             EGS_Float lam = -1;
 
             // moving parallel to cone surface
-            if (fabs(A) < boundaryTolerance) {      // guarding against /0 in general solution
-                EGS_Float ttt = -C/(2*B);           // distance to hit
-                lam = aa+b*ttt;                     // axial position of hit
-                if (ttt >= 0 && lam >= 0) {
+            if (fabs(A) < boundaryTolerance)        // guarding against /0 in general solution
+            {
+                EGS_Float ttt = -C / (2 * B);       // distance to hit
+                lam = aa + b * ttt;                 // axial position of hit
+                if (ttt >= 0 && lam >= 0)
+                {
                     tt  = ttt;
                     hit = true;
                 }
             }
             // general solution
-            else {
-                EGS_Float D = B*B-A*C;
-                if (D >= 0 && !(A > 0 && B > 0)) {
-                    EGS_Float ttt = B < 0 ? C/(sqrt(D)-B) : -(sqrt(D)+B)/A;
-                    lam = aa+b*ttt;
-                    if (ttt >= 0 && lam >= 0) {
+            else
+            {
+                EGS_Float D = B * B - A * C;
+                if (D >= 0 && !(A > 0 && B > 0))
+                {
+                    EGS_Float ttt = B < 0 ? C / (sqrt(D) - B) : -(sqrt(D) + B) / A;
+                    lam = aa + b * ttt;
+                    if (ttt >= 0 && lam >= 0)
+                    {
                         tt = ttt;
                         hit = true;
                     }
                 }
             }
-            if (tt <= t) {
-                int inew = ireg < 0 ? 0 : ireg+1;
+            if (tt <= t)
+            {
+                int inew = ireg < 0 ? 0 : ireg + 1;
                 t = tt;
-                if (newmed) {
+                if (newmed)
+                {
                     *newmed = medium(inew);
                 }
-                if (normal) {
-                    *normal = xp + u*t - a*(lam*g12);
+                if (normal)
+                {
+                    *normal = xp + u * t - a * (lam * g12);
                     normal->normalize();
                 }
                 return inew;
             }
-            if (ireg < 0 || hit) {
+            if (ireg < 0 || hit)
+            {
                 return ireg;
             }
         }
 
         // inside and not hitting the next inner cone.
         // check the previous outer cone
-        EGS_Vector xp(x-xo[ireg]);
-        EGS_Float aa = xp*a, b = u*a, r2 = xp.length2(), c = u*xp;
-        EGS_Float A = 1 - b*b*g12, B = c - aa*b*g12, C = r2 - aa*aa*g12;
+        EGS_Vector xp(x - xo[ireg]);
+        EGS_Float aa = xp * a, b = u * a, r2 = xp.length2(), c = u * xp;
+        EGS_Float A = 1 - b * b * g12, B = c - aa * b * g12, C = r2 - aa * aa * g12;
         EGS_Float to = veryFar, lamo = -1;
-        if (fabs(A) < boundaryTolerance) {  // moving parallel to the cone surface.
+        if (fabs(A) < boundaryTolerance)    // moving parallel to the cone surface.
+        {
             // for the outer cone we only have a solution if a*u < 0.
             // i.e. if we are moving towards the apex.
-            if (b < 0) {
-                EGS_Float ttt = -C/(2*B);
-                lamo = aa+b*ttt;
-                if (ttt >= 0 && lamo >= 0) {
+            if (b < 0)
+            {
+                EGS_Float ttt = -C / (2 * B);
+                lamo = aa + b * ttt;
+                if (ttt >= 0 && lamo >= 0)
+                {
                     to = ttt;
                 }
             }
         }
-        else {
-            EGS_Float D = B*B-A*C;
+        else
+        {
+            EGS_Float D = B * B - A * C;
             // avoid numerical problems when |A*C| << |B|
-            if (D >= 0 && !(A < 0 && B < 0)) {
-                EGS_Float ttt = B > 0 ? -C/(B+sqrt(D)) : (sqrt(D)-B)/A;
-                lamo = aa+b*ttt;
-                if (ttt >= 0 && lamo >= 0) {
+            if (D >= 0 && !(A < 0 && B < 0))
+            {
+                EGS_Float ttt = B > 0 ? -C / (B + sqrt(D)) : (sqrt(D) - B) / A;
+                lamo = aa + b * ttt;
+                if (ttt >= 0 && lamo >= 0)
+                {
                     to = ttt;
                 }
             }
         }
-        if (to <= t) {
+        if (to <= t)
+        {
             t = to;
-            int inew = ireg-1;
-            if (newmed) {
+            int inew = ireg - 1;
+            if (newmed)
+            {
                 *newmed = inew < 0 ? -1 : medium(inew);
             }
-            if (normal) {
-                *normal = xp + u*t - a*(lamo*g12);
+            if (normal)
+            {
+                *normal = xp + u * t - a * (lamo * g12);
                 normal->normalize();
             }
             return inew;
@@ -939,44 +1079,53 @@ public:
     }
 
     // hownear
-    EGS_Float hownear(int ireg, const EGS_Vector &x) {
+    EGS_Float hownear(int ireg, const EGS_Vector& x)
+    {
         EGS_Float tc = veryFar;
-        if (ireg < 0 || ireg < nc-1) {
+        if (ireg < 0 || ireg < nc - 1)
+        {
             EGS_Vector xp;
-            if (ireg < 0) {
+            if (ireg < 0)
+            {
                 xp = x - xo[0];
             }
-            else {
-                xp = x - xo[ireg+1];
+            else
+            {
+                xp = x - xo[ireg + 1];
             }
-            EGS_Float aa = xp*a;
-            EGS_Float ag = aa*gamma;
+            EGS_Float aa = xp * a;
+            EGS_Float ag = aa * gamma;
             EGS_Float r2 = xp.length2();
-            if (aa < 0 && ag*ag > r2*g12) {
+            if (aa < 0 && ag * ag > r2 * g12)
+            {
                 tc = sqrt(r2);
             }
-            else {
-                tc = fabs((ag-sqrt(r2-aa*aa))*g12i);
+            else
+            {
+                tc = fabs((ag - sqrt(r2 - aa * aa)) * g12i);
             }
-            if (ireg < 0) {
+            if (ireg < 0)
+            {
                 return tc;
             }
         }
-        EGS_Vector xp(x-xo[ireg]);
-        EGS_Float aa = xp*a;
-        EGS_Float ag = aa*gamma;
+        EGS_Vector xp(x - xo[ireg]);
+        EGS_Float aa = xp * a;
+        EGS_Float ag = aa * gamma;
         EGS_Float r2 = xp.length2();
-        EGS_Float tco = fabs((ag-sqrt(r2-aa*aa))*g12i);
+        EGS_Float tco = fabs((ag - sqrt(r2 - aa * aa)) * g12i);
         return tco < tc ? tco : tc;
     }
 
     // getMaxStep
-    int getMaxStep() const {
-        return 2*nreg + 2;
+    int getMaxStep() const
+    {
+        return 2 * nreg + 2;
     }
 
     // getType accessor
-    const string &getType() const {
+    const string& getType() const
+    {
         return type;
     }
 
@@ -1056,11 +1205,12 @@ A simple example:
 \endverbatim
 \image html egs_coneset.png "A simple example with clipping plane 1,0,0,0"
 */
-class EGS_ConeSet : public EGS_BaseGeometry {
+class EGS_ConeSet : public EGS_BaseGeometry
+{
 
     EGS_Vector    xo;   // the common apex.
     EGS_Vector    a;    // the axis.
-    EGS_Float     *gamma, *g12, *g12i;
+    EGS_Float*     gamma, * g12, * g12i;
     int           nc;
     int           flag;
 
@@ -1068,233 +1218,291 @@ class EGS_ConeSet : public EGS_BaseGeometry {
 
 public:
 
-    EGS_ConeSet(const EGS_Vector &Xo, const EGS_Vector &A, int Nc,
-                EGS_Float *Gamma, int Flag = 0, const string &Name = "") :
-        EGS_BaseGeometry(Name), xo(Xo), a(A), flag(Flag) {
+    EGS_ConeSet(const EGS_Vector& Xo, const EGS_Vector& A, int Nc,
+                EGS_Float* Gamma, int Flag = 0, const string& Name = "") :
+        EGS_BaseGeometry(Name), xo(Xo), a(A), flag(Flag)
+    {
         a.normalize();
-        if (Nc < 1) {
+        if (Nc < 1)
+        {
             egsFatal("EGS_ConeSet: number of cones must be positive\n");
         }
         nc = Nc;
         gamma = new EGS_Float [nc];
         g12 = new EGS_Float [nc];
         g12i = new EGS_Float [nc];
-        if (flag < 0 || flag > 2) {
+        if (flag < 0 || flag > 2)
+        {
             egsWarning("EGS_ConeSet: flag must be 0,1 or 2, reseting to 0\n");
             flag = 0;
         }
-        for (int j=0; j<nc; j++) {
-            if (Gamma[j] <= 0) {
+        for (int j = 0; j < nc; j++)
+        {
+            if (Gamma[j] <= 0)
+            {
                 egsFatal("EGS_ConeSet: gamma's must be positive\n");
             }
-            if (j > 0) {
-                if (Gamma[j] <= gamma[j-1]) egsFatal("EGS_ConeSet: "
-                                                         "gamma's must be in increasing order\n");
+            if (j > 0)
+            {
+                if (Gamma[j] <= gamma[j - 1]) egsFatal("EGS_ConeSet: "
+                                                           "gamma's must be in increasing order\n");
             }
             gamma[j] = Gamma[j];
-            g12[j] = 1 + gamma[j]*gamma[j];
-            g12i[j] = 1/sqrt(g12[j]);
+            g12[j] = 1 + gamma[j] * gamma[j];
+            g12i[j] = 1 / sqrt(g12[j]);
         }
-        if (flag == 0) {
+        if (flag == 0)
+        {
             nreg = nc;
         }
-        else {
-            nreg = 2*nc + 1;
+        else
+        {
+            nreg = 2 * nc + 1;
         }
-        if (flag == 1) {
+        if (flag == 1)
+        {
             is_convex = false;
         }
     }
 
-    ~EGS_ConeSet() {
+    ~EGS_ConeSet()
+    {
         delete [] gamma;
         delete [] g12;
         delete [] g12i;
     }
 
-    bool isInside(const EGS_Vector &x) {
-        if (flag == 2) {
+    bool isInside(const EGS_Vector& x)
+    {
+        if (flag == 2)
+        {
             return true;
         }
-        EGS_Vector xp(x-xo);
-        EGS_Float aa = xp*a;
-        if (flag == 0 && aa < 0) {
+        EGS_Vector xp(x - xo);
+        EGS_Float aa = xp * a;
+        if (flag == 0 && aa < 0)
+        {
             return false;
         }
         EGS_Float r2 = xp.length2();
-        if (r2 <= aa*aa*g12[nc-1]) {
+        if (r2 <= aa * aa * g12[nc - 1])
+        {
             return true;
         }
         return false;
     }
 
-    int isWhere(const EGS_Vector &x) {
-        EGS_Vector xp(x-xo);
-        EGS_Float aa = xp*a;
-        if (flag == 0 && aa < 0) {
+    int isWhere(const EGS_Vector& x)
+    {
+        EGS_Vector xp(x - xo);
+        EGS_Float aa = xp * a;
+        if (flag == 0 && aa < 0)
+        {
             return -1;
         }
         EGS_Float r2 = xp.length2();
         int j;
-        for (j=0; j<nc; j++) if (r2 <= aa*aa*g12[j]) {
+        for (j = 0; j < nc; j++) if (r2 <= aa * aa * g12[j])
+            {
                 break;
             }
-        if (j < nc) {
-            if (aa >= 0) {
+        if (j < nc)
+        {
+            if (aa >= 0)
+            {
                 return j;
             }
-            return 2*nc-j;
+            return 2 * nc - j;
         }
-        if (flag != 2) {
+        if (flag != 2)
+        {
             return -1;
         }
         return nc;
     }
 
-    bool isRealRegion(int ireg) const {
-        if (ireg < 0 || ireg >= nreg) {
+    bool isRealRegion(int ireg) const
+    {
+        if (ireg < 0 || ireg >= nreg)
+        {
             return false;
         }
         return flag != 1 ? true : (ireg != nc);
     }
 
-    int inside(const EGS_Vector &x) {
+    int inside(const EGS_Vector& x)
+    {
         return isWhere(x);
     }
 
-    int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u,
-               EGS_Float &t, int *newmed = 0, EGS_Vector *normal = 0) {
-        EGS_Vector xp(x-xo);
-        EGS_Float aa = xp*a, b = u*a, r2 = xp.length2(), c = u*xp;
+    int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u,
+               EGS_Float& t, int* newmed = 0, EGS_Vector* normal = 0)
+    {
+        EGS_Vector xp(x - xo);
+        EGS_Float aa = xp * a, b = u * a, r2 = xp.length2(), c = u * xp;
         //if( debug ) egsWarning(" ireg = %d x = (%g,%g,%g) a = %g"
         //     " b = %g r2 = %g c = %g\n",ireg,x.x,x.y,x.z,aa,b,r2,c);
-        if (!xp.length2()) {
+        if (!xp.length2())
+        {
             // handle odd case where position coincides with apex
             int inew = isWhere(xp + u);
-            if (inew != ireg) {
+            if (inew != ireg)
+            {
                 t = 0;
-                if (normal) {
+                if (normal)
+                {
                     *normal = a;
                 }
-                if (newmed) {
+                if (newmed)
+                {
                     *newmed = inew >= 0 ? medium(inew) : -1;
                 }
             }
             return inew;
         }
-        if (ireg != 0 && ireg != 2*nc) {
+        if (ireg != 0 && ireg != 2 * nc)
+        {
             // Not in the inner-most cone.
             // If outside (ireg < 0 || flag=2 and ireg=nc), check for
             // intersection with the outer-most cone
             // If inside, check for intersection with the inner cone.
             EGS_Float gam12;
-            if (ireg < 0 || ireg == nc) {
-                gam12 = g12[nc-1];
+            if (ireg < 0 || ireg == nc)
+            {
+                gam12 = g12[nc - 1];
             }
-            else {
-                gam12 = ireg < nc ? g12[ireg-1] : g12[2*nc-ireg-1];
+            else
+            {
+                gam12 = ireg < nc ? g12[ireg - 1] : g12[2 * nc - ireg - 1];
             }
-            EGS_Float A=1-b*b*gam12, B=c-aa*b*gam12, C=r2-aa*aa*gam12;
+            EGS_Float A = 1 - b * b * gam12, B = c - aa * b * gam12, C = r2 - aa * aa * gam12;
             //if( debug ) egsWarning(" gam12 = %g A = %g B = %g "
             //        "C = %g\n",gam12,A,B,C);
             EGS_Float tt = -1, lam;
             bool hit = false;
-            if (fabs(A) < boundaryTolerance) {
-                if ((ireg < nc && b > 0) || (ireg >= nc && b < 0)) {
-                    tt = -C/(2*B);
+            if (fabs(A) < boundaryTolerance)
+            {
+                if ((ireg < nc && b > 0) || (ireg >= nc && b < 0))
+                {
+                    tt = -C / (2 * B);
                 }
             }
-            else {
-                EGS_Float D = B*B-A*C;
-                if (D >= 0 && !(A > 0 && B > 0)) {
-                    tt = B < 0 ? C/(sqrt(D)-B) : -(sqrt(D)+B)/A;
+            else
+            {
+                EGS_Float D = B * B - A * C;
+                if (D >= 0 && !(A > 0 && B > 0))
+                {
+                    tt = B < 0 ? C / (sqrt(D) - B) : -(sqrt(D) + B) / A;
                 }
             }
-            if (tt >= 0) {   // possible intersection
-                lam = aa+b*tt;
+            if (tt >= 0)     // possible intersection
+            {
+                lam = aa + b * tt;
                 int inew;
-                if (ireg == nc || ireg == -1) {
+                if (ireg == nc || ireg == -1)
+                {
                     // outside the outer-most cone.
                     // if flag=1 or flag=2, we are allowed to hit either
                     // of the two cones
-                    if (flag) {
+                    if (flag)
+                    {
                         hit = true;
-                        inew = lam >= 0 ? nc-1 : nc+1;
+                        inew = lam >= 0 ? nc - 1 : nc + 1;
                     }
                     // if flag=0, we are allowed to hit only the lower
                     // cone (lam >= 0)
-                    else if (!flag && lam>=0) {
+                    else if (!flag && lam >= 0)
+                    {
                         hit = true;
-                        inew = nc-1;
+                        inew = nc - 1;
                     }
                 }
-                else {
+                else
+                {
                     // inside. In this case we are only allowed to hit
                     // the cone on the same side of the apex.
-                    if (lam*aa >= 0) {
+                    if (lam * aa >= 0)
+                    {
                         hit = true;
-                        inew = lam >= 0 ? ireg-1 : ireg+1;
+                        inew = lam >= 0 ? ireg - 1 : ireg + 1;
                     }
                 }
-                if (hit && tt <= t) {
+                if (hit && tt <= t)
+                {
                     t = tt;
-                    if (newmed) {
+                    if (newmed)
+                    {
                         *newmed = medium(inew);
                     }
-                    if (normal) {
-                        *normal = xp + u*t - a*(lam*gam12);
+                    if (normal)
+                    {
+                        *normal = xp + u * t - a * (lam * gam12);
                         normal->normalize();
                     }
                     return inew;
                 }
             }
-            if (ireg < 0 || ireg == nc || hit) {
+            if (ireg < 0 || ireg == nc || hit)
+            {
                 return ireg;
             }
         }
         //EGS_Float gam12 = ireg < nc-1 ? g12[ireg] : g12[2*nc-ireg];
-        EGS_Float gam12 = ireg < nc ? g12[ireg] : g12[2*nc-ireg];
-        EGS_Float A=1-b*b*gam12, B=c-aa*b*gam12, C=r2-aa*aa*gam12;
-        EGS_Float tt=-1;
-        if (fabs(A) < boundaryTolerance) {
-            if ((ireg < nc && b < 0) || (ireg > nc && b > 0)) {
-                tt = -C/(2*B);
+        EGS_Float gam12 = ireg < nc ? g12[ireg] : g12[2 * nc - ireg];
+        EGS_Float A = 1 - b * b * gam12, B = c - aa * b * gam12, C = r2 - aa * aa * gam12;
+        EGS_Float tt = -1;
+        if (fabs(A) < boundaryTolerance)
+        {
+            if ((ireg < nc && b < 0) || (ireg > nc && b > 0))
+            {
+                tt = -C / (2 * B);
             }
         }
-        else {
-            EGS_Float D = B*B-A*C;
+        else
+        {
+            EGS_Float D = B * B - A * C;
             // avoid numerical problems when |A*C| << |B|
-            if (D >= 0 && !(A < 0 && B < 0)) {
-                tt = B > 0 ? -C/(B+sqrt(D)) : (sqrt(D)-B)/A;
+            if (D >= 0 && !(A < 0 && B < 0))
+            {
+                tt = B > 0 ? -C / (B + sqrt(D)) : (sqrt(D) - B) / A;
             }
         }
-        if (tt < 0) {
+        if (tt < 0)
+        {
             return ireg;
         }
-        EGS_Float lam = aa + b*tt;
-        if ((ireg < nc && lam < 0) || (ireg > nc && lam > 0)) {
+        EGS_Float lam = aa + b * tt;
+        if ((ireg < nc && lam < 0) || (ireg > nc && lam > 0))
+        {
             return ireg;
         }
-        if (tt <= t) {
+        if (tt <= t)
+        {
             t = tt;
             int inew;
-            if (ireg < nc) {
-                inew = ireg+1;
-                if (inew == nc && flag < 2) {
+            if (ireg < nc)
+            {
+                inew = ireg + 1;
+                if (inew == nc && flag < 2)
+                {
                     inew = -1;
                 }
             }
-            else {
-                inew = ireg-1;
-                if (inew == nc && flag < 2) {
+            else
+            {
+                inew = ireg - 1;
+                if (inew == nc && flag < 2)
+                {
                     inew = -1;
                 }
             }
-            if (newmed) {
+            if (newmed)
+            {
                 *newmed = inew < 0 ? -1 : medium(inew);
             }
-            if (normal) {
-                *normal = xp + u*t - a*(lam*gam12);
+            if (normal)
+            {
+                *normal = xp + u * t - a * (lam * gam12);
                 normal->normalize();
             }
             return inew;
@@ -1302,51 +1510,62 @@ public:
         return ireg;
     }
 
-    EGS_Float hownear(int ireg, const EGS_Vector &x) {
+    EGS_Float hownear(int ireg, const EGS_Vector& x)
+    {
         EGS_Float tc = veryFar;
-        EGS_Vector xp(x-xo);
-        EGS_Float aa = xp*a, r2 = xp.length2(), ag;
+        EGS_Vector xp(x - xo);
+        EGS_Float aa = xp * a, r2 = xp.length2(), ag;
         //egsWarning("hownear: ireg = %d x = (%g,%g,%g) aa = %g r2 = %g\n",
         //        ireg,x.x,x.y,x.z,aa,r2);
-        if (ireg != 0 && ireg != 2*nc) {
+        if (ireg != 0 && ireg != 2 * nc)
+        {
             int i;
-            if (ireg < 0 || ireg == nc) {
-                i = nc-1;
+            if (ireg < 0 || ireg == nc)
+            {
+                i = nc - 1;
             }
-            else {
-                i = ireg < nc ? ireg-1 : 2*nc-ireg-1;
+            else
+            {
+                i = ireg < nc ? ireg - 1 : 2 * nc - ireg - 1;
             }
-            ag = aa*gamma[i];
-            if (flag == 0 && aa < 0 && ag*ag > r2*g12[i]) {
+            ag = aa * gamma[i];
+            if (flag == 0 && aa < 0 && ag * ag > r2 * g12[i])
+            {
                 tc = sqrt(r2);
             }
-            else {
-                tc = fabs((fabs(ag)-sqrt(r2-aa*aa))*g12i[i]);
+            else
+            {
+                tc = fabs((fabs(ag) - sqrt(r2 - aa * aa)) * g12i[i]);
             }
             //egsWarning(" i = %d ag = %g g12i = %g tc = %g\n",i,ag,g12i[i],tc);
-            if (ireg < 0 || ireg == nc) {
+            if (ireg < 0 || ireg == nc)
+            {
                 return tc;
             }
         }
         EGS_Float gam12i;
-        if (ireg < nc) {
-            ag = aa*gamma[ireg];
+        if (ireg < nc)
+        {
+            ag = aa * gamma[ireg];
             gam12i = g12i[ireg];
         }
-        else {
-            ag = -aa*gamma[2*nc-ireg];
-            gam12i = g12i[2*nc-ireg];
+        else
+        {
+            ag = -aa * gamma[2 * nc - ireg];
+            gam12i = g12i[2 * nc - ireg];
         }
-        EGS_Float tco = fabs((ag-sqrt(r2-aa*aa))*gam12i);
+        EGS_Float tco = fabs((ag - sqrt(r2 - aa * aa)) * gam12i);
         //egsWarning(" ag = %g tco = %g\n",ag,tco);
         return tco < tc ? tco : tc;
     }
 
-    int getMaxStep() const {
-        return 4*nreg + 2;
+    int getMaxStep() const
+    {
+        return 4 * nreg + 2;
     }
 
-    const string &getType() const {
+    const string& getType() const
+    {
         return type;
     }
 
@@ -1458,195 +1677,231 @@ A simple example:
 \endverbatim
 \image html egs_conestack.png "A simple example with clipping plane 0,0,1,0"
 */
-class EGS_ConeStack : public EGS_BaseGeometry {
+class EGS_ConeStack : public EGS_BaseGeometry
+{
 
 public:
 
     // constructor (empty cone stack)
-    EGS_ConeStack(const EGS_Vector &Xo, const EGS_Vector &A, const string &Name)
+    EGS_ConeStack(const EGS_Vector& Xo, const EGS_Vector& A, const string& Name)
         : EGS_BaseGeometry(Name), xo(Xo), a(A), nl(0), nltot(0), nmax(0), same_Rout(true), Rout(0),
-          Rout2(0) {
+          Rout2(0)
+    {
         a.normalize();
     }
 
     // destructor
-    ~EGS_ConeStack() {
+    ~EGS_ConeStack()
+    {
         clear(true);
     }
 
     // add a layer
-    void addLayer(EGS_Float thick, const vector<EGS_Float> &rtop,
-                  const vector<EGS_Float> &rbottom,
-                  const vector<string> &med_names);
+    void addLayer(EGS_Float thick, const vector<EGS_Float>& rtop,
+                  const vector<EGS_Float>& rbottom,
+                  const vector<string>& med_names);
 
     // get medium
-    int medium(int ireg) const {
-        int il = ireg/nmax;
-        int ir = ireg - il*nmax;
+    int medium(int ireg) const
+    {
+        int il = ireg / nmax;
+        int ir = ireg - il * nmax;
         return cones[il][ir]->medium(0);
     }
 
     // isInside
-    bool isInside(const EGS_Vector &x) {
-        EGS_Float p = x*a;
-        if (p < pos[0] || p > pos[nl]) {
+    bool isInside(const EGS_Vector& x)
+    {
+        EGS_Float p = x * a;
+        if (p < pos[0] || p > pos[nl])
+        {
             return false;
         }
-        int il = findRegion(p,nl+1,pos);
-        return cones[il][nr[il]-1]->isInside(x);
+        int il = findRegion(p, nl + 1, pos);
+        return cones[il][nr[il] - 1]->isInside(x);
     }
 
     // isWhere
-    int isWhere(const EGS_Vector &x) {
-        EGS_Float p = x*a;
-        if (p < pos[0] || p > pos[nl]) {
+    int isWhere(const EGS_Vector& x)
+    {
+        EGS_Float p = x * a;
+        if (p < pos[0] || p > pos[nl])
+        {
             return -1;
         }
-        int il = findRegion(p,nl+1,pos);
-        int ir = isWhere(il,x);
-        return ir < 0 ? -1 : il*nmax+ir;
+        int il = findRegion(p, nl + 1, pos);
+        int ir = isWhere(il, x);
+        return ir < 0 ? -1 : il * nmax + ir;
     }
 
     // inside
-    int inside(const EGS_Vector &x) {
+    int inside(const EGS_Vector& x)
+    {
         return isWhere(x);
     }
 
     // isRealRegion
-    bool isRealRegion(int ireg) const {
-        if (ireg < 0 || ireg >= nreg) {
+    bool isRealRegion(int ireg) const
+    {
+        if (ireg < 0 || ireg >= nreg)
+        {
             return false;
         }
-        int il = ireg/nmax;
-        int ir = ireg - il*nmax;
+        int il = ireg / nmax;
+        int ir = ireg - il * nmax;
         return (ir < nr[il]);
     }
 
     // howfar
-    int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u,
-               EGS_Float &t, int *newmed=0, EGS_Vector *normal=0) {
+    int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u,
+               EGS_Float& t, int* newmed = 0, EGS_Vector* normal = 0)
+    {
 
-        EGS_Float xp = x*a;
-        EGS_Float up = u*a;
+        EGS_Float xp = x * a;
+        EGS_Float up = u * a;
         int dir;
 
         // inside conestack
-        if (ireg >= 0) {
+        if (ireg >= 0)
+        {
             EGS_Float tp;
-            int il = ireg/nmax;                     // layer index
+            int il = ireg / nmax;                   // layer index
 
             // calculate distance to plane
-            if (up > 0) {                           // u points along conestack axis
+            if (up > 0)                             // u points along conestack axis
+            {
                 dir = 1;                            // positive direction
-                tp = (pos[il+1]-xp)/up;             // distance to 'next' plane
+                tp = (pos[il + 1] - xp) / up;       // distance to 'next' plane
             }
-            else if (up < 0) {                      // u points against conestack axis
+            else if (up < 0)                        // u points against conestack axis
+            {
                 dir = -1;                           // negative direction
-                tp = (pos[il]-xp)/up;               // distance to 'previous' plane
+                tp = (pos[il] - xp) / up;           // distance to 'previous' plane
             }
-            else {                                  // u is perpendicular to a (u*a = 0)
+            else                                    // u is perpendicular to a (u*a = 0)
+            {
                 dir = 0;                            // null direction
                 tp = veryFar;                       // init to large distance
             }
             bool hitp = false;                      // assume we don't hit the plane
-            if (tp <= t) {                          // check against maximum distance t
+            if (tp <= t)                            // check against maximum distance t
+            {
                 hitp = true;                        // we hit the plane
                 t = tp;                             // set t = distance to plane
             }
 
             // distance to outer cone
-            int ir = ireg - il*nmax;                // cone index in current layer
+            int ir = ireg - il * nmax;              // cone index in current layer
             bool hitc = false;                      // assume we don't hit the cone
-            int irnew = cones[il][ir]->howfar(0,x,u,t,newmed,normal);
-            if (irnew < 0) {
+            int irnew = cones[il][ir]->howfar(0, x, u, t, newmed, normal);
+            if (irnew < 0)
+            {
                 hitc = true;                        // hit the next cone
-                irnew = ir < nr[il]-1 ? ir+1 : -1;  // next cone region, or -1 if beyond last cone
+                irnew = ir < nr[il] - 1 ? ir + 1 : -1; // next cone region, or -1 if beyond last cone
             }
 
             // distance to inner cone (for all but innermost cone)
-            if (ir > 0) {
-                int irnew1 = cones[il][ir-1]->howfar(-1,x,u,t,newmed,normal);
-                if (!irnew1) {
+            if (ir > 0)
+            {
+                int irnew1 = cones[il][ir - 1]->howfar(-1, x, u, t, newmed, normal);
+                if (!irnew1)
+                {
                     hitc = true;                    // hit the previous cone
-                    irnew = ir-1;                   // previous cone region
+                    irnew = ir - 1;                 // previous cone region
                 }
             }
 
             // hit a cone boundary
-            if (hitc) {
-                if (irnew < 0) {
+            if (hitc)
+            {
+                if (irnew < 0)
+                {
                     return irnew;    // we are moving out of conestack, return -1
                 }
-                if (newmed) {
+                if (newmed)
+                {
                     *newmed = cones[il][irnew]->medium(0);
                 }
-                return il*nmax + irnew;
+                return il * nmax + irnew;
             }
 
             // did not hit a plane (nor a cone: should not happen!)
-            if (!hitp) {
+            if (!hitp)
+            {
                 return ireg;
             }
 
             // change layer
             int ilnew = il + dir;                   // new layer index
-            if (normal) {
-                *normal = dir > 0 ? a*(-1) : a;
+            if (normal)
+            {
+                *normal = dir > 0 ? a * (-1) : a;
             }
-            if (ilnew < 0 || ilnew >= nl) {
+            if (ilnew < 0 || ilnew >= nl)
+            {
                 return -1;    // beyond conestack bounding planes => outside
             }
 
             // next layer radii are congruent (add nmax to ireg)
-            if (dir > 0 && flag[il] >= 2) {
-                if (newmed) {
-                    *newmed = cones[il+1][ir]->medium(0);
+            if (dir > 0 && flag[il] >= 2)
+            {
+                if (newmed)
+                {
+                    *newmed = cones[il + 1][ir]->medium(0);
                 }
-                return ireg+nmax;
+                return ireg + nmax;
             }
 
             // previous layer radii are congruent (subtract nmax from ireg)
-            if (dir < 0 && (flag[il] == 1 || flag[il] == 3)) {
-                if (newmed) {
-                    *newmed = cones[il-1][ir]->medium(0);
+            if (dir < 0 && (flag[il] == 1 || flag[il] == 3))
+            {
+                if (newmed)
+                {
+                    *newmed = cones[il - 1][ir]->medium(0);
                 }
-                return ireg-nmax;
+                return ireg - nmax;
             }
 
             // figure out region index in new layer
             il += dir;                              // new layer index
-            EGS_Vector tmp(x+u*t);                  // position of the hit on new layer
-            ir = isWhere(il,tmp);                   // get region index in that layer
-            if (ir<0) {
+            EGS_Vector tmp(x + u * t);              // position of the hit on new layer
+            ir = isWhere(il, tmp);                  // get region index in that layer
+            if (ir < 0)
+            {
                 return ir;    // moved out of constack
             }
-            if (newmed) {
+            if (newmed)
+            {
                 *newmed = cones[il][ir]->medium(0);
             }
-            return il*nmax+ir;                      // return overall new region index
+            return il * nmax + ir;                  // return overall new region index
         }
 
         // outside of conestack
 
-        EGS_Float  ttot=0;                          // cumulative travel distance
+        EGS_Float  ttot = 0;                        // cumulative travel distance
         EGS_Float  tp;                              // distance to next plane
         EGS_Vector tmp(x);                          // running position
         int il;                                     // current layer index
 
         // outside the first boundary plane
-        if (xp <= pos[0]) {
-            if (up <= 0) {
+        if (xp <= pos[0])
+        {
+            if (up <= 0)
+            {
                 return ireg;    // moving away from conestack: no hit
             }
-            tp = (pos[0]-xp)/up;                    // distance to first boundary plane
-            if (tp > t) {
+            tp = (pos[0] - xp) / up;                // distance to first boundary plane
+            if (tp > t)
+            {
                 return ireg;    // distance greater than maximum t: no hit
             }
-            tmp += u*tp;                            // move to first plane
+            tmp += u * tp;                          // move to first plane
             ttot = tp;                              // increase cumulative travel distance
             il   = 0;                               // index of current layer
             int ir = isWhere(0, tmp);               // region index in first layer
-            if (ir >= 0) {                          // hit inside a cone in first layer: we're done
+            if (ir >= 0)                            // hit inside a cone in first layer: we're done
+            {
                 //***************************************************************
                 // EMH April 12 2013: Called from outside, but isWhere reports it is inside.
                 // This is due to either the particle at a boundary or to round-off errors near a boundary.
@@ -1660,36 +1915,43 @@ public:
                 // check if a subsequent call to howfar(ir,tmp,...) takes us outside within boundaryTolerance.
                 // It that case we are not really entering the geometry.
                 EGS_Float tb = veryFar;
-                int inew_g = howfar(ir,tmp,u,tb,0,normal);
-                if (inew_g < 0 && tb <= boundaryTolerance) {
+                int inew_g = howfar(ir, tmp, u, tb, 0, normal);
+                if (inew_g < 0 && tb <= boundaryTolerance)
+                {
                     return ireg;    // exits geometry
                 }
                 //***************************************************************
                 t = tp;                             // distance to hit is distance to plane
-                if (newmed) {
+                if (newmed)
+                {
                     *newmed = cones[0][ir]->medium(0);
                 }
-                if (normal) {
-                    *normal = a*(-1);
+                if (normal)
+                {
+                    *normal = a * (-1);
                 }
                 return ir;                          // return region number
             }
         }
 
         // outside the last boundary plane
-        else if (xp >= pos[nl]) {
-            if (up >= 0) {
+        else if (xp >= pos[nl])
+        {
+            if (up >= 0)
+            {
                 return ireg;    // moving away from the conestack: no hit
             }
-            tp = (pos[nl]-xp)/up;                   // distance to last boundary plane
-            if (tp > t) {
+            tp = (pos[nl] - xp) / up;               // distance to last boundary plane
+            if (tp > t)
+            {
                 return ireg;    // distance greater than maximum t: no hit
             }
-            tmp += u*tp;                            // hit position on last plane
+            tmp += u * tp;                          // hit position on last plane
             ttot = tp;                              // increase cumulative travel distance
-            il = nl-1;                              // index of last plane
+            il = nl - 1;                            // index of last plane
             int ir = isWhere(il, tmp);              // region index in last layer
-            if (ir >= 0) {                          // hit inside a cone in first layer: we're done
+            if (ir >= 0)                            // hit inside a cone in first layer: we're done
+            {
                 //***************************************************************
                 // EMH April 12 2013: Called from outside, but isWhere reports it is inside.
                 // This is due to either the particle at a boundary or to round-off errors near a boundary.
@@ -1703,26 +1965,31 @@ public:
                 // check if a subsequent call to howfar(il*nmax+ir) takes us outside within boundaryTolerance.
                 // It that case we are not really entering the geometry.
                 EGS_Float tb = veryFar;
-                int inew_g = howfar(il*nmax+ir,tmp,u,tb,0,normal);
-                if (inew_g < 0 && tb <= boundaryTolerance) {
+                int inew_g = howfar(il * nmax + ir, tmp, u, tb, 0, normal);
+                if (inew_g < 0 && tb <= boundaryTolerance)
+                {
                     return ireg;    // exits geometry
                 }
                 //***************************************************************
                 t = tp;                             // distance to hit is distance to plane
-                if (newmed) {
+                if (newmed)
+                {
                     *newmed = cones[il][ir]->medium(0);
                 }
-                if (normal) {
+                if (normal)
+                {
                     *normal = a;    // set normal
                 }
-                return il*nmax+ir;                  // return region number
+                return il * nmax + ir;              // return region number
             }
         }
 
         // outside conestack, but within conestack boundary planes
-        else {
+        else
+        {
 
-            if (same_Rout) {
+            if (same_Rout)
+            {
                 // all outer "cones" are actually cylinders and all have the same radius. This
                 // simplifies the logic a lot: just need to check against outer cylindrical cone of
                 // the first layer: cones[0][nr[0]-1]. Don't forget to use temporary and normal
@@ -1752,80 +2019,94 @@ public:
                 // If so, then we are not really entering the geometry.
 
                 // fp inconsistency: irnow >= 0 (inside) but called with ireg = -1 (outside)
-                if (irnow >= 0) {
+                if (irnow >= 0)
+                {
                     EGS_Float tb = veryFar;
-                    int inew_g = howfar(irnow,x,u,tb,0,&tmp_normal);
-                    if (inew_g < 0 && tb <= boundaryTolerance) {
+                    int inew_g = howfar(irnow, x, u, tb, 0, &tmp_normal);
+                    if (inew_g < 0 && tb <= boundaryTolerance)
+                    {
                         return ireg;    // exits geometry
                     }
                 }
                 //***************************************************************
 
-                int irnew = cones[0][nr[0]-1]->howfar(ireg,x,u,tt,0,&tmp_normal);
+                int irnew = cones[0][nr[0] - 1]->howfar(ireg, x, u, tt, 0, &tmp_normal);
 
-                if (irnew < 0) {
+                if (irnew < 0)
+                {
                     return -1;    // no hit
                 }
-                EGS_Float aux = xp + up*tt;         // axis position of hit point on outer cylinder
+                EGS_Float aux = xp + up * tt;       // axis position of hit point on outer cylinder
                 if (aux < pos[0] || aux > pos[nl] ||// beyond conestack bounding planes
                         (aux == pos[0]  && up <= 0)   ||// on first plane, going out
-                        (aux == pos[nl] && up >= 0)) {  // on last plane, going out
+                        (aux == pos[nl] && up >= 0))    // on last plane, going out
+                {
                     return -1;                      // => no hit: we're done
                 }
-                il = findRegion(aux,nl+1,pos);      // layer index for axis position aux
-                if (newmed) {
-                    *newmed = cones[il][nr[il]-1]->medium(0);
+                il = findRegion(aux, nl + 1, pos);  // layer index for axis position aux
+                if (newmed)
+                {
+                    *newmed = cones[il][nr[il] - 1]->medium(0);
                 }
-                if (normal) {
+                if (normal)
+                {
                     *normal = tmp_normal;    // set normal to normal from howfar
                 }
                 t = tt;                             // set distance
-                return il*nmax + nr[il]-1;          // return region index
+                return il * nmax + nr[il] - 1;      // return region index
             }
 
             // get layer index for current position, projected on the conestack axis
-            il = findRegion(xp,nl+1,pos);
+            il = findRegion(xp, nl + 1, pos);
 
             // guard agains round-off errors by checking if the position
             // is inside the outer cone in this layer (it shouldn't be, as the
             // particle is outside) and returning if it is.
-            bool isc = cones[il][nr[il]-1]->isInside(x);
-            if (isc) {
+            bool isc = cones[il][nr[il] - 1]->isInside(x);
+            if (isc)
+            {
                 // IK, March 7 2008: same problem as in CD geometry.
                 // we think we are outside but we just found we are inside.
                 // Hopefully a roundoff problem.
                 EGS_Float tp = veryFar;
 
-                if (up > 0) {
+                if (up > 0)
+                {
                     dir = 1;
-                    tp = (pos[il+1] - xp)/up;
+                    tp = (pos[il + 1] - xp) / up;
                 }
-                else if (up < 0) {
+                else if (up < 0)
+                {
                     dir = -1;
-                    tp = (pos[il] - xp)/up;
+                    tp = (pos[il] - xp) / up;
                 }
-                else {
+                else
+                {
                     // prevent compiler from complaining about use of
                     // uninitialized value of dir (even though tp will
                     // always be greater than epsilon in this case).
                     dir = 0;
                 }
-                if (tp < boundaryTolerance) {
+                if (tp < boundaryTolerance)
+                {
                     il += dir;
-                    if (il < 0 || il >= nl) {
+                    if (il < 0 || il >= nl)
+                    {
                         return ireg;
                     }
-                    isc = cones[il][nr[il]-1]->isInside(x);
+                    isc = cones[il][nr[il] - 1]->isInside(x);
                 }
 
-                if (isc) {
+                if (isc)
+                {
                     EGS_Float tc = veryFar;
-                    int isc_new = cones[il][nr[il]-1]->howfar(0,x,u,tc);
-                    if (!(isc_new < 0 && tc < boundaryTolerance)) {
+                    int isc_new = cones[il][nr[il] - 1]->howfar(0, x, u, tc);
+                    if (!(isc_new < 0 && tc < boundaryTolerance))
+                    {
                         egsWarning("EGS_ConeStack::howfar: called from the outside"
-                                   " but I find x=(%g,%g,%g) to be inside\n", x.x,x.y,x.z);
-                        egsWarning("layer=%d distance to planes=%g\n",il,tp);
-                        egsWarning("distance to outer cone=%g\n",tc);
+                                   " but I find x=(%g,%g,%g) to be inside\n", x.x, x.y, x.z);
+                        egsWarning("layer=%d distance to planes=%g\n", il, tp);
+                        egsWarning("distance to outer cone=%g\n", tc);
                         error_flag = 1;
                         return ireg;
                     }
@@ -1834,22 +2115,27 @@ public:
         }
 
         // traverse layers until we hit a cone, or else move beyond conestack boundary planes
-        for (EGS_I64 loopCount=0; loopCount<=loopMax; ++loopCount) {
-            if (loopCount == loopMax) {
+        for (EGS_I64 loopCount = 0; loopCount <= loopMax; ++loopCount)
+        {
+            if (loopCount == loopMax)
+            {
                 egsFatal("EGS_ConeStack::howfar: Too many iterations were required! Input may be invalid, or consider increasing loopMax.");
                 return -1;
             }
 
             // calculate distance to next plane boundary
-            if (up > 0) {                           // moving along conestack axis a
+            if (up > 0)                             // moving along conestack axis a
+            {
                 dir = 1;                            // positive direction
-                tp = (pos[il+1] - xp)/up;           // total distance to next plane
+                tp = (pos[il + 1] - xp) / up;       // total distance to next plane
             }
-            else if (up < 0) {                      // moving against conestack axis a
+            else if (up < 0)                        // moving against conestack axis a
+            {
                 dir = -1;                           // negative direction
-                tp = (pos[il] - xp)/up;             // total distance to previous plane
+                tp = (pos[il] - xp) / up;           // total distance to previous plane
             }
-            else {                                  // moving perpendicular to axis (u*a = 0)
+            else                                    // moving perpendicular to axis (u*a = 0)
+            {
                 dir = 0;                            // null direction
                 tp  = veryFar;                      // init to large distance
             }
@@ -1858,89 +2144,106 @@ public:
             EGS_Float tt = t - ttot;                // remaining maximum distance
             int tmp_med;
             EGS_Vector tmp_normal;
-            int irnew = cones[il][nr[il]-1]->howfar(-1,tmp,u,tt,&tmp_med,&tmp_normal);
-            if (!irnew) {                           // hit the outer cone
-                if (tp > ttot + tt) {               // plane is further than cone: we're done
-                    t = ttot+tt;                    // final distance to conestack
-                    if (newmed) {
+            int irnew = cones[il][nr[il] - 1]->howfar(-1, tmp, u, tt, &tmp_med, &tmp_normal);
+            if (!irnew)                             // hit the outer cone
+            {
+                if (tp > ttot + tt)                 // plane is further than cone: we're done
+                {
+                    t = ttot + tt;                  // final distance to conestack
+                    if (newmed)
+                    {
                         *newmed = tmp_med;    // set media
                     }
-                    if (normal) {
+                    if (normal)
+                    {
                         *normal = tmp_normal;    // set normal
                     }
-                    return il*nmax+nr[il]-1;        // return final region index
+                    return il * nmax + nr[il] - 1;  // return final region index
                 }
             }
-            if (tp > t || !dir) {
+            if (tp > t || !dir)
+            {
                 break;    // guard against glancing hits
             }
             il += dir;                              // move to previous or next layer
-            if (il < 0 || il >= nl) {
+            if (il < 0 || il >= nl)
+            {
                 break;    // enforce conestack bounding planes
             }
             ttot = tp;                              // increase cumulative travel distance
-            tmp = x + u*tp;                         // move along to position hit on next plane
+            tmp = x + u * tp;                       // move along to position hit on next plane
 
-            int itest = isWhere(il,tmp);            // check where we are in next layer
-            if (itest >= 0) {                       // we are inside a cone in next layer
+            int itest = isWhere(il, tmp);           // check where we are in next layer
+            if (itest >= 0)                         // we are inside a cone in next layer
+            {
                 t = ttot;                           // update distance
-                if (newmed) {
+                if (newmed)
+                {
                     *newmed = cones[il][itest]->medium(0);
                 }
-                if (normal) {
-                    *normal = dir > 0 ? a*(-1) : a;
+                if (normal)
+                {
+                    *normal = dir > 0 ? a * (-1) : a;
                 }
-                return il*nmax + itest;             // return final region index
+                return il * nmax + itest;           // return final region index
             }
         }
         return ireg;
     }
 
     // hownear
-    EGS_Float hownear(int ireg, const EGS_Vector &x) {
+    EGS_Float hownear(int ireg, const EGS_Vector& x)
+    {
 
-        EGS_Float xp = x*a;                         // current position along the axis
+        EGS_Float xp = x * a;                       // current position along the axis
         EGS_Float tp, tc;                           // distances
 
         // inside the conestack
-        if (ireg >= 0) {
-            int il = ireg/nmax;                     // current layer index
-            int ir = ireg - il*nmax;                // region index in current layer
-            tp = min(xp-pos[il],pos[il+1]-xp);      // min of distance to planes on either side
-            tc = cones[il][ir]->hownear(0,x);       // distance to outer conical boundary
-            if (ir > 0) {
-                tc = min(tc,cones[il][ir-1]->hownear(-1,x));    // to inner conical boundary
+        if (ireg >= 0)
+        {
+            int il = ireg / nmax;                   // current layer index
+            int ir = ireg - il * nmax;              // region index in current layer
+            tp = min(xp - pos[il], pos[il + 1] - xp); // min of distance to planes on either side
+            tc = cones[il][ir]->hownear(0, x);      // distance to outer conical boundary
+            if (ir > 0)
+            {
+                tc = min(tc, cones[il][ir - 1]->hownear(-1, x)); // to inner conical boundary
             }
-            return min(tp,tc);                      // return minimum distance
+            return min(tp, tc);                     // return minimum distance
         }
 
         // outside the conestack; just check distances to layer planes, which is overkill, but in
         // general it would be worse to check hownear on the outer cones in all layer! To mitigate
         // hownear calls to layer planes, one can inscribe the conestack in a fitting envelope.
 
-        if (xp <= pos[0]) {
+        if (xp <= pos[0])
+        {
             return pos[0] - xp;    // distance to first layer plane
         }
-        if (xp >= pos[nl]) {
+        if (xp >= pos[nl])
+        {
             return xp - pos[nl];    // distance to last layer plane
         }
-        int il = findRegion(xp,nl+1,pos);           // find current layer index
-        tp = min(xp-pos[il],pos[il+1]-xp);          // min of distance to planes on either side
-        return min(tp,cones[il][nr[il]-1]->hownear(-1,x));  // min dist. to planes and outer cone
+        int il = findRegion(xp, nl + 1, pos);       // find current layer index
+        tp = min(xp - pos[il], pos[il + 1] - xp);   // min of distance to planes on either side
+        return min(tp, cones[il][nr[il] - 1]->hownear(-1, x)); // min dist. to planes and outer cone
 
     }
 
     // getMaxStep
-    int getMaxStep() const {
+    int getMaxStep() const
+    {
         int nstep = 0;
-        for (int j=0; j<nl; ++j) {
-            nstep += 2*nr[j] + 1;
+        for (int j = 0; j < nl; ++j)
+        {
+            nstep += 2 * nr[j] + 1;
         }
         return nstep + 1;
     }
 
     // getType
-    const string &getType() const {
+    const string& getType() const
+    {
         return type;
     }
 
@@ -1948,14 +2251,17 @@ public:
     void printInfo() const;
 
     // nLayer
-    int  nLayer() const {
+    int  nLayer() const
+    {
         return nl;
     }
 
     // shiftLabels
-    void shiftLabelRegions(const int i, const int index) {
-        for (size_t k=0; k<labels[i].regions.size(); k++) {
-            labels[i].regions[k] += index*nmax;
+    void shiftLabelRegions(const int i, const int index)
+    {
+        for (size_t k = 0; k < labels[i].regions.size(); k++)
+        {
+            labels[i].regions[k] += index * nmax;
         }
     }
 
@@ -1970,14 +2276,14 @@ protected:
     int         nmax;           // max. number of radii in all layers
     bool        same_Rout;      // true, if all layers have same outer radius
     EGS_Float   Rout, Rout2;    // outer radius (if same_Rout is true)
-    EGS_Float   *pos;           // the plane positions dividing the layers
-    int         *nr;            // number of radii in each layer
-    int         *flag;          // a flag for each layer:
+    EGS_Float*   pos;           // the plane positions dividing the layers
+    int*         nr;            // number of radii in each layer
+    int*         flag;          // a flag for each layer:
     //   = 0 -> top and bottom radii different from adjacent layers
     //   = 1 -> top radii are the same as bottom of previous layer
     //   = 2 -> bottom radii are the same as top of next layer
     //   = 3 -> top and bottom radii same as adjacent layers
-    EGS_SimpleCone ** *cones;   // the cones for each layer.
+    EGS_SimpleCone*** cones;    // the cones for each layer.
     static string type;
 
     // resize
@@ -1987,16 +2293,20 @@ protected:
     void clear(bool);
 
     // isWhere
-    inline int isWhere(int il, const EGS_Vector &x) {
-        if (!cones[il][nr[il]-1]->isInside(x)) {
+    inline int isWhere(int il, const EGS_Vector& x)
+    {
+        if (!cones[il][nr[il] - 1]->isInside(x))
+        {
             return -1;
         }
-        for (int j=0; j<nr[il]-1; j++) {
-            if (cones[il][j]->isInside(x)) {
+        for (int j = 0; j < nr[il] - 1; j++)
+        {
+            if (cones[il][j]->isInside(x))
+            {
                 return j;
             }
         }
-        return nr[il]-1;
+        return nr[il] - 1;
     }
 };
 

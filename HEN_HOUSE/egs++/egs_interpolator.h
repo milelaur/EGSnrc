@@ -39,14 +39,15 @@
 
 #include "egs_libconfig.h"
 
-typedef EGS_Float(*EGS_InterpolatorFuncion)(EGS_Float,void *);
+typedef EGS_Float(*EGS_InterpolatorFuncion)(EGS_Float, void*);
 
 /*! \brief A class for fast run-time interpolations.
 
   \ingroup egspp_main
 
  */
-class EGS_EXPORT EGS_Interpolator {
+class EGS_EXPORT EGS_Interpolator
+{
 
 public:
 
@@ -59,7 +60,7 @@ public:
      \a Xmax.
     */
     EGS_Interpolator(int nbin, EGS_Float Xmin, EGS_Float Xmax,
-                     const EGS_Float *values);
+                     const EGS_Float* values);
 
     /*! \brief Create an interpolator for the function \a func
       in \a Xmin...Xmax
@@ -70,7 +71,7 @@ public:
      */
     EGS_Interpolator(int nbin, EGS_Float Xmin, EGS_Float Xmax,
                      EGS_InterpolatorFuncion func,
-                     void *data);
+                     void* data);
 
     /*! \brief Create an interpolator for the function \a func
         in \a Xmin...Xmax
@@ -81,7 +82,7 @@ public:
      \a nmax bins are used.
      */
     EGS_Interpolator(EGS_Float Xmin, EGS_Float Xmax,
-                     EGS_InterpolatorFuncion func, void *data,
+                     EGS_InterpolatorFuncion func, void* data,
                      int nmax = 1024, EGS_Float accu = 1e-4);
 
     /*! \brief Create an interpolator using the existing coefficients
@@ -93,7 +94,7 @@ public:
      without duplicating the interpolation coefficients.
      */
     EGS_Interpolator(int nbin, EGS_Float Xmin, EGS_Float Xmax,
-                     EGS_Float *a, EGS_Float *b);
+                     EGS_Float* a, EGS_Float* b);
 
     /*! \brief Destructor */
     ~EGS_Interpolator();
@@ -106,7 +107,7 @@ public:
     for more details
     */
     void initialize(int nbin, EGS_Float Xmin, EGS_Float Xmax,
-                    const EGS_Float *values);
+                    const EGS_Float* values);
 
     /*! \brief Initialize the interpolator
 
@@ -117,7 +118,7 @@ public:
     */
     void initialize(int nbin, EGS_Float Xmin, EGS_Float Xmax,
                     EGS_InterpolatorFuncion func,
-                    void *data);
+                    void* data);
 
     /* \brief Initialize the interpolator
 
@@ -126,7 +127,7 @@ public:
     constructor with the same argument list \endlink for more details
     */
     void initialize(EGS_Float Xmin, EGS_Float Xmax,
-                    EGS_InterpolatorFuncion func, void *data,
+                    EGS_InterpolatorFuncion func, void* data,
                     int nmax = 1024, EGS_Float accu = 1e-4);
 
     /*! \brief Initialize the interpolator
@@ -137,7 +138,7 @@ public:
      for more details
     */
     void initialize(int nbin, EGS_Float Xmin, EGS_Float Xmax,
-                    EGS_Float *a, EGS_Float *b);
+                    EGS_Float* a, EGS_Float* b);
 
     /*! \brief Interpolate the function value at \a x.
 
@@ -147,18 +148,23 @@ public:
 
       \sa interpolateFast().
      */
-    inline EGS_Float interpolate(EGS_Float x) const {
-        if (x > xmin && x < xmax) {
-            int i = (int)(ax + bx*x);
-            if (i < 0) {
-                i=0;
+    inline EGS_Float interpolate(EGS_Float x) const
+    {
+        if (x > xmin && x < xmax)
+        {
+            int i = (int)(ax + bx * x);
+            if (i < 0)
+            {
+                i = 0;
             }
-            return a[i] + b[i]*x;
+            return a[i] + b[i] * x;
         }
-        else if (x <= xmin) {
+        else if (x <= xmin)
+        {
             return fmin;
         }
-        else {
+        else
+        {
             return fmax;
         }
     };
@@ -170,24 +176,29 @@ public:
 
      \sa interpolate().
     */
-    inline EGS_Float interpolateFast(EGS_Float x) const {
-        int i = (int)(ax + bx*x);
-        return a[i] + b[i]*x;
+    inline EGS_Float interpolateFast(EGS_Float x) const
+    {
+        int i = (int)(ax + bx * x);
+        return a[i] + b[i] * x;
     };
 
     /*! \brief Get the interpolation index corresponding to \a x.
 
       \sa getIndexFast()
      */
-    inline int getIndex(EGS_Float x) const {
-        if (x > xmin && x < xmax) {
-            return (int)(ax + bx*x);
+    inline int getIndex(EGS_Float x) const
+    {
+        if (x > xmin && x < xmax)
+        {
+            return (int)(ax + bx * x);
         }
-        else if (x <= xmin) {
+        else if (x <= xmin)
+        {
             return 0;
         }
-        else {
-            return n-1;
+        else
+        {
+            return n - 1;
         }
     };
 
@@ -198,8 +209,9 @@ public:
 
     \sa getIndex()
     */
-    inline int getIndexFast(EGS_Float x) const {
-        return (int)(ax + bx*x);
+    inline int getIndexFast(EGS_Float x) const
+    {
+        return (int)(ax + bx * x);
     };
 
     /*! \brief Interpolate the function value at \a x assuming that \a belongs
@@ -218,24 +230,29 @@ public:
       interpolateFast(int,EGS_Float) to the
       <code>\$EVALUATE USING</code> mortran macro.
     */
-    inline EGS_Float interpolateFast(int i, EGS_Float x) const {
-        return a[i] + b[i]*x;
+    inline EGS_Float interpolateFast(int i, EGS_Float x) const
+    {
+        return a[i] + b[i] * x;
     };
 
     /*! \brief Get the lower interpolation interval limit. */
-    EGS_Float getXmin() const {
+    EGS_Float getXmin() const
+    {
         return xmin;
     };
     /*! \brief Get the upper interpolation interval limit. */
-    EGS_Float getXmax() const {
+    EGS_Float getXmax() const
+    {
         return xmax;
     };
     /*! \brief Get i-th interval interpolation parameter a[i]. */
-    inline EGS_Float get_a(int i) const {
+    inline EGS_Float get_a(int i) const
+    {
         return a[i];
     };
     /*! \brief Get i-th interval interpolation parameter b[i]. */
-    inline EGS_Float get_b(int i) const {
+    inline EGS_Float get_b(int i) const
+    {
         return b[i];
     };
 
@@ -244,9 +261,9 @@ private:
 
     int            n;     //!< number of bins
     EGS_Float ax, bx;     //!< convert x to an index.
-    EGS_Float *a, *b;     //!< interpolation coefficients.
-    EGS_Float xmin,xmax;  //!< interpolation interval.
-    EGS_Float fmin,fmax;  //!< function values at interval boundaries.
+    EGS_Float* a, * b;    //!< interpolation coefficients.
+    EGS_Float xmin, xmax; //!< interpolation interval.
+    EGS_Float fmin, fmax; //!< function values at interval boundaries.
     bool    own_data;
     //!< true if the interpolator owns the data pointed to by a and b.
     void clear();

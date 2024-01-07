@@ -40,7 +40,8 @@
 
 #include "egs_simple_container.h"
 
-struct EGS_RelaxationParticle {
+struct EGS_RelaxationParticle
+{
     int        q;  //!< charge (0-photon, -1=electron)
     EGS_Float  E;  //!< energy in MeV
     EGS_RelaxationParticle(int Q, EGS_Float e) : q(Q), E(e) {};
@@ -58,7 +59,8 @@ class EGS_RandomGenerator;
  all shells and relaxations according to data from the EADL library are taken
  into account.
  */
-class EGS_EXPORT EGS_AtomicRelaxations {
+class EGS_EXPORT EGS_AtomicRelaxations
+{
 
 public:
 
@@ -68,7 +70,7 @@ public:
         searched for in this path. Otherwise the data file will be
         assumed to be in the \$HEN_HOUSE/data folder
      */
-    EGS_AtomicRelaxations(const char *data_path = 0);
+    EGS_AtomicRelaxations(const char* data_path = 0);
 
     ~EGS_AtomicRelaxations();
 
@@ -88,7 +90,7 @@ public:
 
     Returns 0 on success and a non-zero error code on failure.
      */
-    int loadData(int nz, const int *Zarray);
+    int loadData(int nz, const int* Zarray);
 
     /*! Perform the relaxation cascade for shell \a sh from element \a Z.
 
@@ -100,8 +102,8 @@ public:
         \a edep.
      */
     void relax(int Z, int sh, EGS_Float ecut, EGS_Float pcut,
-               EGS_RandomGenerator *rndm, double &edep,
-               EGS_SimpleContainer<EGS_RelaxationParticle> &particles);
+               EGS_RandomGenerator* rndm, double& edep,
+               EGS_SimpleContainer<EGS_RelaxationParticle>& particles);
 
     /*! Returns the binding energy of shell \a shell in element \a Z */
     EGS_Float getBindingEnergy(int Z, int shell);
@@ -128,7 +130,7 @@ public:
 
 protected:
 
-    EGS_RelaxImplementation *p;
+    EGS_RelaxImplementation* p;
 
 };
 

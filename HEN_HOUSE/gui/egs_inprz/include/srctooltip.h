@@ -37,11 +37,11 @@
 class SourceTip : public QToolTip
 {
 public:
-    SourceTip( QWidget * parent );
-    SourceTip( QWidget * parent, const QRect& rect, const QString& text );
+    SourceTip(QWidget* parent);
+    SourceTip(QWidget* parent, const QRect& rect, const QString& text);
     void ShowTip();
 protected:
     QRect   tipRect;
     QString tipString;
-    void maybeTip( const QPoint & pos);
+    void maybeTip(const QPoint& pos);
 };

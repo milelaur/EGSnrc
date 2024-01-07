@@ -56,16 +56,17 @@ class EGS_Input;
 struct EGS_GeometryIntersections;
 
 #ifdef BPROPERTY64
-    typedef EGS_I64 EGS_BPType;
+typedef EGS_I64 EGS_BPType;
 #elif defined BPROPERTY32
-    typedef unsigned int EGS_BPType;
+typedef unsigned int EGS_BPType;
 #elif defined BPROPERTY16
-    typedef unsigned short EGS_BPType;
+typedef unsigned short EGS_BPType;
 #else
-    typedef unsigned char EGS_BPType;
+typedef unsigned char EGS_BPType;
 #endif
 
-class label {
+class label
+{
 public:
     string      name;
     vector<int> regions;
@@ -90,7 +91,8 @@ public:
 
 */
 
-class EGS_EXPORT EGS_BaseGeometry {
+class EGS_EXPORT EGS_BaseGeometry
+{
 
 public:
 
@@ -99,7 +101,7 @@ public:
         All geometries must have a unique name that is used to refer
         to them in the input file specifying the geometry.
      */
-    EGS_BaseGeometry(const string &Name);
+    EGS_BaseGeometry(const string& Name);
 
     /*! \brief Destructor
 
@@ -121,7 +123,8 @@ public:
         applies if all dimensions are convex or if there is a single concave
         dimension, which is also the last dimension.
      */
-    inline bool isConvex() const {
+    inline bool isConvex() const
+    {
         return is_convex;
     };
 
@@ -130,7 +133,7 @@ public:
         This method is obsolete, isInside() and isWhere() should be used
         instead.
      */
-    virtual int inside(const EGS_Vector &x) = 0;
+    virtual int inside(const EGS_Vector& x) = 0;
 
     /*! \brief Is the position \a x inside the geometry?
 
@@ -138,7 +141,7 @@ public:
         classes to return \c true, if the position \a x is inside the
         geomtry and \c false otherwise.
     */
-    virtual bool isInside(const EGS_Vector &x) = 0;
+    virtual bool isInside(const EGS_Vector& x) = 0;
 
     /*! \brief In which region is poisition \a x?
 
@@ -147,7 +150,7 @@ public:
         \a x belongs, if the position \a x is inside the
         geomtry and -1 otherwise.
     */
-    virtual int isWhere(const EGS_Vector &x) = 0;
+    virtual int isWhere(const EGS_Vector& x) = 0;
 
     /*! \brief Find the bin to which \a xp belongs, given \a np bin edges \a p
 
@@ -157,14 +160,18 @@ public:
         cylinders, etc.). Arguably, it should not be a member of the base
         geomtry class.
       */
-    static int findRegion(EGS_Float xp, int np, const EGS_Float *p) {
+    static int findRegion(EGS_Float xp, int np, const EGS_Float* p)
+    {
         int ml = 0, mu = np;
-        while (mu - ml > 1) {
-            int mav = (ml+mu)/2;
-            if (xp <= p[mav]) {
+        while (mu - ml > 1)
+        {
+            int mav = (ml + mu) / 2;
+            if (xp <= p[mav])
+            {
                 mu = mav;
             }
-            else {
+            else
+            {
                 ml = mav;
             }
         }
@@ -201,8 +208,8 @@ public:
       purpsoses only (i.e., \a normal is always \c null in a normal
       simulation).
      */
-    virtual int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u,
-                       EGS_Float &t, int *newmed=0, EGS_Vector *normal=0) = 0;
+    virtual int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u,
+                       EGS_Float& t, int* newmed = 0, EGS_Vector* normal = 0) = 0;
 
     /*! Calculate the distance to the outer geometry boundary from \a x
         along the direction \a u.
@@ -216,8 +223,8 @@ public:
         advanced variance reduction techniques.
 
      */
-    virtual EGS_Float howfarToOutside(int ireg, const EGS_Vector &x,
-                                      const EGS_Vector &u);
+    virtual EGS_Float howfarToOutside(int ireg, const EGS_Vector& x,
+                                      const EGS_Vector& u);
 
     /*! \brief Calculate the distance to a boundary for position \a x in
       any direction.
@@ -229,14 +236,15 @@ public:
       that \a x is in region \a ireg (if \a ireg >= 0)
       or that \a x is outside (if \a ireg < 0).
      */
-    virtual EGS_Float hownear(int ireg, const EGS_Vector &x) = 0;
+    virtual EGS_Float hownear(int ireg, const EGS_Vector& x) = 0;
 
     /*! \brief Calculates the volume of region ireg.
 
       Currently only implemented EGS_XYZGeometry, EGS_cSpheres,
       EGS_cSphericalShell, EGS_AEnvelope, and EGS_RZGeometry
     */
-    virtual EGS_Float getVolume(int ireg) {
+    virtual EGS_Float getVolume(int ireg)
+    {
         return 1.0;
     }
 
@@ -245,7 +253,8 @@ public:
       Currently only implemented in EGS_XYZGeometry, where idir=0--> X-boundaries,
       idir=1--> Y-boundaries, idir=2--> Z-boundaries
     */
-    virtual EGS_Float getBound(int idir, int ind) {
+    virtual EGS_Float getBound(int idir, int ind)
+    {
         return 0.0;
     }
 
@@ -254,7 +263,8 @@ public:
       Currently only implemented in EGS_XYZGeometry, where idir=0--> X-boundaries,
       idir=1--> Y-boundaries, idir=2--> Z-boundaries
     */
-    virtual int getNRegDir(int idir) {
+    virtual int getNRegDir(int idir)
+    {
         return 0;
     }
 
@@ -264,7 +274,8 @@ public:
       geometry classes must set EGS_BaseGeometry::nreg to the number of
       regions in the geometry.
      */
-    int regions() const {
+    int regions() const
+    {
         return nreg;
     };
 
@@ -275,7 +286,8 @@ public:
       regions than actual regions. This method can be used in such cases
       to check if a region exists.
      */
-    virtual bool isRealRegion(int ireg) const {
+    virtual bool isRealRegion(int ireg) const
+    {
         return (ireg >= 0 && ireg < nreg);
     };
 
@@ -285,7 +297,8 @@ public:
       assumed that this method is only invoked with \a ireg inside the
       geometry (unless, of course, there is a bug)
      */
-    virtual int medium(int ireg) const {
+    virtual int medium(int ireg) const
+    {
         return region_media ? region_media[ireg] : med;
     };
 
@@ -294,8 +307,9 @@ public:
      * This method is handy for detecting when a particle gets stuck
      * at a boundary
      */
-    virtual int getMaxStep() const {
-        return nreg+1;
+    virtual int getMaxStep() const
+    {
+        return nreg + 1;
     };
 
     /*! \brief Calculates intersection distances to region boundaries
@@ -310,8 +324,8 @@ public:
       first element of \a isections the distance to the entry point and
       then finds all other intersections as in the case of \a x inside.
      */
-    virtual int computeIntersections(int ireg, int n, const EGS_Vector &x,
-                                     const EGS_Vector &u, EGS_GeometryIntersections *isections);
+    virtual int computeIntersections(int ireg, int n, const EGS_Vector& x,
+                                     const EGS_Vector& u, EGS_GeometryIntersections* isections);
 
     /*! \brief Set all regions to a medium with name \a Name
 
@@ -322,7 +336,7 @@ public:
       \sa setMedium(int,int,const string &), setMedium(int),
       setMedium(int,int,int), setMedia() and nMedia().
      */
-    void setMedium(const string &Name);
+    void setMedium(const string& Name);
 
     /*! \brief Set every delta'th region between \a start and \a end
      * to the medium named \a Name
@@ -331,13 +345,14 @@ public:
       index in all regions between \a start and \a end (inclusive).
       Note that...
      */
-    void setMedium(int start, int end, const string &Name, int delta=1);
+    void setMedium(int start, int end, const string& Name, int delta = 1);
 
     /*! \brief Set all regions to a medium with index \a imed.
 
       Note that...
      */
-    void setMedium(int imed) {
+    void setMedium(int imed)
+    {
         med = imed;
     };
 
@@ -348,7 +363,7 @@ public:
       \sa setMedium(int), setMedium(int,int,constr string &,int) and
       setMedium(const string &)
      */
-    void setMedium(int istart, int iend, int imed, int delta=1);
+    void setMedium(int istart, int iend, int imed, int delta = 1);
 
     /*! \brief Set the media in the geometry from the input pointed to
       by \a inp.
@@ -360,7 +375,7 @@ public:
           set medium = first last medium_index<br>
       </code> See PIRS-899 for more details.
      */
-    void setMedia(EGS_Input *inp);
+    void setMedia(EGS_Input* inp);
 
     /*!  \brief Get the number of media registered so far by all geometries.
 
@@ -376,7 +391,7 @@ public:
     Returns a pointer to the character array holding the name of the
     medium with index \a ind or \c null if there is no such medium index.
     */
-    static const char *getMediumName(int ind);
+    static const char* getMediumName(int ind);
 
     /*! \brief Add a medium or get the index of an existing medium.
 
@@ -386,26 +401,28 @@ public:
     is returned. If no such medium name exists in the list, \a medname
     is first appended to the list and then its index is returned.
     */
-    static int addMedium(const string &medname);
+    static int addMedium(const string& medname);
 
     /*! \brief Get the index of a medium named \a medname.
 
     If \a medname is found in the list of media, its index is returned.
     Otherwise the return value is -1.
     */
-    static int getMediumIndex(const string &medname);
+    static int getMediumIndex(const string& medname);
 
     /*! \brief Does this geometry object have a mass density scaling feature?
 
      */
-    inline bool hasRhoScaling() const {
+    inline bool hasRhoScaling() const
+    {
         return has_rho_scaling;
     };
 
     /*! \brief Get the relative mass density in region \a ireg
 
      */
-    virtual EGS_Float getRelativeRho(int ireg) const {
+    virtual EGS_Float getRelativeRho(int ireg) const
+    {
         return rhor && ireg >= 0 && ireg < nreg ? rhor[ireg] : 1;
     };
 
@@ -425,47 +442,59 @@ public:
      and sets the relative mass density to rho in all regions between
      start and end (inclusive).
      */
-    virtual void setRelativeRho(EGS_Input *);
+    virtual void setRelativeRho(EGS_Input*);
 
     EGS_Float getMediumRho(int ind) const;
 
-    virtual void setApplication(EGS_Application *app);
+    virtual void setApplication(EGS_Application* app);
 
     /*! \brief Does this geometry object have a B field scaling feature?
      */
-    inline bool hasBScaling() const {
+    inline bool hasBScaling() const
+    {
         return (has_B_scaling || has_Ref_rho);
     };
 
     /*! \brief Get the B field scaling factor in region \a ireg
      */
-    virtual EGS_Float getBScaling(int ireg) const {
-        if (has_Ref_rho && has_B_scaling) {
-            if (bfactor && ireg >= 0 && ireg < nreg) {
-                return getMediumRho(medium(ireg))/rhoRef*bfactor[ireg];
+    virtual EGS_Float getBScaling(int ireg) const
+    {
+        if (has_Ref_rho && has_B_scaling)
+        {
+            if (bfactor && ireg >= 0 && ireg < nreg)
+            {
+                return getMediumRho(medium(ireg)) / rhoRef * bfactor[ireg];
             }
-            else {
+            else
+            {
                 return 1.0;
             }
         }
-        else if (has_Ref_rho && !has_B_scaling) {
-            if (ireg >= 0 && ireg < nreg) {
-                return  getMediumRho(medium(ireg))/rhoRef;
+        else if (has_Ref_rho && !has_B_scaling)
+        {
+            if (ireg >= 0 && ireg < nreg)
+            {
+                return  getMediumRho(medium(ireg)) / rhoRef;
             }
-            else {
+            else
+            {
                 return 1.0;
             }
         }
-        else if (!has_Ref_rho && has_B_scaling) {
-            if (bfactor && ireg >= 0 && ireg < nreg) {
+        else if (!has_Ref_rho && has_B_scaling)
+        {
+            if (bfactor && ireg >= 0 && ireg < nreg)
+            {
                 return bfactor[ireg];
 
             }
-            else {
+            else
+            {
                 return 1.0;
             }
         }
-        else {
+        else
+        {
             return 1.0;
         }
     }
@@ -486,14 +515,15 @@ public:
      and sets the B field scaling factor to bfact in all regions between
      start and end (inclusive).
      */
-    virtual void setBScaling(EGS_Input *);
+    virtual void setBScaling(EGS_Input*);
 
     /*! \brief Get the name of this geometry
 
       Every geometry must have a name and this method can be used to retrieve
       the name of a geometry.
      */
-    const string &getName() const {
+    const string& getName() const
+    {
         return name;
     };
 
@@ -503,7 +533,7 @@ public:
       to return a short but descriptive geometry type string.
       getType() is used in printInfo() to describe a geometry.
      */
-    virtual const string &getType() const = 0;
+    virtual const string& getType() const = 0;
 
     /*! \brief Create a geometry (or geometries) from a given input
 
@@ -523,7 +553,7 @@ public:
 
       \sa createSingleGeometry().
      */
-    static EGS_BaseGeometry *createGeometry(EGS_Input *);
+    static EGS_BaseGeometry* createGeometry(EGS_Input*);
 
     /*! \brief Create a single geometry from the input \a inp.
 
@@ -541,7 +571,7 @@ public:
      (if the input is not sufficient or valid to create the desired
      geometry, createGeometry will return \c null).
      */
-    static EGS_BaseGeometry *createSingleGeometry(EGS_Input *inp);
+    static EGS_BaseGeometry* createSingleGeometry(EGS_Input* inp);
 
     /*! \brief Clears (deletes) all geometries in the currently active geometry
                list.
@@ -557,7 +587,8 @@ public:
      This is mainly useful in the development process of a
      new geometry. It sets the protected data member #debug to \a deb.
     */
-    void setDebug(bool deb) {
+    void setDebug(bool deb)
+    {
         debug = deb;
     };
 
@@ -567,9 +598,9 @@ public:
      if a geometry with such a name exists in the static list of
      geometries, or \c null if no such geometry exists.
      */
-    static EGS_BaseGeometry *getGeometry(const string &Name);
+    static EGS_BaseGeometry* getGeometry(const string& Name);
 
-    static EGS_BaseGeometry **getGeometries();
+    static EGS_BaseGeometry** getGeometries();
 
     static int getNGeometries();
 
@@ -589,7 +620,7 @@ public:
       call this function to set their name from the input provided to
       the geometry creation function.
      */
-    void   setName(EGS_Input *inp);
+    void   setName(EGS_Input* inp);
 
     /*! \brief Set the value of the boundary tolerance from the input \a inp.
 
@@ -599,19 +630,22 @@ public:
      call this function to set their boundary tolerance from the input provided to
      the geometry creation function.
      */
-    void    setBoundaryTolerance(EGS_Input *inp);
+    void    setBoundaryTolerance(EGS_Input* inp);
 
     /*! \brief Set the value of the boundary tolerance from argument.
      */
-    void    setBoundaryTolerance(EGS_Float tol) {
+    void    setBoundaryTolerance(EGS_Float tol)
+    {
         boundaryTolerance = tol;
-        halfBoundaryTolerance = tol/2.;
+        halfBoundaryTolerance = tol / 2.;
     }
 
     /*! \brief Is the boolean property \a prop set for region \a ireg ?
      */
-    virtual bool hasBooleanProperty(int ireg, EGS_BPType prop) const {
-        if (!bp_array) {
+    virtual bool hasBooleanProperty(int ireg, EGS_BPType prop) const
+    {
+        if (!bp_array)
+        {
             return (prop & bproperty);
         }
         return ireg >= 0 && ireg < nreg ? prop & bp_array[ireg] : false;
@@ -640,7 +674,7 @@ public:
      * addBooleanProperty(int,int,int,int)
      */
     virtual void setBooleanProperty(EGS_BPType prop, int start, int end,
-                                    int step=1);
+                                    int step = 1);
 
     /*! \brief Add a boolean property to every \a step'th region between
      * \a start and \a end (inclusive) by setting the bit'th bit
@@ -648,7 +682,7 @@ public:
      * \sa setBooleanProperty(EGS_BPType),addBooleanProperty(int),
      * setBooleanProperty(EGS_BPType,int,int,int)
      */
-    virtual void addBooleanProperty(int bit, int start, int end, int step=1);
+    virtual void addBooleanProperty(int bit, int start, int end, int step = 1);
 
     /*! \brief Print information about this geometry.
 
@@ -675,7 +709,8 @@ public:
       their reference count using this method. This is needed to prevent
       a geometry being destructed that is still in use by some other geometry.
      */
-    inline int ref() {
+    inline int ref()
+    {
         return ++nref;
     };
 
@@ -687,7 +722,8 @@ public:
       destructed and delete the geometry, if the return value of this
       function is 0.
      */
-    inline int deref() {
+    inline int deref()
+    {
         return --nref;
     };
 
@@ -696,40 +732,45 @@ public:
     */
     static void setActiveGeometryList(int list);
 
-    static int getLastError() {
+    static int getLastError()
+    {
         return error_flag;
     };
 
-    static void resetErrorFlag() {
+    static void resetErrorFlag()
+    {
         error_flag = 0;
     };
 
     /*! \brief Get the value of the boundary tolerance */
-    EGS_Float getBoundaryTolerance() {
+    EGS_Float getBoundaryTolerance()
+    {
         return boundaryTolerance;
     };
 
     /*! \brief Get a list of all the regions labeled with a number */
-    virtual void getNumberRegions(const string &str, vector<int> &regs);
+    virtual void getNumberRegions(const string& str, vector<int>& regs);
 
     /*! \brief Get the list of all regions labeled with \a str */
-    virtual void getLabelRegions(const string &str, vector<int> &regs);
+    virtual void getLabelRegions(const string& str, vector<int>& regs);
 
     /*! \brief Get the name of the i-th explicit label in the geometry */
-    virtual const string &getLabelName(const int i) {
+    virtual const string& getLabelName(const int i)
+    {
         return labels[i].name;
     }
 
     /*! \brief Get the number of explicit labels in the geometry */
-    virtual int getLabelCount() {
+    virtual int getLabelCount()
+    {
         return labels.size();
     }
 
     /*! \brief Set the labels from an input block */
-    int setLabels(EGS_Input *input);
+    int setLabels(EGS_Input* input);
 
     /*! \brief Set the labels from an input string */
-    int setLabels(const string &inp);
+    int setLabels(const string& inp);
 
 protected:
 
@@ -753,7 +794,7 @@ protected:
     \em and not all regions have the same medium index and contains
     the media indeces of all regions in such cases.
     */
-    short *region_media;
+    short* region_media;
 
     /*! \brief Medium index
 
@@ -772,7 +813,7 @@ protected:
     /*! \brief Array with relative mass densities.
 
      */
-    EGS_Float *rhor;
+    EGS_Float* rhor;
 
     /*! \brief Does this geometry has B field scaling factor?
 
@@ -782,7 +823,7 @@ protected:
     /*! \brief Array with B field scaling factors.
 
      */
-    EGS_Float *bfactor;
+    EGS_Float* bfactor;
 
     /*! \brief Reference density for B field scaling.
 
@@ -803,7 +844,7 @@ protected:
     but left as a protected method just in case it may be useful to
     derived geometry classes.
     */
-    virtual void setMedia(EGS_Input *inp, int nmed, const int *med_ind);
+    virtual void setMedia(EGS_Input* inp, int nmed, const int* med_ind);
 
     /*! \brief Debugging flag.
 
@@ -832,7 +873,7 @@ protected:
      * Only allocated if neede (i.e. not all regions in a geometry have
      * the same boolean properties.
      */
-    EGS_BPType   *bp_array;
+    EGS_BPType*   bp_array;
 
     /*! \brief Boundary tolerance for geometries that need it */
     EGS_Float boundaryTolerance, halfBoundaryTolerance;
@@ -858,7 +899,7 @@ protected:
     vector<label> labels;
 
     /*! \brief The application this object belongs to */
-    EGS_Application *app;
+    EGS_Application* app;
 
 private:
 
@@ -875,7 +916,8 @@ private:
 
 };
 
-struct EGS_GeometryIntersections {
+struct EGS_GeometryIntersections
+{
     EGS_Float t;     //!< distance to next region boundary
     EGS_Float rhof;  //!< relative mass density in that region
     EGS_I32   ireg;  //!< region index

@@ -45,22 +45,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_TRANSFORMED_SOURCE_DLL
-        #define EGS_TRANSFORMED_SOURCE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_TRANSFORMED_SOURCE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_TRANSFORMED_SOURCE_LOCAL
+#ifdef BUILD_TRANSFORMED_SOURCE_DLL
+#define EGS_TRANSFORMED_SOURCE_EXPORT __declspec(dllexport)
+#else
+#define EGS_TRANSFORMED_SOURCE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_TRANSFORMED_SOURCE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_TRANSFORMED_SOURCE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_TRANSFORMED_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_TRANSFORMED_SOURCE_EXPORT
-        #define EGS_TRANSFORMED_SOURCE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_TRANSFORMED_SOURCE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_TRANSFORMED_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_TRANSFORMED_SOURCE_EXPORT
+#define EGS_TRANSFORMED_SOURCE_LOCAL
+#endif
 
 #endif
 
@@ -119,83 +119,101 @@ A simple example:
 \image html egs_transformed_source.png "A simple example"
 */
 class EGS_TRANSFORMED_SOURCE_EXPORT EGS_TransformedSource :
-    public EGS_BaseSource {
+    public EGS_BaseSource
+{
 
 public:
 
     /*! \brief Construct a transformed source using \a Source as the
     source and \a t as the transformation
     */
-    EGS_TransformedSource(EGS_BaseSource *Source,
-                          EGS_AffineTransform *t,
-                          const string &Name="", EGS_ObjectFactory *f=0) :
-        EGS_BaseSource(Name,f), source(Source), T(0) {
+    EGS_TransformedSource(EGS_BaseSource* Source,
+                          EGS_AffineTransform* t,
+                          const string& Name = "", EGS_ObjectFactory* f = 0) :
+        EGS_BaseSource(Name, f), source(Source), T(0)
+    {
         setUp(t);
     };
     /*! \brief Construct a transformed source from the input \a inp */
-    EGS_TransformedSource(EGS_Input *, EGS_ObjectFactory *f=0);
-    void setTransformation(EGS_AffineTransform *t) {
-        if (T) {
+    EGS_TransformedSource(EGS_Input*, EGS_ObjectFactory* f = 0);
+    void setTransformation(EGS_AffineTransform* t)
+    {
+        if (T)
+        {
             delete T;
             T = 0;
         }
-        if (t) {
+        if (t)
+        {
             T = new EGS_AffineTransform(*t);
         }
     };
-    const EGS_AffineTransform *getTransform() const {
+    const EGS_AffineTransform* getTransform() const
+    {
         return T;
     };
-    ~EGS_TransformedSource() {
+    ~EGS_TransformedSource()
+    {
         EGS_Object::deleteObject(source);
-        if (T) {
+        if (T)
+        {
             delete T;
         }
     };
 
-    EGS_I64 getNextParticle(EGS_RandomGenerator *rndm,
-                            int &q, int &latch, EGS_Float &E, EGS_Float &wt,
-                            EGS_Vector &x, EGS_Vector &u) {
-        EGS_I64 c = source->getNextParticle(rndm,q,latch,E,wt,x,u);
-        if (T) {
+    EGS_I64 getNextParticle(EGS_RandomGenerator* rndm,
+                            int& q, int& latch, EGS_Float& E, EGS_Float& wt,
+                            EGS_Vector& x, EGS_Vector& u)
+    {
+        EGS_I64 c = source->getNextParticle(rndm, q, latch, E, wt, x, u);
+        if (T)
+        {
             T->rotate(u);
             T->transform(x);
         }
         return c;
     };
-    EGS_Float getEmax() const {
+    EGS_Float getEmax() const
+    {
         return source->getEmax();
     };
-    EGS_Float getFluence() const {
+    EGS_Float getFluence() const
+    {
         return source->getFluence();
     };
-    bool storeState(ostream &data) const {
+    bool storeState(ostream& data) const
+    {
         return source->storeState(data);
     };
-    bool setState(istream &data) {
+    bool setState(istream& data)
+    {
         return source->setState(data);
     };
-    bool addState(istream &data_in) {
+    bool addState(istream& data_in)
+    {
         return source->addState(data_in);
     };
-    void resetCounter() {
+    void resetCounter()
+    {
         source->resetCounter();
     };
 
-    bool isValid() const {
+    bool isValid() const
+    {
         return (source != 0);
     };
 
-    void setSimulationChunk(EGS_I64 nstart, EGS_I64 nrun) {
+    void setSimulationChunk(EGS_I64 nstart, EGS_I64 nrun)
+    {
         source->setSimulationChunk(nstart, nrun);
     };
 
 protected:
 
-    EGS_BaseSource *source; //!< The source being transformed
-    EGS_AffineTransform *T; //!< The affine transformation
+    EGS_BaseSource* source; //!< The source being transformed
+    EGS_AffineTransform* T; //!< The affine transformation
 
-    void setUp(EGS_AffineTransform *t);
+    void setUp(EGS_AffineTransform* t);
 
 };
 

@@ -62,78 +62,78 @@ QT_BEGIN_NAMESPACE
 class Ui_EGS_PegsPage
 {
 public:
-    QVBoxLayout *verticalLayout_5;
-    QHBoxLayout *horizontalLayout_2;
-    QGroupBox *groupBox6;
-    QVBoxLayout *verticalLayout;
-    QTableWidget *composition_table;
-    QVBoxLayout *verticalLayout_4;
-    QGroupBox *groupBox11;
-    QHBoxLayout *hboxLayout;
-    QLineEdit *medname_le;
-    QHBoxLayout *hboxLayout1;
-    QGroupBox *groupBox8;
-    QHBoxLayout *hboxLayout2;
-    QComboBox *medtype_cbox;
-    QGroupBox *rho_group;
-    QHBoxLayout *hboxLayout3;
-    QLineEdit *rho_le;
-    QComboBox *comboBox2;
-    QGroupBox *groupBox3;
-    QVBoxLayout *verticalLayout_3;
-    QVBoxLayout *verticalLayout_2;
-    QCheckBox *dc_icru_check;
-    QCheckBox *rad_icru_check;
-    QCheckBox *rayleigh_check;
-    QHBoxLayout *horizontalLayout;
-    QCheckBox *is_gas;
-    QSpacerItem *horizontalSpacer;
-    QLabel *gaspLabel;
-    QLineEdit *gaspEdit;
-    QLabel *gaspUnits;
-    QSpacerItem *spacer5;
-    QGroupBox *dc_group;
-    QHBoxLayout *hboxLayout4;
-    QLabel *textLabel5;
-    QComboBox *dc_where;
-    QLineEdit *dc_file;
-    QPushButton *dc_button;
-    QGroupBox *groupBox5;
-    QGridLayout *gridLayout;
-    QHBoxLayout *hboxLayout5;
-    QLabel *textLabel1;
-    QLineEdit *ae_le;
-    QComboBox *ae_units;
-    QHBoxLayout *hboxLayout6;
-    QLabel *textLabel2;
-    QLineEdit *ap_le;
-    QComboBox *ap_units;
-    QHBoxLayout *hboxLayout7;
-    QLabel *textLabel3;
-    QLineEdit *ue_le;
-    QComboBox *ue_units;
-    QHBoxLayout *hboxLayout8;
-    QLabel *textLabel4;
-    QLineEdit *up_le;
-    QComboBox *up_units;
-    QGroupBox *groupBox10;
-    QVBoxLayout *vboxLayout;
-    QHBoxLayout *hboxLayout9;
-    QCheckBox *new_data_file;
-    QSpacerItem *spacer2;
-    QCheckBox *append_to_datafile;
-    QSpacerItem *spacer3;
-    QHBoxLayout *hboxLayout10;
-    QLabel *textLabel6;
-    QLineEdit *ofile_le;
-    QPushButton *ofile_b;
-    QHBoxLayout *hboxLayout11;
-    QSpacerItem *spacer4;
-    QPushButton *go_button;
-    QPushButton *cancel_button;
-    QPushButton *details_b;
+    QVBoxLayout* verticalLayout_5;
+    QHBoxLayout* horizontalLayout_2;
+    QGroupBox* groupBox6;
+    QVBoxLayout* verticalLayout;
+    QTableWidget* composition_table;
+    QVBoxLayout* verticalLayout_4;
+    QGroupBox* groupBox11;
+    QHBoxLayout* hboxLayout;
+    QLineEdit* medname_le;
+    QHBoxLayout* hboxLayout1;
+    QGroupBox* groupBox8;
+    QHBoxLayout* hboxLayout2;
+    QComboBox* medtype_cbox;
+    QGroupBox* rho_group;
+    QHBoxLayout* hboxLayout3;
+    QLineEdit* rho_le;
+    QComboBox* comboBox2;
+    QGroupBox* groupBox3;
+    QVBoxLayout* verticalLayout_3;
+    QVBoxLayout* verticalLayout_2;
+    QCheckBox* dc_icru_check;
+    QCheckBox* rad_icru_check;
+    QCheckBox* rayleigh_check;
+    QHBoxLayout* horizontalLayout;
+    QCheckBox* is_gas;
+    QSpacerItem* horizontalSpacer;
+    QLabel* gaspLabel;
+    QLineEdit* gaspEdit;
+    QLabel* gaspUnits;
+    QSpacerItem* spacer5;
+    QGroupBox* dc_group;
+    QHBoxLayout* hboxLayout4;
+    QLabel* textLabel5;
+    QComboBox* dc_where;
+    QLineEdit* dc_file;
+    QPushButton* dc_button;
+    QGroupBox* groupBox5;
+    QGridLayout* gridLayout;
+    QHBoxLayout* hboxLayout5;
+    QLabel* textLabel1;
+    QLineEdit* ae_le;
+    QComboBox* ae_units;
+    QHBoxLayout* hboxLayout6;
+    QLabel* textLabel2;
+    QLineEdit* ap_le;
+    QComboBox* ap_units;
+    QHBoxLayout* hboxLayout7;
+    QLabel* textLabel3;
+    QLineEdit* ue_le;
+    QComboBox* ue_units;
+    QHBoxLayout* hboxLayout8;
+    QLabel* textLabel4;
+    QLineEdit* up_le;
+    QComboBox* up_units;
+    QGroupBox* groupBox10;
+    QVBoxLayout* vboxLayout;
+    QHBoxLayout* hboxLayout9;
+    QCheckBox* new_data_file;
+    QSpacerItem* spacer2;
+    QCheckBox* append_to_datafile;
+    QSpacerItem* spacer3;
+    QHBoxLayout* hboxLayout10;
+    QLabel* textLabel6;
+    QLineEdit* ofile_le;
+    QPushButton* ofile_b;
+    QHBoxLayout* hboxLayout11;
+    QSpacerItem* spacer4;
+    QPushButton* go_button;
+    QPushButton* cancel_button;
+    QPushButton* details_b;
 
-    void setupUi(QWidget *EGS_PegsPage)
+    void setupUi(QWidget* EGS_PegsPage)
     {
         if (EGS_PegsPage->objectName().isEmpty())
             EGS_PegsPage->setObjectName(QString::fromUtf8("EGS_PegsPage"));
@@ -156,9 +156,9 @@ public:
         composition_table = new QTableWidget(groupBox6);
         if (composition_table->columnCount() < 2)
             composition_table->setColumnCount(2);
-        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        QTableWidgetItem* __qtablewidgetitem = new QTableWidgetItem();
         composition_table->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        QTableWidgetItem* __qtablewidgetitem1 = new QTableWidgetItem();
         composition_table->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         if (composition_table->rowCount() < 20)
             composition_table->setRowCount(20);
@@ -542,13 +542,13 @@ public:
         QMetaObject::connectSlotsByName(EGS_PegsPage);
     } // setupUi
 
-    void retranslateUi(QWidget *EGS_PegsPage)
+    void retranslateUi(QWidget* EGS_PegsPage)
     {
         EGS_PegsPage->setWindowTitle(QCoreApplication::translate("EGS_PegsPage", "Form1", nullptr));
         groupBox6->setTitle(QCoreApplication::translate("EGS_PegsPage", "Medium composition", nullptr));
-        QTableWidgetItem *___qtablewidgetitem = composition_table->horizontalHeaderItem(0);
+        QTableWidgetItem* ___qtablewidgetitem = composition_table->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QCoreApplication::translate("EGS_PegsPage", "Element", nullptr));
-        QTableWidgetItem *___qtablewidgetitem1 = composition_table->horizontalHeaderItem(1);
+        QTableWidgetItem* ___qtablewidgetitem1 = composition_table->horizontalHeaderItem(1);
         ___qtablewidgetitem1->setText(QCoreApplication::translate("EGS_PegsPage", "Fraction by weight", nullptr));
         groupBox11->setTitle(QCoreApplication::translate("EGS_PegsPage", "Medium name", nullptr));
         groupBox8->setTitle(QCoreApplication::translate("EGS_PegsPage", "Medium type", nullptr));
@@ -604,8 +604,9 @@ public:
 
 };
 
-namespace Ui {
-    class EGS_PegsPage: public Ui_EGS_PegsPage {};
+namespace Ui
+{
+class EGS_PegsPage: public Ui_EGS_PegsPage {};
 } // namespace Ui
 
 QT_END_NAMESPACE

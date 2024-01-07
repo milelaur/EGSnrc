@@ -44,22 +44,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_SPHERES_DLL
-        #define EGS_SPHERES_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_SPHERES_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_SPHERES_LOCAL
+#ifdef BUILD_SPHERES_DLL
+#define EGS_SPHERES_EXPORT __declspec(dllexport)
+#else
+#define EGS_SPHERES_EXPORT __declspec(dllimport)
+#endif
+#define EGS_SPHERES_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_SPHERES_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_SPHERES_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_SPHERES_EXPORT
-        #define EGS_SPHERES_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_SPHERES_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_SPHERES_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_SPHERES_EXPORT
+#define EGS_SPHERES_LOCAL
+#endif
 
 #endif
 
@@ -134,17 +134,20 @@ M0), and region 1 being 2 <= R <= 3 (medium M1). Particles with `R < 1` and
 `R > 3` would be considered outside the geometry.
 
 */
-class EGS_SPHERES_EXPORT EGS_cSpheres : public EGS_BaseGeometry {
+class EGS_SPHERES_EXPORT EGS_cSpheres : public EGS_BaseGeometry
+{
 
 public:
 
     // construct some CONCENTRIC spheres
-    EGS_cSpheres(int ns, const EGS_Float *radius, const EGS_Vector &position,
-                 const string &Name = "");
+    EGS_cSpheres(int ns, const EGS_Float* radius, const EGS_Vector& position,
+                 const string& Name = "");
 
     // destruct spheres from memory
-    ~EGS_cSpheres() {
-        if (nreg) {
+    ~EGS_cSpheres()
+    {
+        if (nreg)
+        {
             delete [] R2;
             delete [] R;
         }
@@ -153,25 +156,27 @@ public:
     enum DIRS {RDIR};
 
     // method to determine which spheres we are in(between)
-    int inside(const EGS_Vector &x);
+    int inside(const EGS_Vector& x);
 
-    bool isInside(const EGS_Vector &x);
-    int isWhere(const EGS_Vector &x);
+    bool isInside(const EGS_Vector& x);
+    int isWhere(const EGS_Vector& x);
 
-    EGS_Float howfarToOutside(int ireg, const EGS_Vector &x,
-                              const EGS_Vector &u);
+    EGS_Float howfarToOutside(int ireg, const EGS_Vector& x,
+                              const EGS_Vector& u);
     // howfar is particle trajectory from sphere boundry
-    int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u,
-               EGS_Float &t, int *newmed=0, EGS_Vector *normal=0);
+    int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u,
+               EGS_Float& t, int* newmed = 0, EGS_Vector* normal = 0);
 
     // hownear - closest perpendicular distance to sphere surface
-    EGS_Float hownear(int ireg, const EGS_Vector &x);
+    EGS_Float hownear(int ireg, const EGS_Vector& x);
 
-    int getMaxStep() const {
-        return 2*nreg;
+    int getMaxStep() const
+    {
+        return 2 * nreg;
     };
 
-    const string &getType() const {
+    const string& getType() const
+    {
         return type;
     };
 
@@ -188,8 +193,8 @@ public:
 
 private:
 
-    EGS_Float *R2;                // radius^2
-    EGS_Float *R;                 // radius
+    EGS_Float* R2;                // radius^2
+    EGS_Float* R;                 // radius
     EGS_Vector xo;                // for concentric spheres, all centres coincide
     static string type;
 
@@ -204,15 +209,18 @@ private:
 Inputs for constructing a set of spheres are the same as EGS_cSpheres except you
 need to set `type=shell`
 */
-class EGS_SPHERES_EXPORT EGS_cSphericalShell : public EGS_BaseGeometry {
+class EGS_SPHERES_EXPORT EGS_cSphericalShell : public EGS_BaseGeometry
+{
 
 public:
 
-    EGS_cSphericalShell(int ns, const EGS_Float *radius, const EGS_Vector &position, const string &Name = "");
+    EGS_cSphericalShell(int ns, const EGS_Float* radius, const EGS_Vector& position, const string& Name = "");
 
     // destruct spheres from memory
-    ~EGS_cSphericalShell() {
-        if (nreg) {
+    ~EGS_cSphericalShell()
+    {
+        if (nreg)
+        {
             delete [] R2;
             delete [] R;
         }
@@ -221,24 +229,26 @@ public:
     enum DIRS {RDIR};
 
     // method to determine which spheres we are in(between)
-    int inside(const EGS_Vector &x);
+    int inside(const EGS_Vector& x);
 
-    bool isInside(const EGS_Vector &x);
-    int isWhere(const EGS_Vector &x);
+    bool isInside(const EGS_Vector& x);
+    int isWhere(const EGS_Vector& x);
 
-    EGS_Float howfarToOutside(int ireg, const EGS_Vector &x, const EGS_Vector &u);
+    EGS_Float howfarToOutside(int ireg, const EGS_Vector& x, const EGS_Vector& u);
 
     // howfar is particle trajectory from sphere boundry
-    int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u, EGS_Float &t, int *newmed=0, EGS_Vector *normal=0);
+    int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u, EGS_Float& t, int* newmed = 0, EGS_Vector* normal = 0);
 
     // hownear - closest perpendicular distance to sphere surface
-    EGS_Float hownear(int ireg, const EGS_Vector &x);
+    EGS_Float hownear(int ireg, const EGS_Vector& x);
 
-    int getMaxStep() const {
-        return 2*(nreg+1);
+    int getMaxStep() const
+    {
+        return 2 * (nreg + 1);
     };
 
-    const string &getType() const {
+    const string& getType() const
+    {
         return type;
     };
 
@@ -252,8 +262,8 @@ public:
 
 private:
 
-    EGS_Float *R2;                // radius^2
-    EGS_Float *R;                 // radius
+    EGS_Float* R2;                // radius^2
+    EGS_Float* R;                 // radius
     EGS_Vector xo;                // for concentric spheres, all centres coincide
     static string type;
 

@@ -39,12 +39,14 @@
 
 using std::vector;
 
-typedef enum {
+typedef enum
+{
     ForScreen, SavedImage
 } RenderRequestType;
 
 // This struct is designed to be passed by value.
-struct RenderParameters {
+struct RenderParameters
+{
     // Desired image size
     int nx;
     int ny;
@@ -102,16 +104,18 @@ struct RenderParameters {
     bool energyScaling;
 };
 
-struct RenderResults {
+struct RenderResults
+{
     QImage img;
     // misc info
     EGS_Float elapsedTime; // Total render time
     EGS_Float timePerPixel; // Pixel-dependent time / num pixels before scaling
 };
 
-void applyParameters(EGS_GeometryVisualizer *, const struct RenderParameters &);
+void applyParameters(EGS_GeometryVisualizer*, const struct RenderParameters&);
 
-class RenderWorker : public QObject {
+class RenderWorker : public QObject
+{
     Q_OBJECT
 
 public:
@@ -123,13 +127,13 @@ public:
     int abort_location;
 
     // Synchronous rendering (blocks and returns results)
-    struct RenderResults renderSync(EGS_BaseGeometry *g, struct RenderParameters params);
+    struct RenderResults renderSync(EGS_BaseGeometry* g, struct RenderParameters params);
 
 public slots:
 
     void loadTracks(QString fileName);
     // Asynchronous rendering (values returned via signals)
-    void render(EGS_BaseGeometry *g, struct RenderParameters params);
+    void render(EGS_BaseGeometry* g, struct RenderParameters params);
 
 signals:
 
@@ -138,11 +142,11 @@ signals:
     void tracksLoaded(vector<size_t> ntracks);
 
 private:
-    void drawAxes(const struct RenderParameters &);
+    void drawAxes(const struct RenderParameters&);
 
-    EGS_GeometryVisualizer *vis;
-    EGS_Vector *image;
-    QRgb *buffer;
+    EGS_GeometryVisualizer* vis;
+    EGS_Vector* image;
+    QRgb* buffer;
     EGS_Vector axeslabelsX;
     EGS_Vector axeslabelsY;
     EGS_Vector axeslabelsZ;

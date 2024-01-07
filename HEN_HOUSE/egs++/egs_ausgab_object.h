@@ -61,12 +61,13 @@ using namespace std;
 class EGS_Input;
 class EGS_Application;
 
-class EGS_EXPORT EGS_AusgabObject : public EGS_Object {
+class EGS_EXPORT EGS_AusgabObject : public EGS_Object
+{
 
 public:
 
     /*! \brief Construct an ausgab object named \a Name. */
-    EGS_AusgabObject(const string &Name="", EGS_ObjectFactory *f = 0) : EGS_Object(Name,f), app(0) {};
+    EGS_AusgabObject(const string& Name = "", EGS_ObjectFactory* f = 0) : EGS_Object(Name, f), app(0) {};
 
     /*! \brief Construct an ausgab object from the input pointed to by \a inp.
 
@@ -77,7 +78,7 @@ public:
       plus additional information as needed by the ausgab object being created.
 
     */
-    EGS_AusgabObject(EGS_Input *input, EGS_ObjectFactory *f = 0) : EGS_Object(input,f), app(0) {};
+    EGS_AusgabObject(EGS_Input* input, EGS_ObjectFactory* f = 0) : EGS_Object(input, f), app(0) {};
 
     virtual ~EGS_AusgabObject() {};
 
@@ -88,7 +89,8 @@ public:
      *
      */
     virtual int processEvent(EGS_Application::AusgabCall iarg) = 0;
-    virtual int processEvent(EGS_Application::AusgabCall iarg, int ir) {
+    virtual int processEvent(EGS_Application::AusgabCall iarg, int ir)
+    {
         return 0;
     };
 
@@ -97,12 +99,14 @@ public:
      * Derived classes should re-implement this function to return \a true
      * for ausgab calls that are of interest to them.
      */
-    virtual bool needsCall(EGS_Application::AusgabCall iarg) const {
+    virtual bool needsCall(EGS_Application::AusgabCall iarg) const
+    {
         return false;
     };
 
     /*! \brief Set the application this object belongs to */
-    virtual void setApplication(EGS_Application *App) {
+    virtual void setApplication(EGS_Application* App)
+    {
         app = App;
     };
 
@@ -114,7 +118,8 @@ public:
      *   Derived classes should set #description to a short
      *   string describing the ausgab object.
      */
-    const char *getObjectDescription() const {
+    const char* getObjectDescription() const
+    {
         return description.c_str();
     };
 
@@ -126,7 +131,8 @@ public:
      *   calculations. Should return \c true on success, \c false on failure.
      *   \sa setState(), addState(), resetCounter().
      */
-    virtual bool storeState(ostream &data_out) const {
+    virtual bool storeState(ostream& data_out) const
+    {
         return true;
     };
 
@@ -139,7 +145,8 @@ public:
      *
      *   \sa addState(), storeState(), resetCounter()
      */
-    virtual bool setState(istream &data_in) {
+    virtual bool setState(istream& data_in)
+    {
         return true;
     };
 
@@ -151,7 +158,8 @@ public:
      *
      *  \sa storeState(), setState(), resetCounter().
      */
-    virtual bool addState(istream &data_in) {
+    virtual bool addState(istream& data_in)
+    {
         return true;
     };
 
@@ -195,7 +203,7 @@ public:
      *  list of ausgab objects and can be retrieved later by name using
      *  the getAusgabObject() static function.
      */
-    static void createAusgabObjects(EGS_Input *);
+    static void createAusgabObjects(EGS_Input*);
 
     /*! \brief Get a pointer to the ausgab object named \a Name.
      *
@@ -205,7 +213,7 @@ public:
      *  \c null otherwise.
      *
      */
-    static EGS_AusgabObject *getAusgabObject(const string &Name);
+    static EGS_AusgabObject* getAusgabObject(const string& Name);
 
     /*! \brief Add a known ausgab object to the ausgab object factory.
      *
@@ -214,7 +222,7 @@ public:
      *  application can define its own ausgab objects (in addition to
      *  the ausgab objects provided by egspp) and use them.
      */
-    static void addKnownAusgabObject(EGS_AusgabObject *o);
+    static void addKnownAusgabObject(EGS_AusgabObject* o);
 
     /*! \brief Add a known ausgab object typeid to the ausgab object factory.
      *
@@ -224,13 +232,13 @@ public:
      *  so that ausgab object classes can add their typeid to allow for an additional
      *  check in such cases.
      */
-    static void addKnownTypeId(const char *name);
+    static void addKnownTypeId(const char* name);
 
     /*! \brief Returns the number of ausgab objects in the internal list */
     static int nObjects();
 
     /*! \brief Returns the j'th ausgab object in the internal list */
-    static EGS_AusgabObject *getObject(int j);
+    static EGS_AusgabObject* getObject(int j);
 
 protected:
 
@@ -242,7 +250,7 @@ protected:
     string description;
 
     /*! \brief The application this object belongs to */
-    EGS_Application *app;
+    EGS_Application* app;
 
 };
 

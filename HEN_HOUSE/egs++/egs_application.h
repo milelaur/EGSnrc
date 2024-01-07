@@ -61,7 +61,8 @@ class EGS_Interpolator;
 /*! \brief A structure holding the information of one particle
   \ingroup egspp_main
  */
-struct EGS_Particle {
+struct EGS_Particle
+{
     int        q;      //!< particle charge
     int        latch;  //!< latch variable (useful as a flag on many occasions)
     int        ir;     //!< particle region index
@@ -264,7 +265,8 @@ struct EGS_Particle {
     \todo Add time dependence
 
  */
-class EGS_EXPORT EGS_Application {
+class EGS_EXPORT EGS_Application
+{
 
 public:
 
@@ -278,7 +280,7 @@ public:
       the input file into an EGS_Input object (a pointer to this object
       is available with the protected data member #input)
     */
-    EGS_Application(int argc, char **argv);
+    EGS_Application(int argc, char** argv);
 
     /*! \brief Destruct the EGSnrc application.
 
@@ -384,8 +386,9 @@ public:
      This virtual function should be re-implemented in derived classes
      to report intermediate results during a simulation.
     */
-    virtual void getCurrentResult(double &sum, double &sum2, double &norm,
-                                  double &count) {
+    virtual void getCurrentResult(double& sum, double& sum2, double& norm,
+                                  double& count)
+    {
         sum = 0;
         sum2 = 0;
         norm = 1;
@@ -475,27 +478,32 @@ public:
     /*! \brief Returns a pointer to the EGS_Input object containing the
       user input to the application found in the input file.
     */
-    EGS_Input *getInput() {
+    EGS_Input* getInput()
+    {
         return input;
     };
 
     /*! \brief Returns the application name */
-    const string &getAppName() const {
+    const string& getAppName() const
+    {
         return app_name;
     };
 
     /*! \brief Returns the \c EGS_HOME directory */
-    const string &getEgsHome() const {
+    const string& getEgsHome() const
+    {
         return egs_home;
     };
 
     /*! \brief Returns the \c HEN_HOUSE directory */
-    const string &getHenHouse() const {
+    const string& getHenHouse() const
+    {
         return hen_house;
     };
 
     /*! \brief Returns the base name of the output file(s) */
-    const string &getOutputFile() const {
+    const string& getOutputFile() const
+    {
         return output_file;
     };
 
@@ -507,7 +515,8 @@ public:
     getOutputFile() returns xxx_wX with xxx indicating the output file name
     and X the job number.
     */
-    const string &getFinalOutputFile() const {
+    const string& getFinalOutputFile() const
+    {
         return final_output_file;
     };
 
@@ -518,25 +527,29 @@ public:
     parallel run), if \a with_run_dir is true, the output file name, and
     the extension given as argument.
     */
-    string constructIOFileName(const char *extension, bool with_run_dir) const;
+    string constructIOFileName(const char* extension, bool with_run_dir) const;
 
     /*! \brief Returns the absolute path to the user code directory */
-    const string &getAppDir() const {
+    const string& getAppDir() const
+    {
         return app_dir;
     };
 
     /*! \brief Returns the name of the working directory */
-    const string &getRunDir() const {
+    const string& getRunDir() const
+    {
         return run_dir;
     };
 
     /*! \brief Returns the name of the working directory */
-    const string &getWorkDir() const {
+    const string& getWorkDir() const
+    {
         return run_dir;
     };
 
     /*! \brief Possible calls to the user scoring function ausgab(). */
-    enum AusgabCall {
+    enum AusgabCall
+    {
         BeforeTransport = 0,     //!< before the step
         EgsCut = 1,              //!< energy below Ecut or Pcut
         PegsCut = 2,             //!< energy below AE or AP
@@ -582,7 +595,8 @@ public:
      This function is re-implemented in EGS_AdvancedApplication to also
      modify the mortran array iausfl
     */
-    virtual void setAusgabCall(AusgabCall call, bool on_or_off) {
+    virtual void setAusgabCall(AusgabCall call, bool on_or_off)
+    {
         ausgab_flag[call] = on_or_off;
     };
 
@@ -593,7 +607,8 @@ public:
      there was no job number specified (see getIparallel()) or
      the job number was greater than the number of parallel jobs.
     */
-    int getNparallel() const {
+    int getNparallel() const
+    {
         return n_parallel;
     };
 
@@ -603,7 +618,8 @@ public:
      <code>-j n</code> or <code>--job n</code> and requires that the number of parallel
      jobs was also specified using <code>-P n</code>.
     */
-    int getIparallel() const {
+    int getIparallel() const
+    {
         return i_parallel;
     };
 
@@ -613,7 +629,8 @@ public:
      <code>-f n</code> or <code>--first-job n</code> and requires that the number of parallel
      jobs was also specified using <code>-P n</code>.
     */
-    int getFirstParallel() const {
+    int getFirstParallel() const
+    {
         return first_parallel;
     };
 
@@ -621,14 +638,16 @@ public:
 
      This function implements the EGSnrc howfar geometry specification
     */
-    inline int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u,
-                      EGS_Float &t, int *newmed) {
+    inline int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u,
+                      EGS_Float& t, int* newmed)
+    {
 
         geometry->resetErrorFlag();
         EGS_Float twant = t;
-        int inew = geometry->howfar(ireg,x,u,t,newmed);
-        storeGeometryStep(ireg,inew,x,u,twant,t);
-        if (geometry->getLastError()) {
+        int inew = geometry->howfar(ireg, x, u, t, newmed);
+        storeGeometryStep(ireg, inew, x, u, twant, t);
+        if (geometry->getLastError())
+        {
             reportGeometryError();
         }
         return inew;
@@ -640,12 +659,14 @@ public:
 
      This function implements the EGSnrc hownear geometry specification
     */
-    inline EGS_Float hownear(int ireg,const EGS_Vector &x) {
-        return geometry->hownear(ireg,x);
+    inline EGS_Float hownear(int ireg, const EGS_Vector& x)
+    {
+        return geometry->hownear(ireg, x);
     };
 
     /*! \brief Returns the medium index in region ireg using C-style indexing.*/
-    inline int getMedium(int ireg) {
+    inline int getMedium(int ireg)
+    {
         return geometry->medium(ireg);
     };
 
@@ -656,10 +677,12 @@ public:
       regions than actual regions. This method can be used in such cases
       to check if a region exists.
      */
-    bool isRealRegion(int ireg) {
+    bool isRealRegion(int ireg)
+    {
         return geometry->isRealRegion(ireg);
     }
-    int  isWhere(EGS_Vector &r) {
+    int  isWhere(EGS_Vector& r)
+    {
         return geometry->isWhere(r);
     }
 
@@ -678,7 +701,8 @@ public:
       geom->getLabelRegions(regionString, regionVector);
       \endverbatim
      */
-    void getNumberRegions(const string &str, vector<int> &regs) {
+    void getNumberRegions(const string& str, vector<int>& regs)
+    {
         geometry->getNumberRegions(str, regs);
     }
 
@@ -690,7 +714,8 @@ public:
 
       The \a regs vector is sorted by this function, and duplicates are removed!
      */
-    void getLabelRegions(const string &str, vector<int> &regs) {
+    void getLabelRegions(const string& str, vector<int>& regs)
+    {
         geometry->getLabelRegions(str, regs);
     }
 
@@ -702,7 +727,8 @@ public:
       not available in \a source (i.e., the \a getMu function has not been
       reimplemented in \a source), then this returns -1.
      */
-    EGS_Float getMU() {
+    EGS_Float getMU()
+    {
         return source->getMu();
     }
 
@@ -712,14 +738,15 @@ public:
       registered with the application and then proceeds to call ausgab().
 
     */
-    int userScoring(int iarg, int ir=-1);
+    int userScoring(int iarg, int ir = -1);
 
     /*! \brief User scoring function.
 
      This function should be re-implemented in derived classes
      to perform the actual scoring of the quantities of interest.
     */
-    virtual int ausgab(int) {
+    virtual int ausgab(int)
+    {
         return 0;
     };
 
@@ -763,7 +790,7 @@ public:
      random number generator to fill the array pointed to by rns
      with n random numbers.
     */
-    virtual void fillRandomArray(int n, EGS_Float *rns);
+    virtual void fillRandomArray(int n, EGS_Float* rns);
 
     /*! \brief Get the active application.
 
@@ -781,7 +808,7 @@ public:
      the setActiveApplication() function must be called by each
      EGS_Application instance before transporting particles.
     */
-    static EGS_Application *activeApplication();
+    static EGS_Application* activeApplication();
 
     /*! \brief Set the active EGS_Application class.
 
@@ -792,7 +819,7 @@ public:
 
      \sa activeApplication().
     */
-    static void setActiveApplication(EGS_Application *);
+    static void setActiveApplication(EGS_Application*);
 
     /*! \brief Returns the number of random numbers used.
 
@@ -811,7 +838,8 @@ public:
      Double precision numbers are used here as this is how
      steps are counted in the mortran back-end.
      */
-    virtual void getElectronSteps(double &ch_steps, double &all_steps) const {
+    virtual void getElectronSteps(double& ch_steps, double& all_steps) const
+    {
         ch_steps = 0;
         all_steps = 0;
     };
@@ -828,7 +856,7 @@ public:
 
       \sa outputData(), readData(), resetCounter().
     */
-    virtual int addState(istream &data);
+    virtual int addState(istream& data);
 
     /*! \brief Reset the application to a 'pristine' state.
 
@@ -852,19 +880,19 @@ public:
 
     /*! \brief Write an information message
      */
-    virtual void appInformation(const char *);
+    virtual void appInformation(const char*);
 
     /*! \brief Write a warning message
      */
-    virtual void appWarning(const char *);
+    virtual void appWarning(const char*);
 
     /*! \brief Write a warning message and exit.
      */
-    virtual void appFatal(const char *);
+    virtual void appFatal(const char*);
 
     /*! \brief Check if a device holding a given stream is full
      */
-    void checkDeviceFull(FILE *);
+    void checkDeviceFull(FILE*);
 
     /*! \brief Finds a command line argument.
 
@@ -875,8 +903,8 @@ public:
 
       \sa checkEnvironmentVar()
     */
-    static bool getArgument(int &argc, char **argv,
-                            const char *name1, const char *name2, string &arg);
+    static bool getArgument(int& argc, char** argv,
+                            const char* name1, const char* name2, string& arg);
 
     /*! \brief Finds a command line argument.
 
@@ -884,8 +912,8 @@ public:
       \a n1 and \a n2 are not given, it sets \a var from the environment
       variable \a env (if it is defined).
     */
-    static void checkEnvironmentVar(int &argc, char **argv, const char *env,
-                                    const char *n1, const char *n2, string &var);
+    static void checkEnvironmentVar(int& argc, char** argv, const char* env,
+                                    const char* n1, const char* n2, string& var);
 
 protected:
 
@@ -933,7 +961,8 @@ protected:
      This function is called from within the default implementation of
      the initSimulation() function.
     */
-    virtual int initCrossSections() {
+    virtual int initCrossSections()
+    {
         return 0;
     };
 
@@ -944,7 +973,8 @@ protected:
      the user to do all initializations related to the scoring of
      quantities of interest.
     */
-    virtual int initScoring() {
+    virtual int initScoring()
+    {
         return 0;
     };
 
@@ -992,7 +1022,8 @@ protected:
       This function is called from within the default implementation of
       the initSimulation() function.
     */
-    virtual int initEGSnrcBackEnd() {
+    virtual int initEGSnrcBackEnd()
+    {
         return 0;
     };
 
@@ -1006,7 +1037,7 @@ protected:
     void initAusgabObjects();
 
     /*! \brief Adds an ausgab object to the list of ausgab objects */
-    void addAusgabObject(EGS_AusgabObject *o);
+    void addAusgabObject(EGS_AusgabObject* o);
 
     /*! \brief Called just before the shower() function.
 
@@ -1025,7 +1056,8 @@ protected:
      the simulateSingleShower() function and its return value is returned
      as the return value of simulateSingleShower()
     */
-    virtual int finishShower() {
+    virtual int finishShower()
+    {
         return 0;
     };
 
@@ -1038,22 +1070,23 @@ protected:
      This function is reimplemented in EGS_AdvancedApplication
      to call the mortran EGSnrc shower subroutine.
     */
-    virtual int shower() {
+    virtual int shower()
+    {
         return 0;
     };
 
     virtual void finishRun() { };
 
-    void storeGeometryStep(int ireg, int inew, const EGS_Vector &x,
-                           const EGS_Vector &u, EGS_Float twant, EGS_Float t);
+    void storeGeometryStep(int ireg, int inew, const EGS_Vector& x,
+                           const EGS_Vector& u, EGS_Float twant, EGS_Float t);
 
     void reportGeometryError();
 
-    EGS_Input           *input;         //!< the input to this simulation.
-    EGS_BaseGeometry    *geometry;      //!< the geometry of this simulation
-    EGS_BaseSource      *source;        //!< the particle source
-    EGS_RandomGenerator *rndm;          //!< the random number generator
-    EGS_RunControl      *run;           //!< the run control object.
+    EGS_Input*           input;         //!< the input to this simulation.
+    EGS_BaseGeometry*    geometry;      //!< the geometry of this simulation
+    EGS_BaseSource*      source;        //!< the particle source
+    EGS_RandomGenerator* rndm;          //!< the random number generator
+    EGS_RunControl*      run;           //!< the run control object.
 
     bool    ausgab_flag[UnknownCall]; //!< on/off flags for ausgab calls
 
@@ -1087,14 +1120,14 @@ protected:
      Points to the data stream opened for output in
      outputData()
     */
-    ostream *data_out;
+    ostream* data_out;
 
     /*! \brief data input stream
 
      Points to the data stream opened for input in
      readData()
     */
-    istream *data_in;
+    istream* data_in;
 
     /*! \brief the index of this application.
 
@@ -1102,12 +1135,12 @@ protected:
     int app_index;
 
     /*! \brief The ausgab objects */
-    EGS_SimpleContainer<EGS_AusgabObject *> a_objects_list;
+    EGS_SimpleContainer<EGS_AusgabObject*> a_objects_list;
 
     /*! \brief The ausgab objects for the various ausgab calls */
-    EGS_SimpleContainer<EGS_AusgabObject *> *a_objects;
+    EGS_SimpleContainer<EGS_AusgabObject*>* a_objects;
 
-    EGS_GeometryHistory *ghistory;
+    EGS_GeometryHistory* ghistory;
 
 private:
 
@@ -1120,68 +1153,84 @@ public:
     //************************************************************
     // Utility functions for use with ausgab dose scoring objects
     //************************************************************
-    EGS_Float getFluence() {
+    EGS_Float getFluence()
+    {
         return source->getFluence();
     };
-    int       getnRegions() {
+    int       getnRegions()
+    {
         return geometry->regions();
     };
-    int       getnMedia() {
+    int       getnMedia()
+    {
         return geometry->nMedia();
     };
-    const char *getMediumName(int ind) {
+    const char* getMediumName(int ind)
+    {
         return geometry->getMediumName(ind);
     };
-    virtual EGS_Float getMediumRho(int ind) {
+    virtual EGS_Float getMediumRho(int ind)
+    {
         return -1.0;
     };
-    virtual EGS_Float getEdep() {
+    virtual EGS_Float getEdep()
+    {
         return 0.0;
     };
     virtual void setEdep(EGS_Float edep) {};
-    virtual EGS_Float getEcut() {
+    virtual EGS_Float getEcut()
+    {
         return 0.0;
     };
-    virtual EGS_Float getPcut() {
+    virtual EGS_Float getPcut()
+    {
         return 0.0;
     };
-    virtual EGS_Float getRM() {
+    virtual EGS_Float getRM()
+    {
         return -1.0;
     };
-    virtual void setRadiativeSplitting(const EGS_Float &nsplit) {};
+    virtual void setRadiativeSplitting(const EGS_Float& nsplit) {};
 
     //************************************************************
     // Utility functions for use with ausgab fluence scoring objects
     //************************************************************
-    virtual EGS_Float getTVSTEP() {
+    virtual EGS_Float getTVSTEP()
+    {
         return 0.0;
     };
 
-    virtual EGS_Interpolator *getDEDX(const int &imed, const int &iq) {
+    virtual EGS_Interpolator* getDEDX(const int& imed, const int& iq)
+    {
         return 0;
     };
 
-    string sourceType() {
+    string sourceType()
+    {
         return source->getObjectType();
     }
 
-    int sourceCharge() {
+    int sourceCharge()
+    {
         return source->getCharge();
     }
 
-    int sourceEmax() {
+    int sourceEmax()
+    {
         return source->getEmax();
     }
 
-    virtual void setLatch(const int &ip, const int &latch) {};
+    virtual void setLatch(const int& ip, const int& latch) {};
 
-    virtual void incLatch(const int &ip, const int &increment) {};
+    virtual void incLatch(const int& ip, const int& increment) {};
 
-    virtual int getNp() {
+    virtual int getNp()
+    {
         return 0;
     };
 
-    virtual int getNpOld() {
+    virtual int getNpOld()
+    {
         return 0;
     };
 

@@ -179,9 +179,10 @@ class EGS_InputPrivate;
  by defining which keys are required or optional. This would need the
  possibility of grouping keys when alternative definitions are possible.
  */
-class EGS_EXPORT EGS_Input {
+class EGS_EXPORT EGS_Input
+{
 
-    EGS_InputPrivate  *p; //!< Used for hiding the implementation details.
+    EGS_InputPrivate*  p; //!< Used for hiding the implementation details.
 
 public:
 
@@ -193,18 +194,18 @@ public:
      * Note: this uses a shallow copy so that changes made to \a o also
      * affect the new object and vice versa.
      */
-    EGS_Input(const EGS_Input &o);
+    EGS_Input(const EGS_Input& o);
 
     /*! \brief Create an elementary property named \a name having a value
      * \a value.
      */
-    EGS_Input(const string &name, const string &value="");
+    EGS_Input(const string& name, const string& value = "");
 
     /*! \brief Destructor. */
     ~EGS_Input();
 
     /*! \brief Get the name of this property. */
-    const char *name() const;
+    const char* name() const;
 
     /*! \brief Set the property from the input file \a fname
      * (which is considered to be an absolute file name)
@@ -213,19 +214,19 @@ public:
      * and parsed according to the rules described above.
      * \sa setContentFromString(), addContentFromFile(), addContentFromString()
      */
-    int setContentFromFile(const char *fname);
+    int setContentFromFile(const char* fname);
 
     /*! \overload */
-    int setContentFromString(string &input);
+    int setContentFromString(string& input);
 
     /*! \brief Add the content of the file \a fname to this EGS_Input object.
      *
      * \sa setContentFromFile(), setContentFromString(), addContentFromString()
      */
-    int addContentFromFile(const char *fname);
+    int addContentFromFile(const char* fname);
 
     /*! \overload */
-    int addContentFromString(string &input);
+    int addContentFromString(string& input);
 
     /*! \brief Get the property named \a key.
      *
@@ -237,15 +238,15 @@ public:
      * not \a key, this function checks if the object contains a child property
      * named \a key and if yes, returns it. Otherwise \c null is returned.
      */
-    EGS_Input *takeInputItem(const string &key, bool self=true);
+    EGS_Input* takeInputItem(const string& key, bool self = true);
 
     /*! \brief Same as the previous function but now ownership remains with the
       EGS_Input object.
      */
-    EGS_Input *getInputItem(const string &key) const;
+    EGS_Input* getInputItem(const string& key) const;
 
     /*! \brief Add the input \a i to this property */
-    void addInputItem(const EGS_Input &i);
+    void addInputItem(const EGS_Input& i);
 
     /*! \brief Assign values to an array of strings from an input
         identified by key.
@@ -256,21 +257,21 @@ public:
       or if a property named \a key exists but an error occured while
       reading the value as an array of strings (returns 1 or 2).
      */
-    int getInput(const string &key, vector<string> &values) const;
+    int getInput(const string& key, vector<string>& values) const;
 
     /*! \brief Assign values to an array of floats from an input
         identified by key.
 
         \see getInput(const string &,vector<string> &)
      */
-    int getInput(const string &key, vector<EGS_Float> &values) const;
+    int getInput(const string& key, vector<EGS_Float>& values) const;
 
     /*! \brief Assign values to an array of integers from an input
         identified by key.
 
         \see getInput(const string &,vector<string> &)
      */
-    int getInput(const string &key, vector<int> &values) const;
+    int getInput(const string& key, vector<int>& values) const;
 
     /*! \brief Assign values to a single string from an input
         identified by key.
@@ -281,35 +282,35 @@ public:
         or if a property named \a key exists but an error occured while
         reading the value as a string (returns 1 or 2).
      */
-    int getInput(const string &key, string &value) const;
+    int getInput(const string& key, string& value) const;
 
     /*! \brief Assign values to a float from an input
         identified by key.
 
         \see getInput(const string &,string &)
      */
-    int getInput(const string &key, float &value) const;
+    int getInput(const string& key, float& value) const;
 
     /*! \brief Assign values to an integer from an input
         identified by key.
 
         \see getInput(const string &,string &)
      */
-    int getInput(const string &key, double &value) const;
+    int getInput(const string& key, double& value) const;
 
     /*! \brief Assign values to a double from an input
         identified by key.
 
         \see getInput(const string &,string &)
      */
-    int getInput(const string &key, int &value) const;
+    int getInput(const string& key, int& value) const;
 
     /*! \brief Assign values to a 64 bit integer from an input
         identified by key.
 
         \see getInput(const string &,string &)
      */
-    int getInput(const string &key, EGS_I64 &value) const;
+    int getInput(const string& key, EGS_I64& value) const;
 
     /*!  \brief Get input from a range of allowed values
 
@@ -320,21 +321,21 @@ public:
       set to \c true if everything worked ok and to \c false,
       if some error occured.
      */
-    int getInput(const string &key, const vector<string> &allowed,
-                 int def=0, bool *found=0) const;
+    int getInput(const string& key, const vector<string>& allowed,
+                 int def = 0, bool* found = 0) const;
 
     /*! Is this a property named \a key? */
-    bool isA(const string &key) const;
+    bool isA(const string& key) const;
 
     /*! Compare the strings \a s1 and \a s2.
      *
      * Comparison is case insensitive and also all white space is
      * removed from \a s1 and \a s2 before performing the comparison.
      */
-    static bool compare(const string &s1, const string &s2);
+    static bool compare(const string& s1, const string& s2);
 
     /*! \brief Used for debugging purposes */
-    void print(int nind, ostream &);
+    void print(int nind, ostream&);
 
 };
 

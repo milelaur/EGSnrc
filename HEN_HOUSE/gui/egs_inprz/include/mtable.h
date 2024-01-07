@@ -55,36 +55,42 @@ class MTable : public QTable
 {
 
     Q_OBJECT
-    Q_ENUMS( CellType )
-    Q_PROPERTY( CellType celltype READ celltype WRITE setCellType )
+    Q_ENUMS(CellType)
+    Q_PROPERTY(CellType celltype READ celltype WRITE setCellType)
 
 public:
-    MTable( QWidget *parent = 0, const char *name = 0 );
-    MTable( int numRows, int numCols,
-    	    QWidget *parent = 0, const char *name = 0 );
+    MTable(QWidget* parent = 0, const char* name = 0);
+    MTable(int numRows, int numCols,
+           QWidget* parent = 0, const char* name = 0);
     ~MTable();
-    void setItemList( v_string il ) { itemList = il; }
+    void setItemList(v_string il)
+    {
+        itemList = il;
+    }
     void stopEditing();
-    void setValidator(bool val){validate=val;};
+    void setValidator(bool val)
+    {
+        validate = val;
+    };
 
     enum CellType { LineEdit, ComboBox };
-    void setCellType( CellType ct );
+    void setCellType(CellType ct);
     CellType celltype() const;
 
 protected:
-    virtual QWidget *createEditor( int row, int col, bool initFromCell ) const;
-               QWidget *createBoxEditor( int row, int col ) const;
-    virtual void setCellContentFromEditor( int row, int col );
-    virtual void endEdit( int row, int col, bool accept, bool replace );
+    virtual QWidget* createEditor(int row, int col, bool initFromCell) const;
+    QWidget* createBoxEditor(int row, int col) const;
+    virtual void setCellContentFromEditor(int row, int col);
+    virtual void endEdit(int row, int col, bool accept, bool replace);
 
 //               void keyPressEvent( QKeyEvent* e );
-             bool eventFilter( QObject *o, QEvent *e );
+    bool eventFilter(QObject* o, QEvent* e);
 
-v_string itemList;
-v_string itemCopy;
+    v_string itemList;
+    v_string itemCopy;
 
 private:
-CellType  ctype;
-bool validate;
+    CellType  ctype;
+    bool validate;
 };
 #endif // MTABLE_H

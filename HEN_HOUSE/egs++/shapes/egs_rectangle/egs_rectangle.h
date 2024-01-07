@@ -42,22 +42,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_RECTANGLE_DLL
-        #define EGS_RECTANGLE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_RECTANGLE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_RECTANGLE_LOCAL
+#ifdef BUILD_RECTANGLE_DLL
+#define EGS_RECTANGLE_EXPORT __declspec(dllexport)
+#else
+#define EGS_RECTANGLE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_RECTANGLE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_RECTANGLE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_RECTANGLE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_RECTANGLE_EXPORT
-        #define EGS_RECTANGLE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_RECTANGLE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_RECTANGLE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_RECTANGLE_EXPORT
+#define EGS_RECTANGLE_LOCAL
+#endif
 
 #endif
 
@@ -84,21 +84,25 @@ be distributed within the ``rectangular ring'' defined by the two rectangles.
 In this later case the actual object being constructed will be of type
 EGS_RectangularRing.
 */
-class EGS_RECTANGLE_EXPORT EGS_RectangleShape : public EGS_SurfaceShape {
+class EGS_RECTANGLE_EXPORT EGS_RectangleShape : public EGS_SurfaceShape
+{
 
 public:
 
     EGS_RectangleShape(EGS_Float Xmin, EGS_Float Xmax, EGS_Float Ymin,
-                       EGS_Float Ymax, const string &Name="",EGS_ObjectFactory *f=0) :
-        EGS_SurfaceShape(Name,f), xmin(Xmin), xmax(Xmax), ymin(Ymin),
-        ymax(Ymax) {
+                       EGS_Float Ymax, const string& Name = "", EGS_ObjectFactory* f = 0) :
+        EGS_SurfaceShape(Name, f), xmin(Xmin), xmax(Xmax), ymin(Ymin),
+        ymax(Ymax)
+    {
         EGS_Float tmp;
-        if (xmin > xmax) {
+        if (xmin > xmax)
+        {
             tmp = xmax;
             xmax = xmin;
             xmin = tmp;
         }
-        if (ymin > ymax) {
+        if (ymin > ymax)
+        {
             tmp = ymax;
             ymax = ymin;
             ymin = tmp;
@@ -106,12 +110,13 @@ public:
         dx = xmax - xmin;
         dy = ymax - ymin;
         otype = "rectangle";
-        A = dx*dy;
+        A = dx * dy;
     };
     ~EGS_RectangleShape() {};
-    EGS_Vector getPoint(EGS_RandomGenerator *rndm) {
-        return EGS_Vector(xmin + dx*rndm->getUniform(),
-                          ymin + dy*rndm->getUniform(),
+    EGS_Vector getPoint(EGS_RandomGenerator* rndm)
+    {
+        return EGS_Vector(xmin + dx * rndm->getUniform(),
+                          ymin + dy * rndm->getUniform(),
                           0);
     };
 
@@ -127,21 +132,25 @@ protected:
 
   See EGS_RectangleShape for more details.
 */
-class EGS_RECTANGLE_EXPORT EGS_RectangularRing : public EGS_SurfaceShape {
+class EGS_RECTANGLE_EXPORT EGS_RectangularRing : public EGS_SurfaceShape
+{
 
 public:
 
     EGS_RectangularRing(EGS_Float Xmin, EGS_Float Xmax, EGS_Float Ymin,
                         EGS_Float Ymax, EGS_Float Xmin_i, EGS_Float Xmax_i, EGS_Float Ymin_i,
-                        EGS_Float Ymax_i, const string &Name="",EGS_ObjectFactory *f=0);
+                        EGS_Float Ymax_i, const string& Name = "", EGS_ObjectFactory* f = 0);
     ~EGS_RectangularRing();
-    bool isValid() const {
+    bool isValid() const
+    {
         return valid;
     };
-    EGS_Vector getPoint(EGS_RandomGenerator *rndm) {
+    EGS_Vector getPoint(EGS_RandomGenerator* rndm)
+    {
         EGS_Float eta = rndm->getUniform();
-        int j=0;
-        while (eta > p[j]) {
+        int j = 0;
+        while (eta > p[j])
+        {
             j++;
         }
         return r[j]->getPoint(rndm);
@@ -149,7 +158,7 @@ public:
 
 protected:
 
-    EGS_RectangleShape  *r[4];
+    EGS_RectangleShape*  r[4];
     EGS_Float            p[4];
     bool                 valid;
 

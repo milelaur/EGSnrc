@@ -42,22 +42,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_SPACE_DLL
-        #define EGS_SPACE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_SPACE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_SPACE_LOCAL
+#ifdef BUILD_SPACE_DLL
+#define EGS_SPACE_EXPORT __declspec(dllexport)
+#else
+#define EGS_SPACE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_SPACE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_SPACE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_SPACE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_SPACE_EXPORT
-        #define EGS_SPACE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_SPACE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_SPACE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_SPACE_EXPORT
+#define EGS_SPACE_LOCAL
+#endif
 
 #endif
 
@@ -80,7 +80,8 @@
  \endverbatim
 
 */
-class EGS_SPACE_EXPORT EGS_Space : public EGS_BaseGeometry {
+class EGS_SPACE_EXPORT EGS_Space : public EGS_BaseGeometry
+{
 
 protected:
 
@@ -88,41 +89,50 @@ protected:
 
 public:
 
-    EGS_Space(const string &Name) : EGS_BaseGeometry(Name) {
-        nreg=1;
+    EGS_Space(const string& Name) : EGS_BaseGeometry(Name)
+    {
+        nreg = 1;
     };
 
-    bool isInside(const EGS_Vector &x) {
+    bool isInside(const EGS_Vector& x)
+    {
         return true;
     };
 
-    int isWhere(const EGS_Vector &x) {
+    int isWhere(const EGS_Vector& x)
+    {
         return 0;
     };
 
-    int inside(const EGS_Vector &x) {
+    int inside(const EGS_Vector& x)
+    {
         return 0;
     };
 
-    EGS_Float howfarToOutside(int ireg, const EGS_Vector &x,
-                              const EGS_Vector &u) {
+    EGS_Float howfarToOutside(int ireg, const EGS_Vector& x,
+                              const EGS_Vector& u)
+    {
         return veryFar;
     };
 
-    int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u,
-               EGS_Float &t, int *newmed=0, EGS_Vector *normal=0) {
+    int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u,
+               EGS_Float& t, int* newmed = 0, EGS_Vector* normal = 0)
+    {
         return ireg;
     };
 
-    EGS_Float hownear(int ireg, const EGS_Vector &x) {
+    EGS_Float hownear(int ireg, const EGS_Vector& x)
+    {
         return veryFar;
     };
 
-    const string &getType() const {
+    const string& getType() const
+    {
         return type;
     };
 
-    void printInfo() const {
+    void printInfo() const
+    {
         EGS_BaseGeometry::printInfo();
         egsInformation(
             "=======================================================\n");

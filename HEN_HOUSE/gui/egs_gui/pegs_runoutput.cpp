@@ -40,7 +40,7 @@ void PEGS_RunOutput::hideWindow()
     emit windowClosed();
 }
 
-void PEGS_RunOutput::insertText( const QString &s )
+void PEGS_RunOutput::insertText(const QString& s)
 {
     run_output->insertPlainText(s);
 }
@@ -53,17 +53,18 @@ void PEGS_RunOutput::viewErrors()
 //   view_errors->showErrors(ofile);
 }
 
-void PEGS_RunOutput::clearOutput() {
+void PEGS_RunOutput::clearOutput()
+{
     run_output->clear();
 #ifdef RO_DEBUG
     qDebug("PEGS_RunOutput::clearOutput()");
 #endif
 }
 
-void PEGS_RunOutput::setOutputFile( const QString &s )
+void PEGS_RunOutput::setOutputFile(const QString& s)
 {
 #ifdef RO_DEBUG
-    qDebug("PEGS_RunOutput::setOutputFile(%s)",s.toLatin1().data());
+    qDebug("PEGS_RunOutput::setOutputFile(%s)", s.toLatin1().data());
 #endif
     ofile = s;
 }

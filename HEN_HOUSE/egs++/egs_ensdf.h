@@ -52,51 +52,63 @@
 
 using namespace std;
 
-template <class T> class Branch {
+template <class T> class Branch
+{
 public:
 
     Branch() {}
 
-    ~Branch() {
-        for (typename vector<T *>::iterator it  = branchLeaves.begin();
-                it!=branchLeaves.end(); it++) {
+    ~Branch()
+    {
+        for (typename vector<T*>::iterator it  = branchLeaves.begin();
+                it != branchLeaves.end(); it++)
+        {
             (*it)->removeBranch();
         }
         branchLeaves.clear();
     }
 
-    void addLeaf(T *leaf) {
+    void addLeaf(T* leaf)
+    {
         branchLeaves.push_back(leaf);
     }
 
-    void removeLeaf(T *leaf) {
+    void removeLeaf(T* leaf)
+    {
         branchLeaves.erase(std::remove(branchLeaves.begin(),
                                        branchLeaves.end(),
                                        leaf), branchLeaves.end());
     }
 
-    vector<T *> getLeaves() const {
+    vector<T*> getLeaves() const
+    {
         return branchLeaves;
     }
 
     // A new == operator for this class
-    bool operator==(const Branch<T> &rhs) const {
-        for (typename vector<T *>::const_iterator it = branchLeaves.begin();
-                it!=branchLeaves.end(); it++) {
+    bool operator==(const Branch<T>& rhs) const
+    {
+        for (typename vector<T*>::const_iterator it = branchLeaves.begin();
+                it != branchLeaves.end(); it++)
+        {
 
             bool foundLeaf = false;
-            for (typename vector<T *>::const_iterator irhs =
+            for (typename vector<T*>::const_iterator irhs =
                         rhs.branchLeaves.begin();
-                    irhs!=rhs.branchLeaves.end(); irhs++) {
+                    irhs != rhs.branchLeaves.end(); irhs++)
+            {
 
-                if (*irhs != 0 && *it != 0) {
-                    if (*irhs == *it) {
+                if (*irhs != 0 && *it != 0)
+                {
+                    if (*irhs == *it)
+                    {
                         foundLeaf = true;
                     }
                 }
             }
 
-            if (!foundLeaf) {
+            if (!foundLeaf)
+            {
                 return false;
             }
         }
@@ -104,56 +116,69 @@ public:
     }
 
 protected:
-    vector<T *> branchLeaves;
+    vector<T*> branchLeaves;
 };
 
-template <class T> class Leaf {
+template <class T> class Leaf
+{
 public:
 
-    Leaf(T *existingBranch) {
+    Leaf(T* existingBranch)
+    {
         branch = existingBranch;
-        if (branch) {
+        if (branch)
+        {
             branch->addLeaf(this);
         }
     }
 
-    ~Leaf() {
-        if (branch) {
+    ~Leaf()
+    {
+        if (branch)
+        {
             branch->removeLeaf(this);
         }
         branch = 0;
     }
 
-    virtual T *getBranch() const {
+    virtual T* getBranch() const
+    {
         return branch;
     }
 
-    void removeBranch() {
+    void removeBranch()
+    {
         branch = 0;
     }
 
     // A new == operator for this class
-    bool operator== (const T &rhs) const {
-        if (branch==0 && rhs.branch==0) {
+    bool operator== (const T& rhs) const
+    {
+        if (branch == 0 && rhs.branch == 0)
+        {
             return true;
         }
-        else if ((branch==0) && rhs.branch!=0) {
+        else if ((branch == 0) && rhs.branch != 0)
+        {
             return false;
         }
-        else if ((branch!=0) && rhs.branch==0) {
+        else if ((branch != 0) && rhs.branch == 0)
+        {
             return false;
         }
-        else if (branch!=0 && rhs.branch!=0) {
+        else if (branch != 0 && rhs.branch != 0)
+        {
             return *branch == *(rhs.branch);
         }
     }
 
 private:
-    T *branch;
+    T* branch;
 };
 
 // The Record class
-class Record {
+class Record
+{
 public:
     Record();
     Record(vector<string> ensdf);
@@ -173,7 +198,8 @@ protected:
 };
 
 // Comment Record
-class CommentRecord : public Record {
+class CommentRecord : public Record
+{
 public:
     CommentRecord(vector<string> ensdf);
     string getComment();
@@ -184,7 +210,8 @@ private:
 };
 
 // Parent Record
-class ParentRecord : public Record, public Branch<Leaf<ParentRecord> > {
+class ParentRecord : public Record, public Branch<Leaf<ParentRecord>>
+{
 public:
     ParentRecord(vector<string> ensdf);
     double getHalfLife() const;
@@ -198,28 +225,30 @@ private:
     void processEnsdf();
 };
 
-class ParentRecordLeaf : public Leaf<ParentRecord> {
+class ParentRecordLeaf : public Leaf<ParentRecord>
+{
 public:
-    ParentRecordLeaf(ParentRecord *myRecord);
-    virtual ParentRecord *getParentRecord() const;
+    ParentRecordLeaf(ParentRecord* myRecord);
+    virtual ParentRecord* getParentRecord() const;
 };
 
 // Normalization Record
 class NormalizationRecord : public Record, public
-    Branch<Leaf<NormalizationRecord> >, public ParentRecordLeaf {
+    Branch<Leaf<NormalizationRecord>>, public ParentRecordLeaf
+{
 public:
-    NormalizationRecord(vector<string> ensdf, ParentRecord *parent);
+    NormalizationRecord(vector<string> ensdf, ParentRecord* parent);
     double getRelativeMultiplier() const;
     double getTransitionMultiplier() const;
     double getBranchMultiplier() const;
     double getBetaMultiplier() const;
-    EGS_AtomicRelaxations *getRelaxations() const;
+    EGS_AtomicRelaxations* getRelaxations() const;
     double getBindingEnergy(int shell) const;
     int getNShell() const;
     void relax(int shell,
                EGS_Float ecut, EGS_Float pcut,
-               EGS_RandomGenerator *rndm, double &edep,
-               EGS_SimpleContainer<EGS_RelaxationParticle> &particles);
+               EGS_RandomGenerator* rndm, double& edep,
+               EGS_SimpleContainer<EGS_RelaxationParticle>& particles);
 
 protected:
     double normalizeRelative;
@@ -229,18 +258,20 @@ protected:
 
 private:
     void processEnsdf();
-    EGS_AtomicRelaxations *relaxations;
+    EGS_AtomicRelaxations* relaxations;
     int nshell, Z;
 };
 
-class NormalizationRecordLeaf : public Leaf<NormalizationRecord> {
+class NormalizationRecordLeaf : public Leaf<NormalizationRecord>
+{
 public:
-    NormalizationRecordLeaf(NormalizationRecord *myRecord);
-    virtual NormalizationRecord *getNormalizationRecord() const;
+    NormalizationRecordLeaf(NormalizationRecord* myRecord);
+    virtual NormalizationRecord* getNormalizationRecord() const;
 };
 
 // Level Record
-class EGS_EXPORT LevelRecord : public Record, public Branch<Leaf<LevelRecord> > {
+class EGS_EXPORT LevelRecord : public Record, public Branch<Leaf<LevelRecord>>
+{
 public:
     LevelRecord();
     LevelRecord(vector<string> ensdf);
@@ -262,31 +293,35 @@ private:
     void processEnsdf();
 };
 
-class LevelRecordLeaf : public Leaf<LevelRecord> {
+class LevelRecordLeaf : public Leaf<LevelRecord>
+{
 public:
-    LevelRecordLeaf(LevelRecord *myRecord);
-    virtual LevelRecord *getLevelRecord() const;
+    LevelRecordLeaf(LevelRecord* myRecord);
+    virtual LevelRecord* getLevelRecord() const;
 };
 
 // Generic beta record
 class EGS_EXPORT BetaRecordLeaf : public Record, public ParentRecordLeaf, public
-    NormalizationRecordLeaf, public LevelRecordLeaf {
+    NormalizationRecordLeaf, public LevelRecordLeaf
+{
 public:
-    BetaRecordLeaf(vector<string> ensdf, ParentRecord *myParent,
-                   NormalizationRecord *myNormalization, LevelRecord *myLevel);
+    BetaRecordLeaf(vector<string> ensdf, ParentRecord* myParent,
+                   NormalizationRecord* myNormalization, LevelRecord* myLevel);
 
     virtual double getFinalEnergy() const = 0;
     virtual double getBetaIntensity() const = 0;
-    virtual double getPositronIntensity() const {
+    virtual double getPositronIntensity() const
+    {
         return 0;
     };
-    virtual double getECIntensity() const {
+    virtual double getECIntensity() const
+    {
         return 0;
     };
     virtual void relax(int shell,
                        EGS_Float ecut, EGS_Float pcut,
-                       EGS_RandomGenerator *rndm, double &edep,
-                       EGS_SimpleContainer<EGS_RelaxationParticle> &particles) {};
+                       EGS_RandomGenerator* rndm, double& edep,
+                       EGS_SimpleContainer<EGS_RelaxationParticle>& particles) {};
     virtual void setBetaIntensity(double newIntensity)  = 0;
     int getCharge() const;
     void incrNumSampled();
@@ -294,8 +329,8 @@ public:
     unsigned short int getZ() const;
     unsigned short int getAtomicWeight() const;
     unsigned short int getForbidden() const;
-    void setSpectrum(EGS_AliasTable *bspec);
-    EGS_AliasTable *getSpectrum() const;
+    void setSpectrum(EGS_AliasTable* bspec);
+    EGS_AliasTable* getSpectrum() const;
     vector<double> ecShellIntensity;
 
 protected:
@@ -306,14 +341,15 @@ protected:
     unsigned short int Z;
     unsigned short int A;
     unsigned short int forbidden;
-    EGS_AliasTable *spectrum;
+    EGS_AliasTable* spectrum;
 };
 
 // Beta- record
-class EGS_EXPORT BetaMinusRecord : public BetaRecordLeaf {
+class EGS_EXPORT BetaMinusRecord : public BetaRecordLeaf
+{
 public:
-    BetaMinusRecord(vector<string> ensdf, ParentRecord *myParent,
-                    NormalizationRecord *myNormalization, LevelRecord *myLevel);
+    BetaMinusRecord(vector<string> ensdf, ParentRecord* myParent,
+                    NormalizationRecord* myNormalization, LevelRecord* myLevel);
 
     double getFinalEnergy() const;
     double getBetaIntensity() const;
@@ -326,10 +362,11 @@ private:
 };
 
 // Beta+ Record (and Electron Capture)
-class EGS_EXPORT BetaPlusRecord : public BetaRecordLeaf {
+class EGS_EXPORT BetaPlusRecord : public BetaRecordLeaf
+{
 public:
-    BetaPlusRecord(vector<string> ensdf, ParentRecord *myParent,
-                   NormalizationRecord *myNormalization, LevelRecord *myLevel);
+    BetaPlusRecord(vector<string> ensdf, ParentRecord* myParent,
+                   NormalizationRecord* myNormalization, LevelRecord* myLevel);
 
     double getFinalEnergy() const;
     double getBetaIntensity() const;
@@ -340,8 +377,8 @@ public:
     void setPositronIntensity(double newIntensity);
     void relax(int shell,
                EGS_Float ecut, EGS_Float pcut,
-               EGS_RandomGenerator *rndm, double &edep,
-               EGS_SimpleContainer<EGS_RelaxationParticle> &particles);
+               EGS_RandomGenerator* rndm, double& edep,
+               EGS_SimpleContainer<EGS_RelaxationParticle>& particles);
 
 protected:
     double  ecIntensity,
@@ -355,12 +392,13 @@ private:
 
 // Gamma record
 class EGS_EXPORT GammaRecord : public Record, public ParentRecordLeaf,
-    public NormalizationRecordLeaf, public LevelRecordLeaf {
+    public NormalizationRecordLeaf, public LevelRecordLeaf
+{
 public:
-    GammaRecord(vector<string> ensdf, ParentRecord *myParent,
-                NormalizationRecord *myNormalization,
-                LevelRecord *myLevel);
-    GammaRecord(GammaRecord *gamma);
+    GammaRecord(vector<string> ensdf, ParentRecord* myParent,
+                NormalizationRecord* myNormalization,
+                LevelRecord* myLevel);
+    GammaRecord(GammaRecord* gamma);
 
     double getDecayEnergy() const;
     double getTransitionIntensity() const;
@@ -376,8 +414,8 @@ public:
     double getMultiTransitionProb() const;
     void setMultiTransitionProb(double newIntensity);
     int getCharge() const;
-    LevelRecord *getFinalLevel() const;
-    void setFinalLevel(LevelRecord *newLevel);
+    LevelRecord* getFinalLevel() const;
+    void setFinalLevel(LevelRecord* newLevel);
     void incrGammaSampled();
     void incrICSampled();
     void incrIPSampled();
@@ -388,8 +426,8 @@ public:
     double getBindingEnergy(int shell) const;
     void relax(int shell,
                EGS_Float ecut, EGS_Float pcut,
-               EGS_RandomGenerator *rndm, double &edep,
-               EGS_SimpleContainer<EGS_RelaxationParticle> &particles);
+               EGS_RandomGenerator* rndm, double& edep,
+               EGS_SimpleContainer<EGS_RelaxationParticle>& particles);
 
 protected:
     EGS_I64 numGammaSampled, numICSampled, numIPSampled;
@@ -403,7 +441,7 @@ protected:
             ipCoeff,
             ipCoeffUnc;
     int q;
-    LevelRecord *finalLevel;
+    LevelRecord* finalLevel;
 
 private:
     void processEnsdf();
@@ -411,10 +449,11 @@ private:
 
 // Alpha record
 class EGS_EXPORT AlphaRecord : public Record, public ParentRecordLeaf, public
-    NormalizationRecordLeaf, public LevelRecordLeaf {
+    NormalizationRecordLeaf, public LevelRecordLeaf
+{
 public:
-    AlphaRecord(vector<string> ensdf, ParentRecord *myParent,
-                NormalizationRecord *myNormalization, LevelRecord *myLevel);
+    AlphaRecord(vector<string> ensdf, ParentRecord* myParent,
+                NormalizationRecord* myNormalization, LevelRecord* myLevel);
 
     double getFinalEnergy() const;
     double getAlphaIntensity() const;
@@ -489,27 +528,28 @@ The ensdf class has been tested on radionuclide data from
 
 */
 
-class EGS_EXPORT EGS_Ensdf {
+class EGS_EXPORT EGS_Ensdf
+{
 
 public:
 
     /*! \brief Construct an ensdf object.
      *
      */
-    EGS_Ensdf(const string nuclide, const string ensdf_filename="",
-              const string relaxType="eadl", const bool allowMultiTrans=false, int verbosity=1);
+    EGS_Ensdf(const string nuclide, const string ensdf_filename = "",
+              const string relaxType = "eadl", const bool allowMultiTrans = false, int verbosity = 1);
 
     /*! \brief Destructor. */
     ~EGS_Ensdf();
 
-    vector<Record * > getRecords() const;
-    vector<BetaRecordLeaf *> getBetaRecords() const;
-    vector<ParentRecord * > getParentRecords() const;
-    vector<LevelRecord * > getLevelRecords() const;
-    vector<AlphaRecord * > getAlphaRecords() const;
-    vector<GammaRecord * > getGammaRecords() const;
-    vector<GammaRecord * > getMetastableGammaRecords() const;
-    vector<GammaRecord * > getUncorrelatedGammaRecords() const;
+    vector<Record* > getRecords() const;
+    vector<BetaRecordLeaf*> getBetaRecords() const;
+    vector<ParentRecord* > getParentRecords() const;
+    vector<LevelRecord* > getLevelRecords() const;
+    vector<AlphaRecord* > getAlphaRecords() const;
+    vector<GammaRecord* > getGammaRecords() const;
+    vector<GammaRecord* > getMetastableGammaRecords() const;
+    vector<GammaRecord* > getUncorrelatedGammaRecords() const;
     vector<double > getXRayIntensities() const;
     vector<double > getXRayEnergies() const;
     vector<double > getAugerIntensities() const;
@@ -535,28 +575,28 @@ protected:
     ifstream ensdf_file;
     unsigned short int A;
 
-    vector<Record * > myRecords;
-    vector<CommentRecord * > myCommentRecords;
-    vector<ParentRecord * > myParentRecords;
-    vector<NormalizationRecord * > myNormalizationRecords;
-    vector<LevelRecord * > myLevelRecords;
-    vector<BetaRecordLeaf *> myBetaRecords;
-    vector<BetaMinusRecord * > myBetaMinusRecords;
-    vector<BetaPlusRecord * > myBetaPlusRecords;
-    vector<AlphaRecord * > myAlphaRecords;
-    vector<GammaRecord * > myGammaRecords;
-    vector<GammaRecord * > myMetastableGammaRecords;
-    vector<GammaRecord * > myUncorrelatedGammaRecords;
+    vector<Record* > myRecords;
+    vector<CommentRecord* > myCommentRecords;
+    vector<ParentRecord* > myParentRecords;
+    vector<NormalizationRecord* > myNormalizationRecords;
+    vector<LevelRecord* > myLevelRecords;
+    vector<BetaRecordLeaf*> myBetaRecords;
+    vector<BetaMinusRecord* > myBetaMinusRecords;
+    vector<BetaPlusRecord* > myBetaPlusRecords;
+    vector<AlphaRecord* > myAlphaRecords;
+    vector<GammaRecord* > myGammaRecords;
+    vector<GammaRecord* > myMetastableGammaRecords;
+    vector<GammaRecord* > myUncorrelatedGammaRecords;
 
 private:
 
-    vector<vector<string> > recordStack;
+    vector<vector<string>> recordStack;
     vector<string> commentLines;
     vector<double>  xrayEnergies,
            xrayIntensities,
            augerEnergies,
            augerIntensities;
-    ParentRecord *previousParent;
+    ParentRecord* previousParent;
 };
 
 

@@ -48,11 +48,11 @@
 #include "egs_math.h"
 #include <fstream>
 #ifndef NO_SSTREAM
-    #include <sstream>
-    #define S_STREAM std::istringstream
+#include <sstream>
+#define S_STREAM std::istringstream
 #else
-    #include <strstream>
-    #define S_STREAM std::istrstream
+#include <strstream>
+#define S_STREAM std::istrstream
 #endif
 
 #include <complex>
@@ -61,11 +61,12 @@
 
 using namespace std;
 
-void EGS_BaseSpectrum::reportAverageEnergy() const {
-    egsInformation("expected average energy: %g\n",expectedAverage());
-    EGS_Float e=0,de=0;
-    getSampledAverage(e,de);
-    egsInformation("sampled  average energy: %g +/- %g\n",e,de);
+void EGS_BaseSpectrum::reportAverageEnergy() const
+{
+    egsInformation("expected average energy: %g\n", expectedAverage());
+    EGS_Float e = 0, de = 0;
+    getSampledAverage(e, de);
+    egsInformation("sampled  average energy: %g +/- %g\n", e, de);
 }
 
 /*! \brief A monoenergetic particle spectrum.
@@ -80,27 +81,32 @@ void EGS_BaseSpectrum::reportAverageEnergy() const {
    :stop spectrum:
    \endverbatim
  */
-class EGS_EXPORT EGS_MonoEnergy : public EGS_BaseSpectrum {
+class EGS_EXPORT EGS_MonoEnergy : public EGS_BaseSpectrum
+{
 
 public:
 
     /*! \brief Construct a monoenergetic spectrum with energy \a energy. */
-    EGS_MonoEnergy(EGS_Float energy) : EGS_BaseSpectrum(), E(energy) {
+    EGS_MonoEnergy(EGS_Float energy) : EGS_BaseSpectrum(), E(energy)
+    {
         char buf[1024];
-        sprintf(buf,"monoenergetic %g MeV",E);
+        sprintf(buf, "monoenergetic %g MeV", E);
         type = buf;
     };
     ~EGS_MonoEnergy() {};
-    EGS_Float expectedAverage() const {
+    EGS_Float expectedAverage() const
+    {
         return E;
     };
-    EGS_Float maxEnergy() const {
+    EGS_Float maxEnergy() const
+    {
         return E;
     };
 
 protected:
 
-    EGS_Float sample(EGS_RandomGenerator *) {
+    EGS_Float sample(EGS_RandomGenerator*)
+    {
         return E;
     };
 
@@ -108,19 +114,21 @@ protected:
 
 };
 
-static inline EGS_Float getGaussianRN(EGS_RandomGenerator *rndm) {
+static inline EGS_Float getGaussianRN(EGS_RandomGenerator* rndm)
+{
     static bool have_x = false;
     static EGS_Float the_x;
-    if (have_x) {
+    if (have_x)
+    {
         have_x = false;
         return the_x;
     }
-    EGS_Float r = sqrt(-2*log(1-rndm->getUniform()));
+    EGS_Float r = sqrt(-2 * log(1 - rndm->getUniform()));
     EGS_Float cphi, sphi;
-    rndm->getAzimuth(cphi,sphi);
-    the_x = r*sphi;
+    rndm->getAzimuth(cphi, sphi);
+    the_x = r * sphi;
     have_x = true;
-    return r*cphi;
+    return r * cphi;
 };
 
 /*! \brief A Gaussian spectrum
@@ -139,7 +147,8 @@ static inline EGS_Float getGaussianRN(EGS_RandomGenerator *rndm) {
 \endverbatim
 
  */
-class EGS_EXPORT EGS_GaussianSpectrum : public EGS_BaseSpectrum {
+class EGS_EXPORT EGS_GaussianSpectrum : public EGS_BaseSpectrum
+{
 
 public:
 
@@ -150,35 +159,43 @@ public:
      * The mean energy \em must be greater than zero.
      */
     EGS_GaussianSpectrum(EGS_Float mean_energy, EGS_Float Sigma) :
-        EGS_BaseSpectrum(), Eo(mean_energy), sigma(Sigma) {
+        EGS_BaseSpectrum(), Eo(mean_energy), sigma(Sigma)
+    {
         if (Eo <= 0) egsFatal("EGS_GaussianSpectrum: attempt to construct "
-                                  "a spectrum with a negative mean energy (%g)\n",Eo);
-        if (sigma < 0) {
-            sigma = -sigma*0.4246609;    // i.e. assume
+                                  "a spectrum with a negative mean energy (%g)\n", Eo);
+        if (sigma < 0)
+        {
+            sigma = -sigma * 0.4246609;  // i.e. assume
         }
         // the user has specified FWHM
         char buf[1024];
-        sprintf(buf,"Gaussian spectrum with Eo = %g and sigma = %g",Eo,sigma);
+        sprintf(buf, "Gaussian spectrum with Eo = %g and sigma = %g", Eo, sigma);
         type = buf;
-        if (Eo - 5*sigma > 0) {
-            Emax = Eo + 5*sigma;
+        if (Eo - 5 * sigma > 0)
+        {
+            Emax = Eo + 5 * sigma;
         }
-        else {
-            Emax = 2*Eo;
+        else
+        {
+            Emax = 2 * Eo;
         }
     };
     ~EGS_GaussianSpectrum() {};
-    EGS_Float expectedAverage() const {
+    EGS_Float expectedAverage() const
+    {
         return Eo;
     };
-    EGS_Float maxEnergy() const {
+    EGS_Float maxEnergy() const
+    {
         return Emax;
     };
 
-    EGS_Float sample(EGS_RandomGenerator *rndm) {
+    EGS_Float sample(EGS_RandomGenerator* rndm)
+    {
         EGS_Float E;
-        do {
-            E = Eo + sigma*getGaussianRN(rndm);
+        do
+        {
+            E = Eo + sigma * getGaussianRN(rndm);
         }
         while (E <= 0 || E > Emax);
         return E;
@@ -219,7 +236,8 @@ protected:
 :stop spectrum:
 \endverbatim
  */
-class EGS_EXPORT EGS_DoubleGaussianSpectrum : public EGS_BaseSpectrum {
+class EGS_EXPORT EGS_DoubleGaussianSpectrum : public EGS_BaseSpectrum
+{
 
 public:
 
@@ -228,28 +246,33 @@ public:
      */
     EGS_DoubleGaussianSpectrum(EGS_Float mean_energy, EGS_Float sig_left,
                                EGS_Float sig_right) : EGS_BaseSpectrum(), Eo(mean_energy),
-        sleft(sig_left), sright(sig_right) {
-        if (sleft < 0) {
-            sleft = -sleft*0.4246609;
+        sleft(sig_left), sright(sig_right)
+    {
+        if (sleft < 0)
+        {
+            sleft = -sleft * 0.4246609;
         }
-        if (sright< 0) {
-            sright= -sright*0.4246609;
+        if (sright < 0)
+        {
+            sright = -sright * 0.4246609;
         }
-        Emax = Eo + 4*sright;
-        if (Eo - 4*sleft < 0) egsWarning("EGS_DoubleGaussianSpectrum: "
-                                             "for Eo=%g, sigma=%g there will be negative energy sampled\n");
-        p = sleft/(sleft + sright);
+        Emax = Eo + 4 * sright;
+        if (Eo - 4 * sleft < 0) egsWarning("EGS_DoubleGaussianSpectrum: "
+                                               "for Eo=%g, sigma=%g there will be negative energy sampled\n");
+        p = sleft / (sleft + sright);
         char buf[1024];
-        sprintf(buf,"Double Gaussian spectrum with Eo = %g sig(left) = %g"
-                " and sig(right) = %g",Eo,sleft,sright);
+        sprintf(buf, "Double Gaussian spectrum with Eo = %g sig(left) = %g"
+                " and sig(right) = %g", Eo, sleft, sright);
         type = buf;
     };
     ~EGS_DoubleGaussianSpectrum() {};
-    EGS_Float maxEnergy() const {
+    EGS_Float maxEnergy() const
+    {
         return Emax;
     };
-    EGS_Float expectedAverage() const {
-        return Eo + sqrt(2/M_PI)*(sright-sleft);
+    EGS_Float expectedAverage() const
+    {
+        return Eo + sqrt(2 / M_PI) * (sright - sleft);
     };
 
 protected:
@@ -261,17 +284,22 @@ protected:
     EGS_Float p;      /*!< The probability for picking energies from the left
                            or right Gaussian */
 
-    EGS_Float sample(EGS_RandomGenerator *rndm) {
+    EGS_Float sample(EGS_RandomGenerator* rndm)
+    {
         EGS_Float E;
-        if (rndm->getUniform() < p) {
-            do {
-                E = Eo-sleft*fabs(getGaussianRN(rndm));
+        if (rndm->getUniform() < p)
+        {
+            do
+            {
+                E = Eo - sleft * fabs(getGaussianRN(rndm));
             }
             while (E <= 0);
         }
-        else {
-            do {
-                E = Eo+sright*fabs(getGaussianRN(rndm));
+        else
+        {
+            do
+            {
+                E = Eo + sright * fabs(getGaussianRN(rndm));
             }
             while (E > Emax);
         }
@@ -298,29 +326,34 @@ protected:
 \endverbatim
 
  */
-class EGS_EXPORT EGS_UniformSpectrum : public EGS_BaseSpectrum {
+class EGS_EXPORT EGS_UniformSpectrum : public EGS_BaseSpectrum
+{
 
 public:
 
     /*! \brief Construct a uniform spectrum between \a emin and \a emax. */
     EGS_UniformSpectrum(EGS_Float emin, EGS_Float emax) : EGS_BaseSpectrum(),
-        Emin(emin), Emax(emax), de(emax - emin) {
+        Emin(emin), Emax(emax), de(emax - emin)
+    {
         char buf[1024];
-        sprintf(buf,"Uniform spectrum with Emin = %g Emax = %g",Emin,Emax);
+        sprintf(buf, "Uniform spectrum with Emin = %g Emax = %g", Emin, Emax);
         type = buf;
     };
     ~EGS_UniformSpectrum() {};
-    EGS_Float maxEnergy() const {
+    EGS_Float maxEnergy() const
+    {
         return Emax;
     };
-    EGS_Float expectedAverage() const {
-        return (Emin+Emax)/2;
+    EGS_Float expectedAverage() const
+    {
+        return (Emin + Emax) / 2;
     };
 
 protected:
 
-    EGS_Float sample(EGS_RandomGenerator *rndm) {
-        return Emin + rndm->getUniform()*de;
+    EGS_Float sample(EGS_RandomGenerator* rndm)
+    {
+        return Emin + rndm->getUniform() * de;
     };
 
     EGS_Float Emin;  //!< The minimum energy
@@ -380,7 +413,8 @@ A spectrum is defined inline as follows:
 where the meaning of the spectrum type is the same as the mode of a
 spectrum file.
  */
-class EGS_EXPORT EGS_TabulatedSpectrum : public EGS_BaseSpectrum {
+class EGS_EXPORT EGS_TabulatedSpectrum : public EGS_BaseSpectrum
+{
 
 public:
 
@@ -398,45 +432,56 @@ public:
      * For \a Type=3 the spectrum is considered to be an interpolated
      * spectrum.
      */
-    EGS_TabulatedSpectrum(int N, const EGS_Float *x, const EGS_Float *f,
-                          int Type = 1, const char *fname = 0) : EGS_BaseSpectrum(),
-        table(new EGS_AliasTable(N,x,f,Type)) {
-        setType(Type,fname);
+    EGS_TabulatedSpectrum(int N, const EGS_Float* x, const EGS_Float* f,
+                          int Type = 1, const char* fname = 0) : EGS_BaseSpectrum(),
+        table(new EGS_AliasTable(N, x, f, Type))
+    {
+        setType(Type, fname);
     };
 
-    ~EGS_TabulatedSpectrum() {
+    ~EGS_TabulatedSpectrum()
+    {
         delete table;
     };
-    EGS_Float maxEnergy() const {
+    EGS_Float maxEnergy() const
+    {
         return table->getMaximum();
     };
-    EGS_Float expectedAverage() const {
+    EGS_Float expectedAverage() const
+    {
         return table->getAverage();
     };
 
 protected:
 
-    EGS_AliasTable *table; //!< The alias table object used to sample energies.
-    void setType(int Type,const char *fname) {
-        if (Type == 0) {
+    EGS_AliasTable* table; //!< The alias table object used to sample energies.
+    void setType(int Type, const char* fname)
+    {
+        if (Type == 0)
+        {
             type = "tabulated line spectrum";
         }
-        else if (Type == 1) {
+        else if (Type == 1)
+        {
             type = "tabulated histogram spectrum";
         }
-        else {
+        else
+        {
             type = "tabulated spectrum";
         }
-        if (fname) {
+        if (fname)
+        {
             type += " defined in ";
             type += fname;
         }
-        else {
+        else
+        {
             type += " defined inline";
         }
     };
 
-    EGS_Float sample(EGS_RandomGenerator *rndm) {
+    EGS_Float sample(EGS_RandomGenerator* rndm)
+    {
         return table->sample(rndm);
     };
 
@@ -453,24 +498,28 @@ protected:
  *
  *  Reid Townson integrated spectrum generation into egs++ in 2016.
 */
-class EGS_EXPORT EGS_RadionuclideBetaSpectrum {
+class EGS_EXPORT EGS_RadionuclideBetaSpectrum
+{
 
 public:
     /*! \brief Construct beta spectra for a radionuclide
      */
-    EGS_RadionuclideBetaSpectrum(EGS_Ensdf *decays, const string outputBetaSpectra) {
+    EGS_RadionuclideBetaSpectrum(EGS_Ensdf* decays, const string outputBetaSpectra)
+    {
 
-        EGS_Application *app = EGS_Application::activeApplication();
+        EGS_Application* app = EGS_Application::activeApplication();
         rm = app->getRM();
 
-        vector<BetaRecordLeaf *> myBetas = decays->getBetaRecords();
+        vector<BetaRecordLeaf*> myBetas = decays->getBetaRecords();
 
-        for (vector<BetaRecordLeaf *>::iterator beta = myBetas.begin();
-                beta != myBetas.end(); beta++) {
+        for (vector<BetaRecordLeaf*>::iterator beta = myBetas.begin();
+                beta != myBetas.end(); beta++)
+        {
 
             // Skip electron capture records
             if ((*beta)->getCharge() == 1 &&
-                    (*beta)->getPositronIntensity() == 0) {
+                    (*beta)->getPositronIntensity() == 0)
+            {
                 continue;
             }
 
@@ -482,16 +531,16 @@ public:
                            (*beta)->getAtomicWeight(), (*beta)->getForbidden()
                           );
 
-            const int nbin=1000;
-            EGS_Float *e = new EGS_Float [nbin];
-            EGS_Float *spec = new EGS_Float [nbin];
-            EGS_Float *spec_y = new EGS_Float [nbin];
+            const int nbin = 1000;
+            EGS_Float* e = new EGS_Float [nbin];
+            EGS_Float* spec = new EGS_Float [nbin];
+            EGS_Float* spec_y = new EGS_Float [nbin];
 
             double de, s_y, factor, se_y;
 
-            ncomps=1; // if we increase this, then we must fill the remainder
-            area[0]=1.0;
-            rel[0]=1.0;
+            ncomps = 1; // if we increase this, then we must fill the remainder
+            area[0] = 1.0;
+            rel[0] = 1.0;
 
             emax = (*beta)->getFinalEnergy();
             zzz[0] = (double)daughterZ;
@@ -502,40 +551,47 @@ public:
 
             // For Cl-36 (ref: nuc. phys. 99a,  625,(67))
             // Only the beta- spectrum
-            if (daughterZ == 18 && (*beta)->getCharge() == -1) {
+            if (daughterZ == 18 && (*beta)->getCharge() == -1)
+            {
                 lamda[0] = 4;
             }
             // For I-129 (ref: phys. rev. 95, 458, 54))
             // The beta- spectrum with 151 keV endpoint
-            else if (daughterZ == 54 && emax < 0.154 && emax > 0.150) {
+            else if (daughterZ == 54 && emax < 0.154 && emax > 0.150)
+            {
                 lamda[0] = 4;
             }
             // For Cs-137 (ref: nuc. phys. 112a, 156, (68))
             // The beta- spectrum with 1175 keV endpoint
-            else if (daughterZ == 56 && emax > 1.173 && emax < 1.177) {
+            else if (daughterZ == 56 && emax > 1.173 && emax < 1.177)
+            {
                 lamda[0] = 4;
             }
             // For Tl-204 (ref: can. j. phys., 45, 2621, (67))
             // There is only 1 beta- spectrum
-            else if (daughterZ == 82) {
+            else if (daughterZ == 82)
+            {
                 lamda[0] = 4;
             }
             // For Bi-210 (ref: nuc. phys., 31, 293, (62))
             // There is only 1 beta- spectrum
-            else if (daughterZ == 84) {
+            else if (daughterZ == 84)
+            {
                 lamda[0] = 4;
             }
-            else {
+            else
+            {
                 lamda[0] = (*beta)->getForbidden();
             }
 
             // For positrons from zzz negative (just how the spectrum code
             // was designed)
-            if ((*beta)->getCharge() == 1) {
+            if ((*beta)->getCharge() == 1)
+            {
                 zzz[0] *= -1;
             }
 
-            etop[0]=emax;
+            etop[0] = emax;
 
             // prbs july 9, 2007 moved here from before src loop.
             // also, now tabulate based on
@@ -544,40 +600,46 @@ public:
             // endpoint E0 up to nearest 100 keV, and dividing by NBIN to get
             // binwidth.
 
-            de=((int)(etop[0]*10.0+1)/10.)/nbin; // round up to nearest 100kev;
+            de = ((int)(etop[0] * 10.0 + 1) / 10.) / nbin; // round up to nearest 100kev;
             // /=     NBIN
             //cout << "Binwidth " << de << endl;
 
-            for (int ib=0; ib<nbin; ib++) {
-                e[ib]=de+ib*de;
+            for (int ib = 0; ib < nbin; ib++)
+            {
+                e[ib] = de + ib * de;
 //                 egsInformation("%.12f, %.12f\n", e[ib], etop[0]);
             }
 
-            s_y=0.0;
-            se_y=0.0;
-            for (int ib=0; ib<nbin; ib++) {
+            s_y = 0.0;
+            se_y = 0.0;
+            for (int ib = 0; ib < nbin; ib++)
+            {
 
-                if (e[ib]<=emax) {
-                    sp(e[ib],spec_y[ib],factor);
+                if (e[ib] <= emax)
+                {
+                    sp(e[ib], spec_y[ib], factor);
                 }
-                else {
-                    spec_y[ib]=0.0;
+                else
+                {
+                    spec_y[ib] = 0.0;
                 }
 
-                s_y=s_y+spec_y[ib];
-                se_y=se_y+spec_y[ib]*e[ib];
+                s_y = s_y + spec_y[ib];
+                se_y = se_y + spec_y[ib] * e[ib];
             }
 
-            for (int ib=0; ib<nbin; ib++) {
-                spec[ib]=1/de*(spec_y[ib]/s_y);
+            for (int ib = 0; ib < nbin; ib++)
+            {
+                spec[ib] = 1 / de * (spec_y[ib] / s_y);
 //                 cout << e[ib] << " " << spec[ib] << endl;
             }
 
-            EGS_AliasTable *bspec = new EGS_AliasTable(nbin,e,spec,1);
+            EGS_AliasTable* bspec = new EGS_AliasTable(nbin, e, spec, 1);
             (*beta)->setSpectrum(bspec);
 
             // Write the spectrum to a file
-            if (outputBetaSpectra == "yes") {
+            if (outputBetaSpectra == "yes")
+            {
 
                 ostringstream ostr;
                 ostr << decays->radionuclide << "_" << emax << ".spec";
@@ -586,8 +648,9 @@ public:
 
                 ofstream specStream;
                 specStream.open(ostr.str().c_str());
-                for (int ib=0; ib<nbin; ib++) {
-                    spec[ib]=1/de*(spec_y[ib]/s_y);
+                for (int ib = 0; ib < nbin; ib++)
+                {
+                    spec[ib] = 1 / de * (spec_y[ib] / s_y);
                     specStream << e[ib] << " " << spec[ib] << endl;
                 }
                 specStream.close();
@@ -597,35 +660,39 @@ public:
 
 protected:
 
-    complex<double> cgamma(complex<double> z) {
+    complex<double> cgamma(complex<double> z)
+    {
 
-        static const int g=7;
+        static const int g = 7;
         static const double pi = 3.1415926535897932384626433832795028841972;
-        static const double p[g+2] = {0.99999999999980993, 676.5203681218851,
-                                      -1259.1392167224028,
-                                      771.32342877765313,
-                                      -176.61502916214059,
-                                      12.507343278686905,
-                                      -0.13857109526572012,
-                                      9.9843695780195716e-6,
-                                      1.5056327351493116e-7
-                                     };
+        static const double p[g + 2] = {0.99999999999980993, 676.5203681218851,
+                                        -1259.1392167224028,
+                                        771.32342877765313,
+                                        -176.61502916214059,
+                                        12.507343278686905,
+                                        -0.13857109526572012,
+                                        9.9843695780195716e-6,
+                                        1.5056327351493116e-7
+                                       };
 
-        if (real(z)<0.5) {
-            return pi / (sin(pi*z)*cgamma(double(1.0)-z));
+        if (real(z) < 0.5)
+        {
+            return pi / (sin(pi * z) * cgamma(double(1.0) - z));
         }
 
         z -= 1.0;
-        complex<double> x=p[0];
-        for (int i=1; i<g+2; i++) {
-            x += p[i]/(z+complex<double>(i,0));
+        complex<double> x = p[0];
+        for (int i = 1; i < g + 2; i++)
+        {
+            x += p[i] / (z + complex<double>(i, 0));
         }
         complex<double> t = z + (g + double(0.5));
 
-        return double(sqrt(2.*pi)) * pow(t,z+double(0.5)) * exp(-t) * x;
+        return double(sqrt(2.*pi)) * pow(t, z + double(0.5)) * exp(-t) * x;
     }
 
-    complex<double> clgamma(complex<double> z) {
+    complex<double> clgamma(complex<double> z)
+    {
         complex<double> u, v, h, p, r;
 
         static const double pi = 3.1415926535897932384626433832795028841972;
@@ -649,57 +716,66 @@ protected:
         double y = imag(z);
         h = 0;
 
-        if (y == 0 && -abs(x) == int(x)) {
+        if (y == 0 && -abs(x) == int(x))
+        {
             return 0;
         }
-        else {
+        else
+        {
             double ya = abs(y);
-            if (x < 0) {
+            if (x < 0)
+            {
                 u = double(1.) - complex<double>(x, ya);
             }
-            else {
+            else
+            {
                 u = complex<double>(x, ya);
             }
 
             h = 0;
             double ur = real(u);
             double ui, a;
-            if (ur < 7.) {
+            if (ur < 7.)
+            {
                 ui = imag(u);
-                a = atan2(ui,ur);
+                a = atan2(ui, ur);
                 h = u;
-                for (int i=1; i<=6-int(ur); i++) {
+                for (int i = 1; i <= 6 - int(ur); i++)
+                {
                     ur = ur + 1;
                     u = complex<double>(ur, ui);
                     h = h * u;
                     a = a + atan2(ui, ur);
                 }
-                h = complex<double>(hf * log(pow(real(h),2) + pow(imag(h),2)),
+                h = complex<double>(hf * log(pow(real(h), 2) + pow(imag(h), 2)),
                                     a);
 
                 u = double(1.) + u;
             }
 
-            r = double(1.) / pow(u,2);
+            r = double(1.) / pow(u, 2);
             p = r * c[9];
 
-            for (int i=8; i>=1; i--) {
+            for (int i = 8; i >= 1; i--)
+            {
                 p = r * (c[i] + p);
             }
 
-            h = c1 + (u-hf)*log(u) - u + (c[0]+p) / u - h;
+            h = c1 + (u - hf) * log(u) - u + (c[0] + p) / u - h;
 
-            if (x < 0.) {
+            if (x < 0.)
+            {
                 ur = double(int(x)) - 1.;
-                ui = pi * (x-ur);
+                ui = pi * (x - ur);
                 x = pi * ya;
-                double t = exp(-x-x);
+                double t = exp(-x - x);
                 a = sin(ui);
-                t = x + hf * log(t*pow(a,2)+pow(hf*(1.-t),2));
-                a = atan2(cos(ui)*tanh(x),a) - ur*pi;
-                h = c2 - complex<double>(t,a) - h;
+                t = x + hf * log(t * pow(a, 2) + pow(hf * (1. - t), 2));
+                a = atan2(cos(ui) * tanh(x), a) - ur * pi;
+                h = c2 - complex<double>(t, a) - h;
             }
-            if (y < 0) {
+            if (y < 0)
+            {
                 h = conj(h);
             }
         }
@@ -707,51 +783,54 @@ protected:
         return h;
     }
 
-    void slfact(double p, double z, double radf, double xl[4]) {
+    void slfact(double p, double z, double radf, double xl[4])
+    {
 
         double ff[4];
-        double dfac[4]= {1.0, 3.0, 15.0, 105.0};
-        double pi,c137,az,w,rad,pr,y,x1,gk,bb,cc,dd,x2;
+        double dfac[4] = {1.0, 3.0, 15.0, 105.0};
+        double pi, c137, az, w, rad, pr, y, x1, gk, bb, cc, dd, x2;
 
         complex<double> aa;
 
         pi  = acos(-1.0);
-        c137= 137.036; // 1/ fine structure constant
-        az  = z/c137;
-        w   = sqrt(p*p+1.0);
-        rad = radf/386.159;
-        pr  = p*rad;
-        y   = az*w/p;
+        c137 = 137.036; // 1/ fine structure constant
+        az  = z / c137;
+        w   = sqrt(p * p + 1.0);
+        rad = radf / 386.159;
+        pr  = p * rad;
+        y   = az * w / p;
 
-        for (int k=1; k<=4; k++) {
+        for (int k = 1; k <= 4; k++)
+        {
 
-            gk = sqrt(k*k-az*az);
-            x1 = pow((pow(p,k-1)/dfac[k-1]), 2);
+            gk = sqrt(k * k - az * az);
+            x1 = pow((pow(p, k - 1) / dfac[k - 1]), 2);
 
-            aa = clgamma(complex<double>(gk,y));
+            aa = clgamma(complex<double>(gk, y));
             double aa_real = real(aa);
 
-            bb=lgamma((double)k);
-            cc=lgamma(2.0*k +1.0);
-            dd=lgamma(2.0*gk+1.0);
+            bb = lgamma((double)k);
+            cc = lgamma(2.0 * k + 1.0);
+            dd = lgamma(2.0 * gk + 1.0);
 
-            ff[k-1] =
-                pow(2.0*pr, 2.0*(gk-k)) *
-                exp(pi*y+2.0*(aa_real+cc-bb-dd)) *
-                (k+gk)/(2.0*k);
+            ff[k - 1] =
+                pow(2.0 * pr, 2.0 * (gk - k)) *
+                exp(pi * y + 2.0 * (aa_real + cc - bb - dd)) *
+                (k + gk) / (2.0 * k);
 
             x2 =
                 1.0 -
-                az*pr*(2.0*w*(2.0*k+1.0)/(p*k*(2.0*gk+1.0)) -
-                       2.0*p*gk/(w*k*(2.0*gk+1.0))) -
-                2.0*k*pr*pr/((2.0*k+1.0)*(k+gk));
-            xl[k-1] = x1*ff[k-1]/ff[0]*x2;
+                az * pr * (2.0 * w * (2.0 * k + 1.0) / (p * k * (2.0 * gk + 1.0)) -
+                           2.0 * p * gk / (w * k * (2.0 * gk + 1.0))) -
+                2.0 * k * pr * pr / ((2.0 * k + 1.0) * (k + gk));
+            xl[k - 1] = x1 * ff[k - 1] / ff[0] * x2;
         }
 
         return;
     }
 
-    void bsp(double e, double &bspec, double &factor) {
+    void bsp(double e, double& bspec, double& factor)
+    {
 
         // *****************************************************************
         //     Calculates n(e) (unnormalized) for one spectral component,
@@ -774,101 +853,116 @@ protected:
         //
         //
 
-        double pi,c137,zab,v,z,x,w,psq,p,y,qsq,g,cab,f,radf;
+        double pi, c137, zab, v, z, x, w, psq, p, y, qsq, g, cab, f, radf;
 
         double xl[4];
         complex<double> c;
         complex<double> a;
 
-        bspec=0.0;
-        if (e>emax) {
+        bspec = 0.0;
+        if (e > emax)
+        {
             return;
         }
 
-        pi  =acos(-1.);
-        c137=137.036;           // 1/ fine structure constant
+        pi  = acos(-1.);
+        c137 = 137.036;         // 1/ fine structure constant
 
         zab = abs(zz);
-        v   = 1.13*pow(zab,1.333)/pow(c137,2); // Screening correction
-        v   = copysign(v,zz);
-        z   = zab/c137;
-        x   = sqrt(1.0-z*z);        // s parameter
-        w   = 1.0+(e/rm)-v;    // Total energy of b particle
-        if (w<1.0000001) {
+        v   = 1.13 * pow(zab, 1.333) / pow(c137, 2); // Screening correction
+        v   = copysign(v, zz);
+        z   = zab / c137;
+        x   = sqrt(1.0 - z * z);    // s parameter
+        w   = 1.0 + (e / rm) - v; // Total energy of b particle
+        if (w < 1.0000001)
+        {
             bspec = 0.;
             return;
         }
         //if(w<1.00001) w=1.00001;
-        psq = w*w-double(1.0);
+        psq = w * w - double(1.0);
         p   = sqrt(psq);          // Momemtum of beta particle
-        y   = z*w/p;              // eta = alpha * z * e / p
-        y   = copysign(y,zz);
-        qsq = 3.83*pow(emax-e,2);
+        y   = z * w / p;          // eta = alpha * z * e / p
+        y   = copysign(y, zz);
+        qsq = 3.83 * pow(emax - e, 2);
 
-        if (e <= 1.0e-5) {
-            g=0.0;              // Low energy approximation
-            if (zz>=0.0) {
-                g = qsq*2.0*pi*pow(z,(2.0*x-1.0));
+        if (e <= 1.0e-5)
+        {
+            g = 0.0;            // Low energy approximation
+            if (zz >= 0.0)
+            {
+                g = qsq * 2.0 * pi * pow(z, (2.0 * x - 1.0));
             }
         }
-        else {
-            a   = complex<double>(x,y);
+        else
+        {
+            a   = complex<double>(x, y);
             c   = cgamma(a);
             cab = abs(c);
-            f   = pow(psq,x-1.0)*exp(pi*y)*pow(cab,2);
-            g   = f*p*w*qsq;
+            f   = pow(psq, x - 1.0) * exp(pi * y) * pow(cab, 2);
+            g   = f * p * w * qsq;
         }
 
         factor  = 1.0; // Necessary to calculate kurie plot (not done)
         bspec   = g;
-        if (lam == 0) {
+        if (lam == 0)
+        {
             return;
         }
 
-        radf = 1.2*pow(rmass,0.333); // Nuclear radius
-        slfact(p,zz,radf,xl);
+        radf = 1.2 * pow(rmass, 0.333); // Nuclear radius
+        slfact(p, zz, radf, xl);
 
-        if (lam==1) {
-            bspec = g*(qsq*xl[0]+9.0*xl[1]);
+        if (lam == 1)
+        {
+            bspec = g * (qsq * xl[0] + 9.0 * xl[1]);
             return;
         }
-        else if (lam==2) {
-            bspec = g*(pow(qsq,2)*xl[0]+30.0*qsq*xl[1]+225.0*xl[2]);
+        else if (lam == 2)
+        {
+            bspec = g * (pow(qsq, 2) * xl[0] + 30.0 * qsq * xl[1] + 225.0 * xl[2]);
             return;
         }
-        else if (lam==3) {
-            bspec = g*(pow(qsq,3.0)*xl[0]+63.0*pow(qsq,2)*xl[1]+
-                       1575.0*qsq*xl[2] + 11025.0*xl[3]);
+        else if (lam == 3)
+        {
+            bspec = g * (pow(qsq, 3.0) * xl[0] + 63.0 * pow(qsq, 2) * xl[1] +
+                         1575.0 * qsq * xl[2] + 11025.0 * xl[3]);
             return;
         }
-        else { // lam==4
+        else   // lam==4
+        {
 
             // Fudge factors for nuclides whose experimental spectra don't
             // seem to fit theory.
 
             //     for cl36 (ref: nuc. phys. 99a,  625,(67))
-            if (zab == 18.0) {
-                bspec = bspec*(qsq*xl[0]+20.07*xl[1]);
+            if (zab == 18.0)
+            {
+                bspec = bspec * (qsq * xl[0] + 20.07 * xl[1]);
             }
 
             //     for i129 (ref: phys. rev. 95, 458, 54))
-            if (zab == 54.) {
-                bspec = bspec*(psq+10.0*qsq);
+            if (zab == 54.)
+            {
+                bspec = bspec * (psq + 10.0 * qsq);
             }
 
             //     for cs-ba137 (ref: nuc. phys. 112a, 156, (68))
-            if (zab == 56.) {
-                bspec = bspec*(qsq*xl[0]+0.045*xl[1]);
+            if (zab == 56.)
+            {
+                bspec = bspec * (qsq * xl[0] + 0.045 * xl[1]);
             }
 
             //     for tl204 (ref: can. j. phys., 45, 2621, (67))
-            if (zab == 82.) {
-                bspec = bspec*(1.0-1.677*e+ 2.77*e*e);
+            if (zab == 82.)
+            {
+                bspec = bspec * (1.0 - 1.677 * e + 2.77 * e * e);
             }
 
             //     for bi210 (ref: nuc. phys., 31, 293, (62))
-            if (zab == 84.) {
-                bspec = bspec*(1.78-2.35*e+e*e);
+            if (zab == 84.)
+            {
+                bspec = bspec * (1.78 - 2.35 * e + e * e);
             }
 
             return;
@@ -876,24 +970,26 @@ protected:
     }
 
     // Sums weighted, normalized spectral components to give total spectrum
-    void sp(double e, double &spec, double &factor) {
+    void sp(double e, double& spec, double& factor)
+    {
 
         double bspec;
 
-        spec=0.0;
-        for (int icomp=0; icomp<ncomps; icomp++) {
+        spec = 0.0;
+        for (int icomp = 0; icomp < ncomps; icomp++)
+        {
             zz  = zzz[icomp];
-            emax= etop[icomp];
+            emax = etop[icomp];
             lam = lamda[icomp];
-            bsp(e,bspec,factor);
-            spec= spec+bspec*rel[icomp]/area[icomp];
+            bsp(e, bspec, factor);
+            spec = spec + bspec * rel[icomp] / area[icomp];
         }
     }
 
 private:
     EGS_Float rm;
-    double zz,emax,rmass;
-    double zzz[9],etop[9],rel[9],area[9],lamda[9];
+    double zz, emax, rmass;
+    double zzz[9], etop[9], rel[9], area[9], lamda[9];
     int lam, ncomps;
 };
 
@@ -1015,7 +1111,8 @@ end of <b>\c runSimulation()</b>, add a line such as
 <code>source->printSampledEmissions();</code>.
 
  */
-class EGS_EXPORT EGS_RadionuclideSpectrum : public EGS_BaseSpectrum {
+class EGS_EXPORT EGS_RadionuclideSpectrum : public EGS_BaseSpectrum
+{
 
 public:
 
@@ -1023,7 +1120,8 @@ public:
      */
     EGS_RadionuclideSpectrum(const string nuclide, const string ensdf_file,
                              const EGS_Float relativeActivity, const string relaxType, const string outputBetaSpectra, const bool scoreAlphasLocally, const bool allowMultiTransition) :
-        EGS_BaseSpectrum() {
+        EGS_BaseSpectrum()
+    {
 
         // For now, hard-code verbose mode
         // 0 - minimal output
@@ -1063,47 +1161,59 @@ public:
         scoreAlphasLocal = scoreAlphasLocally;
 
         // Get the maximum energy for emissions
-        for (vector<BetaRecordLeaf *>::iterator beta = myBetas.begin();
-                beta != myBetas.end(); beta++) {
+        for (vector<BetaRecordLeaf*>::iterator beta = myBetas.begin();
+                beta != myBetas.end(); beta++)
+        {
 
             double energy = (*beta)->getFinalEnergy();
-            if (Emax < energy) {
+            if (Emax < energy)
+            {
                 Emax = energy;
             }
         }
-        for (vector<AlphaRecord *>::iterator alpha = myAlphas.begin();
-                alpha != myAlphas.end(); alpha++) {
+        for (vector<AlphaRecord*>::iterator alpha = myAlphas.begin();
+                alpha != myAlphas.end(); alpha++)
+        {
 
             double energy = (*alpha)->getFinalEnergy();
-            if (Emax < energy) {
+            if (Emax < energy)
+            {
                 Emax = energy;
             }
         }
-        for (vector<GammaRecord *>::iterator gamma = myGammas.begin();
-                gamma != myGammas.end(); gamma++) {
+        for (vector<GammaRecord*>::iterator gamma = myGammas.begin();
+                gamma != myGammas.end(); gamma++)
+        {
 
             double energy = (*gamma)->getDecayEnergy();
-            if (Emax < energy) {
+            if (Emax < energy)
+            {
                 Emax = energy;
             }
         }
-        for (vector<GammaRecord *>::iterator gamma = myUncorrelatedGammas.begin();
-                gamma != myUncorrelatedGammas.end(); gamma++) {
+        for (vector<GammaRecord*>::iterator gamma = myUncorrelatedGammas.begin();
+                gamma != myUncorrelatedGammas.end(); gamma++)
+        {
 
             double energy = (*gamma)->getDecayEnergy();
-            if (Emax < energy) {
+            if (Emax < energy)
+            {
                 Emax = energy;
             }
         }
-        for (unsigned int i=0; i < xrayEnergies.size(); ++i) {
+        for (unsigned int i = 0; i < xrayEnergies.size(); ++i)
+        {
             numSampledXRay.push_back(0);
-            if (Emax < xrayEnergies[i]) {
+            if (Emax < xrayEnergies[i])
+            {
                 Emax = xrayEnergies[i];
             }
         }
-        for (unsigned int i=0; i < augerEnergies.size(); ++i) {
+        for (unsigned int i = 0; i < augerEnergies.size(); ++i)
+        {
             numSampledAuger.push_back(0);
-            if (Emax < augerEnergies[i]) {
+            if (Emax < augerEnergies[i])
+            {
                 Emax = augerEnergies[i];
             }
         }
@@ -1111,9 +1221,10 @@ public:
         // Set the weight of the spectrum
         spectrumWeight = relativeActivity;
 
-        if (verbose) {
-            egsInformation("EGS_RadionuclideSpectrum: Emax: %f\n",Emax);
-            egsInformation("EGS_RadionuclideSpectrum: Relative activity: %f\n",relativeActivity);
+        if (verbose)
+        {
+            egsInformation("EGS_RadionuclideSpectrum: Emax: %f\n", Emax);
+            egsInformation("EGS_RadionuclideSpectrum: Relative activity: %f\n", relativeActivity);
         }
 
         // Set the application
@@ -1121,11 +1232,14 @@ public:
     };
 
     /*! \brief Destructor. */
-    ~EGS_RadionuclideSpectrum() {
-        if (decays) {
+    ~EGS_RadionuclideSpectrum()
+    {
+        if (decays)
+        {
             delete decays;
         }
-        if (betaSpectra) {
+        if (betaSpectra)
+        {
             delete betaSpectra;
         }
     };
@@ -1137,37 +1251,44 @@ public:
      * considered in this. Relaxation emissions from the ENSDF file are
      * considered.
      */
-    EGS_Float maxEnergy() const {
+    EGS_Float maxEnergy() const
+    {
         return Emax;
     };
 
     /*! \brief Get the charge of the most recent emission. */
-    int getCharge() const {
+    int getCharge() const
+    {
         return currentQ;
     }
 
     /*! \brief Get the emission time of the most recent emission. */
-    double getTime() const {
+    double getTime() const
+    {
         return currentTime;
     }
 
     /*! \brief Get the shower index of the most recent emission. */
-    EGS_I64 getShowerIndex() const {
+    EGS_I64 getShowerIndex() const
+    {
         return ishower;
     }
 
     /*! \brief Get energy that should be deposited locally from relaxations/alphas. */
-    EGS_Float getEdep() const {
+    EGS_Float getEdep() const
+    {
         return edep;
     }
 
     /*! \brief Get the relative weight assigned to this spectrum. */
-    EGS_Float getSpectrumWeight() const {
+    EGS_Float getSpectrumWeight() const
+    {
         return spectrumWeight;
     }
 
     /*! \brief Set the relative weight assigned to this spectrum. */
-    void setSpectrumWeight(EGS_Float newWeight) {
+    void setSpectrumWeight(EGS_Float newWeight)
+    {
         spectrumWeight = newWeight;
     }
 
@@ -1189,102 +1310,123 @@ public:
      * 13: Internal pair production
      * 14: Uncorrelated internal pair production
      */
-    unsigned int getEmissionType() const {
+    unsigned int getEmissionType() const
+    {
         return emissionType;
     }
 
     /*! \brief Print the sampled emission intensities.
      */
-    void printSampledEmissions() {
+    void printSampledEmissions()
+    {
 
         egsInformation("\nSampled %s emissions:\n", decays->radionuclide.c_str());
         egsInformation("========================\n");
 
-        if (ishower < 1) {
+        if (ishower < 1)
+        {
             egsWarning("EGS_RadionuclideSpectrum::printSampledEmissions: Warning: The number of disintegrations (tracked by `ishower`) is less than 1.\n");
             return;
         }
 
         egsInformation("Energy | Intensity per 100 decays (adjusted by %f)\n", decays->decayDiscrepancy);
-        if (myBetas.size() > 0) {
+        if (myBetas.size() > 0)
+        {
             egsInformation("Beta records:\n");
         }
-        for (vector<BetaRecordLeaf *>::iterator beta = myBetas.begin();
-                beta != myBetas.end(); beta++) {
+        for (vector<BetaRecordLeaf*>::iterator beta = myBetas.begin();
+                beta != myBetas.end(); beta++)
+        {
 
             egsInformation("%f %f\n", (*beta)->getFinalEnergy(),
-                           ((EGS_Float)(*beta)->getNumSampled()/(ishower+1))*100);
+                           ((EGS_Float)(*beta)->getNumSampled() / (ishower + 1)) * 100);
         }
-        if (myAlphas.size() > 0) {
+        if (myAlphas.size() > 0)
+        {
             egsInformation("Alpha records:\n");
         }
-        for (vector<AlphaRecord *>::iterator alpha = myAlphas.begin();
-                alpha != myAlphas.end(); alpha++) {
+        for (vector<AlphaRecord*>::iterator alpha = myAlphas.begin();
+                alpha != myAlphas.end(); alpha++)
+        {
 
             egsInformation("%f %f\n", (*alpha)->getFinalEnergy(),
-                           ((EGS_Float)(*alpha)->getNumSampled()/(ishower+1))*100);
+                           ((EGS_Float)(*alpha)->getNumSampled() / (ishower + 1)) * 100);
         }
-        if (myGammas.size() > 0) {
+        if (myGammas.size() > 0)
+        {
             egsInformation("Gamma records (E,Igamma,Ice,Ipp):\n");
         }
         EGS_I64 totalNumSampled = 0;
-        for (vector<GammaRecord *>::iterator gamma = myGammas.begin();
-                gamma != myGammas.end(); gamma++) {
+        for (vector<GammaRecord*>::iterator gamma = myGammas.begin();
+                gamma != myGammas.end(); gamma++)
+        {
 
             totalNumSampled += (*gamma)->getGammaSampled();
             egsInformation("%f %f %.4e %.4e\n", (*gamma)->getDecayEnergy(),
-                           ((EGS_Float)(*gamma)->getGammaSampled()/(ishower+1))*100,
-                           ((EGS_Float)(*gamma)->getICSampled()/(ishower+1))*100,
-                           ((EGS_Float)(*gamma)->getIPSampled()/(ishower+1))*100
+                           ((EGS_Float)(*gamma)->getGammaSampled() / (ishower + 1)) * 100,
+                           ((EGS_Float)(*gamma)->getICSampled() / (ishower + 1)) * 100,
+                           ((EGS_Float)(*gamma)->getIPSampled() / (ishower + 1)) * 100
                           );
         }
-        if (myGammas.size() > 0) {
-            if (totalNumSampled > 0) {
+        if (myGammas.size() > 0)
+        {
+            if (totalNumSampled > 0)
+            {
                 egsInformation("Average gamma energy: %f\n",
                                totalGammaEnergy / totalNumSampled);
             }
-            else {
+            else
+            {
                 egsInformation("Zero gamma transitions occurred.\n");
             }
         }
-        if (myUncorrelatedGammas.size() > 0) {
+        if (myUncorrelatedGammas.size() > 0)
+        {
             egsInformation("Uncorrelated gamma records (E,Igamma,Ice,Ipp):\n");
         }
-        for (vector<GammaRecord *>::iterator gamma = myUncorrelatedGammas.begin();
-                gamma != myUncorrelatedGammas.end(); gamma++) {
+        for (vector<GammaRecord*>::iterator gamma = myUncorrelatedGammas.begin();
+                gamma != myUncorrelatedGammas.end(); gamma++)
+        {
 
             egsInformation("%f %f %.4e %.4e\n", (*gamma)->getDecayEnergy(),
-                           ((EGS_Float)(*gamma)->getGammaSampled()/(ishower+1))*100,
-                           ((EGS_Float)(*gamma)->getICSampled()/(ishower+1))*100,
-                           ((EGS_Float)(*gamma)->getIPSampled()/(ishower+1))*100
+                           ((EGS_Float)(*gamma)->getGammaSampled() / (ishower + 1)) * 100,
+                           ((EGS_Float)(*gamma)->getICSampled() / (ishower + 1)) * 100,
+                           ((EGS_Float)(*gamma)->getIPSampled() / (ishower + 1)) * 100
                           );
         }
-        if (xrayEnergies.size() > 0) {
+        if (xrayEnergies.size() > 0)
+        {
             egsInformation("X-Ray records:\n");
         }
-        for (unsigned int i=0; i < xrayEnergies.size(); ++i) {
+        for (unsigned int i = 0; i < xrayEnergies.size(); ++i)
+        {
             egsInformation("%f %f\n", xrayEnergies[i],
-                           ((EGS_Float)numSampledXRay[i]/(ishower+1))*100);
+                           ((EGS_Float)numSampledXRay[i] / (ishower + 1)) * 100);
         }
-        if (augerEnergies.size() > 0) {
+        if (augerEnergies.size() > 0)
+        {
             egsInformation("Auger records:\n");
         }
-        for (unsigned int i=0; i < augerEnergies.size(); ++i) {
+        for (unsigned int i = 0; i < augerEnergies.size(); ++i)
+        {
             egsInformation("%f %f\n", augerEnergies[i],
-                           ((EGS_Float)numSampledAuger[i]/(ishower+1))*100);
+                           ((EGS_Float)numSampledAuger[i] / (ishower + 1)) * 100);
         }
         egsInformation("\n");
     }
 
-    bool storeState(ostream &data) const {
-        return egsStoreI64(data,ishower);
+    bool storeState(ostream& data) const
+    {
+        return egsStoreI64(data, ishower);
     }
 
-    bool setState(istream &data) {
-        return egsGetI64(data,ishower);
+    bool setState(istream& data)
+    {
+        return egsGetI64(data, ishower);
     }
 
-    void resetCounter() {
+    void resetCounter()
+    {
         currentLevel = 0;
         currentTime = 0;
         ishower = -1;
@@ -1293,7 +1435,8 @@ public:
 
 protected:
     /*! \brief Sample an event from the spectrum, returns the energy of the emitted particle. */
-    EGS_Float sample(EGS_RandomGenerator *rndm) {
+    EGS_Float sample(EGS_RandomGenerator* rndm)
+    {
 
         // The energy of the sampled particle
         EGS_Float E;
@@ -1306,7 +1449,8 @@ protected:
 
         // Check for relaxation particles due to shell vacancies in the daughter
         // These are created from internal transitions or electron capture
-        if (relaxParticles.size() > 0) {
+        if (relaxParticles.size() > 0)
+        {
 
             // Get the energy and charge of the last particle on the list
             EGS_RelaxationParticle p = relaxParticles.pop();
@@ -1323,19 +1467,24 @@ protected:
 
         // If the daughter is in an excited state
         // check for transitions
-        if (currentLevel && currentLevel->levelCanDecay() && currentLevel->getEnergy() > epsilon) {
+        if (currentLevel && currentLevel->levelCanDecay() && currentLevel->getEnergy() > epsilon)
+        {
 
-            for (vector<GammaRecord *>::iterator gamma = myGammas.begin();
-                    gamma != myGammas.end(); gamma++) {
+            for (vector<GammaRecord*>::iterator gamma = myGammas.begin();
+                    gamma != myGammas.end(); gamma++)
+            {
 
-                if ((*gamma)->getLevelRecord() == currentLevel) {
+                if ((*gamma)->getLevelRecord() == currentLevel)
+                {
 
-                    if (u < (*gamma)->getTransitionIntensity()) {
+                    if (u < (*gamma)->getTransitionIntensity())
+                    {
 
                         // A gamma transition may either be a gamma emission
                         // or an internal conversion electron
                         EGS_Float u2 = 0;
-                        if ((*gamma)->getGammaIntensity() < 1) {
+                        if ((*gamma)->getGammaIntensity() < 1)
+                        {
                             u2 = rndm->getUniform();
                         }
 
@@ -1343,13 +1492,15 @@ protected:
                         // it took for this transition to occur
                         // time = -halflife / ln(2) * log(1-u)
                         double hl = currentLevel->getHalfLife();
-                        if (hl > 0) {
-                            currentTime = -hl * log(1.-rndm->getUniform()) /
+                        if (hl > 0)
+                        {
+                            currentTime = -hl * log(1. - rndm->getUniform()) /
                                           0.693147180559945309417232121458176568075500134360255254120680009493393;
                         }
 
                         // Determine whether multiple gamma transitions occur
-                        if (rndm->getUniform() < (*gamma)->getMultiTransitionProb()) {
+                        if (rndm->getUniform() < (*gamma)->getMultiTransitionProb())
+                        {
                             multiTransitions.push_back(currentLevel);
                         }
 
@@ -1357,7 +1508,8 @@ protected:
                         currentLevel = (*gamma)->getFinalLevel();
 
                         // If a gamma emission occurs
-                        if (u2 < (*gamma)->getGammaIntensity()) {
+                        if (u2 < (*gamma)->getGammaIntensity())
+                        {
 
                             (*gamma)->incrGammaSampled();
 
@@ -1372,30 +1524,35 @@ protected:
                             return E;
 
                         }
-                        else if (u2 < (*gamma)->getICIntensity()) {
+                        else if (u2 < (*gamma)->getICIntensity())
+                        {
                             (*gamma)->incrICSampled();
                             currentQ = -1;
                             emissionType = 3;
 
-                            if ((*gamma)->icIntensity.size()) {
+                            if ((*gamma)->icIntensity.size())
+                            {
 
                                 // Determine which shell the conversion electron
                                 // comes from. This will create a shell vacancy
                                 EGS_Float u3 = rndm->getUniform();
 
-                                for (unsigned int i=0; i<(*gamma)->icIntensity.size(); ++i) {
-                                    if (u3 < (*gamma)->icIntensity[i]) {
+                                for (unsigned int i = 0; i < (*gamma)->icIntensity.size(); ++i)
+                                {
+                                    if (u3 < (*gamma)->icIntensity[i])
+                                    {
 
                                         E = (*gamma)->getDecayEnergy() - (*gamma)->getBindingEnergy(i);
 
                                         //                                     egsInformation("test %d %f %f %f\n",i,(*gamma)->getDecayEnergy(),decays->getRelaxations()->getBindingEnergy(decays->Z,i),E);
 
                                         // Add relaxation particles to the source stack
-                                        if (relaxationType == "eadl") {
+                                        if (relaxationType == "eadl")
+                                        {
 
                                             // Generate relaxation particles for a
                                             // shell vacancy i
-                                            (*gamma)->relax(i,app->getEcut()-app->getRM(),app->getPcut(),rndm,edep,relaxParticles);
+                                            (*gamma)->relax(i, app->getEcut() - app->getRM(), app->getPcut(), rndm, edep, relaxParticles);
                                         }
 
                                         // Return the conversion electron
@@ -1405,7 +1562,8 @@ protected:
                             }
                             return 0;
                         }
-                        else {
+                        else
+                        {
                             (*gamma)->incrIPSampled();
                             emissionType = 13;
 
@@ -1432,7 +1590,8 @@ protected:
         // If we have determined that multiple transitions will occur from some
         // levels, here we set the current level to an excited state, and return.
         // The radionuclide source will then sample again using the excited level.
-        if (multiTransitions.size() > 0) {
+        if (multiTransitions.size() > 0)
+        {
             currentLevel = multiTransitions.back();
             multiTransitions.pop_back();
             return 0;
@@ -1444,9 +1603,11 @@ protected:
         currentTime = 0;
 
         // Beta-, beta+ and electron capture
-        for (vector<BetaRecordLeaf *>::iterator beta = myBetas.begin();
-                beta != myBetas.end(); beta++) {
-            if (u < (*beta)->getBetaIntensity()) {
+        for (vector<BetaRecordLeaf*>::iterator beta = myBetas.begin();
+                beta != myBetas.end(); beta++)
+        {
+            if (u < (*beta)->getBetaIntensity())
+            {
 
                 // Increment the shower number
                 ishower++;
@@ -1460,24 +1621,30 @@ protected:
 
                 // For beta+ records we decide between
                 // branches for beta+ or electron capture
-                if (currentQ == 1) {
+                if (currentQ == 1)
+                {
                     // For positron emission, continue as usual
-                    if ((*beta)->getPositronIntensity() > epsilon && rndm->getUniform() < (*beta)->getPositronIntensity()) {
+                    if ((*beta)->getPositronIntensity() > epsilon && rndm->getUniform() < (*beta)->getPositronIntensity())
+                    {
 
                     }
-                    else {
+                    else
+                    {
 
-                        if (relaxationType == "eadl" && (*beta)->ecShellIntensity.size()) {
+                        if (relaxationType == "eadl" && (*beta)->ecShellIntensity.size())
+                        {
                             // Determine which shell the electron capture
                             // occurs in. This will create a shell vacancy
                             EGS_Float u3 = rndm->getUniform();
 
-                            for (unsigned int i=0; i<(*beta)->ecShellIntensity.size(); ++i) {
-                                if (u3 < (*beta)->ecShellIntensity[i]) {
+                            for (unsigned int i = 0; i < (*beta)->ecShellIntensity.size(); ++i)
+                            {
+                                if (u3 < (*beta)->ecShellIntensity[i])
+                                {
 
                                     // Generate relaxation particles for a
                                     // shell vacancy i
-                                    (*beta)->relax(i,app->getEcut()-app->getRM(),app->getPcut(),rndm,edep,relaxParticles);
+                                    (*beta)->relax(i, app->getEcut() - app->getRM(), app->getPcut(), rndm, edep, relaxParticles);
 
                                     emissionType = 4;
 
@@ -1494,7 +1661,8 @@ protected:
                     }
                     emissionType = 5;
                 }
-                else {
+                else
+                {
                     emissionType = 6;
                 }
 
@@ -1506,9 +1674,11 @@ protected:
         }
 
         // Alphas
-        for (vector<AlphaRecord *>::iterator alpha = myAlphas.begin();
-                alpha != myAlphas.end(); alpha++) {
-            if (u < (*alpha)->getAlphaIntensity()) {
+        for (vector<AlphaRecord*>::iterator alpha = myAlphas.begin();
+                alpha != myAlphas.end(); alpha++)
+        {
+            if (u < (*alpha)->getAlphaIntensity())
+            {
 
                 // Increment the shower number
                 ishower++;
@@ -1523,7 +1693,8 @@ protected:
                 // Score alpha energy depositions locally,
                 // because alpha transport is not modeled in EGSnrc.
                 // This is an approximation!
-                if (scoreAlphasLocal) {
+                if (scoreAlphasLocal)
+                {
                     edep += (*alpha)->getFinalEnergy();
                 }
 
@@ -1536,9 +1707,11 @@ protected:
         }
 
         // Metastable "decays" that will result in internal transitions
-        for (vector<GammaRecord *>::iterator gamma = myMetastableGammas.begin();
-                gamma != myMetastableGammas.end(); gamma++) {
-            if (u < (*gamma)->getTransitionIntensity()) {
+        for (vector<GammaRecord*>::iterator gamma = myMetastableGammas.begin();
+                gamma != myMetastableGammas.end(); gamma++)
+        {
+            if (u < (*gamma)->getTransitionIntensity())
+            {
 
                 // Increment the shower number
                 ishower++;
@@ -1555,19 +1728,23 @@ protected:
         }
 
         // Uncorrelated internal transitions
-        for (vector<GammaRecord *>::iterator gamma = myUncorrelatedGammas.begin();
-                gamma != myUncorrelatedGammas.end(); gamma++) {
-            if (u < (*gamma)->getTransitionIntensity()) {
+        for (vector<GammaRecord*>::iterator gamma = myUncorrelatedGammas.begin();
+                gamma != myUncorrelatedGammas.end(); gamma++)
+        {
+            if (u < (*gamma)->getTransitionIntensity())
+            {
 
                 // A gamma transition may either be a gamma emission
                 // or an internal conversion electron
                 EGS_Float u2 = 0;
-                if ((*gamma)->getGammaIntensity() < 1) {
+                if ((*gamma)->getGammaIntensity() < 1)
+                {
                     u2 = rndm->getUniform();
                 }
 
                 // If a gamma emission occurs
-                if (u2 < (*gamma)->getGammaIntensity()) {
+                if (u2 < (*gamma)->getGammaIntensity())
+                {
 
                     (*gamma)->incrGammaSampled();
 
@@ -1582,28 +1759,33 @@ protected:
                     return E;
 
                 }
-                else if (u2 < (*gamma)->getICIntensity()) {
+                else if (u2 < (*gamma)->getICIntensity())
+                {
                     (*gamma)->incrICSampled();
                     currentQ = -1;
                     emissionType = 12;
 
-                    if ((*gamma)->icIntensity.size()) {
+                    if ((*gamma)->icIntensity.size())
+                    {
 
                         // Determine which shell the conversion electron
                         // comes from. This will create a shell vacancy
                         EGS_Float u3 = rndm->getUniform();
 
-                        for (unsigned int i=0; i<(*gamma)->icIntensity.size(); ++i) {
-                            if (u3 < (*gamma)->icIntensity[i]) {
+                        for (unsigned int i = 0; i < (*gamma)->icIntensity.size(); ++i)
+                        {
+                            if (u3 < (*gamma)->icIntensity[i])
+                            {
 
                                 E = (*gamma)->getDecayEnergy() - (*gamma)->getBindingEnergy(i);
 
                                 // Add relaxation particles to the source stack
-                                if (relaxationType == "eadl") {
+                                if (relaxationType == "eadl")
+                                {
 
                                     // Generate relaxation particles for a
                                     // shell vacancy i
-                                    (*gamma)->relax(i,app->getEcut()-app->getRM(),app->getPcut(),rndm,edep,relaxParticles);
+                                    (*gamma)->relax(i, app->getEcut() - app->getRM(), app->getPcut(), rndm, edep, relaxParticles);
                                 }
 
                                 // Return the conversion electron
@@ -1613,7 +1795,8 @@ protected:
                     }
                     return 0;
                 }
-                else {
+                else
+                {
                     (*gamma)->incrIPSampled();
                     emissionType = 14;
 
@@ -1633,8 +1816,10 @@ protected:
         }
 
         // XRays from the ensdf
-        for (unsigned int i=0; i < xrayIntensities.size(); ++i) {
-            if (u < xrayIntensities[i]) {
+        for (unsigned int i = 0; i < xrayIntensities.size(); ++i)
+        {
+            if (u < xrayIntensities[i])
+            {
 
                 numSampledXRay[i]++;
                 currentQ = 0;
@@ -1648,8 +1833,10 @@ protected:
         }
 
         // Auger electrons from the ensdf
-        for (unsigned int i=0; i < augerIntensities.size(); ++i) {
-            if (u < augerIntensities[i]) {
+        for (unsigned int i = 0; i < augerIntensities.size(); ++i)
+        {
+            if (u < augerIntensities[i])
+            {
 
                 numSampledAuger[i]++;
                 currentQ = -1;
@@ -1670,28 +1857,29 @@ protected:
 
     /*! \brief Not implemented - returns 0.
      */
-    EGS_Float expectedAverage() const {
+    EGS_Float expectedAverage() const
+    {
         return 0;
     };
 
 private:
 
-    EGS_Ensdf                   *decays;
-    vector<BetaRecordLeaf *>    myBetas;
-    vector<AlphaRecord *>       myAlphas;
-    vector<GammaRecord *>       myGammas,
+    EGS_Ensdf*                   decays;
+    vector<BetaRecordLeaf*>    myBetas;
+    vector<AlphaRecord*>       myAlphas;
+    vector<GammaRecord*>       myGammas,
            myMetastableGammas,
            myUncorrelatedGammas;
-    vector<LevelRecord *>       myLevels;
+    vector<LevelRecord*>       myLevels;
     vector<double>              xrayIntensities,
            xrayEnergies,
            augerIntensities,
            augerEnergies;
     vector<EGS_I64>             numSampledXRay,
            numSampledAuger;
-    vector<const LevelRecord *> multiTransitions;
+    vector<const LevelRecord*> multiTransitions;
     EGS_SimpleContainer<EGS_RelaxationParticle> relaxParticles;
-    const LevelRecord           *currentLevel;
+    const LevelRecord*           currentLevel;
     int                         currentQ;
     unsigned int                emissionType;
     EGS_Float                   currentTime,
@@ -1703,8 +1891,8 @@ private:
     string                      relaxationType;
     bool                        scoreAlphasLocal;
 
-    EGS_RadionuclideBetaSpectrum *betaSpectra;
-    EGS_Application             *app;
+    EGS_RadionuclideBetaSpectrum* betaSpectra;
+    EGS_Application*             app;
 };
 
 //
@@ -1713,21 +1901,27 @@ private:
 //   stream >> input1 >> skipsep >> input2;
 // and it will work for white space and for comma separated input.
 //
-istream &skipsep(istream &in) {
+istream& skipsep(istream& in)
+{
     char c;
-    for (EGS_I64 loopCount=0; loopCount<=loopMax; ++loopCount) {
-        if (loopCount == loopMax) {
+    for (EGS_I64 loopCount = 0; loopCount <= loopMax; ++loopCount)
+    {
+        if (loopCount == loopMax)
+        {
             egsFatal("skipsep: Too many iterations were required! Input may be invalid, or consider increasing loopMax.");
             return in;
         }
         in.get(c);
-        if (in.eof() || in.fail() || !in.good()) {
+        if (in.eof() || in.fail() || !in.good())
+        {
             break;
         }
-        if (c == ',') {
+        if (c == ',')
+        {
             break;
         }
-        if (!isspace(c)) {
+        if (!isspace(c))
+        {
             in.putback(c);
             break;
         }
@@ -1737,164 +1931,204 @@ istream &skipsep(istream &in) {
 
 static char spec_msg1[] = "EGS_BaseSpectrum::createSpectrum:";
 
-EGS_BaseSpectrum *EGS_BaseSpectrum::createSpectrum(EGS_Input *input) {
-    if (!input) {
-        egsWarning("%s got null input?\n",spec_msg1);
+EGS_BaseSpectrum* EGS_BaseSpectrum::createSpectrum(EGS_Input* input)
+{
+    if (!input)
+    {
+        egsWarning("%s got null input?\n", spec_msg1);
         return 0;
     }
-    EGS_Input *inp = input;
+    EGS_Input* inp = input;
     bool delete_it = false;
-    if (!input->isA("spectrum")) {
+    if (!input->isA("spectrum"))
+    {
         inp = input->takeInputItem("spectrum");
-        if (!inp) {
-            egsWarning("%s no 'spectrum' input!\n",spec_msg1);
+        if (!inp)
+        {
+            egsWarning("%s no 'spectrum' input!\n", spec_msg1);
             return 0;
         }
         delete_it = true;
     }
     string stype;
-    int err = inp->getInput("type",stype);
-    if (err) {
-        egsWarning("%s wrong/missing 'type' input\n",spec_msg1);
-        if (delete_it) {
+    int err = inp->getInput("type", stype);
+    if (err)
+    {
+        egsWarning("%s wrong/missing 'type' input\n", spec_msg1);
+        if (delete_it)
+        {
             delete inp;
         }
         return 0;
     }
-    EGS_BaseSpectrum *spec = 0;
-    if (inp->compare(stype,"monoenergetic")) {
+    EGS_BaseSpectrum* spec = 0;
+    if (inp->compare(stype, "monoenergetic"))
+    {
         EGS_Float Eo;
-        err = inp->getInput("energy",Eo);
+        err = inp->getInput("energy", Eo);
         if (err) egsWarning("%s wrong/missing 'energy' input for a "
-                                "monoenergetic spectrum\n",spec_msg1);
-        else {
+                                "monoenergetic spectrum\n", spec_msg1);
+        else
+        {
             spec = new EGS_MonoEnergy(Eo);
         }
     }
-    else if (inp->compare(stype,"Gaussian")) {
+    else if (inp->compare(stype, "Gaussian"))
+    {
         EGS_Float Eo, sig, fwhm;
-        int err1 = inp->getInput("mean energy",Eo);
-        int err2 = inp->getInput("sigma",sig);
-        int err3 = inp->getInput("fwhm",fwhm);
-        if (err1 || (err2 && err3)) {
+        int err1 = inp->getInput("mean energy", Eo);
+        int err2 = inp->getInput("sigma", sig);
+        int err3 = inp->getInput("fwhm", fwhm);
+        if (err1 || (err2 && err3))
+        {
             if (err1) egsWarning("%s wrong/missing 'mean energy' input"
-                                     " for a Gaussian spectrum\n",spec_msg1);
+                                     " for a Gaussian spectrum\n", spec_msg1);
             else egsWarning("%s wrong/missing 'sigma' and 'FWHM' input for a "
-                                "Gaussian spectrum\n",spec_msg1);
+                                "Gaussian spectrum\n", spec_msg1);
 
         }
-        else {
+        else
+        {
             if (Eo <= 0) egsWarning("%s mean energy must be positive but your"
-                                        " input was %g\n",Eo);
-            else {
-                if (!err2) {
+                                        " input was %g\n", Eo);
+            else
+            {
+                if (!err2)
+                {
                     if (sig <= 0) egsWarning("%s sigma must be positive"
-                                                 " but your input was %g\n",spec_msg1,sig);
-                    else {
-                        spec = new EGS_GaussianSpectrum(Eo,sig);
+                                                 " but your input was %g\n", spec_msg1, sig);
+                    else
+                    {
+                        spec = new EGS_GaussianSpectrum(Eo, sig);
                     }
                 }
-                else {
+                else
+                {
                     if (fwhm <= 0)  egsWarning("%s FWHM must be positive"
-                                                   " but your input was %g\n",spec_msg1,fwhm);
-                    else {
-                        spec = new EGS_GaussianSpectrum(Eo,-fwhm);
+                                                   " but your input was %g\n", spec_msg1, fwhm);
+                    else
+                    {
+                        spec = new EGS_GaussianSpectrum(Eo, -fwhm);
                     }
                 }
             }
         }
     }
-    else if (inp->compare(stype,"Double Gaussian")) {
+    else if (inp->compare(stype, "Double Gaussian"))
+    {
         EGS_Float Eo;
         vector<EGS_Float> sig, fwhm;
-        int err1 = inp->getInput("mean energy",Eo);
-        int err2 = inp->getInput("sigma",sig);
-        int err3 = inp->getInput("fwhm",fwhm);
-        if (!err1 && Eo <= 0) {
+        int err1 = inp->getInput("mean energy", Eo);
+        int err2 = inp->getInput("sigma", sig);
+        int err3 = inp->getInput("fwhm", fwhm);
+        if (!err1 && Eo <= 0)
+        {
             err1 = 1;
         }
-        if (!err2 && sig.size() != 2) {
+        if (!err2 && sig.size() != 2)
+        {
             err2 = 1;
         }
-        if (!err2 && (sig[0] <= 0 || sig[1] <= 0)) {
+        if (!err2 && (sig[0] <= 0 || sig[1] <= 0))
+        {
             err2 = 1;
         }
-        if (!err3 && fwhm.size() != 2) {
+        if (!err3 && fwhm.size() != 2)
+        {
             err3 = 1;
         }
-        if (!err3 && (fwhm[0] <= 0 || fwhm[1] <= 0)) {
+        if (!err3 && (fwhm[0] <= 0 || fwhm[1] <= 0))
+        {
             err3 = 1;
         }
-        if (err1 || (err2 && err3)) {
+        if (err1 || (err2 && err3))
+        {
             if (err1) egsWarning("%s wrong/missing 'mean energy' input"
-                                     " for a Double Gaussian spectrum\n",spec_msg1);
+                                     " for a Double Gaussian spectrum\n", spec_msg1);
             if (err2 && err3) egsWarning("%s wrong/missing 'sigma' and 'FWHM'"
-                                             " input for a Double Gaussian spectrum\n",spec_msg1);
+                                             " input for a Double Gaussian spectrum\n", spec_msg1);
         }
-        else {
+        else
+        {
             if (!err2 && !err3) egsWarning("%s found 'sigma' and 'FWHM' "
-                                               "input, using 'sigma'\n",spec_msg1);
-            if (!err2) {
-                spec = new EGS_DoubleGaussianSpectrum(Eo,sig[0],sig[1]);
+                                               "input, using 'sigma'\n", spec_msg1);
+            if (!err2)
+            {
+                spec = new EGS_DoubleGaussianSpectrum(Eo, sig[0], sig[1]);
             }
-            else {
-                spec = new EGS_DoubleGaussianSpectrum(Eo,-fwhm[0],-fwhm[1]);
+            else
+            {
+                spec = new EGS_DoubleGaussianSpectrum(Eo, -fwhm[0], -fwhm[1]);
             }
         }
     }
-    else if (inp->compare(stype,"uniform")) {
+    else if (inp->compare(stype, "uniform"))
+    {
         vector<EGS_Float> range;
         EGS_Float Emin, Emax;
-        int err1 = inp->getInput("range",range);
-        int err2 = inp->getInput("minimum energy",Emin);
-        int err3 = inp->getInput("maximum energy",Emax);
-        if (!err2 && !err3 && Emin > Emax) {
+        int err1 = inp->getInput("range", range);
+        int err2 = inp->getInput("minimum energy", Emin);
+        int err3 = inp->getInput("maximum energy", Emax);
+        if (!err2 && !err3 && Emin > Emax)
+        {
             egsWarning("%s Emin (%g) is greater than Emax (%g)?\n",
-                       spec_msg1,Emin,Emax);
+                       spec_msg1, Emin, Emax);
             err2 = 1;
             err3 = 1;
         }
         if (err1 && err2 && err3) egsWarning("%s wrong/missing 'range' and"
-                                                 " 'minimum/maximum energy' input\n",spec_msg1);
-        else {
-            if (!err2 && !err3) {
-                spec = new EGS_UniformSpectrum(Emin,Emax);
+                                                 " 'minimum/maximum energy' input\n", spec_msg1);
+        else
+        {
+            if (!err2 && !err3)
+            {
+                spec = new EGS_UniformSpectrum(Emin, Emax);
             }
-            else {
-                if (range[0] < range[1]) {
-                    spec = new EGS_UniformSpectrum(range[0],range[1]);
+            else
+            {
+                if (range[0] < range[1])
+                {
+                    spec = new EGS_UniformSpectrum(range[0], range[1]);
                 }
-                else {
-                    spec = new EGS_UniformSpectrum(range[1],range[0]);
+                else
+                {
+                    spec = new EGS_UniformSpectrum(range[1], range[0]);
                 }
             }
         }
     }
-    else if (inp->compare(stype,"tabulated spectrum")) {
+    else if (inp->compare(stype, "tabulated spectrum"))
+    {
         string spec_file;
-        err = inp->getInput("spectrum file",spec_file);
+        err = inp->getInput("spectrum file", spec_file);
         // Expands FIRST environment variable found in spec_file
         spec_file = egsExpandPath(spec_file);
-        if (!err) {
+        if (!err)
+        {
             ifstream sdata(spec_file.c_str());
             if (!sdata) egsWarning("%s failed to open spectrum file %s\n",
-                                       spec_msg1,spec_file.c_str());
-            else {
+                                       spec_msg1, spec_file.c_str());
+            else
+            {
                 char title[1024];
-                sdata.getline(title,1023);
-                if (sdata.eof() || sdata.fail() || !sdata.good()) {
+                sdata.getline(title, 1023);
+                if (sdata.eof() || sdata.fail() || !sdata.good())
+                {
                     egsWarning("%s error while reading title of spectrum file"
-                               "%s\n",spec_msg1,spec_file.c_str());
-                    if (delete_it) {
+                               "%s\n", spec_msg1, spec_file.c_str());
+                    if (delete_it)
+                    {
                         delete inp;
                     }
                     return 0;
                 }
-                if (sdata.eof() || sdata.fail() || !sdata.good()) {
+                if (sdata.eof() || sdata.fail() || !sdata.good())
+                {
                     egsWarning("%s error while reading spectrum type and "
                                "number of bins in spectrum file %s\n",
-                               spec_msg1,spec_file.c_str());
-                    if (delete_it) {
+                               spec_msg1, spec_file.c_str());
+                    if (delete_it)
+                    {
                         delete inp;
                     }
                     return 0;
@@ -1902,126 +2136,154 @@ EGS_BaseSpectrum *EGS_BaseSpectrum::createSpectrum(EGS_Input *input) {
                 EGS_Float dum;
                 int nbin, mode;
                 sdata >> nbin >> skipsep >> dum >> skipsep >> mode;
-                if (sdata.eof() || sdata.fail() || !sdata.good()) {
+                if (sdata.eof() || sdata.fail() || !sdata.good())
+                {
                     egsWarning("%s error while reading spectrum type and "
                                "number of bins in spectrum file %s\n",
-                               spec_msg1,spec_file.c_str());
-                    if (delete_it) {
+                               spec_msg1, spec_file.c_str());
+                    if (delete_it)
+                    {
                         delete inp;
                     }
                     return 0;
                 }
-                if (nbin < 2) {
+                if (nbin < 2)
+                {
                     egsWarning("%s nbin in a spectrum must be at least 2\n"
                                "  you have %d in the spectrum file %s\n",
-                               spec_msg1,nbin,spec_file.c_str());
-                    if (delete_it) {
+                               spec_msg1, nbin, spec_file.c_str());
+                    if (delete_it)
+                    {
                         delete inp;
                     }
                     return 0;
                 }
-                if (mode < 0 || mode > 3) {
+                if (mode < 0 || mode > 3)
+                {
                     egsWarning("%s unknown spectrum type %d in spectrum file"
-                               " %s\n",spec_msg1,mode,spec_file.c_str());
-                    if (delete_it) {
+                               " %s\n", spec_msg1, mode, spec_file.c_str());
+                    if (delete_it)
+                    {
                         delete inp;
                     }
                     return 0;
                 }
-                EGS_Float *en_array, *f_array;
+                EGS_Float* en_array, * f_array;
                 int ibin;
                 f_array = new EGS_Float [nbin];
-                if (mode == 0 || mode == 1) {
-                    en_array = new EGS_Float [nbin+1];
+                if (mode == 0 || mode == 1)
+                {
+                    en_array = new EGS_Float [nbin + 1];
                     en_array[0] = dum;
-                    ibin=1;
+                    ibin = 1;
                 }
-                else {
+                else
+                {
                     en_array = new EGS_Float [nbin];
-                    ibin=0;
+                    ibin = 0;
                 }
-                for (int j=0; j<nbin; j++) {
+                for (int j = 0; j < nbin; j++)
+                {
                     sdata >> en_array[ibin++] >> skipsep >> f_array[j];
-                    if (sdata.eof() || sdata.fail() || !sdata.good()) {
+                    if (sdata.eof() || sdata.fail() || !sdata.good())
+                    {
                         egsWarning("%s error on line %d in spectrum file %s\n",
-                                   spec_msg1,j+2,spec_file.c_str());
-                        if (delete_it) {
+                                   spec_msg1, j + 2, spec_file.c_str());
+                        if (delete_it)
+                        {
                             delete inp;
                         }
                         delete [] en_array;
                         delete [] f_array;
                         return 0;
                     }
-                    if (mode != 2 && ibin > 1) {
-                        if (en_array[ibin-1] <= en_array[ibin-2]) {
+                    if (mode != 2 && ibin > 1)
+                    {
+                        if (en_array[ibin - 1] <= en_array[ibin - 2])
+                        {
                             egsWarning("%s energies must be in increasing "
                                        "order.\n   This is not the case for input on "
                                        "lines %d,%d in spectrum file %s\n",
-                                       spec_msg1,j+2,j+1,spec_file.c_str());
-                            if (delete_it) {
+                                       spec_msg1, j + 2, j + 1, spec_file.c_str());
+                            if (delete_it)
+                            {
                                 delete inp;
                             }
                             return 0;
                         }
                     }
-                    if (mode == 0) {
-                        f_array[j]/=(en_array[ibin-1]-en_array[ibin-2]);
+                    if (mode == 0)
+                    {
+                        f_array[j] /= (en_array[ibin - 1] - en_array[ibin - 2]);
                     }
                 }
                 int itype = 1;
-                if (mode == 2) {
+                if (mode == 2)
+                {
                     itype = 0;
                 }
-                else if (mode == 3) {
+                else if (mode == 3)
+                {
                     itype = 2;
                 }
-                int nb = itype == 1 ? nbin+1 : nbin;
-                spec = new EGS_TabulatedSpectrum(nb,en_array,f_array,itype,
+                int nb = itype == 1 ? nbin + 1 : nbin;
+                spec = new EGS_TabulatedSpectrum(nb, en_array, f_array, itype,
                                                  spec_file.c_str());
                 delete [] en_array;
                 delete [] f_array;
             }
         }
-        else {
+        else
+        {
             vector<EGS_Float> eners, probs;
-            int itype=1, mode;
-            int err1 = inp->getInput("energies",eners);
-            int err2 = inp->getInput("probabilities",probs);
-            int err3 = inp->getInput("spectrum mode",mode);      // according to EGSnrc convention
-            if (err3) {
-                err3 = inp->getInput("spectrum type",mode);      // deprecated
+            int itype = 1, mode;
+            int err1 = inp->getInput("energies", eners);
+            int err2 = inp->getInput("probabilities", probs);
+            int err3 = inp->getInput("spectrum mode", mode);     // according to EGSnrc convention
+            if (err3)
+            {
+                err3 = inp->getInput("spectrum type", mode);     // deprecated
             }
-            if (err3) {
-                egsWarning("%s wrong/missing 'spectrum mode' input\n",spec_msg1);
-                if (delete_it) {
+            if (err3)
+            {
+                egsWarning("%s wrong/missing 'spectrum mode' input\n", spec_msg1);
+                if (delete_it)
+                {
                     delete inp;
                 }
                 return 0;
             }
-            else {
-                if (mode < 0 || mode > 3) {
+            else
+            {
+                if (mode < 0 || mode > 3)
+                {
                     egsWarning("%s unknown spectrum 'mode' %d"
-                               " %s\n",spec_msg1,mode,spec_file.c_str());
-                    if (delete_it) {
+                               " %s\n", spec_msg1, mode, spec_file.c_str());
+                    if (delete_it)
+                    {
                         delete inp;
                     }
                     return 0;
                 }
-                if (mode == 2) {
+                if (mode == 2)
+                {
                     itype = 0;
                 }
-                else if (mode == 3) {
+                else if (mode == 3)
+                {
                     itype = 2;
                 }
             }
-            if (err1 || err2) {
+            if (err1 || err2)
+            {
                 if (err1) egsWarning("%s wrong/missing 'energies' input\n",
                                          spec_msg1);
                 if (err2) egsWarning("%s wrong/missing 'probabilities' "
-                                         "input\n",spec_msg1);
+                                         "input\n", spec_msg1);
             }
-            else {
-                if (itype == 1 && probs.size() != eners.size()-1)
+            else
+            {
+                if (itype == 1 && probs.size() != eners.size() - 1)
                     egsWarning("%s for spectrum type 1 the number of energies"
                                " must be the number of probabilities + 1\n",
                                spec_msg1);
@@ -2030,28 +2292,34 @@ EGS_BaseSpectrum *EGS_BaseSpectrum::createSpectrum(EGS_Input *input) {
                     egsWarning("%s for spectrum types 0 and 2 the number of "
                                "energies must be equal to the number of probabilities\n",
                                spec_msg1);
-                else {
+                else
+                {
                     int nbin = eners.size();
-                    int nbin1 = itype == 1 ? nbin-1 : nbin;
-                    EGS_Float *x = new EGS_Float [nbin],
-                    *f = new EGS_Float [nbin1];
+                    int nbin1 = itype == 1 ? nbin - 1 : nbin;
+                    EGS_Float* x = new EGS_Float [nbin],
+                    * f = new EGS_Float [nbin1];
                     int ibin = 0;
-                    if (itype == 1) {
+                    if (itype == 1)
+                    {
                         ibin = 1;
                         x[0] = eners[0];
                     }
-                    for (int j=0; j<nbin1; j++) {
+                    for (int j = 0; j < nbin1; j++)
+                    {
                         x[ibin] = eners[ibin];
                         ibin++;
-                        f[j] = mode == 0 ? probs[j]/(eners[ibin-1]-eners[ibin-2]) : probs[j];
-                        if (itype != 0 && ibin > 1) {
-                            if (x[ibin-1] <= x[ibin-2]) {
+                        f[j] = mode == 0 ? probs[j] / (eners[ibin - 1] - eners[ibin - 2]) : probs[j];
+                        if (itype != 0 && ibin > 1)
+                        {
+                            if (x[ibin - 1] <= x[ibin - 2])
+                            {
                                 egsWarning("%s energies must be given in "
                                            "increasing order\n  This is not the case"
                                            " for inputs %d and %d (%g,%g) %d\n",
-                                           spec_msg1,ibin-2,ibin-1,x[ibin-2],x[ibin-1],
+                                           spec_msg1, ibin - 2, ibin - 1, x[ibin - 2], x[ibin - 1],
                                            j);
-                                if (delete_it) {
+                                if (delete_it)
+                                {
                                     delete inp;
                                 }
                                 delete [] x;
@@ -2060,32 +2328,37 @@ EGS_BaseSpectrum *EGS_BaseSpectrum::createSpectrum(EGS_Input *input) {
                             }
                         }
                     }
-                    spec = new EGS_TabulatedSpectrum(nbin,x,f,itype,0);
+                    spec = new EGS_TabulatedSpectrum(nbin, x, f, itype, 0);
                     delete [] x;
                     delete [] f;
                 }
             }
         }
     }
-    else if (inp->compare(stype,"radionuclide")) {
+    else if (inp->compare(stype, "radionuclide"))
+    {
         egsInformation("EGS_BaseSpectrum::createSpectrum: Initializing radionuclide spectrum...\n");
 
         string nuclide;
-        err = inp->getInput("nuclide",nuclide);
-        if (err) {
-            err = inp->getInput("isotope",nuclide);
-            if (err) {
-                err = inp->getInput("radionuclide",nuclide);
-                if (err) {
-                    egsWarning("%s wrong/missing 'nuclide' input\n",spec_msg1);
+        err = inp->getInput("nuclide", nuclide);
+        if (err)
+        {
+            err = inp->getInput("isotope", nuclide);
+            if (err)
+            {
+                err = inp->getInput("radionuclide", nuclide);
+                if (err)
+                {
+                    egsWarning("%s wrong/missing 'nuclide' input\n", spec_msg1);
                     return 0;
                 }
             }
         }
 
         EGS_Float relativeActivity;
-        err = inp->getInput("relative activity",relativeActivity);
-        if (err) {
+        err = inp->getInput("relative activity", relativeActivity);
+        if (err)
+        {
             relativeActivity = 1;
         }
 
@@ -2093,25 +2366,31 @@ EGS_BaseSpectrum *EGS_BaseSpectrum::createSpectrum(EGS_Input *input) {
         // using the ensdf data (options: eadl, ensdf or none)
         string tmp_relaxType, relaxType;
         err = inp->getInput("atomic relaxations", tmp_relaxType);
-        if (!err) {
+        if (!err)
+        {
             relaxType = tmp_relaxType;
         }
-        else {
+        else
+        {
             relaxType = "eadl";
         }
-        if (inp->compare(relaxType,"ensdf")) {
+        if (inp->compare(relaxType, "ensdf"))
+        {
             relaxType = "ensdf";
             egsInformation("EGS_BaseSpectrum::createSpectrum: Fluorescence and auger from the ensdf file will be used.\n");
         }
-        else if (inp->compare(relaxType,"eadl")) {
+        else if (inp->compare(relaxType, "eadl"))
+        {
             relaxType = "eadl";
             egsInformation("EGS_BaseSpectrum::createSpectrum: Fluorescence and auger from the ensdf file will be ignored. EADL relaxations will be used.\n");
         }
-        else if (inp->compare(relaxType,"none") || inp->compare(relaxType,"off") || inp->compare(relaxType,"no")) {
+        else if (inp->compare(relaxType, "none") || inp->compare(relaxType, "off") || inp->compare(relaxType, "no"))
+        {
             relaxType = "off";
             egsInformation("EGS_BaseSpectrum::createSpectrum: Fluorescence and auger from the ensdf file will be ignored. No relaxations following radionuclide disintegrations will be modelled.\n");
         }
-        else {
+        else
+        {
             egsFatal("EGS_BaseSpectrum::createSpectrum: Error: Invalid selection for 'atomic relaxations'. Use 'eadl' (default), 'ensdf' or 'off'.\n");
         }
 
@@ -2119,20 +2398,25 @@ EGS_BaseSpectrum *EGS_BaseSpectrum::createSpectrum(EGS_Input *input) {
         // (options: yes or no)
         string tmp_outputBetaSpectra, outputBetaSpectra;
         err = inp->getInput("output beta spectra", tmp_outputBetaSpectra);
-        if (!err) {
+        if (!err)
+        {
             outputBetaSpectra = tmp_outputBetaSpectra;
 
-            if (inp->compare(outputBetaSpectra,"yes")) {
+            if (inp->compare(outputBetaSpectra, "yes"))
+            {
                 egsInformation("EGS_BaseSpectrum::createSpectrum: Beta energy spectra will be output to files.\n");
             }
-            else if (inp->compare(outputBetaSpectra,"no")) {
+            else if (inp->compare(outputBetaSpectra, "no"))
+            {
                 egsInformation("EGS_BaseSpectrum::createSpectrum: Beta energy spectra will not be output to files.\n");
             }
-            else {
+            else
+            {
                 egsFatal("EGS_BaseSpectrum::createSpectrum: Error: Invalid selection for 'output beta spectra'. Use 'no' (default) or 'yes'.\n");
             }
         }
-        else {
+        else
+        {
             outputBetaSpectra = "no";
         }
 
@@ -2141,16 +2425,20 @@ EGS_BaseSpectrum *EGS_BaseSpectrum::createSpectrum(EGS_Input *input) {
         string tmp_alphaScoring;
         bool scoreAlphasLocally = false;
         err = inp->getInput("alpha scoring", tmp_alphaScoring);
-        if (!err) {
-            if (inp->compare(tmp_alphaScoring,"local")) {
+        if (!err)
+        {
+            if (inp->compare(tmp_alphaScoring, "local"))
+            {
                 scoreAlphasLocally = true;
                 egsInformation("EGS_BaseSpectrum::createSpectrum: Alpha particles will deposit energy locally, in the same region as creation.\n");
             }
-            else if (inp->compare(tmp_alphaScoring,"discard")) {
+            else if (inp->compare(tmp_alphaScoring, "discard"))
+            {
                 scoreAlphasLocally = false;
                 egsInformation("EGS_BaseSpectrum::createSpectrum: Alpha particles will be discarded (no transport or energy deposition).\n");
             }
-            else {
+            else
+            {
                 egsFatal("EGS_BaseSpectrum::createSpectrum: Error: Invalid selection for 'alpha scoring'. Use 'discard' (default) or 'local'.\n");
             }
         }
@@ -2160,58 +2448,68 @@ EGS_BaseSpectrum *EGS_BaseSpectrum::createSpectrum(EGS_Input *input) {
         string tmp_allowMultiTransition;
         bool allowMultiTransition = false;
         err = inp->getInput("extra transition approximation", tmp_allowMultiTransition);
-        if (!err) {
-            if (inp->compare(tmp_allowMultiTransition,"on")) {
+        if (!err)
+        {
+            if (inp->compare(tmp_allowMultiTransition, "on"))
+            {
                 allowMultiTransition = true;
                 egsInformation("EGS_BaseSpectrum::createSpectrum: Extra transition approximation is on. If the intensity away from a level in a radionuclide daughter is larger than the intensity feeding the level (e.g. decays to that level), then additional transitions away from that level will be sampled. They will not be correlated with decays, but the spectrum will produce emission rates to match both the decay intensities and the internal transition intensities from the ensdf file.\n");
             }
-            else if (inp->compare(tmp_allowMultiTransition,"off")) {
+            else if (inp->compare(tmp_allowMultiTransition, "off"))
+            {
                 allowMultiTransition = false;
                 egsInformation("EGS_BaseSpectrum::createSpectrum: Extra transition approximation is off.\n");
             }
-            else {
+            else
+            {
                 egsFatal("EGS_BaseSpectrum::createSpectrum: Error: Invalid selection for 'extra transition approximation'. Use 'off' (default) or 'on'.\n");
             }
         }
 
         // For ensdf input, first check for the input argument
         string ensdf_file;
-        err = inp->getInput("ensdf file",ensdf_file);
+        err = inp->getInput("ensdf file", ensdf_file);
 
         // If not passed as input, find the ensdf file in the
         // directory $HEN_HOUSE/spectra/lnhb/ensdf/
-        if (err) {
+        if (err)
+        {
 
-            EGS_Application *app = EGS_Application::activeApplication();
-            if (app) {
-                ensdf_file = egsJoinPath(app->getHenHouse(),"spectra");
-                ensdf_file = egsJoinPath(ensdf_file.c_str(),"lnhb");
-                ensdf_file = egsJoinPath(ensdf_file.c_str(),"ensdf");
+            EGS_Application* app = EGS_Application::activeApplication();
+            if (app)
+            {
+                ensdf_file = egsJoinPath(app->getHenHouse(), "spectra");
+                ensdf_file = egsJoinPath(ensdf_file.c_str(), "lnhb");
+                ensdf_file = egsJoinPath(ensdf_file.c_str(), "ensdf");
             }
-            else {
-                char *hen_house = getenv("HEN_HOUSE");
-                if (!hen_house) {
+            else
+            {
+                char* hen_house = getenv("HEN_HOUSE");
+                if (!hen_house)
+                {
 
                     egsWarning("EGS_BaseSpectrum::createSpectrum: "
                                "No active application and HEN_HOUSE not defined.\n"
                                "Assuming local directory for spectra\n");
                     ensdf_file = "./";
                 }
-                else {
-                    ensdf_file = egsJoinPath(hen_house,"spectra");
-                    ensdf_file = egsJoinPath(ensdf_file.c_str(),"lnhb");
-                    ensdf_file = egsJoinPath(ensdf_file.c_str(),"ensdf");
+                else
+                {
+                    ensdf_file = egsJoinPath(hen_house, "spectra");
+                    ensdf_file = egsJoinPath(ensdf_file.c_str(), "lnhb");
+                    ensdf_file = egsJoinPath(ensdf_file.c_str(), "ensdf");
                 }
             }
-            ensdf_file = egsJoinPath(ensdf_file.c_str(),nuclide.append(".txt"));
+            ensdf_file = egsJoinPath(ensdf_file.c_str(), nuclide.append(".txt"));
         }
 
         // Check that the ensdf file exists
         ifstream ensdf_fh;
-        ensdf_fh.open(ensdf_file.c_str(),ios::in);
-        if (!ensdf_fh.is_open()) {
+        ensdf_fh.open(ensdf_file.c_str(), ios::in);
+        if (!ensdf_fh.is_open())
+        {
             egsWarning("EGS_BaseSpectrum::createSpectrum: failed to open ensdf file %s"
-                       " for reading\n",ensdf_file.c_str());
+                       " for reading\n", ensdf_file.c_str());
             return 0;
         }
         ensdf_fh.close();
@@ -2219,10 +2517,12 @@ EGS_BaseSpectrum *EGS_BaseSpectrum::createSpectrum(EGS_Input *input) {
         // Create the spectrum
         spec = new EGS_RadionuclideSpectrum(nuclide, ensdf_file, relativeActivity, relaxType, outputBetaSpectra, scoreAlphasLocally, allowMultiTransition);
     }
-    else {
-        egsWarning("%s unknown spectrum type %s\n",spec_msg1,stype.c_str());
+    else
+    {
+        egsWarning("%s unknown spectrum type %s\n", spec_msg1, stype.c_str());
     }
-    if (delete_it) {
+    if (delete_it)
+    {
         delete inp;
     }
     return spec;

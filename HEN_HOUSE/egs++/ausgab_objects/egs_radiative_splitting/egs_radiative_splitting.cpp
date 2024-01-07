@@ -50,18 +50,22 @@
 #include "egs_input.h"
 #include "egs_functions.h"
 
-EGS_RadiativeSplitting::EGS_RadiativeSplitting(const string &Name,
-        EGS_ObjectFactory *f) :
-    nsplit(1) {
+EGS_RadiativeSplitting::EGS_RadiativeSplitting(const string& Name,
+    EGS_ObjectFactory* f) :
+    nsplit(1)
+{
     otype = "EGS_RadiativeSplitting";
 }
 
-EGS_RadiativeSplitting::~EGS_RadiativeSplitting() {
+EGS_RadiativeSplitting::~EGS_RadiativeSplitting()
+{
 }
 
-void EGS_RadiativeSplitting::setApplication(EGS_Application *App) {
+void EGS_RadiativeSplitting::setApplication(EGS_Application* App)
+{
     EGS_AusgabObject::setApplication(App);
-    if (!app) {
+    if (!app)
+    {
         return;
     }
 
@@ -75,16 +79,19 @@ void EGS_RadiativeSplitting::setApplication(EGS_Application *App) {
     description += name;
     description += ")\n";
     description += "===========================================\n";
-    if (nsplit > 1) {
-        description +="\n - Splitting radiative events in ";
-        sprintf(buf,"%d\n\n",nsplit);
+    if (nsplit > 1)
+    {
+        description += "\n - Splitting radiative events in ";
+        sprintf(buf, "%d\n\n", nsplit);
         description += buf;
     }
-    else if (nsplit == 1) {
-        description +="\n - NO radiative splitting";
+    else if (nsplit == 1)
+    {
+        description += "\n - NO radiative splitting";
     }
-    else {
-        description +="\n - BEWARE: Turning OFF radiative events !!!";
+    else
+    {
+        description += "\n - BEWARE: Turning OFF radiative events !!!";
     }
     description += "\n===========================================\n\n";
 }
@@ -95,21 +102,23 @@ void EGS_RadiativeSplitting::setApplication(EGS_Application *App) {
 //**********************************************************************
 extern "C" {
 
-    EGS_RADIATIVE_SPLITTING_EXPORT EGS_AusgabObject *createAusgabObject(EGS_Input *input,
-            EGS_ObjectFactory *f) {
-        const static char *func = "createAusgabObject(radiative_splitting)";
-        if (!input) {
-            egsWarning("%s: null input?\n",func);
+    EGS_RADIATIVE_SPLITTING_EXPORT EGS_AusgabObject* createAusgabObject(EGS_Input* input,
+        EGS_ObjectFactory* f)
+    {
+        const static char* func = "createAusgabObject(radiative_splitting)";
+        if (!input)
+        {
+            egsWarning("%s: null input?\n", func);
             return 0;
         }
 
         EGS_Float nsplit = 1.0;
-        int err = input->getInput("splitting",nsplit);
+        int err = input->getInput("splitting", nsplit);
 
         //=================================================
 
         /* Setup radiative splitting object with input parameters */
-        EGS_RadiativeSplitting *result = new EGS_RadiativeSplitting("",f);
+        EGS_RadiativeSplitting* result = new EGS_RadiativeSplitting("", f);
         result->setSplitting(nsplit);
         result->setName(input);
         return result;

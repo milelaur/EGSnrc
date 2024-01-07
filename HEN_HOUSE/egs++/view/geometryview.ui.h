@@ -42,43 +42,49 @@
 
 #include "egs_libconfig.h"
 
-void GeometryView::updateView() {
+void GeometryView::updateView()
+{
 #ifdef VIEW_DEBUG
     egsWarning("In GeometryView::updateView()\n");
 #endif
 }
 
 
-void GeometryView::xRotation(int rot) {
+void GeometryView::xRotation(int rot)
+{
 #ifdef VIEW_DEBUG
-    egsWarning("In GeometryView::xRotation(%d)\n",rot);
+    egsWarning("In GeometryView::xRotation(%d)\n", rot);
 #endif
 }
 
 
-void GeometryView::yRotation(int rot) {
+void GeometryView::yRotation(int rot)
+{
 #ifdef VIEW_DEBUG
-    egsWarning("In GeometryView::yRotation(%d)\n",rot);
+    egsWarning("In GeometryView::yRotation(%d)\n", rot);
 #endif
 }
 
 
-void GeometryView::zRotation(int rot) {
+void GeometryView::zRotation(int rot)
+{
 #ifdef VIEW_DEBUG
-    egsWarning("In GeometryView::zRotation(%d)\n",rot);
+    egsWarning("In GeometryView::zRotation(%d)\n", rot);
 #endif
 }
 
 
 
-void GeometryView::startRotation() {
+void GeometryView::startRotation()
+{
 #ifdef VIEW_DEBUG
     egsWarning("In GeometryView::startRotation()\n");
 #endif
 }
 
 
-void GeometryView::endRotation() {
+void GeometryView::endRotation()
+{
 #ifdef VIEW_DEBUG
     egsWarning("In GeometryView::endRotation()\n");
 #endif

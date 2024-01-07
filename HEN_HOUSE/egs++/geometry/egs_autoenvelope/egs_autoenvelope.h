@@ -47,22 +47,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_AENVELOPE_DLL
-        #define EGS_AENVELOPE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_AENVELOPE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_AENVELOPE_LOCAL
+#ifdef BUILD_AENVELOPE_DLL
+#define EGS_AENVELOPE_EXPORT __declspec(dllexport)
+#else
+#define EGS_AENVELOPE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_AENVELOPE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_AENVELOPE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_AENVELOPE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_AENVELOPE_EXPORT
-        #define EGS_AENVELOPE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_AENVELOPE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_AENVELOPE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_AENVELOPE_EXPORT
+#define EGS_AENVELOPE_LOCAL
+#endif
 
 #endif
 
@@ -339,27 +339,29 @@ using namespace volcor;
 
 
 /*! \brief A helper class for initializing auto envelopes*/
-struct EGS_AENVELOPE_LOCAL AEnvelopeAux {
-    EGS_BaseGeometry *geom;
-    EGS_AffineTransform *transform;
-    volcor::VCOptions *vcopts;
+struct EGS_AENVELOPE_LOCAL AEnvelopeAux
+{
+    EGS_BaseGeometry* geom;
+    EGS_AffineTransform* transform;
+    volcor::VCOptions* vcopts;
 
-    AEnvelopeAux(EGS_BaseGeometry *geom, EGS_AffineTransform *transform, volcor::VCOptions *vcopts):
+    AEnvelopeAux(EGS_BaseGeometry* geom, EGS_AffineTransform* transform, volcor::VCOptions* vcopts):
         geom(geom), transform(transform), vcopts(vcopts) {};
 };
 
 /*! \brief A fast envelope geometry with automatic region detection */
-class EGS_AENVELOPE_EXPORT EGS_AEnvelope : public EGS_BaseGeometry {
+class EGS_AENVELOPE_EXPORT EGS_AEnvelope : public EGS_BaseGeometry
+{
 
 
 public:
 
-    EGS_AEnvelope(EGS_BaseGeometry *base_geom,
-                  const vector<AEnvelopeAux> inscribed, const string &Name = "", bool debug=false, string output_vc_file="no");
+    EGS_AEnvelope(EGS_BaseGeometry* base_geom,
+                  const vector<AEnvelopeAux> inscribed, const string& Name = "", bool debug = false, string output_vc_file = "no");
 
     ~EGS_AEnvelope();
 
-    int getGlobalRegFromLocalReg(EGS_BaseGeometry *g, int local_reg);
+    int getGlobalRegFromLocalReg(EGS_BaseGeometry* g, int local_reg);
 
     int getGlobalRegFromLocal(const volcor::GeomRegPairT local) const;
 
@@ -369,26 +371,26 @@ public:
 
     bool isRealRegion(int ireg) const;
 
-    bool isInside(const EGS_Vector &x);
+    bool isInside(const EGS_Vector& x);
 
-    int isWhere(const EGS_Vector &x);
+    int isWhere(const EGS_Vector& x);
 
-    int inside(const EGS_Vector &x);
+    int inside(const EGS_Vector& x);
 
     int medium(int ireg) const;
 
-    virtual vector<EGS_BaseGeometry *> getGeomsInRegion(int ireg);
+    virtual vector<EGS_BaseGeometry*> getGeomsInRegion(int ireg);
 
-    int computeIntersections(int ireg, int n, const EGS_Vector &X,
-                             const EGS_Vector &u, EGS_GeometryIntersections *isections);
+    int computeIntersections(int ireg, int n, const EGS_Vector& X,
+                             const EGS_Vector& u, EGS_GeometryIntersections* isections);
 
 
-    EGS_Float howfarToOutside(int ireg, const EGS_Vector &x, const EGS_Vector &u);
+    EGS_Float howfarToOutside(int ireg, const EGS_Vector& x, const EGS_Vector& u);
 
-    int howfar(int ireg, const EGS_Vector &x, const EGS_Vector &u,
-               EGS_Float &t, int *newmed = 0, EGS_Vector *normal = 0);
+    int howfar(int ireg, const EGS_Vector& x, const EGS_Vector& u,
+               EGS_Float& t, int* newmed = 0, EGS_Vector* normal = 0);
 
-    EGS_Float hownear(int ireg, const EGS_Vector &x);
+    EGS_Float hownear(int ireg, const EGS_Vector& x);
 
     bool hasBooleanProperty(int ireg, EGS_BPType prop) const;
 
@@ -396,9 +398,9 @@ public:
 
     void addBooleanProperty(int);
 
-    void setBooleanProperty(EGS_BPType,int,int,int step=1);
+    void setBooleanProperty(EGS_BPType, int, int, int step = 1);
 
-    void addBooleanProperty(int,int,int,int step=1);
+    void addBooleanProperty(int, int, int, int step = 1);
 
     int getMaxStep() const;
 
@@ -406,14 +408,15 @@ public:
 
     virtual EGS_Float getCorrectionRatio(int ireg);
 
-    virtual const string &getType() const {
+    virtual const string& getType() const
+    {
         return type;
     };
 
     void printInfo() const;
 
     void setRelativeRho(int start, int end, EGS_Float rho);
-    void setRelativeRho(EGS_Input *);
+    void setRelativeRho(EGS_Input*);
 
     EGS_Float getRelativeRho(int ireg) const;
 
@@ -433,20 +436,20 @@ public:
     *
     * and returns a vector of pointers to EGS_AffineTransforms
     */
-    static vector<EGS_AffineTransform *> createTransforms(EGS_Input *inpt);
+    static vector<EGS_AffineTransform*> createTransforms(EGS_Input* inpt);
 
 
     /*! \brief function for checking whether a given geometry type
      * is allowed to be used as a base geometry */
-    static bool allowedBaseGeomType(const string &geom_type);
+    static bool allowedBaseGeomType(const string& geom_type);
 
 
 protected:
 
-    EGS_BaseGeometry *base_geom;           //!< The envelope geometry
-    vector<EGS_BaseGeometry *> inscribed_geoms; //!< The inscribed geometries
-    vector<EGS_AffineTransform *> transforms; //!< The inscribed geometries
-    vector<volcor::VCOptions *> opts; //!< The inscribed geometries
+    EGS_BaseGeometry* base_geom;           //!< The envelope geometry
+    vector<EGS_BaseGeometry*> inscribed_geoms;  //!< The inscribed geometries
+    vector<EGS_AffineTransform*> transforms;  //!< The inscribed geometries
+    vector<volcor::VCOptions*> opts;  //!< The inscribed geometries
     int nregbase;   //!< Number of regions in the base geometry
     int ninscribed;   //!< Number of regions in the base geometry
     int nreg_with_inscribed;
@@ -460,7 +463,7 @@ protected:
     map<int, volcor::GeomRegPairT> global_reg_to_local;
 
     //keep track of which geometries are present in which base geometry regions
-    vector<EGS_BaseGeometry *> *geoms_in_region;
+    vector<EGS_BaseGeometry*>* geoms_in_region;
 
     static string type;    //!< Geometry type
 
@@ -472,19 +475,20 @@ protected:
     in the envelope geometry. Instead, media should be set for the envelope
     and in the inscribed geometries.
     */
-    void setMedia(EGS_Input *,int,const int *);
+    void setMedia(EGS_Input*, int, const int*);
 
-    double findRegionsInscribedIn(vector<EGS_BaseGeometry *>, vector<EGS_AffineTransform *>, volcor::VCOptions *);
-    double loadFileVolumeCorrections(vector<EGS_BaseGeometry *>, vector<EGS_AffineTransform *>, volcor::VCOptions *);
+    double findRegionsInscribedIn(vector<EGS_BaseGeometry*>, vector<EGS_AffineTransform*>, volcor::VCOptions*);
+    double loadFileVolumeCorrections(vector<EGS_BaseGeometry*>, vector<EGS_AffineTransform*>, volcor::VCOptions*);
 
-    void applyVolumeCorrections(volcor::VCOptions *opts, volcor::HitCounterT hit_counter);
+    void applyVolumeCorrections(volcor::VCOptions* opts, volcor::HitCounterT hit_counter);
 
-    void writeVCToFile(ostream &);
+    void writeVCToFile(ostream&);
     void writeVolumeCorrection();
 
 private:
 
-    void setPropertyError(const char *funcname) {
+    void setPropertyError(const char* funcname)
+    {
         egsFatal("EGS_AEnvelope::%s: don't use this method\n  Define "
                  "properties in the constituent geometries instead\n",
                  funcname);
@@ -546,31 +550,33 @@ private:
 \endverbatim
 
 */
-class EGS_AENVELOPE_EXPORT EGS_ASwitchedEnvelope : public EGS_AEnvelope {
+class EGS_AENVELOPE_EXPORT EGS_ASwitchedEnvelope : public EGS_AEnvelope
+{
 
 private:
 
-    vector<EGS_BaseGeometry *> active_inscribed;
+    vector<EGS_BaseGeometry*> active_inscribed;
     int cur_ptr;
 
 protected:
 
     static string type;    //!< Geometry type
 
-    vector<EGS_BaseGeometry *> getGeomsInRegion(int ireg);
+    vector<EGS_BaseGeometry*> getGeomsInRegion(int ireg);
 
 public:
 
-    EGS_ASwitchedEnvelope(EGS_BaseGeometry *base_geom,
-                          const vector<AEnvelopeAux> inscribed, const string &Name = "", bool debug=false, string output_vc_file="no");
+    EGS_ASwitchedEnvelope(EGS_BaseGeometry* base_geom,
+                          const vector<AEnvelopeAux> inscribed, const string& Name = "", bool debug = false, string output_vc_file = "no");
 
-    const string &getType() const {
+    const string& getType() const
+    {
         return type;
     };
 
     /*! activate multiple geometries by passing pointers and set the current pointer
      to the first geometryin the input vector */
-    void setActiveGeometries(vector<EGS_BaseGeometry *> geoms);
+    void setActiveGeometries(vector<EGS_BaseGeometry*> geoms);
 
     /*! activate multiple geometries at input indexes and set the current pointer
      to the first index in the input vector */

@@ -47,22 +47,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_DYNAMIC_SOURCE_DLL
-        #define EGS_DYNAMIC_SOURCE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_DYNAMIC_SOURCE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_DYNAMIC_SOURCE_LOCAL
+#ifdef BUILD_DYNAMIC_SOURCE_DLL
+#define EGS_DYNAMIC_SOURCE_EXPORT __declspec(dllexport)
+#else
+#define EGS_DYNAMIC_SOURCE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_DYNAMIC_SOURCE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_DYNAMIC_SOURCE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_DYNAMIC_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_DYNAMIC_SOURCE_EXPORT
-        #define EGS_DYNAMIC_SOURCE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_DYNAMIC_SOURCE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_DYNAMIC_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_DYNAMIC_SOURCE_EXPORT
+#define EGS_DYNAMIC_SOURCE_LOCAL
+#endif
 
 #endif
 
@@ -167,12 +167,14 @@ to "yes".
 */
 
 class EGS_DYNAMIC_SOURCE_EXPORT EGS_DynamicSource :
-    public EGS_BaseSource {
+    public EGS_BaseSource
+{
 
 public:
 
 
-    struct EGS_ControlPoint {
+    struct EGS_ControlPoint
+    {
 
         EGS_Vector iso; //isocentre position
         EGS_Float dsource; //source-isocentre distance
@@ -186,114 +188,137 @@ public:
     source and cpts as the control points.  Not sure if this
     will ever be used but here just in case.
     */
-    EGS_DynamicSource(EGS_BaseSource *Source, vector<EGS_ControlPoint> cpts,
-                      const string &Name="", EGS_ObjectFactory *f=0) :
-        EGS_BaseSource(Name,f), source(Source), valid(true) {
+    EGS_DynamicSource(EGS_BaseSource* Source, vector<EGS_ControlPoint> cpts,
+                      const string& Name = "", EGS_ObjectFactory* f = 0) :
+        EGS_BaseSource(Name, f), source(Source), valid(true)
+    {
         //do some checks on cpts
-        if (cpts.size()<2) {
+        if (cpts.size() < 2)
+        {
             egsWarning("EGS_DynamicSource: not enough or missing control points.\n");
             valid = false;
         }
-        else {
-            if (cpts[0].mu > 0.0) {
+        else
+        {
+            if (cpts[0].mu > 0.0)
+            {
                 egsWarning("EGS_DynamicSource: mu index of control point 1 > 0.0.  This will generate many warning messages.\n");
             }
             int npts = cpts.size();
-            for (int i=0; i<npts; i++) {
-                if (i>0 && cpts[i].mu < cpts[i-1].mu) {
-                    egsWarning("EGS_DynamicSource: mu index of control point %i < mu index of control point %i\n",i,i-1);
+            for (int i = 0; i < npts; i++)
+            {
+                if (i > 0 && cpts[i].mu < cpts[i - 1].mu)
+                {
+                    egsWarning("EGS_DynamicSource: mu index of control point %i < mu index of control point %i\n", i, i - 1);
                     valid = false;
                 }
-                if (cpts[i].mu<0.0) {
-                    egsWarning("EGS_DynamicSource: mu index of control point %i < 0.0\n",i);
+                if (cpts[i].mu < 0.0)
+                {
+                    egsWarning("EGS_DynamicSource: mu index of control point %i < 0.0\n", i);
                     valid = false;
                 }
             }
             //normalize mu values
-            for (int i=0; i<npts-1; i++) {
-                cpts[i].mu /= cpts[npts-1].mu;
+            for (int i = 0; i < npts - 1; i++)
+            {
+                cpts[i].mu /= cpts[npts - 1].mu;
             }
         }
         setUp();
     };
 
     /*! \brief Construct a dynamic source from the user input */
-    EGS_DynamicSource(EGS_Input *, EGS_ObjectFactory *f=0);
+    EGS_DynamicSource(EGS_Input*, EGS_ObjectFactory* f = 0);
 
-    ~EGS_DynamicSource() {
+    ~EGS_DynamicSource()
+    {
         EGS_Object::deleteObject(source);
     };
 
-    EGS_I64 getNextParticle(EGS_RandomGenerator *rndm,
-                            int &q, int &latch, EGS_Float &E, EGS_Float &wt,
-                            EGS_Vector &x, EGS_Vector &u) {
+    EGS_I64 getNextParticle(EGS_RandomGenerator* rndm,
+                            int& q, int& latch, EGS_Float& E, EGS_Float& wt,
+                            EGS_Vector& x, EGS_Vector& u)
+    {
         int err = 1;
         EGS_ControlPoint ipt;  //the actual rotation coords
         EGS_I64 c;
-        while (err) {
-            c = source->getNextParticle(rndm,q,latch,E,wt,x,u);
-            if (sync) {
+        while (err)
+        {
+            c = source->getNextParticle(rndm, q, latch, E, wt, x, u);
+            if (sync)
+            {
                 pmu = source->getMu();
-                if (pmu<0) {
-                    egsWarning("EGS_DynamicSource: You have selected synchronization of dynamic source with %s\n",source->getObjectName().c_str());
+                if (pmu < 0)
+                {
+                    egsWarning("EGS_DynamicSource: You have selected synchronization of dynamic source with %s\n", source->getObjectName().c_str());
                     egsWarning("However, this source does not return mu values for each particle.  Will turn off synchronization.\n");
                     sync = false;
                 }
             }
-            if (!sync) {
+            if (!sync)
+            {
                 pmu = rndm->getUniform();
             }
-            err = getCoord(pmu,ipt);
+            err = getCoord(pmu, ipt);
         }
 
         //translate source in Z
-        x.z=x.z-ipt.dsource;
+        x.z = x.z - ipt.dsource;
         //get the rotation matrices
-        ipt.phicol *= M_PI/180;
-        ipt.theta *= M_PI/180;
-        ipt.phi *= M_PI/180;
+        ipt.phicol *= M_PI / 180;
+        ipt.theta *= M_PI / 180;
+        ipt.phi *= M_PI / 180;
         EGS_RotationMatrix Rcol(EGS_RotationMatrix::rotZ(ipt.phicol));
         EGS_RotationMatrix Rtheta(EGS_RotationMatrix::rotY(ipt.theta));
         EGS_RotationMatrix Rphi(EGS_RotationMatrix::rotZ(ipt.phi));
         //apply rotations in specific order and then translate relative
         //to the isocentre
-        u=Rphi*Rtheta*Rcol*u;
-        x=Rphi*Rtheta*Rcol*x + ipt.iso;
+        u = Rphi * Rtheta * Rcol * u;
+        x = Rphi * Rtheta * Rcol * x + ipt.iso;
         return c;
     };
-    EGS_Float getEmax() const {
+    EGS_Float getEmax() const
+    {
         return source->getEmax();
     };
-    EGS_Float getFluence() const {
+    EGS_Float getFluence() const
+    {
         return source->getFluence();
     };
-    EGS_Float getMu() {
+    EGS_Float getMu()
+    {
         return pmu;
     };
-    bool storeState(ostream &data) const {
+    bool storeState(ostream& data) const
+    {
         return source->storeState(data);
     };
-    bool setState(istream &data) {
+    bool setState(istream& data)
+    {
         return source->setState(data);
     };
-    bool addState(istream &data_in) {
+    bool addState(istream& data_in)
+    {
         return source->addState(data_in);
     };
-    void resetCounter() {
+    void resetCounter()
+    {
         source->resetCounter();
     };
 
-    bool isValid() const {
+    bool isValid() const
+    {
         return (valid && source != 0);
     };
 
-    void setSimulationChunk(EGS_I64 nstart, EGS_I64 nrun) {
+    void setSimulationChunk(EGS_I64 nstart, EGS_I64 nrun)
+    {
         source->setSimulationChunk(nstart, nrun);
     };
 
 protected:
 
-    EGS_BaseSource *source; //!< The source being rotated
+    EGS_BaseSource* source; //!< The source being rotated
 
     vector<EGS_ControlPoint> cpts;  //control point
 
@@ -304,7 +329,7 @@ protected:
     bool sync; //set to true if source motion synched with mu read from
     //iaea phsp or beam simulation source
 
-    int getCoord(const EGS_Float rand, EGS_ControlPoint &ipt);
+    int getCoord(const EGS_Float rand, EGS_ControlPoint& ipt);
 
     EGS_Float pmu; //monitor unit index corresponding to particle
     //could just be a random number.

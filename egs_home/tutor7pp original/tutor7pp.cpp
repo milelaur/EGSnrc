@@ -150,10 +150,10 @@ using namespace std;
 class APP_EXPORT Tutor7_Application : public EGS_AdvancedApplication
 {
 
-    EGS_ScoringArray *score;    // scoring array with energies deposited
-    EGS_ScoringArray *eflu;     // scoring array for electron fluence at back of geometry
-    EGS_ScoringArray *gflu;     // scoring array for photon fluence at back of geometry
-    EGS_ScoringArray **pheight; // pulse height distributions.
+    EGS_ScoringArray* score;    // scoring array with energies deposited
+    EGS_ScoringArray* eflu;     // scoring array for electron fluence at back of geometry
+    EGS_ScoringArray* gflu;     // scoring array for photon fluence at back of geometry
+    EGS_ScoringArray** pheight; // pulse height distributions.
     int nreg;                   // number of regions in the geometry
     int nph;                    // number of pulse height objects.
     double Etot;                // total energy that has entered the geometry
@@ -162,8 +162,8 @@ class APP_EXPORT Tutor7_Application : public EGS_AdvancedApplication
     // is currently being simulated
     bool deflect_brems;
 
-    EGS_Float *ph_de;       // bin widths if the pulse height distributions.
-    int *ph_regions;        // region indeces of the ph-dsitributions
+    EGS_Float* ph_de;       // bin widths if the pulse height distributions.
+    int* ph_regions;        // region indeces of the ph-dsitributions
     static string revision; // the CVS revision number
 
 public:
@@ -172,8 +172,8 @@ public:
      contructor, which determines the input file, the pegs file, if the
      simulation is a parallel run, etc.
     */
-    Tutor7_Application(int argc, char **argv) : EGS_AdvancedApplication(argc, argv), score(0), eflu(0), gflu(0), pheight(0),
-                                                nreg(0), nph(0), Etot(0), rr_flag(0), current_weight(1), deflect_brems(false){};
+    Tutor7_Application(int argc, char** argv) : EGS_AdvancedApplication(argc, argv), score(0), eflu(0), gflu(0), pheight(0),
+        nreg(0), nph(0), Etot(0), rr_flag(0), current_weight(1), deflect_brems(false) {};
 
     /*! Destructor.
      Deallocate memory
@@ -255,7 +255,7 @@ public:
      over parallel jobs. data is a reference to the currently opened
      data stream (basically the j'th .egsdat file).
      */
-    int addState(istream &data);
+    int addState(istream& data);
 
     /*! Output the results of a simulation. */
     void outputResults();
@@ -271,8 +271,8 @@ public:
      this info in the log file. In our case we arbitrarily decide to return the
      reflected energy fraction as the single result of the simulation.
     */
-    void getCurrentResult(double &sum, double &sum2, double &norm,
-                          double &count);
+    void getCurrentResult(double& sum, double& sum2, double& norm,
+                          double& count);
 
 protected:
     /*! Start a new shower.
@@ -295,8 +295,8 @@ protected:
 
 string Tutor7_Application::revision = " ";
 
-extern "C" void F77_OBJ_(egs_scale_xcc, EGS_SCALE_XCC)(const int *, const EGS_Float *);
-extern "C" void F77_OBJ_(egs_scale_bc, EGS_SCALE_BC)(const int *, const EGS_Float *);
+extern "C" void F77_OBJ_(egs_scale_xcc, EGS_SCALE_XCC)(const int*, const EGS_Float*);
+extern "C" void F77_OBJ_(egs_scale_bc, EGS_SCALE_BC)(const int*, const EGS_Float*);
 
 void Tutor7_Application::describeUserCode() const
 {
@@ -325,11 +325,11 @@ int Tutor7_Application::initScoring()
     // Initialize with no russian roulette
     the_egsvr->i_do_rr = 1;
 
-    EGS_Input *options = input->takeInputItem("scoring options");
+    EGS_Input* options = input->takeInputItem("scoring options");
     if (options)
     {
 
-        EGS_Input *scale;
+        EGS_Input* scale;
         while ((scale = options->takeInputItem("scale xcc")))
         {
             vector<string> tmp;
@@ -406,7 +406,7 @@ int Tutor7_Application::initScoring()
                            " input\n");
             else
             {
-                EGS_ScoringArray **tmp = new EGS_ScoringArray *[nreg + 2];
+                EGS_ScoringArray** tmp = new EGS_ScoringArray *[nreg + 2];
                 for (int i = 0; i < nreg + 2; i++)
                 {
                     tmp[i] = 0;
@@ -493,7 +493,7 @@ int Tutor7_Application::ausgab(int iarg)
         // if( the_stack->iq[np] ) score->score(ir,the_epcont->edep*the_stack->wt[np]);
         if (ir == nreg + 1)
         {
-            EGS_ScoringArray *flu = the_stack->iq[np] ? eflu : gflu;
+            EGS_ScoringArray* flu = the_stack->iq[np] ? eflu : gflu;
             EGS_Float r2 = the_stack->x[np] * the_stack->x[np] + the_stack->y[np] * the_stack->y[np];
             if (r2 < 400)
             {
@@ -662,7 +662,7 @@ void Tutor7_Application::resetCounter()
     gflu->reset();
 }
 
-int Tutor7_Application::addState(istream &data)
+int Tutor7_Application::addState(istream& data)
 {
     // Call first the base class addState() function to read and add
     // all data related to source, RNG, CPU time, etc.
@@ -763,8 +763,8 @@ void Tutor7_Application::outputResults()
     */
 }
 
-void Tutor7_Application::getCurrentResult(double &sum, double &sum2,
-                                          double &norm, double &count)
+void Tutor7_Application::getCurrentResult(double& sum, double& sum2,
+    double& norm, double& count)
 {
     count = current_case;
     norm = Etot > 0 ? count / Etot : 0;

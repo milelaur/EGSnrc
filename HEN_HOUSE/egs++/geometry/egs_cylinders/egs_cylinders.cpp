@@ -39,15 +39,18 @@
 
 extern "C" {
 
-    EGS_CYLINDERS_EXPORT EGS_BaseGeometry *createGeometry(EGS_Input *input) {
+    EGS_CYLINDERS_EXPORT EGS_BaseGeometry* createGeometry(EGS_Input* input)
+    {
         // check for valid input
-        if (!input) {
+        if (!input)
+        {
             egsWarning("createGeometry(cylinders): null input?\n");
             return 0;
         }
         string type;
-        int err = input->getInput("type",type);
-        if (err) {
+        int err = input->getInput("type", type);
+        if (err)
+        {
             egsWarning("createGeometry(cylinders): missing type key\n");
             return 0;
         }
@@ -55,44 +58,52 @@ extern "C" {
         // point on cylinder axis
         EGS_Vector xo;
         vector<EGS_Float> Xo;
-        err = input->getInput("midpoint",Xo);
-        if (!err && Xo.size() == 3) {
-            xo = EGS_Vector(Xo[0],Xo[1],Xo[2]);
+        err = input->getInput("midpoint", Xo);
+        if (!err && Xo.size() == 3)
+        {
+            xo = EGS_Vector(Xo[0], Xo[1], Xo[2]);
         }
 
         // cylinder radii
         vector<EGS_Float> radii;
-        err = input->getInput("radii",radii);
-        if (err) {
+        err = input->getInput("radii", radii);
+        if (err)
+        {
             egsWarning("createGeometry(cylinders): wrong/missing 'radii' input\n");
             return 0;
         }
-        EGS_Float *r=new EGS_Float [radii.size()];
-        for (int i=0; i<radii.size(); i++) {
-            r[i]=radii[i];
+        EGS_Float* r = new EGS_Float [radii.size()];
+        for (int i = 0; i < radii.size(); i++)
+        {
+            r[i] = radii[i];
         }
 
         // select geometry
-        EGS_BaseGeometry *g;
-        if (type == "EGS_XCylinders") {
-            g = new EGS_CylindersX(radii.size(),r,xo,"",EGS_XProjector("EGS_XCylinders"));
+        EGS_BaseGeometry* g;
+        if (type == "EGS_XCylinders")
+        {
+            g = new EGS_CylindersX(radii.size(), r, xo, "", EGS_XProjector("EGS_XCylinders"));
         }
-        else if (type == "EGS_YCylinders") {
-            g = new EGS_CylindersY(radii.size(),r,xo,"",EGS_YProjector("EGS_YCylinders"));
+        else if (type == "EGS_YCylinders")
+        {
+            g = new EGS_CylindersY(radii.size(), r, xo, "", EGS_YProjector("EGS_YCylinders"));
         }
-        else if (type == "EGS_ZCylinders") {
-            g = new EGS_CylindersZ(radii.size(),r,xo,"",EGS_ZProjector("EGS_ZCylinders"));
+        else if (type == "EGS_ZCylinders")
+        {
+            g = new EGS_CylindersZ(radii.size(), r, xo, "", EGS_ZProjector("EGS_ZCylinders"));
         }
-        else {
+        else
+        {
             vector<EGS_Float> a;
-            err = input->getInput("axis",a);
-            if (err || a.size() != 3) {
+            err = input->getInput("axis", a);
+            if (err || a.size() != 3)
+            {
                 egsWarning("createGeometry(cylinders): missing/wrong axis input\n");
                 return 0;
             }
-            egsWarning("got axis (%g,%g,%g)\n",a[0],a[1],a[2]);
-            g = new EGS_Cylinders(radii.size(),r,xo,"",
-                                  EGS_Projector(EGS_Vector(a[0],a[1],a[2]),""));
+            egsWarning("got axis (%g,%g,%g)\n", a[0], a[1], a[2]);
+            g = new EGS_Cylinders(radii.size(), r, xo, "",
+                                  EGS_Projector(EGS_Vector(a[0], a[1], a[2]), ""));
         }
         g->setName(input);
         g->setBoundaryTolerance(input);

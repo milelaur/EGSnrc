@@ -41,26 +41,31 @@
 #include "egs_input.h"
 #include "egs_functions.h"
 
-void EGS_TransformedGeometry::setMedia(EGS_Input *,int,const int *) {
+void EGS_TransformedGeometry::setMedia(EGS_Input*, int, const int*)
+{
     egsWarning("EGS_TransformedGeometry::setMedia: don't use this method. Use the\n"
                " setMedia() methods of the geometry objects that make up this geometry\n");
 }
 
-void EGS_TransformedGeometry::setRelativeRho(int start, int end, EGS_Float rho) {
+void EGS_TransformedGeometry::setRelativeRho(int start, int end, EGS_Float rho)
+{
     setRelativeRho(0);
 }
 
-void EGS_TransformedGeometry::setRelativeRho(EGS_Input *) {
+void EGS_TransformedGeometry::setRelativeRho(EGS_Input*)
+{
     egsWarning("EGS_TransformedGeometry::setRelativeRho(): don't use this "
                "method. Use the \n setRelativeRho() methods of the underlying "
                "geometry\n");
 }
 
-void EGS_TransformedGeometry::setBScaling(int start, int end, EGS_Float rho) {
+void EGS_TransformedGeometry::setBScaling(int start, int end, EGS_Float rho)
+{
     setBScaling(0);
 }
 
-void EGS_TransformedGeometry::setBScaling(EGS_Input *) {
+void EGS_TransformedGeometry::setBScaling(EGS_Input*)
+{
     egsWarning("EGS_TransformedGeometry::setBScaling(): don't use this "
                "method. Use the \n setBScaling() methods of the underlying "
                "geometry\n");
@@ -68,46 +73,54 @@ void EGS_TransformedGeometry::setBScaling(EGS_Input *) {
 
 extern "C" {
 
-    EGS_GTRANSFORMED_EXPORT EGS_BaseGeometry *createGeometry(EGS_Input *input) {
-        EGS_BaseGeometry *g = 0;
-        EGS_Input *ij = input->takeInputItem("geometry",false);
-        if (ij) {
+    EGS_GTRANSFORMED_EXPORT EGS_BaseGeometry* createGeometry(EGS_Input* input)
+    {
+        EGS_BaseGeometry* g = 0;
+        EGS_Input* ij = input->takeInputItem("geometry", false);
+        if (ij)
+        {
             g = EGS_BaseGeometry::createSingleGeometry(ij);
             delete ij;
-            if (!g) {
+            if (!g)
+            {
                 egsWarning("createGeometry(gtransformed): got a null pointer"
                            " as a geometry?\n");
                 return 0;
             }
         }
-        if (!g) {
+        if (!g)
+        {
             string gname;
-            int err = input->getInput("my geometry",gname);
-            if (err) {
+            int err = input->getInput("my geometry", gname);
+            if (err)
+            {
                 egsWarning(
                     "createGeometry(gtransformed): my geometry must be defined\n"
                     "  either inline or using 'my geometry = some_name'\n");
                 return 0;
             }
             g = EGS_BaseGeometry::getGeometry(gname);
-            if (!g) {
+            if (!g)
+            {
                 egsWarning("createGeometry(gtransformed): no geometry named %s"
-                           " is defined\n",gname.c_str());
+                           " is defined\n", gname.c_str());
                 return 0;
             }
         }
         g->ref();
-        EGS_AffineTransform *t = EGS_AffineTransform::getTransformation(input);
-        EGS_BaseGeometry *result;
-        if (!t) {
+        EGS_AffineTransform* t = EGS_AffineTransform::getTransformation(input);
+        EGS_BaseGeometry* result;
+        if (!t)
+        {
             egsWarning("createGeometry(gtransformed): null transformation."
                        " I hope you know what you are doing\n");
-            result = new EGS_TransformedGeometry(g,EGS_AffineTransform());
+            result = new EGS_TransformedGeometry(g, EGS_AffineTransform());
         }
-        else {
+        else
+        {
             if (t->isI()) egsWarning("createGeometry(gtransformed): "
                                          "unity transformation. I hope you know what you are doing\n");
-            result = new EGS_TransformedGeometry(g,*t);
+            result = new EGS_TransformedGeometry(g, *t);
             delete t;
         }
         result->setName(input);
@@ -118,7 +131,8 @@ extern "C" {
     }
 
 
-    void EGS_TransformedGeometry::getLabelRegions(const string &str, vector<int> &regs) {
+    void EGS_TransformedGeometry::getLabelRegions(const string& str, vector<int>& regs)
+    {
 
         // label defined in the geometry being transformed
         g->getLabelRegions(str, regs);

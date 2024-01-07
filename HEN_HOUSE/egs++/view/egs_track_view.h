@@ -39,92 +39,106 @@
 #include "stddef.h"
 #include "egs_particle_track.h"
 
-class EGS_Matrix : private EGS_RotationMatrix {
+class EGS_Matrix : private EGS_RotationMatrix
+{
 public:
     // Suitable for mapping e1,e2,e3 onto colA, colB, colC
-    EGS_Matrix(const EGS_Vector &colA,
-               const EGS_Vector &colB,
-               const EGS_Vector &colC) :
-        EGS_RotationMatrix(colA.x,colB.x,colC.x,
-                           colA.y,colB.y,colC.y,
-                           colA.z,colB.z,colC.z) {}
-    EGS_Matrix(const EGS_RotationMatrix &r) : EGS_RotationMatrix(r) {}
+    EGS_Matrix(const EGS_Vector& colA,
+               const EGS_Vector& colB,
+               const EGS_Vector& colC) :
+        EGS_RotationMatrix(colA.x, colB.x, colC.x,
+                           colA.y, colB.y, colC.y,
+                           colA.z, colB.z, colC.z) {}
+    EGS_Matrix(const EGS_RotationMatrix& r) : EGS_RotationMatrix(r) {}
     EGS_Matrix() : EGS_RotationMatrix() {}
 
-    EGS_Float det() const {
+    EGS_Float det() const
+    {
         return EGS_RotationMatrix::det();
     }
 
-    EGS_Matrix inverse() const {
+    EGS_Matrix inverse() const
+    {
         EGS_Float d = det();
-        if (d == 0) {
+        if (d == 0)
+        {
             egsWarning("Tried to invert matrix with zero determinant.");
-            EGS_Vector empty(0,0,0);
-            return EGS_Matrix(empty,empty,empty);
+            EGS_Vector empty(0, 0, 0);
+            return EGS_Matrix(empty, empty, empty);
         }
         // Constructor transposes the visual structure.
         EGS_Matrix m =
-            EGS_Matrix(EGS_Vector(ryy*rzz-ryz*rzy, ryz*rzx-ryx*rzz, ryx*rzy-ryy*rzx),
-                       EGS_Vector(rxz*rzy-rxy*rzz, rxx*rzz-rxz*rzx, rxy*rzx-rxx*rzy),
-                       EGS_Vector(rxy*ryz-rxz*ryy, rxz*ryx-rxx*ryz, rxx*ryy-rxy*ryx));
+            EGS_Matrix(EGS_Vector(ryy * rzz - ryz * rzy, ryz * rzx - ryx * rzz, ryx * rzy - ryy * rzx),
+                       EGS_Vector(rxz * rzy - rxy * rzz, rxx * rzz - rxz * rzx, rxy * rzx - rxx * rzy),
+                       EGS_Vector(rxy * ryz - rxz * ryy, rxz * ryx - rxx * ryz, rxx * ryy - rxy * ryx));
         return m.uniformScale(1 / d);
     }
-    EGS_Matrix uniformScale(EGS_Float factor) const {
-        return *this * EGS_Matrix(EGS_Vector(factor,0,0),
-                                  EGS_Vector(0,factor,0),
-                                  EGS_Vector(0,0,factor));
+    EGS_Matrix uniformScale(EGS_Float factor) const
+    {
+        return *this * EGS_Matrix(EGS_Vector(factor, 0, 0),
+                                  EGS_Vector(0, factor, 0),
+                                  EGS_Vector(0, 0, factor));
     }
-    EGS_Matrix operator*(const EGS_RotationMatrix &m) const {
+    EGS_Matrix operator*(const EGS_RotationMatrix& m) const
+    {
         return EGS_RotationMatrix::operator *(m);
     }
-    EGS_Vector operator*(const EGS_Vector &v) const {
+    EGS_Vector operator*(const EGS_Vector& v) const
+    {
         return EGS_RotationMatrix::operator *(v);
     }
-    void info() const {
+    void info() const
+    {
         egsInformation(" ---------- \n");
-        egsInformation("| %f %f %f |\n",rxx,rxy,rxz);
-        egsInformation("| %f %f %f |\n",ryx,ryy,ryz);
-        egsInformation("| %f %f %f |\n",rzx,rzy,rzz);
+        egsInformation("| %f %f %f |\n", rxx, rxy, rxz);
+        egsInformation("| %f %f %f |\n", ryx, ryy, ryz);
+        egsInformation("| %f %f %f |\n", rzx, rzy, rzz);
         egsInformation(" ---------- \n");
     }
 };
 
-class EGS_TrackView {
+class EGS_TrackView
+{
 
 public:
 
-    EGS_TrackView(const char *filename, vector<size_t> &ntracks);
+    EGS_TrackView(const char* filename, vector<size_t>& ntracks);
 
     ~EGS_TrackView();
 
-    bool renderTracks(int nx, int ny, EGS_Vector *image,
-                      EGS_ClippingPlane **planes, const int n_planes,
-                      int *abort_location=NULL);
+    bool renderTracks(int nx, int ny, EGS_Vector* image,
+                      EGS_ClippingPlane** planes, const int n_planes,
+                      int* abort_location = NULL);
 
     void setProjection(EGS_Vector pxo, EGS_Vector px_screen, EGS_Vector pv1_screen,
                        EGS_Vector pv2_screen, EGS_Float psx, EGS_Float psy);
 
-    void setParticleVisibility(int p, bool vis) {
-        if (p < 1 || p > 3) {
+    void setParticleVisibility(int p, bool vis)
+    {
+        if (p < 1 || p > 3)
+        {
             return;
         }
-        m_vis_particle[p-1] = vis;
+        m_vis_particle[p - 1] = vis;
     }
 
-    void setEnergyScaling(bool scaling) {
+    void setEnergyScaling(bool scaling)
+    {
         energyScaling = scaling;
     }
 
-    EGS_Float getMaxE() {
+    EGS_Float getMaxE()
+    {
         return m_maxE;
     }
 
-    void setTrackIndices(const vector<size_t> &trackInd) {
+    void setTrackIndices(const vector<size_t>& trackInd)
+    {
         trackIndices = trackInd;
     }
 
 protected:
-    void renderTrack(EGS_ParticleTrack::Vertex *const vs, int len, EGS_Float color, int nx, int ny, EGS_Vector *image);
+    void renderTrack(EGS_ParticleTrack::Vertex* const vs, int len, EGS_Float color, int nx, int ny, EGS_Vector* image);
 
     // High-level camera description
     EGS_Vector  x_screen;   // center of projected image
@@ -140,8 +154,8 @@ protected:
 
     bool        m_vis_particle[3];  // Extra make indices 1-3 incl.
 
-    EGS_ParticleTrack::Vertex  *m_points[3]; // Data from file
-    int        *m_index[3];       // Pointers to the starts of each track set
+    EGS_ParticleTrack::Vertex*  m_points[3]; // Data from file
+    int*        m_index[3];       // Pointers to the starts of each track set
     size_t      m_tracks[3];      // Number of tracks in each index
 
     vector<size_t> trackIndices;
@@ -149,8 +163,8 @@ protected:
     EGS_ClippingPlane m_planes[14]; // Clipping planes. 0-3 are for the viewport
     int         nplanes;          // number of planes used
 
-    EGS_Float   m_xmin,m_ymin,m_zmin, // Bounding box for particles
-                m_xmax,m_ymax,m_zmax;
+    EGS_Float   m_xmin, m_ymin, m_zmin, // Bounding box for particles
+                m_xmax, m_ymax, m_zmax;
 
     bool        m_failed,
                 energyScaling;   // Load error

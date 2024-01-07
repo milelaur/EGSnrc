@@ -54,103 +54,116 @@
 
 void inputRZImpl::validate_combo(const char* entry, QString error, QComboBox* cb)
 {
-	int iw = Get_Item_Index( entry, cb );
-	if ( iw < 0 ) {
-	    openErrors += error;
-	    iw = 0; // assuming first item is default
-	}
-	cb->setCurrentIndex ( iw );
+    int iw = Get_Item_Index(entry, cb);
+    if (iw < 0)
+    {
+        openErrors += error;
+        iw = 0; // assuming first item is default
+    }
+    cb->setCurrentIndex(iw);
 }
 
-void inputRZImpl::validate_radio(const char* entry, QString error, int count, QRadioButton **r)
+void inputRZImpl::validate_radio(const char* entry, QString error, int count, QRadioButton** r)
 {
- 	bool isValid = false;
-  QString sEntry = entry;
+    bool isValid = false;
+    QString sEntry = entry;
 
- 	for (int i = 0; i < count; i++)
-	{
-		if (sEntry.toUpper() == (r[i]->text()).toUpper()){
-    		r[i]->setChecked( true );
-    		isValid = true;
-    		break;
-   	}
-	}
+    for (int i = 0; i < count; i++)
+    {
+        if (sEntry.toUpper() == (r[i]->text()).toUpper())
+        {
+            r[i]->setChecked(true);
+            isValid = true;
+            break;
+        }
+    }
 
-	if (!isValid){
-	   openErrors += error;
-	}
+    if (!isValid)
+    {
+        openErrors += error;
+    }
 }
 
-QString inputRZImpl::TextRadioBChecked(int count, QRadioButton **r)
+QString inputRZImpl::TextRadioBChecked(int count, QRadioButton** r)
 {
- 	for (int i = 0; i < count; i++)
-	{
-	    if ( r[i]->isChecked()){
-	    	return r[i]->text();
-	    }
-	}
-	return r[0]->text();
+    for (int i = 0; i < count; i++)
+    {
+        if (r[i]->isChecked())
+        {
+            return r[i]->text();
+        }
+    }
+    return r[0]->text();
 
 }
 
 
 int inputRZImpl::Add_New_Item(const char* ItemName, QComboBox* cb)
 {
-	int index = 0;
-              QString sItemName = ItemName;
- 	bool ItemExist = false;
- 	for( int i = 0 ; i < cb->count() ; i++ ) {
-    	if ( sItemName.toUpper() == (cb->itemText(i)).toUpper() ) {
-	      index = i;
-	      ItemExist = true;
-	      break;
-	    }
-	}
+    int index = 0;
+    QString sItemName = ItemName;
+    bool ItemExist = false;
+    for (int i = 0 ; i < cb->count() ; i++)
+    {
+        if (sItemName.toUpper() == (cb->itemText(i)).toUpper())
+        {
+            index = i;
+            ItemExist = true;
+            break;
+        }
+    }
 
- 	if ( !ItemExist ) {
-	    cb->addItem( tr( ItemName ) );
-	}
-	return index;
+    if (!ItemExist)
+    {
+        cb->addItem(tr(ItemName));
+    }
+    return index;
 }
 
 int  inputRZImpl::Get_Item_Index(const char* ItemName, QComboBox* cb)
 {
-   QString sItemName = ItemName;
-   for( int i = 0 ; i < cb->count() ; i++ ) {
-       if ( sItemName.toUpper() == (cb->itemText(i)).toUpper() ) {
-		    	return i;
-       }
-   }
-   return -1;
+    QString sItemName = ItemName;
+    for (int i = 0 ; i < cb->count() ; i++)
+    {
+        if (sItemName.toUpper() == (cb->itemText(i)).toUpper())
+        {
+            return i;
+        }
+    }
+    return -1;
 }
 
 //  gives you first user code directory in the user's area if it exists
 // if it doesn't exist, sets current user code directory to HEN_HOUSE/usercode/
 // and if it neither exists, it sets the current directory to rHome
-QString inputRZImpl::GetCurrentDir( const QString& rCodeName, const QString& rHome, const QString& rHenHouse )
+QString inputRZImpl::GetCurrentDir(const QString& rCodeName, const QString& rHome, const QString& rHenHouse)
 {
-    QString current_dir  = rHome + QDir::separator()+ rCodeName + QDir::separator();
+    QString current_dir  = rHome + QDir::separator() + rCodeName + QDir::separator();
     QDir d(current_dir);
-    if ( !d.exists() ) {
-	     current_dir  = rHenHouse + QDir::separator() + rCodeName + QDir::separator();
-	     if ( !d.cd(current_dir) ) {
-	        current_dir = rHome;
-	     }
+    if (!d.exists())
+    {
+        current_dir  = rHenHouse + QDir::separator() + rCodeName + QDir::separator();
+        if (!d.cd(current_dir))
+        {
+            current_dir = rHome;
+        }
     }
 
     return current_dir;
 }
 
-QString inputRZImpl::GetPEGSDir( const QString& rCodeName, const QString& rHome, const QString& rHenHouse )
+QString inputRZImpl::GetPEGSDir(const QString& rCodeName, const QString& rHome, const QString& rHenHouse)
 {
-    QFile f1( rHome + rCodeName );
-    QFile f2( rHenHouse + rCodeName );
+    QFile f1(rHome + rCodeName);
+    QFile f2(rHenHouse + rCodeName);
 
-    if ( f1.open( QIODevice::ReadOnly ) ) {
+    if (f1.open(QIODevice::ReadOnly))
+    {
         f1.close();
         return rHome;
     }
-    else if ( f2.open( QIODevice::ReadOnly ) ) {
+    else if (f2.open(QIODevice::ReadOnly))
+    {
         f2.close();
         return rHenHouse;
     }
@@ -158,25 +171,30 @@ QString inputRZImpl::GetPEGSDir( const QString& rCodeName, const QString& rHome,
 
 }
 
-QString inputRZImpl::find_usercode_name( const QString& dir )
+QString inputRZImpl::find_usercode_name(const QString& dir)
 {
 //    QString name = "cavrznrc";
     QString name = "dosrznrc";
-    if ( dir.indexOf("cavrznrc",0,Qt::CaseInsensitive) >= 0 ) {
-	name = "cavrznrc";
+    if (dir.indexOf("cavrznrc", 0, Qt::CaseInsensitive) >= 0)
+    {
+        name = "cavrznrc";
     }
-    else if ( dir.indexOf("dosrznrc",0,Qt::CaseInsensitive)  >= 0 ) {
-	name = "dosrznrc";
+    else if (dir.indexOf("dosrznrc", 0, Qt::CaseInsensitive)  >= 0)
+    {
+        name = "dosrznrc";
     }
-    else if ( dir.indexOf("sprrznrc",0,Qt::CaseInsensitive) >= 0 ) {
-	name = "sprrznrc";
+    else if (dir.indexOf("sprrznrc", 0, Qt::CaseInsensitive) >= 0)
+    {
+        name = "sprrznrc";
     }
-    else if ( dir.indexOf("flurznrc",0,Qt::CaseInsensitive)  >= 0 ) {
-	name = "flurznrc";
+    else if (dir.indexOf("flurznrc", 0, Qt::CaseInsensitive)  >= 0)
+    {
+        name = "flurznrc";
     }
-    else{
-	//name = "cavrznrc";
-	name = "dosrznrc";
+    else
+    {
+        //name = "cavrznrc";
+        name = "dosrznrc";
     }
     return name;
 }
@@ -190,65 +208,70 @@ QString inputRZImpl::find_usercode_name( const QString& dir )
   it updates the user code name (by default cavrznrc) and ::update_files returns
   the directory name. If it is not a user code directory it returns an empty string.
 */
-QString inputRZImpl::get_initial_usercode_area( QString* name )
+QString inputRZImpl::get_initial_usercode_area(QString* name)
 {
-    QString pwd = QDir::currentPath ();
-    *name = find_usercode_name( pwd );
+    QString pwd = QDir::currentPath();
+    *name = find_usercode_name(pwd);
     QString tmpEGSdir = QString::null;
-    if ( ( pwd.contains( EGS_HOME ) > 0 && pwd.contains( *name ) > 0) ||
-        ( pwd.contains( HEN_HOUSE ) > 0 && pwd.contains( *name ) > 0) ){
-	tmpEGSdir = pwd + QDir::separator();
-     }
+    if ((pwd.contains(EGS_HOME) > 0 && pwd.contains(*name) > 0) ||
+            (pwd.contains(HEN_HOUSE) > 0 && pwd.contains(*name) > 0))
+    {
+        tmpEGSdir = pwd + QDir::separator();
+    }
     return tmpEGSdir;
 }
 
-void inputRZImpl::updateConfiguration( const QString & conf ){
- QString confi = conf;
- // Get current config file directory
- if (!HEN_HOUSE.isEmpty()){
-    CONFdir = ironIt( HEN_HOUSE     + QDir::separator() +
-                   (QString)"specs" + QDir::separator());
-    // Here we remove any path to the config file.
-    // It is mandatory to have it in $HEN_HOUSE/specs !!!!
-    confi.remove(0, 1+ ironIt(confi).lastIndexOf( QDir::separator()) );
- }
+void inputRZImpl::updateConfiguration(const QString& conf)
+{
+    QString confi = conf;
+// Get current config file directory
+    if (!HEN_HOUSE.isEmpty())
+    {
+        CONFdir = ironIt(HEN_HOUSE     + QDir::separator() +
+                         (QString)"specs" + QDir::separator());
+        // Here we remove any path to the config file.
+        // It is mandatory to have it in $HEN_HOUSE/specs !!!!
+        confi.remove(0, 1 + ironIt(confi).lastIndexOf(QDir::separator()));
+    }
 
- CONFcomboBox->setEditText( confi );
- Add_New_Item( confi.toLatin1().data(), CONFcomboBox );
+    CONFcomboBox->setEditText(confi);
+    Add_New_Item(confi.toLatin1().data(), CONFcomboBox);
 
- //QString f = conf;
- QString f=(conf.lastIndexOf(QDir::separator())<0)?ironIt(CONFdir+conf):conf;
+//QString f = conf;
+    QString f = (conf.lastIndexOf(QDir::separator()) < 0) ? ironIt(CONFdir + conf) : conf;
 
- HEN_HOUSE  = readVarFromConf( "HEN_HOUSE" );
- EGS_HOME   = readVarFromConf( "EGS_HOME" );
- if (!HEN_HOUSE.endsWith(QDir::separator())) HEN_HOUSE.append(QDir::separator());
- if (!EGS_HOME.endsWith(QDir::separator()))  EGS_HOME.append(QDir::separator());
- EGS_CONFIG = f;
+    HEN_HOUSE  = readVarFromConf("HEN_HOUSE");
+    EGS_HOME   = readVarFromConf("EGS_HOME");
+    if (!HEN_HOUSE.endsWith(QDir::separator())) HEN_HOUSE.append(QDir::separator());
+    if (!EGS_HOME.endsWith(QDir::separator()))  EGS_HOME.append(QDir::separator());
+    EGS_CONFIG = f;
 
 #ifdef WIN32
- if (!EGS_HOME.isEmpty())
-      EGS_HOME.replace( 0, 1,
-      QString(EGS_HOME[0]).toUpper());
- if (!EGS_CONFIG.isEmpty())         // make drive letter upper case
-      EGS_CONFIG.replace( 0, 1,     // to be consistent with Qt Widgets
-      QString(EGS_CONFIG[0]).toUpper());
+    if (!EGS_HOME.isEmpty())
+        EGS_HOME.replace(0, 1,
+                         QString(EGS_HOME[0]).toUpper());
+    if (!EGS_CONFIG.isEmpty())         // make drive letter upper case
+        EGS_CONFIG.replace(0, 1,      // to be consistent with Qt Widgets
+                           QString(EGS_CONFIG[0]).toUpper());
 #endif
 
 
- if ( HEN_HOUSE.isEmpty()){
-      confErrors +=
-      (QString)"<br>Variable HEN_HOUSE not found in configuration file"
-      + EGS_CONFIG + (QString)"<br>";
- }
- if ( EGS_HOME.isEmpty()){
-      confErrors +=
-      (QString)"<br>Variable EGS_HOME not found in configuration file"
-      + EGS_CONFIG + (QString)"<br>";
- }
+    if (HEN_HOUSE.isEmpty())
+    {
+        confErrors +=
+            (QString)"<br>Variable HEN_HOUSE not found in configuration file"
+            + EGS_CONFIG + (QString)"<br>";
+    }
+    if (EGS_HOME.isEmpty())
+    {
+        confErrors +=
+            (QString)"<br>Variable EGS_HOME not found in configuration file"
+            + EGS_CONFIG + (QString)"<br>";
+    }
 
- // Update config file directory
- CONFdir = ironIt( HEN_HOUSE        + QDir::separator() +
-                   QString("specs") + QDir::separator());
+// Update config file directory
+    CONFdir = ironIt(HEN_HOUSE        + QDir::separator() +
+                     QString("specs") + QDir::separator());
 
 //  //Update config file combo box if needed
 //  confi.remove(0, 1+ ironIt(confi).lastIndexOf( QDir::separator()) );
@@ -279,172 +302,185 @@ void inputRZImpl::updateConfiguration( const QString & conf ){
 */
 void inputRZImpl::SetInitialDir()
 {
- //qt3to4 -- BW
- //char SEP   = QDir::separator();
- QChar SEP   = QDir::separator();
+//qt3to4 -- BW
+//char SEP   = QDir::separator();
+    QChar SEP   = QDir::separator();
 
- EGS_CONFIG = ironIt( getenv( "EGS_CONFIG" ) );
- QString HHini  = ironIt( getenv( "HEN_HOUSE" ) );// get HEN_HOUSE from environment
- if (!HHini.isEmpty()) HEN_HOUSE = HHini; // If available from environment, initialize it.
+    EGS_CONFIG = ironIt(getenv("EGS_CONFIG"));
+    QString HHini  = ironIt(getenv("HEN_HOUSE"));    // get HEN_HOUSE from environment
+    if (!HHini.isEmpty()) HEN_HOUSE = HHini; // If available from environment, initialize it.
 #ifdef WIN32
- if (!EGS_CONFIG.isEmpty())         // make drive letter upper case
-      EGS_CONFIG.replace( 0, 1,     // to be consistent with Qt Widgets
-      QString(EGS_CONFIG[0]).toUpper());
+    if (!EGS_CONFIG.isEmpty())         // make drive letter upper case
+        EGS_CONFIG.replace(0, 1,      // to be consistent with Qt Widgets
+                           QString(EGS_CONFIG[0]).toUpper());
 #endif
 
- updateConfiguration(EGS_CONFIG);// gets HEN_HOUSE from config file
+    updateConfiguration(EGS_CONFIG);// gets HEN_HOUSE from config file
 
- GUI_HOME = ironIt( HEN_HOUSE + SEP + (QString)"doc" + SEP +
-                    (QString)"pirs801" + SEP );
+    GUI_HOME = ironIt(HEN_HOUSE + SEP + (QString)"doc" + SEP +
+                      (QString)"pirs801" + SEP);
 
- EGSdir = ironIt(  get_initial_usercode_area( &usercodename ) );
- if ( usercodename == "cavrznrc" )
-      usercode     = cavrznrc;
- else if ( usercodename == "dosrznrc" )
-      usercode     = dosrznrc;
- else if ( usercodename == "sprrznrc" )
-      usercode     = sprrznrc;
- else if ( usercodename == "flurznrc" )
-      usercode     = flurznrc;
+    EGSdir = ironIt(get_initial_usercode_area(&usercodename));
+    if (usercodename == "cavrznrc")
+        usercode     = cavrznrc;
+    else if (usercodename == "dosrznrc")
+        usercode     = dosrznrc;
+    else if (usercodename == "sprrznrc")
+        usercode     = sprrznrc;
+    else if (usercodename == "flurznrc")
+        usercode     = flurznrc;
 
- if ( EGSdir.isEmpty() )
-      EGSdir   = ironIt( GetCurrentDir( usercodename, EGS_HOME, HEN_HOUSE ) );
+    if (EGSdir.isEmpty())
+        EGSdir   = ironIt(GetCurrentDir(usercodename, EGS_HOME, HEN_HOUSE));
 
- SPECdir = ironIt( HEN_HOUSE +  SEP + "spectra" + SEP + "egsnrc");
- RDISTdir= ironIt( GetCurrentDir( usercodename   , EGS_HOME, HEN_HOUSE ) );
- PHSPdir = ironIt( GetCurrentDir( ""             , EGS_HOME, HEN_HOUSE ) );
- CONFdir = ironIt( HEN_HOUSE + SEP + "specs" +SEP );
+    SPECdir = ironIt(HEN_HOUSE +  SEP + "spectra" + SEP + "egsnrc");
+    RDISTdir = ironIt(GetCurrentDir(usercodename, EGS_HOME, HEN_HOUSE));
+    PHSPdir = ironIt(GetCurrentDir("", EGS_HOME, HEN_HOUSE));
+    CONFdir = ironIt(HEN_HOUSE + SEP + "specs" + SEP);
 
- PEGSdir = GetPEGSDir( PEGSfileName,
-           ironIt( HEN_HOUSE + SEP + "pegs4" + SEP + "data" + SEP ),
-           ironIt( EGS_HOME  + SEP + "pegs4" + SEP + "data" + SEP  ) );
- if ( PEGSdir.isEmpty() ){
-      PEGSdir  = ironIt( GetCurrentDir(
-                         (QString)"pegs4" + SEP + QString("data") + SEP,
-                         HEN_HOUSE, EGS_HOME ) ) ;
- }
+    PEGSdir = GetPEGSDir(PEGSfileName,
+                         ironIt(HEN_HOUSE + SEP + "pegs4" + SEP + "data" + SEP),
+                         ironIt(EGS_HOME  + SEP + "pegs4" + SEP + "data" + SEP));
+    if (PEGSdir.isEmpty())
+    {
+        PEGSdir  = ironIt(GetCurrentDir(
+                              (QString)"pegs4" + SEP + QString("data") + SEP,
+                              HEN_HOUSE, EGS_HOME)) ;
+    }
 
- The_Other_PEGS = EGS_HOME;
- The_Other_Area = EGS_HOME;
+    The_Other_PEGS = EGS_HOME;
+    The_Other_Area = EGS_HOME;
 
- egs_dir_changed = true;
- pegs_dir_changed = true;
+    egs_dir_changed = true;
+    pegs_dir_changed = true;
 
- is_pegsless = false;
+    is_pegsless = false;
 
- update_from_user_area();
- update_from_data_area();
+    update_from_user_area();
+    update_from_data_area();
 
- disconnect( InputFileComboBox, SIGNAL( editTextChanged(const QString&) ),
-             this, SLOT( EGSFileNameChanged(const QString&) ) );
+    disconnect(InputFileComboBox, SIGNAL(editTextChanged(const QString&)),
+               this, SLOT(EGSFileNameChanged(const QString&)));
 
- update_files( EGSdir, InputFileComboBox, "*.egsinp" );
+    update_files(EGSdir, InputFileComboBox, "*.egsinp");
 
- connect( InputFileComboBox, SIGNAL( editTextChanged(const QString&) ),
-          this, SLOT( EGSFileNameChanged(const QString&) ) );
+    connect(InputFileComboBox, SIGNAL(editTextChanged(const QString&)),
+            this, SLOT(EGSFileNameChanged(const QString&)));
 
- //this was not done before -- BW
- update_files( PEGSdir, pegs4ComboBox, "*.pegs4dat" );
- connect( pegs4ComboBox, SIGNAL( editTextChanged(const QString&) ),
-          this, SLOT( PEGSFileNameChanged(const QString&) ) );
+//this was not done before -- BW
+    update_files(PEGSdir, pegs4ComboBox, "*.pegs4dat");
+    connect(pegs4ComboBox, SIGNAL(editTextChanged(const QString&)),
+            this, SLOT(PEGSFileNameChanged(const QString&)));
 
- if (!HEN_HOUSE.endsWith(QDir::separator())) HEN_HOUSE += QDir::separator();
- if (!HHini.endsWith(QDir::separator()))     HHini     += QDir::separator();
- if (HEN_HOUSE.isEmpty() && !HHini.isEmpty()){
-   HEN_HOUSE = HHini;
-   confErrors +=
-      (QString)"<br>Using variable HEN_HOUSE set in your environment to "
-      + HEN_HOUSE + (QString)"<br>";
- }
- else if (HEN_HOUSE.isEmpty() && HHini.isEmpty()){
-   confErrors +=
-      (QString)"<br>Unknown HEN_HOUSE environment variable. Have you configured EGSnrc?"
-      + (QString)"<br>";
- }
- else if (HEN_HOUSE != HHini){
-   confErrors +=
-      tr("<br>HEN_HOUSE environment variable (") + HHini +
-      tr(") differs from the one in your configuration (") + HEN_HOUSE +
-      tr("). Using the latter! <br>");
- }
+    if (!HEN_HOUSE.endsWith(QDir::separator())) HEN_HOUSE += QDir::separator();
+    if (!HHini.endsWith(QDir::separator()))     HHini     += QDir::separator();
+    if (HEN_HOUSE.isEmpty() && !HHini.isEmpty())
+    {
+        HEN_HOUSE = HHini;
+        confErrors +=
+            (QString)"<br>Using variable HEN_HOUSE set in your environment to "
+            + HEN_HOUSE + (QString)"<br>";
+    }
+    else if (HEN_HOUSE.isEmpty() && HHini.isEmpty())
+    {
+        confErrors +=
+            (QString)"<br>Unknown HEN_HOUSE environment variable. Have you configured EGSnrc?"
+            + (QString)"<br>";
+    }
+    else if (HEN_HOUSE != HHini)
+    {
+        confErrors +=
+            tr("<br>HEN_HOUSE environment variable (") + HHini +
+            tr(") differs from the one in your configuration (") + HEN_HOUSE +
+            tr("). Using the latter! <br>");
+    }
 
 }
 
 // If exists, returns EGSnrc user code path in user area
 // If it doesn't, it creates it automatically warning the user
-QString inputRZImpl::GetUserCodeDir( const QString& rCodeName)
+QString inputRZImpl::GetUserCodeDir(const QString& rCodeName)
 {
-    QString current_dir  = ironIt( EGS_HOME + QDir::separator() + rCodeName + QDir::separator() );
+    QString current_dir  = ironIt(EGS_HOME + QDir::separator() + rCodeName + QDir::separator());
     QDir d(current_dir);
-    if ( !d.exists() ) {
-      QString info = current_dir;
-                   info += " hasn't been created yet ! ";
-                   info += "\nCreated automatically." ;
-       current_dir  = EGS_HOME;
-       if ( !d.cd(current_dir) ) {
-            if (!d.mkdir(current_dir)){
-	       info = "Could not create " +  current_dir + " !!!";
-	       info += "\n home area used instead";
-               QMessageBox::warning ( this, "Attention", info, 1, 0, 0 );
-               return  QDir::homePath();
-              }
-       }
-       current_dir  += rCodeName + QDir::separator();
-       if (!d.mkdir(current_dir)){
-	    info = "Could not create " +  current_dir + " !!!";
+    if (!d.exists())
+    {
+        QString info = current_dir;
+        info += " hasn't been created yet ! ";
+        info += "\nCreated automatically." ;
+        current_dir  = EGS_HOME;
+        if (!d.cd(current_dir))
+        {
+            if (!d.mkdir(current_dir))
+            {
+                info = "Could not create " +  current_dir + " !!!";
+                info += "\n home area used instead";
+                QMessageBox::warning(this, "Attention", info, 1, 0, 0);
+                return  QDir::homePath();
+            }
+        }
+        current_dir  += rCodeName + QDir::separator();
+        if (!d.mkdir(current_dir))
+        {
+            info = "Could not create " +  current_dir + " !!!";
             current_dir  = EGS_HOME;
-	    info += "\n" + current_dir + " used instead";
-            QMessageBox::warning ( this, "Attention", info, 1, 0, 0 );
+            info += "\n" + current_dir + " used instead";
+            QMessageBox::warning(this, "Attention", info, 1, 0, 0);
             return  current_dir;
-       }
-       QMessageBox::warning ( this, "Attention", info, 1, 0, 0 );
+        }
+        QMessageBox::warning(this, "Attention", info, 1, 0, 0);
     }
-    return ironIt( current_dir );
+    return ironIt(current_dir);
 }
 
-QString inputRZImpl::FToQStr( float Item )
+QString inputRZImpl::FToQStr(float Item)
 {
- QString str;
- //str = str.setNum( Item, 'f', 3 );
- str = str.setNum( Item, 'g', 5 );
- return str;
+    QString str;
+//str = str.setNum( Item, 'f', 3 );
+    str = str.setNum(Item, 'g', 5);
+    return str;
 }
 
-QString inputRZImpl::IntToQStr( int Item )
+QString inputRZImpl::IntToQStr(int Item)
 {
- QString str;
- str = str.setNum( Item, 10 );
- return str;
+    QString str;
+    str = str.setNum(Item, 10);
+    return str;
 }
 
-QStringList inputRZImpl::StrListToQStrList( v_string Item )
+QStringList inputRZImpl::StrListToQStrList(v_string Item)
 {
- QStringList str;
-  std::vector<string>::iterator iter( Item.begin() );
-  while ( iter != Item.end()) {
-      str << (*iter).c_str();
-      iter++;
-  }
- return str;
+    QStringList str;
+    std::vector<string>::iterator iter(Item.begin());
+    while (iter != Item.end())
+    {
+        str << (*iter).c_str();
+        iter++;
+    }
+    return str;
 }
 
 v_int inputRZImpl::assign_medium_number(v_string med_list, v_string med_entry)
 {
     v_int num;
-    std::vector<string>::iterator iter1( med_entry.begin() );
-    while ( iter1 != med_entry.end() ) {       // loops trough medium entries
-        std::vector<string>::iterator iter2( med_list.begin() );
+    std::vector<string>::iterator iter1(med_entry.begin());
+    while (iter1 != med_entry.end())           // loops trough medium entries
+    {
+        std::vector<string>::iterator iter2(med_list.begin());
         int i = 0;
         int index = 0;
-        while ( iter2 != med_list.end()  ) { // loops through list
-          if ( *iter1 == *iter2 ) {      // match found
-             index = i;// C-indexing since 0th element set to vacuum
-             //index = i+1;// Fortran indexing starts at 1!
-             break;
-          }
-        i++; iter2++;
+        while (iter2 != med_list.end())      // loops through list
+        {
+            if (*iter1 == *iter2)          // match found
+            {
+                index = i;// C-indexing since 0th element set to vacuum
+                //index = i+1;// Fortran indexing starts at 1!
+                break;
+            }
+            i++;
+            iter2++;
         }
-        num.push_back( index );
+        num.push_back(index);
         iter1++;
     }
 
@@ -453,16 +489,19 @@ v_int inputRZImpl::assign_medium_number(v_string med_list, v_string med_entry)
 }
 
 /* Expands first environment variable in a directory or file name */
-QString  inputRZImpl::expandEnvVar( const QString& dirStr ){
+QString  inputRZImpl::expandEnvVar(const QString& dirStr)
+{
     QString expDir = dirStr;
-    if (dirStr.contains("$")){
-        int s = expDir.indexOf("$")+1, e = expDir.indexOf(QDir::separator(),s);
-        QString envVar = ironIt( getenv( expDir.mid(s,e-s).toLatin1().data()));
-        QString left  = expDir.left(s-1),
+    if (dirStr.contains("$"))
+    {
+        int s = expDir.indexOf("$") + 1, e = expDir.indexOf(QDir::separator(), s);
+        QString envVar = ironIt(getenv(expDir.mid(s, e - s).toLatin1().data()));
+        QString left  = expDir.left(s - 1),
                 right = expDir.right(expDir.length() - e);
         expDir = QDir::cleanPath(left + envVar + right);
     }
-    else{
+    else
+    {
         expDir = dirStr;
     }
     return expDir;
@@ -479,15 +518,15 @@ and removes any existing cell widget through a call to clearCellWidget( )
 */
 //qt3to4 -- BW
 //void inputRZImpl::clear_table( Q3Table* t )
-void inputRZImpl::clear_table( QTableWidget* t )
+void inputRZImpl::clear_table(QTableWidget* t)
 {
     //qt3to4 -- BW
     //for ( int i = 0; i < t->numRows(); i++){
-        //for ( int j = 0; j < t->numCols(); j++ ){
-               //t->clearCell( i, j );
-               //if ( t->cellWidget( i, j ) )
-               //     t->clearCellWidget( i, j );
-        //}
+    //for ( int j = 0; j < t->numCols(); j++ ){
+    //t->clearCell( i, j );
+    //if ( t->cellWidget( i, j ) )
+    //     t->clearCellWidget( i, j );
+    //}
     //}
     t->clearContents();
 }
@@ -499,51 +538,54 @@ the cell's item to null
 */
 //qt3to4 -- BW
 //void inputRZImpl::clear_col( Q3Table* t, int col)
-void inputRZImpl::clear_col( QTableWidget* t, int col)
+void inputRZImpl::clear_col(QTableWidget* t, int col)
 {
     //qt3to4 -- BW
     //for ( int row = 0; row < t->numRows(); row++)  {
-    for ( int row = 0; row < t->rowCount(); row++)  {
-         //t->clearCellWidget( row, col);
-         //t->setText( row, col,"");
+    for (int row = 0; row < t->rowCount(); row++)
+    {
+        //t->clearCellWidget( row, col);
+        //t->setText( row, col,"");
         //qt3to4 -- BW
         //t->clearCell( row, col );
         //if ( t->cellWidget( row, col ) )
-             //qt3to4 -- BW
-             //t->clearCellWidget( row, col );
-             //t->removeCellWidget(row,col);
-        t->setItem(row,col,0);
+        //qt3to4 -- BW
+        //t->clearCellWidget( row, col );
+        //t->removeCellWidget(row,col);
+        t->setItem(row, col, 0);
     }
 }
 
 void inputRZImpl::update_SprOutTableHeaders()
 {
 
-	//sproutHeader->setUpdatesEnabled( false );
-	//sproutTable->horizontalHeader()->setUpdatesEnabled( false );
+    //sproutHeader->setUpdatesEnabled( false );
+    //sproutTable->horizontalHeader()->setUpdatesEnabled( false );
 
-	if ( (sproutComboBox->currentText()).toLower() == "regions"){
-           //qt3to4 -- BW
-	   //sproutTable->horizontalHeader()->setLabel(0,"start region");
-	   //sproutTable->horizontalHeader()->setLabel(1,"stop region");
-           sproutTable->setHorizontalHeaderItem(0,new QTableWidgetItem("start region"));
-           sproutTable->setHorizontalHeaderItem(1,new QTableWidgetItem("stop region"));
-	}
-	else {
-           //qt3to4 -- BW
-	   //sproutTable->horizontalHeader()->setLabel(0,"cylinders");
-	   //sproutTable->horizontalHeader()->setLabel(1,"slabs");
-           sproutTable->setHorizontalHeaderItem(0,new QTableWidgetItem("cylinders"));
-           sproutTable->setHorizontalHeaderItem(1,new QTableWidgetItem("slabs"));
-
-	}
-
-	//sproutTable->horizontalHeader()->setUpdatesEnabled( true );
-
+    if ((sproutComboBox->currentText()).toLower() == "regions")
+    {
         //qt3to4 -- BW
-	//sproutTable->showColumn(0);
-	//sproutTable->showColumn(1);
-        sproutTable->setColumnHidden(0,false);
-        sproutTable->setColumnHidden(1,false);;
+        //sproutTable->horizontalHeader()->setLabel(0,"start region");
+        //sproutTable->horizontalHeader()->setLabel(1,"stop region");
+        sproutTable->setHorizontalHeaderItem(0, new QTableWidgetItem("start region"));
+        sproutTable->setHorizontalHeaderItem(1, new QTableWidgetItem("stop region"));
+    }
+    else
+    {
+        //qt3to4 -- BW
+        //sproutTable->horizontalHeader()->setLabel(0,"cylinders");
+        //sproutTable->horizontalHeader()->setLabel(1,"slabs");
+        sproutTable->setHorizontalHeaderItem(0, new QTableWidgetItem("cylinders"));
+        sproutTable->setHorizontalHeaderItem(1, new QTableWidgetItem("slabs"));
+
+    }
+
+    //sproutTable->horizontalHeader()->setUpdatesEnabled( true );
+
+    //qt3to4 -- BW
+    //sproutTable->showColumn(0);
+    //sproutTable->showColumn(1);
+    sproutTable->setColumnHidden(0, false);
+    sproutTable->setColumnHidden(1, false);;
 
 }

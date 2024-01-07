@@ -44,22 +44,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_PHSP_SCORING_DLL
-        #define EGS_PHSP_SCORING_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_PHSP_SCORING_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_PHSP_SCORING_LOCAL
+#ifdef BUILD_PHSP_SCORING_DLL
+#define EGS_PHSP_SCORING_EXPORT __declspec(dllexport)
+#else
+#define EGS_PHSP_SCORING_EXPORT __declspec(dllimport)
+#endif
+#define EGS_PHSP_SCORING_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_PHSP_SCORING_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_PHSP_SCORING_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_PHSP_SCORING_EXPORT
-        #define EGS_PHSP_SCORING_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_PHSP_SCORING_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_PHSP_SCORING_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_PHSP_SCORING_EXPORT
+#define EGS_PHSP_SCORING_LOCAL
+#endif
 
 #endif
 
@@ -247,33 +247,42 @@ particles previously scored in "test" would not be scored by "test2."  Phase spa
 to test2.egsphsp1.
 */
 
-class EGS_PHSP_SCORING_EXPORT EGS_PhspScoring : public EGS_AusgabObject {
+class EGS_PHSP_SCORING_EXPORT EGS_PhspScoring : public EGS_AusgabObject
+{
 
 public:
 
-    EGS_PhspScoring(const string &Name="", EGS_ObjectFactory *f = 0);
+    EGS_PhspScoring(const string& Name = "", EGS_ObjectFactory* f = 0);
 
     ~EGS_PhspScoring();
 
-    int processEvent(EGS_Application::AusgabCall iarg) {
+    int processEvent(EGS_Application::AusgabCall iarg)
+    {
         //only score if particle has correct charge
-        if (ocharge==0 || 1+abs(app->top_p.q)==ocharge) {
+        if (ocharge == 0 || 1 + abs(app->top_p.q) == ocharge)
+        {
             EGS_Vector x = app->top_p.x;
             int ir = app->top_p.ir;
             int latch = app->top_p.latch;
             //only score if: 1) it has not been scored before or
             //2) we are scoring multiple crossers (EGSnrc format only)
-            if (!(latch & bsmc()) || (oformat==0 && score_mc)) {
-                if (score_type==0) {  //using scoring geometry
-                    if (iarg == 0) {
+            if (!(latch & bsmc()) || (oformat == 0 && score_mc))
+            {
+                if (score_type == 0)  //using scoring geometry
+                {
+                    if (iarg == 0)
+                    {
                         phsp_before = phsp_geom->isInside(x);
                     }
 
-                    if (iarg == 5) {
+                    if (iarg == 5)
+                    {
                         phsp_after = phsp_geom->isInside(x);
-                        if (phsp_after != phsp_before) {
+                        if (phsp_after != phsp_before)
+                        {
                             if (scoredir == 0 || (scoredir == 1 && phsp_after) ||
-                                    (scoredir == 2 && phsp_before)) {
+                                    (scoredir == 2 && phsp_before))
+                            {
                                 storeParticle(current_case);
                             }
                             //set bit 31 to flag this as having been scored
@@ -283,16 +292,22 @@ public:
                         }
                     }
                 }
-                else if (score_type==1) { //pairs of exit/entry regions
-                    if (iarg == 0) {
+                else if (score_type == 1) //pairs of exit/entry regions
+                {
+                    if (iarg == 0)
+                    {
                         ir_before = ir;
                     }
 
-                    if (iarg == 5) {
+                    if (iarg == 5)
+                    {
                         ir_after = ir;
-                        if (from_to[ir_before].size()>0 && ir_before != ir_after) {
-                            for (int i=0; i< from_to[ir_before].size(); i++) {
-                                if (ir_after == from_to[ir_before][i]) {
+                        if (from_to[ir_before].size() > 0 && ir_before != ir_after)
+                        {
+                            for (int i = 0; i < from_to[ir_before].size(); i++)
+                            {
+                                if (ir_after == from_to[ir_before][i])
+                                {
                                     storeParticle(current_case);
                                     latch = (latch | bsmc());
                                     app->setLatch(latch);
@@ -307,24 +322,32 @@ public:
         return 0;
     };
 
-    int processEvent(EGS_Application::AusgabCall iarg, int ir) {
+    int processEvent(EGS_Application::AusgabCall iarg, int ir)
+    {
         //same as above, we don't need the region no.
-        if (ocharge==0 || 1+abs(app->top_p.q)==ocharge) {
+        if (ocharge == 0 || 1 + abs(app->top_p.q) == ocharge)
+        {
             EGS_Vector x = app->top_p.x;
             int latch = app->top_p.latch;
             //only score if: 1) it has not been scored before or
             //2) we are scoring multiple crossers (EGSnrc format only)
-            if (!(latch & bsmc()) || (oformat==0 && score_mc)) {
-                if (score_type==0) {  //using scoring geometry
-                    if (iarg == 0) {
+            if (!(latch & bsmc()) || (oformat == 0 && score_mc))
+            {
+                if (score_type == 0)  //using scoring geometry
+                {
+                    if (iarg == 0)
+                    {
                         phsp_before = phsp_geom->isInside(x);
                     }
 
-                    if (iarg == 5) {
+                    if (iarg == 5)
+                    {
                         phsp_after = phsp_geom->isInside(x);
-                        if (phsp_after != phsp_before) {
+                        if (phsp_after != phsp_before)
+                        {
                             if (scoredir == 0 || (scoredir == 1 && phsp_after) ||
-                                    (scoredir == 2 && phsp_before)) {
+                                    (scoredir == 2 && phsp_before))
+                            {
                                 storeParticle(current_case);
                             }
                             //set bit 31 to flag this as having been scored
@@ -334,16 +357,22 @@ public:
                         }
                     }
                 }
-                else if (score_type==1) { //pairs of exit/entry regions
-                    if (iarg == 0) {
+                else if (score_type == 1) //pairs of exit/entry regions
+                {
+                    if (iarg == 0)
+                    {
                         ir_before = ir;
                     }
 
-                    if (iarg == 5) {
+                    if (iarg == 5)
+                    {
                         ir_after = ir;
-                        if (from_to[ir_before].size()>0 && ir_before != ir_after) {
-                            for (int i=0; i< from_to[ir_before].size(); i++) {
-                                if (ir_after == from_to[ir_before][i]) {
+                        if (from_to[ir_before].size() > 0 && ir_before != ir_after)
+                        {
+                            for (int i = 0; i < from_to[ir_before].size(); i++)
+                            {
+                                if (ir_after == from_to[ir_before][i])
+                                {
                                     storeParticle(current_case);
                                     latch = (latch | bsmc());
                                     app->setLatch(latch);
@@ -358,63 +387,79 @@ public:
         return 0;
     };
 
-    bool needsCall(EGS_Application::AusgabCall iarg) const {
-        if (iarg == 0 || iarg == 5) {
+    bool needsCall(EGS_Application::AusgabCall iarg) const
+    {
+        if (iarg == 0 || iarg == 5)
+        {
             return true;
         }
-        else {
+        else
+        {
             return false;
         }
     };
 
     //below gets called from startNewShower if current_case != last_case
     //don't update last_case yet
-    void setCurrentCase(EGS_I64 ncase) {
-        current_case=ncase;
+    void setCurrentCase(EGS_I64 ncase)
+    {
+        current_case = ncase;
     };
 
-    void setGeom(EGS_BaseGeometry *phspgeom) {
-        score_type=0;
+    void setGeom(EGS_BaseGeometry* phspgeom)
+    {
+        score_type = 0;
         phsp_geom = phspgeom;
     }
 
-    void setEntryExitReg(const vector <int> from_reg, const vector <int> to_reg) {
-        score_type=1;
-        fromreg=from_reg;
-        toreg=to_reg;
+    void setEntryExitReg(const vector <int> from_reg, const vector <int> to_reg)
+    {
+        score_type = 1;
+        fromreg = from_reg;
+        toreg = to_reg;
     }
 
-    void setOType(const int phspouttype) {
+    void setOType(const int phspouttype)
+    {
         oformat = phspouttype;
     }
 
     //set output directory
-    void setOutDir(const string outdir) {
+    void setOutDir(const string outdir)
+    {
         phspoutdir =  outdir;
     }
 
-    void setParticleType(const int ptype) {
+    void setParticleType(const int ptype)
+    {
         ocharge = ptype;
     }
 
-    void setScoreDir(const int sdir) {
+    void setScoreDir(const int sdir)
+    {
         scoredir = sdir;
     }
 
-    void setMuScore(const int imuscore) {
-        if (imuscore == 1) {
+    void setMuScore(const int imuscore)
+    {
+        if (imuscore == 1)
+        {
             score_mu = true;
         }
-        else {
+        else
+        {
             score_mu = false;
         }
     }
 
-    void setScoreMC(const int iscoremc) {
-        if (iscoremc==1) {
+    void setScoreMC(const int iscoremc)
+    {
+        if (iscoremc == 1)
+        {
             score_mc = true;
         }
-        else {
+        else
+        {
             score_mc = false;
         }
     }
@@ -423,10 +468,12 @@ public:
     //set array element 0/1/2 of xyz_is_constant equal to true
     //if scoring at a constant X/Y/Z value and store the
     //constant value in element 0/1/2 of array xyzscore
-    void setXYZconst(bool xyzisconst[3], float xyzconst[3]) {
-        for (int i=0; i<3; i++) {
+    void setXYZconst(bool xyzisconst[3], float xyzconst[3])
+    {
+        for (int i = 0; i < 3; i++)
+        {
             xyz_is_const[i] = xyzisconst[i];
-            xyzscore[i]=xyzconst[i];
+            xyzscore[i] = xyzconst[i];
         }
     }
 
@@ -436,44 +483,52 @@ public:
 
     void openPhspFile() const;
 
-    void setApplication(EGS_Application *App);
+    void setApplication(EGS_Application* App);
 
     void reportResults();
 
-    bool storeState(ostream &data) const;
-    bool setState(istream &data);
-    bool addState(istream &data);
+    bool storeState(ostream& data) const;
+    bool setState(istream& data);
+    bool addState(istream& data);
 
 protected:
 
-    struct Particle {
+    struct Particle
+    {
         int  q, latch;
         EGS_Float E, x, y, z, u, v, w, wt, mu;
     };
 
     //functions, struct and variables used to write EGSnrc format phsp files
-    static unsigned int bclr() {
+    static unsigned int bclr()
+    {
         return ~((1 << 30) | (1 << 29));
     }
-    static unsigned int bsqe() {
+    static unsigned int bsqe()
+    {
         return (1 << 30);
     }
-    static unsigned int bsqp() {
+    static unsigned int bsqp()
+    {
         return (1 << 29);
     }
-    struct egs_phsp_write_struct {
+    struct egs_phsp_write_struct
+    {
         int   latch;
         float E;
-        float x,y;
-        float u,v;
+        float x, y;
+        float u, v;
         float wt;
         egs_phsp_write_struct() {};
-        egs_phsp_write_struct(const Particle &p) {
+        egs_phsp_write_struct(const Particle& p)
+        {
             latch = (p.latch & bclr());
-            if (p.q == -1) {
+            if (p.q == -1)
+            {
                 latch = (latch | bsqe());
             }
-            else if (p.q == 1) {
+            else if (p.q == 1)
+            {
                 latch = (latch | bsqp());
             }
             E = p.E;
@@ -497,16 +552,17 @@ protected:
     bool xyz_is_const[3]; //set to true if scoring at constant X/Y/Z
     float xyzscore[3]; //constant X/Y/Z scoring values
     int len; //length of name
-    char *phsp_fname_char; //need file name in char format
+    char* phsp_fname_char; //need file name in char format
     bool score_mu; //set to true if scoring mu
     float pmu; //mu value associated with particle
 
     //back to variables common to EGSnrc and IAEA formats
 
-    Particle *p_stack; //the stored particle stack
+    Particle* p_stack; //the stored particle stack
 
     //below used to set bit 31 to denote the particle has been scored
-    static unsigned int bsmc() {
+    static unsigned int bsmc()
+    {
         return (1 << 31);
     }
 
@@ -537,7 +593,7 @@ protected:
     //1 if using pairs of exit/entry regions
 
     //for method 1: scoring using predefined geometry
-    EGS_BaseGeometry *phsp_geom; //geometry on entrance to/exit from which phase space data is scored
+    EGS_BaseGeometry* phsp_geom; //geometry on entrance to/exit from which phase space data is scored
     int scoredir;           //scoring direction: 0--on entry and exit; 1--on entry; 2--on exit
     bool phsp_before; //true if inside scoring geometry before step
     bool phsp_after;  //true if inside scoring geometry after step
@@ -545,7 +601,7 @@ protected:
     //for method 2: scoring using exit/entry region pairs
     vector <int> fromreg;          //array of exit regions
     vector <int> toreg;            //array of entry regions
-    vector <vector <int> > from_to;   //from a given global exit region, an array of possible entry regions
+    vector <vector <int>> from_to;   //from a given global exit region, an array of possible entry regions
     int ir_before, ir_after;       //reg. no. before and after step
 };
 

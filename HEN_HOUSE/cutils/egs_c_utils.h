@@ -58,38 +58,38 @@ extern "C" {
     name.
  */
 #define egsCreateControlFile F77_OBJ_(egs_create_control_file,EGS_CREATE_CONTROL_FILE)
-void egsCreateControlFile(const char *fname, int *status, int len);
+void egsCreateControlFile(const char* fname, int* status, int len);
 
 /*! Open the job control file.
     This function is to be called from all other jobs
  */
 #define egsOpenControlFile F77_OBJ_(egs_open_control_file,EGS_OPEN_CONTROL_FILE)
-void egsOpenControlFile(const char *fname, int *status, int len);
+void egsOpenControlFile(const char* fname, int* status, int len);
 
 /*! Close the job control file.
  */
 #define egsCloseControlFile F77_OBJ_(egs_close_control_file,EGS_CLOSE_CONTROL_FILE)
-void egsCloseControlFile(int *status);
+void egsCloseControlFile(int* status);
 
 /*! Lock the control file.
     This function is to be called before performing I/O
     operations on the job control file.
  */
 #define egsLockControlFile F77_OBJ_(egs_lock_control_file,EGS_LOCK_CONTROL_FILE)
-void egsLockControlFile(int *status);
+void egsLockControlFile(int* status);
 
 /*! Unlock the control file.
     This function is to be called after I/O operations
     on the job control file are done.
  */
 #define egsUnlockControlFile F77_OBJ_(egs_unlock_control_file,EGS_UNLOCK_CONTROL_FILE)
-void egsUnlockControlFile(int *status);
+void egsUnlockControlFile(int* status);
 
 /*! Rewind the job control file
     If the file is not locked, lock it first
  */
 #define egsRewindControlFile F77_OBJ_(egs_rewind_control_file,EGS_REWIND_CONTROL_FILE)
-void egsRewindControlFile(int *status);
+void egsRewindControlFile(int* status);
 
 /*! Write to the job control file.
     File should be locked prior to using this function.
@@ -97,30 +97,30 @@ void egsRewindControlFile(int *status);
     with the length of the buffer.
  */
 #define egsWriteControlFile F77_OBJ_(egs_write_control_file,EGS_WRITE_CONTROL_FILE)
-void egsWriteControlFile(const char *buf, const int *n,
-                                            int *status, int len);
+void egsWriteControlFile(const char* buf, const int* n,
+                         int* status, int len);
 /*! Read from the job control file *n bytes into buf.
  */
 #define egsReadControlFile F77_OBJ_(egs_read_control_file,EGS_READ_CONTROL_FILE)
-void egsReadControlFile(char *buf, const int *n, int *status, int len);
+void egsReadControlFile(char* buf, const int* n, int* status, int len);
 
 /*! Remove a file */
 #define egsRemoveFile F77_OBJ_(egs_remove_file,EGS_REMOVE_FILE)
-void egsRemoveFile(const char *fname, int *status, int len);
+void egsRemoveFile(const char* fname, int* status, int len);
 
 /*! Sleep for *secs seconds */
 #define egsSleep F77_OBJ_(egs_sleep,EGS_SLEEP)
-void egsSleep(const int *secs);
+void egsSleep(const int* secs);
 
 /*! Print last error to stderr (just calls perror) */
 #define egsPerror F77_OBJ_(egs_perror,EGS_PERROR)
-void egsPerror(const char *msg, int len);
+void egsPerror(const char* msg, int len);
 
 /**************************** other stuff **********************************/
 
 /*! Convert float to ASCII string */
 #define egsFtoString F77_OBJ_(egs_ftostring,EGS_FTOSTRING)
-void egsFtoString(const int *size, int *n, char *str,void *a, int len);
+void egsFtoString(const int* size, int* n, char* str, void* a, int len);
 
 #ifdef __cplusplus
 }

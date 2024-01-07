@@ -35,7 +35,8 @@
 #include <string>
 using std::string;
 
-struct EGS_UserColor {
+struct EGS_UserColor
+{
     string   medname;
     int      red;
     int      green;

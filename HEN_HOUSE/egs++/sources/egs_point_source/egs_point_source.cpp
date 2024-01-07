@@ -37,38 +37,48 @@
 #include "egs_point_source.h"
 #include "egs_input.h"
 
-EGS_PointSource::EGS_PointSource(EGS_Input *input, EGS_ObjectFactory *f) :
-    EGS_BaseSimpleSource(input,f), xo(), valid(true) {
+EGS_PointSource::EGS_PointSource(EGS_Input* input, EGS_ObjectFactory* f) :
+    EGS_BaseSimpleSource(input, f), xo(), valid(true)
+{
     vector<EGS_Float> pos;
-    int err = input->getInput("position",pos);
-    if (!err && pos.size() == 3) {
-        xo = EGS_Vector(pos[0],pos[1],pos[2]);
+    int err = input->getInput("position", pos);
+    if (!err && pos.size() == 3)
+    {
+        xo = EGS_Vector(pos[0], pos[1], pos[2]);
     }
-    else {
+    else
+    {
         egsWarning("EGS_PointSource: missing/wrong 'position' input\n");
         valid = false;
     }
     setUp();
 }
 
-void EGS_PointSource::setUp() {
+void EGS_PointSource::setUp()
+{
     otype = "EGS_PointSource";
-    if (!isValid()) {
+    if (!isValid())
+    {
         description = "Invalid point source";
     }
-    else {
+    else
+    {
         description = "Point source with ";
         description += s->getType();
-        if (q == -1) {
+        if (q == -1)
+        {
             description += ", electrons";
         }
-        else if (q == 0) {
+        else if (q == 0)
+        {
             description += ", photons";
         }
-        else if (q == 1) {
+        else if (q == 1)
+        {
             description += ", positrons";
         }
-        else {
+        else
+        {
             description += ", unknown particle type";
         }
     }
@@ -77,9 +87,10 @@ void EGS_PointSource::setUp() {
 
 extern "C" {
 
-    EGS_POINT_SOURCE_EXPORT EGS_BaseSource *createSource(EGS_Input *input,
-            EGS_ObjectFactory *f) {
-        return createSourceTemplate<EGS_PointSource>(input,f,"point source");
+    EGS_POINT_SOURCE_EXPORT EGS_BaseSource* createSource(EGS_Input* input,
+        EGS_ObjectFactory* f)
+    {
+        return createSourceTemplate<EGS_PointSource>(input, f, "point source");
     }
 
 }

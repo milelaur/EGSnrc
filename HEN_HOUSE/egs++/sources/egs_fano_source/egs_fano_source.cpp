@@ -41,67 +41,79 @@
 #include "egs_math.h"
 #include <sstream>
 
-EGS_FanoSource::EGS_FanoSource(EGS_Input *input,
-                               EGS_ObjectFactory *f) :
-    EGS_BaseSimpleSource(input,f), shape(0), geom(0),
-    regions(0), nrs(0), min_theta(0), max_theta(M_PI), min_phi(0), max_phi(2*M_PI),
-    max_mass_density(0.0) {
+EGS_FanoSource::EGS_FanoSource(EGS_Input* input,
+                               EGS_ObjectFactory* f) :
+    EGS_BaseSimpleSource(input, f), shape(0), geom(0),
+    regions(0), nrs(0), min_theta(0), max_theta(M_PI), min_phi(0), max_phi(2 * M_PI),
+    max_mass_density(0.0)
+{
 
     vector<EGS_Float> pos;
-    EGS_Input *ishape = input->takeInputItem("shape");
-    if (ishape) {
+    EGS_Input* ishape = input->takeInputItem("shape");
+    if (ishape)
+    {
         egsWarning("EGS_FanoSource: trying to construct the shape\n");
         shape = EGS_BaseShape::createShape(ishape);
         delete ishape;
     }
-    if (!shape) {
+    if (!shape)
+    {
         string sname;
-        int err = input->getInput("shape name",sname);
+        int err = input->getInput("shape name", sname);
         if (err)
             egsWarning("EGS_FanoSource: missing/wrong inline shape "
                        "definition and missing wrong 'shape name' input\n");
-        else {
+        else
+        {
             shape = EGS_BaseShape::getShape(sname);
             if (!shape) egsWarning("EGS_FanoSource: a shape named %s"
                                        " does not exist\n");
         }
     }
     string geom_name;
-    int err = input->getInput("geometry",geom_name);
-    if (!err) {
+    int err = input->getInput("geometry", geom_name);
+    if (!err)
+    {
         geom = EGS_BaseGeometry::getGeometry(geom_name);
         if (!geom) egsFatal("EGS_FanoSource: no geometry named %s in input file!\n",
                                 geom_name.c_str());
-        else {
+        else
+        {
             int errF = input->getInput("max mass density", max_mass_density);
-            if (errF) {
+            if (errF)
+            {
                 egsFatal("EGS_FanoSource: A Fano source requires a maximum density input.\n");
             }
         }
     }
-    else {
+    else
+    {
         egsFatal("EGS_FanoSource: A Fano source requires a valid geometry name.\n");
     }
 
     EGS_Float tmp_theta;
     err = input->getInput("min theta", tmp_theta);
-    if (!err) {
-        min_theta = tmp_theta/180.0*M_PI;
+    if (!err)
+    {
+        min_theta = tmp_theta / 180.0 * M_PI;
     }
 
     err = input->getInput("max theta", tmp_theta);
-    if (!err) {
-        max_theta = tmp_theta/180.0*M_PI;
+    if (!err)
+    {
+        max_theta = tmp_theta / 180.0 * M_PI;
     }
 
     err = input->getInput("min phi", tmp_theta);
-    if (!err) {
-        min_phi = tmp_theta/180.0*M_PI;
+    if (!err)
+    {
+        min_phi = tmp_theta / 180.0 * M_PI;
     }
 
     err = input->getInput("max phi", tmp_theta);
-    if (!err) {
-        max_phi = tmp_theta/180.0*M_PI;
+    if (!err)
+    {
+        max_phi = tmp_theta / 180.0 * M_PI;
     }
 
     buf_1 = cos(min_theta);
@@ -110,33 +122,41 @@ EGS_FanoSource::EGS_FanoSource(EGS_Input *input,
     setUp();
 }
 
-void EGS_FanoSource::setUp() {
+void EGS_FanoSource::setUp()
+{
     otype = "EGS_FanoSource";
-    if (!isValid()) {
+    if (!isValid())
+    {
         description = "Invalid Fano source";
     }
-    else {
+    else
+    {
         description = "Fano source from a shape of type ";
         description += shape->getObjectType();
         description += " with ";
         description += s->getType();
-        if (q == -1) {
+        if (q == -1)
+        {
             description += ", electrons";
         }
-        else if (q == 0) {
+        else if (q == 0)
+        {
             description += ", photons";
         }
-        else if (q == 1) {
+        else if (q == 1)
+        {
             description += ", positrons";
         }
-        else {
+        else
+        {
             description += ", unknown particle type";
         }
         ostringstream str_density;
         str_density << scientific << max_mass_density;
         description += "\n maximum density = " + str_density.str() + "  g/cm3";
         description += "\n Fano geometry   = " + geom->getName();
-        if (geom) {
+        if (geom)
+        {
             geom->ref();
         }
     }
@@ -144,8 +164,9 @@ void EGS_FanoSource::setUp() {
 
 extern "C" {
 
-    EGS_FANO_SOURCE_EXPORT EGS_BaseSource *createSource(EGS_Input *input,
-            EGS_ObjectFactory *f) {
+    EGS_FANO_SOURCE_EXPORT EGS_BaseSource* createSource(EGS_Input* input,
+        EGS_ObjectFactory* f)
+    {
         return createSourceTemplate<EGS_FanoSource>(input, f, "fano source");
     }
 

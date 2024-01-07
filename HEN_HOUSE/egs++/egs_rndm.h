@@ -64,7 +64,8 @@ class EGS_Input;
  * \todo Should not EGS_RandomGenerator be derived from EGS_Object,
  * so that dynamically loading RNG DSOs is automatically implemented?
  */
-class EGS_EXPORT EGS_RandomGenerator {
+class EGS_EXPORT EGS_RandomGenerator
+{
 
 public:
 
@@ -75,14 +76,15 @@ public:
      * #ip is set to point beyond the array (so that at the next call
      * of getUniform() #rarray gets filled via a call to fillArray() ).
      */
-    EGS_RandomGenerator(int n=128);
+    EGS_RandomGenerator(int n = 128);
 
     /*! \brief Copy constructor.
      *
      * Being able to save the state of a RNG is useful in advanced applications
      * such as correlated sampling.
      */
-    EGS_RandomGenerator(const EGS_RandomGenerator &r) : np(0) {
+    EGS_RandomGenerator(const EGS_RandomGenerator& r) : np(0)
+    {
         copyBaseState(r);
     };
 
@@ -90,7 +92,8 @@ public:
      *
      * Deallocates the memory pointed to by #rarray.
      */
-    virtual ~EGS_RandomGenerator() {
+    virtual ~EGS_RandomGenerator()
+    {
         delete [] rarray;
     };
 
@@ -100,9 +103,11 @@ public:
      * Uses the virtual method fillArray() to fill the array #rarray,
      * if the pointer #ip points beyond the last element of #rarray.
      */
-    inline EGS_Float getUniform() {
-        if (ip >= np) {
-            fillArray(np,rarray);
+    inline EGS_Float getUniform()
+    {
+        if (ip >= np)
+        {
+            fillArray(np, rarray);
             ip = 0;
         }
         return rarray[ip++];
@@ -113,7 +118,8 @@ public:
      * This is useful for simulation diagnostics purposes.
      * \sa numbersUsed()
      */
-    EGS_I64 numbersGenerated() const {
+    EGS_I64 numbersGenerated() const
+    {
         return count;
     };
 
@@ -122,8 +128,9 @@ public:
      * This is normally different than numbersGenerated() as some of the
      * numbers in the array #rarray may not have been used yet.
      */
-    EGS_I64 numbersUsed() const {
-        return ip<np ? count - np + ip : count;
+    EGS_I64 numbersUsed() const
+    {
+        return ip < np ? count - np + ip : count;
     };
 
     /*! \brief Sets \a cphi and \a sphi to the cosine and sine of a random
@@ -135,21 +142,23 @@ public:
      * 0 and \f$2 \pi \f$ and \a cphi and \a sphi are calculated using the
      * cosine and sine functions.
      */
-    inline void getAzimuth(EGS_Float &cphi, EGS_Float &sphi) {
+    inline void getAzimuth(EGS_Float& cphi, EGS_Float& sphi)
+    {
 #ifndef FAST_SINCOS
-        register EGS_Float xphi,xphi2,yphi,yphi2,rhophi;
-        do {
-            xphi = 2*getUniform() - 1;
-            xphi2 = xphi*xphi;
+        register EGS_Float xphi, xphi2, yphi, yphi2, rhophi;
+        do
+        {
+            xphi = 2 * getUniform() - 1;
+            xphi2 = xphi * xphi;
             yphi = getUniform();
-            yphi2 = yphi*yphi;
+            yphi2 = yphi * yphi;
             rhophi = xphi2 + yphi2;
         }
         while (rhophi > 1);
-        cphi = (xphi2 - yphi2)/rhophi;
-        sphi = 2*xphi*yphi/rhophi;
+        cphi = (xphi2 - yphi2) / rhophi;
+        sphi = 2 * xphi * yphi / rhophi;
 #else
-        EGS_Float phi = 2*M_PI*getUniform();
+        EGS_Float phi = 2 * M_PI * getUniform();
         cphi = cos(phi);
         sphi = sin(phi);
 #endif
@@ -158,17 +167,19 @@ public:
     /*! \brief Returns a Gaussian distributed random number with mean zero
      * and standard deviation 1.
      */
-    inline EGS_Float getGaussian() {
-        if (have_x) {
+    inline EGS_Float getGaussian()
+    {
+        if (have_x)
+        {
             have_x = false;
             return the_x;
         }
-        EGS_Float r = sqrt(-2*log(1-getUniform()));
+        EGS_Float r = sqrt(-2 * log(1 - getUniform()));
         EGS_Float cphi, sphi;
-        getAzimuth(cphi,sphi);
+        getAzimuth(cphi, sphi);
         have_x = true;
-        the_x = r*sphi;
-        return r*cphi;
+        the_x = r * sphi;
+        return r * cphi;
     };
 
     /*! \brief Create a RNG object from the information pointed to by
@@ -185,7 +196,7 @@ public:
      * but this functionality is not there yet. For now, the only RNG
      * type available is a ranmar RNG.
      */
-    static EGS_RandomGenerator *createRNG(EGS_Input *inp, int sequence=0);
+    static EGS_RandomGenerator* createRNG(EGS_Input* inp, int sequence = 0);
 
     /*! \brief Returns a pointer to the default egspp RNG.
      *
@@ -193,7 +204,7 @@ public:
      * by increasing the second ranmar default initial seed by
      * \a sequence.
      */
-    static EGS_RandomGenerator *defaultRNG(int sequence=0);
+    static EGS_RandomGenerator* defaultRNG(int sequence = 0);
 
     /*! \brief Fill the array of \a n elements pointed to by \a array with
      * random numbers.
@@ -206,7 +217,7 @@ public:
      * and therefore in many algorithms this behaviour is assumed
      * (\em e.g. log(1-r) is used without checking if 1-r is 0).
      */
-    virtual void fillArray(int n, EGS_Float *array) = 0;
+    virtual void fillArray(int n, EGS_Float* array) = 0;
 
     //@{
     //! \name state_functions
@@ -224,19 +235,20 @@ public:
      * of these functions by reimplementing the pure virtual functions
      * storePrivateState() and setPrivateState().
      */
-    bool storeState(ostream &data);
-    bool setState(istream &data);
-    bool addState(istream &data);
-    void resetCounter() {
+    bool storeState(ostream& data);
+    bool setState(istream& data);
+    bool addState(istream& data);
+    void resetCounter()
+    {
         count = 0;
     };
     //@}
 
     /*! \brief Get a copy of the RNG */
-    virtual EGS_RandomGenerator *getCopy() = 0;
+    virtual EGS_RandomGenerator* getCopy() = 0;
 
     /*! \brief Set the state of the RNG from another RNG */
-    virtual void setState(EGS_RandomGenerator *r) = 0;
+    virtual void setState(EGS_RandomGenerator* r) = 0;
 
     /*! \brief Save the RNG state */
     virtual void saveState() = 0;
@@ -260,7 +272,7 @@ protected:
     EGS_I64   count;  //!< random number generated so far
     int       np;     //!< size of the array rarray
     int       ip;     //!< pointer to the next rarray element in the sequence
-    EGS_Float *rarray;//!< array with random numbers of size np.
+    EGS_Float* rarray;//!< array with random numbers of size np.
 
     /*! \brief Store the state of the RNG to the output stream \a data.
      *
@@ -271,7 +283,7 @@ protected:
      *
      * \sa storeState(), setState().
      */
-    virtual bool storePrivateState(ostream &data) =  0;
+    virtual bool storePrivateState(ostream& data) =  0;
 
     /*! \brief Set the state of the RNG object from the data in the input
      * stream \a data.
@@ -280,16 +292,17 @@ protected:
      * the same data as stored by storePrivateState() in the same order from
      * the input stream \a data.
      */
-    virtual bool setPrivateState(istream &data) =  0;
+    virtual bool setPrivateState(istream& data) =  0;
 
-    void copyBaseState(const EGS_RandomGenerator &r);
+    void copyBaseState(const EGS_RandomGenerator& r);
 
     void allocate(int n);
 
     /*! \brief The memory needed to store the base state */
-    int  baseSize() const {
-        return 2*sizeof(EGS_I32) + sizeof(EGS_I64) + sizeof(bool) +
-               sizeof(EGS_Float) + np*sizeof(EGS_Float);
+    int  baseSize() const
+    {
+        return 2 * sizeof(EGS_I32) + sizeof(EGS_I64) + sizeof(bool) +
+               sizeof(EGS_Float) + np * sizeof(EGS_Float);
     };
 
 

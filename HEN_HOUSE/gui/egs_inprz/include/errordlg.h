@@ -39,7 +39,7 @@ class MErrorDlg : public QDialog
     Q_OBJECT
 
 public:
-    MErrorDlg( QWidget *parent = 0, const char *name = 0, const QString& error = "ERROR..." );
+    MErrorDlg(QWidget* parent = 0, const char* name = 0, const QString& error = "ERROR...");
 
 };
 

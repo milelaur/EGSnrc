@@ -42,28 +42,31 @@ using namespace std;
 
 //const int Nx = 64, Ny = 64;
 
-int main(int argc, char**argv) {
+int main(int argc, char** argv)
+{
 
     int nmax = 4, nmax2d = 3;
     double chi2max = 1, dmin = 0.02;
     int Nx = 64, Ny = 64, Nz = 72;
-    char *ifile=0, *ofile=0, *bench=0;
-    for(int j=1; j<argc-1; j++) {
+    char* ifile = 0, * ofile = 0, * bench = 0;
+    for (int j = 1; j < argc - 1; j++)
+    {
         string tmp(argv[j]);
-        if( tmp == "-i" ) ifile = argv[++j];
-        else if( tmp == "-o" ) ofile = argv[++j];
-        else if( tmp == "-b" ) bench = argv[++j];
-        else if( tmp == "-nmax" ) nmax = atoi(argv[++j]);
-        else if( tmp == "-nmax2d" ) nmax2d = atoi(argv[++j]);
-        else if( tmp == "-chi2max" ) chi2max = atof(argv[++j]);
-        else if( tmp == "-min" ) dmin = atof(argv[++j]);
-        else if( tmp == "-nx" ) Nx = atoi(argv[++j]);
-        else if( tmp == "-ny" ) Ny = atoi(argv[++j]);
-        else if( tmp == "-nz" ) Nz = atoi(argv[++j]);
-        else if( tmp == "-nz" ) Nz = atoi(argv[++j]);
+        if (tmp == "-i") ifile = argv[++j];
+        else if (tmp == "-o") ofile = argv[++j];
+        else if (tmp == "-b") bench = argv[++j];
+        else if (tmp == "-nmax") nmax = atoi(argv[++j]);
+        else if (tmp == "-nmax2d") nmax2d = atoi(argv[++j]);
+        else if (tmp == "-chi2max") chi2max = atof(argv[++j]);
+        else if (tmp == "-min") dmin = atof(argv[++j]);
+        else if (tmp == "-nx") Nx = atoi(argv[++j]);
+        else if (tmp == "-ny") Ny = atoi(argv[++j]);
+        else if (tmp == "-nz") Nz = atoi(argv[++j]);
+        else if (tmp == "-nz") Nz = atoi(argv[++j]);
         else cerr << "Unknown option " << argv[j] << endl;
     }
-    if( !ifile ) {
+    if (!ifile)
+    {
         cerr << "Usage: " << argv[0] << " -i input [-o output] [-nmax n] "
              << "[-nmax2d n2d] [-chi2max chi2]\n";
         return 1;
@@ -73,75 +76,94 @@ int main(int argc, char**argv) {
     /**************************************************/
     /* projection set input */
     /**************************************************/
-    string fname(ifile); fname += ".scatonly.scan";
+    string fname(ifile);
+    fname += ".scatonly.scan";
     egsInformation("Reading data ... ");
 
-    EGS_Distribution2DArray proj(fname.c_str(),Nx,Ny,Nz);
+    EGS_Distribution2DArray proj(fname.c_str(), Nx, Ny, Nz);
 
     /**************************************************/
 
-    EGS_Distribution2DArray *be = 0;
-    if( bench ) {
-        fname = bench; fname += ".scatonly.scan";
-        be = new EGS_Distribution2DArray(fname.c_str(),Nx,Ny,Nz);
+    EGS_Distribution2DArray* be = 0;
+    if (bench)
+    {
+        fname = bench;
+        fname += ".scatonly.scan";
+        be = new EGS_Distribution2DArray(fname.c_str(), Nx, Ny, Nz);
     }
 
-    if( ofile ) fname = ofile;
-    else {
-        fname = ifile; fname += "_smoothed.scatonly.scan";
+    if (ofile) fname = ofile;
+    else
+    {
+        fname = ifile;
+        fname += "_smoothed.scatonly.scan";
     }
-    ofstream out(fname.c_str(),ios::binary|ios::app);
+    ofstream out(fname.c_str(), ios::binary | ios::app);
 
     egsInformation("OK\n");
 
     EGS_Smoothing smoo;
-    smoo.setNmax2d(nmax2d); smoo.setNmax(nmax);
-    smoo.setChi2Max(chi2max); smoo.setDmin(dmin);
-    smoo.setDimensions(Nx,Ny);
+    smoo.setNmax2d(nmax2d);
+    smoo.setNmax(nmax);
+    smoo.setChi2Max(chi2max);
+    smoo.setDmin(dmin);
+    smoo.setDimensions(Nx, Ny);
     egsInformation("Smoothing data ... ");
     smoo.describeIt();
     /* no smoothing done if any of these is zero */
-    if (nmax2d*nmax*chi2max==0){
+    if (nmax2d * nmax * chi2max == 0)
+    {
         out.close();
         egsFatal("...No smoothing done since one of the smoothing\n"
                  "   parameters is null! Smoothed scan identical\n"
                  "   to original scan!\n");
     }
-    for(int iproj=0; iproj<Nz; iproj++){
+    for (int iproj = 0; iproj < Nz; iproj++)
+    {
 
         EGS_Distribution2D* scan = proj.get_proj(iproj);
         EGS_Distribution2D* b    = 0;
-        if( be ) {b = be->get_proj(iproj);}
+        if (be)
+        {
+            b = be->get_proj(iproj);
+        }
 
         double sumo = 0, maxdo = 0;
-        if( be ) {
-           for(int j=0; j<Nx*Ny; j++) {
-              double aux = fabs(scan->d_array[j] - b->d_array[j]);
-              sumo += aux*aux;
-              if( aux > maxdo ) maxdo = aux;
-           }
+        if (be)
+        {
+            for (int j = 0; j < Nx * Ny; j++)
+            {
+                double aux = fabs(scan->d_array[j] - b->d_array[j]);
+                sumo += aux * aux;
+                if (aux > maxdo) maxdo = aux;
+            }
         }
-        EGS_Distribution2D *smoothed = smoo.smooth1(scan);
-        if( !smoothed ) {
-          cerr << "Error while smoothing" << iproj
-               << " projection\n"; return 1;
+        EGS_Distribution2D* smoothed = smoo.smooth1(scan);
+        if (!smoothed)
+        {
+            cerr << "Error while smoothing" << iproj
+                 << " projection\n";
+            return 1;
         }
-        if( be ) {
-          double sum = 0, maxd = 0;
-          for(int j=0; j<Nx*Ny; j++) {
-             double aux = fabs(smoothed->d_array[j] - b->d_array[j]);
-             sum += aux*aux;
-             if( aux > maxd ) maxd = aux;
-          }
-          sum /= (Nx*Ny); sumo /= (Nx*Ny);
-          egsInformation("\nMSD  smoothed=%lg original=%lg IR=%lg",sum,sumo,
-                         sumo/sum);
-          egsInformation("\nMax. difference: smoothed=%lg original=%lg"
-                         "IR=%lg\n",
-                         maxd,maxdo,maxdo/maxd);
+        if (be)
+        {
+            double sum = 0, maxd = 0;
+            for (int j = 0; j < Nx * Ny; j++)
+            {
+                double aux = fabs(smoothed->d_array[j] - b->d_array[j]);
+                sum += aux * aux;
+                if (aux > maxd) maxd = aux;
+            }
+            sum /= (Nx * Ny);
+            sumo /= (Nx * Ny);
+            egsInformation("\nMSD  smoothed=%lg original=%lg IR=%lg", sum, sumo,
+                           sumo / sum);
+            egsInformation("\nMax. difference: smoothed=%lg original=%lg"
+                           "IR=%lg\n",
+                           maxd, maxdo, maxdo / maxd);
         }
 
-        out.write((char *) smoothed->d_array,smoothed->nreg*sizeof(float));
+        out.write((char*) smoothed->d_array, smoothed->nreg * sizeof(float));
     }
     egsInformation(" done !\n");
 

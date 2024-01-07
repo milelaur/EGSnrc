@@ -54,7 +54,8 @@ class EGS_PrivateTimer;
  *
  * \todo Should add wall time measurement
  */
-class EGS_EXPORT EGS_Timer {
+class EGS_EXPORT EGS_Timer
+{
 
 public:
 
@@ -72,8 +73,8 @@ public:
 
 private:
 
-    EGS_PrivateTimer *p;             //!< Used to hide implementation details.
-    EGS_Timer(const EGS_Timer &) {}; //!< Prevent copy construction.
+    EGS_PrivateTimer* p;             //!< Used to hide implementation details.
+    EGS_Timer(const EGS_Timer&) {};  //!< Prevent copy construction.
 
 };
 

@@ -40,12 +40,13 @@ class EGS_Interpolator;
 class EGS_RangeRejection;
 class EGS_AxCalculator;
 
-class APP_EXPORT EGS_FACApplication : public EGS_AdvancedApplication {
+class APP_EXPORT EGS_FACApplication : public EGS_AdvancedApplication
+{
 
 public:
 
     /*! Constructor */
-    EGS_FACApplication(int argc, char **argv);
+    EGS_FACApplication(int argc, char** argv);
 
     /*! Destructor.  */
     ~EGS_FACApplication();
@@ -77,23 +78,25 @@ public:
     void resetCounter();
 
     /*! Add simulation results */
-    int addState(istream &data);
+    int addState(istream& data);
 
     /*! Output the results of a simulation. */
     void outputResults();
 
     /*! Get the current simulation result.  */
-    void getCurrentResult(double &sum, double &sum2, double &norm,
-            double &count);
+    void getCurrentResult(double& sum, double& sum2, double& norm,
+                          double& count);
 
     /*! simulate a shower */
-    int shower() {
-        expmfp[0] = 1; is_fat[0] = 0;
+    int shower()
+    {
+        expmfp[0] = 1;
+        is_fat[0] = 0;
         return EGS_AdvancedApplication::shower();
     };
 
     /* Select photon mean-free-path */
-    void selectPhotonMFP(EGS_Float &dpmfp);
+    void selectPhotonMFP(EGS_Float& dpmfp);
 
     int rangeDiscard(EGS_Float tperp, EGS_Float range) const;
 
@@ -105,33 +108,33 @@ protected:
 private:
 
     int              ngeom;     // number of simulation cases to calculate
-                                // quantities of interest
+    // quantities of interest
     int              ig;        // current geometry index
 
-    EGS_FACSimulation **sim;    // simulation cases
+    EGS_FACSimulation** sim;    // simulation cases
 
     int              ncor;      // number of correlated geometries
-    EGS_FACCorrelation **corr;  // correlated geometries
+    EGS_FACCorrelation** corr;  // correlated geometries
 
     int              nax;       // number of Ax calculators
-    EGS_AxCalculator **Ax;      // the Ax calculators
+    EGS_AxCalculator** Ax;      // the Ax calculators
 
-    EGS_Interpolator  *muen;    // mu_en interpolator
+    EGS_Interpolator*  muen;    // mu_en interpolator
 
-    EGS_Float        *expmfp;   // attenuation unweighting
-    int              *is_fat;   // electron "fatness" flag
+    EGS_Float*        expmfp;   // attenuation unweighting
+    int*              is_fat;   // electron "fatness" flag
 
     EGS_Float        fsplit;    // photon splitting number
     EGS_Float        fspliti;   // inverse photon splitting number
     EGS_Float        kerma_fac; // normalization factor for kerma scoring
 
-    EGS_RangeRejection *rrej;   // range rejection object
+    EGS_RangeRejection* rrej;   // range rejection object
 
-    EGS_GeometryIntersections *gsections; // for getting geometry intersections
-    EGS_Float                 *idist;     // distances to interactions
-    EGS_Float                 *ilambda;   // mfp's to interactions
-    int                       *iindex;    // indeces of interaction sites
-    int                       *itype;     // interaction types
+    EGS_GeometryIntersections* gsections; // for getting geometry intersections
+    EGS_Float*                 idist;     // distances to interactions
+    EGS_Float*                 ilambda;   // mfp's to interactions
+    int*                       iindex;    // indeces of interaction sites
+    int*                       itype;     // interaction types
     int                        ngsec;     // size of gsections
     int                        med_cv;    // medium in CV
     bool                       increase_scatter;

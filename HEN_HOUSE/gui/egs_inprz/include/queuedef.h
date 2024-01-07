@@ -32,16 +32,18 @@
 #ifndef QUEUEDEF_H
 #define QUEUEDEF_H
 
-static const char* queue_type[] = {
-"long",
-"medium",
-"short"
+static const char* queue_type[] =
+{
+    "long",
+    "medium",
+    "short"
 };
 
-static const char* queues[] = {
-"40 days (default)",
-"2 hours",
-"20 minutes"
+static const char* queues[] =
+{
+    "40 days (default)",
+    "2 hours",
+    "20 minutes"
 };
 
-#endif	// QUEUEDEF_H
+#endif  // QUEUEDEF_H

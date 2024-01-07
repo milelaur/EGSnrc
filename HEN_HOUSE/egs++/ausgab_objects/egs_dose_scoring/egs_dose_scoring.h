@@ -96,22 +96,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_DOSE_SCORING_DLL
-        #define EGS_DOSE_SCORING_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_DOSE_SCORING_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_DOSE_SCORING_LOCAL
+#ifdef BUILD_DOSE_SCORING_DLL
+#define EGS_DOSE_SCORING_EXPORT __declspec(dllexport)
+#else
+#define EGS_DOSE_SCORING_EXPORT __declspec(dllimport)
+#endif
+#define EGS_DOSE_SCORING_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_DOSE_SCORING_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_DOSE_SCORING_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_DOSE_SCORING_EXPORT
-        #define EGS_DOSE_SCORING_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_DOSE_SCORING_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_DOSE_SCORING_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_DOSE_SCORING_EXPORT
+#define EGS_DOSE_SCORING_LOCAL
+#endif
 
 #endif
 
@@ -190,163 +190,197 @@ TODO:
 
 */
 
-class EGS_DOSE_SCORING_EXPORT EGS_DoseScoring : public EGS_AusgabObject {
+class EGS_DOSE_SCORING_EXPORT EGS_DoseScoring : public EGS_AusgabObject
+{
 
 public:
 
-    EGS_DoseScoring(const string &Name="", EGS_ObjectFactory *f = 0);
+    EGS_DoseScoring(const string& Name = "", EGS_ObjectFactory* f = 0);
 
     ~EGS_DoseScoring();
 
-    int processEvent(EGS_Application::AusgabCall iarg) {
+    int processEvent(EGS_Application::AusgabCall iarg)
+    {
 
-        int ir = app->top_p.ir, imed = ir>=0 ? app->getMedium(ir):-1;
+        int ir = app->top_p.ir, imed = ir >= 0 ? app->getMedium(ir) : -1;
         EGS_Float edep = app->getEdep();
 
         /**** energy deposition in a medium ***/
-        if (iarg <= 4 && imed >= 0 && edep > 0 && doseM) {
-            doseM->score(imed, edep*app->top_p.wt);
+        if (iarg <= 4 && imed >= 0 && edep > 0 && doseM)
+        {
+            doseM->score(imed, edep * app->top_p.wt);
         }
 
         //score in file array if requested
-        if (ir >=0 && doseF && iarg <=4 && df_reg[ir] >= 0 && edep) {
-            doseF->score(df_reg[ir], edep*app->top_p.wt);
+        if (ir >= 0 && doseF && iarg <= 4 && df_reg[ir] >= 0 && edep)
+        {
+            doseF->score(df_reg[ir], edep * app->top_p.wt);
         }
 
         /*** Check if scoring in current region ***/
-        if (ir >= 0 && dose) {
-            if (d_reg_index[ir]<0) {
+        if (ir >= 0 && dose)
+        {
+            if (d_reg_index[ir] < 0)
+            {
                 return 0;
             }
         }
 
         /**** energy deposition in current region ***/
-        if (iarg <= 4 && ir >= 0 && edep > 0 && dose) {
-            dose->score(d_reg_index[ir], edep*app->top_p.wt);
+        if (iarg <= 4 && ir >= 0 && edep > 0 && dose)
+        {
+            dose->score(d_reg_index[ir], edep * app->top_p.wt);
         }
         return 0;
     };
 
-    int processEvent(EGS_Application::AusgabCall iarg, int ir) {
+    int processEvent(EGS_Application::AusgabCall iarg, int ir)
+    {
 
-        if (ir == -1) {
+        if (ir == -1)
+        {
             ir = app->top_p.ir;
         }
 
-        int imed = ir>=0 ? app->getMedium(ir):-1;
+        int imed = ir >= 0 ? app->getMedium(ir) : -1;
         EGS_Float edep = app->getEdep();
 
         /**** energy deposition in a medium ***/
-        if (iarg <= 4 && imed >= 0 && edep > 0 && doseM) {
-            doseM->score(imed, edep*app->top_p.wt);
+        if (iarg <= 4 && imed >= 0 && edep > 0 && doseM)
+        {
+            doseM->score(imed, edep * app->top_p.wt);
         }
 
         //score in file array if requested
-        if (ir >= 0 && doseF && iarg <=4 && df_reg[ir] >= 0 && edep) {
-            doseF->score(df_reg[ir], edep*app->top_p.wt);
+        if (ir >= 0 && doseF && iarg <= 4 && df_reg[ir] >= 0 && edep)
+        {
+            doseF->score(df_reg[ir], edep * app->top_p.wt);
         }
 
         /*** Check if scoring in current region ***/
-        if (ir >= 0 && dose) {
-            if (d_reg_index[ir]<0) {
+        if (ir >= 0 && dose)
+        {
+            if (d_reg_index[ir] < 0)
+            {
                 return 0;
             }
         }
 
         /**** energy deposition in current region ***/
-        if (iarg <= 4 && ir >= 0 && edep > 0 && dose) {
-            dose->score(d_reg_index[ir], edep*app->top_p.wt);
+        if (iarg <= 4 && ir >= 0 && edep > 0 && dose)
+        {
+            dose->score(d_reg_index[ir], edep * app->top_p.wt);
         }
         return 0;
     };
 
-    bool needsCall(EGS_Application::AusgabCall iarg) const {
-        if (iarg <= 4) {
+    bool needsCall(EGS_Application::AusgabCall iarg) const
+    {
+        if (iarg <= 4)
+        {
             return true;
         }
-        else {
+        else
+        {
             return false;
         }
     };
 
-    void setApplication(EGS_Application *App);
+    void setApplication(EGS_Application* App);
 
-    void getNumberRegions(const string &str, vector<int> &regs);
+    void getNumberRegions(const string& str, vector<int>& regs);
 
-    void getLabelRegions(const string &str, vector<int> &regs);
+    void getLabelRegions(const string& str, vector<int>& regs);
 
     void reportResults();
 
-    void setCurrentCase(EGS_I64 ncase) {
-        if (ncase != m_lastCase) {
+    void setCurrentCase(EGS_I64 ncase)
+    {
+        if (ncase != m_lastCase)
+        {
             m_lastCase = ncase;
-            if (dose) {
+            if (dose)
+            {
                 dose->setHistory(ncase);
             }
-            if (doseM) {
+            if (doseM)
+            {
                 doseM->setHistory(ncase);
             }
-            if (doseF) {
+            if (doseF)
+            {
                 doseF->setHistory(ncase);
             }
         }
     };
-    int getDigits(int i) {
+    int getDigits(int i)
+    {
         int imax = 10;
-        while (i>=imax) {
-            imax*=10;
+        while (i >= imax)
+        {
+            imax *= 10;
         }
         return (int)log10((float)imax);
     };
 
-    EGS_Float getRealRho(int ireg) {
+    EGS_Float getRealRho(int ireg)
+    {
         int med = dose_geom->medium(ireg);
-        return dose_geom->getRelativeRho(ireg)*app->getMediumRho(med);
+        return dose_geom->getRelativeRho(ireg) * app->getMediumRho(med);
     }
 
-    void setVol(const vector<EGS_Float> volin) {
-        vol_list=volin;
+    void setVol(const vector<EGS_Float> volin)
+    {
+        vol_list = volin;
     };
-    void setVol(const EGS_Float volin) {
+    void setVol(const EGS_Float volin)
+    {
         vol_list.push_back(volin);
     };
-    void setDoseRegions(const vector <int> d_reg) {
-        d_region=d_reg;
+    void setDoseRegions(const vector <int> d_reg)
+    {
+        d_region = d_reg;
     };
-    void setDoseRegions(const string d_reg) {
-        d_regionString=d_reg;
+    void setDoseRegions(const string d_reg)
+    {
+        d_regionString = d_reg;
     };
-    void setMediumScoring(bool flag) {
-        score_medium_dose=flag;
+    void setMediumScoring(bool flag)
+    {
+        score_medium_dose = flag;
     };
-    void setRegionScoring(bool flag) {
-        score_region_dose=flag;
+    void setRegionScoring(bool flag)
+    {
+        score_region_dose = flag;
     };
-    void setOutputFile(bool flag, EGS_BaseGeometry *dgeom, int ftype) {
-        output_dose_file=flag;
-        dose_geom= dgeom;
+    void setOutputFile(bool flag, EGS_BaseGeometry* dgeom, int ftype)
+    {
+        output_dose_file = flag;
+        dose_geom = dgeom;
         file_type = ftype;
     };
-    bool getOutputFile(EGS_BaseGeometry *&dgeom, int &ftype) {
+    bool getOutputFile(EGS_BaseGeometry*& dgeom, int& ftype)
+    {
         dgeom = dose_geom;
         ftype = file_type;
         return output_dose_file;
     };
-    void setUserNorm(const EGS_Float &normi) {
-        norm_u=normi;
+    void setUserNorm(const EGS_Float& normi)
+    {
+        norm_u = normi;
     };
-    void outputDoseFile(const EGS_Float &normD);
+    void outputDoseFile(const EGS_Float& normD);
 
-    bool storeState(ostream &data) const;
-    bool setState(istream &data);
+    bool storeState(ostream& data) const;
+    bool setState(istream& data);
     void resetCounter();
-    bool addState(istream &data);
-    int addTheStates(istream &data);
+    bool addState(istream& data);
+    int addTheStates(istream& data);
 
 protected:
 
-    EGS_ScoringArray *dose;  //!< Scoring in each dose scoring region
-    EGS_ScoringArray *doseM;  //!< Scoring dose in each medium
+    EGS_ScoringArray* dose;  //!< Scoring in each dose scoring region
+    EGS_ScoringArray* doseM;  //!< Scoring dose in each medium
     vector <EGS_Float>  vol_list; // Input list of region volumes
     vector <int> d_region;        // Input list of dose scoring regions  d_reg[i] = ir
     string d_regionString;
@@ -361,8 +395,8 @@ protected:
     bool score_medium_dose,
          score_region_dose;
 
-    EGS_BaseGeometry *dose_geom; //EGS_XYZGeometry for which to output dose to file
-    EGS_ScoringArray *doseF;  //!< Scoring dose in each voxel in EGS_XYZGeometry
+    EGS_BaseGeometry* dose_geom; //EGS_XYZGeometry for which to output dose to file
+    EGS_ScoringArray* doseF;  //!< Scoring dose in each voxel in EGS_XYZGeometry
     vector<int> df_reg; //array mapping global reg. no. onto reg. no. in EGS_XYZGeometry
     bool output_dose_file; //set to true if outputting a dose file
     int file_type;           //output file type--currently only .3ddose (file_type=0) supported

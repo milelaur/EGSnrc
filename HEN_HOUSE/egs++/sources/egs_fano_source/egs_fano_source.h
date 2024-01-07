@@ -48,22 +48,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_FANO_SOURCE_DLL
-        #define EGS_FANO_SOURCE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_FANO_SOURCE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_FANO_SOURCE_LOCAL
+#ifdef BUILD_FANO_SOURCE_DLL
+#define EGS_FANO_SOURCE_EXPORT __declspec(dllexport)
+#else
+#define EGS_FANO_SOURCE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_FANO_SOURCE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_FANO_SOURCE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_FANO_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_FANO_SOURCE_EXPORT
-        #define EGS_FANO_SOURCE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_FANO_SOURCE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_FANO_SOURCE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_FANO_SOURCE_EXPORT
+#define EGS_FANO_SOURCE_LOCAL
+#endif
 
 #endif
 
@@ -93,7 +93,8 @@ It is defined using the following input
 */
 
 class EGS_FANO_SOURCE_EXPORT EGS_FanoSource :
-    public EGS_BaseSimpleSource {
+    public EGS_BaseSimpleSource
+{
 
 public:
 
@@ -102,13 +103,14 @@ public:
     Construct a Fano source with charge \a Q, spectrum \a Spec
     and emitting particles from the shape \a Shape
     */
-    EGS_FanoSource(int Q, EGS_BaseSpectrum *Spec, EGS_BaseShape *Shape,
-                   EGS_BaseGeometry *geometry,
-                   const string &Name="", EGS_ObjectFactory *f=0) :
-        EGS_BaseSimpleSource(Q,Spec,Name,f), shape(Shape),
-        min_theta(85.), max_theta(95.), min_phi(0), max_phi(2*M_PI),
+    EGS_FanoSource(int Q, EGS_BaseSpectrum* Spec, EGS_BaseShape* Shape,
+                   EGS_BaseGeometry* geometry,
+                   const string& Name = "", EGS_ObjectFactory* f = 0) :
+        EGS_BaseSimpleSource(Q, Spec, Name, f), shape(Shape),
+        min_theta(85.), max_theta(95.), min_phi(0), max_phi(2 * M_PI),
         buf_1(1), buf_2(-1),
-        geom(geometry), regions(0), nrs(0) {
+        geom(geometry), regions(0), nrs(0)
+    {
         setUp();
     };
 
@@ -116,39 +118,49 @@ public:
 
     Construct a Fano source from the information pointed to by \a inp.
     */
-    EGS_FanoSource(EGS_Input *, EGS_ObjectFactory *f=0);
-    ~EGS_FanoSource() {
+    EGS_FanoSource(EGS_Input*, EGS_ObjectFactory* f = 0);
+    ~EGS_FanoSource()
+    {
         egsWarning("destructing Fano source\n");
         EGS_Object::deleteObject(shape);
-        if (geom) {
-            if (!geom->deref()) {
+        if (geom)
+        {
+            if (!geom->deref())
+            {
                 delete geom;
             }
         }
-        if (nrs > 0 && regions) {
+        if (nrs > 0 && regions)
+        {
             delete [] regions;
         }
     };
 
-    void getPositionDirection(EGS_RandomGenerator *rndm,
-                              EGS_Vector &x, EGS_Vector &u, EGS_Float &wt) {
+    void getPositionDirection(EGS_RandomGenerator* rndm,
+                              EGS_Vector& x, EGS_Vector& u, EGS_Float& wt)
+    {
         bool ok = true, okfano = false;
         wt = 1;
-        do {
-            do {
+        do
+        {
+            do
+            {
                 x = shape->getRandomPoint(rndm);
                 ok = geom->isInside(x);
-                if (ok) {
+                if (ok)
+                {
                     /*******************************************************************************
                      * Rejection technique generates particles proportional to the region's mass m.
                      * The joint probability of selecting the emission point is the product of the
                      * probability of the point being in volume V times the probability of surviving
                      * the rejection, which is proportional to the density in that volume.
                      *******************************************************************************/
-                    if (rndm->getUniform()*max_mass_density > geom->getMediumRho(geom->medium(geom->isWhere(x)))) {
+                    if (rndm->getUniform() * max_mass_density > geom->getMediumRho(geom->medium(geom->isWhere(x))))
+                    {
                         okfano = false;
                     }
-                    else {
+                    else
+                    {
                         okfano = true;
                     }
 
@@ -165,24 +177,27 @@ public:
             while (!ok);
         }
         while (!okfano);
-        u.z = buf_1 - rndm->getUniform()*(buf_1 - buf_2);
-        EGS_Float sinz = 1-u.z*u.z;
-        if (sinz > epsilon) {
+        u.z = buf_1 - rndm->getUniform() * (buf_1 - buf_2);
+        EGS_Float sinz = 1 - u.z * u.z;
+        if (sinz > epsilon)
+        {
             sinz = sqrt(sinz);
             EGS_Float cphi, sphi;
-            EGS_Float phi = min_phi + (max_phi - min_phi)*rndm->getUniform();
+            EGS_Float phi = min_phi + (max_phi - min_phi) * rndm->getUniform();
             cphi = cos(phi);
             sphi = sin(phi);
-            u.x = sinz*cphi;
-            u.y = sinz*sphi;
+            u.x = sinz * cphi;
+            u.y = sinz * sphi;
         }
-        else {
+        else
+        {
             u.x = 0;
             u.y = 0;
         }
     };
 
-    EGS_Float getFluence() const {
+    EGS_Float getFluence() const
+    {
         return count;
     };
 
@@ -215,15 +230,16 @@ public:
     */
     /*****************************************************/
 
-    bool isValid() const {
+    bool isValid() const
+    {
         return (s != 0 && shape != 0);
     };
 
 protected:
 
-    EGS_BaseShape    *shape;    //!< The shape from which particles are emitted.
-    EGS_BaseGeometry *geom;
-    int              *regions;
+    EGS_BaseShape*    shape;    //!< The shape from which particles are emitted.
+    EGS_BaseGeometry* geom;
+    int*              regions;
 
     void setUp();
 

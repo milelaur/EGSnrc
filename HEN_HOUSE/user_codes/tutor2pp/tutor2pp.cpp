@@ -47,9 +47,10 @@
 //! To get access to egsInformation(), etc.
 #include "egs_functions.h"
 
-class APP_EXPORT Tutor2_Application : public EGS_SimpleApplication {
+class APP_EXPORT Tutor2_Application : public EGS_SimpleApplication
+{
 
-    EGS_ScoringArray *edep;   // our scoring object
+    EGS_ScoringArray* edep;   // our scoring object
     int              nreg;    // number of regions in the geometry.
 
 public:
@@ -69,15 +70,16 @@ public:
      Finally, a check is made that the cross section data files cover
      the energy range needed based on the maximum energy of the source.
     */
-    Tutor2_Application(int argc, char **argv) :
-        EGS_SimpleApplication(argc,argv) {
+    Tutor2_Application(int argc, char** argv) :
+        EGS_SimpleApplication(argc, argv)
+    {
         nreg = g->regions();
         /*! We initialize the scorring array to have 2 more regions than the
             geometry so that we can collect the transmitted and reflected
             energy fractions in additions to the energy fractions deposited
             in the nreg regions of the geometry.
         */
-        edep = new EGS_ScoringArray(nreg+2);
+        edep = new EGS_ScoringArray(nreg + 2);
     };
 
     /*! \brief Destructor.
@@ -85,7 +87,8 @@ public:
      It is a good coding practice to deallocate memory when objects
      go out of scope. That's what we do in the destructor of our application.
      */
-    ~Tutor2_Application() {
+    ~Tutor2_Application()
+    {
         delete edep;
     };
 
@@ -102,11 +105,13 @@ public:
      points to the last particle on the stack, uses Fortran style indexing
      (\em i.e., it goes from 1 to np)
     */
-    int ausgab(int iarg) {
-        if (iarg <= 4) {
+    int ausgab(int iarg)
+    {
+        if (iarg <= 4)
+        {
             //! Get the stack pointer and currect particle region index.
             int np = the_stack->np - 1;
-            int ir = the_stack->ir[np]-1;
+            int ir = the_stack->ir[np] - 1;
             /*! Per definition region index=0 corresponds to the outside,
                regions 1...nreg to the nreg regions inside the geometry.
                If the particle is outside, we say that it is 'reflected'
@@ -116,12 +121,13 @@ public:
                the particle is 'transmitted' and use region nreg+1 to score
                its energy.
             */
-            if (ir == 0 && the_stack->w[np] > 0) {
-                ir = nreg+1;
+            if (ir == 0 && the_stack->w[np] > 0)
+            {
+                ir = nreg + 1;
             }
             /*! Now simply use the score method of the EGS_ScoringArray class
                 to record the energy deposited. */
-            edep->score(ir,the_epcont->edep*the_stack->wt[np]);
+            edep->score(ir, the_epcont->edep * the_stack->wt[np]);
         }
 
         return 0;
@@ -141,7 +147,8 @@ public:
      This is sufficient to get a history-by-history statistical analysis
      for the deposited energy fractions.
     */
-    void startHistory(EGS_I64 icase) {
+    void startHistory(EGS_I64 icase)
+    {
         edep->setHistory(icase);
     };
 
@@ -163,11 +170,12 @@ public:
      constant. The quantities last_case and Etot are collected by the
      EGS_Application base class during the run.
     */
-    void reportResults() {
-        double norm = ((double)last_case)/Etot;
-        egsInformation(" last case = %d Etot = %g\n",(int)last_case,Etot);
+    void reportResults()
+    {
+        double norm = ((double)last_case) / Etot;
+        egsInformation(" last case = %d Etot = %g\n", (int)last_case, Etot);
         edep->reportResults(norm,
-                            "Reflected/deposited/transmitted energy fraction",false,
+                            "Reflected/deposited/transmitted energy fraction", false,
                             "  %d  %9.5f +/- %9.5f %c\n");
     };
 

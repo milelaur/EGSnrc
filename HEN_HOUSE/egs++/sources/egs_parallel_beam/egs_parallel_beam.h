@@ -45,22 +45,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_PARALLEL_BEAM_DLL
-        #define EGS_PARALLEL_BEAM_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_PARALLEL_BEAM_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_PARALLEL_BEAM_LOCAL
+#ifdef BUILD_PARALLEL_BEAM_DLL
+#define EGS_PARALLEL_BEAM_EXPORT __declspec(dllexport)
+#else
+#define EGS_PARALLEL_BEAM_EXPORT __declspec(dllimport)
+#endif
+#define EGS_PARALLEL_BEAM_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_PARALLEL_BEAM_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_PARALLEL_BEAM_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_PARALLEL_BEAM_EXPORT
-        #define EGS_PARALLEL_BEAM_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_PARALLEL_BEAM_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_PARALLEL_BEAM_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_PARALLEL_BEAM_EXPORT
+#define EGS_PARALLEL_BEAM_LOCAL
+#endif
 
 #endif
 
@@ -123,7 +123,8 @@ A simple example:
 \image html egs_parallel_beam.png "A simple example"
 */
 class EGS_PARALLEL_BEAM_EXPORT EGS_ParallelBeam :
-    public EGS_BaseSimpleSource {
+    public EGS_BaseSimpleSource
+{
 
 public:
 
@@ -132,9 +133,10 @@ public:
     Construct a parallel beam with charge \a Q and spectrum \a Spec from
     a shape \a Shape
     */
-    EGS_ParallelBeam(int Q, EGS_BaseSpectrum *Spec, EGS_BaseShape *Shape,
-                     const string &Name="", EGS_ObjectFactory *f=0) :
-        EGS_BaseSimpleSource(Q,Spec,Name,f), shape(Shape), uo(0,0,1) {
+    EGS_ParallelBeam(int Q, EGS_BaseSpectrum* Spec, EGS_BaseShape* Shape,
+                     const string& Name = "", EGS_ObjectFactory* f = 0) :
+        EGS_BaseSimpleSource(Q, Spec, Name, f), shape(Shape), uo(0, 0, 1)
+    {
         setUp();
     };
 
@@ -142,37 +144,43 @@ public:
 
     Construct a parallel beam from the information pointed to by \a inp.
     */
-    EGS_ParallelBeam(EGS_Input *, EGS_ObjectFactory *f=0);
-    ~EGS_ParallelBeam() {
+    EGS_ParallelBeam(EGS_Input*, EGS_ObjectFactory* f = 0);
+    ~EGS_ParallelBeam()
+    {
         EGS_Object::deleteObject(shape);
     };
 
-    void getPositionDirection(EGS_RandomGenerator *rndm,
-                              EGS_Vector &x, EGS_Vector &u, EGS_Float &wt) {
+    void getPositionDirection(EGS_RandomGenerator* rndm,
+                              EGS_Vector& x, EGS_Vector& u, EGS_Float& wt)
+    {
         x = shape->getRandomPoint(rndm);
         u = uo;
         wt = 1;
     };
 
-    EGS_Float getFluence() const {
-        return count/shape->area();
+    EGS_Float getFluence() const
+    {
+        return count / shape->area();
     };
 
-    bool storeFluenceState(ostream &) const {
+    bool storeFluenceState(ostream&) const
+    {
         return true;
     };
 
-    bool setFluenceState(istream &) {
+    bool setFluenceState(istream&)
+    {
         return true;
     };
 
-    bool isValid() const {
+    bool isValid() const
+    {
         return (s != 0 && shape != 0);
     };
 
 protected:
 
-    EGS_BaseShape *shape; //!< The shape.
+    EGS_BaseShape* shape; //!< The shape.
     EGS_Vector    uo;     //!< The direction of the particles.
 
     void setUp();

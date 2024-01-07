@@ -17,10 +17,10 @@
    Please contact us if you have any questions
 */
 /* Header File for General Utilities for CPP programs
-	File Created:
-		18-December-1995: Combined ok_check.cpp and some open_file
-	Modification History:
-		 09-feb-1996: JVS: add pprintf
+    File Created:
+        18-December-1995: Combined ok_check.cpp and some open_file
+    Modification History:
+         09-feb-1996: JVS: add pprintf
        07-Nov-1996: JVS: FAIL_SAFE definition changed, NULL=0
        06-Jan-1998: JVS: Add array_read
        07-May-1998: JVS: add myerrno
@@ -64,10 +64,10 @@ extern int eprintf_mode;
 #ifndef MAIN
 extern /* create global pbuffer */
 #endif
-char *pbuffer;  /* pointer to buffer for output of run info for failures */
+char* pbuffer;  /* pointer to buffer for output of run info for failures */
 
-#ifndef	ENDIAN_H_INCLUDED
-#define	ENDIAN_H_INCLUDED
+#ifndef ENDIAN_H_INCLUDED
+#define ENDIAN_H_INCLUDED
 
 
 /* Definitions for byte order, according to significance of bytes, from low
@@ -76,16 +76,16 @@ char *pbuffer;  /* pointer to buffer for output of run info for failures */
    '2' in the second least significant byte, and '1' in the least
    significant byte.  */
 
-#define	__LITTLE_ENDIAN	1234
-#define	__BIG_ENDIAN	4321
-#define	__PDP_ENDIAN	3412
+#define __LITTLE_ENDIAN 1234
+#define __BIG_ENDIAN    4321
+#define __PDP_ENDIAN    3412
 
-#define LITTLE_ENDIAN	__LITTLE_ENDIAN
-#define BIG_ENDIAN	__BIG_ENDIAN
-#define PDP_ENDIAN	__PDP_ENDIAN
+#define LITTLE_ENDIAN   __LITTLE_ENDIAN
+#define BIG_ENDIAN  __BIG_ENDIAN
+#define PDP_ENDIAN  __PDP_ENDIAN
 #define UNKNOWN_ENDIAN  0000
 
-#endif	/* endian.h */
+#endif  /* endian.h */
 
 /* #define max and min */
 #ifndef MINMAX_DEFINED
@@ -100,30 +100,30 @@ char *pbuffer;  /* pointer to buffer for output of run info for failures */
 float reverse_float_byte_order(float xold);
 short reverse_short_byte_order(short xold);
 int reverse_int_byte_order(int xold);
-int advance(char *istr, int *sval, int len);
+int advance(char* istr, int* sval, int len);
 int check_byte_order(void);
-int clean_name(char *tmp_path, char *opath);
-int clean_name(char *);
-int copy(char *SourceFile, char *DestinationFile);
-int eprintf(const char *fmt, ... );
+int clean_name(char* tmp_path, char* opath);
+int clean_name(char*);
+int copy(char* SourceFile, char* DestinationFile);
+int eprintf(const char* fmt, ...);
 int ok_check(void);
-int ok_checks(char *string);
-FILE *open_file(char *filename,const char*extension, const char *access);
-int pprintf(char *fmt, ... );
-int latex_string(char *string, char *nstring);
-void print_runtime_info(int argc, char *argv[]);
+int ok_checks(char* string);
+FILE* open_file(char* filename, const char* extension, const char* access);
+int pprintf(char* fmt, ...);
+int latex_string(char* string, char* nstring);
+void print_runtime_info(int argc, char* argv[]);
 void allocate_pbuffer(void);
 float interpolate(float xh, float xl, float xm, float yh, float yl);
-int array_read(FILE *istrm, float *array, int max_array);
-int array_read(char *in_string, float *array, int max_array);
+int array_read(FILE* istrm, float* array, int max_array);
+int array_read(char* in_string, float* array, int max_array);
 int view_errors(void);
-int writeBigEndianBinaryFile(char *doseFileName,  int nDoseArray, float *doseArray);
-int writeLittleEndianBinaryFile(char *doseFileName,  int nDoseArray, float *doseArray);
-int writeBinaryFile(char *doseFileName, int nDoseArray, float *doseArray, int swab_flag);
-int writeBinaryDataToFile(FILE *outputStream, int nArray, float *array, int swab_flag);
-int readBinaryDataFromFile(FILE *iStream, int nItemsToRead, float **arrayToRead, int swab_flag);
-int readBinaryDataFromFile(FILE *iStream, int nItemsToRead, float *inputArray, int swab_flag);
+int writeBigEndianBinaryFile(char* doseFileName,  int nDoseArray, float* doseArray);
+int writeLittleEndianBinaryFile(char* doseFileName,  int nDoseArray, float* doseArray);
+int writeBinaryFile(char* doseFileName, int nDoseArray, float* doseArray, int swab_flag);
+int writeBinaryDataToFile(FILE* outputStream, int nArray, float* array, int swab_flag);
+int readBinaryDataFromFile(FILE* iStream, int nItemsToRead, float** arrayToRead, int swab_flag);
+int readBinaryDataFromFile(FILE* iStream, int nItemsToRead, float* inputArray, int swab_flag);
 // RCN added
-int fget_c_string(char *string, int Max_Str_Len, FILE *fspec);
-int get_string(FILE *fspec, char *string);
+int fget_c_string(char* string, int Max_Str_Len, FILE* fspec);
+int get_string(FILE* fspec, char* string);
 #endif

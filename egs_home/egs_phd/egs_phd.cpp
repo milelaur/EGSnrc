@@ -54,7 +54,8 @@
 #include "egs_phd.h"
 
 // describeUserCode
-void phd_app::describeUserCode() const {
+void phd_app::describeUserCode() const
+{
     egsInformation(
         "\n***************************************************"
         "\n*                                                 *"
@@ -66,24 +67,28 @@ void phd_app::describeUserCode() const {
 
 
 // initScoring
-int phd_app::initScoring() {
+int phd_app::initScoring()
+{
 
     // get scoring options input block
-    EGS_Input *options = input->takeInputItem("scoring options");
-    if (!options) {
+    EGS_Input* options = input->takeInputItem("scoring options");
+    if (!options)
+    {
         egsFatal("ERROR: no :start scoring options: input block found.\nAborting.");
     }
 
     // parse spectrum input options
     options = options->takeInputItem("spectrum");
-    if (!options) {
+    if (!options)
+    {
         egsFatal("ERROR: no :start spectrum: input block found in scoring options.\nAborting.");
     }
 
     // get label of regions to score spectrum
     std::string mylabel;
     if (!options->getInput("label", mylabel)) {}
-    else {
+    else
+    {
         egsFatal("ERROR: label = undefined in spectrum input block.\nAborting.");
     }
 
@@ -91,38 +96,43 @@ int phd_app::initScoring() {
     Emin = 0;
     Emax = source->getEmax();
     EGS_Float myE;
-    if (!options->getInput("Emin", myE)) {
+    if (!options->getInput("Emin", myE))
+    {
         Emin = myE;
     }
-    if (!options->getInput("Emax", myE)) {
+    if (!options->getInput("Emax", myE))
+    {
         Emax = myE;
     }
 
     // get number of bins for scoring spectra (default is 100)
     int mybins = 100;
-    if (!options->getInput("bins", mybins)) {
+    if (!options->getInput("bins", mybins))
+    {
         nbin = mybins;
     }
 
     // get specturm output file name: default is spectrum.dat
     std::string spectrumFilename = "spectrum.dat";
-    if (!options->getInput("spectrum file", spectrumFilename)) {
+    if (!options->getInput("spectrum file", spectrumFilename))
+    {
         m_spectrumFilename = spectrumFilename;
     }
 
     // set radiative splitting
     int nbrsplit;
-    if (!options->getInput("radiative splitting", nbrsplit) && nbrsplit > 1) {
+    if (!options->getInput("radiative splitting", nbrsplit) && nbrsplit > 1)
+    {
         the_egsvr->nbr_split = nbrsplit;
         the_egsvr->i_play_RR = 1;
-        the_egsvr->prob_RR = 1.0/nbrsplit;
+        the_egsvr->prob_RR = 1.0 / nbrsplit;
     }
 
     // clean up
     delete options;
 
     // set energy bin size
-    Ebin = (Emax-Emin)/((double) nbin);
+    Ebin = (Emax - Emin) / ((double) nbin);
 
     // allocate scoring arrays
     nreg     = geometry->regions();
@@ -137,15 +147,18 @@ int phd_app::initScoring() {
 
 
 // ausgab
-int phd_app::ausgab(int iarg) {
+int phd_app::ausgab(int iarg)
+{
 
     // index of current particle and current region
     int np = the_stack->np - 1;
-    int ir = the_stack->ir[np]-2;
+    int ir = the_stack->ir[np] - 2;
 
     // score energy deposited in each region before particle is discarded
-    if (iarg <= 4) {
-        if (ir >= 0) {
+    if (iarg <= 4)
+    {
+        if (ir >= 0)
+        {
             score->score(ir, the_epcont->edep);    // don't include weight here; see simulateSingleShower()
         }
     }
@@ -155,24 +168,29 @@ int phd_app::ausgab(int iarg) {
 
 
 // simulate one shower
-int phd_app::simulateSingleShower() {
+int phd_app::simulateSingleShower()
+{
 
     // call base class function
     int err = EGS_AdvancedApplication::simulateSingleShower();
 
     // sum all energy deposited in the spectrum regions for the current shower
     EGS_Float myEnergy = 0.0;
-    for (int k=0; k<spectrum_regions.size(); k++) {
+    for (int k = 0; k < spectrum_regions.size(); k++)
+    {
         myEnergy += score->thisHistoryScore(spectrum_regions[k]);
     }
 
     // calculate spectrum bin number and score count
-    if (myEnergy > 1e-9) {
-        int mybin = (int)((myEnergy-Emin)/Ebin);
-        if (mybin == nbin) {
+    if (myEnergy > 1e-9)
+    {
+        int mybin = (int)((myEnergy - Emin) / Ebin);
+        if (mybin == nbin)
+        {
             mybin--;
         }
-        if (mybin >= 0 && mybin < nbin) {
+        if (mybin >= 0 && mybin < nbin)
+        {
             spectrum->score(mybin, initial_weight);          // apply incident particle weight here to the bin count
         }
     }
@@ -182,20 +200,24 @@ int phd_app::simulateSingleShower() {
 
 
 // outputData
-int phd_app::outputData() {
+int phd_app::outputData()
+{
 
     int err = EGS_AdvancedApplication::outputData();
-    if (err) {
+    if (err)
+    {
         return err;
     }
 
     (*data_out) << "  " << Etot << endl;
 
-    if (!score->storeState(*data_out))  {
+    if (!score->storeState(*data_out))
+    {
         return 101;
     }
 
-    if (!spectrum->storeState(*data_out)) {
+    if (!spectrum->storeState(*data_out))
+    {
         return 102;
     }
 
@@ -204,20 +226,24 @@ int phd_app::outputData() {
 
 
 // readData
-int phd_app::readData() {
+int phd_app::readData()
+{
 
     int err = EGS_AdvancedApplication::readData();
-    if (err) {
+    if (err)
+    {
         return err;
     }
 
     (*data_in) >> Etot;
 
-    if (!score->setState(*data_in)) {
+    if (!score->setState(*data_in))
+    {
         return 101;
     }
 
-    if (!spectrum->setState(*data_in)) {
+    if (!spectrum->setState(*data_in))
+    {
         return 102;
     }
 
@@ -226,7 +252,8 @@ int phd_app::readData() {
 
 
 // resetCounter
-void phd_app::resetCounter() {
+void phd_app::resetCounter()
+{
     EGS_AdvancedApplication::resetCounter();
     score->reset();
     spectrum->reset();
@@ -235,10 +262,12 @@ void phd_app::resetCounter() {
 
 
 // addState
-int phd_app::addState(istream &data) {
+int phd_app::addState(istream& data)
+{
 
     int err = EGS_AdvancedApplication::addState(data);
-    if (err) {
+    if (err)
+    {
         return err;
     }
 
@@ -246,14 +275,16 @@ int phd_app::addState(istream &data) {
     data >> etot_tmp;
     Etot += etot_tmp;
 
-    EGS_ScoringArray tmp_score(nreg+2);
-    if (!tmp_score.setState(data)) {
+    EGS_ScoringArray tmp_score(nreg + 2);
+    if (!tmp_score.setState(data))
+    {
         return 101;
     }
     (*score) += tmp_score;
 
-    EGS_ScoringArray tmp_spectrum(nreg+2);
-    if (!tmp_spectrum.setState(data)) {
+    EGS_ScoringArray tmp_spectrum(nreg + 2);
+    if (!tmp_spectrum.setState(data))
+    {
         return 102;
     }
     (*spectrum) += tmp_spectrum;
@@ -263,23 +294,26 @@ int phd_app::addState(istream &data) {
 
 
 // outputResults
-void phd_app::outputResults() {
+void phd_app::outputResults()
+{
 
-    egsInformation("\n\n last case = %d Etot = %g\n", (int)current_case,Etot);
+    egsInformation("\n\n last case = %d Etot = %g\n", (int)current_case, Etot);
     egsInformation("\n spectrum scoring regions: ");
 
-    for (int k=0; k<spectrum_regions.size(); k++) {
+    for (int k = 0; k < spectrum_regions.size(); k++)
+    {
         egsInformation("%d ", spectrum_regions[k]);
     }
     egsInformation("\n");
 
-    double norm = ((double)current_case)/Etot;
+    double norm = ((double)current_case) / Etot;
     outputResponse(spectrum);
 }
 
 
 // outputResponse
-void phd_app::outputResponse(EGS_ScoringArray *spec) {
+void phd_app::outputResponse(EGS_ScoringArray* spec)
+{
 
     std::fstream spectrum_file;
     spectrum_file.open(m_spectrumFilename.c_str(), std::fstream::out);
@@ -289,13 +323,14 @@ void phd_app::outputResponse(EGS_ScoringArray *spec) {
     spectrum_file << setprecision(6);
     spectrum_file << setw(16) << Emin << setw(16) << 0 << setw(16) << 0 << endl;
     double Espectrum = 0.0;
-    for (int i=0; i<nbin; i++) {
+    for (int i = 0; i < nbin; i++)
+    {
         double y, dy;
-        double x = Emin + (i+1)*Ebin;
+        double x = Emin + (i + 1) * Ebin;
         spectrum->currentResult(i, y, dy);
-        Espectrum += y*(Emin+(i+0.5)*Ebin);
-        y = y*current_case;
-        dy = dy*current_case;
+        Espectrum += y * (Emin + (i + 0.5) * Ebin);
+        y = y * current_case;
+        dy = dy * current_case;
         spectrum_file << setw(16) << x
                       << setw(16) << y
                       << setw(16) << dy
@@ -312,26 +347,30 @@ void phd_app::outputResponse(EGS_ScoringArray *spec) {
 
 
 // getCurrentResult
-void phd_app::getCurrentResult(double &sum,
-                                    double &sum2,
-                                    double &norm,
-                                    double &count) {
+void phd_app::getCurrentResult(double& sum,
+                               double& sum2,
+                               double& norm,
+                               double& count)
+{
     score->currentScore(0, sum, sum2);
 }
 
 
 // startNewShower
-int phd_app::startNewShower() {
+int phd_app::startNewShower()
+{
 
-    Etot += p.E*p.wt;
+    Etot += p.E * p.wt;
     initial_weight = p.wt;
 
     int res = EGS_Application::startNewShower();
-    if (res) {
+    if (res)
+    {
         return res;
     }
 
-    if (current_case != last_case) {
+    if (current_case != last_case)
+    {
         score->setHistory(current_case);
         spectrum->setHistory(current_case);
         last_case = current_case;

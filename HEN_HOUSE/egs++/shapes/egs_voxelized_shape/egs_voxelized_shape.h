@@ -44,22 +44,22 @@
 
 #ifdef WIN32
 
-    #ifdef BUILD_VOXELIZED_SHAPE_DLL
-        #define EGS_VOXELIZED_SHAPE_EXPORT __declspec(dllexport)
-    #else
-        #define EGS_VOXELIZED_SHAPE_EXPORT __declspec(dllimport)
-    #endif
-    #define EGS_VOXELIZED_SHAPE_LOCAL
+#ifdef BUILD_VOXELIZED_SHAPE_DLL
+#define EGS_VOXELIZED_SHAPE_EXPORT __declspec(dllexport)
+#else
+#define EGS_VOXELIZED_SHAPE_EXPORT __declspec(dllimport)
+#endif
+#define EGS_VOXELIZED_SHAPE_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_VOXELIZED_SHAPE_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_VOXELIZED_SHAPE_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_VOXELIZED_SHAPE_EXPORT
-        #define EGS_VOXELIZED_SHAPE_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_VOXELIZED_SHAPE_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_VOXELIZED_SHAPE_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_VOXELIZED_SHAPE_EXPORT
+#define EGS_VOXELIZED_SHAPE_LOCAL
+#endif
 
 #endif
 
@@ -94,7 +94,8 @@ The \c some_file file must be a binary file containing the following information
    This format is useful when the number of non-zero probability voxels is small
    compared to the total number of voxels.
 */
-class EGS_VOXELIZED_SHAPE_EXPORT EGS_VoxelizedShape : public EGS_BaseShape {
+class EGS_VOXELIZED_SHAPE_EXPORT EGS_VoxelizedShape : public EGS_BaseShape
+{
 
 public:
 
@@ -103,37 +104,39 @@ public:
     Construct a voxelized shape from the data provided in the binary file
     \c fname
     */
-    EGS_VoxelizedShape(int file_format, const char *fname,const string &Name="",
-                       EGS_ObjectFactory *f=0);
+    EGS_VoxelizedShape(int file_format, const char* fname, const string& Name = "",
+                       EGS_ObjectFactory* f = 0);
     ~EGS_VoxelizedShape();
-    void EGS_VoxelizedShapeFormat0(const char *fname,const string &Name="",
-                                   EGS_ObjectFactory *f=0);
-    EGS_Vector getPoint(EGS_RandomGenerator *rndm) {
+    void EGS_VoxelizedShapeFormat0(const char* fname, const string& Name = "",
+                                   EGS_ObjectFactory* f = 0);
+    EGS_Vector getPoint(EGS_RandomGenerator* rndm)
+    {
         int bin = prob->sample(rndm);
         int voxel = type == 0 ? bin : map[bin];
-        int iz = voxel/nxy;
-        voxel -= iz*nxy;
-        int iy = voxel/nx;
-        int ix = voxel - iy*nx;
+        int iz = voxel / nxy;
+        voxel -= iz * nxy;
+        int iy = voxel / nx;
+        int ix = voxel - iy * nx;
         EGS_Float eta_x = rndm->getUniform(),
                   eta_y = rndm->getUniform(),
                   eta_z = rndm->getUniform();
-        return EGS_Vector(xpos[ix]*(1-eta_x) + xpos[ix+1]*eta_x,
-                          ypos[iy]*(1-eta_y) + ypos[iy+1]*eta_y,
-                          zpos[iz]*(1-eta_z) + zpos[iz+1]*eta_z);
+        return EGS_Vector(xpos[ix] * (1 - eta_x) + xpos[ix + 1] * eta_x,
+                          ypos[iy] * (1 - eta_y) + ypos[iy + 1] * eta_y,
+                          zpos[iz] * (1 - eta_z) + zpos[iz + 1] * eta_z);
     };
 
-    bool isValid() const {
+    bool isValid() const
+    {
         return (type == 0 || type == 1);
     };
 
 protected:
 
-    EGS_SimpleAliasTable *prob;   ///! The alias table for randomly picking voxels
-    EGS_Float  *xpos;             ///! The x-positions of the grid
-    EGS_Float  *ypos;             ///! The y-positions of the grid
-    EGS_Float  *zpos;             ///! The z-positions of the grid
-    int        *map;              ///! Voxel map (for type=1)
+    EGS_SimpleAliasTable* prob;   ///! The alias table for randomly picking voxels
+    EGS_Float*  xpos;             ///! The x-positions of the grid
+    EGS_Float*  ypos;             ///! The y-positions of the grid
+    EGS_Float*  zpos;             ///! The z-positions of the grid
+    int*        map;              ///! Voxel map (for type=1)
     int        nx, ny, nz, nxy, nreg;
     int        type;
 };

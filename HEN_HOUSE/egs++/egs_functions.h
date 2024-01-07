@@ -56,9 +56,9 @@ using namespace std;
  * test if a float x vanishes, as in fabs(x) < epsilon.
  */
 #ifdef SINGLE
-    const EGS_Float epsilon = 1.0/(1<<21);
+const EGS_Float epsilon = 1.0 / (1 << 21);
 #else
-    const EGS_Float epsilon = 1.0/(1ULL<<50);
+const EGS_Float epsilon = 1.0 / (1ULL << 50);
 #endif
 
 /*! \brief The distanceEpsilon constant for physical distance
@@ -80,9 +80,9 @@ using namespace std;
  * the order of 1.0 cm.
  */
 #ifdef SINGLE
-    const EGS_Float distanceEpsilon = 1.0/(1<<21);
+const EGS_Float distanceEpsilon = 1.0 / (1 << 21);
 #else
-    const EGS_Float distanceEpsilon = 1.0/(1ULL<<32);
+const EGS_Float distanceEpsilon = 1.0 / (1ULL << 32);
 #endif
 
 /*! \brief The maximum number of iterations for near-infinite loops
@@ -113,7 +113,7 @@ const EGS_Float veryFar = 1e30;
  * MSVC). The 64 bit integer is written as two space separated 32 bit
  * integers.
  */
-bool EGS_EXPORT egsStoreI64(ostream &data, EGS_I64 n);
+bool EGS_EXPORT egsStoreI64(ostream& data, EGS_I64 n);
 
 /*! \brief Reads a 64 bit integer from the stream \a data and assigns it
  * to \a n. Returns \c true on success, \c false on failure.
@@ -125,12 +125,12 @@ bool EGS_EXPORT egsStoreI64(ostream &data, EGS_I64 n);
  * MSVC). The 64 bit integer is read as two space separated 32 bit
  * integers as written by egsStoreI64().
  */
-bool EGS_EXPORT egsGetI64(istream &data, EGS_I64 &n);
+bool EGS_EXPORT egsGetI64(istream& data, EGS_I64& n);
 
 /*! \brief Defines a function <code>printf</code>-like prototype for
  * functions to be used to report info, warnings, or errors.
  */
-typedef void (*EGS_InfoFunction)(const char *,...);
+typedef void (*EGS_InfoFunction)(const char*, ...);
 
 /*! \brief Always use this function for reporting the progress of a simulation
  * and any other type of information.
@@ -195,41 +195,41 @@ extern void EGS_EXPORT egsSetDefaultIOFunctions();
  * This is handy in cases when one wants to output the value of a CVS key
  * such as Id, Revision, etc., without the surrounding dollar signs.
  */
-string EGS_EXPORT egsSimplifyCVSKey(const string &key);
+string EGS_EXPORT egsSimplifyCVSKey(const string& key);
 
 /*! \brief Swap the bytes of 32 bit integers.
  *
  * \ingroup egspp_main
  *
  */
-void EGS_EXPORT egsSwapBytes(int *);
+void EGS_EXPORT egsSwapBytes(int*);
 
 /*! \brief Swap the bytes of 16 bit integers.
  *
  * \ingroup egspp_main
  *
  */
-void EGS_EXPORT egsSwapBytes(short *);
+void EGS_EXPORT egsSwapBytes(short*);
 
 /*! \brief Swap the bytes of 32 bit reals.
  *
  * \ingroup egspp_main
  *
  */
-void EGS_EXPORT egsSwapBytes(float *);
+void EGS_EXPORT egsSwapBytes(float*);
 
 /*! \brief Join two path variables (or a path and a file name)
   using the platform specific directory separator and return the result.
  *
  * \ingroup egspp_main
  */
-string EGS_EXPORT egsJoinPath(const string &first, const string &second);
+string EGS_EXPORT egsJoinPath(const string& first, const string& second);
 
 /*! \brief Strip the path from a file name and return the result.
  *
  * \ingroup egspp_main
  */
-string EGS_EXPORT egsStripPath(const string &fname);
+string EGS_EXPORT egsStripPath(const string& fname);
 
 /*! \brief Expands first environment variable found in a file name.
  *
@@ -239,7 +239,7 @@ string EGS_EXPORT egsStripPath(const string &fname);
  *
  * \ingroup egspp_main
  */
-string EGS_EXPORT egsExpandPath(const string &fname);
+string EGS_EXPORT egsExpandPath(const string& fname);
 
 /*! \brief Get the name of the host the program is running on.
  *
@@ -265,8 +265,8 @@ int EGS_EXPORT egsGetEndian();
  *
  * \ingroup egspp_main
  */
-bool EGS_EXPORT egsIsAbsolutePath(const string &path);
+bool EGS_EXPORT egsIsAbsolutePath(const string& path);
 
-bool EGS_EXPORT egsEquivStr(const string &a, const string &b);
+bool EGS_EXPORT egsEquivStr(const string& a, const string& b);
 
 #endif

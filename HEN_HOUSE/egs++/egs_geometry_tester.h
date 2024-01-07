@@ -74,12 +74,13 @@ class EGS_BaseGeometry;
   if not in the local directory) specifying a geometry
   and the tests to be performed on the geometry.
 */
-class EGS_EXPORT EGS_GeometryTester {
+class EGS_EXPORT EGS_GeometryTester
+{
 
 public:
 
     //! \brief Construct a geometry tester from an input tree.
-    EGS_GeometryTester(EGS_Input *);
+    EGS_GeometryTester(EGS_Input*);
 
     //! \brief Destructor
     virtual ~EGS_GeometryTester();
@@ -112,7 +113,7 @@ public:
       to create the points, not just a box as in the above example
       (see \ref Shapes).
      */
-    void testInside(EGS_BaseGeometry *g);
+    void testInside(EGS_BaseGeometry* g);
 
     /*! \brief Performs an inside time test
 
@@ -125,7 +126,7 @@ public:
       the \c file \c name input is not needed (and ignored, if present)
       as no output is generated.
      */
-    void testInsideTime(EGS_BaseGeometry *);
+    void testInsideTime(EGS_BaseGeometry*);
 
     /*! \brief Performs a hownear test.
 
@@ -141,7 +142,7 @@ public:
       test in the input file, except that the input is between
       <code>:start hownear test: :stop nownear test:</code>
      */
-    void testHownear(int ntry, EGS_BaseGeometry *g);
+    void testHownear(int ntry, EGS_BaseGeometry* g);
 
     /*! \brief Performs a hownear time test
 
@@ -153,7 +154,7 @@ public:
       <code>:start hownear time test: :stop nownear time test:</code>
       and the <code>file name</code> key is not needed.
      */
-    void testHownearTime(EGS_BaseGeometry *);
+    void testHownearTime(EGS_BaseGeometry*);
 
     /*! \brief Performs a howfar test
 
@@ -169,7 +170,7 @@ public:
       test in the input file, except that the input is between
       <code>:start howfar test: :stop nowfar test:</code>
      */
-    void testHowfar(EGS_BaseGeometry *);
+    void testHowfar(EGS_BaseGeometry*);
 
     /*! \brief Performs a howfar time test
 
@@ -182,7 +183,7 @@ public:
       <code>:start howfar time test: :stop nowfar time test:</code> and
       the <code>file name</code> key is not needed.
      */
-    void testHowfarTime(EGS_BaseGeometry *);
+    void testHowfarTime(EGS_BaseGeometry*);
 
     /*! \brief Outputs the position \a x to a file
 
@@ -193,7 +194,7 @@ public:
       print x.z and sqrt(x.x*x.x + x.y*x.y) when testing cylindrical
       geometries, etc.
      */
-    virtual void printPosition(const EGS_Vector &x);
+    virtual void printPosition(const EGS_Vector& x);
 
     /*! \brief Creates a geometry tester object from the input \a i.
 
@@ -245,11 +246,11 @@ public:
         the file.
 
      */
-    static EGS_GeometryTester *getGeometryTester(EGS_Input *i);
+    static EGS_GeometryTester* getGeometryTester(EGS_Input* i);
 
 protected:
 
-    EGS_PrivateTester *p;  //!< Hides the implementation details.
+    EGS_PrivateTester* p;  //!< Hides the implementation details.
 
 };
 

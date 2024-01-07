@@ -56,7 +56,8 @@ class EGS_Interpolator;
   class description for a quick guideline on writing EGSnrc C++ applications.
 
  */
-class APP_EXPORT EGS_AdvancedApplication : public EGS_Application {
+class APP_EXPORT EGS_AdvancedApplication : public EGS_Application
+{
 
 public:
 
@@ -69,7 +70,7 @@ public:
     to the \link EGS_Application::EGS_Application()
     EGS_Application \endlink constructor.
     */
-    EGS_AdvancedApplication(int argc, char **argv);
+    EGS_AdvancedApplication(int argc, char** argv);
 
     /*! \brief Destructor.
 
@@ -119,7 +120,7 @@ public:
       \em i.e. the random number array used by the mortran back-end and
       the number of electron steps taken so far.
      */
-    int addState(istream &);
+    int addState(istream&);
 
     /*! \brief Reset the application to a 'pristine' state.
 
@@ -160,7 +161,7 @@ public:
       Implemented using the egsGetSteps() function provided by the
       mortran back-end.
      */
-    void getElectronSteps(double &ch_steps, double &all_steps) const;
+    void getElectronSteps(double& ch_steps, double& all_steps) const;
 
     /*! Save the state of the RNG */
     virtual void saveRNGState();
@@ -168,9 +169,9 @@ public:
     /*! Reset the RNG state */
     virtual void resetRNGState();
 
-    void appInformation(const char *msg);
-    void appWarning(const char *msg);
-    void appFatal(const char *msg);
+    void appInformation(const char* msg);
+    void appWarning(const char* msg);
+    void appFatal(const char* msg);
 
     /*! \brief Start the transport of a new particle.
 
@@ -191,8 +192,8 @@ public:
      Set media and corresponding ff file names for
      custom Rayleigh data.
     */
-    void setRayleighData(const vector<string> &str_medium,
-                         const vector<string> &str_file);
+    void setRayleighData(const vector<string>& str_medium,
+                         const vector<string>& str_file);
     /*! \brief Set EII flag and xsection file name.
 
     The EII input is of a mixed type, i.e., one should be able to turn
@@ -221,37 +222,37 @@ public:
     // Utility functions for fluence scoring objects
     //************************************************************
     EGS_Float getTVSTEP();
-    EGS_Interpolator *getDEDX(const int &imed, const int &iq);
-    void setLatch(const int &ip, const int &latch);
-    void incLatch(const int &ip, const int &increment);
+    EGS_Interpolator* getDEDX(const int& imed, const int& iq);
+    void setLatch(const int& ip, const int& latch);
+    void incLatch(const int& ip, const int& increment);
     int getNp();
     int getNpOld();
 
     /* Needed by some sources */
     EGS_Float getRM();
     /* Turn ON/OFF radiative splitting */
-    void setRadiativeSplitting(const EGS_Float &nsplit);
+    void setRadiativeSplitting(const EGS_Float& nsplit);
 
 protected:
 
     int              nmed;      //!< number of media
-    EGS_Interpolator *i_ededx;  //!< electron stopping power interpolator
-    EGS_Interpolator *i_pdedx;  //!< positron stopping power interpolator
-    EGS_Interpolator *i_esig;   //!< electron cross section  interpolator
-    EGS_Interpolator *i_psig;   //!< positron cross section  interpolator
-    EGS_Interpolator *i_ebr1;   //!< electron branching      interpolator
-    EGS_Interpolator *i_pbr1;   //!< positron branching 1    interpolator
-    EGS_Interpolator *i_pbr2;   //!< positron branching 2    interpolator
+    EGS_Interpolator* i_ededx;  //!< electron stopping power interpolator
+    EGS_Interpolator* i_pdedx;  //!< positron stopping power interpolator
+    EGS_Interpolator* i_esig;   //!< electron cross section  interpolator
+    EGS_Interpolator* i_psig;   //!< positron cross section  interpolator
+    EGS_Interpolator* i_ebr1;   //!< electron branching      interpolator
+    EGS_Interpolator* i_pbr1;   //!< positron branching 1    interpolator
+    EGS_Interpolator* i_pbr2;   //!< positron branching 2    interpolator
 
-    EGS_Interpolator *i_gmfp;   //!< photon mean-free-path interpolator
-    EGS_Interpolator *i_gbr1;   //!< photon branching 1 interpolator
-    EGS_Interpolator *i_gbr2;   //!< photon branching 2 interpolator
-    EGS_Interpolator *i_cohe;   //!< photon Rayleigh interpolator
-    EGS_Interpolator *i_photonuc;   //!< photonuclear interpolator
+    EGS_Interpolator* i_gmfp;   //!< photon mean-free-path interpolator
+    EGS_Interpolator* i_gbr1;   //!< photon branching 1 interpolator
+    EGS_Interpolator* i_gbr2;   //!< photon branching 2 interpolator
+    EGS_Interpolator* i_cohe;   //!< photon Rayleigh interpolator
+    EGS_Interpolator* i_photonuc;   //!< photonuclear interpolator
 
     int n_rng_buffer;           //!< Size of the RNG buffer
     int i_rng_buffer;           //!< Pointer to the RNG buffer
-    EGS_Float *rng_buffer;      //!< RNG buffer
+    EGS_Float* rng_buffer;      //!< RNG buffer
 
     /*! \brief Initialize the EGSnrc mortran back-end.
 
@@ -296,7 +297,7 @@ protected:
 
     /*! \brief Helper function used in initCrossSections() and
       describeSimulation(). */
-    int  helpInit(EGS_Input *, bool do_hatch);
+    int  helpInit(EGS_Input*, bool do_hatch);
 
     /*! \brief Holds the CVS revision number of the
       egs_advanced_application.cpp file. */

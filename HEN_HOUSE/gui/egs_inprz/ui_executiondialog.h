@@ -60,39 +60,39 @@ QT_BEGIN_NAMESPACE
 class Ui_MExecutionDialog
 {
 public:
-    QVBoxLayout *verticalLayout_4;
-    QVBoxLayout *verticalLayout_3;
-    QVBoxLayout *verticalLayout_2;
-    QGroupBox *inputFileGroupBox;
-    QVBoxLayout *verticalLayout;
-    QLabel *inputFileLabel;
-    QGroupBox *runModeButtonGroup;
-    QHBoxLayout *hboxLayout;
-    QHBoxLayout *hboxLayout1;
-    QRadioButton *interactiveRadioButton;
-    QRadioButton *batchRadioButton;
-    QGroupBox *batchGroupBox;
-    QVBoxLayout *vboxLayout;
-    QVBoxLayout *vboxLayout1;
-    QHBoxLayout *hboxLayout2;
-    QSpinBox *NumJobSpinBox;
-    QSpacerItem *Spacer26;
-    QLabel *NumJobLabel;
-    QHBoxLayout *hboxLayout3;
-    QComboBox *queueSystemcomboBox;
-    QSpacerItem *spacer43;
-    QLabel *queueSystemLabel;
-    QHBoxLayout *hboxLayout4;
-    QComboBox *QueueComboBox;
-    QSpacerItem *Spacer27;
-    QLabel *QueueLabel;
-    QSpacerItem *verticalSpacer;
-    QFrame *Frame7;
-    QHBoxLayout *hboxLayout5;
-    QPushButton *buttonOk;
-    QPushButton *buttonCancel;
+    QVBoxLayout* verticalLayout_4;
+    QVBoxLayout* verticalLayout_3;
+    QVBoxLayout* verticalLayout_2;
+    QGroupBox* inputFileGroupBox;
+    QVBoxLayout* verticalLayout;
+    QLabel* inputFileLabel;
+    QGroupBox* runModeButtonGroup;
+    QHBoxLayout* hboxLayout;
+    QHBoxLayout* hboxLayout1;
+    QRadioButton* interactiveRadioButton;
+    QRadioButton* batchRadioButton;
+    QGroupBox* batchGroupBox;
+    QVBoxLayout* vboxLayout;
+    QVBoxLayout* vboxLayout1;
+    QHBoxLayout* hboxLayout2;
+    QSpinBox* NumJobSpinBox;
+    QSpacerItem* Spacer26;
+    QLabel* NumJobLabel;
+    QHBoxLayout* hboxLayout3;
+    QComboBox* queueSystemcomboBox;
+    QSpacerItem* spacer43;
+    QLabel* queueSystemLabel;
+    QHBoxLayout* hboxLayout4;
+    QComboBox* QueueComboBox;
+    QSpacerItem* Spacer27;
+    QLabel* QueueLabel;
+    QSpacerItem* verticalSpacer;
+    QFrame* Frame7;
+    QHBoxLayout* hboxLayout5;
+    QPushButton* buttonOk;
+    QPushButton* buttonCancel;
 
-    void setupUi(QDialog *MExecutionDialog)
+    void setupUi(QDialog* MExecutionDialog)
     {
         if (MExecutionDialog->objectName().isEmpty())
             MExecutionDialog->setObjectName(QString::fromUtf8("MExecutionDialog"));
@@ -305,7 +305,7 @@ public:
         QMetaObject::connectSlotsByName(MExecutionDialog);
     } // setupUi
 
-    void retranslateUi(QDialog *MExecutionDialog)
+    void retranslateUi(QDialog* MExecutionDialog)
     {
         MExecutionDialog->setWindowTitle(QCoreApplication::translate("MExecutionDialog", "Execution Setup", nullptr));
 #if QT_CONFIG(tooltip)
@@ -364,8 +364,9 @@ public:
 
 };
 
-namespace Ui {
-    class MExecutionDialog: public Ui_MExecutionDialog {};
+namespace Ui
+{
+class MExecutionDialog: public Ui_MExecutionDialog {};
 } // namespace Ui
 
 QT_END_NAMESPACE

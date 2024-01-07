@@ -37,82 +37,98 @@
 #include "egs_collimated_source.h"
 #include "egs_input.h"
 
-EGS_CollimatedSource::EGS_CollimatedSource(EGS_Input *input,
-        EGS_ObjectFactory *f) : EGS_BaseSimpleSource(input,f),
-    source_shape(0), target_shape(0), ctry(0), dist(1) {
-    EGS_Input *ishape = input->takeInputItem("source shape");
-    if (ishape) {
+EGS_CollimatedSource::EGS_CollimatedSource(EGS_Input* input,
+    EGS_ObjectFactory* f) : EGS_BaseSimpleSource(input, f),
+    source_shape(0), target_shape(0), ctry(0), dist(1)
+{
+    EGS_Input* ishape = input->takeInputItem("source shape");
+    if (ishape)
+    {
         source_shape = EGS_BaseShape::createShape(ishape);
         delete ishape;
     }
-    if (!source_shape) {
+    if (!source_shape)
+    {
         string sname;
-        int err = input->getInput("source shape name",sname);
+        int err = input->getInput("source shape name", sname);
         if (err)
             egsWarning("EGS_CollimatedSource: missing/wrong inline source "
                        "shape definition and missing/wrong 'source shape name' input\n");
-        else {
+        else
+        {
             source_shape = EGS_BaseShape::getShape(sname);
             if (!source_shape)
                 egsWarning("EGS_CollimatedSource: a shape named %s"
-                           " does not exist\n",sname.c_str());
+                           " does not exist\n", sname.c_str());
         }
     }
     ishape = input->takeInputItem("target shape");
-    if (ishape) {
+    if (ishape)
+    {
         target_shape = EGS_BaseShape::createShape(ishape);
         delete ishape;
     }
-    if (!target_shape) {
+    if (!target_shape)
+    {
         string sname;
-        int err = input->getInput("target shape name",sname);
+        int err = input->getInput("target shape name", sname);
         if (err)
             egsWarning("EGS_CollimatedSource: missing/wrong inline target"
                        "shape definition and missing/wrong 'target shape name' input\n");
-        else {
+        else
+        {
             target_shape = EGS_BaseShape::getShape(sname);
             if (!target_shape)
                 egsWarning("EGS_CollimatedSource: a shape named %s"
-                           " does not exist\n",sname.c_str());
+                           " does not exist\n", sname.c_str());
         }
     }
-    if (target_shape) {
+    if (target_shape)
+    {
         if (!target_shape->supportsDirectionMethod())
             egsWarning("EGS_CollimatedSource: the target shape %s, which is"
                        " of type %s, does not support the getPointSourceDirection()"
-                       " method\n",target_shape->getObjectName().c_str(),
+                       " method\n", target_shape->getObjectName().c_str(),
                        target_shape->getObjectType().c_str());
     };
     EGS_Float auxd;
-    int errd = input->getInput("distance",auxd);
-    if (!errd) {
+    int errd = input->getInput("distance", auxd);
+    if (!errd)
+    {
         dist = auxd;
     }
     setUp();
 }
 
-void EGS_CollimatedSource::setUp() {
+void EGS_CollimatedSource::setUp()
+{
     otype = "EGS_CollimatedSource";
-    if (!isValid()) {
+    if (!isValid())
+    {
         description = "Invalid collimated source";
     }
-    else {
+    else
+    {
         description = "Collimated source from a shape of type ";
         description += source_shape->getObjectType();
         description += " onto a shape of type ";
         description += target_shape->getObjectType();
         description += " with ";
         description += s->getType();
-        if (q == -1) {
+        if (q == -1)
+        {
             description += ", electrons";
         }
-        else if (q == 0) {
+        else if (q == 0)
+        {
             description += ", photons";
         }
-        else if (q == 1) {
+        else if (q == 1)
+        {
             description += ", positrons";
         }
-        else {
+        else
+        {
             description += ", unknown particle type";
         }
     }
@@ -120,10 +136,11 @@ void EGS_CollimatedSource::setUp() {
 
 extern "C" {
 
-    EGS_COLLIMATED_SOURCE_EXPORT EGS_BaseSource *createSource(EGS_Input *input,
-            EGS_ObjectFactory *f) {
+    EGS_COLLIMATED_SOURCE_EXPORT EGS_BaseSource* createSource(EGS_Input* input,
+        EGS_ObjectFactory* f)
+    {
         return
-            createSourceTemplate<EGS_CollimatedSource>(input,f,"collimated source");
+            createSourceTemplate<EGS_CollimatedSource>(input, f, "collimated source");
     }
 
 }

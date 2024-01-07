@@ -41,7 +41,7 @@
 #include "egs_rndm.h"
 #include <vector>
 
-typedef EGS_Float(*EGS_AtFunction)(EGS_Float,void *);
+typedef EGS_Float(*EGS_AtFunction)(EGS_Float, void*);
 
 /*! \brief A class for sampling random values from a given probability
   distribution using the alias table technique.
@@ -60,7 +60,8 @@ typedef EGS_Float(*EGS_AtFunction)(EGS_Float,void *);
   EGS_AliasTable::EGS_AliasTable(EGS_Float,EGS_Float,EGS_Float,int,EGS_AtFunction,void *) this constructor \endlink)
   Random values are then drawn using the sample() method.
 */
-class EGS_EXPORT EGS_AliasTable {
+class EGS_EXPORT EGS_AliasTable
+{
 
 public:
 
@@ -72,7 +73,8 @@ public:
     EGS_AliasTable() : n(0) {};
 
     /*! \brief Copy constructor. Performs a deep copy */
-    EGS_AliasTable(const EGS_AliasTable &t) : n(0) {
+    EGS_AliasTable(const EGS_AliasTable& t) : n(0)
+    {
         copy(t);
     };
 
@@ -90,9 +92,10 @@ public:
       with a linear variation between the \f$x_i,f_i\f$ and
       \f$x_{i+1},f_{i+1}\f$.
      */
-    EGS_AliasTable(int N, const EGS_Float *x, const EGS_Float *f,
-                   int Type = 1) : n(0) {
-        initialize(N,x,f,Type);
+    EGS_AliasTable(int N, const EGS_Float* x, const EGS_Float* f,
+                   int Type = 1) : n(0)
+    {
+        initialize(N, x, f, Type);
     };
 
 
@@ -107,15 +110,16 @@ public:
       Internally the alias table will be set to be of type 2.
      */
     EGS_AliasTable(EGS_Float xmin, EGS_Float xmax, EGS_Float accu, int nmax,
-                   EGS_AtFunction func, void *data) : n(0) {
-        initialize(xmin,xmax,accu,nmax,func,data);
+                   EGS_AtFunction func, void* data) : n(0)
+    {
+        initialize(xmin, xmax, accu, nmax, func, data);
     };
 
     /*! \brief Initialize the alias table
 
     See \link EGS_AliasTable::EGS_AliasTable(int,const EGS_Float*,const EGS_Float*,int=1) the constructor \endlink with corresponding arguments.
     */
-    void initialize(int N, const EGS_Float *x, const EGS_Float *f,
+    void initialize(int N, const EGS_Float* x, const EGS_Float* f,
                     int Type = 1);
 
     /*! \brief Initialize the alias table
@@ -128,38 +132,40 @@ public:
       interpolation accuracy with \a nmax bins.
      */
     int initialize(EGS_Float xmin, EGS_Float xmax, EGS_Float accu, int nmax,
-                   EGS_AtFunction func, void *data);
+                   EGS_AtFunction func, void* data);
 
     /*! \brief Get a random point from this table using the RNG \a rndm. */
-    EGS_Float sample(EGS_RandomGenerator *rndm) const;
+    EGS_Float sample(EGS_RandomGenerator* rndm) const;
 
     /*! \brief Get a random bin from this table.  */
-    int sampleBin(EGS_RandomGenerator *rndm) const;
+    int sampleBin(EGS_RandomGenerator* rndm) const;
 
     /*! \brief Get the average of the probability distribution represented
       by this alias table object. */
-    EGS_Float getAverage() const {
+    EGS_Float getAverage() const
+    {
         return average;
     };
 
     /*! \brief Get the maximum abscissa of this alias table object. */
-    EGS_Float getMaximum() const {
-        return xi[n-1];
+    EGS_Float getMaximum() const
+    {
+        return xi[n - 1];
     };
 
 private:
 
     int       n;     //!< number of subintervals
     int       np;    //!< =n for type=0, =n-1 else.
-    EGS_Float *fi;   //!< array of function values
-    EGS_Float *xi;   //!< array of coordinates
-    EGS_Float *wi;   //!< array of bin branching probabilities
+    EGS_Float* fi;   //!< array of function values
+    EGS_Float* xi;   //!< array of coordinates
+    EGS_Float* wi;   //!< array of bin branching probabilities
     EGS_Float average;
-    int       *bin;  //!< bins
+    int*       bin;  //!< bins
     int       type;  /*!< 0 => sum of delta functions, 1 => histogram
                       2 => linear interpolation between bin edges */
 
-    void      copy(const EGS_AliasTable &t);
+    void      copy(const EGS_AliasTable& t);
     void      clear();
     void      allocate(int N, int Type);
     void      make();
@@ -179,7 +185,8 @@ private:
   bin indeces is needed
 */
 
-class EGS_EXPORT EGS_SimpleAliasTable {
+class EGS_EXPORT EGS_SimpleAliasTable
+{
 
 public:
 
@@ -188,7 +195,7 @@ public:
     Construct a simple alias table having \c N bins with probabilities given
     by the array \c f
     */
-    EGS_SimpleAliasTable(int N, const EGS_Float *f);
+    EGS_SimpleAliasTable(int N, const EGS_Float* f);
 
     /*! \brief Destructor */
     ~EGS_SimpleAliasTable();
@@ -197,16 +204,17 @@ public:
 
     Returns a random bin according to the bin probabilities for this alias table
     */
-    int sample(EGS_RandomGenerator *rndm) const {
-        int bin = (int)(rndm->getUniform()*n);
+    int sample(EGS_RandomGenerator* rndm) const
+    {
+        int bin = (int)(rndm->getUniform() * n);
         return rndm->getUniform() < wi[bin] ? bin : bins[bin];
     };
 
 private:
 
     int       n;          //!< number of subintervals
-    EGS_Float *wi;        //!< array of bin branching probabilities
-    int       *bins;      //!< bins
+    EGS_Float* wi;        //!< array of bin branching probabilities
+    int*       bins;      //!< bins
 
 };
 

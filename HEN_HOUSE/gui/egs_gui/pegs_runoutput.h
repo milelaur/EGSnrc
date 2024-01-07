@@ -58,15 +58,19 @@ class PEGS_RunOutput :  public QDialog, public Ui::PEGS_RunOutput
 {
     Q_OBJECT
 public:
-    PEGS_RunOutput(QWidget* parent): QDialog(parent){setupUi(this);init();};
-    ~PEGS_RunOutput(){}
+    PEGS_RunOutput(QWidget* parent): QDialog(parent)
+    {
+        setupUi(this);
+        init();
+    };
+    ~PEGS_RunOutput() {}
 
 public slots:
     void hideWindow();
-    void insertText( const QString & s );
+    void insertText(const QString& s);
     void viewErrors();
     void clearOutput();
-    void setOutputFile( const QString & s );
+    void setOutputFile(const QString& s);
 
 signals:
     void windowClosed();

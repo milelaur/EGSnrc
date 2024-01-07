@@ -39,8 +39,10 @@
 #include "egs_alias_table.h"
 #include "egs_functions.h"
 
-void EGS_AliasTable::clear() {
-    if (n > 0) {
+void EGS_AliasTable::clear()
+{
+    if (n > 0)
+    {
         delete [] fi;
         delete [] xi;
         delete [] wi;
@@ -49,44 +51,54 @@ void EGS_AliasTable::clear() {
     }
 }
 
-void EGS_AliasTable::allocate(int N, int Type) {
+void EGS_AliasTable::allocate(int N, int Type)
+{
     clear();
     n = N;
     type = Type;
     xi = new EGS_Float [n];
-    if (type == 0) {
+    if (type == 0)
+    {
         np = n;
         fi = new EGS_Float [n];
         wi = new EGS_Float [n];
         bin = new int [n];
     }
-    else {
-        np = n-1;
-        wi = new EGS_Float [n-1];
-        bin = new int [n-1];
-        if (type == 1) {
-            fi = new EGS_Float [n-1];
+    else
+    {
+        np = n - 1;
+        wi = new EGS_Float [n - 1];
+        bin = new int [n - 1];
+        if (type == 1)
+        {
+            fi = new EGS_Float [n - 1];
         }
-        else {
+        else
+        {
             fi = new EGS_Float [n];
         }
     }
 }
 
 
-void EGS_AliasTable::copy(const EGS_AliasTable &t) {
+void EGS_AliasTable::copy(const EGS_AliasTable& t)
+{
     clear();
-    if (t.n > 0) {
-        allocate(t.n,t.type);
-        for (int j=0; j<np; j++) {
+    if (t.n > 0)
+    {
+        allocate(t.n, t.type);
+        for (int j = 0; j < np; j++)
+        {
             xi[j] = t.xi[j];
             fi[j] = t.fi[j];
             wi[j] = t.wi[j];
             bin[j] = t.bin[j];
         }
-        if (type) {
+        if (type)
+        {
             xi[np] = t.xi[np];
-            if (type == 2 || type == 3) {
+            if (type == 2 || type == 3)
+            {
                 fi[np] = t.fi[np];
             }
         }
@@ -97,84 +109,104 @@ void EGS_AliasTable::copy(const EGS_AliasTable &t) {
       Initializes alias-table:
       N = number of abscissa points
 **************************************************/
-void EGS_AliasTable::initialize(int N, const EGS_Float *x,
-                                const EGS_Float *f, int Type) {
-    allocate(N,Type);
-    for (int i=0; i<np; i++) {
+void EGS_AliasTable::initialize(int N, const EGS_Float* x,
+                                const EGS_Float* f, int Type)
+{
+    allocate(N, Type);
+    for (int i = 0; i < np; i++)
+    {
         xi[i] = x[i];
         fi[i] = f[i];
     }
-    if (Type) {
+    if (Type)
+    {
         xi[np] = x[np];
     }
-    if (Type == 2 || Type == 3) {
+    if (Type == 2 || Type == 3)
+    {
         fi[np] = f[np];
     }
     make();
 }
 
-void EGS_AliasTable::make() {
-    EGS_Float *fcum = new EGS_Float[np];
-    bool *not_done = new bool[np];
+void EGS_AliasTable::make()
+{
+    EGS_Float* fcum = new EGS_Float[np];
+    bool* not_done = new bool[np];
     EGS_Float sum = 0, sum1 = 0;
     int i;
-    for (i=0; i<np; i++) {
-        if (type == 0) {
+    for (i = 0; i < np; i++)
+    {
+        if (type == 0)
+        {
             fcum[i] = fi[i];
         }
-        else if (type == 1) {
-            fcum[i] = fi[i]*(xi[i+1]-xi[i]);
+        else if (type == 1)
+        {
+            fcum[i] = fi[i] * (xi[i + 1] - xi[i]);
         }
-        else {
-            fcum[i] = 0.5*(fi[i]+fi[i+1])*(xi[i+1]-xi[i]);
+        else
+        {
+            fcum[i] = 0.5 * (fi[i] + fi[i + 1]) * (xi[i + 1] - xi[i]);
         }
         sum += fcum[i];
         wi[i] = 1;
         bin[i] = 0;
         not_done[i] = true;
-        if (type == 0) {
-            sum1 += fcum[i]*xi[i];
+        if (type == 0)
+        {
+            sum1 += fcum[i] * xi[i];
         }
-        else if (type == 1) {
-            sum1 += 0.5*fcum[i]*(xi[i+1]+xi[i]);
+        else if (type == 1)
+        {
+            sum1 += 0.5 * fcum[i] * (xi[i + 1] + xi[i]);
         }
-        else sum1 += fcum[i]*(fi[i]*(2*xi[i]+xi[i+1])+
-                                  fi[i+1]*(xi[i]+2*xi[i+1]))/(3*(fi[i]+fi[i+1]));
+        else sum1 += fcum[i] * (fi[i] * (2 * xi[i] + xi[i + 1]) +
+                                    fi[i + 1] * (xi[i] + 2 * xi[i + 1])) / (3 * (fi[i] + fi[i + 1]));
     }
-    average = sum1/sum;
+    average = sum1 / sum;
 
-    for (i=0; i<np; i++) {
+    for (i = 0; i < np; i++)
+    {
         fi[i] /= sum;
     }
-    if (type == 2 || type == 3) {
+    if (type == 2 || type == 3)
+    {
         fi[np] /= sum;
     }
     sum /= np;
 
     int jh, jl;
-    for (i=0; i<np-1; i++) {
+    for (i = 0; i < np - 1; i++)
+    {
 
         // find the next "high" bin (above average)
         int high_bin = -1;
-        for (jh=0; jh<np; jh++) {
-            if (not_done[jh] && fcum[jh] > sum) {
+        for (jh = 0; jh < np; jh++)
+        {
+            if (not_done[jh] && fcum[jh] > sum)
+            {
                 high_bin = jh;
                 break;
             }
         }
-        if (high_bin < 0) {
+        if (high_bin < 0)
+        {
             break;
         }
 
         // find the next "low" bin (below average)
         int low_bin = -1;
-        for (jl=0; jl<np; jl++) {
-            if (not_done[jl] && fcum[jl] < sum) {
+        for (jl = 0; jl < np; jl++)
+        {
+            if (not_done[jl] && fcum[jl] < sum)
+            {
                 low_bin = jl;
                 break;
             }
         }
-        if (low_bin < 0) {
+        if (low_bin < 0)
+        {
             egsWarning("EGS_AliasTable::make(): found a high bin, but no low bin; this is abnormal.");
             break;
         }
@@ -183,7 +215,7 @@ void EGS_AliasTable::make() {
         EGS_Float aux = sum - fcum[low_bin];
         fcum[high_bin] -= aux;
         not_done[jl] = false;
-        wi[low_bin] = fcum[low_bin]/sum;
+        wi[low_bin] = fcum[low_bin] / sum;
         bin[low_bin] = high_bin;
     }
     delete [] fcum;
@@ -193,36 +225,42 @@ void EGS_AliasTable::make() {
 #define AT_NCHECK 3
 
 int EGS_AliasTable::initialize(EGS_Float xmin, EGS_Float xmax, EGS_Float accu,
-                               int nmax, EGS_AtFunction f, void *data) {
-    allocate(2,2);
+                               int nmax, EGS_AtFunction f, void* data)
+{
+    allocate(2, 2);
     xi[0] = xmin;
     xi[1] = xmax;
-    fi[0] = f(xi[0],data);
-    fi[1] = f(xi[1],data);
-    EGS_Float *xtemp, *ftemp;
+    fi[0] = f(xi[0], data);
+    fi[1] = f(xi[1], data);
+    EGS_Float* xtemp, * ftemp;
     int error = 0;
-    for (EGS_I64 loopCount=0; loopCount<=loopMax; ++loopCount) {
-        if (loopCount == loopMax) {
+    for (EGS_I64 loopCount = 0; loopCount <= loopMax; ++loopCount)
+    {
+        if (loopCount == loopMax)
+        {
             egsFatal("EGS_AliasTable::initialize: Too many iterations were required! Input may be invalid, or consider increasing loopMax.");
             return 1;
         }
-        int nnn = (n-1)*AT_NCHECK + n;
+        int nnn = (n - 1) * AT_NCHECK + n;
         xtemp = new EGS_Float[nnn];
         ftemp = new EGS_Float[nnn];
         if (!xtemp || !ftemp) egsFatal("EGS_AliasTable::initialize: "
                                            "not enough memory!\n");
         bool is_ok = true;
-        int i,j=0;
-        for (i=0; i<n-1; i++) {
+        int i, j = 0;
+        for (i = 0; i < n - 1; i++)
+        {
             xtemp[j] = xi[i];
             ftemp[j] = fi[i];
-            EGS_Float dx = (xi[i+1]-xi[i])/(AT_NCHECK+1);
-            for (int l=0; l<AT_NCHECK; l++) {
-                EGS_Float x = xi[i]+dx*(l+1);
-                EGS_Float fe = f(x,data);
-                EGS_Float fa = fi[i]+(fi[i+1]-fi[i])/(xi[i+1]-xi[i])*(x-xi[i]);
-                EGS_Float test = fabs(fa/fe-1);
-                if (test > accu) {
+            EGS_Float dx = (xi[i + 1] - xi[i]) / (AT_NCHECK + 1);
+            for (int l = 0; l < AT_NCHECK; l++)
+            {
+                EGS_Float x = xi[i] + dx * (l + 1);
+                EGS_Float fe = f(x, data);
+                EGS_Float fa = fi[i] + (fi[i + 1] - fi[i]) / (xi[i + 1] - xi[i]) * (x - xi[i]);
+                EGS_Float test = fabs(fa / fe - 1);
+                if (test > accu)
+                {
                     is_ok = false;
                     xtemp[++j] = x;
                     ftemp[j] = fe;
@@ -230,17 +268,20 @@ int EGS_AliasTable::initialize(EGS_Float xmin, EGS_Float xmax, EGS_Float accu,
             }
             j++;
         }
-        if (is_ok) {
+        if (is_ok)
+        {
             break;
         }
-        xtemp[j] = xi[n-1];
-        ftemp[j++] = fi[n-1];
-        allocate(j,2);
-        for (i=0; i<j; i++) {
+        xtemp[j] = xi[n - 1];
+        ftemp[j++] = fi[n - 1];
+        allocate(j, 2);
+        for (i = 0; i < j; i++)
+        {
             xi[i] = xtemp[i];
             fi[i] = ftemp[i];
         }
-        if (n >= nmax) {
+        if (n >= nmax)
+        {
             error = 1;
             break;
         }
@@ -253,55 +294,67 @@ int EGS_AliasTable::initialize(EGS_Float xmin, EGS_Float xmax, EGS_Float accu,
     return error;
 }
 
-int EGS_AliasTable::sampleBin(EGS_RandomGenerator *rndm) const {
+int EGS_AliasTable::sampleBin(EGS_RandomGenerator* rndm) const
+{
     EGS_Float r1 = rndm->getUniform();
-    EGS_Float aj = r1*np;
+    EGS_Float aj = r1 * np;
     int j = (int) aj;
     aj -= j;
-    if (aj > wi[j]) {
+    if (aj > wi[j])
+    {
         j = bin[j];
     }
     return j;
 }
 
-EGS_Float EGS_AliasTable::sample(EGS_RandomGenerator *rndm) const {
+EGS_Float EGS_AliasTable::sample(EGS_RandomGenerator* rndm) const
+{
     EGS_Float r1 = rndm->getUniform();
-    EGS_Float aj = r1*np;
+    EGS_Float aj = r1 * np;
     int j = (int) aj;
     aj -= j;
-    if (aj > wi[j]) {
+    if (aj > wi[j])
+    {
         j = bin[j];
     }
-    if (!type) {
+    if (!type)
+    {
         return xi[j];
     }
     EGS_Float x = xi[j];
-    EGS_Float dx = xi[j+1] - x;
+    EGS_Float dx = xi[j + 1] - x;
     EGS_Float r2 = rndm->getUniform();
-    if (type == 1) {
-        return x + dx*r2;
+    if (type == 1)
+    {
+        return x + dx * r2;
     }
     EGS_Float res;
-    if (fi[j] > 0) {
-        EGS_Float a = fi[j+1]/fi[j]-1;
-        if (fabs(a) < 0.2) {
-            EGS_Float rnno1 = 0.5*(1-r2)*a;
-            res = x + r2*dx*(1+rnno1*(1-r2*a));
+    if (fi[j] > 0)
+    {
+        EGS_Float a = fi[j + 1] / fi[j] - 1;
+        if (fabs(a) < 0.2)
+        {
+            EGS_Float rnno1 = 0.5 * (1 - r2) * a;
+            res = x + r2 * dx * (1 + rnno1 * (1 - r2 * a));
         }
-        else {
-            res = x - dx/a*(1-sqrt(1+r2*a*(2+a)));
+        else
+        {
+            res = x - dx / a * (1 - sqrt(1 + r2 * a * (2 + a)));
         }
     }
-    else {
-        res = x + dx*sqrt(r2);
+    else
+    {
+        res = x + dx * sqrt(r2);
     }
     return res;
 }
 
 
-EGS_SimpleAliasTable::EGS_SimpleAliasTable(int N, const EGS_Float *f) : n(0) {
+EGS_SimpleAliasTable::EGS_SimpleAliasTable(int N, const EGS_Float* f) : n(0)
+{
 
-    if (N < 1) {
+    if (N < 1)
+    {
         return;
     }
 
@@ -313,21 +366,25 @@ EGS_SimpleAliasTable::EGS_SimpleAliasTable(int N, const EGS_Float *f) : n(0) {
     // local variables
     int i;
     double sum = 0;
-    double *p = new EGS_Float [n];
+    double* p = new EGS_Float [n];
 
     // initialize distribution and bin aliases, and compute histogram sum
-    for (i=0; i<n; i++) {
+    for (i = 0; i < n; i++)
+    {
         bins[i] = i;
         p[i] = f[i];
         sum += p[i];
     }
 
     // normalize distribution
-    if (sum <= 0) {
+    if (sum <= 0)
+    {
         egsFatal("Error: %s, line %d: degenerate distribution, histogram sum <= 0", __FILE__, __LINE__);
     }
-    else {
-        for (i=0; i<n; i++) {
+    else
+    {
+        for (i = 0; i < n; i++)
+        {
             p[i] /= sum;
         }
     }
@@ -335,19 +392,23 @@ EGS_SimpleAliasTable::EGS_SimpleAliasTable(int N, const EGS_Float *f) : n(0) {
     // sort bins into "big" and "small" lists
     vector<int> big_list;               // bins above average
     vector<int> small_list;             // bins below average
-    for (i=0; i<n; i++) {
-        wi[i] = p[i]*n;
-        if (wi[i] <= 1.0) {
+    for (i = 0; i < n; i++)
+    {
+        wi[i] = p[i] * n;
+        if (wi[i] <= 1.0)
+        {
             small_list.push_back(i);
         }
-        else {
+        else
+        {
             big_list.push_back(i);
         }
     }
 
     // alias
-    int loopCount=0;
-    while (big_list.size() > 0 && small_list.size() > 0 && loopCount++ <= loopMax) {
+    int loopCount = 0;
+    while (big_list.size() > 0 && small_list.size() > 0 && loopCount++ <= loopMax)
+    {
 
         // get a pair of big and small bins
         int big = big_list.back();
@@ -359,12 +420,14 @@ EGS_SimpleAliasTable::EGS_SimpleAliasTable(int N, const EGS_Float *f) : n(0) {
         small_list.pop_back();          // small bin is now filled
 
         // check if big bin is now small
-        if (wi[big] < 1.0 + epsilon) {
+        if (wi[big] < 1.0 + epsilon)
+        {
             big_list.pop_back();
             small_list.push_back(big);
         }
     }
-    if (big_list.size() > 0) {
+    if (big_list.size() > 0)
+    {
         egsWarning("Warning: %s, line %d: table aliasing may be incomplete", __FILE__, __LINE__);
     }
 
@@ -373,8 +436,10 @@ EGS_SimpleAliasTable::EGS_SimpleAliasTable(int N, const EGS_Float *f) : n(0) {
 }
 
 
-EGS_SimpleAliasTable::~EGS_SimpleAliasTable() {
-    if (n > 0) {
+EGS_SimpleAliasTable::~EGS_SimpleAliasTable()
+{
+    if (n > 0)
+    {
         delete [] wi;
         delete [] bins;
     }

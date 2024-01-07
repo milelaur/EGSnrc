@@ -32,9 +32,9 @@
 #include <QApplication>
 #include <QtGlobal>
 #if QT_VERSION >= 0x050000
-    #include <QtWidgets>
+#include <QtWidgets>
 #else
-    #include <QWidget>
+#include <QWidget>
 #endif
 #include <qfile.h>
 #include <qstring.h>
@@ -59,39 +59,43 @@ std::ofstream debug_output("view_debug");
 
 static char mybuf[8192];
 
-void my_fatal_function(const char *msg,...) {
+void my_fatal_function(const char* msg, ...)
+{
     va_list ap;
     va_start(ap, msg);
-    vsprintf(mybuf,msg,ap);
+    vsprintf(mybuf, msg, ap);
     va_end(ap);
     debug_output << mybuf;
     exit(1);
 }
-void my_info_function(const char *msg,...) {
+void my_info_function(const char* msg, ...)
+{
     va_list ap;
     va_start(ap, msg);
-    vsprintf(mybuf,msg,ap);
+    vsprintf(mybuf, msg, ap);
     va_end(ap);
     debug_output << mybuf;
 }
 #endif
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv)
+{
     if (argc >= 2 && (strcmp(argv[1], "-h") == 0 ||
-                      strcmp(argv[1],"--help") == 0)) {
+                      strcmp(argv[1], "--help") == 0))
+    {
         egsFatal("Usage: %s [geometry_file] [tracks_file]\n", argv[0]);
         return 1;
     }
 
     QApplication a(argc, argv);
     QString input_file = argc >= 2 ? QString(argv[1]) :
-                         QFileDialog::getOpenFileName(NULL,"Select geometry definition file");
+                         QFileDialog::getOpenFileName(NULL, "Select geometry definition file");
 
 #ifdef VDEBUG
     debug_output << "Using " << input_file.toLatin1().data() << "\n";
-    egsSetInfoFunction(Information,my_info_function);
-    egsSetInfoFunction(Warning,my_info_function);
-    egsSetInfoFunction(Fatal,my_fatal_function);
+    egsSetInfoFunction(Information, my_info_function);
+    egsSetInfoFunction(Warning, my_info_function);
+    egsSetInfoFunction(Fatal, my_fatal_function);
 #endif
 
     GeometryViewControl w;
@@ -100,27 +104,34 @@ int main(int argc, char **argv) {
 
     QString tracks_file = QString("");
     QString config_file = QString("");
-    if (argc >= 3) {
+    if (argc >= 3)
+    {
         QString argv2 = argv[2];
-        if (argv2.endsWith("ptracks")) {
+        if (argv2.endsWith("ptracks"))
+        {
             tracks_file = argv2;
         }
-        else {
+        else
+        {
             config_file = argv2;
         }
     }
-    if (argc >= 4) {
+    if (argc >= 4)
+    {
         QString argv3 = argv[3];
-        if (argv3.endsWith("ptracks")) {
+        if (argv3.endsWith("ptracks"))
+        {
             tracks_file = argv3;
         }
-        else {
+        else
+        {
             config_file = argv3;
         }
     }
 
     w.setTracksFilename(tracks_file);
-    if (!w.loadInput(false)) {
+    if (!w.loadInput(false))
+    {
         return 1;
     }
     w.loadConfig(config_file);

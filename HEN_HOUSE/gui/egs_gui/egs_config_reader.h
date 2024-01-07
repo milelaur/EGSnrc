@@ -36,25 +36,26 @@
 
 class EGS_PrivateConfigReader;
 
-class EGS_ConfigReader {
+class EGS_ConfigReader
+{
 
 public:
 
     EGS_ConfigReader();
-    EGS_ConfigReader(const QString &file);
+    EGS_ConfigReader(const QString& file);
     ~EGS_ConfigReader();
 
-    void setConfig(const QString &file);
+    void setConfig(const QString& file);
     QString getConfig() const;
 
-    QString getVariable(const QString &key, bool ironit=false);
-    void    setVariable(const QString &key, const QString &value);
+    QString getVariable(const QString& key, bool ironit = false);
+    void    setVariable(const QString& key, const QString& value);
 
-    int    checkConfigFile(const QString &file);
+    int    checkConfigFile(const QString& file);
 
 private:
 
-    EGS_PrivateConfigReader *p;
+    EGS_PrivateConfigReader* p;
 
 };
 

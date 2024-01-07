@@ -35,12 +35,12 @@
 //#include <q3hbox.h>
 //#include <q3vbox.h>
 
-MErrorDlg::MErrorDlg( QWidget *parent, const char *name, const QString& error )
-          : QDialog( parent )
+MErrorDlg::MErrorDlg(QWidget* parent, const char* name, const QString& error)
+    : QDialog(parent)
 {
-       MyRichText* tv = new MyRichText( this, error.toLatin1().data() );
-       tv->resize( 450, 450 );
-       tv->setWindowTitle( "Beware, error in input !!!	" );
-       tv->show();
+    MyRichText* tv = new MyRichText(this, error.toLatin1().data());
+    tv->resize(450, 450);
+    tv->setWindowTitle("Beware, error in input !!!	");
+    tv->show();
 
 }

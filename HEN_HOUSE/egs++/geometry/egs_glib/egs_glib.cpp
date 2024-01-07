@@ -54,25 +54,29 @@
 extern "C" {
 
     /*! createGeometry function for glib shim */
-    EGS_GLIB_EXPORT EGS_BaseGeometry *createGeometry(EGS_Input *input) {
+    EGS_GLIB_EXPORT EGS_BaseGeometry* createGeometry(EGS_Input* input)
+    {
 
-        if (!input) {
+        if (!input)
+        {
             egsWarning("createGeometry(egs_glib): null input?\n");
             return 0;
         }
 
 
-        EGS_Input *egs_geom_input = input->takeInputItem("geometry definition");
-        if (!egs_geom_input) {
+        EGS_Input* egs_geom_input = input->takeInputItem("geometry definition");
+        if (!egs_geom_input)
+        {
             egsWarning("createGeometry(egs_glib): missing `geometry definition` input\n");
             return 0;
         }
 
-        EGS_BaseGeometry *final = EGS_BaseGeometry::createGeometry(egs_geom_input);
+        EGS_BaseGeometry* final = EGS_BaseGeometry::createGeometry(egs_geom_input);
 
         delete egs_geom_input;
 
-        if (!final) {
+        if (!final)
+        {
             egsWarning("createGeometry(egs_glib): unable to create geometry\n");
             return 0;
         }

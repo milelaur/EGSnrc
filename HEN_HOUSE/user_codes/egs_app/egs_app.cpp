@@ -43,7 +43,7 @@
 #include "egs_interface2.h"
 
 // main
-APP_MAIN (EGS_AdvancedApplication);
+APP_MAIN(EGS_AdvancedApplication);
 
 
 

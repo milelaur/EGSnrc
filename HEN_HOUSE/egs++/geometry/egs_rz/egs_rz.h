@@ -51,18 +51,18 @@
 
 #ifdef WIN32
 
-    #define EGS_RZ_EXPORT __declspec(dllexport)
-    #define EGS_RZ_LOCAL
+#define EGS_RZ_EXPORT __declspec(dllexport)
+#define EGS_RZ_LOCAL
 
 #else
 
-    #ifdef HAVE_VISIBILITY
-        #define EGS_RZ_EXPORT __attribute__ ((visibility ("default")))
-        #define EGS_RZ_LOCAL  __attribute__ ((visibility ("hidden")))
-    #else
-        #define EGS_RZ_EXPORT
-        #define EGS_RZ_LOCAL
-    #endif
+#ifdef HAVE_VISIBILITY
+#define EGS_RZ_EXPORT __attribute__ ((visibility ("default")))
+#define EGS_RZ_LOCAL  __attribute__ ((visibility ("hidden")))
+#else
+#define EGS_RZ_EXPORT
+#define EGS_RZ_LOCAL
+#endif
 
 #endif
 
@@ -112,7 +112,8 @@ Example geometries are available in the rz_lib1.geom and rz_lib2.geom files.
 
 */
 
-class EGS_RZ_EXPORT EGS_RZGeometry: public EGS_NDGeometry {
+class EGS_RZ_EXPORT EGS_RZGeometry: public EGS_NDGeometry
+{
 
 private:
 
@@ -131,13 +132,14 @@ public:
      * geoms must be a 2 length vector of [EGS_CylindersZ*, EGS_PlanesZ]
      * and the radii/zbounds of the geometries must be passed in order
      * to allow calculation of the region masses */
-    EGS_RZGeometry(vector<EGS_BaseGeometry *> geoms,
-                   vector<EGS_Float> rads, vector<EGS_Float> zbs, const string &name = "");
+    EGS_RZGeometry(vector<EGS_BaseGeometry*> geoms,
+                   vector<EGS_Float> rads, vector<EGS_Float> zbs, const string& name = "");
 
     ~EGS_RZGeometry() {};
 
     /*! \brief return RZ geometry type */
-    const string &getType() const {
+    const string& getType() const
+    {
         return RZType;
     };
 

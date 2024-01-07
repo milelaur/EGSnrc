@@ -45,7 +45,8 @@
 #include <string>
 #include <vector>
 
-namespace tetgen_parser {
+namespace tetgen_parser
+{
 
 /// Top-level TetGen node and ele file parser.
 ///
@@ -53,20 +54,23 @@ namespace tetgen_parser {
 /// file will be opened automatically.
 ///
 /// Throws a std::runtime_error if parsing fails.
-EGS_MeshSpec parse_tetgen_files(const std::string &filename,
+EGS_MeshSpec parse_tetgen_files(const std::string& filename,
                                 EGS_InfoFunction info = nullptr);
 
 enum class TetGenFile { Node, Ele };
 
 /// The tetgen_parser::internal namespace is for internal API functions and is
 /// not part of the public API. Functions and types may change without warning.
-namespace internal {
+namespace internal
+{
 
 /// Trim whitespace from the start of a string.
 ///
 /// From https://stackoverflow.com/questions/216823/whats-the-best-way-to-trim-stdstring
-static inline void ltrim(std::string &s) {
-    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
+static inline void ltrim(std::string& s)
+{
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch)
+    {
         return !std::isspace(ch);
     }));
 }
@@ -84,8 +88,9 @@ static inline void ltrim(std::string &s) {
 /// boundary marker node data.
 ///
 /// Throws a std::runtime_error if parsing fails.
-std::vector<EGS_MeshSpec::Node> parse_tetgen_node_file(std::istream &input,
-        EGS_InfoFunction info) {
+std::vector<EGS_MeshSpec::Node> parse_tetgen_node_file(std::istream& input,
+    EGS_InfoFunction info)
+{
     std::vector<EGS_MeshSpec::Node> nodes;
     // Parse the header:
     // ```
@@ -102,31 +107,36 @@ std::vector<EGS_MeshSpec::Node> parse_tetgen_node_file(std::istream &input,
         std::getline(input, line);
         std::istringstream line_stream(line);
         line_stream >> num_nodes >> num_coords >> num_attr >> num_boundary;
-        if (line_stream.fail() || num_nodes == -1) {
+        if (line_stream.fail() || num_nodes == -1)
+        {
             throw std::runtime_error("failed to parse TetGen node file header");
         }
-        if (num_coords != 3) {
+        if (num_coords != 3)
+        {
             throw std::runtime_error("TetGen node file parsing failed, expected"
                                      " num_coords = 3");
         }
     }
 
-    if (num_nodes < 50000) {
+    if (num_nodes < 50000)
+    {
         info = nullptr; // don't log for small meshes
     }
 
     egs_mesh::internal::PercentCounter progress(info, "EGS_Mesh: reading " +
-            std::to_string(num_nodes) + " nodes");
+        std::to_string(num_nodes) + " nodes");
     progress.start(num_nodes);
 
     nodes.reserve(num_nodes);
 
     // Parse node file body
-    while (nodes.size() < static_cast<std::size_t>(num_nodes)) {
+    while (nodes.size() < static_cast<std::size_t>(num_nodes))
+    {
         std::getline(input, line);
         // Skip lines starting with #
         ltrim(line);
-        if (line.rfind('#', 0) == 0) {
+        if (line.rfind('#', 0) == 0)
+        {
             continue;
         }
         std::istringstream line_stream(line);
@@ -135,7 +145,8 @@ std::vector<EGS_MeshSpec::Node> parse_tetgen_node_file(std::istream &input,
         double y = 0.0;
         double z = 0.0;
         line_stream >> tag >> x >> y >> z;
-        if (line_stream.fail() || tag == -1) {
+        if (line_stream.fail() || tag == -1)
+        {
             throw std::runtime_error("TetGen node file parsing failed");
         }
         nodes.push_back(EGS_MeshSpec::Node(tag, x, y, z));
@@ -159,7 +170,8 @@ std::vector<EGS_MeshSpec::Node> parse_tetgen_node_file(std::istream &input,
 ///
 /// Throws a std::runtime_error if parsing fails.
 std::vector<EGS_MeshSpec::Tetrahedron> parse_tetgen_ele_file(
-    std::istream &input, EGS_InfoFunction info) {
+    std::istream& input, EGS_InfoFunction info)
+{
     std::vector<EGS_MeshSpec::Tetrahedron> elts;
     // Parse the header:
     // ```
@@ -174,34 +186,40 @@ std::vector<EGS_MeshSpec::Tetrahedron> parse_tetgen_ele_file(
         std::getline(input, line);
         std::istringstream line_stream(line);
         line_stream >> num_elts >> num_nodes >> num_attr;
-        if (line_stream.fail() || num_elts == -1) {
+        if (line_stream.fail() || num_elts == -1)
+        {
             throw std::runtime_error("failed to parse TetGen ele file header");
         }
-        if (num_nodes != 4) {
+        if (num_nodes != 4)
+        {
             throw std::runtime_error("TetGen ele file parsing failed, expected"
                                      " 4 nodes per tetrahedron");
         }
-        if (num_attr != 1) {
+        if (num_attr != 1)
+        {
             throw std::runtime_error("TetGen ele file parsing failed, expected"
                                      " each element to only have one attribute (EGSnrc medium)");
         }
     }
 
-    if (num_elts < 50000) {
+    if (num_elts < 50000)
+    {
         info = nullptr; // don't log for small meshes
     }
 
     egs_mesh::internal::PercentCounter progress(info, "EGS_Mesh: reading " +
-            std::to_string(num_elts) + " tetrahedrons");
+        std::to_string(num_elts) + " tetrahedrons");
     progress.start(num_elts);
 
     elts.reserve(num_elts);
     // Parse ele file body
-    while (elts.size() < static_cast<std::size_t>(num_elts)) {
+    while (elts.size() < static_cast<std::size_t>(num_elts))
+    {
         std::getline(input, line);
         // Skip lines starting with #
         ltrim(line);
-        if (line.rfind('#', 0) == 0) {
+        if (line.rfind('#', 0) == 0)
+        {
             continue;
         }
         std::istringstream line_stream(line);
@@ -212,7 +230,8 @@ std::vector<EGS_MeshSpec::Tetrahedron> parse_tetgen_ele_file(
         int n3 = -1;
         int media = -1;
         line_stream >> tag >> n0 >> n1 >> n2 >> n3 >> media;
-        if (line_stream.fail() || tag == -1) {
+        if (line_stream.fail() || tag == -1)
+        {
             throw std::runtime_error("Tetgen ele file parsing failed");
         }
         elts.push_back(EGS_MeshSpec::Tetrahedron(tag, media, n0, n1, n2, n3));
@@ -226,15 +245,18 @@ std::vector<EGS_MeshSpec::Tetrahedron> parse_tetgen_ele_file(
 
 // Extract the unique media from the list of all tetrahedrons.
 std::vector<EGS_MeshSpec::Medium> find_tetgen_elt_media(
-    const std::vector<EGS_MeshSpec::Tetrahedron> &elts) {
+    const std::vector<EGS_MeshSpec::Tetrahedron>& elts)
+{
     // Find set of unique media tags
     std::set<int> media_tags;
-    for (const auto &e: elts) {
+    for (const auto& e : elts)
+    {
         media_tags.insert(e.medium_tag);
     }
     std::vector<EGS_MeshSpec::Medium> media;
     media.reserve(media_tags.size());
-    for (const auto &m : media_tags) {
+    for (const auto& m : media_tags)
+    {
         // TetGen files only store media tag numbers, so use a string version of
         // the media tag for the `medium_name` field instead.
         media.push_back(EGS_MeshSpec::Medium(m, std::to_string(m)));
@@ -243,29 +265,35 @@ std::vector<EGS_MeshSpec::Medium> find_tetgen_elt_media(
 }
 } // namespace tetgen_parser::internal
 
-EGS_MeshSpec parse_tetgen_files(const std::string &filename,
-                                TetGenFile tetgen_file_kind, EGS_InfoFunction info /*default=nullptr*/) {
+EGS_MeshSpec parse_tetgen_files(const std::string& filename,
+                                TetGenFile tetgen_file_kind, EGS_InfoFunction info /*default=nullptr*/)
+{
     std::string node_file;
     std::string ele_file;
-    if (tetgen_file_kind == TetGenFile::Ele) {
+    if (tetgen_file_kind == TetGenFile::Ele)
+    {
         ele_file = filename;
         node_file = filename.substr(0, filename.size() - 4) + ".node";
     }
-    else if (tetgen_file_kind == TetGenFile::Node) {
+    else if (tetgen_file_kind == TetGenFile::Node)
+    {
         ele_file = filename.substr(0, filename.size() - 5) + ".ele";
         node_file = filename;
     }
-    else {
+    else
+    {
         throw std::runtime_error("Unhandled TetGen file type");
     }
 
     std::ifstream node_stream(node_file);
-    if (!node_stream) {
+    if (!node_stream)
+    {
         throw std::runtime_error(std::string("Tetgen node file `") + node_file
                                  +  "` does not exist or is not readable");
     }
     std::ifstream ele_stream(ele_file);
-    if (!ele_stream) {
+    if (!ele_stream)
+    {
         throw std::runtime_error(std::string("Tetgen ele file `") + ele_file
                                  +  "` does not exist or is not readable");
     }

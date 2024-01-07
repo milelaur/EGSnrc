@@ -36,14 +36,14 @@ class MyRichText : public QWidget
     Q_OBJECT
 
 public:
-    MyRichText( QWidget *parent = 0, const char *name = 0 );
+    MyRichText(QWidget* parent = 0, const char* name = 0);
     ~MyRichText();
 
 protected:
     //qt3to4 -- BW
     //Q3TextView *view;
-    QTextEdit *view;
-    QPushButton *bClose; //, *bNext, *bPrev;
+    QTextEdit* view;
+    QPushButton* bClose; //, *bNext, *bPrev;
     //int num;
 
 //protected slots:
