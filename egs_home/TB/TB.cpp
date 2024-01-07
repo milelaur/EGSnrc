@@ -18,10 +18,10 @@ using namespace std;
 class APP_EXPORT TB : public EGS_AdvancedApplication
 {
 
-    EGS_ScoringArray *score;    // scoring array with energies deposited
-    EGS_ScoringArray *eflu;     // scoring array for electron fluence at back of geometry
-    EGS_ScoringArray *gflu;     // scoring array for photon fluence at back of geometry
-    EGS_ScoringArray **pheight; // pulse height distributions.
+    EGS_ScoringArray* score;    // scoring array with energies deposited
+    EGS_ScoringArray* eflu;     // scoring array for electron fluence at back of geometry
+    EGS_ScoringArray* gflu;     // scoring array for photon fluence at back of geometry
+    EGS_ScoringArray** pheight; // pulse height distributions.
     int nreg;                   // number of regions in the geometry
     int nph;                    // number of pulse height objects.
     double Etot;                // total energy that has entered the geometry
@@ -30,8 +30,8 @@ class APP_EXPORT TB : public EGS_AdvancedApplication
     // is currently being simulated
     bool deflect_brems;
 
-    EGS_Float *ph_de;       // bin widths if the pulse height distributions.
-    int *ph_regions;        // region indeces of the ph-dsitributions
+    EGS_Float* ph_de;       // bin widths if the pulse height distributions.
+    int* ph_regions;        // region indeces of the ph-dsitributions
     static string revision; // the CVS revision number
 
 public:
@@ -40,8 +40,9 @@ public:
      contructor, which determines the input file, the pegs file, if the
      simulation is a parallel run, etc.
     */
-    TB(int argc, char **argv) : EGS_AdvancedApplication(argc, argv), score(0), eflu(0), gflu(0), pheight(0),
-                                                nreg(0), nph(0), Etot(0), rr_flag(0), current_weight(1), deflect_brems(false){};
+    TB(int argc, char** argv) : EGS_AdvancedApplication(argc, argv), score(0), eflu(0), gflu(0), pheight(0),
+        nreg(0), nph(0), Etot(0), rr_flag(0), current_weight(1), deflect_brems(false), fsplit(1), fspliti(1), Esave(0), rho_rr(1),
+        cgeom(0) {};
 
     /*! Destructor.
      Deallocate memory
@@ -123,7 +124,7 @@ public:
      over parallel jobs. data is a reference to the currently opened
      data stream (basically the j'th .egsdat file).
      */
-    int addState(istream &data);
+    int addState(istream& data);
 
     /*! Output the results of a simulation. */
     void outputResults();
@@ -139,8 +140,8 @@ public:
      this info in the log file. In our case we arbitrarily decide to return the
      reflected energy fraction as the single result of the simulation.
     */
-    void getCurrentResult(double &sum, double &sum2, double &norm,
-                          double &count);
+    void getCurrentResult(double& sum, double& sum2, double& norm,
+                          double& count);
 
 protected:
     /*! Start a new shower.
@@ -159,12 +160,40 @@ protected:
      object of the region in the appropriate bin.
     */
     int startNewShower();
+
+private:
+
+    EGS_Float        fsplit;    // photon splitting number
+    EGS_Float        fspliti;   // inverse photon splitting number
+
+    /*! Mass density of the range rejection medium */
+    EGS_Float        rho_rr;
+
+    /*! Save energy for range rejection
+      For rr_flag = 1, electrons are range-discarded if E<Esave
+      For rr_flag > 1, electrons in the cavity are range-discarded if
+      E<Esave, electrons outside of the cavity are always rouletted,
+      no matter what their energy.
+     */
+    EGS_Float        Esave;
+
+    /*! Cavity bounding geometry.
+      If no cavity bounding geometry is defined, range-rejection of RR
+      is used only on a region-by-region basis. If a cavity bounding geometry
+      is defined, then tperp to that geometry is also checked and if greater
+      than the electron range, range-rejection or RR is done.
+     */
+    EGS_BaseGeometry* cgeom;
+
+    /*! Range interpolators */
+    EGS_Interpolator rr_erange;
+    EGS_Interpolator rr_prange;
 };
 
 string TB::revision = " ";
 
-extern "C" void F77_OBJ_(egs_scale_xcc, EGS_SCALE_XCC)(const int *, const EGS_Float *);
-extern "C" void F77_OBJ_(egs_scale_bc, EGS_SCALE_BC)(const int *, const EGS_Float *);
+extern "C" void F77_OBJ_(egs_scale_xcc, EGS_SCALE_XCC)(const int*, const EGS_Float*);
+extern "C" void F77_OBJ_(egs_scale_bc, EGS_SCALE_BC)(const int*, const EGS_Float*);
 
 void TB::describeUserCode() const
 {
@@ -193,11 +222,11 @@ int TB::initScoring()
     // Initialize with no russian roulette
     the_egsvr->i_do_rr = 1;
 
-    EGS_Input *options = input->takeInputItem("scoring options");
+    EGS_Input* options = input->takeInputItem("scoring options");
     if (options)
     {
 
-        EGS_Input *scale;
+        EGS_Input* scale;
         while ((scale = options->takeInputItem("scale xcc")))
         {
             vector<string> tmp;
@@ -274,7 +303,7 @@ int TB::initScoring()
                            " input\n");
             else
             {
-                EGS_ScoringArray **tmp = new EGS_ScoringArray *[nreg + 2];
+                EGS_ScoringArray** tmp = new EGS_ScoringArray *[nreg + 2];
                 for (int i = 0; i < nreg + 2; i++)
                 {
                     tmp[i] = 0;
@@ -330,6 +359,123 @@ int TB::initScoring()
                        " and 'bins' input\n");
         delete options;
     }
+
+    //
+    // **** variance reduction
+    //
+    EGS_Input* vr = input->takeInputItem("variance reduction");
+    if (vr)
+    {
+        //
+        // ******** photon splitting
+        //
+        EGS_Float tmp;
+        int err = vr->getInput("photon splitting", tmp);
+        if (!err && tmp > 1)
+        {
+            fsplit = tmp;
+            fspliti = 1 / tmp;
+        }
+        //
+        // ******* range rejection
+        //
+        EGS_Input* rr = vr->takeInputItem("range rejection");
+        if (rr)
+        {
+            int iaux;
+            err = rr->getInput("rejection", iaux);
+            if (!err && iaux >= 0) rr_flag = iaux;
+            if (rr_flag)
+            {
+                EGS_Float aux;
+                err = rr->getInput("Esave", aux);
+                if (!err && aux >= 0) Esave = aux;
+                string cavity_geometry;
+                err = rr->getInput("cavity geometry", cavity_geometry);
+                if (!err)
+                {
+                    EGS_BaseGeometry::setActiveGeometryList(app_index);
+                    cgeom = EGS_BaseGeometry::getGeometry(cavity_geometry);
+                    if (!cgeom) egsWarning("\n\n********** no geometry named"
+                                               " %s exists => using region-by-region rejection only\n");
+                }
+                if (!Esave && rr_flag == 1)
+                {
+                    egsWarning("\n\n********* rr_flag = 1 but Esave = 0 =>"
+                               " not using range rejection\n\n");
+                    rr_flag = 0;
+                }
+                if (rr_flag && cgeom)
+                {
+                    string rej_medium;
+                    int irej_medium = -1;
+                    err = rr->getInput("rejection range medium", rej_medium);
+                    if (!err)
+                    {
+                        EGS_BaseGeometry::setActiveGeometryList(app_index);
+                        int nmed = cgeom->nMedia();
+                        int imed = cgeom->addMedium(rej_medium);
+                        if (imed >= nmed) egsWarning(
+                                "\n\n*********** no medium"
+                                " with name %s initialized => "
+                                "using region-by-region rejection only\n",
+                                rej_medium.c_str());
+                        else irej_medium = imed;
+                    }
+                    if (irej_medium < 0)
+                    {
+                        cgeom = 0;
+                        rr_flag = 1;
+                    }
+                    else
+                    {
+                        //
+                        // *** prepare an interpolator for the electron range
+                        //     in the range rejection medium
+                        //
+                        int i = irej_medium; // save some typing
+                        rho_rr = the_media->rho[i];
+                        EGS_Float log_emin = i_ededx[i].getXmin();
+                        EGS_Float log_emax = i_ededx[i].getXmax();
+                        int nbin = 512;
+                        EGS_Float dloge = (log_emax - log_emin) / nbin;
+                        EGS_Float* erange = new EGS_Float [nbin];
+                        EGS_Float* prange = new EGS_Float [nbin];
+                        erange[0] = 0;
+                        prange[0] = 0;
+                        EGS_Float ededx_old = i_ededx[i].interpolate(log_emin);
+                        EGS_Float pdedx_old = i_pdedx[i].interpolate(log_emin);
+                        EGS_Float Eold = exp(log_emin);
+                        EGS_Float efak = exp(dloge);
+                        for (int j = 1; j < nbin; j++)
+                        {
+                            EGS_Float elke = log_emin + dloge * j;
+                            EGS_Float E = Eold * efak;
+                            EGS_Float ededx = i_ededx[i].interpolate(elke);
+                            EGS_Float pdedx = i_pdedx[i].interpolate(elke);
+                            if (ededx < ededx_old)
+                                erange[j] = erange[j - 1] + 1.02 * (E - Eold) / ededx;
+                            else
+                                erange[j] = erange[j - 1] + 1.02 * (E - Eold) / ededx_old;
+                            if (pdedx < pdedx_old)
+                                prange[j] = prange[j - 1] + 1.02 * (E - Eold) / pdedx;
+                            else
+                                prange[j] = prange[j - 1] + 1.02 * (E - Eold) / pdedx_old;
+                            Eold = E;
+                            ededx_old = ededx;
+                            pdedx_old = pdedx;
+                        }
+                        rr_erange.initialize(nbin, log_emin, log_emax, erange);
+                        rr_prange.initialize(nbin, log_emin, log_emax, prange);
+                    }
+                }
+            }
+            delete rr;
+        }
+        delete vr;
+    }
+    the_egsvr->i_do_rr = rr_flag;
+
     return 0;
 }
 
@@ -361,7 +507,7 @@ int TB::ausgab(int iarg)
         // if( the_stack->iq[np] ) score->score(ir,the_epcont->edep*the_stack->wt[np]);
         if (ir == nreg + 1)
         {
-            EGS_ScoringArray *flu = the_stack->iq[np] ? eflu : gflu;
+            EGS_ScoringArray* flu = the_stack->iq[np] ? eflu : gflu;
             EGS_Float r2 = the_stack->x[np] * the_stack->x[np] + the_stack->y[np] * the_stack->y[np];
             if (r2 < 400)
             {
@@ -530,7 +676,7 @@ void TB::resetCounter()
     gflu->reset();
 }
 
-int TB::addState(istream &data)
+int TB::addState(istream& data)
 {
     // Call first the base class addState() function to read and add
     // all data related to source, RNG, CPU time, etc.
@@ -617,8 +763,8 @@ void TB::outputResults()
     }
 }
 
-void TB::getCurrentResult(double &sum, double &sum2,
-                                          double &norm, double &count)
+void TB::getCurrentResult(double& sum, double& sum2,
+                          double& norm, double& count)
 {
     count = current_case;
     norm = Etot > 0 ? count / Etot : 0;
