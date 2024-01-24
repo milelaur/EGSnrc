@@ -1,0 +1,1553 @@
+
+               ***************************************************
+               *                                                 *
+               *                  TB                       *
+               *                                                 *
+               ***************************************************
+
+This is TB   based on
+      EGS_AdvancedApplication  
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 324
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ IAEA phase space source from anodeXRayWPbPortOldTB.1
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 830
+  numbers used so far = 26383544448
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = NO
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 10000
+ - Track buffer size           = 1024
+ - Output file name            = /home/rsmina/EGSnrc/egs_home/TB/phspBladesXrayWindowPbport_w734_w734.ptracks
+
+
+===========================================
+Radiative splitting Object (my_splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Dose Scoring Object (profilexFilm)
+*******************************************
+
+ - Regions in dose calculator :324
+
+
+--------------------------------------
+medium       rho/[g/cm**3]
+--------------------------------------
+pb          11.35
+steel        8.06
+air          0.00
+polystyrene  1.06
+film         1.14
+--------------------------------------
+
+*******************************************
+
+
+ Will output dose to file:
+ EGS_XYZGeometry: profilex
+ file format:  3ddose
+ file name: /home/rsmina/EGSnrc/egs_home/TB/profilexFilm.3ddose
+
+
+
+The following media are defined:
+================================
+
+  0  pb                       AE= 0.5120 AP= 0.0010 0
+  upper limits (UE=1.511 UP=1) not enough for maximum source energy (8.66699e+09)
+  1  steel                    AE= 0.5120 AP= 0.0010 1
+  upper limits (UE=1.511 UP=1) not enough for maximum source energy (8.66699e+09)
+  2  air                      AE= 0.5120 AP= 0.0010 2
+  upper limits (UE=1.511 UP=1) not enough for maximum source energy (8.66699e+09)
+  3  polystyrene              AE= 0.5120 AP= 0.0010 3
+  upper limits (UE=1.511 UP=1) not enough for maximum source energy (8.66699e+09)
+  4  film                     AE= 0.5120 AP= 0.0010 4
+  upper limits (UE=1.511 UP=1) not enough for maximum source energy (8.66699e+09)
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 phspBladesXrayWindowPbport_w1.egsdat ncase=13000000       cpu=2987.83    
+ 2 phspBladesXrayWindowPbport_w2.egsdat ncase=13000000       cpu=2983.14    
+ 3 phspBladesXrayWindowPbport_w3.egsdat ncase=13000000       cpu=2983.82    
+ 4 phspBladesXrayWindowPbport_w4.egsdat ncase=13000000       cpu=2988.41    
+ 5 phspBladesXrayWindowPbport_w5.egsdat ncase=13000000       cpu=2992.19    
+ 6 phspBladesXrayWindowPbport_w6.egsdat ncase=13000000       cpu=2991.53    
+ 7 phspBladesXrayWindowPbport_w7.egsdat ncase=13000000       cpu=2984.87    
+ 8 phspBladesXrayWindowPbport_w8.egsdat ncase=13000000       cpu=3096.14    
+ 9 phspBladesXrayWindowPbport_w9.egsdat ncase=13000000       cpu=2987.37    
+10 phspBladesXrayWindowPbport_w10.egsdat ncase=13000000       cpu=2984.77    
+11 phspBladesXrayWindowPbport_w11.egsdat ncase=13000000       cpu=3053.34    
+12 phspBladesXrayWindowPbport_w12.egsdat ncase=13000000       cpu=3047.99    
+13 phspBladesXrayWindowPbport_w13.egsdat ncase=13000000       cpu=3019.06    
+14 phspBladesXrayWindowPbport_w14.egsdat ncase=13000000       cpu=3016.94    
+15 phspBladesXrayWindowPbport_w15.egsdat ncase=13000000       cpu=3011.57    
+16 phspBladesXrayWindowPbport_w16.egsdat ncase=13000000       cpu=3022.80    
+17 phspBladesXrayWindowPbport_w17.egsdat ncase=13000000       cpu=3022.25    
+18 phspBladesXrayWindowPbport_w18.egsdat ncase=13000000       cpu=3149.55    
+19 phspBladesXrayWindowPbport_w19.egsdat ncase=13000000       cpu=3097.58    
+20 phspBladesXrayWindowPbport_w20.egsdat ncase=13000000       cpu=3114.31    
+21 phspBladesXrayWindowPbport_w21.egsdat ncase=12000000       cpu=2943.91    
+22 phspBladesXrayWindowPbport_w22.egsdat ncase=13000000       cpu=3113.47    
+23 phspBladesXrayWindowPbport_w23.egsdat ncase=13000000       cpu=3144.96    
+24 phspBladesXrayWindowPbport_w24.egsdat ncase=13000000       cpu=3118.73    
+25 phspBladesXrayWindowPbport_w25.egsdat ncase=15000000       cpu=2760.34    
+26 phspBladesXrayWindowPbport_w26.egsdat ncase=12000000       cpu=2736.16    
+27 phspBladesXrayWindowPbport_w27.egsdat ncase=15000000       cpu=2769.54    
+28 phspBladesXrayWindowPbport_w28.egsdat ncase=15000000       cpu=2762.17    
+29 phspBladesXrayWindowPbport_w29.egsdat ncase=15000000       cpu=2767.11    
+30 phspBladesXrayWindowPbport_w30.egsdat ncase=15000000       cpu=2762.67    
+31 phspBladesXrayWindowPbport_w31.egsdat ncase=15000000       cpu=2766.67    
+32 phspBladesXrayWindowPbport_w32.egsdat ncase=15000000       cpu=2765.51    
+33 phspBladesXrayWindowPbport_w33.egsdat ncase=15000000       cpu=2794.10    
+34 phspBladesXrayWindowPbport_w34.egsdat ncase=15000000       cpu=2771.47    
+35 phspBladesXrayWindowPbport_w35.egsdat ncase=15000000       cpu=2775.30    
+36 phspBladesXrayWindowPbport_w36.egsdat ncase=15000000       cpu=2765.09    
+37 phspBladesXrayWindowPbport_w37.egsdat ncase=15000000       cpu=2769.37    
+38 phspBladesXrayWindowPbport_w38.egsdat ncase=14000000       cpu=2740.99    
+39 phspBladesXrayWindowPbport_w39.egsdat ncase=15000000       cpu=2769.35    
+40 phspBladesXrayWindowPbport_w40.egsdat ncase=15000000       cpu=2771.32    
+41 phspBladesXrayWindowPbport_w41.egsdat ncase=15000000       cpu=2761.13    
+42 phspBladesXrayWindowPbport_w42.egsdat ncase=15000000       cpu=2760.56    
+43 phspBladesXrayWindowPbport_w43.egsdat ncase=15000000       cpu=2762.42    
+44 phspBladesXrayWindowPbport_w44.egsdat ncase=15000000       cpu=2754.54    
+45 phspBladesXrayWindowPbport_w45.egsdat ncase=15000000       cpu=2774.89    
+46 phspBladesXrayWindowPbport_w46.egsdat ncase=15000000       cpu=2769.30    
+47 phspBladesXrayWindowPbport_w47.egsdat ncase=15000000       cpu=2805.92    
+48 phspBladesXrayWindowPbport_w48.egsdat ncase=15000000       cpu=2787.72    
+49 phspBladesXrayWindowPbport_w49.egsdat ncase=15000000       cpu=2761.71    
+50 phspBladesXrayWindowPbport_w50.egsdat ncase=15000000       cpu=2761.69    
+51 phspBladesXrayWindowPbport_w51.egsdat ncase=15000000       cpu=2782.03    
+52 phspBladesXrayWindowPbport_w52.egsdat ncase=15000000       cpu=2760.87    
+53 phspBladesXrayWindowPbport_w53.egsdat ncase=15000000       cpu=2767.56    
+54 phspBladesXrayWindowPbport_w54.egsdat ncase=15000000       cpu=2759.15    
+55 phspBladesXrayWindowPbport_w55.egsdat ncase=15000000       cpu=2761.31    
+56 phspBladesXrayWindowPbport_w56.egsdat ncase=15000000       cpu=2779.69    
+57 phspBladesXrayWindowPbport_w57.egsdat ncase=13000000       cpu=2976.89    
+58 phspBladesXrayWindowPbport_w58.egsdat ncase=13000000       cpu=2983.15    
+59 phspBladesXrayWindowPbport_w59.egsdat ncase=13000000       cpu=3015.89    
+60 phspBladesXrayWindowPbport_w60.egsdat ncase=13000000       cpu=3081.40    
+61 phspBladesXrayWindowPbport_w61.egsdat ncase=13000000       cpu=2997.01    
+62 phspBladesXrayWindowPbport_w62.egsdat ncase=13000000       cpu=2983.96    
+63 phspBladesXrayWindowPbport_w63.egsdat ncase=13000000       cpu=2992.73    
+64 phspBladesXrayWindowPbport_w64.egsdat ncase=13000000       cpu=2980.34    
+65 phspBladesXrayWindowPbport_w65.egsdat ncase=14000000       cpu=2614.29    
+66 phspBladesXrayWindowPbport_w66.egsdat ncase=15000000       cpu=2782.28    
+67 phspBladesXrayWindowPbport_w67.egsdat ncase=15000000       cpu=2790.39    
+68 phspBladesXrayWindowPbport_w68.egsdat ncase=15000000       cpu=2788.99    
+69 phspBladesXrayWindowPbport_w69.egsdat ncase=14000000       cpu=2750.91    
+70 phspBladesXrayWindowPbport_w70.egsdat ncase=15000000       cpu=2792.02    
+71 phspBladesXrayWindowPbport_w71.egsdat ncase=15000000       cpu=2793.22    
+72 phspBladesXrayWindowPbport_w72.egsdat ncase=15000000       cpu=2787.12    
+73 phspBladesXrayWindowPbport_w73.egsdat ncase=15000000       cpu=2783.45    
+74 phspBladesXrayWindowPbport_w74.egsdat ncase=15000000       cpu=2787.65    
+75 phspBladesXrayWindowPbport_w75.egsdat ncase=14000000       cpu=2647.39    
+76 phspBladesXrayWindowPbport_w76.egsdat ncase=15000000       cpu=2788.12    
+77 phspBladesXrayWindowPbport_w77.egsdat ncase=15000000       cpu=2785.80    
+78 phspBladesXrayWindowPbport_w78.egsdat ncase=15000000       cpu=2787.50    
+79 phspBladesXrayWindowPbport_w79.egsdat ncase=15000000       cpu=2791.42    
+80 phspBladesXrayWindowPbport_w80.egsdat ncase=14000000       cpu=2649.06    
+81 phspBladesXrayWindowPbport_w81.egsdat ncase=15000000       cpu=2794.28    
+82 phspBladesXrayWindowPbport_w82.egsdat ncase=15000000       cpu=2760.19    
+83 phspBladesXrayWindowPbport_w83.egsdat ncase=15000000       cpu=2758.86    
+84 phspBladesXrayWindowPbport_w84.egsdat ncase=15000000       cpu=2760.23    
+85 phspBladesXrayWindowPbport_w85.egsdat ncase=15000000       cpu=2765.06    
+86 phspBladesXrayWindowPbport_w86.egsdat ncase=15000000       cpu=2756.82    
+87 phspBladesXrayWindowPbport_w87.egsdat ncase=15000000       cpu=2786.19    
+88 phspBladesXrayWindowPbport_w88.egsdat ncase=15000000       cpu=2764.03    
+89 phspBladesXrayWindowPbport_w89.egsdat ncase=15000000       cpu=2762.24    
+90 phspBladesXrayWindowPbport_w90.egsdat ncase=15000000       cpu=2759.98    
+91 phspBladesXrayWindowPbport_w91.egsdat ncase=15000000       cpu=2761.39    
+92 phspBladesXrayWindowPbport_w92.egsdat ncase=15000000       cpu=2768.26    
+93 phspBladesXrayWindowPbport_w93.egsdat ncase=15000000       cpu=2780.23    
+94 phspBladesXrayWindowPbport_w94.egsdat ncase=14000000       cpu=2615.84    
+95 phspBladesXrayWindowPbport_w95.egsdat ncase=14000000       cpu=2631.91    
+96 phspBladesXrayWindowPbport_w96.egsdat ncase=15000000       cpu=2787.65    
+97 phspBladesXrayWindowPbport_w97.egsdat ncase=15000000       cpu=2788.04    
+98 phspBladesXrayWindowPbport_w98.egsdat ncase=15000000       cpu=2781.44    
+99 phspBladesXrayWindowPbport_w99.egsdat ncase=15000000       cpu=2786.10    
+100 phspBladesXrayWindowPbport_w100.egsdat ncase=15000000       cpu=2797.32    
+101 phspBladesXrayWindowPbport_w101.egsdat ncase=15000000       cpu=2810.21    
+102 phspBladesXrayWindowPbport_w102.egsdat ncase=15000000       cpu=2794.17    
+103 phspBladesXrayWindowPbport_w103.egsdat ncase=15000000       cpu=2794.00    
+104 phspBladesXrayWindowPbport_w104.egsdat ncase=15000000       cpu=2817.78    
+105 phspBladesXrayWindowPbport_w105.egsdat ncase=15000000       cpu=2780.19    
+106 phspBladesXrayWindowPbport_w106.egsdat ncase=15000000       cpu=2785.56    
+107 phspBladesXrayWindowPbport_w107.egsdat ncase=15000000       cpu=2781.45    
+108 phspBladesXrayWindowPbport_w108.egsdat ncase=15000000       cpu=2812.43    
+109 phspBladesXrayWindowPbport_w109.egsdat ncase=15000000       cpu=2792.13    
+110 phspBladesXrayWindowPbport_w110.egsdat ncase=15000000       cpu=2779.69    
+111 phspBladesXrayWindowPbport_w111.egsdat ncase=15000000       cpu=2791.86    
+112 phspBladesXrayWindowPbport_w112.egsdat ncase=15000000       cpu=2793.82    
+113 phspBladesXrayWindowPbport_w113.egsdat ncase=15000000       cpu=2775.39    
+114 phspBladesXrayWindowPbport_w114.egsdat ncase=15000000       cpu=2786.83    
+115 phspBladesXrayWindowPbport_w115.egsdat ncase=15000000       cpu=2777.51    
+116 phspBladesXrayWindowPbport_w116.egsdat ncase=15000000       cpu=2780.17    
+117 phspBladesXrayWindowPbport_w117.egsdat ncase=15000000       cpu=2786.78    
+118 phspBladesXrayWindowPbport_w118.egsdat ncase=15000000       cpu=2772.73    
+119 phspBladesXrayWindowPbport_w119.egsdat ncase=15000000       cpu=2772.23    
+120 phspBladesXrayWindowPbport_w120.egsdat ncase=15000000       cpu=2776.29    
+121 phspBladesXrayWindowPbport_w121.egsdat ncase=15000000       cpu=2774.75    
+122 phspBladesXrayWindowPbport_w122.egsdat ncase=15000000       cpu=2775.64    
+123 phspBladesXrayWindowPbport_w123.egsdat ncase=15000000       cpu=2773.72    
+124 phspBladesXrayWindowPbport_w124.egsdat ncase=15000000       cpu=2777.21    
+125 phspBladesXrayWindowPbport_w125.egsdat ncase=15000000       cpu=2776.63    
+126 phspBladesXrayWindowPbport_w126.egsdat ncase=12000000       cpu=2670.42    
+127 phspBladesXrayWindowPbport_w127.egsdat ncase=15000000       cpu=2810.68    
+128 phspBladesXrayWindowPbport_w128.egsdat ncase=15000000       cpu=2765.89    
+129 phspBladesXrayWindowPbport_w129.egsdat ncase=15000000       cpu=2765.86    
+130 phspBladesXrayWindowPbport_w130.egsdat ncase=15000000       cpu=2780.44    
+131 phspBladesXrayWindowPbport_w131.egsdat ncase=15000000       cpu=2756.48    
+132 phspBladesXrayWindowPbport_w132.egsdat ncase=15000000       cpu=2790.85    
+133 phspBladesXrayWindowPbport_w133.egsdat ncase=15000000       cpu=2764.63    
+134 phspBladesXrayWindowPbport_w134.egsdat ncase=15000000       cpu=2764.20    
+135 phspBladesXrayWindowPbport_w135.egsdat ncase=15000000       cpu=2784.41    
+136 phspBladesXrayWindowPbport_w136.egsdat ncase=15000000       cpu=2769.81    
+137 phspBladesXrayWindowPbport_w137.egsdat ncase=14000000       cpu=2637.01    
+138 phspBladesXrayWindowPbport_w138.egsdat ncase=15000000       cpu=2763.31    
+139 phspBladesXrayWindowPbport_w139.egsdat ncase=15000000       cpu=2764.81    
+140 phspBladesXrayWindowPbport_w140.egsdat ncase=15000000       cpu=2764.06    
+141 phspBladesXrayWindowPbport_w141.egsdat ncase=15000000       cpu=2756.75    
+142 phspBladesXrayWindowPbport_w142.egsdat ncase=15000000       cpu=2795.47    
+143 phspBladesXrayWindowPbport_w143.egsdat ncase=15000000       cpu=2762.10    
+144 phspBladesXrayWindowPbport_w144.egsdat ncase=15000000       cpu=2798.71    
+145 phspBladesXrayWindowPbport_w145.egsdat ncase=15000000       cpu=2778.69    
+146 phspBladesXrayWindowPbport_w146.egsdat ncase=15000000       cpu=2795.72    
+147 phspBladesXrayWindowPbport_w147.egsdat ncase=15000000       cpu=2773.24    
+148 phspBladesXrayWindowPbport_w148.egsdat ncase=15000000       cpu=2775.25    
+149 phspBladesXrayWindowPbport_w149.egsdat ncase=15000000       cpu=2774.92    
+150 phspBladesXrayWindowPbport_w150.egsdat ncase=15000000       cpu=2806.97    
+151 phspBladesXrayWindowPbport_w151.egsdat ncase=15000000       cpu=2764.52    
+152 phspBladesXrayWindowPbport_w152.egsdat ncase=15000000       cpu=2776.02    
+153 phspBladesXrayWindowPbport_w153.egsdat ncase=15000000       cpu=2771.78    
+154 phspBladesXrayWindowPbport_w154.egsdat ncase=15000000       cpu=2783.02    
+155 phspBladesXrayWindowPbport_w155.egsdat ncase=14000000       cpu=2642.39    
+156 phspBladesXrayWindowPbport_w156.egsdat ncase=15000000       cpu=2773.52    
+157 phspBladesXrayWindowPbport_w157.egsdat ncase=15000000       cpu=2775.07    
+158 phspBladesXrayWindowPbport_w158.egsdat ncase=15000000       cpu=2774.38    
+159 phspBladesXrayWindowPbport_w159.egsdat ncase=15000000       cpu=2773.86    
+160 phspBladesXrayWindowPbport_w160.egsdat ncase=15000000       cpu=2769.95    
+161 phspBladesXrayWindowPbport_w161.egsdat ncase=9000000        cpu=2861.42    
+162 phspBladesXrayWindowPbport_w162.egsdat ncase=9000000        cpu=2849.11    
+163 phspBladesXrayWindowPbport_w163.egsdat ncase=9000000        cpu=2844.02    
+164 phspBladesXrayWindowPbport_w164.egsdat ncase=9000000        cpu=2844.93    
+165 phspBladesXrayWindowPbport_w165.egsdat ncase=9000000        cpu=2844.88    
+166 phspBladesXrayWindowPbport_w166.egsdat ncase=9000000        cpu=2840.03    
+167 phspBladesXrayWindowPbport_w167.egsdat ncase=9000000        cpu=2815.39    
+168 phspBladesXrayWindowPbport_w168.egsdat ncase=9000000        cpu=2828.73    
+169 phspBladesXrayWindowPbport_w169.egsdat ncase=9000000        cpu=2839.93    
+170 phspBladesXrayWindowPbport_w170.egsdat ncase=9000000        cpu=2846.18    
+171 phspBladesXrayWindowPbport_w171.egsdat ncase=9000000        cpu=2833.89    
+172 phspBladesXrayWindowPbport_w172.egsdat ncase=9000000        cpu=2874.26    
+173 phspBladesXrayWindowPbport_w173.egsdat ncase=9000000        cpu=2842.47    
+174 phspBladesXrayWindowPbport_w174.egsdat ncase=9000000        cpu=2819.03    
+175 phspBladesXrayWindowPbport_w175.egsdat ncase=9000000        cpu=2830.19    
+176 phspBladesXrayWindowPbport_w176.egsdat ncase=9000000        cpu=2843.47    
+177 phspBladesXrayWindowPbport_w177.egsdat ncase=9000000        cpu=2811.80    
+178 phspBladesXrayWindowPbport_w178.egsdat ncase=9000000        cpu=2845.55    
+179 phspBladesXrayWindowPbport_w179.egsdat ncase=9000000        cpu=2870.14    
+180 phspBladesXrayWindowPbport_w180.egsdat ncase=9000000        cpu=2829.63    
+181 phspBladesXrayWindowPbport_w181.egsdat ncase=9000000        cpu=2830.40    
+182 phspBladesXrayWindowPbport_w182.egsdat ncase=9000000        cpu=2924.04    
+183 phspBladesXrayWindowPbport_w183.egsdat ncase=9000000        cpu=2872.30    
+184 phspBladesXrayWindowPbport_w184.egsdat ncase=9000000        cpu=2819.81    
+185 phspBladesXrayWindowPbport_w185.egsdat ncase=9000000        cpu=2920.10    
+186 phspBladesXrayWindowPbport_w186.egsdat ncase=9000000        cpu=2916.03    
+187 phspBladesXrayWindowPbport_w187.egsdat ncase=9000000        cpu=2883.43    
+188 phspBladesXrayWindowPbport_w188.egsdat ncase=9000000        cpu=2899.44    
+189 phspBladesXrayWindowPbport_w189.egsdat ncase=9000000        cpu=2890.87    
+190 phspBladesXrayWindowPbport_w190.egsdat ncase=9000000        cpu=2889.42    
+191 phspBladesXrayWindowPbport_w191.egsdat ncase=9000000        cpu=2955.44    
+192 phspBladesXrayWindowPbport_w192.egsdat ncase=9000000        cpu=2891.31    
+193 phspBladesXrayWindowPbport_w193.egsdat ncase=9000000        cpu=2973.58    
+194 phspBladesXrayWindowPbport_w194.egsdat ncase=9000000        cpu=2887.55    
+195 phspBladesXrayWindowPbport_w195.egsdat ncase=9000000        cpu=2908.75    
+196 phspBladesXrayWindowPbport_w196.egsdat ncase=9000000        cpu=2872.99    
+197 phspBladesXrayWindowPbport_w197.egsdat ncase=9000000        cpu=2876.21    
+198 phspBladesXrayWindowPbport_w198.egsdat ncase=9000000        cpu=2815.58    
+199 phspBladesXrayWindowPbport_w199.egsdat ncase=9000000        cpu=2821.04    
+200 phspBladesXrayWindowPbport_w200.egsdat ncase=9000000        cpu=2842.05    
+201 phspBladesXrayWindowPbport_w201.egsdat ncase=9000000        cpu=2818.15    
+202 phspBladesXrayWindowPbport_w202.egsdat ncase=9000000        cpu=2863.50    
+203 phspBladesXrayWindowPbport_w203.egsdat ncase=9000000        cpu=2862.14    
+204 phspBladesXrayWindowPbport_w204.egsdat ncase=9000000        cpu=2837.73    
+205 phspBladesXrayWindowPbport_w205.egsdat ncase=9000000        cpu=2853.51    
+206 phspBladesXrayWindowPbport_w206.egsdat ncase=9000000        cpu=2818.07    
+207 phspBladesXrayWindowPbport_w207.egsdat ncase=9000000        cpu=2817.93    
+208 phspBladesXrayWindowPbport_w208.egsdat ncase=9000000        cpu=2832.62    
+209 phspBladesXrayWindowPbport_w209.egsdat ncase=8000000        cpu=2548.24    
+210 phspBladesXrayWindowPbport_w210.egsdat ncase=9000000        cpu=2828.43    
+211 phspBladesXrayWindowPbport_w211.egsdat ncase=9000000        cpu=2835.69    
+212 phspBladesXrayWindowPbport_w212.egsdat ncase=8000000        cpu=2558.75    
+213 phspBladesXrayWindowPbport_w213.egsdat ncase=8000000        cpu=2570.19    
+214 phspBladesXrayWindowPbport_w214.egsdat ncase=8000000        cpu=2542.71    
+215 phspBladesXrayWindowPbport_w215.egsdat ncase=9000000        cpu=2820.78    
+216 phspBladesXrayWindowPbport_w216.egsdat ncase=9000000        cpu=2820.25    
+217 phspBladesXrayWindowPbport_w217.egsdat ncase=8000000        cpu=2542.39    
+218 phspBladesXrayWindowPbport_w218.egsdat ncase=9000000        cpu=2831.07    
+219 phspBladesXrayWindowPbport_w219.egsdat ncase=9000000        cpu=2822.73    
+220 phspBladesXrayWindowPbport_w220.egsdat ncase=8000000        cpu=2539.31    
+221 phspBladesXrayWindowPbport_w221.egsdat ncase=8000000        cpu=2555.40    
+222 phspBladesXrayWindowPbport_w222.egsdat ncase=9000000        cpu=2838.16    
+223 phspBladesXrayWindowPbport_w223.egsdat ncase=9000000        cpu=2841.30    
+224 phspBladesXrayWindowPbport_w224.egsdat ncase=8000000        cpu=2557.72    
+225 phspBladesXrayWindowPbport_w225.egsdat ncase=8000000        cpu=2556.73    
+226 phspBladesXrayWindowPbport_w226.egsdat ncase=8000000        cpu=2540.60    
+227 phspBladesXrayWindowPbport_w227.egsdat ncase=8000000        cpu=2545.80    
+228 phspBladesXrayWindowPbport_w228.egsdat ncase=9000000        cpu=2832.57    
+229 phspBladesXrayWindowPbport_w229.egsdat ncase=8000000        cpu=2596.26    
+230 phspBladesXrayWindowPbport_w230.egsdat ncase=8000000        cpu=2563.08    
+231 phspBladesXrayWindowPbport_w231.egsdat ncase=9000000        cpu=2823.03    
+232 phspBladesXrayWindowPbport_w232.egsdat ncase=9000000        cpu=2824.73    
+233 phspBladesXrayWindowPbport_w233.egsdat ncase=9000000        cpu=2889.06    
+234 phspBladesXrayWindowPbport_w234.egsdat ncase=9000000        cpu=2867.84    
+235 phspBladesXrayWindowPbport_w235.egsdat ncase=9000000        cpu=2820.32    
+236 phspBladesXrayWindowPbport_w236.egsdat ncase=9000000        cpu=2891.59    
+237 phspBladesXrayWindowPbport_w237.egsdat ncase=9000000        cpu=2849.68    
+238 phspBladesXrayWindowPbport_w238.egsdat ncase=9000000        cpu=2846.31    
+239 phspBladesXrayWindowPbport_w239.egsdat ncase=9000000        cpu=2879.44    
+240 phspBladesXrayWindowPbport_w240.egsdat ncase=9000000        cpu=2826.71    
+241 phspBladesXrayWindowPbport_w241.egsdat ncase=9000000        cpu=2834.54    
+242 phspBladesXrayWindowPbport_w242.egsdat ncase=9000000        cpu=2810.85    
+243 phspBladesXrayWindowPbport_w243.egsdat ncase=11000000       cpu=3094.86    
+244 phspBladesXrayWindowPbport_w244.egsdat ncase=10000000       cpu=2932.30    
+245 phspBladesXrayWindowPbport_w245.egsdat ncase=11000000       cpu=3090.53    
+246 phspBladesXrayWindowPbport_w246.egsdat ncase=11000000       cpu=3116.18    
+247 phspBladesXrayWindowPbport_w247.egsdat ncase=10000000       cpu=2882.42    
+248 phspBladesXrayWindowPbport_w248.egsdat ncase=10000000       cpu=2880.48    
+249 phspBladesXrayWindowPbport_w249.egsdat ncase=11000000       cpu=3098.58    
+250 phspBladesXrayWindowPbport_w250.egsdat ncase=11000000       cpu=3082.96    
+251 phspBladesXrayWindowPbport_w251.egsdat ncase=11000000       cpu=3106.40    
+252 phspBladesXrayWindowPbport_w252.egsdat ncase=11000000       cpu=3089.42    
+253 phspBladesXrayWindowPbport_w253.egsdat ncase=9000000        cpu=2891.85    
+254 phspBladesXrayWindowPbport_w254.egsdat ncase=9000000        cpu=2826.31    
+255 phspBladesXrayWindowPbport_w255.egsdat ncase=9000000        cpu=2829.37    
+256 phspBladesXrayWindowPbport_w256.egsdat ncase=9000000        cpu=2818.23    
+257 phspBladesXrayWindowPbport_w257.egsdat ncase=9000000        cpu=2849.23    
+258 phspBladesXrayWindowPbport_w258.egsdat ncase=9000000        cpu=2832.19    
+259 phspBladesXrayWindowPbport_w259.egsdat ncase=9000000        cpu=2822.97    
+260 phspBladesXrayWindowPbport_w260.egsdat ncase=9000000        cpu=2814.56    
+261 phspBladesXrayWindowPbport_w261.egsdat ncase=9000000        cpu=2826.18    
+262 phspBladesXrayWindowPbport_w262.egsdat ncase=9000000        cpu=2820.51    
+263 phspBladesXrayWindowPbport_w263.egsdat ncase=9000000        cpu=2848.05    
+264 phspBladesXrayWindowPbport_w264.egsdat ncase=9000000        cpu=2841.17    
+265 phspBladesXrayWindowPbport_w265.egsdat ncase=9000000        cpu=2893.06    
+266 phspBladesXrayWindowPbport_w266.egsdat ncase=9000000        cpu=2833.41    
+267 phspBladesXrayWindowPbport_w267.egsdat ncase=9000000        cpu=2859.12    
+268 phspBladesXrayWindowPbport_w268.egsdat ncase=9000000        cpu=2882.65    
+269 phspBladesXrayWindowPbport_w269.egsdat ncase=9000000        cpu=2850.19    
+270 phspBladesXrayWindowPbport_w270.egsdat ncase=9000000        cpu=2836.53    
+271 phspBladesXrayWindowPbport_w271.egsdat ncase=9000000        cpu=2859.51    
+272 phspBladesXrayWindowPbport_w272.egsdat ncase=9000000        cpu=2882.12    
+273 phspBladesXrayWindowPbport_w273.egsdat ncase=9000000        cpu=2844.58    
+274 phspBladesXrayWindowPbport_w274.egsdat ncase=9000000        cpu=2853.26    
+275 phspBladesXrayWindowPbport_w275.egsdat ncase=9000000        cpu=2833.94    
+276 phspBladesXrayWindowPbport_w276.egsdat ncase=9000000        cpu=2893.84    
+277 phspBladesXrayWindowPbport_w277.egsdat ncase=9000000        cpu=2904.86    
+278 phspBladesXrayWindowPbport_w278.egsdat ncase=9000000        cpu=2842.62    
+279 phspBladesXrayWindowPbport_w279.egsdat ncase=9000000        cpu=2843.60    
+280 phspBladesXrayWindowPbport_w280.egsdat ncase=9000000        cpu=2822.27    
+281 phspBladesXrayWindowPbport_w281.egsdat ncase=9000000        cpu=2824.70    
+282 phspBladesXrayWindowPbport_w282.egsdat ncase=13000000       cpu=3043.88    
+283 phspBladesXrayWindowPbport_w283.egsdat ncase=13000000       cpu=3082.61    
+284 phspBladesXrayWindowPbport_w284.egsdat ncase=13000000       cpu=3041.29    
+285 phspBladesXrayWindowPbport_w285.egsdat ncase=13000000       cpu=3041.37    
+286 phspBladesXrayWindowPbport_w286.egsdat ncase=13000000       cpu=3056.01    
+287 phspBladesXrayWindowPbport_w287.egsdat ncase=13000000       cpu=3038.66    
+288 phspBladesXrayWindowPbport_w288.egsdat ncase=13000000       cpu=3036.05    
+289 phspBladesXrayWindowPbport_w289.egsdat ncase=13000000       cpu=3057.17    
+290 phspBladesXrayWindowPbport_w290.egsdat ncase=9000000        cpu=2813.53    
+291 phspBladesXrayWindowPbport_w291.egsdat ncase=9000000        cpu=2810.91    
+292 phspBladesXrayWindowPbport_w292.egsdat ncase=9000000        cpu=2832.44    
+293 phspBladesXrayWindowPbport_w293.egsdat ncase=9000000        cpu=2882.65    
+294 phspBladesXrayWindowPbport_w294.egsdat ncase=9000000        cpu=2891.70    
+295 phspBladesXrayWindowPbport_w295.egsdat ncase=9000000        cpu=2829.30    
+296 phspBladesXrayWindowPbport_w296.egsdat ncase=9000000        cpu=2892.92    
+297 phspBladesXrayWindowPbport_w297.egsdat ncase=9000000        cpu=2830.39    
+298 phspBladesXrayWindowPbport_w298.egsdat ncase=9000000        cpu=2813.73    
+299 phspBladesXrayWindowPbport_w299.egsdat ncase=9000000        cpu=2858.16    
+300 phspBladesXrayWindowPbport_w300.egsdat ncase=9000000        cpu=2848.59    
+301 phspBladesXrayWindowPbport_w301.egsdat ncase=9000000        cpu=2821.37    
+302 phspBladesXrayWindowPbport_w302.egsdat ncase=9000000        cpu=2863.43    
+303 phspBladesXrayWindowPbport_w303.egsdat ncase=9000000        cpu=2851.35    
+304 phspBladesXrayWindowPbport_w304.egsdat ncase=9000000        cpu=2876.50    
+305 phspBladesXrayWindowPbport_w305.egsdat ncase=9000000        cpu=2861.50    
+306 phspBladesXrayWindowPbport_w306.egsdat ncase=9000000        cpu=2817.24    
+307 phspBladesXrayWindowPbport_w307.egsdat ncase=9000000        cpu=2810.39    
+308 phspBladesXrayWindowPbport_w308.egsdat ncase=9000000        cpu=2857.97    
+309 phspBladesXrayWindowPbport_w309.egsdat ncase=9000000        cpu=2830.21    
+310 phspBladesXrayWindowPbport_w310.egsdat ncase=9000000        cpu=2903.01    
+311 phspBladesXrayWindowPbport_w311.egsdat ncase=9000000        cpu=2827.63    
+312 phspBladesXrayWindowPbport_w312.egsdat ncase=9000000        cpu=2829.66    
+313 phspBladesXrayWindowPbport_w313.egsdat ncase=9000000        cpu=2839.84    
+314 phspBladesXrayWindowPbport_w314.egsdat ncase=9000000        cpu=2934.83    
+315 phspBladesXrayWindowPbport_w315.egsdat ncase=9000000        cpu=2832.98    
+316 phspBladesXrayWindowPbport_w316.egsdat ncase=9000000        cpu=2854.81    
+317 phspBladesXrayWindowPbport_w317.egsdat ncase=9000000        cpu=2816.22    
+318 phspBladesXrayWindowPbport_w318.egsdat ncase=9000000        cpu=2830.39    
+319 phspBladesXrayWindowPbport_w319.egsdat ncase=9000000        cpu=2809.42    
+320 phspBladesXrayWindowPbport_w320.egsdat ncase=9000000        cpu=2823.14    
+321 phspBladesXrayWindowPbport_w321.egsdat ncase=9000000        cpu=2834.43    
+322 phspBladesXrayWindowPbport_w322.egsdat ncase=9000000        cpu=2834.80    
+323 phspBladesXrayWindowPbport_w323.egsdat ncase=9000000        cpu=2859.19    
+324 phspBladesXrayWindowPbport_w324.egsdat ncase=9000000        cpu=2893.68    
+325 phspBladesXrayWindowPbport_w325.egsdat ncase=9000000        cpu=2875.76    
+326 phspBladesXrayWindowPbport_w326.egsdat ncase=9000000        cpu=2867.53    
+327 phspBladesXrayWindowPbport_w327.egsdat ncase=9000000        cpu=2859.46    
+328 phspBladesXrayWindowPbport_w328.egsdat ncase=9000000        cpu=2849.34    
+329 phspBladesXrayWindowPbport_w329.egsdat ncase=9000000        cpu=2908.75    
+330 phspBladesXrayWindowPbport_w330.egsdat ncase=9000000        cpu=2871.40    
+331 phspBladesXrayWindowPbport_w331.egsdat ncase=9000000        cpu=2866.15    
+332 phspBladesXrayWindowPbport_w332.egsdat ncase=9000000        cpu=2869.82    
+333 phspBladesXrayWindowPbport_w333.egsdat ncase=9000000        cpu=2899.74    
+334 phspBladesXrayWindowPbport_w334.egsdat ncase=9000000        cpu=2873.90    
+335 phspBladesXrayWindowPbport_w335.egsdat ncase=9000000        cpu=2837.30    
+336 phspBladesXrayWindowPbport_w336.egsdat ncase=9000000        cpu=2905.71    
+337 phspBladesXrayWindowPbport_w337.egsdat ncase=9000000        cpu=2836.51    
+338 phspBladesXrayWindowPbport_w338.egsdat ncase=9000000        cpu=2821.36    
+339 phspBladesXrayWindowPbport_w339.egsdat ncase=9000000        cpu=2856.40    
+340 phspBladesXrayWindowPbport_w340.egsdat ncase=9000000        cpu=2810.55    
+341 phspBladesXrayWindowPbport_w341.egsdat ncase=9000000        cpu=2831.34    
+342 phspBladesXrayWindowPbport_w342.egsdat ncase=9000000        cpu=2810.50    
+343 phspBladesXrayWindowPbport_w343.egsdat ncase=9000000        cpu=2874.13    
+344 phspBladesXrayWindowPbport_w344.egsdat ncase=9000000        cpu=2851.29    
+345 phspBladesXrayWindowPbport_w345.egsdat ncase=9000000        cpu=2843.57    
+346 phspBladesXrayWindowPbport_w346.egsdat ncase=9000000        cpu=2884.53    
+347 phspBladesXrayWindowPbport_w347.egsdat ncase=9000000        cpu=2837.88    
+348 phspBladesXrayWindowPbport_w348.egsdat ncase=9000000        cpu=2834.35    
+349 phspBladesXrayWindowPbport_w349.egsdat ncase=9000000        cpu=2819.29    
+350 phspBladesXrayWindowPbport_w350.egsdat ncase=9000000        cpu=2869.96    
+351 phspBladesXrayWindowPbport_w351.egsdat ncase=9000000        cpu=2906.56    
+352 phspBladesXrayWindowPbport_w352.egsdat ncase=9000000        cpu=2815.92    
+353 phspBladesXrayWindowPbport_w353.egsdat ncase=9000000        cpu=2851.78    
+354 phspBladesXrayWindowPbport_w354.egsdat ncase=9000000        cpu=2823.16    
+355 phspBladesXrayWindowPbport_w355.egsdat ncase=9000000        cpu=2864.64    
+356 phspBladesXrayWindowPbport_w356.egsdat ncase=9000000        cpu=2830.73    
+357 phspBladesXrayWindowPbport_w357.egsdat ncase=9000000        cpu=2830.48    
+358 phspBladesXrayWindowPbport_w358.egsdat ncase=9000000        cpu=2901.30    
+359 phspBladesXrayWindowPbport_w359.egsdat ncase=9000000        cpu=2875.39    
+360 phspBladesXrayWindowPbport_w360.egsdat ncase=9000000        cpu=2830.99    
+361 phspBladesXrayWindowPbport_w361.egsdat ncase=9000000        cpu=2917.04    
+362 phspBladesXrayWindowPbport_w362.egsdat ncase=9000000        cpu=2879.11    
+363 phspBladesXrayWindowPbport_w363.egsdat ncase=9000000        cpu=2849.81    
+364 phspBladesXrayWindowPbport_w364.egsdat ncase=9000000        cpu=2832.19    
+365 phspBladesXrayWindowPbport_w365.egsdat ncase=9000000        cpu=2868.50    
+366 phspBladesXrayWindowPbport_w366.egsdat ncase=9000000        cpu=2830.59    
+367 phspBladesXrayWindowPbport_w367.egsdat ncase=9000000        cpu=2842.53    
+368 phspBladesXrayWindowPbport_w368.egsdat ncase=9000000        cpu=2877.82    
+369 phspBladesXrayWindowPbport_w369.egsdat ncase=9000000        cpu=2826.84    
+370 phspBladesXrayWindowPbport_w370.egsdat ncase=9000000        cpu=2840.06    
+371 phspBladesXrayWindowPbport_w371.egsdat ncase=10000000       cpu=2880.97    
+372 phspBladesXrayWindowPbport_w372.egsdat ncase=10000000       cpu=2853.63    
+373 phspBladesXrayWindowPbport_w373.egsdat ncase=10000000       cpu=2849.07    
+374 phspBladesXrayWindowPbport_w374.egsdat ncase=10000000       cpu=2886.11    
+375 phspBladesXrayWindowPbport_w375.egsdat ncase=11000000       cpu=3081.48    
+376 phspBladesXrayWindowPbport_w376.egsdat ncase=10000000       cpu=2863.40    
+377 phspBladesXrayWindowPbport_w377.egsdat ncase=11000000       cpu=3069.55    
+378 phspBladesXrayWindowPbport_w378.egsdat ncase=10000000       cpu=2913.68    
+379 phspBladesXrayWindowPbport_w379.egsdat ncase=10000000       cpu=2926.37    
+380 phspBladesXrayWindowPbport_w380.egsdat ncase=10000000       cpu=2955.24    
+381 phspBladesXrayWindowPbport_w381.egsdat ncase=10000000       cpu=2919.94    
+382 phspBladesXrayWindowPbport_w382.egsdat ncase=10000000       cpu=2903.84    
+383 phspBladesXrayWindowPbport_w383.egsdat ncase=10000000       cpu=2959.97    
+384 phspBladesXrayWindowPbport_w384.egsdat ncase=13000000       cpu=3038.28    
+385 phspBladesXrayWindowPbport_w385.egsdat ncase=12000000       cpu=2899.22    
+386 phspBladesXrayWindowPbport_w386.egsdat ncase=12000000       cpu=2889.36    
+387 phspBladesXrayWindowPbport_w387.egsdat ncase=13000000       cpu=3048.03    
+388 phspBladesXrayWindowPbport_w388.egsdat ncase=12000000       cpu=2895.60    
+389 phspBladesXrayWindowPbport_w389.egsdat ncase=12000000       cpu=2893.36    
+390 phspBladesXrayWindowPbport_w390.egsdat ncase=12000000       cpu=2903.16    
+391 phspBladesXrayWindowPbport_w391.egsdat ncase=13000000       cpu=2981.94    
+392 phspBladesXrayWindowPbport_w392.egsdat ncase=8000000        cpu=2528.94    
+393 phspBladesXrayWindowPbport_w393.egsdat ncase=8000000        cpu=2523.84    
+394 phspBladesXrayWindowPbport_w394.egsdat ncase=8000000        cpu=2505.23    
+395 phspBladesXrayWindowPbport_w395.egsdat ncase=8000000        cpu=2521.26    
+396 phspBladesXrayWindowPbport_w396.egsdat ncase=8000000        cpu=2565.42    
+397 phspBladesXrayWindowPbport_w397.egsdat ncase=8000000        cpu=2527.30    
+398 phspBladesXrayWindowPbport_w398.egsdat ncase=8000000        cpu=2510.31    
+399 phspBladesXrayWindowPbport_w399.egsdat ncase=8000000        cpu=2513.82    
+400 phspBladesXrayWindowPbport_w400.egsdat ncase=9000000        cpu=2787.49    
+401 phspBladesXrayWindowPbport_w401.egsdat ncase=8000000        cpu=2508.26    
+402 phspBladesXrayWindowPbport_w402.egsdat ncase=8000000        cpu=2524.17    
+403 phspBladesXrayWindowPbport_w403.egsdat ncase=9000000        cpu=2791.84    
+404 phspBladesXrayWindowPbport_w404.egsdat ncase=8000000        cpu=2521.78    
+405 phspBladesXrayWindowPbport_w405.egsdat ncase=8000000        cpu=2521.51    
+406 phspBladesXrayWindowPbport_w406.egsdat ncase=9000000        cpu=2781.81    
+407 phspBladesXrayWindowPbport_w407.egsdat ncase=8000000        cpu=2507.97    
+408 phspBladesXrayWindowPbport_w408.egsdat ncase=8000000        cpu=2506.24    
+409 phspBladesXrayWindowPbport_w409.egsdat ncase=8000000        cpu=2511.48    
+410 phspBladesXrayWindowPbport_w410.egsdat ncase=8000000        cpu=2508.44    
+411 phspBladesXrayWindowPbport_w411.egsdat ncase=8000000        cpu=2543.78    
+412 phspBladesXrayWindowPbport_w412.egsdat ncase=8000000        cpu=2517.65    
+413 phspBladesXrayWindowPbport_w413.egsdat ncase=9000000        cpu=2783.11    
+414 phspBladesXrayWindowPbport_w414.egsdat ncase=8000000        cpu=2533.60    
+415 phspBladesXrayWindowPbport_w415.egsdat ncase=8000000        cpu=2514.48    
+416 phspBladesXrayWindowPbport_w416.egsdat ncase=9000000        cpu=2884.01    
+417 phspBladesXrayWindowPbport_w417.egsdat ncase=9000000        cpu=2856.24    
+418 phspBladesXrayWindowPbport_w418.egsdat ncase=9000000        cpu=2888.15    
+419 phspBladesXrayWindowPbport_w419.egsdat ncase=9000000        cpu=2815.88    
+420 phspBladesXrayWindowPbport_w420.egsdat ncase=9000000        cpu=2823.29    
+421 phspBladesXrayWindowPbport_w421.egsdat ncase=9000000        cpu=2847.30    
+422 phspBladesXrayWindowPbport_w422.egsdat ncase=9000000        cpu=2868.98    
+423 phspBladesXrayWindowPbport_w423.egsdat ncase=9000000        cpu=2829.45    
+424 phspBladesXrayWindowPbport_w424.egsdat ncase=9000000        cpu=2859.28    
+425 phspBladesXrayWindowPbport_w425.egsdat ncase=9000000        cpu=2837.63    
+426 phspBladesXrayWindowPbport_w426.egsdat ncase=9000000        cpu=2814.05    
+427 phspBladesXrayWindowPbport_w427.egsdat ncase=9000000        cpu=2818.69    
+428 phspBladesXrayWindowPbport_w428.egsdat ncase=9000000        cpu=2908.00    
+429 phspBladesXrayWindowPbport_w429.egsdat ncase=9000000        cpu=2863.10    
+430 phspBladesXrayWindowPbport_w430.egsdat ncase=9000000        cpu=2813.22    
+431 phspBladesXrayWindowPbport_w431.egsdat ncase=9000000        cpu=2833.95    
+432 phspBladesXrayWindowPbport_w432.egsdat ncase=9000000        cpu=2815.10    
+433 phspBladesXrayWindowPbport_w433.egsdat ncase=9000000        cpu=2812.24    
+434 phspBladesXrayWindowPbport_w434.egsdat ncase=9000000        cpu=2817.90    
+435 phspBladesXrayWindowPbport_w435.egsdat ncase=9000000        cpu=2822.49    
+436 phspBladesXrayWindowPbport_w436.egsdat ncase=9000000        cpu=2907.20    
+437 phspBladesXrayWindowPbport_w437.egsdat ncase=9000000        cpu=2857.56    
+438 phspBladesXrayWindowPbport_w438.egsdat ncase=9000000        cpu=2835.16    
+439 phspBladesXrayWindowPbport_w439.egsdat ncase=9000000        cpu=2812.22    
+440 phspBladesXrayWindowPbport_w440.egsdat ncase=8000000        cpu=2542.81    
+441 phspBladesXrayWindowPbport_w441.egsdat ncase=8000000        cpu=2604.83    
+442 phspBladesXrayWindowPbport_w442.egsdat ncase=8000000        cpu=2524.65    
+443 phspBladesXrayWindowPbport_w443.egsdat ncase=8000000        cpu=2538.87    
+444 phspBladesXrayWindowPbport_w444.egsdat ncase=9000000        cpu=2786.82    
+445 phspBladesXrayWindowPbport_w445.egsdat ncase=8000000        cpu=2718.67    
+446 phspBladesXrayWindowPbport_w446.egsdat ncase=8000000        cpu=2510.81    
+447 phspBladesXrayWindowPbport_w447.egsdat ncase=8000000        cpu=2553.42    
+448 phspBladesXrayWindowPbport_w448.egsdat ncase=8000000        cpu=2530.12    
+449 phspBladesXrayWindowPbport_w449.egsdat ncase=8000000        cpu=2525.51    
+450 phspBladesXrayWindowPbport_w450.egsdat ncase=8000000        cpu=2532.03    
+451 phspBladesXrayWindowPbport_w451.egsdat ncase=8000000        cpu=2539.23    
+452 phspBladesXrayWindowPbport_w452.egsdat ncase=8000000        cpu=2556.67    
+453 phspBladesXrayWindowPbport_w453.egsdat ncase=8000000        cpu=2545.56    
+454 phspBladesXrayWindowPbport_w454.egsdat ncase=8000000        cpu=2534.90    
+455 phspBladesXrayWindowPbport_w455.egsdat ncase=8000000        cpu=2549.04    
+456 phspBladesXrayWindowPbport_w456.egsdat ncase=8000000        cpu=2578.19    
+457 phspBladesXrayWindowPbport_w457.egsdat ncase=8000000        cpu=2521.77    
+458 phspBladesXrayWindowPbport_w458.egsdat ncase=8000000        cpu=2511.29    
+459 phspBladesXrayWindowPbport_w459.egsdat ncase=8000000        cpu=2536.08    
+460 phspBladesXrayWindowPbport_w460.egsdat ncase=9000000        cpu=2781.07    
+461 phspBladesXrayWindowPbport_w461.egsdat ncase=8000000        cpu=2547.32    
+462 phspBladesXrayWindowPbport_w462.egsdat ncase=8000000        cpu=2552.83    
+463 phspBladesXrayWindowPbport_w463.egsdat ncase=8000000        cpu=2507.19    
+464 phspBladesXrayWindowPbport_w464.egsdat ncase=9000000        cpu=2882.30    
+465 phspBladesXrayWindowPbport_w465.egsdat ncase=9000000        cpu=2822.33    
+466 phspBladesXrayWindowPbport_w466.egsdat ncase=9000000        cpu=2857.45    
+467 phspBladesXrayWindowPbport_w467.egsdat ncase=9000000        cpu=2840.21    
+468 phspBladesXrayWindowPbport_w468.egsdat ncase=9000000        cpu=2845.54    
+469 phspBladesXrayWindowPbport_w469.egsdat ncase=9000000        cpu=2834.45    
+470 phspBladesXrayWindowPbport_w470.egsdat ncase=9000000        cpu=2860.57    
+471 phspBladesXrayWindowPbport_w471.egsdat ncase=9000000        cpu=2831.43    
+472 phspBladesXrayWindowPbport_w472.egsdat ncase=9000000        cpu=2851.33    
+473 phspBladesXrayWindowPbport_w473.egsdat ncase=9000000        cpu=2853.41    
+474 phspBladesXrayWindowPbport_w474.egsdat ncase=9000000        cpu=2828.01    
+475 phspBladesXrayWindowPbport_w475.egsdat ncase=9000000        cpu=2844.00    
+476 phspBladesXrayWindowPbport_w476.egsdat ncase=9000000        cpu=2902.16    
+477 phspBladesXrayWindowPbport_w477.egsdat ncase=9000000        cpu=2815.60    
+478 phspBladesXrayWindowPbport_w478.egsdat ncase=9000000        cpu=2844.33    
+479 phspBladesXrayWindowPbport_w479.egsdat ncase=9000000        cpu=2869.29    
+480 phspBladesXrayWindowPbport_w480.egsdat ncase=9000000        cpu=2852.31    
+481 phspBladesXrayWindowPbport_w481.egsdat ncase=9000000        cpu=2816.10    
+482 phspBladesXrayWindowPbport_w482.egsdat ncase=9000000        cpu=2822.99    
+483 phspBladesXrayWindowPbport_w483.egsdat ncase=9000000        cpu=2861.94    
+484 phspBladesXrayWindowPbport_w484.egsdat ncase=9000000        cpu=2846.86    
+485 phspBladesXrayWindowPbport_w485.egsdat ncase=9000000        cpu=2847.61    
+486 phspBladesXrayWindowPbport_w486.egsdat ncase=9000000        cpu=2835.99    
+487 phspBladesXrayWindowPbport_w487.egsdat ncase=9000000        cpu=2846.90    
+488 phspBladesXrayWindowPbport_w488.egsdat ncase=9000000        cpu=2858.07    
+489 phspBladesXrayWindowPbport_w489.egsdat ncase=9000000        cpu=2832.18    
+490 phspBladesXrayWindowPbport_w490.egsdat ncase=9000000        cpu=2837.58    
+491 phspBladesXrayWindowPbport_w491.egsdat ncase=9000000        cpu=2891.76    
+492 phspBladesXrayWindowPbport_w492.egsdat ncase=9000000        cpu=2852.94    
+493 phspBladesXrayWindowPbport_w493.egsdat ncase=9000000        cpu=2828.52    
+494 phspBladesXrayWindowPbport_w494.egsdat ncase=9000000        cpu=2864.27    
+495 phspBladesXrayWindowPbport_w495.egsdat ncase=9000000        cpu=2834.60    
+496 phspBladesXrayWindowPbport_w496.egsdat ncase=9000000        cpu=2834.47    
+497 phspBladesXrayWindowPbport_w497.egsdat ncase=9000000        cpu=2862.09    
+498 phspBladesXrayWindowPbport_w498.egsdat ncase=9000000        cpu=2825.83    
+499 phspBladesXrayWindowPbport_w499.egsdat ncase=9000000        cpu=2840.12    
+500 phspBladesXrayWindowPbport_w500.egsdat ncase=9000000        cpu=2853.75    
+501 phspBladesXrayWindowPbport_w501.egsdat ncase=9000000        cpu=2853.05    
+502 phspBladesXrayWindowPbport_w502.egsdat ncase=10000000       cpu=2941.78    
+503 phspBladesXrayWindowPbport_w503.egsdat ncase=10000000       cpu=2911.75    
+504 phspBladesXrayWindowPbport_w504.egsdat ncase=10000000       cpu=2948.85    
+505 phspBladesXrayWindowPbport_w505.egsdat ncase=10000000       cpu=2934.70    
+506 phspBladesXrayWindowPbport_w506.egsdat ncase=10000000       cpu=2948.30    
+507 phspBladesXrayWindowPbport_w507.egsdat ncase=10000000       cpu=2967.95    
+508 phspBladesXrayWindowPbport_w508.egsdat ncase=10000000       cpu=2954.86    
+509 phspBladesXrayWindowPbport_w509.egsdat ncase=10000000       cpu=2915.82    
+510 phspBladesXrayWindowPbport_w510.egsdat ncase=10000000       cpu=2950.55    
+511 phspBladesXrayWindowPbport_w511.egsdat ncase=10000000       cpu=2870.03    
+512 phspBladesXrayWindowPbport_w512.egsdat ncase=10000000       cpu=2854.74    
+513 phspBladesXrayWindowPbport_w513.egsdat ncase=10000000       cpu=2962.43    
+514 phspBladesXrayWindowPbport_w514.egsdat ncase=10000000       cpu=2902.39    
+515 phspBladesXrayWindowPbport_w515.egsdat ncase=9000000        cpu=2847.14    
+516 phspBladesXrayWindowPbport_w516.egsdat ncase=9000000        cpu=2880.07    
+517 phspBladesXrayWindowPbport_w517.egsdat ncase=9000000        cpu=2842.73    
+518 phspBladesXrayWindowPbport_w518.egsdat ncase=9000000        cpu=2895.89    
+519 phspBladesXrayWindowPbport_w519.egsdat ncase=9000000        cpu=2846.66    
+520 phspBladesXrayWindowPbport_w520.egsdat ncase=9000000        cpu=2851.01    
+521 phspBladesXrayWindowPbport_w521.egsdat ncase=9000000        cpu=2822.06    
+522 phspBladesXrayWindowPbport_w522.egsdat ncase=9000000        cpu=2841.64    
+523 phspBladesXrayWindowPbport_w523.egsdat ncase=9000000        cpu=2832.31    
+524 phspBladesXrayWindowPbport_w524.egsdat ncase=9000000        cpu=2825.64    
+525 phspBladesXrayWindowPbport_w525.egsdat ncase=9000000        cpu=2830.76    
+526 phspBladesXrayWindowPbport_w526.egsdat ncase=9000000        cpu=2844.89    
+527 phspBladesXrayWindowPbport_w527.egsdat ncase=9000000        cpu=2839.22    
+528 phspBladesXrayWindowPbport_w528.egsdat ncase=8000000        cpu=2618.52    
+529 phspBladesXrayWindowPbport_w529.egsdat ncase=9000000        cpu=2875.32    
+530 phspBladesXrayWindowPbport_w530.egsdat ncase=9000000        cpu=2862.49    
+531 phspBladesXrayWindowPbport_w531.egsdat ncase=9000000        cpu=2864.73    
+532 phspBladesXrayWindowPbport_w532.egsdat ncase=9000000        cpu=2849.21    
+533 phspBladesXrayWindowPbport_w533.egsdat ncase=9000000        cpu=2876.29    
+534 phspBladesXrayWindowPbport_w534.egsdat ncase=9000000        cpu=2844.44    
+535 phspBladesXrayWindowPbport_w535.egsdat ncase=9000000        cpu=2873.31    
+536 phspBladesXrayWindowPbport_w536.egsdat ncase=9000000        cpu=2847.76    
+537 phspBladesXrayWindowPbport_w537.egsdat ncase=9000000        cpu=2840.10    
+538 phspBladesXrayWindowPbport_w538.egsdat ncase=9000000        cpu=2868.66    
+539 phspBladesXrayWindowPbport_w539.egsdat ncase=9000000        cpu=2827.82    
+540 phspBladesXrayWindowPbport_w540.egsdat ncase=9000000        cpu=2856.97    
+541 phspBladesXrayWindowPbport_w541.egsdat ncase=9000000        cpu=2894.29    
+542 phspBladesXrayWindowPbport_w542.egsdat ncase=9000000        cpu=2858.67    
+543 phspBladesXrayWindowPbport_w543.egsdat ncase=9000000        cpu=2850.01    
+544 phspBladesXrayWindowPbport_w544.egsdat ncase=9000000        cpu=2923.52    
+545 phspBladesXrayWindowPbport_w545.egsdat ncase=9000000        cpu=2838.21    
+546 phspBladesXrayWindowPbport_w546.egsdat ncase=9000000        cpu=2846.24    
+547 phspBladesXrayWindowPbport_w547.egsdat ncase=9000000        cpu=2835.86    
+548 phspBladesXrayWindowPbport_w548.egsdat ncase=9000000        cpu=2851.21    
+549 phspBladesXrayWindowPbport_w549.egsdat ncase=9000000        cpu=2832.77    
+550 phspBladesXrayWindowPbport_w550.egsdat ncase=9000000        cpu=2861.01    
+551 phspBladesXrayWindowPbport_w551.egsdat ncase=9000000        cpu=2826.98    
+552 phspBladesXrayWindowPbport_w552.egsdat ncase=9000000        cpu=2845.26    
+553 phspBladesXrayWindowPbport_w553.egsdat ncase=9000000        cpu=2818.61    
+554 phspBladesXrayWindowPbport_w554.egsdat ncase=9000000        cpu=2860.03    
+555 phspBladesXrayWindowPbport_w555.egsdat ncase=9000000        cpu=2873.42    
+556 phspBladesXrayWindowPbport_w556.egsdat ncase=9000000        cpu=2823.19    
+557 phspBladesXrayWindowPbport_w557.egsdat ncase=9000000        cpu=2830.70    
+558 phspBladesXrayWindowPbport_w558.egsdat ncase=9000000        cpu=2821.66    
+559 phspBladesXrayWindowPbport_w559.egsdat ncase=9000000        cpu=2824.23    
+560 phspBladesXrayWindowPbport_w560.egsdat ncase=9000000        cpu=2883.92    
+561 phspBladesXrayWindowPbport_w561.egsdat ncase=9000000        cpu=2836.27    
+562 phspBladesXrayWindowPbport_w562.egsdat ncase=9000000        cpu=2880.11    
+563 phspBladesXrayWindowPbport_w563.egsdat ncase=9000000        cpu=2849.09    
+564 phspBladesXrayWindowPbport_w564.egsdat ncase=9000000        cpu=2865.70    
+565 phspBladesXrayWindowPbport_w565.egsdat ncase=9000000        cpu=2824.54    
+566 phspBladesXrayWindowPbport_w566.egsdat ncase=9000000        cpu=2812.64    
+567 phspBladesXrayWindowPbport_w567.egsdat ncase=9000000        cpu=2888.43    
+568 phspBladesXrayWindowPbport_w568.egsdat ncase=9000000        cpu=2850.58    
+569 phspBladesXrayWindowPbport_w569.egsdat ncase=9000000        cpu=2816.36    
+570 phspBladesXrayWindowPbport_w570.egsdat ncase=9000000        cpu=2877.99    
+571 phspBladesXrayWindowPbport_w571.egsdat ncase=9000000        cpu=2871.91    
+572 phspBladesXrayWindowPbport_w572.egsdat ncase=9000000        cpu=2840.02    
+573 phspBladesXrayWindowPbport_w573.egsdat ncase=9000000        cpu=2837.99    
+574 phspBladesXrayWindowPbport_w574.egsdat ncase=9000000        cpu=2894.83    
+575 phspBladesXrayWindowPbport_w575.egsdat ncase=8000000        cpu=2635.34    
+576 phspBladesXrayWindowPbport_w576.egsdat ncase=9000000        cpu=2848.04    
+577 phspBladesXrayWindowPbport_w577.egsdat ncase=9000000        cpu=2832.34    
+578 phspBladesXrayWindowPbport_w578.egsdat ncase=9000000        cpu=2856.68    
+579 phspBladesXrayWindowPbport_w579.egsdat ncase=9000000        cpu=2873.41    
+580 phspBladesXrayWindowPbport_w580.egsdat ncase=9000000        cpu=2829.37    
+581 phspBladesXrayWindowPbport_w581.egsdat ncase=9000000        cpu=2871.47    
+582 phspBladesXrayWindowPbport_w582.egsdat ncase=9000000        cpu=2850.24    
+583 phspBladesXrayWindowPbport_w583.egsdat ncase=9000000        cpu=2870.39    
+584 phspBladesXrayWindowPbport_w584.egsdat ncase=9000000        cpu=2857.20    
+585 phspBladesXrayWindowPbport_w585.egsdat ncase=9000000        cpu=2851.78    
+586 phspBladesXrayWindowPbport_w586.egsdat ncase=9000000        cpu=2829.20    
+587 phspBladesXrayWindowPbport_w587.egsdat ncase=9000000        cpu=2815.68    
+588 phspBladesXrayWindowPbport_w588.egsdat ncase=9000000        cpu=2833.91    
+589 phspBladesXrayWindowPbport_w589.egsdat ncase=9000000        cpu=2865.98    
+590 phspBladesXrayWindowPbport_w590.egsdat ncase=9000000        cpu=2873.13    
+591 phspBladesXrayWindowPbport_w591.egsdat ncase=9000000        cpu=2857.24    
+592 phspBladesXrayWindowPbport_w592.egsdat ncase=9000000        cpu=2861.68    
+593 phspBladesXrayWindowPbport_w593.egsdat ncase=8000000        cpu=2599.37    
+594 phspBladesXrayWindowPbport_w594.egsdat ncase=9000000        cpu=2827.73    
+595 phspBladesXrayWindowPbport_w595.egsdat ncase=9000000        cpu=2845.19    
+596 phspBladesXrayWindowPbport_w596.egsdat ncase=9000000        cpu=2847.02    
+597 phspBladesXrayWindowPbport_w597.egsdat ncase=9000000        cpu=2889.85    
+598 phspBladesXrayWindowPbport_w598.egsdat ncase=9000000        cpu=2856.41    
+599 phspBladesXrayWindowPbport_w599.egsdat ncase=9000000        cpu=2822.66    
+600 phspBladesXrayWindowPbport_w600.egsdat ncase=9000000        cpu=2832.73    
+601 phspBladesXrayWindowPbport_w601.egsdat ncase=9000000        cpu=2854.52    
+602 phspBladesXrayWindowPbport_w602.egsdat ncase=9000000        cpu=2840.63    
+603 phspBladesXrayWindowPbport_w603.egsdat ncase=9000000        cpu=2810.50    
+604 phspBladesXrayWindowPbport_w604.egsdat ncase=9000000        cpu=2821.48    
+605 phspBladesXrayWindowPbport_w605.egsdat ncase=9000000        cpu=2850.26    
+606 phspBladesXrayWindowPbport_w606.egsdat ncase=9000000        cpu=2863.05    
+607 phspBladesXrayWindowPbport_w607.egsdat ncase=9000000        cpu=2825.45    
+608 phspBladesXrayWindowPbport_w608.egsdat ncase=9000000        cpu=2848.34    
+609 phspBladesXrayWindowPbport_w609.egsdat ncase=9000000        cpu=2898.38    
+610 phspBladesXrayWindowPbport_w610.egsdat ncase=9000000        cpu=2885.16    
+611 phspBladesXrayWindowPbport_w611.egsdat ncase=9000000        cpu=2846.96    
+612 phspBladesXrayWindowPbport_w612.egsdat ncase=9000000        cpu=2824.91    
+613 phspBladesXrayWindowPbport_w613.egsdat ncase=9000000        cpu=2816.12    
+614 phspBladesXrayWindowPbport_w614.egsdat ncase=9000000        cpu=2832.16    
+615 phspBladesXrayWindowPbport_w615.egsdat ncase=9000000        cpu=2822.23    
+616 phspBladesXrayWindowPbport_w616.egsdat ncase=9000000        cpu=2809.07    
+617 phspBladesXrayWindowPbport_w617.egsdat ncase=9000000        cpu=2886.53    
+618 phspBladesXrayWindowPbport_w618.egsdat ncase=9000000        cpu=2869.54    
+619 phspBladesXrayWindowPbport_w619.egsdat ncase=9000000        cpu=2879.67    
+620 phspBladesXrayWindowPbport_w620.egsdat ncase=9000000        cpu=2848.42    
+621 phspBladesXrayWindowPbport_w621.egsdat ncase=9000000        cpu=2866.24    
+622 phspBladesXrayWindowPbport_w622.egsdat ncase=9000000        cpu=2848.61    
+623 phspBladesXrayWindowPbport_w623.egsdat ncase=9000000        cpu=2857.72    
+624 phspBladesXrayWindowPbport_w624.egsdat ncase=9000000        cpu=2834.32    
+625 phspBladesXrayWindowPbport_w625.egsdat ncase=9000000        cpu=2852.12    
+626 phspBladesXrayWindowPbport_w626.egsdat ncase=9000000        cpu=2879.78    
+627 phspBladesXrayWindowPbport_w627.egsdat ncase=9000000        cpu=2870.47    
+628 phspBladesXrayWindowPbport_w628.egsdat ncase=9000000        cpu=2882.28    
+629 phspBladesXrayWindowPbport_w629.egsdat ncase=9000000        cpu=2881.16    
+630 phspBladesXrayWindowPbport_w630.egsdat ncase=8000000        cpu=2595.83    
+631 phspBladesXrayWindowPbport_w631.egsdat ncase=9000000        cpu=2870.89    
+632 phspBladesXrayWindowPbport_w632.egsdat ncase=9000000        cpu=2878.66    
+633 phspBladesXrayWindowPbport_w633.egsdat ncase=9000000        cpu=2849.38    
+634 phspBladesXrayWindowPbport_w634.egsdat ncase=10000000       cpu=2864.33    
+635 phspBladesXrayWindowPbport_w635.egsdat ncase=10000000       cpu=2866.88    
+636 phspBladesXrayWindowPbport_w636.egsdat ncase=10000000       cpu=2871.41    
+637 phspBladesXrayWindowPbport_w637.egsdat ncase=10000000       cpu=2903.25    
+638 phspBladesXrayWindowPbport_w638.egsdat ncase=10000000       cpu=2931.56    
+639 phspBladesXrayWindowPbport_w639.egsdat ncase=10000000       cpu=2877.35    
+640 phspBladesXrayWindowPbport_w640.egsdat ncase=10000000       cpu=2865.25    
+641 phspBladesXrayWindowPbport_w641.egsdat ncase=10000000       cpu=2861.08    
+642 phspBladesXrayWindowPbport_w642.egsdat ncase=10000000       cpu=2855.16    
+643 phspBladesXrayWindowPbport_w643.egsdat ncase=10000000       cpu=2870.15    
+644 phspBladesXrayWindowPbport_w644.egsdat ncase=10000000       cpu=2910.90    
+645 phspBladesXrayWindowPbport_w645.egsdat ncase=10000000       cpu=2860.93    
+646 phspBladesXrayWindowPbport_w646.egsdat ncase=10000000       cpu=2910.93    
+647 phspBladesXrayWindowPbport_w647.egsdat ncase=8000000        cpu=2598.89    
+648 phspBladesXrayWindowPbport_w648.egsdat ncase=9000000        cpu=2821.47    
+649 phspBladesXrayWindowPbport_w649.egsdat ncase=9000000        cpu=2852.39    
+650 phspBladesXrayWindowPbport_w650.egsdat ncase=9000000        cpu=2886.28    
+651 phspBladesXrayWindowPbport_w651.egsdat ncase=9000000        cpu=2822.60    
+652 phspBladesXrayWindowPbport_w652.egsdat ncase=9000000        cpu=2868.47    
+653 phspBladesXrayWindowPbport_w653.egsdat ncase=9000000        cpu=2846.43    
+654 phspBladesXrayWindowPbport_w654.egsdat ncase=9000000        cpu=2816.17    
+655 phspBladesXrayWindowPbport_w655.egsdat ncase=9000000        cpu=2840.09    
+656 phspBladesXrayWindowPbport_w656.egsdat ncase=9000000        cpu=2890.73    
+657 phspBladesXrayWindowPbport_w657.egsdat ncase=9000000        cpu=2809.60    
+658 phspBladesXrayWindowPbport_w658.egsdat ncase=9000000        cpu=2878.09    
+659 phspBladesXrayWindowPbport_w659.egsdat ncase=9000000        cpu=2853.30    
+660 phspBladesXrayWindowPbport_w660.egsdat ncase=9000000        cpu=2856.26    
+661 phspBladesXrayWindowPbport_w661.egsdat ncase=9000000        cpu=2860.30    
+662 phspBladesXrayWindowPbport_w662.egsdat ncase=9000000        cpu=2821.99    
+663 phspBladesXrayWindowPbport_w663.egsdat ncase=9000000        cpu=2847.14    
+664 phspBladesXrayWindowPbport_w664.egsdat ncase=9000000        cpu=2848.73    
+665 phspBladesXrayWindowPbport_w665.egsdat ncase=9000000        cpu=2823.95    
+666 phspBladesXrayWindowPbport_w666.egsdat ncase=9000000        cpu=2842.22    
+667 phspBladesXrayWindowPbport_w667.egsdat ncase=9000000        cpu=2823.47    
+668 phspBladesXrayWindowPbport_w668.egsdat ncase=9000000        cpu=2850.92    
+669 phspBladesXrayWindowPbport_w669.egsdat ncase=9000000        cpu=2862.57    
+670 phspBladesXrayWindowPbport_w670.egsdat ncase=9000000        cpu=2873.93    
+671 phspBladesXrayWindowPbport_w671.egsdat ncase=9000000        cpu=2852.17    
+672 phspBladesXrayWindowPbport_w672.egsdat ncase=9000000        cpu=2857.06    
+673 phspBladesXrayWindowPbport_w673.egsdat ncase=9000000        cpu=2861.35    
+674 phspBladesXrayWindowPbport_w674.egsdat ncase=9000000        cpu=2880.83    
+675 phspBladesXrayWindowPbport_w675.egsdat ncase=9000000        cpu=2879.86    
+676 phspBladesXrayWindowPbport_w676.egsdat ncase=9000000        cpu=2837.42    
+677 phspBladesXrayWindowPbport_w677.egsdat ncase=9000000        cpu=2853.59    
+678 phspBladesXrayWindowPbport_w678.egsdat ncase=9000000        cpu=2831.94    
+679 phspBladesXrayWindowPbport_w679.egsdat ncase=9000000        cpu=2850.29    
+680 phspBladesXrayWindowPbport_w680.egsdat ncase=9000000        cpu=2824.04    
+681 phspBladesXrayWindowPbport_w681.egsdat ncase=9000000        cpu=2847.11    
+682 phspBladesXrayWindowPbport_w682.egsdat ncase=8000000        cpu=2500.43    
+683 phspBladesXrayWindowPbport_w683.egsdat ncase=8000000        cpu=2503.59    
+684 phspBladesXrayWindowPbport_w684.egsdat ncase=8000000        cpu=2520.62    
+685 phspBladesXrayWindowPbport_w685.egsdat ncase=8000000        cpu=2501.89    
+686 phspBladesXrayWindowPbport_w686.egsdat ncase=8000000        cpu=2520.63    
+687 phspBladesXrayWindowPbport_w687.egsdat ncase=8000000        cpu=2513.86    
+688 phspBladesXrayWindowPbport_w688.egsdat ncase=8000000        cpu=2505.02    
+689 phspBladesXrayWindowPbport_w689.egsdat ncase=7000000        cpu=2707.47    
+690 phspBladesXrayWindowPbport_w690.egsdat ncase=8000000        cpu=2508.21    
+691 phspBladesXrayWindowPbport_w691.egsdat ncase=8000000        cpu=2520.10    
+692 phspBladesXrayWindowPbport_w692.egsdat ncase=8000000        cpu=2542.05    
+693 phspBladesXrayWindowPbport_w693.egsdat ncase=8000000        cpu=2506.09    
+694 phspBladesXrayWindowPbport_w694.egsdat ncase=8000000        cpu=2515.75    
+695 phspBladesXrayWindowPbport_w695.egsdat ncase=8000000        cpu=2551.10    
+696 phspBladesXrayWindowPbport_w696.egsdat ncase=8000000        cpu=2506.77    
+697 phspBladesXrayWindowPbport_w697.egsdat ncase=8000000        cpu=2542.01    
+698 phspBladesXrayWindowPbport_w698.egsdat ncase=8000000        cpu=2500.13    
+699 phspBladesXrayWindowPbport_w699.egsdat ncase=8000000        cpu=2507.68    
+700 phspBladesXrayWindowPbport_w700.egsdat ncase=8000000        cpu=2514.54    
+701 phspBladesXrayWindowPbport_w701.egsdat ncase=8000000        cpu=2527.00    
+702 phspBladesXrayWindowPbport_w702.egsdat ncase=8000000        cpu=2518.78    
+703 phspBladesXrayWindowPbport_w703.egsdat ncase=8000000        cpu=2517.67    
+704 phspBladesXrayWindowPbport_w704.egsdat ncase=8000000        cpu=2552.69    
+705 phspBladesXrayWindowPbport_w705.egsdat ncase=8000000        cpu=2563.86    
+706 phspBladesXrayWindowPbport_w706.egsdat ncase=8000000        cpu=2587.33    
+707 phspBladesXrayWindowPbport_w707.egsdat ncase=8000000        cpu=2527.84    
+708 phspBladesXrayWindowPbport_w708.egsdat ncase=8000000        cpu=2518.57    
+709 phspBladesXrayWindowPbport_w709.egsdat ncase=8000000        cpu=2515.16    
+710 phspBladesXrayWindowPbport_w710.egsdat ncase=8000000        cpu=2531.46    
+711 phspBladesXrayWindowPbport_w711.egsdat ncase=8000000        cpu=2497.71    
+712 phspBladesXrayWindowPbport_w712.egsdat ncase=8000000        cpu=2565.68    
+713 phspBladesXrayWindowPbport_w713.egsdat ncase=8000000        cpu=2536.05    
+714 phspBladesXrayWindowPbport_w714.egsdat ncase=8000000        cpu=2500.27    
+715 phspBladesXrayWindowPbport_w715.egsdat ncase=8000000        cpu=2504.57    
+716 phspBladesXrayWindowPbport_w716.egsdat ncase=8000000        cpu=2527.70    
+717 phspBladesXrayWindowPbport_w717.egsdat ncase=8000000        cpu=2535.24    
+718 phspBladesXrayWindowPbport_w718.egsdat ncase=8000000        cpu=2538.68    
+719 phspBladesXrayWindowPbport_w719.egsdat ncase=8000000        cpu=2504.86    
+720 phspBladesXrayWindowPbport_w720.egsdat ncase=8000000        cpu=2537.79    
+721 phspBladesXrayWindowPbport_w721.egsdat ncase=8000000        cpu=2511.75    
+722 phspBladesXrayWindowPbport_w722.egsdat ncase=8000000        cpu=2504.32    
+723 phspBladesXrayWindowPbport_w723.egsdat ncase=8000000        cpu=2536.08    
+724 phspBladesXrayWindowPbport_w724.egsdat ncase=8000000        cpu=2547.96    
+725 phspBladesXrayWindowPbport_w725.egsdat ncase=8000000        cpu=2510.54    
+726 phspBladesXrayWindowPbport_w726.egsdat ncase=8000000        cpu=2530.56    
+727 phspBladesXrayWindowPbport_w727.egsdat ncase=8000000        cpu=2511.80    
+728 phspBladesXrayWindowPbport_w728.egsdat ncase=8000000        cpu=2541.76    
+729 phspBladesXrayWindowPbport_w729.egsdat ncase=8000000        cpu=2550.89    
+730 phspBladesXrayWindowPbport_w730.egsdat ncase=9000000        cpu=2856.24    
+731 phspBladesXrayWindowPbport_w731.egsdat ncase=9000000        cpu=2849.44    
+732 phspBladesXrayWindowPbport_w732.egsdat ncase=9000000        cpu=2829.14    
+733 phspBladesXrayWindowPbport_w733.egsdat ncase=9000000        cpu=2847.89    
+734 phspBladesXrayWindowPbport_w734.egsdat ncase=9000000        cpu=2871.86    
+735 phspBladesXrayWindowPbport_w735.egsdat ncase=9000000        cpu=2832.94    
+736 phspBladesXrayWindowPbport_w736.egsdat ncase=9000000        cpu=2821.35    
+737 phspBladesXrayWindowPbport_w737.egsdat ncase=9000000        cpu=2844.58    
+738 phspBladesXrayWindowPbport_w738.egsdat ncase=9000000        cpu=2820.58    
+739 phspBladesXrayWindowPbport_w739.egsdat ncase=9000000        cpu=2810.92    
+740 phspBladesXrayWindowPbport_w740.egsdat ncase=9000000        cpu=2848.48    
+741 phspBladesXrayWindowPbport_w741.egsdat ncase=9000000        cpu=2845.74    
+742 phspBladesXrayWindowPbport_w742.egsdat ncase=9000000        cpu=2854.42    
+743 phspBladesXrayWindowPbport_w743.egsdat ncase=9000000        cpu=2816.92    
+744 phspBladesXrayWindowPbport_w744.egsdat ncase=9000000        cpu=2827.42    
+745 phspBladesXrayWindowPbport_w745.egsdat ncase=9000000        cpu=2861.24    
+746 phspBladesXrayWindowPbport_w746.egsdat ncase=9000000        cpu=2844.62    
+747 phspBladesXrayWindowPbport_w747.egsdat ncase=9000000        cpu=2817.00    
+748 phspBladesXrayWindowPbport_w748.egsdat ncase=9000000        cpu=2856.00    
+749 phspBladesXrayWindowPbport_w749.egsdat ncase=9000000        cpu=2814.00    
+750 phspBladesXrayWindowPbport_w750.egsdat ncase=9000000        cpu=2819.67    
+751 phspBladesXrayWindowPbport_w751.egsdat ncase=8000000        cpu=2594.03    
+752 phspBladesXrayWindowPbport_w752.egsdat ncase=9000000        cpu=2873.98    
+753 phspBladesXrayWindowPbport_w753.egsdat ncase=9000000        cpu=2844.09    
+754 phspBladesXrayWindowPbport_w754.egsdat ncase=8000000        cpu=2517.73    
+755 phspBladesXrayWindowPbport_w755.egsdat ncase=8000000        cpu=2546.34    
+756 phspBladesXrayWindowPbport_w756.egsdat ncase=8000000        cpu=2516.88    
+757 phspBladesXrayWindowPbport_w757.egsdat ncase=8000000        cpu=2560.52    
+758 phspBladesXrayWindowPbport_w758.egsdat ncase=8000000        cpu=2517.21    
+759 phspBladesXrayWindowPbport_w759.egsdat ncase=8000000        cpu=2525.15    
+760 phspBladesXrayWindowPbport_w760.egsdat ncase=8000000        cpu=2531.31    
+761 phspBladesXrayWindowPbport_w761.egsdat ncase=8000000        cpu=2570.67    
+762 phspBladesXrayWindowPbport_w762.egsdat ncase=8000000        cpu=2520.61    
+763 phspBladesXrayWindowPbport_w763.egsdat ncase=8000000        cpu=2505.84    
+764 phspBladesXrayWindowPbport_w764.egsdat ncase=8000000        cpu=2538.83    
+765 phspBladesXrayWindowPbport_w765.egsdat ncase=10000000       cpu=2920.96    
+766 phspBladesXrayWindowPbport_w766.egsdat ncase=10000000       cpu=2869.78    
+767 phspBladesXrayWindowPbport_w767.egsdat ncase=10000000       cpu=2907.56    
+768 phspBladesXrayWindowPbport_w768.egsdat ncase=10000000       cpu=2909.02    
+769 phspBladesXrayWindowPbport_w769.egsdat ncase=10000000       cpu=2956.09    
+770 phspBladesXrayWindowPbport_w770.egsdat ncase=10000000       cpu=2935.03    
+771 phspBladesXrayWindowPbport_w771.egsdat ncase=10000000       cpu=2912.59    
+772 phspBladesXrayWindowPbport_w772.egsdat ncase=10000000       cpu=2912.02    
+773 phspBladesXrayWindowPbport_w773.egsdat ncase=10000000       cpu=2952.80    
+774 phspBladesXrayWindowPbport_w774.egsdat ncase=10000000       cpu=2905.22    
+775 phspBladesXrayWindowPbport_w775.egsdat ncase=10000000       cpu=2994.03    
+776 phspBladesXrayWindowPbport_w776.egsdat ncase=10000000       cpu=2901.31    
+777 phspBladesXrayWindowPbport_w777.egsdat ncase=10000000       cpu=2935.86    
+778 phspBladesXrayWindowPbport_w778.egsdat ncase=8000000        cpu=2544.34    
+779 phspBladesXrayWindowPbport_w779.egsdat ncase=8000000        cpu=2521.09    
+780 phspBladesXrayWindowPbport_w780.egsdat ncase=8000000        cpu=2505.05    
+781 phspBladesXrayWindowPbport_w781.egsdat ncase=8000000        cpu=2531.78    
+782 phspBladesXrayWindowPbport_w782.egsdat ncase=8000000        cpu=2539.65    
+783 phspBladesXrayWindowPbport_w783.egsdat ncase=8000000        cpu=2547.60    
+784 phspBladesXrayWindowPbport_w784.egsdat ncase=8000000        cpu=2541.26    
+785 phspBladesXrayWindowPbport_w785.egsdat ncase=8000000        cpu=2552.13    
+786 phspBladesXrayWindowPbport_w786.egsdat ncase=8000000        cpu=2518.34    
+787 phspBladesXrayWindowPbport_w787.egsdat ncase=8000000        cpu=2512.18    
+788 phspBladesXrayWindowPbport_w788.egsdat ncase=8000000        cpu=2502.08    
+789 phspBladesXrayWindowPbport_w789.egsdat ncase=8000000        cpu=2548.14    
+790 phspBladesXrayWindowPbport_w790.egsdat ncase=8000000        cpu=2528.37    
+791 phspBladesXrayWindowPbport_w791.egsdat ncase=8000000        cpu=2569.42    
+792 phspBladesXrayWindowPbport_w792.egsdat ncase=9000000        cpu=2830.70    
+793 phspBladesXrayWindowPbport_w793.egsdat ncase=9000000        cpu=2831.05    
+794 phspBladesXrayWindowPbport_w794.egsdat ncase=9000000        cpu=2813.76    
+795 phspBladesXrayWindowPbport_w795.egsdat ncase=8000000        cpu=2525.07    
+796 phspBladesXrayWindowPbport_w796.egsdat ncase=9000000        cpu=2827.05    
+797 phspBladesXrayWindowPbport_w797.egsdat ncase=9000000        cpu=2820.49    
+798 phspBladesXrayWindowPbport_w798.egsdat ncase=9000000        cpu=2837.34    
+799 phspBladesXrayWindowPbport_w799.egsdat ncase=9000000        cpu=2828.69    
+800 phspBladesXrayWindowPbport_w800.egsdat ncase=8000000        cpu=2571.41    
+801 phspBladesXrayWindowPbport_w801.egsdat ncase=9000000        cpu=2831.24    
+802 phspBladesXrayWindowPbport_w802.egsdat ncase=8000000        cpu=2573.23    
+803 phspBladesXrayWindowPbport_w803.egsdat ncase=9000000        cpu=2829.37    
+804 phspBladesXrayWindowPbport_w804.egsdat ncase=8000000        cpu=2553.19    
+805 phspBladesXrayWindowPbport_w805.egsdat ncase=8000000        cpu=2562.00    
+806 phspBladesXrayWindowPbport_w806.egsdat ncase=9000000        cpu=2812.71    
+807 phspBladesXrayWindowPbport_w807.egsdat ncase=8000000        cpu=2549.35    
+808 phspBladesXrayWindowPbport_w808.egsdat ncase=8000000        cpu=2560.30    
+809 phspBladesXrayWindowPbport_w809.egsdat ncase=8000000        cpu=2535.84    
+810 phspBladesXrayWindowPbport_w810.egsdat ncase=8000000        cpu=2513.06    
+811 phspBladesXrayWindowPbport_w811.egsdat ncase=9000000        cpu=2820.45    
+812 phspBladesXrayWindowPbport_w812.egsdat ncase=9000000        cpu=2816.88    
+813 phspBladesXrayWindowPbport_w813.egsdat ncase=8000000        cpu=2548.71    
+814 phspBladesXrayWindowPbport_w814.egsdat ncase=9000000        cpu=2825.40    
+815 phspBladesXrayWindowPbport_w815.egsdat ncase=8000000        cpu=2526.77    
+816 phspBladesXrayWindowPbport_w816.egsdat ncase=8000000        cpu=2524.81    
+817 phspBladesXrayWindowPbport_w817.egsdat ncase=8000000        cpu=2525.04    
+818 phspBladesXrayWindowPbport_w818.egsdat ncase=8000000        cpu=2531.86    
+819 phspBladesXrayWindowPbport_w819.egsdat ncase=9000000        cpu=2788.92    
+820 phspBladesXrayWindowPbport_w820.egsdat ncase=8000000        cpu=2540.72    
+821 phspBladesXrayWindowPbport_w821.egsdat ncase=8000000        cpu=2510.07    
+822 phspBladesXrayWindowPbport_w822.egsdat ncase=8000000        cpu=2556.54    
+823 phspBladesXrayWindowPbport_w823.egsdat ncase=9000000        cpu=2788.01    
+824 phspBladesXrayWindowPbport_w824.egsdat ncase=8000000        cpu=2516.58    
+825 phspBladesXrayWindowPbport_w825.egsdat ncase=8000000        cpu=2526.12    
+826 phspBladesXrayWindowPbport_w826.egsdat ncase=8000000        cpu=2513.40    
+827 phspBladesXrayWindowPbport_w827.egsdat ncase=8000000        cpu=2524.99    
+828 phspBladesXrayWindowPbport_w828.egsdat ncase=8000000        cpu=2593.62    
+829 phspBladesXrayWindowPbport_w829.egsdat ncase=8000000        cpu=2506.97    
+830 phspBladesXrayWindowPbport_w830.egsdat ncase=8000000        cpu=2529.23    
+831 phspBladesXrayWindowPbport_w831.egsdat ncase=8000000        cpu=2518.35    
+832 phspBladesXrayWindowPbport_w832.egsdat ncase=8000000        cpu=2586.39    
+833 phspBladesXrayWindowPbport_w833.egsdat ncase=9000000        cpu=2786.67    
+834 phspBladesXrayWindowPbport_w834.egsdat ncase=9000000        cpu=2789.34    
+835 phspBladesXrayWindowPbport_w835.egsdat ncase=8000000        cpu=2530.70    
+836 phspBladesXrayWindowPbport_w836.egsdat ncase=8000000        cpu=2519.10    
+837 phspBladesXrayWindowPbport_w837.egsdat ncase=8000000        cpu=2599.33    
+838 phspBladesXrayWindowPbport_w838.egsdat ncase=8000000        cpu=2543.29    
+839 phspBladesXrayWindowPbport_w839.egsdat ncase=10000000       cpu=2900.18    
+840 phspBladesXrayWindowPbport_w840.egsdat ncase=10000000       cpu=2939.25    
+841 phspBladesXrayWindowPbport_w841.egsdat ncase=10000000       cpu=2880.52    
+842 phspBladesXrayWindowPbport_w842.egsdat ncase=10000000       cpu=2896.40    
+843 phspBladesXrayWindowPbport_w843.egsdat ncase=10000000       cpu=2982.57    
+844 phspBladesXrayWindowPbport_w844.egsdat ncase=10000000       cpu=2905.78    
+845 phspBladesXrayWindowPbport_w845.egsdat ncase=10000000       cpu=2899.44    
+846 phspBladesXrayWindowPbport_w846.egsdat ncase=10000000       cpu=2899.95    
+847 phspBladesXrayWindowPbport_w847.egsdat ncase=10000000       cpu=2943.39    
+848 phspBladesXrayWindowPbport_w848.egsdat ncase=10000000       cpu=2958.83    
+849 phspBladesXrayWindowPbport_w849.egsdat ncase=10000000       cpu=2898.50    
+850 phspBladesXrayWindowPbport_w850.egsdat ncase=10000000       cpu=2946.89    
+851 phspBladesXrayWindowPbport_w851.egsdat ncase=9000000        cpu=2785.02    
+852 phspBladesXrayWindowPbport_w852.egsdat ncase=10000000       cpu=2892.07    
+853 phspBladesXrayWindowPbport_w853.egsdat ncase=10000000       cpu=2904.80    
+854 phspBladesXrayWindowPbport_w854.egsdat ncase=10000000       cpu=2880.24    
+855 phspBladesXrayWindowPbport_w855.egsdat ncase=10000000       cpu=2897.19    
+856 phspBladesXrayWindowPbport_w856.egsdat ncase=10000000       cpu=2946.85    
+857 phspBladesXrayWindowPbport_w857.egsdat ncase=10000000       cpu=2732.15    
+858 phspBladesXrayWindowPbport_w858.egsdat ncase=11000000       cpu=2942.58    
+859 phspBladesXrayWindowPbport_w859.egsdat ncase=11000000       cpu=2936.44    
+860 phspBladesXrayWindowPbport_w860.egsdat ncase=11000000       cpu=2938.97    
+861 phspBladesXrayWindowPbport_w861.egsdat ncase=11000000       cpu=2960.27    
+862 phspBladesXrayWindowPbport_w862.egsdat ncase=11000000       cpu=2956.92    
+863 phspBladesXrayWindowPbport_w863.egsdat ncase=11000000       cpu=2927.78    
+864 phspBladesXrayWindowPbport_w864.egsdat ncase=11000000       cpu=2954.67    
+865 phspBladesXrayWindowPbport_w865.egsdat ncase=10000000       cpu=2744.20    
+866 phspBladesXrayWindowPbport_w866.egsdat ncase=11000000       cpu=2955.34    
+867 phspBladesXrayWindowPbport_w867.egsdat ncase=11000000       cpu=2968.59    
+868 phspBladesXrayWindowPbport_w868.egsdat ncase=11000000       cpu=2976.93    
+869 phspBladesXrayWindowPbport_w869.egsdat ncase=10000000       cpu=2748.55    
+870 phspBladesXrayWindowPbport_w870.egsdat ncase=11000000       cpu=2948.21    
+871 phspBladesXrayWindowPbport_w871.egsdat ncase=11000000       cpu=2944.17    
+872 phspBladesXrayWindowPbport_w872.egsdat ncase=10000000       cpu=2883.74    
+873 phspBladesXrayWindowPbport_w873.egsdat ncase=10000000       cpu=2865.65    
+874 phspBladesXrayWindowPbport_w874.egsdat ncase=10000000       cpu=2858.96    
+875 phspBladesXrayWindowPbport_w875.egsdat ncase=10000000       cpu=2920.76    
+876 phspBladesXrayWindowPbport_w876.egsdat ncase=10000000       cpu=2906.33    
+877 phspBladesXrayWindowPbport_w877.egsdat ncase=10000000       cpu=2872.39    
+878 phspBladesXrayWindowPbport_w878.egsdat ncase=10000000       cpu=2872.79    
+879 phspBladesXrayWindowPbport_w879.egsdat ncase=10000000       cpu=2889.42    
+880 phspBladesXrayWindowPbport_w880.egsdat ncase=10000000       cpu=2923.54    
+881 phspBladesXrayWindowPbport_w881.egsdat ncase=10000000       cpu=2869.91    
+882 phspBladesXrayWindowPbport_w882.egsdat ncase=10000000       cpu=2865.44    
+883 phspBladesXrayWindowPbport_w883.egsdat ncase=10000000       cpu=2912.18    
+884 phspBladesXrayWindowPbport_w884.egsdat ncase=10000000       cpu=2887.33    
+885 phspBladesXrayWindowPbport_w885.egsdat ncase=10000000       cpu=2887.09    
+886 phspBladesXrayWindowPbport_w886.egsdat ncase=10000000       cpu=2876.71    
+887 phspBladesXrayWindowPbport_w887.egsdat ncase=10000000       cpu=2874.31    
+888 phspBladesXrayWindowPbport_w888.egsdat ncase=10000000       cpu=2917.89    
+889 phspBladesXrayWindowPbport_w889.egsdat ncase=10000000       cpu=2884.39    
+890 phspBladesXrayWindowPbport_w890.egsdat ncase=10000000       cpu=2975.74    
+891 phspBladesXrayWindowPbport_w891.egsdat ncase=10000000       cpu=2890.78    
+892 phspBladesXrayWindowPbport_w892.egsdat ncase=10000000       cpu=2878.77    
+893 phspBladesXrayWindowPbport_w893.egsdat ncase=10000000       cpu=2921.05    
+894 phspBladesXrayWindowPbport_w894.egsdat ncase=10000000       cpu=2885.36    
+895 phspBladesXrayWindowPbport_w895.egsdat ncase=10000000       cpu=2928.99    
+896 phspBladesXrayWindowPbport_w896.egsdat ncase=10000000       cpu=2872.29    
+897 phspBladesXrayWindowPbport_w897.egsdat ncase=10000000       cpu=2945.77    
+898 phspBladesXrayWindowPbport_w898.egsdat ncase=10000000       cpu=2938.80    
+899 phspBladesXrayWindowPbport_w899.egsdat ncase=9000000        cpu=2683.95    
+900 phspBladesXrayWindowPbport_w900.egsdat ncase=10000000       cpu=2914.56    
+901 phspBladesXrayWindowPbport_w901.egsdat ncase=10000000       cpu=2855.03    
+902 phspBladesXrayWindowPbport_w902.egsdat ncase=10000000       cpu=2889.57    
+903 phspBladesXrayWindowPbport_w903.egsdat ncase=10000000       cpu=2877.67    
+904 phspBladesXrayWindowPbport_w904.egsdat ncase=10000000       cpu=2797.41    
+905 phspBladesXrayWindowPbport_w905.egsdat ncase=10000000       cpu=2870.66    
+906 phspBladesXrayWindowPbport_w906.egsdat ncase=10000000       cpu=2796.98    
+907 phspBladesXrayWindowPbport_w907.egsdat ncase=10000000       cpu=2817.59    
+908 phspBladesXrayWindowPbport_w908.egsdat ncase=10000000       cpu=2826.03    
+909 phspBladesXrayWindowPbport_w909.egsdat ncase=10000000       cpu=2800.04    
+910 phspBladesXrayWindowPbport_w910.egsdat ncase=10000000       cpu=2799.73    
+911 phspBladesXrayWindowPbport_w911.egsdat ncase=10000000       cpu=2807.63    
+912 phspBladesXrayWindowPbport_w912.egsdat ncase=10000000       cpu=2840.43    
+913 phspBladesXrayWindowPbport_w913.egsdat ncase=10000000       cpu=2852.88    
+914 phspBladesXrayWindowPbport_w914.egsdat ncase=10000000       cpu=2861.40    
+915 phspBladesXrayWindowPbport_w915.egsdat ncase=10000000       cpu=2829.15    
+916 phspBladesXrayWindowPbport_w916.egsdat ncase=10000000       cpu=2823.85    
+917 phspBladesXrayWindowPbport_w917.egsdat ncase=10000000       cpu=2829.11    
+918 phspBladesXrayWindowPbport_w918.egsdat ncase=10000000       cpu=2834.41    
+919 phspBladesXrayWindowPbport_w919.egsdat ncase=10000000       cpu=2798.85    
+920 phspBladesXrayWindowPbport_w920.egsdat ncase=10000000       cpu=2781.07    
+921 phspBladesXrayWindowPbport_w921.egsdat ncase=10000000       cpu=2714.64    
+922 phspBladesXrayWindowPbport_w922.egsdat ncase=10000000       cpu=2692.66    
+923 phspBladesXrayWindowPbport_w923.egsdat ncase=10000000       cpu=2700.35    
+924 phspBladesXrayWindowPbport_w924.egsdat ncase=10000000       cpu=2724.51    
+925 phspBladesXrayWindowPbport_w925.egsdat ncase=10000000       cpu=2709.44    
+926 phspBladesXrayWindowPbport_w926.egsdat ncase=10000000       cpu=2753.83    
+927 phspBladesXrayWindowPbport_w927.egsdat ncase=10000000       cpu=2763.26    
+928 phspBladesXrayWindowPbport_w928.egsdat ncase=10000000       cpu=2728.78    
+929 phspBladesXrayWindowPbport_w929.egsdat ncase=10000000       cpu=2835.09    
+930 phspBladesXrayWindowPbport_w930.egsdat ncase=10000000       cpu=2764.98    
+931 phspBladesXrayWindowPbport_w931.egsdat ncase=10000000       cpu=2736.36    
+932 phspBladesXrayWindowPbport_w932.egsdat ncase=10000000       cpu=2747.00    
+933 phspBladesXrayWindowPbport_w933.egsdat ncase=10000000       cpu=2797.87    
+934 phspBladesXrayWindowPbport_w934.egsdat ncase=10000000       cpu=2728.09    
+935 phspBladesXrayWindowPbport_w935.egsdat ncase=10000000       cpu=2733.84    
+936 phspBladesXrayWindowPbport_w936.egsdat ncase=10000000       cpu=2835.47    
+937 phspBladesXrayWindowPbport_w937.egsdat ncase=10000000       cpu=2896.77    
+938 phspBladesXrayWindowPbport_w938.egsdat ncase=10000000       cpu=2891.05    
+939 phspBladesXrayWindowPbport_w939.egsdat ncase=10000000       cpu=2864.45    
+940 phspBladesXrayWindowPbport_w940.egsdat ncase=10000000       cpu=2868.62    
+941 phspBladesXrayWindowPbport_w941.egsdat ncase=10000000       cpu=2839.52    
+942 phspBladesXrayWindowPbport_w942.egsdat ncase=10000000       cpu=2821.79    
+943 phspBladesXrayWindowPbport_w943.egsdat ncase=10000000       cpu=2860.79    
+944 phspBladesXrayWindowPbport_w944.egsdat ncase=10000000       cpu=2821.61    
+945 phspBladesXrayWindowPbport_w945.egsdat ncase=10000000       cpu=2857.33    
+946 phspBladesXrayWindowPbport_w946.egsdat ncase=10000000       cpu=2841.49    
+947 phspBladesXrayWindowPbport_w947.egsdat ncase=10000000       cpu=2815.13    
+948 phspBladesXrayWindowPbport_w948.egsdat ncase=10000000       cpu=2822.02    
+949 phspBladesXrayWindowPbport_w949.egsdat ncase=10000000       cpu=2882.29    
+950 phspBladesXrayWindowPbport_w950.egsdat ncase=10000000       cpu=2833.07    
+951 phspBladesXrayWindowPbport_w951.egsdat ncase=10000000       cpu=2839.59    
+952 phspBladesXrayWindowPbport_w952.egsdat ncase=10000000       cpu=2846.76    
+953 phspBladesXrayWindowPbport_w953.egsdat ncase=10000000       cpu=2820.95    
+954 phspBladesXrayWindowPbport_w954.egsdat ncase=10000000       cpu=2799.58    
+955 phspBladesXrayWindowPbport_w955.egsdat ncase=10000000       cpu=2805.55    
+956 phspBladesXrayWindowPbport_w956.egsdat ncase=10000000       cpu=2821.97    
+957 phspBladesXrayWindowPbport_w957.egsdat ncase=10000000       cpu=2801.69    
+958 phspBladesXrayWindowPbport_w958.egsdat ncase=10000000       cpu=2854.45    
+959 phspBladesXrayWindowPbport_w959.egsdat ncase=10000000       cpu=2837.14    
+960 phspBladesXrayWindowPbport_w960.egsdat ncase=10000000       cpu=2825.12    
+961 phspBladesXrayWindowPbport_w961.egsdat ncase=10000000       cpu=2838.33    
+962 phspBladesXrayWindowPbport_w962.egsdat ncase=10000000       cpu=2823.35    
+963 phspBladesXrayWindowPbport_w963.egsdat ncase=10000000       cpu=2818.86    
+964 phspBladesXrayWindowPbport_w964.egsdat ncase=10000000       cpu=2834.35    
+965 phspBladesXrayWindowPbport_w965.egsdat ncase=10000000       cpu=2801.31    
+966 phspBladesXrayWindowPbport_w966.egsdat ncase=10000000       cpu=2861.22    
+967 phspBladesXrayWindowPbport_w967.egsdat ncase=10000000       cpu=2859.46    
+968 phspBladesXrayWindowPbport_w968.egsdat ncase=10000000       cpu=2841.75    
+969 phspBladesXrayWindowPbport_w969.egsdat ncase=9000000        cpu=2617.77    
+970 phspBladesXrayWindowPbport_w970.egsdat ncase=10000000       cpu=2819.76    
+971 phspBladesXrayWindowPbport_w971.egsdat ncase=9000000        cpu=2610.50    
+972 phspBladesXrayWindowPbport_w972.egsdat ncase=10000000       cpu=2815.69    
+973 phspBladesXrayWindowPbport_w973.egsdat ncase=10000000       cpu=2810.76    
+974 phspBladesXrayWindowPbport_w974.egsdat ncase=10000000       cpu=2816.97    
+975 phspBladesXrayWindowPbport_w975.egsdat ncase=9000000        cpu=2630.39    
+976 phspBladesXrayWindowPbport_w976.egsdat ncase=9000000        cpu=2619.40    
+977 phspBladesXrayWindowPbport_w977.egsdat ncase=10000000       cpu=2850.86    
+978 phspBladesXrayWindowPbport_w978.egsdat ncase=10000000       cpu=2832.46    
+979 phspBladesXrayWindowPbport_w979.egsdat ncase=9000000        cpu=2605.54    
+980 phspBladesXrayWindowPbport_w980.egsdat ncase=10000000       cpu=2833.13    
+981 phspBladesXrayWindowPbport_w981.egsdat ncase=10000000       cpu=2813.17    
+982 phspBladesXrayWindowPbport_w982.egsdat ncase=10000000       cpu=2842.66    
+983 phspBladesXrayWindowPbport_w983.egsdat ncase=10000000       cpu=2829.23    
+984 phspBladesXrayWindowPbport_w984.egsdat ncase=10000000       cpu=2865.32    
+985 phspBladesXrayWindowPbport_w985.egsdat ncase=10000000       cpu=2871.17    
+986 phspBladesXrayWindowPbport_w986.egsdat ncase=10000000       cpu=2869.90    
+987 phspBladesXrayWindowPbport_w987.egsdat ncase=9000000        cpu=2773.38    
+988 phspBladesXrayWindowPbport_w988.egsdat ncase=9000000        cpu=2623.68    
+989 phspBladesXrayWindowPbport_w989.egsdat ncase=9000000        cpu=2604.96    
+990 phspBladesXrayWindowPbport_w990.egsdat ncase=9000000        cpu=2601.11    
+991 phspBladesXrayWindowPbport_w991.egsdat ncase=9000000        cpu=2678.91    
+992 phspBladesXrayWindowPbport_w992.egsdat ncase=9000000        cpu=2607.73    
+993 phspBladesXrayWindowPbport_w993.egsdat ncase=9000000        cpu=2647.95    
+994 phspBladesXrayWindowPbport_w994.egsdat ncase=9000000        cpu=2605.08    
+995 phspBladesXrayWindowPbport_w995.egsdat ncase=9000000        cpu=2682.20    
+996 phspBladesXrayWindowPbport_w996.egsdat ncase=9000000        cpu=2643.58    
+997 phspBladesXrayWindowPbport_w997.egsdat ncase=9000000        cpu=2679.43    
+998 phspBladesXrayWindowPbport_w998.egsdat ncase=9000000        cpu=2610.57    
+999 phspBladesXrayWindowPbport_w999.egsdat ncase=9000000        cpu=2621.51    
+1000 phspBladesXrayWindowPbport_w1000.egsdat ncase=11000000       cpu=2802.65    
+=======================================================================
+                            Total ncase=10000000000    cpu=2797118.92 
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.59 (sec.) 0.0002(hours)
+CPU time including previous runs:       2797119.51 (sec.) 776.9776 (hours)
+Histories per hour:                     1.28704e+07   
+Number of random numbers used:          29322061762949
+Number of electron CH steps:            2.04308e+11   
+Number of all electron steps:           6.52668e+12   
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     10000
+   Total tracks scored:     211959
+   Still being scored:      0
+   Output file name:        /home/rsmina/EGSnrc/egs_home/TB/phspBladesXrayWindowPbport_w734_w734.ptracks
+
+
+======================================================
+Dose Scoring Object(profilexFilm)
+======================================================
+=> last case = 999667335 fluence = 9.62999e+12
+
+==> Summary of region dosimetry (per fluence)
+ ir medium       rho/[g/cm3]  V/cm3    Edep/[MeV*cm2]            D/[Gy*cm2]         
+------------------------------------------------------------------------------------
+  0 film          1.140     1.0000 4.8324e-13 +/- 2.678  % 6.7908e-23 +/- 2.678  %
+  1 film          1.140     1.0000 5.0705e-13 +/- 2.440  % 7.1254e-23 +/- 2.440  %
+  2 film          1.140     1.0000 7.4892e-13 +/- 2.096  % 1.0524e-22 +/- 2.096  %
+  3 film          1.140     1.0000 8.5208e-13 +/- 1.962  % 1.1974e-22 +/- 1.962  %
+  4 film          1.140     1.0000 1.0729e-12 +/- 1.753  % 1.5077e-22 +/- 1.753  %
+  5 film          1.140     1.0000 1.4674e-12 +/- 1.485  % 2.0621e-22 +/- 1.485  %
+  6 film          1.140     1.0000 3.4248e-12 +/- 0.940  % 4.8127e-22 +/- 0.940  %
+  7 film          1.140     1.0000 7.5534e-12 +/- 0.619  % 1.0614e-21 +/- 0.619  %
+  8 film          1.140     1.0000 1.0127e-11 +/- 0.530  % 1.4231e-21 +/- 0.530  %
+  9 film          1.140     1.0000 1.0189e-11 +/- 0.527  % 1.4318e-21 +/- 0.527  %
+ 10 film          1.140     1.0000 9.9450e-12 +/- 0.537  % 1.3975e-21 +/- 0.537  %
+ 11 film          1.140     1.0000 1.0453e-11 +/- 0.524  % 1.4689e-21 +/- 0.524  %
+ 12 film          1.140     1.0000 1.0195e-11 +/- 0.525  % 1.4327e-21 +/- 0.525  %
+ 13 film          1.140     1.0000 1.0813e-11 +/- 0.511  % 1.5195e-21 +/- 0.511  %
+ 14 film          1.140     1.0000 1.0657e-11 +/- 0.513  % 1.4975e-21 +/- 0.513  %
+ 15 film          1.140     1.0000 1.0409e-11 +/- 0.523  % 1.4628e-21 +/- 0.523  %
+ 16 film          1.140     1.0000 1.1103e-11 +/- 0.506  % 1.5603e-21 +/- 0.506  %
+ 17 film          1.140     1.0000 1.0836e-11 +/- 0.509  % 1.5227e-21 +/- 0.509  %
+ 18 film          1.140     1.0000 1.1175e-11 +/- 0.504  % 1.5704e-21 +/- 0.504  %
+ 19 film          1.140     1.0000 1.0963e-11 +/- 0.506  % 1.5406e-21 +/- 0.506  %
+ 20 film          1.140     1.0000 1.1275e-11 +/- 0.502  % 1.5844e-21 +/- 0.502  %
+ 21 film          1.140     1.0000 1.1036e-11 +/- 0.510  % 1.5508e-21 +/- 0.510  %
+ 22 film          1.140     1.0000 1.1042e-11 +/- 0.505  % 1.5517e-21 +/- 0.505  %
+ 23 film          1.140     1.0000 1.0742e-11 +/- 0.514  % 1.5096e-21 +/- 0.514  %
+ 24 film          1.140     1.0000 1.0655e-11 +/- 0.517  % 1.4973e-21 +/- 0.517  %
+ 25 film          1.140     1.0000 1.0505e-11 +/- 0.513  % 1.4762e-21 +/- 0.513  %
+ 26 film          1.140     1.0000 1.0406e-11 +/- 0.516  % 1.4624e-21 +/- 0.516  %
+ 27 film          1.140     1.0000 1.0580e-11 +/- 0.524  % 1.4867e-21 +/- 0.524  %
+ 28 film          1.140     1.0000 1.0512e-11 +/- 0.517  % 1.4772e-21 +/- 0.517  %
+ 29 film          1.140     1.0000 1.0439e-11 +/- 0.522  % 1.4670e-21 +/- 0.522  %
+ 30 film          1.140     1.0000 9.8933e-12 +/- 0.531  % 1.3903e-21 +/- 0.531  %
+ 31 film          1.140     1.0000 9.4410e-12 +/- 0.556  % 1.3267e-21 +/- 0.556  %
+ 32 film          1.140     1.0000 7.7694e-12 +/- 0.608  % 1.0918e-21 +/- 0.608  %
+ 33 film          1.140     1.0000 3.4161e-12 +/- 0.946  % 4.8006e-22 +/- 0.946  %
+ 34 film          1.140     1.0000 1.4527e-12 +/- 1.425  % 2.0414e-22 +/- 1.425  %
+ 35 film          1.140     1.0000 1.1430e-12 +/- 1.789  % 1.6063e-22 +/- 1.789  %
+ 36 film          1.140     1.0000 9.0344e-13 +/- 2.076  % 1.2696e-22 +/- 2.076  %
+ 37 film          1.140     1.0000 7.1299e-13 +/- 2.288  % 1.0019e-22 +/- 2.288  %
+ 38 film          1.140     1.0000 5.6379e-13 +/- 2.474  % 7.9227e-23 +/- 2.474  %
+ 39 film          1.140     1.0000 4.5407e-13 +/- 2.875  % 6.3809e-23 +/- 2.875  %
+ 81 pb           11.350     1.0000 1.1642e-06 +/- 0.006  % 1.6433e-17 +/- 0.006  %
+ 82 air           0.001     1.0000 7.3194e-10 +/- 0.049  % 9.7326e-17 +/- 0.049  %
+ 83 pb           11.350     1.0000 2.0057e-06 +/- 0.004  % 2.8309e-17 +/- 0.004  %
+ 84 steel         8.060     1.0000 1.5897e-08 +/- 0.044  % 3.1597e-19 +/- 0.044  %
+ 85 air           0.001     1.0000 3.5792e-10 +/- 0.059  % 4.7593e-17 +/- 0.059  %
+ 86 steel         8.060     1.0000 1.6139e-08 +/- 0.043  % 3.2079e-19 +/- 0.043  %
+ 90 pb           11.350     1.0000 4.6027e-07 +/- 0.011  % 6.4965e-18 +/- 0.011  %
+ 91 air           0.001     1.0000 2.1580e-10 +/- 0.088  % 2.8695e-17 +/- 0.088  %
+ 92 pb           11.350     1.0000 4.6176e-07 +/- 0.011  % 6.5176e-18 +/- 0.011  %
+ 93 steel         8.060     1.0000 5.6509e-09 +/- 0.073  % 1.1232e-19 +/- 0.073  %
+ 94 air           0.001     1.0000 9.7398e-11 +/- 0.112  % 1.2951e-17 +/- 0.112  %
+ 95 steel         8.060     1.0000 5.5144e-09 +/- 0.074  % 1.0960e-19 +/- 0.074  %
+ 99 steel         8.060     1.0000 1.7455e-11 +/- 0.691  % 3.4694e-22 +/- 0.691  %
+100 steel         8.060     1.0000 3.8157e-10 +/- 0.129  % 7.5841e-21 +/- 0.129  %
+101 steel         8.060     1.0000 1.7611e-11 +/- 0.686  % 3.5003e-22 +/- 0.686  %
+102 steel         8.060     1.0000 5.4710e-08 +/- 0.030  % 1.0874e-18 +/- 0.030  %
+103 air           0.001     1.0000 8.0837e-10 +/- 0.045  % 1.0749e-16 +/- 0.045  %
+104 steel         8.060     1.0000 5.5245e-08 +/- 0.030  % 1.0980e-18 +/- 0.030  %
+105 steel         8.060     1.0000 1.7920e-11 +/- 0.684  % 3.5618e-22 +/- 0.684  %
+106 steel         8.060     1.0000 3.8385e-10 +/- 0.128  % 7.6294e-21 +/- 0.128  %
+107 steel         8.060     1.0000 1.7832e-11 +/- 0.677  % 3.5443e-22 +/- 0.677  %
+108 air           0.001     1.0000 7.2482e-09 +/- 0.023  % 9.6379e-16 +/- 0.023  %
+135 air           0.001     1.0000 4.4373e-09 +/- 0.019  % 5.9003e-16 +/- 0.019  %
+162 polystyrene   1.060     1.0000 5.1823e-07 +/- 0.008  % 7.8321e-17 +/- 0.008  %
+243 air           0.001     1.0000 6.4581e-09 +/- 0.034  % 8.5873e-16 +/- 0.034  %
+------------------------------------------------------------------------------------
+
+ EGS_DoseScoring: Writing dose data for EGS_XYZGeometry profilex... 
+ Output file name: /home/rsmina/EGSnrc/egs_home/TB/profilexFilm.3ddose
+
+======================================================
+
+
+ last case = 999667335 Etot = 5.01324e+07
+
+
+======================================================
+ Energy fractions
+======================================================
+The first and last items in the following list of energy fractions are the reflected and transmitted energy, respectively. These two values are only meaningful if the source is directed in the positive z-direction. The remaining values are the deposited energy fractions in the regions of the geometry, but notice that the identifying index is the region number offset by 1 (ir+1).
+
+ir+1 | Reflected, deposited, or transmitted energy fraction for 999667335 particles:
+
+  0  5.759335e-02 +/- 5.930912e-06  
+  1  9.282688e-08 +/- 2.485814e-09  
+  2  9.740028e-08 +/- 2.376767e-09  
+  3  1.438619e-07 +/- 3.015148e-09  
+  4  1.636766e-07 +/- 3.210538e-09  
+  5  2.060988e-07 +/- 3.613521e-09  
+  6  2.818810e-07 +/- 4.186306e-09  
+  7  6.578725e-07 +/- 6.182139e-09  
+  8  1.450938e-06 +/- 8.979331e-09  
+  9  1.945251e-06 +/- 1.030184e-08  
+  10  1.957184e-06 +/- 1.031657e-08  
+  11  1.910342e-06 +/- 1.025762e-08  
+  12  2.007861e-06 +/- 1.052114e-08  
+  13  1.958433e-06 +/- 1.028979e-08  
+  14  2.077016e-06 +/- 1.062125e-08  
+  15  2.047036e-06 +/- 1.050261e-08  
+  16  1.999511e-06 +/- 1.046457e-08  
+  17  2.132828e-06 +/- 1.079273e-08  
+  18  2.081420e-06 +/- 1.060391e-08  
+  19  2.146587e-06 +/- 1.082095e-08  
+  20  2.105859e-06 +/- 1.065046e-08  
+  21  2.165808e-06 +/- 1.086555e-08  
+  22  2.119842e-06 +/- 1.081209e-08  
+  23  2.121113e-06 +/- 1.070786e-08  
+  24  2.063509e-06 +/- 1.061212e-08  
+  25  2.046671e-06 +/- 1.058244e-08  
+  26  2.017929e-06 +/- 1.035936e-08  
+  27  1.998961e-06 +/- 1.030473e-08  
+  28  2.032275e-06 +/- 1.063905e-08  
+  29  2.019213e-06 +/- 1.043263e-08  
+  30  2.005255e-06 +/- 1.045748e-08  
+  31  1.900418e-06 +/- 1.008436e-08  
+  32  1.813537e-06 +/- 1.008818e-08  
+  33  1.492430e-06 +/- 9.068965e-09  
+  34  6.562068e-07 +/- 6.204798e-09  
+  35  2.790532e-07 +/- 3.977111e-09  
+  36  2.195654e-07 +/- 3.926957e-09  
+  37  1.735422e-07 +/- 3.601984e-09  
+  38  1.369584e-07 +/- 3.133228e-09  
+  39  1.082992e-07 +/- 2.679174e-09  
+  40  8.722287e-08 +/- 2.507406e-09  
+  41  0.000000e+00 +/- 0.000000e+00  
+  42  0.000000e+00 +/- 0.000000e+00  
+  43  0.000000e+00 +/- 0.000000e+00  
+  44  0.000000e+00 +/- 0.000000e+00  
+  45  0.000000e+00 +/- 0.000000e+00  
+  46  0.000000e+00 +/- 0.000000e+00  
+  47  0.000000e+00 +/- 0.000000e+00  
+  48  0.000000e+00 +/- 0.000000e+00  
+  49  0.000000e+00 +/- 0.000000e+00  
+  50  0.000000e+00 +/- 0.000000e+00  
+  51  0.000000e+00 +/- 0.000000e+00  
+  52  0.000000e+00 +/- 0.000000e+00  
+  53  0.000000e+00 +/- 0.000000e+00  
+  54  0.000000e+00 +/- 0.000000e+00  
+  55  0.000000e+00 +/- 0.000000e+00  
+  56  0.000000e+00 +/- 0.000000e+00  
+  57  0.000000e+00 +/- 0.000000e+00  
+  58  0.000000e+00 +/- 0.000000e+00  
+  59  0.000000e+00 +/- 0.000000e+00  
+  60  0.000000e+00 +/- 0.000000e+00  
+  61  0.000000e+00 +/- 0.000000e+00  
+  62  0.000000e+00 +/- 0.000000e+00  
+  63  0.000000e+00 +/- 0.000000e+00  
+  64  0.000000e+00 +/- 0.000000e+00  
+  65  0.000000e+00 +/- 0.000000e+00  
+  66  0.000000e+00 +/- 0.000000e+00  
+  67  0.000000e+00 +/- 0.000000e+00  
+  68  0.000000e+00 +/- 0.000000e+00  
+  69  0.000000e+00 +/- 0.000000e+00  
+  70  0.000000e+00 +/- 0.000000e+00  
+  71  0.000000e+00 +/- 0.000000e+00  
+  72  0.000000e+00 +/- 0.000000e+00  
+  73  0.000000e+00 +/- 0.000000e+00  
+  74  0.000000e+00 +/- 0.000000e+00  
+  75  0.000000e+00 +/- 0.000000e+00  
+  76  0.000000e+00 +/- 0.000000e+00  
+  77  0.000000e+00 +/- 0.000000e+00  
+  78  0.000000e+00 +/- 0.000000e+00  
+  79  0.000000e+00 +/- 0.000000e+00  
+  80  0.000000e+00 +/- 0.000000e+00  
+  81  0.000000e+00 +/- 0.000000e+00  
+  82  2.236397e-01 +/- 1.411795e-05  
+  83  1.405994e-04 +/- 6.846226e-08  
+  84  3.852678e-01 +/- 1.635937e-05  
+  85  3.053691e-03 +/- 1.333902e-06  
+  86  6.875414e-05 +/- 4.025216e-08  
+  87  3.100247e-03 +/- 1.335746e-06  
+  88  0.000000e+00 +/- 0.000000e+00  
+  89  0.000000e+00 +/- 0.000000e+00  
+  90  0.000000e+00 +/- 0.000000e+00  
+  91  8.841364e-02 +/- 9.333671e-06  
+  92  4.145335e-05 +/- 3.643264e-08  
+  93  8.870040e-02 +/- 9.348712e-06  
+  94  1.085482e-03 +/- 7.971008e-07  
+  95  1.870924e-05 +/- 2.100683e-08  
+  96  1.059271e-03 +/- 7.859118e-07  
+  97  0.000000e+00 +/- 0.000000e+00  
+  98  0.000000e+00 +/- 0.000000e+00  
+  99  0.000000e+00 +/- 0.000000e+00  
+  100  3.353002e-06 +/- 2.316899e-08  
+  101  7.329697e-05 +/- 9.432283e-08  
+  102  3.382829e-06 +/- 2.321416e-08  
+  103  1.050936e-02 +/- 3.160785e-06  
+  104  1.552806e-04 +/- 7.009257e-08  
+  105  1.061209e-02 +/- 3.156823e-06  
+  106  3.442311e-06 +/- 2.355528e-08  
+  107  7.373470e-05 +/- 9.443121e-08  
+  108  3.425367e-06 +/- 2.318611e-08  
+  109  1.392322e-03 +/- 3.269534e-07  
+  110  0.000000e+00 +/- 0.000000e+00  
+  111  0.000000e+00 +/- 0.000000e+00  
+  112  0.000000e+00 +/- 0.000000e+00  
+  113  0.000000e+00 +/- 0.000000e+00  
+  114  0.000000e+00 +/- 0.000000e+00  
+  115  0.000000e+00 +/- 0.000000e+00  
+  116  0.000000e+00 +/- 0.000000e+00  
+  117  0.000000e+00 +/- 0.000000e+00  
+  118  0.000000e+00 +/- 0.000000e+00  
+  119  0.000000e+00 +/- 0.000000e+00  
+  120  0.000000e+00 +/- 0.000000e+00  
+  121  0.000000e+00 +/- 0.000000e+00  
+  122  0.000000e+00 +/- 0.000000e+00  
+  123  0.000000e+00 +/- 0.000000e+00  
+  124  0.000000e+00 +/- 0.000000e+00  
+  125  0.000000e+00 +/- 0.000000e+00  
+  126  0.000000e+00 +/- 0.000000e+00  
+  127  0.000000e+00 +/- 0.000000e+00  
+  128  0.000000e+00 +/- 0.000000e+00  
+  129  0.000000e+00 +/- 0.000000e+00  
+  130  0.000000e+00 +/- 0.000000e+00  
+  131  0.000000e+00 +/- 0.000000e+00  
+  132  0.000000e+00 +/- 0.000000e+00  
+  133  0.000000e+00 +/- 0.000000e+00  
+  134  0.000000e+00 +/- 0.000000e+00  
+  135  0.000000e+00 +/- 0.000000e+00  
+  136  8.523741e-04 +/- 1.632533e-07  
+  137  0.000000e+00 +/- 0.000000e+00  
+  138  0.000000e+00 +/- 0.000000e+00  
+  139  0.000000e+00 +/- 0.000000e+00  
+  140  0.000000e+00 +/- 0.000000e+00  
+  141  0.000000e+00 +/- 0.000000e+00  
+  142  0.000000e+00 +/- 0.000000e+00  
+  143  0.000000e+00 +/- 0.000000e+00  
+  144  0.000000e+00 +/- 0.000000e+00  
+  145  0.000000e+00 +/- 0.000000e+00  
+  146  0.000000e+00 +/- 0.000000e+00  
+  147  0.000000e+00 +/- 0.000000e+00  
+  148  0.000000e+00 +/- 0.000000e+00  
+  149  0.000000e+00 +/- 0.000000e+00  
+  150  0.000000e+00 +/- 0.000000e+00  
+  151  0.000000e+00 +/- 0.000000e+00  
+  152  0.000000e+00 +/- 0.000000e+00  
+  153  0.000000e+00 +/- 0.000000e+00  
+  154  0.000000e+00 +/- 0.000000e+00  
+  155  0.000000e+00 +/- 0.000000e+00  
+  156  0.000000e+00 +/- 0.000000e+00  
+  157  0.000000e+00 +/- 0.000000e+00  
+  158  0.000000e+00 +/- 0.000000e+00  
+  159  0.000000e+00 +/- 0.000000e+00  
+  160  0.000000e+00 +/- 0.000000e+00  
+  161  0.000000e+00 +/- 0.000000e+00  
+  162  0.000000e+00 +/- 0.000000e+00  
+  163  9.954686e-02 +/- 7.548298e-06  
+  164  0.000000e+00 +/- 0.000000e+00  
+  165  0.000000e+00 +/- 0.000000e+00  
+  166  0.000000e+00 +/- 0.000000e+00  
+  167  0.000000e+00 +/- 0.000000e+00  
+  168  0.000000e+00 +/- 0.000000e+00  
+  169  0.000000e+00 +/- 0.000000e+00  
+  170  0.000000e+00 +/- 0.000000e+00  
+  171  0.000000e+00 +/- 0.000000e+00  
+  172  0.000000e+00 +/- 0.000000e+00  
+  173  0.000000e+00 +/- 0.000000e+00  
+  174  0.000000e+00 +/- 0.000000e+00  
+  175  0.000000e+00 +/- 0.000000e+00  
+  176  0.000000e+00 +/- 0.000000e+00  
+  177  0.000000e+00 +/- 0.000000e+00  
+  178  0.000000e+00 +/- 0.000000e+00  
+  179  0.000000e+00 +/- 0.000000e+00  
+  180  0.000000e+00 +/- 0.000000e+00  
+  181  0.000000e+00 +/- 0.000000e+00  
+  182  0.000000e+00 +/- 0.000000e+00  
+  183  0.000000e+00 +/- 0.000000e+00  
+  184  0.000000e+00 +/- 0.000000e+00  
+  185  0.000000e+00 +/- 0.000000e+00  
+  186  0.000000e+00 +/- 0.000000e+00  
+  187  0.000000e+00 +/- 0.000000e+00  
+  188  0.000000e+00 +/- 0.000000e+00  
+  189  0.000000e+00 +/- 0.000000e+00  
+  190  0.000000e+00 +/- 0.000000e+00  
+  191  0.000000e+00 +/- 0.000000e+00  
+  192  0.000000e+00 +/- 0.000000e+00  
+  193  0.000000e+00 +/- 0.000000e+00  
+  194  0.000000e+00 +/- 0.000000e+00  
+  195  0.000000e+00 +/- 0.000000e+00  
+  196  0.000000e+00 +/- 0.000000e+00  
+  197  0.000000e+00 +/- 0.000000e+00  
+  198  0.000000e+00 +/- 0.000000e+00  
+  199  0.000000e+00 +/- 0.000000e+00  
+  200  0.000000e+00 +/- 0.000000e+00  
+  201  0.000000e+00 +/- 0.000000e+00  
+  202  0.000000e+00 +/- 0.000000e+00  
+  203  0.000000e+00 +/- 0.000000e+00  
+  204  0.000000e+00 +/- 0.000000e+00  
+  205  0.000000e+00 +/- 0.000000e+00  
+  206  0.000000e+00 +/- 0.000000e+00  
+  207  0.000000e+00 +/- 0.000000e+00  
+  208  0.000000e+00 +/- 0.000000e+00  
+  209  0.000000e+00 +/- 0.000000e+00  
+  210  0.000000e+00 +/- 0.000000e+00  
+  211  0.000000e+00 +/- 0.000000e+00  
+  212  0.000000e+00 +/- 0.000000e+00  
+  213  0.000000e+00 +/- 0.000000e+00  
+  214  0.000000e+00 +/- 0.000000e+00  
+  215  0.000000e+00 +/- 0.000000e+00  
+  216  0.000000e+00 +/- 0.000000e+00  
+  217  0.000000e+00 +/- 0.000000e+00  
+  218  0.000000e+00 +/- 0.000000e+00  
+  219  0.000000e+00 +/- 0.000000e+00  
+  220  0.000000e+00 +/- 0.000000e+00  
+  221  0.000000e+00 +/- 0.000000e+00  
+  222  0.000000e+00 +/- 0.000000e+00  
+  223  0.000000e+00 +/- 0.000000e+00  
+  224  0.000000e+00 +/- 0.000000e+00  
+  225  0.000000e+00 +/- 0.000000e+00  
+  226  0.000000e+00 +/- 0.000000e+00  
+  227  0.000000e+00 +/- 0.000000e+00  
+  228  0.000000e+00 +/- 0.000000e+00  
+  229  0.000000e+00 +/- 0.000000e+00  
+  230  0.000000e+00 +/- 0.000000e+00  
+  231  0.000000e+00 +/- 0.000000e+00  
+  232  0.000000e+00 +/- 0.000000e+00  
+  233  0.000000e+00 +/- 0.000000e+00  
+  234  0.000000e+00 +/- 0.000000e+00  
+  235  0.000000e+00 +/- 0.000000e+00  
+  236  0.000000e+00 +/- 0.000000e+00  
+  237  0.000000e+00 +/- 0.000000e+00  
+  238  0.000000e+00 +/- 0.000000e+00  
+  239  0.000000e+00 +/- 0.000000e+00  
+  240  0.000000e+00 +/- 0.000000e+00  
+  241  0.000000e+00 +/- 0.000000e+00  
+  242  0.000000e+00 +/- 0.000000e+00  
+  243  0.000000e+00 +/- 0.000000e+00  
+  244  1.240545e-03 +/- 4.179573e-07  
+  245  0.000000e+00 +/- 0.000000e+00  
+  246  0.000000e+00 +/- 0.000000e+00  
+  247  0.000000e+00 +/- 0.000000e+00  
+  248  0.000000e+00 +/- 0.000000e+00  
+  249  0.000000e+00 +/- 0.000000e+00  
+  250  0.000000e+00 +/- 0.000000e+00  
+  251  0.000000e+00 +/- 0.000000e+00  
+  252  0.000000e+00 +/- 0.000000e+00  
+  253  0.000000e+00 +/- 0.000000e+00  
+  254  0.000000e+00 +/- 0.000000e+00  
+  255  0.000000e+00 +/- 0.000000e+00  
+  256  0.000000e+00 +/- 0.000000e+00  
+  257  0.000000e+00 +/- 0.000000e+00  
+  258  0.000000e+00 +/- 0.000000e+00  
+  259  0.000000e+00 +/- 0.000000e+00  
+  260  0.000000e+00 +/- 0.000000e+00  
+  261  0.000000e+00 +/- 0.000000e+00  
+  262  0.000000e+00 +/- 0.000000e+00  
+  263  0.000000e+00 +/- 0.000000e+00  
+  264  0.000000e+00 +/- 0.000000e+00  
+  265  0.000000e+00 +/- 0.000000e+00  
+  266  0.000000e+00 +/- 0.000000e+00  
+  267  0.000000e+00 +/- 0.000000e+00  
+  268  0.000000e+00 +/- 0.000000e+00  
+  269  0.000000e+00 +/- 0.000000e+00  
+  270  0.000000e+00 +/- 0.000000e+00  
+  271  0.000000e+00 +/- 0.000000e+00  
+  272  0.000000e+00 +/- 0.000000e+00  
+  273  0.000000e+00 +/- 0.000000e+00  
+  274  0.000000e+00 +/- 0.000000e+00  
+  275  0.000000e+00 +/- 0.000000e+00  
+  276  0.000000e+00 +/- 0.000000e+00  
+  277  0.000000e+00 +/- 0.000000e+00  
+  278  0.000000e+00 +/- 0.000000e+00  
+  279  0.000000e+00 +/- 0.000000e+00  
+  280  0.000000e+00 +/- 0.000000e+00  
+  281  0.000000e+00 +/- 0.000000e+00  
+  282  0.000000e+00 +/- 0.000000e+00  
+  283  0.000000e+00 +/- 0.000000e+00  
+  284  0.000000e+00 +/- 0.000000e+00  
+  285  0.000000e+00 +/- 0.000000e+00  
+  286  0.000000e+00 +/- 0.000000e+00  
+  287  0.000000e+00 +/- 0.000000e+00  
+  288  0.000000e+00 +/- 0.000000e+00  
+  289  0.000000e+00 +/- 0.000000e+00  
+  290  0.000000e+00 +/- 0.000000e+00  
+  291  0.000000e+00 +/- 0.000000e+00  
+  292  0.000000e+00 +/- 0.000000e+00  
+  293  0.000000e+00 +/- 0.000000e+00  
+  294  0.000000e+00 +/- 0.000000e+00  
+  295  0.000000e+00 +/- 0.000000e+00  
+  296  0.000000e+00 +/- 0.000000e+00  
+  297  0.000000e+00 +/- 0.000000e+00  
+  298  0.000000e+00 +/- 0.000000e+00  
+  299  0.000000e+00 +/- 0.000000e+00  
+  300  0.000000e+00 +/- 0.000000e+00  
+  301  0.000000e+00 +/- 0.000000e+00  
+  302  0.000000e+00 +/- 0.000000e+00  
+  303  0.000000e+00 +/- 0.000000e+00  
+  304  0.000000e+00 +/- 0.000000e+00  
+  305  0.000000e+00 +/- 0.000000e+00  
+  306  0.000000e+00 +/- 0.000000e+00  
+  307  0.000000e+00 +/- 0.000000e+00  
+  308  0.000000e+00 +/- 0.000000e+00  
+  309  0.000000e+00 +/- 0.000000e+00  
+  310  0.000000e+00 +/- 0.000000e+00  
+  311  0.000000e+00 +/- 0.000000e+00  
+  312  0.000000e+00 +/- 0.000000e+00  
+  313  0.000000e+00 +/- 0.000000e+00  
+  314  0.000000e+00 +/- 0.000000e+00  
+  315  0.000000e+00 +/- 0.000000e+00  
+  316  0.000000e+00 +/- 0.000000e+00  
+  317  0.000000e+00 +/- 0.000000e+00  
+  318  0.000000e+00 +/- 0.000000e+00  
+  319  0.000000e+00 +/- 0.000000e+00  
+  320  0.000000e+00 +/- 0.000000e+00  
+  321  0.000000e+00 +/- 0.000000e+00  
+  322  0.000000e+00 +/- 0.000000e+00  
+  323  0.000000e+00 +/- 0.000000e+00  
+  324  0.000000e+00 +/- 0.000000e+00  
+  325  2.329253e-02 +/- 3.882478e-06  
+
+
+End of run                                             Wed Jan 24 13:39:22 2024
+================================================================================

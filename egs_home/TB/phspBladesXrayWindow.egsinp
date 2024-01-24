@@ -9,7 +9,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 1.3E10
+    ncase = 1.8E10
     #calculation = combine
     #nchunk = 50
     #nbatch = 3
@@ -96,8 +96,8 @@
         name = profilex
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        #x-slabs = -20 1 40
-	    x-slabs = -20 0.2 200
+        x-slabs = -20 1 40
+	    #x-slabs = -20 0.2 200
         y-slabs = -0.5 1 1
         z-slabs = 100 0.1 1
         :start media input:
@@ -252,8 +252,8 @@
         particle type = all
         #cutout = x1 x2 y1 y2
         #weight window = 0.99 1.01
-        recycle photons = 24
-        recycle electrons = 24
+        recycle photons = 25
+        recycle electrons = 25
 	    reuse photons = 5
 	    reuse electrons = 5
     :stop source:

@@ -9,7 +9,7 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 2.5E10
+    ncase = 1E10
     #calculation = combine
     #nchunk = 50
     #nbatch = 3
@@ -96,8 +96,8 @@
         name = profilex
         library = egs_ndgeometry
         type = EGS_XYZGeometry
-        #x-slabs = -20 1 40
-	    x-slabs = -20 0.2 200
+        x-slabs = -20 1 40
+	    #x-slabs = -20 0.2 200
         y-slabs = -0.5 1 1
         z-slabs = 100 0.1 1
         :start media input:
@@ -248,14 +248,14 @@
    :start source:
         library = iaea_phsp_source
         name = my_source
-        iaea phase space file = anodeXRayWPbPort.1
+        iaea phase space file = anodeXRayWPbPortOldTB.1
         particle type = all
         #cutout = x1 x2 y1 y2
         #weight window = 0.99 1.01
-        recycle photons = 20
-        recycle electrons = 20
-	    reuse photons = 5
-	    reuse electrons = 5
+        recycle photons = 35
+        recycle electrons = 35
+	    reuse photons = 9
+	    reuse electrons = 9
     :stop source:
 
     simulation source = my_source
