@@ -9,10 +9,10 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 1E10
-    #calculation = combine
+    ncase = 2E8
+    calculation = combine
     #nchunk = 50
-    #nbatch = 3
+    nbatch = 3
 :stop run control:
 
 ################################
@@ -252,10 +252,10 @@
         particle type = all
         #cutout = x1 x2 y1 y2
         #weight window = 0.99 1.01
-        recycle photons = 35
-        recycle electrons = 35
-	    reuse photons = 9
-	    reuse electrons = 9
+        #recycle photons = 40
+        #recycle electrons = 40
+	    #reuse photons = 7
+	    #reuse electrons = 7
     :stop source:
 
     simulation source = my_source
