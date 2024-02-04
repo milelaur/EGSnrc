@@ -294,12 +294,11 @@ void EGS_DoseScoring::setApplication(EGS_Application* App)
         description += " - Medium dose will be calculated\n";
     }
     description += "\n--------------------------------------\n";
-    sprintf(buf, "%*s %*s rho/(g/cm^3)\n", max_medl / 2, "medium", max_medl / 2, " ");
+    sprintf(buf,"%*s %*s rho/(g/cm^3)\n",max_medl/2,"medium",max_medl/2," ");
     description += buf;
     description += "--------------------------------------\n";
-    for (imed = 0; imed < nmedia; imed++)
-    {
-        sprintf(buf, "%-*s", max_medl, app->getMediumName(imed));
+    for (imed=0; imed < nmedia; imed++) {
+        sprintf(buf,"%-*s",max_medl,app->getMediumName(imed));
         description += buf;
         description += "  ";
         sprintf(buf, "%11.8f", app->getMediumRho(imed));
