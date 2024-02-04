@@ -9,7 +9,8 @@
 ### RUN CONTROL
 ################################
 :start run control:
-    ncase = 2.2E12
+    #ncase = 2.2E12
+    ncase = 6E6
     #calculation = combine
     #nchunk = 50
     nbatch = 3
@@ -307,6 +308,16 @@
     :stop ausgab object:
 
 :stop ausgab object definition:
+
+:start scoring options:
+    calculation type = dose
+    :start calculation geometry:
+        geometry name    = sourcePhsp
+        cavity regions   = 48
+        #excluded regions = 0  # exclude particles passing through these regions
+        cavity mass      = 1 
+    :stop calculation geometry:
+:stop scoring options:
 
 ################################
 ### MC PARAMETERS

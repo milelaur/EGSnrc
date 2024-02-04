@@ -42,7 +42,7 @@ include $(SPEC_DIR)egspp_$(my_machine).conf
 # Specify the name of the user code.
 # The name of the executable is determined from this variable.
 #
-USER_CODE = egs_chamber_original
+USER_CODE = egs_chamber
 
 # The following can be used to add user macros and mortran subroutines.
 # The file(s) specified here are added after egsnrc.macros, machine.macros

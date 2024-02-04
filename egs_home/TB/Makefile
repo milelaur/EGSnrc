@@ -1,7 +1,7 @@
 
 ###############################################################################
 #
-#  EGSnrc makefile to build the tutor7pp application
+#  EGSnrc makefile to build egs++ egs_chamber application
 #  Copyright (C) 2015 National Research Council Canada
 #
 #  This file is part of EGSnrc.
@@ -21,7 +21,7 @@
 #
 ###############################################################################
 #
-#  Author:          Iwan Kawrakow, 2005
+#  Author:          Iwan Kawrakow, 2007
 #
 #  Contributors:
 #
@@ -58,9 +58,11 @@ EGSPP_USER_MACROS = TB.macros
 EGS_BASE_APPLICATION = egs_advanced_application
 
 # Specify the set of mortran sources used.
-# Here we simply use the standard set defined in $HEN_HOUSE/specs/egspp1.spec
+# Here we simply use the standard set defined in
+# $HEN_HOUSE/specs/egspp1.spec
 #
 CPP_SOURCES = $(C_ADVANCED_SOURCES)
+
 
 # Specify here other header files that your user code depends upon.
 #

@@ -173,6 +173,8 @@ REPLACE {$DUMP#,#;} WITH
 
 "MORTRAN MACRO DEFINITIONS FOR EGS."
 
+REPLACE {$CONFIG_TIME} WITH {'unknown'}
+
 "FIRST SOME PARAMETERS"
 REPLACE {PARAMETER #=#;} WITH
    { REPLACE {{P1}} WITH {{P2}}}
@@ -1427,10 +1429,6 @@ DO J=1,$MXREG [
   IF(SMAXIR(J)<=0.0) [SMAXIR(J)=1E10;]
 ]
 ;}
-
-REPLACE {$KERMA-INSERT;} WITH {;}
-            "USED IN KERMA CALCULATIONS---DEFAULT IS NULL"
-;  "---------- BUFFER FLUSH SEMICOLON ----------"
 
 "MACRO FOR CONTROLLING NEGATIVE USTEP"
 REPLACE {$USER-CONTROLS-NEGATIVE-USTEP;} WITH {
@@ -3787,9 +3785,9 @@ REPLACE {$FOOL-INTEL-OPTIMIZER(#) #;} WITH {;
 %Q1
 "#############################################################################"
 "                                                                             "
-" EGSnrc machine dependent macro file for linux                               "
+" EGSnrc machine dependent macro file for linux (home_linux)                  "
 "                                                                             "
-" Created by configure version 2.0 on ma 10.5.2021 23.26.28 +0300             "
+" Created by configure version 2.0 on su 4.2.2024 13.22.10 +0200              "
 "                                                                             "
 " You may add your own machine dependent macros to this file,                 "
 " but be carefull to not overwrite it if you re-run configure.                "
@@ -3797,15 +3795,18 @@ REPLACE {$FOOL-INTEL-OPTIMIZER(#) #;} WITH {;
 "#############################################################################"
 
 REPLACE {$MACHINE} WITH
-  {,'linux',};
+  {,'linux (home_linux)',};
 REPLACE {$HEN_HOUSE} WITH
-  {'/home/rsmina/EGSnrc/HEN_HOUSE/'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/'};
 REPLACE {$CANONICAL_SYSTEM} WITH
   {'x86_64-unknown-linux-gnu'};
 REPLACE {$CONFIGURATION_NAME} WITH
-  {'linux'};
+  {'home_linux'};
 REPLACE {$EGS_CONFIG} WITH
-  {'/home/rsmina/EGSnrc/HEN_HOUSE/specs/linux.conf'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/specs/home_linux.conf'};
+
+REPLACE {$CONFIG_TIME} WITH
+  {'2024-02-04 11:22:10 UTC'};
 
 " System dependent stuff "
 "========================================"
@@ -5868,7 +5869,7 @@ C*****************************************************************************
 
       subroutine egs_print_configuration_name(ounit)
       integer ounit
-      write(6,'(a,$)') 'linux'
+      write(6,'(a,$)') 'home_linux'
       return
       end
 
@@ -5882,13 +5883,13 @@ C******************************************************************************
       subroutine egs_get_configuration_name(res)
       character*(*) res
       integer l1,l2
-      l1 = lnblnk1('linux')
+      l1 = lnblnk1('home_linux')
       l2 = len(res)
       res(:l2) = ' '
       if( l2.ge.l1 ) then
-        res(:l1) = 'linux'
+        res(:l1) = 'home_linux'
       else
-        res(:l2) = 'linux'
+        res(:l2) = 'home_linux'
       end if
       return
       end
@@ -5997,6 +5998,7 @@ C*****************************************************************************
 "                   Blake Walters                                             "
 "                   Frederic Tessier                                          "
 "                   Reid Townson                                              "
+"                   Marc-Andre Renaud                                         "
 "                                                                             "
 "#############################################################################"
 "                                                                             "
@@ -6399,12 +6401,16 @@ IF( lnblnk1(tmp_string) > lnblnk1(pegs_file) ) [
 ]
 pos2 = min(pos2,80-lnblnk1(tmp_string));
 pos2 = min(pos2,80-lnblnk1(host_name));
+pos2 = min(pos2,80-lnblnk1($CONFIG_TIME));
 IF( have_input ) pos2 = min(pos2,80-lnblnk1(input_file));
 pos2 = min(pos2,80-lnblnk1(output_file));
 IF( pos2 < pos1+2 ) pos2 = pos1 + 2;
 
 $write_description('configuration'); $egs_info('(a)',$CONFIGURATION_NAME);
-$write_description('user code'); $egs_info('(a)',$cstring(user_code));
+$write_description('configuration time'); $egs_info('(a)',$CONFIG_TIME);
+$write_description('app compile time'); $egs_info('(a)',COMPILE_TIME);
+$write_description('git commit hash'); $egs_info('(a)',GIT_HASH);
+$write_description('application'); $egs_info('(a)',$cstring(user_code));
 $write_description('pegs file'); $egs_info('(a)',$cstring(tmp_string));
 $write_description('using host'); $egs_info('(a)',$cstring(host_name));
 IF( have_input ) [
@@ -7142,7 +7148,8 @@ integer function egs_open_file(iunit,rl,action,extension);
 " If extension is an absolute file name (including path), use extension
 " as a file name, otherwise use output_file.extension in the temporary
 " working directory as name. In both cases use status='unknown' to open the
-" file. If rl = 0, open the file for formatted sequential access, otherwise
+" file. If rl = -1, open the file with stream access to write C-style binary
+" files. If rl = 0, open the file for formatted sequential access, otherwise
 " open for unformatted direct access with record length = rl.
 "******************************************************************************
 implicit none;
@@ -7175,6 +7182,10 @@ IF( egs_is_absolute_path(extension) ) [
              ' Will not try to re-open this file, assuming it has been opened',
              ' by the .io file.');
     ]
+    ELSE IF ( rl = -1 ) [
+        open(the_unit,file=extension,status='unknown',form='unformatted',
+             access='stream');
+    ]
     ELSE IF( rl = 0 ) [
         open(the_unit,file=extension,status='unknown');
     ]
@@ -7202,6 +7213,10 @@ IF(is_open)[
              ' is already opened and connected to unit ',the_unit,
              ' Will not try to re-open this file, assuming it has been opened',
              ' by specifying it in the .io file.');
+]
+ELSE IF ( rl = -1 ) [
+    open(the_unit,file=tmp_string,status='unknown',form='unformatted',
+            access='stream');
 ]
 ELSE IF( rl = 0 ) [
     open(the_unit,file=tmp_string,status='unknown',err=:open_error:);
@@ -8285,7 +8300,6 @@ $INTEGER function ibsearch(a, nsh, b);
  ]
  ibsearch = min;
  return;end;
-
 %C80
 "#############################################################################"
 "                                                                             "
@@ -22035,30 +22049,9 @@ IF (IQI = 2) ["PI-ZERO OPTION"
   CALL UPHI(3,2);
 ]"end of pi-zero option"
 
-"The following convoluted logic is difficult to follow"
-"when one modifies the outcome of certain interactions"
-"using nbr_split, Russian Roulette, or one of the     "
-"particle selection macros. I'm simplifying it        "
-"so that ircode becomes irrelevant. IK, August 2002   "
-":TOPSTACK:"
-"LOOP["
-"   $KERMA-INSERT;"
-"   IF(IQ(NP) = 0) GO TO :PHOTON:;"
-"   LOOP ["
-"      :ELECTRON:"
-"      CALL ELECTR(IRCODE);"
-"      IF(IRCODE.EQ.2) EXIT; "
-"      :PHOTON:"
-"      CALL PHOTON(IRCODE);"
-"      IF(IRCODE.EQ.2) EXIT;"
-"   ]REPEAT"
-"   IF(NP <= 0) EXIT;"
-"]REPEAT "
-
 LOOP [
     ;
     IF( np <= 0 ) EXIT;
-    $KERMA-INSERT;  " DEFAULT FOR $KERMA-INSERT; IS ; (NULL)"
     IF( iq(np) = 0 ) [ call photon(ircode); ]
     ELSE             [ call electr(ircode); ]
 

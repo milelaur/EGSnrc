@@ -643,13 +643,13 @@ private:
 };
 //*HB_end**************************
 
-class APP_EXPORT EGS_ChamberApplication : public EGS_AdvancedApplication
+class APP_EXPORT TB : public EGS_AdvancedApplication
 {
 
 public:
 
     /*! Constructor */
-    EGS_ChamberApplication(int argc, char** argv) :
+    TB(int argc, char** argv) :
         EGS_AdvancedApplication(argc, argv), ngeom(0), dose(0),
         fsplit(1), fspliti(1), rr_flag(0), Esave(0), rho_rr(1),
         cgeom(0), nsmall_step(0), ncg(0), do_cse(0), do_TmpPhsp(0),
@@ -659,7 +659,7 @@ public:
         McasePerPos(0), NposPerSample(0), onegeom(0), csplit(1) {  };
 
     /*! Destructor.  */
-    ~EGS_ChamberApplication()
+    ~TB()
     {
         if (dose)  delete dose;
         if (ngeom > 0)
@@ -853,25 +853,25 @@ private:
 
 };
 
-const static char __egs_app_msg_my3[] = "EGS_ChamberApplication::runSimulation():";
+const static char __egs_app_msg_my3[] = "TB::runSimulation():";
 
-string EGS_ChamberApplication::revision = " ";
+string TB::revision = " ";
 
 extern __extc__  void
 F77_OBJ_(select_photon_mfp, SELECT_PHOTON_MFP)(EGS_Float* dpmfp)
 {
     EGS_Application* a = EGS_Application::activeApplication();
-    EGS_ChamberApplication* app = dynamic_cast<EGS_ChamberApplication*>(a);
+    TB* app = dynamic_cast<TB*>(a);
     if (!app) egsFatal("select_photon_mfp called with active application "
-                           " not being of type EGS_ChamberApplication!\n");
+                           " not being of type TB!\n");
     app->selectPhotonMFP(*dpmfp);
 }
 
 extern __extc__ void F77_OBJ_(range_discard, RANGE_DISCARD)(
     const EGS_Float* tperp, const EGS_Float* range)
 {
-    EGS_ChamberApplication* app = dynamic_cast<EGS_ChamberApplication*>(
-                                      EGS_Application::activeApplication());
+    TB* app = dynamic_cast<TB*>(
+                  EGS_Application::activeApplication());
     the_epcont->idisc = app->rangeDiscard(*tperp, *range);
 }
 extern __extc__ void F77_OBJ_(egs_scale_xcc, EGS_SCALE_XCC)(const int*,
@@ -883,19 +883,19 @@ extern __extc__ void egsScaleXsection(const int* imed, const EGS_Float* fac,
 extern __extc__ void F77_OBJ_(do_cs_enhancement, DO_CS_ENHANCEMENT)(EGS_Float* gmfp)
 {
     EGS_Application* a = EGS_Application::activeApplication();
-    EGS_ChamberApplication* app = dynamic_cast<EGS_ChamberApplication*>(a);
+    TB* app = dynamic_cast<TB*>(a);
     if (!app) egsFatal("do_cs_enhancement called with active application "
-                           " not being of type EGS_ChamberApplication!\n");
+                           " not being of type TB!\n");
     app->do_cs_enhancement(*gmfp);
 }
 
-void EGS_ChamberApplication::startNewParticle()
+void TB::startNewParticle()
 {
     EGS_AdvancedApplication::startNewParticle();
     nsmall_step = 0;
 };
 
-void EGS_ChamberApplication::do_cs_enhancement(EGS_Float& gmfp)
+void TB::do_cs_enhancement(EGS_Float& gmfp)
 {
     // rayleigh-correction-function is called during 'normal' egs-photon routine
     // (not selectPhotonMFP in here for photon-splitting)
@@ -909,7 +909,7 @@ void EGS_ChamberApplication::do_cs_enhancement(EGS_Float& gmfp)
 }
 
 /*! Describe the application.  */
-void EGS_ChamberApplication::describeUserCode() const
+void TB::describeUserCode() const
 {
     egsInformation(
         "\n               *************************************************"
@@ -918,14 +918,14 @@ void EGS_ChamberApplication::describeUserCode() const
         "\n               *                                               *"
         "\n               *************************************************"
         "\n\n");
-    egsInformation("This is EGS_ChamberApplication %s based on\n"
+    egsInformation("This is TB %s based on\n"
                    "      EGS_AdvancedApplication %s\n\n",
                    egsSimplifyCVSKey(revision).c_str(),
                    egsSimplifyCVSKey(base_revision).c_str());
 
 };
 
-void EGS_ChamberApplication::describeSimulation()
+void TB::describeSimulation()
 {
     EGS_AdvancedApplication::describeSimulation();
     egsInformation("Variance reduction\n"
@@ -1042,7 +1042,7 @@ void EGS_ChamberApplication::describeSimulation()
     egsInformation("\n=============================================\n");
 }
 
-int EGS_ChamberApplication::initScoring()
+int TB::initScoring()
 {
 
     //
@@ -2177,7 +2177,7 @@ int EGS_ChamberApplication::initScoring()
 
 
 /*! Accumulate quantities of interest at run time */
-int EGS_ChamberApplication::ausgab(int iarg)
+int TB::ausgab(int iarg)
 {
     int np = the_stack->np - 1;
     int ir = the_stack->ir[np] - 2;
@@ -2435,7 +2435,7 @@ int EGS_ChamberApplication::ausgab(int iarg)
     }
     return 0;
 };
-int EGS_ChamberApplication::runSimulation()
+int TB::runSimulation()
 {
     bool ok = true;
     if (!geometry)
@@ -2550,7 +2550,7 @@ bool EGS_RunControl::finishBatch() {
 /*! Simulate a single shower.
     We need to do special things and therefore reimplement this method.
  */
-int EGS_ChamberApplication::simulateSingleShower()
+int TB::simulateSingleShower()
 {
 
     // for the onegeom option we need only one actual simulation geometry
@@ -2857,7 +2857,7 @@ int EGS_ChamberApplication::simulateSingleShower()
 
 
 /*! Output intermediate results to the .egsdat file. */
-int EGS_ChamberApplication::outputData()
+int TB::outputData()
 {
     int err = EGS_AdvancedApplication::outputData();
     if (err) return err;
@@ -2910,7 +2910,7 @@ int EGS_ChamberApplication::outputData()
 };
 
 /*! Read results from a .egsdat file. */
-int EGS_ChamberApplication::readData()
+int TB::readData()
 {
     int err = EGS_AdvancedApplication::readData();
     if (err) return err;
@@ -2946,7 +2946,7 @@ int EGS_ChamberApplication::readData()
 };
 
 /*! Reset the variables used for accumulating results */
-void EGS_ChamberApplication::resetCounter()
+void TB::resetCounter()
 {
     EGS_AdvancedApplication::resetCounter();
     dose->reset();
@@ -2974,7 +2974,7 @@ void EGS_ChamberApplication::resetCounter()
 };
 
 /*! Add simulation results */
-int EGS_ChamberApplication::addState(istream& data)
+int TB::addState(istream& data)
 {
     int err = EGS_AdvancedApplication::addState(data);
     if (err) return err;
@@ -3032,7 +3032,7 @@ int EGS_ChamberApplication::addState(istream& data)
 };
 
 /*! Output the results of a simulation. */
-void EGS_ChamberApplication::outputResults()
+void TB::outputResults()
 {
     egsInformation("\n\n last case = %lld fluence = %g\n\n",
                    current_case, source->getFluence());
@@ -3156,8 +3156,8 @@ void EGS_ChamberApplication::outputResults()
 };
 
 /*! Get the current simulation result.  */
-void EGS_ChamberApplication::getCurrentResult(double& sum, double& sum2, double& norm,
-    double& count)
+void TB::getCurrentResult(double& sum, double& sum2, double& norm,
+                          double& count)
 {
     count = current_case;
     double flu = source->getFluence();
@@ -3167,13 +3167,13 @@ void EGS_ChamberApplication::getCurrentResult(double& sum, double& sum2, double&
 };
 
 /*! simulate a shower */
-int EGS_ChamberApplication::shower()
+int TB::shower()
 {
     return EGS_AdvancedApplication::shower();
 };
 
 /* Select photon mean-free-path */
-void EGS_ChamberApplication::selectPhotonMFP(EGS_Float& dpmfp)
+void TB::selectPhotonMFP(EGS_Float& dpmfp)
 {
     int np = the_stack->np - 1;
     if (fsplit <= 1)
@@ -3417,7 +3417,7 @@ void EGS_ChamberApplication::selectPhotonMFP(EGS_Float& dpmfp)
     }
 };
 
-int EGS_ChamberApplication::rangeDiscard(EGS_Float tperp, EGS_Float range) const
+int TB::rangeDiscard(EGS_Float tperp, EGS_Float range) const
 {
     // we can be sure that when this function is called
     // range rejection/RR is on.
@@ -3510,7 +3510,7 @@ int EGS_ChamberApplication::rangeDiscard(EGS_Float tperp, EGS_Float range) const
 
 
 /*! Start a new shower.  */
-int EGS_ChamberApplication::startNewShower()
+int TB::startNewShower()
 {
     int res = EGS_Application::startNewShower();
     if (res) return res;
@@ -3551,7 +3551,7 @@ int EGS_ChamberApplication::startNewShower()
 };
 
 #ifdef BUILD_APP_LIB
-APP_LIB(EGS_ChamberApplication);
+APP_LIB(TB);
 #else
-APP_MAIN(EGS_ChamberApplication);
+APP_MAIN(TB);
 #endif
