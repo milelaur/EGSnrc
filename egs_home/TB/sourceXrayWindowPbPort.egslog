@@ -1,0 +1,261 @@
+
+               *************************************************
+               *                                               *
+               *               egs_chamber CSE)                *
+               *                                               *
+               *************************************************
+
+This is TB   based on
+      EGS_AdvancedApplication  
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = sourcePhsp
+ number of regions = 288
+ geometries:
+   to_primary_collimator (type EGS_UnionGeometry)
+   air (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Transformed Transformed Parallel beam from a shape of type ellipse with monoenergetic 0.1 MeV, electrons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 113
+  numbers used so far = 2232625792
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = YES
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 10000
+ - Track buffer size           = 1024
+ - Output file name            = /home/rsmina/EGSnrc/egs_home/TB/sourceXrayWindowPbPort_w17_w17.ptracks
+
+
+===========================================
+Radiative splitting Object (splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Phase Space Scoring Object (anodeXRayWPbPort)
+*******************************************
+
+ Will output phase space for particles crossing surfaces of geometry:
+phsp_plate
+ Particles scored on: entering phase space geometry
+ Data will be output in IAEA format.
+
+ Phase space file names:
+  Header file: /home/rsmina/EGSnrc/egs_home/TB/anodeXRayWPbPort_w17.1.IAEAheader
+  Data file: /home/rsmina/EGSnrc/egs_home/TB/anodeXRayWPbPort_w17.1.IAEAphsp
+ Data scored at constant Z = 5.6752 cm
+ Particles scored: all
+
+
+
+The following media are defined:
+================================
+
+  0  graphite                 AE= 0.5120 AP= 0.0010 0
+  1  target_material          AE= 0.5120 AP= 0.0010 1
+  2  molybdenum               AE= 0.5120 AP= 0.0010 2
+  3  beryllium                AE= 0.5120 AP= 0.0010 3
+  4  steel                    AE= 0.5120 AP= 0.0010 4
+  5  oil                      AE= 0.5120 AP= 0.0010 5
+  6  aluminum                 AE= 0.5120 AP= 0.0010 6
+  7  air                      AE= 0.5120 AP= 0.0010 7
+  8  pb                       AE= 0.5120 AP= 0.0010 8
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          Off
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+Variance reduction
+====================================================
+Photon splitting = 100
+Range rejection = off
+
+
+photon cross-section enhancement = Off
+
+
+region by region ECUT = Off
+
+=============================================
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 sourceXrayWindowPbPort_w1.egsdat ncase=799968         cpu=149.74     
+ 2 sourceXrayWindowPbPort_w2.egsdat ncase=799968         cpu=147.30     
+ 3 sourceXrayWindowPbPort_w3.egsdat ncase=749970         cpu=137.85     
+ 4 sourceXrayWindowPbPort_w4.egsdat ncase=699972         cpu=129.18     
+ 5 sourceXrayWindowPbPort_w5.egsdat ncase=749970         cpu=138.91     
+ 6 sourceXrayWindowPbPort_w6.egsdat ncase=749970         cpu=138.83     
+ 7 sourceXrayWindowPbPort_w7.egsdat ncase=749970         cpu=138.15     
+ 8 sourceXrayWindowPbPort_w8.egsdat ncase=799968         cpu=147.25     
+ 9 sourceXrayWindowPbPort_w9.egsdat ncase=749970         cpu=138.63     
+10 sourceXrayWindowPbPort_w10.egsdat ncase=749970         cpu=137.82     
+11 sourceXrayWindowPbPort_w11.egsdat ncase=699972         cpu=129.13     
+12 sourceXrayWindowPbPort_w12.egsdat ncase=749970         cpu=139.22     
+13 sourceXrayWindowPbPort_w13.egsdat ncase=749970         cpu=138.85     
+14 sourceXrayWindowPbPort_w14.egsdat ncase=699972         cpu=128.76     
+15 sourceXrayWindowPbPort_w15.egsdat ncase=699972         cpu=128.81     
+16 sourceXrayWindowPbPort_w16.egsdat ncase=749970         cpu=138.22     
+17 sourceXrayWindowPbPort_w17.egsdat ncase=699972         cpu=128.74     
+18 sourceXrayWindowPbPort_w18.egsdat ncase=749970         cpu=138.12     
+19 sourceXrayWindowPbPort_w19.egsdat ncase=749970         cpu=138.47     
+20 sourceXrayWindowPbPort_w20.egsdat ncase=699972         cpu=129.19     
+21 sourceXrayWindowPbPort_w21.egsdat ncase=649974         cpu=119.88     
+22 sourceXrayWindowPbPort_w22.egsdat ncase=699972         cpu=129.12     
+23 sourceXrayWindowPbPort_w23.egsdat ncase=699972         cpu=128.86     
+24 sourceXrayWindowPbPort_w24.egsdat ncase=699972         cpu=128.60     
+25 sourceXrayWindowPbPort_w25.egsdat ncase=699972         cpu=128.80     
+26 sourceXrayWindowPbPort_w26.egsdat ncase=599976         cpu=115.17     
+27 sourceXrayWindowPbPort_w27.egsdat ncase=649974         cpu=119.59     
+28 sourceXrayWindowPbPort_w28.egsdat ncase=649974         cpu=120.55     
+29 sourceXrayWindowPbPort_w29.egsdat ncase=649974         cpu=120.24     
+30 sourceXrayWindowPbPort_w30.egsdat ncase=649974         cpu=119.87     
+31 sourceXrayWindowPbPort_w31.egsdat ncase=649974         cpu=120.02     
+32 sourceXrayWindowPbPort_w32.egsdat ncase=649974         cpu=120.00     
+33 sourceXrayWindowPbPort_w33.egsdat ncase=599976         cpu=110.93     
+34 sourceXrayWindowPbPort_w34.egsdat ncase=649974         cpu=119.87     
+35 sourceXrayWindowPbPort_w35.egsdat ncase=599976         cpu=110.98     
+36 sourceXrayWindowPbPort_w36.egsdat ncase=649974         cpu=119.96     
+37 sourceXrayWindowPbPort_w37.egsdat ncase=549978         cpu=101.64     
+38 sourceXrayWindowPbPort_w38.egsdat ncase=549978         cpu=102.01     
+39 sourceXrayWindowPbPort_w39.egsdat ncase=599976         cpu=110.72     
+40 sourceXrayWindowPbPort_w40.egsdat ncase=549978         cpu=101.60     
+41 sourceXrayWindowPbPort_w41.egsdat ncase=549978         cpu=102.19     
+42 sourceXrayWindowPbPort_w42.egsdat ncase=549978         cpu=102.54     
+43 sourceXrayWindowPbPort_w43.egsdat ncase=549978         cpu=102.18     
+44 sourceXrayWindowPbPort_w44.egsdat ncase=549978         cpu=101.74     
+45 sourceXrayWindowPbPort_w45.egsdat ncase=549978         cpu=102.00     
+46 sourceXrayWindowPbPort_w46.egsdat ncase=549978         cpu=102.24     
+47 sourceXrayWindowPbPort_w47.egsdat ncase=599976         cpu=110.99     
+48 sourceXrayWindowPbPort_w48.egsdat ncase=549978         cpu=101.48     
+49 sourceXrayWindowPbPort_w49.egsdat ncase=499980         cpu=92.31      
+50 sourceXrayWindowPbPort_w50.egsdat ncase=549978         cpu=102.56     
+51 sourceXrayWindowPbPort_w51.egsdat ncase=499980         cpu=92.23      
+52 sourceXrayWindowPbPort_w52.egsdat ncase=499980         cpu=92.99      
+53 sourceXrayWindowPbPort_w53.egsdat ncase=499980         cpu=92.91      
+54 sourceXrayWindowPbPort_w54.egsdat ncase=549978         cpu=101.78     
+55 sourceXrayWindowPbPort_w55.egsdat ncase=449982         cpu=94.59      
+56 sourceXrayWindowPbPort_w56.egsdat ncase=449982         cpu=83.19      
+57 sourceXrayWindowPbPort_w57.egsdat ncase=499980         cpu=92.09      
+58 sourceXrayWindowPbPort_w58.egsdat ncase=499980         cpu=92.62      
+59 sourceXrayWindowPbPort_w59.egsdat ncase=499980         cpu=92.19      
+60 sourceXrayWindowPbPort_w60.egsdat ncase=399984         cpu=74.12      
+61 sourceXrayWindowPbPort_w61.egsdat ncase=399984         cpu=74.17      
+62 sourceXrayWindowPbPort_w62.egsdat ncase=449982         cpu=83.22      
+63 sourceXrayWindowPbPort_w63.egsdat ncase=349986         cpu=83.04      
+64 sourceXrayWindowPbPort_w64.egsdat ncase=349986         cpu=83.49      
+65 sourceXrayWindowPbPort_w65.egsdat ncase=349986         cpu=82.90      
+66 sourceXrayWindowPbPort_w66.egsdat ncase=399984         cpu=94.53      
+67 sourceXrayWindowPbPort_w67.egsdat ncase=349986         cpu=83.37      
+68 sourceXrayWindowPbPort_w68.egsdat ncase=349986         cpu=82.91      
+69 sourceXrayWindowPbPort_w69.egsdat ncase=349986         cpu=82.74      
+70 sourceXrayWindowPbPort_w70.egsdat ncase=349986         cpu=83.01      
+71 sourceXrayWindowPbPort_w71.egsdat ncase=349986         cpu=83.05      
+72 sourceXrayWindowPbPort_w72.egsdat ncase=299988         cpu=71.05      
+73 sourceXrayWindowPbPort_w73.egsdat ncase=349986         cpu=82.62      
+74 sourceXrayWindowPbPort_w74.egsdat ncase=349986         cpu=82.96      
+75 sourceXrayWindowPbPort_w75.egsdat ncase=349986         cpu=82.56      
+76 sourceXrayWindowPbPort_w76.egsdat ncase=349986         cpu=82.80      
+77 sourceXrayWindowPbPort_w77.egsdat ncase=299988         cpu=71.24      
+78 sourceXrayWindowPbPort_w78.egsdat ncase=349986         cpu=82.85      
+79 sourceXrayWindowPbPort_w79.egsdat ncase=299988         cpu=71.16      
+80 sourceXrayWindowPbPort_w80.egsdat ncase=299988         cpu=71.22      
+81 sourceXrayWindowPbPort_w81.egsdat ncase=299988         cpu=71.21      
+82 sourceXrayWindowPbPort_w82.egsdat ncase=299988         cpu=71.47      
+83 sourceXrayWindowPbPort_w83.egsdat ncase=299988         cpu=71.23      
+84 sourceXrayWindowPbPort_w84.egsdat ncase=299988         cpu=71.00      
+85 sourceXrayWindowPbPort_w85.egsdat ncase=299988         cpu=70.95      
+86 sourceXrayWindowPbPort_w86.egsdat ncase=249990         cpu=60.09      
+87 sourceXrayWindowPbPort_w87.egsdat ncase=249990         cpu=59.86      
+88 sourceXrayWindowPbPort_w88.egsdat ncase=249990         cpu=59.39      
+89 sourceXrayWindowPbPort_w89.egsdat ncase=249990         cpu=60.63      
+90 sourceXrayWindowPbPort_w90.egsdat ncase=249990         cpu=59.39      
+91 sourceXrayWindowPbPort_w91.egsdat ncase=299988         cpu=71.41      
+92 sourceXrayWindowPbPort_w92.egsdat ncase=249990         cpu=59.75      
+93 sourceXrayWindowPbPort_w93.egsdat ncase=249990         cpu=59.33      
+94 sourceXrayWindowPbPort_w94.egsdat ncase=249990         cpu=59.34      
+95 sourceXrayWindowPbPort_w95.egsdat ncase=249990         cpu=59.98      
+96 sourceXrayWindowPbPort_w96.egsdat ncase=249990         cpu=60.22      
+97 sourceXrayWindowPbPort_w97.egsdat ncase=199992         cpu=48.34      
+98 sourceXrayWindowPbPort_w98.egsdat ncase=199992         cpu=48.46      
+99 sourceXrayWindowPbPort_w99.egsdat ncase=199992         cpu=48.61      
+100 sourceXrayWindowPbPort_w100.egsdat ncase=199992         cpu=48.26      
+=======================================================================
+                            Total ncase=49998000       cpu=9852.33    
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.01 (sec.) 0.0000(hours)
+CPU time including previous runs:       9852.34 (sec.) 2.7368 (hours)
+Histories per hour:                     1.8269e+07    
+Number of random numbers used:          159525545483  
+Number of electron CH steps:            2.1675e+09    
+Number of all electron steps:           3.18486e+10   
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     10000
+   Total tracks scored:     2394792
+   Still being scored:      0
+   Output file name:        /home/rsmina/EGSnrc/egs_home/TB/sourceXrayWindowPbPort_w17_w17.ptracks
+
