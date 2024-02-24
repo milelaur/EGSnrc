@@ -10,7 +10,8 @@
 ################################
 :start run control:
     #ncase = 2.2E12
-    ncase = 2E12
+    #ncase = 2E12
+    nacse = 3E11
     #calculation = combine
     #nchunk = 50
     nbatch = 3
@@ -285,7 +286,8 @@
 	:start ausgab object:
 		name = tracks
 		library = egs_track_scoring
-		score electrons = yes
+        score photons = yes
+		score electrons = no
 		score positrons = no
     	stop scoring   = 10000
 	:stop ausgab object:
