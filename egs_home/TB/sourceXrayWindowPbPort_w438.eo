@@ -10,4 +10,123 @@ getTransformation: the rotation specified by
  is not a rotation
 EGS_RandomGenerator::createRNG: no 'RNG definition' input
 EGS_Application::initRNG(): using default RNG
-finishSimulation(TB) 0
+finishSimulation(TB) 1
+*** Error in `/scratch/rsmina/EGSnrc/egs_home//bin/Narvi_linux/TB': double free or corruption (!prev): 0x0000000005e91a40 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x81329)[0x2b3815536329]
+/lib64/libc.so.6(fclose+0x177)[0x2b3815523247]
+/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libiaea_phsp.so(iaea_destroy_source+0x4b)[0x2b3817506d6b]
+/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_phsp_scoring.so(_ZN15EGS_PhspScoring13reportResultsEv+0x1be)[0x2b38172f908e]
+/scratch/rsmina/EGSnrc/egs_home//bin/Narvi_linux/TB[0x420d81]
+/scratch/rsmina/EGSnrc/egs_home//bin/Narvi_linux/TB[0x404f5b]
+/lib64/libc.so.6(__libc_start_main+0xf5)[0x2b38154d7555]
+/scratch/rsmina/EGSnrc/egs_home//bin/Narvi_linux/TB[0x4050ab]
+======= Memory map: ========
+00400000-004a3000 r-xp 00000000 4f9:2c566 162130194457455206             /lustre/scratch/rsmina/EGSnrc/egs_home/bin/Narvi_linux/TB
+006a3000-006a4000 r--p 000a3000 4f9:2c566 162130194457455206             /lustre/scratch/rsmina/EGSnrc/egs_home/bin/Narvi_linux/TB
+006a4000-006aa000 rw-p 000a4000 4f9:2c566 162130194457455206             /lustre/scratch/rsmina/EGSnrc/egs_home/bin/Narvi_linux/TB
+006aa000-04d33000 rw-p 00000000 00:00 0 
+05dd2000-05eb2000 rw-p 00000000 00:00 0                                  [heap]
+2b3814282000-2b38142a4000 r-xp 00000000 fd:00 402656826                  /usr/lib64/ld-2.17.so
+2b38142a4000-2b38142a8000 rw-p 00000000 00:00 0 
+2b38142ba000-2b38142c1000 rw-p 00000000 00:00 0 
+2b38144a3000-2b38144a4000 r--p 00021000 fd:00 402656826                  /usr/lib64/ld-2.17.so
+2b38144a4000-2b38144a5000 rw-p 00022000 fd:00 402656826                  /usr/lib64/ld-2.17.so
+2b38144a5000-2b38144a6000 rw-p 00000000 00:00 0 
+2b38144a6000-2b3814531000 r-xp 00000000 4f9:2c566 162130191253038214     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegspp.so
+2b3814531000-2b3814730000 ---p 0008b000 4f9:2c566 162130191253038214     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegspp.so
+2b3814730000-2b3814733000 r--p 0008a000 4f9:2c566 162130191253038214     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegspp.so
+2b3814733000-2b3814735000 rw-p 0008d000 4f9:2c566 162130191253038214     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegspp.so
+2b3814735000-2b3814737000 rw-p 00000000 00:00 0 
+2b3814737000-2b3814856000 r-xp 00000000 fd:00 402713858                  /usr/lib64/libgfortran.so.3.0.0
+2b3814856000-2b3814a56000 ---p 0011f000 fd:00 402713858                  /usr/lib64/libgfortran.so.3.0.0
+2b3814a56000-2b3814a57000 r--p 0011f000 fd:00 402713858                  /usr/lib64/libgfortran.so.3.0.0
+2b3814a57000-2b3814a59000 rw-p 00120000 fd:00 402713858                  /usr/lib64/libgfortran.so.3.0.0
+2b3814a59000-2b3814a94000 r-xp 00000000 fd:00 402712250                  /usr/lib64/libquadmath.so.0.0.0
+2b3814a94000-2b3814c93000 ---p 0003b000 fd:00 402712250                  /usr/lib64/libquadmath.so.0.0.0
+2b3814c93000-2b3814c94000 r--p 0003a000 fd:00 402712250                  /usr/lib64/libquadmath.so.0.0.0
+2b3814c94000-2b3814c95000 rw-p 0003b000 fd:00 402712250                  /usr/lib64/libquadmath.so.0.0.0
+2b3814c95000-2b3814d7e000 r-xp 00000000 fd:00 402712027                  /usr/lib64/libstdc++.so.6.0.19
+2b3814d7e000-2b3814f7e000 ---p 000e9000 fd:00 402712027                  /usr/lib64/libstdc++.so.6.0.19
+2b3814f7e000-2b3814f86000 r--p 000e9000 fd:00 402712027                  /usr/lib64/libstdc++.so.6.0.19
+2b3814f86000-2b3814f88000 rw-p 000f1000 fd:00 402712027                  /usr/lib64/libstdc++.so.6.0.19
+2b3814f88000-2b3814f9d000 rw-p 00000000 00:00 0 
+2b3814f9d000-2b381509e000 r-xp 00000000 fd:00 402656882                  /usr/lib64/libm-2.17.so
+2b381509e000-2b381529d000 ---p 00101000 fd:00 402656882                  /usr/lib64/libm-2.17.so
+2b381529d000-2b381529e000 r--p 00100000 fd:00 402656882                  /usr/lib64/libm-2.17.so
+2b381529e000-2b381529f000 rw-p 00101000 fd:00 402656882                  /usr/lib64/libm-2.17.so
+2b381529f000-2b38152b4000 r-xp 00000000 fd:00 402686062                  /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2b38152b4000-2b38154b3000 ---p 00015000 fd:00 402686062                  /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2b38154b3000-2b38154b4000 r--p 00014000 fd:00 402686062                  /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2b38154b4000-2b38154b5000 rw-p 00015000 fd:00 402686062                  /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2b38154b5000-2b3815679000 r-xp 00000000 fd:00 402656872                  /usr/lib64/libc-2.17.so
+2b3815679000-2b3815878000 ---p 001c4000 fd:00 402656872                  /usr/lib64/libc-2.17.so
+2b3815878000-2b381587c000 r--p 001c3000 fd:00 402656872                  /usr/lib64/libc-2.17.so
+2b381587c000-2b381587e000 rw-p 001c7000 fd:00 402656872                  /usr/lib64/libc-2.17.so
+2b381587e000-2b3815883000 rw-p 00000000 00:00 0 
+2b3815883000-2b3815885000 r-xp 00000000 fd:00 402656880                  /usr/lib64/libdl-2.17.so
+2b3815885000-2b3815a85000 ---p 00002000 fd:00 402656880                  /usr/lib64/libdl-2.17.so
+2b3815a85000-2b3815a86000 r--p 00002000 fd:00 402656880                  /usr/lib64/libdl-2.17.so
+2b3815a86000-2b3815a87000 rw-p 00003000 fd:00 402656880                  /usr/lib64/libdl-2.17.so
+2b3815a87000-2b3815a88000 r-xp 00000000 4f9:2c566 162130191253038265     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_glib.so
+2b3815a88000-2b3815c88000 ---p 00001000 4f9:2c566 162130191253038265     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_glib.so
+2b3815c88000-2b3815c89000 r--p 00001000 4f9:2c566 162130191253038265     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_glib.so
+2b3815c89000-2b3815c8a000 rw-p 00002000 4f9:2c566 162130191253038265     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_glib.so
+2b3815c8a000-2b3815ca9000 r-xp 00000000 4f9:2c566 162130191253038223     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_ndgeometry.so
+2b3815ca9000-2b3815ea9000 ---p 0001f000 4f9:2c566 162130191253038223     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_ndgeometry.so
+2b3815ea9000-2b3815eaa000 r--p 0001f000 4f9:2c566 162130191253038223     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_ndgeometry.so
+2b3815eaa000-2b3815eab000 rw-p 00020000 4f9:2c566 162130191253038223     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_ndgeometry.so
+2b3815eab000-2b3815eb6000 r-xp 00000000 4f9:2c566 162130191253038217     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_planes.so
+2b3815eb6000-2b38160b5000 ---p 0000b000 4f9:2c566 162130191253038217     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_planes.so
+2b38160b5000-2b38160b6000 r--p 0000a000 4f9:2c566 162130191253038217     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_planes.so
+2b38160b6000-2b38160b7000 rw-p 0000b000 4f9:2c566 162130191253038217     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_planes.so
+2b38160b7000-2b38160bb000 r-xp 00000000 4f9:2c566 162130191253038221     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_gtransformed.so
+2b38160bb000-2b38162bb000 ---p 00004000 4f9:2c566 162130191253038221     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_gtransformed.so
+2b38162bb000-2b38162bc000 r--p 00004000 4f9:2c566 162130191253038221     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_gtransformed.so
+2b38162bc000-2b38162bd000 rw-p 00005000 4f9:2c566 162130191253038221     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_gtransformed.so
+2b38162bd000-2b38162cc000 r-xp 00000000 4f9:2c566 162130191253038235     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_cones.so
+2b38162cc000-2b38164cc000 ---p 0000f000 4f9:2c566 162130191253038235     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_cones.so
+2b38164cc000-2b38164cd000 r--p 0000f000 4f9:2c566 162130191253038235     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_cones.so
+2b38164cd000-2b38164ce000 rw-p 00010000 4f9:2c566 162130191253038235     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_cones.so
+2b38164ce000-2b38164d3000 r-xp 00000000 4f9:2c566 162130191253038241     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_gunion.so
+2b38164d3000-2b38166d2000 ---p 00005000 4f9:2c566 162130191253038241     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_gunion.so
+2b38166d2000-2b38166d3000 r--p 00004000 4f9:2c566 162130191253038241     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_gunion.so
+2b38166d3000-2b38166d4000 rw-p 00005000 4f9:2c566 162130191253038241     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_gunion.so
+2b38166d4000-2b38166d9000 r-xp 00000000 4f9:2c566 162130191253038237     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_gstack.so
+2b38166d9000-2b38168d8000 ---p 00005000 4f9:2c566 162130191253038237     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_gstack.so
+2b38168d8000-2b38168d9000 r--p 00004000 4f9:2c566 162130191253038237     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_gstack.so
+2b38168d9000-2b38168da000 rw-p 00005000 4f9:2c566 162130191253038237     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_gstack.so
+2b38168da000-2b38168de000 r-xp 00000000 4f9:2c566 162130191253038273     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_parallel_beam.so
+2b38168de000-2b3816ade000 ---p 00004000 4f9:2c566 162130191253038273     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_parallel_beam.so
+2b3816ade000-2b3816adf000 r--p 00004000 4f9:2c566 162130191253038273     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_parallel_beam.so
+2b3816adf000-2b3816ae0000 rw-p 00005000 4f9:2c566 162130191253038273     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_parallel_beam.so
+2b3816ae0000-2b3816ae3000 r-xp 00000000 4f9:2c566 162130191253038297     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_ellipse.so
+2b3816ae3000-2b3816ce3000 ---p 00003000 4f9:2c566 162130191253038297     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_ellipse.so
+2b3816ce3000-2b3816ce4000 r--p 00003000 4f9:2c566 162130191253038297     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_ellipse.so
+2b3816ce4000-2b3816ce5000 rw-p 00004000 4f9:2c566 162130191253038297     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_ellipse.so
+2b3816ce5000-2b3816ce8000 r-xp 00000000 4f9:2c566 162130191253038279     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_transformed_source.so
+2b3816ce8000-2b3816ee8000 ---p 00003000 4f9:2c566 162130191253038279     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_transformed_source.so
+2b3816ee8000-2b3816ee9000 r--p 00003000 4f9:2c566 162130191253038279     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_transformed_source.so
+2b3816ee9000-2b3816eea000 rw-p 00004000 4f9:2c566 162130191253038279     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_transformed_source.so
+2b3816eea000-2b3816eef000 r-xp 00000000 4f9:2c566 162130191253038319     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_track_scoring.so
+2b3816eef000-2b38170ee000 ---p 00005000 4f9:2c566 162130191253038319     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_track_scoring.so
+2b38170ee000-2b38170ef000 r--p 00004000 4f9:2c566 162130191253038319     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_track_scoring.so
+2b38170ef000-2b38170f0000 rw-p 00005000 4f9:2c566 162130191253038319     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_track_scoring.so
+2b38170f0000-2b38170f3000 r-xp 00000000 4f9:2c566 162130191253038323     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_radiative_splitting.so
+2b38170f3000-2b38172f2000 ---p 00003000 4f9:2c566 162130191253038323     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_radiative_splitting.so
+2b38172f2000-2b38172f3000 r--p 00002000 4f9:2c566 162130191253038323     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_radiative_splitting.so
+2b38172f3000-2b38172f4000 rw-p 00003000 4f9:2c566 162130191253038323     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_radiative_splitting.so
+2b38172f4000-2b3817300000 r-xp 00000000 4f9:2c566 162130191253038325     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_phsp_scoring.so
+2b3817300000-2b38174ff000 ---p 0000c000 4f9:2c566 162130191253038325     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_phsp_scoring.so
+2b38174ff000-2b3817500000 r--p 0000b000 4f9:2c566 162130191253038325     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_phsp_scoring.so
+2b3817500000-2b3817501000 rw-p 0000c000 4f9:2c566 162130191253038325     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libegs_phsp_scoring.so
+2b3817501000-2b3817510000 r-xp 00000000 4f9:2c566 162130191253038188     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libiaea_phsp.so
+2b3817510000-2b381770f000 ---p 0000f000 4f9:2c566 162130191253038188     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libiaea_phsp.so
+2b381770f000-2b3817710000 r--p 0000e000 4f9:2c566 162130191253038188     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libiaea_phsp.so
+2b3817710000-2b3817711000 rw-p 0000f000 4f9:2c566 162130191253038188     /lustre/scratch/rsmina/EGSnrc/HEN_HOUSE/egs++/dso/Narvi_linux/libiaea_phsp.so
+2b3818000000-2b3818021000 rw-p 00000000 00:00 0 
+2b3818021000-2b381c000000 ---p 00000000 00:00 0 
+7fff2dc7f000-7fff2dcae000 rw-p 00000000 00:00 0                          [stack]
+7fff2dcb5000-7fff2dcb7000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+/var/spool/slurmd/job27084575/slurm_script: line 6: 21768 Aborted                 /scratch/rsmina/EGSnrc/egs_home//bin/Narvi_linux/TB -b -i sourceXrayWindowPbPort -e /scratch/rsmina/EGSnrc/egs_home/ -H /scratch/rsmina/EGSnrc/HEN_HOUSE/ -P 1000 -j 438 -f 1

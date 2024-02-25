@@ -1,13 +1,13 @@
 ================================================================================
-EGSnrc version 4 for x86_64-unknown-linux-gnu          Sat Feb 17 17:56:21 2024
+EGSnrc version 4 for x86_64-unknown-linux-gnu          Sat Feb 24 20:25:13 2024
 ================================================================================
 configuration............................................Narvi_linux
 configuration time.......................................2024-02-17 15:37:09 UTC
-app compile time.........................................2024-02-17 15:42:11 UTC
-git commit hash..........................................d95eaf9
+app compile time.........................................2024-02-24 18:12:46 UTC
+git commit hash..........................................ab2c79b
 application..............................................TB
 pegs file................................................
-using host...............................................na14.tcsc-local
+using host...............................................na72.tcsc-local
 input file...............................................sourceXrayWindowPbPort
 output file(s)...........................................sourceXrayWindowPbPort
 number of parallel jobs..................................**
@@ -649,7 +649,7 @@ The following ausgab objects are included in the simulation
 Particle Track Scoring (tracks)
 ======================================================
  - Scoring photon tracks       = YES
- - Scoring electron tracks     = YES
+ - Scoring electron tracks     = NO
  - Scoring positron tracks     = NO
  - First event to score        = 0
  - Last event to score         = 10000
@@ -696,117 +696,126 @@ region by region ECUT = Off
 =============================================
 
 
-Starting simulation on Sat Feb 17 17:56:24 2024
+Starting simulation on Sat Feb 24 20:25:15 2024
 
-    Fresh simulation of 2000000000000 histories
+    Fresh simulation of 300000000000 histories
 
 
     Parallel run with 1000 jobs and 10 chunks per job
 
 
 
-Running 200000000 histories
+Running 30000000 histories
 
   Batch             CPU time        Result   Uncertainty(%)
 ==========================================================
-      1            20988.70    7.18342e-22          85.98
-      2            42065.85    5.80005e-22          60.92
-      3            61885.37    5.60836e-22          45.83
+      1             2462.42    7.38003e-22         100.00
+      2             4942.53    3.69002e-22         100.00
+      3             7423.31    2.46001e-22         100.00
 
-Running 200000000 histories
-    combined result from this and other parallel runs: 7.69477e-22 +/-   4.114%
-
-  Batch             CPU time        Result   Uncertainty(%)
-==========================================================
-      1            82239.25    4.20627e-22          45.83
-      2           103172.40    3.67252e-22          42.82
-      3           124244.28    4.99824e-22          40.20
-
-Running 200000000 histories
-    combined result from this and other parallel runs: 7.48106e-22 +/-   2.540%
+Running 30000000 histories
+    combined result from this and other parallel runs: 7.61746e-22 +/-  11.454%
 
   Batch             CPU time        Result   Uncertainty(%)
 ==========================================================
-      1           145302.05      5.337e-22          35.91
-      2           166390.95    4.75896e-22          35.29
-      3           187501.47    9.96096e-22          59.45
+      1             9904.03    1.19724e-21          85.98
+      2            12384.46    9.57789e-22          85.98
+      3            14843.74    7.98158e-22          85.98
 
-Running 200000000 histories
-    combined result from this and other parallel runs: 7.65476e-22 +/-   1.957%
-
-  Batch             CPU time        Result   Uncertainty(%)
-==========================================================
-      1           208585.22    8.96487e-22          59.45
-      2           228999.42    8.14988e-22          59.45
-      3           249112.45     8.1187e-22          55.04
-
-Running 200000000 histories
-    combined result from this and other parallel runs: 7.55139e-22 +/-   1.662%
+Running 30000000 histories
+    combined result from this and other parallel runs: 7.44414e-22 +/-   7.034%
 
   Batch             CPU time        Result   Uncertainty(%)
 ==========================================================
-      1           270700.21    8.11888e-22          51.17
-      2           291554.71    7.53896e-22          51.17
-      3           311303.43    7.09917e-22          50.72
+      1            17290.21    6.84135e-22          85.98
+      2            19741.66    5.98618e-22          85.98
+      3            22214.39    6.20777e-22          75.07
 
-Running 200000000 histories
-    combined result from this and other parallel runs: 7.55248e-22 +/-   1.441%
-
-  Batch             CPU time        Result   Uncertainty(%)
-==========================================================
-      1           331990.99    6.65547e-22          50.72
-      2           352439.87     9.0463e-22          46.69
-      3           372232.29    8.68446e-22          45.94
-
-Running 200000000 histories
-    combined result from this and other parallel runs: 7.545e-22 +/-   1.310%
+Running 30000000 histories
+    combined result from this and other parallel runs: 7.52187e-22 +/-   5.077%
 
   Batch             CPU time        Result   Uncertainty(%)
 ==========================================================
-      1           391967.43    8.36698e-22          45.19
-      2           412388.01    7.94863e-22          45.19
-      3           433056.85    8.74157e-22          40.86
+      1            24697.06    5.58699e-22          75.07
+      2            27152.57    7.03036e-22          60.92
+      3            29601.62     6.4445e-22          60.92
 
-Running 200000000 histories
-    combined result from this and other parallel runs: 7.52213e-22 +/-   1.209%
-
-  Batch             CPU time        Result   Uncertainty(%)
-==========================================================
-      1           452807.61    8.67854e-22          39.37
-      2           473663.96    8.30121e-22          39.37
-      3           494714.30    7.99421e-22          39.18
-
-Running 200000000 histories
-    combined result from this and other parallel runs: 7.56686e-22 +/-   1.130%
+Running 30000000 histories
+    combined result from this and other parallel runs: 7.58882e-22 +/-   4.291%
 
   Batch             CPU time        Result   Uncertainty(%)
 ==========================================================
-      1           514568.92    8.12798e-22          37.25
-      2           534304.50    7.81537e-22          37.25
-      3           554029.59    7.61585e-22          36.82
+      1            32048.86    5.94877e-22          60.92
+      2            34492.21    5.52385e-22          60.92
+      3            36936.41    5.75561e-22          55.56
+
+Running 30000000 histories
+    combined result from this and other parallel runs: 7.63008e-22 +/-   3.849%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            39379.65    6.07973e-22          50.58
+      2            41845.46     5.7221e-22          50.58
+      3            44327.11    6.23152e-22          45.83
+
+Running 30000000 histories
+    combined result from this and other parallel runs: 7.54213e-22 +/-   3.542%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            46802.99    5.90354e-22          45.83
+      2            49280.10    5.60836e-22          45.83
+      3            51754.92     5.3413e-22          45.83
+
+Running 30000000 histories
+    combined result from this and other parallel runs: 7.54164e-22 +/-   3.360%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            54229.74    5.09851e-22          45.83
+      2            56706.04    4.87684e-22          45.83
+      3            59181.37    4.67364e-22          45.83
+
+Running 30000000 histories
+    combined result from this and other parallel runs: 7.48598e-22 +/-   3.133%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            61642.06    4.48669e-22          45.83
+      2            64198.42    4.31413e-22          45.83
+      3            66783.77    4.15434e-22          45.83
+
+Running 30000000 histories
+    combined result from this and other parallel runs: 7.48396e-22 +/-   2.945%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            69227.52    4.00597e-22          45.83
+      2            71673.26    3.86784e-22          45.83
+      3            74126.48    3.73891e-22          45.83
 
 
 Finished simulation
 
-Total cpu time for this run:            554029.59 (sec.) 153.8971(hours)
-Histories per hour:                     1.16961e+07   
-Number of random numbers used:          5743818560557 
-Number of electron CH steps:            7.80441e+10   
-Number of all electron steps:           1.14672e+12   
+Total cpu time for this run:            74126.48 (sec.) 20.5907(hours)
+Histories per hour:                     1.45697e+07   
+Number of random numbers used:          957275199727  
+Number of electron CH steps:            1.30071e+10   
+Number of all electron steps:           1.91114e+11   
 
 
- last case = 1799999982 fluence = 1.8e+09
+ last case = 300000000 fluence = 3e+08
 
 Geometry                        Cavity dose      
 -----------------------------------------------
-sourcePhsp                7.6158e-22 +/- 36.821 % 
+sourcePhsp                3.7389e-22 +/- 45.828 % 
 
 
 
 Particle Track Scoring (tracks)
 ======================================================
    Total events scored:     10000
-   Total tracks scored:     2341601
+   Total tracks scored:     0
    Still being scored:      0
    Output file name:        /scratch/rsmina/EGSnrc/egs_home/TB/sourceXrayWindowPbPort_w681_w681.ptracks
 
@@ -819,11 +828,11 @@ Phase Space Scoring Object(anodeXRayWPbPort)
  Header file: /scratch/rsmina/EGSnrc/egs_home/TB/anodeXRayWPbPort_w681.1.IAEAheader
  Data file: /scratch/rsmina/EGSnrc/egs_home/TB/anodeXRayWPbPort_w681.1.IAEAphsp
 Summary of scored data:
-=> total no. of particles = 39 
+=> total no. of particles = 7 
 => no. of photons = 0 
-=> max. k.e. of all particles = 0.0591216 MeV
-=> min. k.e. of charged particles = 0.00442277 MeV
-=> no. of primary histories represented = 1799548518
+=> max. k.e. of all particles = 0.0370231 MeV
+=> min. k.e. of charged particles = 0.0155902 MeV
+=> no. of primary histories represented = 170167673
 
 ======================================================
 
@@ -831,10 +840,10 @@ Summary of scored data:
 ================================================================================
 Finished simulation
 
-  Elapsed time:               554339.0 s (153.983 h)
-  CPU time:                   554034.7 s (153.899 h)
-  Ratio:                          1.001
+  Elapsed time:                74163.7 s ( 20.601 h)
+  CPU time:                    74129.4 s ( 20.592 h)
+  Ratio:                          1.000
 
 
-End of run                                             Sat Feb 24 03:55:20 2024
+End of run                                             Sun Feb 25 17:01:16 2024
 ================================================================================

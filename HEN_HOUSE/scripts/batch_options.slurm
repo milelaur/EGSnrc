@@ -66,7 +66,7 @@ rname_bo="-J"
 # on out system,
 #
 #batch_sleep_time=0
-batch_sleep_time=1
+batch_sleep_time=0.5
 
 # Some queueing systems (e.g. PBS) have a limitation on the
 # maximum length of a job name (e.g. for PBS this is 15).
