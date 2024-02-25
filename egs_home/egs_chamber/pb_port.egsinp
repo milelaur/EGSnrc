@@ -22,7 +22,7 @@
         name = pb
         library = egs_cones
         type = EGS_ConeStack
-        axis = 0 0 4.075 0 0 5.72
+        axis = 0 0 4.075 0 0 5.6752
 		:start layer:
             thickness = 0.15
             top radii = 2.4511 2.7261
@@ -31,35 +31,21 @@
         :stop layer:
         :start layer:
             thickness = 0.5612
-            top radii = 2.1511 2.4511 2.7261
-            bottom radii = 2.1511 2.4511 2.7261
+            top radii = 2.3011 2.4511 2.7261
+            bottom radii = 2.3011 2.4511 2.7261
             media = air pb aluminum
         :stop layer:
 		:start layer:
             thickness = 0.739
-            top radii = 2.1511 2.4511 2.7261
-            bottom radii = 2.53591 2.83591 3.11091
+            top radii = 2.3011 2.4511 2.7261
+            bottom radii = 2.76591 2.98591 3.26091
             media = air pb aluminum
         :stop layer:
 		:start layer:
             thickness = 0.15
-            top radii = 2.83591 3.17246
+            top radii = 2.76591 3.17246
             bottom radii = 2.83591 3.17246
             media = air pb
-        :stop layer:
-    :stop geometry:
-
-    ### Aluminium surrounding rim
-    :start geometry:
-        name = aluminum_hat
-        library = egs_cones
-        type = EGS_ConeStack
-        axis = 0 0 5.2502 0 0 5.5252
-		:start layer:
-            thickness = 0.275
-            top radii = 3.17246
-            bottom radii = 3.17246
-            media = aluminum
         :stop layer:
     :stop geometry:
 
@@ -67,7 +53,7 @@
     :start geometry:
         name = pb_port
         library = egs_gunion
-        geometries = opening pb aluminum_hat
+        geometries = opening pb
     :stop geometry:
 
     simulation geometry = pb_port

@@ -9,9 +9,10 @@
         name = xray_window
         library = egs_cones
         type = EGS_ConeStack
-        axis = 0 0 -1.45 0 0 4.075
+        axis = 0 0 -1.45 0 0 4.02658
+        # 1.7.2023 more info about Be distance from focal spot
         :start layer:
-            thickness = 4.45
+            thickness = 4.33798
             top radii = 2.7261
             bottom radii = 2.7261
             media = vacuum
@@ -23,11 +24,13 @@
             media = beryllium steel
         :stop layer:
         # 22.3mm diameter plus surrounding aluminum
+        # 1.7.2023 more info about oil layer
         :start layer:
-            thickness = 0.645
-            top radii = 2.7261
-            bottom radii = 2.7261
-            media = oil
+            #thickness = 0.645
+            thickness = 0.7086
+            top radii = 2.0 2.7261
+            bottom radii = 2.0 2.7261
+            media = oil steel
         :stop layer:
 		:start layer:
             thickness = 0.275
