@@ -3785,9 +3785,9 @@ REPLACE {$FOOL-INTEL-OPTIMIZER(#) #;} WITH {;
 %Q1
 "#############################################################################"
 "                                                                             "
-" EGSnrc machine dependent macro file for linux (home_linux)                  "
+" EGSnrc machine dependent macro file for linux (Narvi_linux)                 "
 "                                                                             "
-" Created by configure version 2.0 on su 4.2.2024 13.22.10 +0200              "
+" Created by configure version 2.0 on la 17.2.2024 17.37.09 +0200             "
 "                                                                             "
 " You may add your own machine dependent macros to this file,                 "
 " but be carefull to not overwrite it if you re-run configure.                "
@@ -3795,18 +3795,18 @@ REPLACE {$FOOL-INTEL-OPTIMIZER(#) #;} WITH {;
 "#############################################################################"
 
 REPLACE {$MACHINE} WITH
-  {,'linux (home_linux)',};
+  {,'linux (Narvi_linux)',};
 REPLACE {$HEN_HOUSE} WITH
-  {'/home/miia/EGSnrc/HEN_HOUSE/'};
+  {'/scratch/rsmina/EGSnrc/HEN_HOUSE/'};
 REPLACE {$CANONICAL_SYSTEM} WITH
   {'x86_64-unknown-linux-gnu'};
 REPLACE {$CONFIGURATION_NAME} WITH
-  {'home_linux'};
+  {'Narvi_linux'};
 REPLACE {$EGS_CONFIG} WITH
-  {'/home/miia/EGSnrc/HEN_HOUSE/specs/home_linux.conf'};
+  {'/scratch/rsmina/EGSnrc/HEN_HOUSE/specs/Narvi_linux.conf'};
 
 REPLACE {$CONFIG_TIME} WITH
-  {'2024-02-04 11:22:10 UTC'};
+  {'2024-02-17 15:37:09 UTC'};
 
 " System dependent stuff "
 "========================================"
@@ -5869,7 +5869,7 @@ C*****************************************************************************
 
       subroutine egs_print_configuration_name(ounit)
       integer ounit
-      write(6,'(a,$)') 'home_linux'
+      write(6,'(a,$)') 'Narvi_linux'
       return
       end
 
@@ -5883,13 +5883,13 @@ C******************************************************************************
       subroutine egs_get_configuration_name(res)
       character*(*) res
       integer l1,l2
-      l1 = lnblnk1('home_linux')
+      l1 = lnblnk1('Narvi_linux')
       l2 = len(res)
       res(:l2) = ' '
       if( l2.ge.l1 ) then
-        res(:l1) = 'home_linux'
+        res(:l1) = 'Narvi_linux'
       else
-        res(:l2) = 'home_linux'
+        res(:l2) = 'Narvi_linux'
       end if
       return
       end
