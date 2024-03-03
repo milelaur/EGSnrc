@@ -173,6 +173,8 @@ REPLACE {$DUMP#,#;} WITH
 
 "MORTRAN MACRO DEFINITIONS FOR EGS."
 
+REPLACE {$CONFIG_TIME} WITH {'unknown'}
+
 "FIRST SOME PARAMETERS"
 REPLACE {PARAMETER #=#;} WITH
    { REPLACE {{P1}} WITH {{P2}}}
@@ -772,7 +774,7 @@ X-OPTIONS/;
 " use the a lower threshold.
 "***************************************************************************"
 "============================================================"
-REPLACE {$RELAX-CUTOFF} WITH {0.001"threshold energy for outer shells"}
+REPLACE {$RELAX-CUTOFF} WITH {0.001D0"threshold energy for outer shells"}
 REPLACE {$MXPESHELL} WITH {16} "K,L1..L3,M1..M5,N1..N7 + outer shell"
 REPLACE {$MXNE} WITH {500}     "number of energy points per shell "
 "============================================================"
@@ -1427,10 +1429,6 @@ DO J=1,$MXREG [
   IF(SMAXIR(J)<=0.0) [SMAXIR(J)=1E10;]
 ]
 ;}
-
-REPLACE {$KERMA-INSERT;} WITH {;}
-            "USED IN KERMA CALCULATIONS---DEFAULT IS NULL"
-;  "---------- BUFFER FLUSH SEMICOLON ----------"
 
 "MACRO FOR CONTROLLING NEGATIVE USTEP"
 REPLACE {$USER-CONTROLS-NEGATIVE-USTEP;} WITH {
@@ -2312,6 +2310,15 @@ REPLACE {$COMP-XDATA-DEFAULT} WITH {'default'}
 ;
 "EADL relaxation is now the default"
 REPLACE {$EADL-RELAX-DEFAULT} WITH {.true.}
+;
+"Uniform Run Control (URC) is false by default"
+REPLACE {$URC-DEFAULT} WITH {.false.}
+;
+"SLEEP INTERVAL for URC (1 s by default)"
+"Time to wait for jobs to complete after last job finished"
+REPLACE {$URC-SLEEP} WITH {1}
+"Times to check for jobs to complete after last job finished"
+REPLACE {$URC-INTERVALS} WITH {1}
 ;
 "Sabbatucci and Salvat PE xsections not the default yet"
 REPLACE {$MCDF-PE-DEFAULT} WITH {.false.}
@@ -3573,7 +3580,30 @@ REPLACE {$egs_warning(#,#);} WITH {
 REPLACE {$warning(#,#);} WITH { write(i_log,{P1}) {P2}; };
 REPLACE {$egs_info(#,#);} WITH { write(i_log,{P1}) {P2}; };
 REPLACE {$declare_write_buffer;} WITH {;};
-
+"****************************************************************"
+" Useful output macros that do not rely on standard output unit. "
+" Useful for debugging code after egs_finish call which closes   "
+" all open units (for instance after a parallel job finishes).   "
+"****************************************************************"
+REPLACE {$egs_track2(#,#,#,#);} WITH {
+      open({P1},file={P2},action='write',position='append');
+      write({P1},{P3}) {P4};
+      $FLUSH_UNIT({P1});
+      close({P1});
+};
+REPLACE {$egs_track1(#,#,#);} WITH {
+      open(666,file={P1},action='write',position='append');
+      write(666,{P2}) {P3};
+      $FLUSH_UNIT(666);
+      close(666);
+};
+REPLACE {$egs_track0(#,#);} WITH {
+      open(666,file='track.log',action='write',position='append');
+      write(666,{P1}) {P2};
+      $FLUSH_UNIT(666);
+      close(666);
+};
+"************************************************************"
 
 " Common block containing various directories, file names, etc. "
 REPLACE {$mx_units} WITH {20};
@@ -3601,10 +3631,11 @@ REPLACE {;COMIN/EGS-IO/;} WITH {;
                   i_nist_data, "unit no. for NIST data"
                   i_mscat,     "unit no. for multiple scattering data"
                   i_photo_cs,  "unit no. for photon cross-section data"
-                  i_photo_relax, "unit no. for photon relaxation data"
-                  xsec_out,     "switches on/off xsection file output"
-                  is_batch,   "True for batch mode"
-                  is_pegsless; "true if you are running without pegs file"
+                  i_photo_relax,  "unit no. for photon relaxation data"
+                  xsec_out,       "switches on/off xsection file output"
+                  is_batch,       "True for batch mode"
+                  is_uniform_run, "True for uniform parallel run control"
+                  is_pegsless;    "true if you are running without pegs file"
   character input_file*256, output_file*256, pegs_file*256,
             file_extensions*$max_extension_length,
             hen_house*128, egs_home*128, work_dir*128, user_code*64,
@@ -3612,7 +3643,7 @@ REPLACE {;COMIN/EGS-IO/;} WITH {;
   $INTEGER  n_parallel, i_parallel, first_parallel,n_max_parallel,
             n_chunk, file_units, n_files,i_input,i_log,i_incoh,
             i_nist_data,i_mscat,i_photo_cs,i_photo_relax, xsec_out;
-  $LOGICAL  is_batch,is_pegsless;
+  $LOGICAL  is_batch, is_pegsless, is_uniform_run;
 };
 
 "The following macro sets the EGS_HOME directory               "
@@ -3802,9 +3833,9 @@ REPLACE {$TIME_RESOLUTION} WITH {0.01}
 %Q1
 "#############################################################################"
 "                                                                             "
-" EGSnrc machine dependent macro file for linux                               "
+" EGSnrc machine dependent macro file for linux (linux_home)                  "
 "                                                                             "
-" Created by configure version 2.0 on ti 22.9.2020 12.43.13 +0300             "
+" Created by configure version 2.0 on su 3.3.2024 14.04.46 +0200              "
 "                                                                             "
 " You may add your own machine dependent macros to this file,                 "
 " but be carefull to not overwrite it if you re-run configure.                "
@@ -3812,15 +3843,18 @@ REPLACE {$TIME_RESOLUTION} WITH {0.01}
 "#############################################################################"
 
 REPLACE {$MACHINE} WITH
-  {,'linux',};
+  {,'linux (linux_home)',};
 REPLACE {$HEN_HOUSE} WITH
   {'/home/miia/EGSnrc/HEN_HOUSE/'};
 REPLACE {$CANONICAL_SYSTEM} WITH
   {'x86_64-unknown-linux-gnu'};
 REPLACE {$CONFIGURATION_NAME} WITH
-  {'linux'};
+  {'linux_home'};
 REPLACE {$EGS_CONFIG} WITH
-  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux.conf'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux_home.conf'};
+
+REPLACE {$CONFIG_TIME} WITH
+  {'2024-03-03 12:04:46 UTC'};
 
 " System dependent stuff "
 "========================================"
@@ -6475,7 +6509,7 @@ REPLACE {$STAT} WITH {10}        "# BINS FOR UNCERTAINTY ANALYSIS"
 REPLACE {$NBATCH} WITH {10}      "OUTPUT BATCHES                 "
 REPLACE {$MXDATA} WITH {490}     "MAXIMUM DATA POINTS FOR ANALYSIS (i.e."
 "                                     ($MXREG-1)*$STAT)"
-REPLACE {$MXSTACK} WITH {2000}     "MAXIMUM STACK"
+REPLACE {$MXSTACK} WITH {900000} "MAXIMUM STACK"
 REPLACE {$MAXCDOSE} WITH {7}     "MAX # OF DOSE SCORING CONICAL ZONES"
 REPLACE {$MAXCANGLE} WITH {6}    "MAX # OF CONICAL BOUNDARIES (i.e.$MAXCDOSE-1)"
 REPLACE {$MAXRADII} WITH {7}     "MAX # OF DOSE SCORING RADIAL ZONES"
@@ -7659,6 +7693,8 @@ IF(ifano = 1)
     iausfl(21) = 1; "After photoelectric"
     iausfl(24) = 1; "Before Rayleigh"
     iausfl(25) = 1; "After Rayleigh"
+    iausfl(30) = 1; "Before photonuclear"
+    iausfl(31) = 1; "After photonuclear"
 
     "AUSGAB will be responsible for throwing away any photons resulting"
     "from a primary electron. ie. True equilibtrium requires that all"
@@ -7683,6 +7719,8 @@ IF( n_split > 1 ) [
     iausfl(20) = 0;
     iausfl(24) = 0;
     iausfl(25) = 0;
+    iausfl(30) = 0;
+    iausfl(31) = 0;
 
 ]
 
@@ -7704,6 +7742,8 @@ IF( use_enhance ) [
     iausfl(21) = 1; "After photoelectric"
     iausfl(24) = 1; "Before Rayleigh"
     iausfl(25) = 1; "After Rayleigh"
+    iausfl(30) = 1; "Before photonuclear"
+    iausfl(31) = 1; "After photonuclear"
     iausfl(8)  = 1; "After bremsstrahlung"
     iausfl(14) = 1; "A positron has annihilated in-flight"
     iausfl(15) = 1; "A positron has annihilated at rest"
@@ -9033,12 +9073,12 @@ IF( use_enhance | n_split > 1 ) [
 IF( use_enhance ) [ "If we use cross section enhancement, all scoring "
                     " is done here and the rest of ausgab is ignored  "
 
-    IF (iarg = 15 | iarg = 17 | iarg = 19 | iarg = 23)
+    IF (iarg = 15 | iarg = 17 | iarg = 19 | iarg = 23 | iarg = 29)
     [
-        "A pair/Compton/photoelectric/Rayleigh event is about to take place"
+        "Before pair/Compton/photoelectric/Rayleigh/photonuclear event.    "
         "As we have increased the photon cross section by a factor of      "
         "cs_enhance, we must split the photon into a scattering portion    "
-        "(1/cs_enhance) and a nor-scattering portion (1-1/cs_enhance)      "
+        "(1/cs_enhance) and a non-scattering portion (1-1/cs_enhance)      "
         "Start with placing an identical photon on the stack               "
         np = np + 1;
         IF(np + 1 > $MXSTACK) [
@@ -9076,8 +9116,8 @@ IF( use_enhance ) [ "If we use cross section enhancement, all scoring "
     ]
 
 
-    IF( iarg = 18 | iarg = 20 | iarg = 24 |
-         " A Compton/photo-absorption/Rayleigh event just occured"
+    IF( iarg = 18 | iarg = 20 | iarg = 24 | iarg = 30 |
+         " A Compton/photo-absorption/Rayleigh/photonuclear event just occured"
         iarg = 7 | iarg = 13 | iarg = 14 ) [
          " A bremas/annihilation event just occured"
          " All scattered photons and photons originating in brems/annihilation"
@@ -9170,9 +9210,9 @@ IF(IWATCH.GT.0) [CALL WATCH(IARG,IWATCH); "SIGNAL WATCH ROUTINE IF ACTIVE"]
 
 IF (ifano = 1)
 [
-    IF (iarg = 15 | iarg = 17 | iarg = 19 | iarg = 23)
+    IF (iarg = 15 | iarg = 17 | iarg = 19 | iarg = 23 | iarg = 29)
     [
-        "A pair/Compton/photoelectric/pair event is about to take place"
+        "Just before pair/Compton/photoelectric/Rayleigh/photonuclear event"
         np = np + 1; "Boost the stack"
         IF(np + 1 > $MXSTACK)
         [
@@ -9203,6 +9243,7 @@ IF (ifano = 1)
     IF (  iarg = 18               " Compton has occured"
         | iarg = 20               " After photo-absorption "
         | iarg = 24               " After Rayleigh "
+        | iarg = 30               " After photonuclear "
         | iarg = 7                " After brems "
         | iarg = 13               " After annihilation "
         | iarg = 14)              " After annihilation at rest "
@@ -13803,11 +13844,8 @@ DO I = 1, NVALUE(NUM_CONES)[
     STOP;
    ]
 ]
-OUTPUT NCONE;(/'NUMBER OF ANGLES TO BE INPUT NCONE = ',I5);
+OUTPUT NCONE;(/'Conical dimension [NCONE] : ',I5,' cones in the problem');
 NC = NCONE + 1;"number of conical sections = total number of cones + 1"
-
-
-
 
 IF(NC = 1)["PURE SPHERICAL GEOMETRY"
     ALPHA(1)=180.0; "NONE CONES"
@@ -13949,7 +13987,7 @@ ELSEIF(NC > 1)[
     $SKIP-LINE;
 ]
 OUTPUT NC;(/'NUMBER OF CONICAL REGIONS NC = ',I5);
-OUTPUT NPLAN1;(/'REGION WHERE 90 deg IS UPPER CONE :',I5);
+OUTPUT NPLAN1;(/'REGION WHERE 90 deg IS UPPER CONE :',I5,/);
 
 
 IVAL=IVAL+1;
@@ -13974,7 +14012,9 @@ DO I = 1, NVALUE(NUM_RADII)[
      STOP;
    ]
 ]
-OUTPUT NR;(I6,' spheres in the problem ...');
+IF (NR > 0)[
+   OUTPUT NR;(/'Spherical dimension: ',I6,' spheres in the problem ...');
+]
 
 IVAL = IVAL + 1;
 NUM_RSPH = IVAL;
@@ -13986,7 +14026,7 @@ DEFAULT(IVAL)=1.0;
 $GET_INPUT(NUM_RSPH);
 IF (NR = 0) [
  NR = NVALUE(NUM_RSPH);
- OUTPUT NR;(I6,' spheres in the problem ...');
+   OUTPUT NR;(/'Spherical dimension: ',I6,' spheres in the problem ...');
 ]
 
 
@@ -14029,6 +14069,7 @@ DO IX=1,I [
     ]
     OUTPUT IX,RSPH(IX);(' RING RADIUS #',I6,':',T60,F12.6,' cms');
 ]
+OUTPUT; (/);
 
 NREG=NR*NC+1;
 
@@ -14043,14 +14084,14 @@ VALUE_MAX(IVAL)=999999;
 DEFAULT(IVAL)=1;
 $GET_INPUT(IVAL);
 numcavreg = NVALUE(IVAL);
-OUTPUT numcavreg;(' number of cavity regions: ', I4 );
+OUTPUT numcavreg;(/' number of cavity regions: ', I4 );
 
 DO IX=1,numcavreg [ cavreg(IX) = VALUE(IVAL,IX); ]
 
 "CHECK THAT THE NUMBER OF CAVITY ZONES DOES NOT EXCEED ITS BOUNDS"
 IF(numcavreg.LE.0)["no cavity defined, just dose in all the regions desired"
     DO I=1,NREG[cavreg(I)=0;]
-    OUTPUT; (' **** no cavity regions defined ****');
+    OUTPUT; (' **** no cavity regions defined ****'/);
 ]
 ELSEIF(numcavreg.GE.NREG)[
     "IF IT DOES, REVERT TO THE STANDARD CHAMBER CONFIGURATION"
@@ -14160,12 +14201,12 @@ IF (VALUE(NUM_MEDNUM,1) >= 0) [
       NREGHI=VALUE(NUM_NREGHI,I);
       IF (NREGHI<=NREGLO) [
          MED(NREGLO)=MEDNUM;
-         OUTPUT NREGLO,MEDNUM;(' REGION(',I3,') = MATERIAL(',I2,')');
+         OUTPUT NREGLO,MEDNUM;(' REGION(',I4,') = MATERIAL(',I3,')');
       ]
       ELSE [
          DO K=NREGLO,NREGHI [MED(K)=MEDNUM;]
          OUTPUT NREGLO,NREGHI,MEDNUM;
-         (' REGION(',I3,') TO REGION(',I3,') = MATERIAL(',I2,')');
+         (' REGION(',I4,') TO REGION(',I4,') = MATERIAL(',I3,')');
       ]
    ] "end do I"
 ] "end IF ~=0"
@@ -15974,8 +16015,14 @@ write(ounit,'(a,/)')
 write(ounit,'(a,/)') line;
 
 /* initialized in egs_set_defaults */
-write(ounit,'(a,38x,a)') ' Photon cross sections',
+IF (mcdf_pe_xsections)[
+    write(ounit,'(a,38x,a,a)') ' Photon cross sections',
+      'mcdf-',$cstring(photon_xsections);
+]
+ELSE[
+    write(ounit,'(a,38x,a)') ' Photon cross sections',
       $cstring(photon_xsections);
+]
 write(ounit,'(a,37x,a)') ' Compton cross sections', $cstring(comp_xsections);
 
 write(ounit,'(a,$)') ' Photon transport cutoff(MeV)';
@@ -17464,7 +17511,7 @@ C*****************************************************************************
 
       subroutine egs_print_configuration_name(ounit)
       integer ounit
-      write(6,'(a,$)') 'linux'
+      write(6,'(a,$)') 'linux_home'
       return
       end
 
@@ -17478,13 +17525,13 @@ C******************************************************************************
       subroutine egs_get_configuration_name(res)
       character*(*) res
       integer l1,l2
-      l1 = lnblnk1('linux')
+      l1 = lnblnk1('linux_home')
       l2 = len(res)
       res(:l2) = ' '
       if( l2.ge.l1 ) then
-        res(:l1) = 'linux'
+        res(:l1) = 'linux_home'
       else
-        res(:l2) = 'linux'
+        res(:l2) = 'linux_home'
       end if
       return
       end
@@ -17593,6 +17640,7 @@ C*****************************************************************************
 "                   Blake Walters                                             "
 "                   Frederic Tessier                                          "
 "                   Reid Townson                                              "
+"                   Marc-Andre Renaud                                         "
 "                                                                             "
 "#############################################################################"
 "                                                                             "
@@ -17656,7 +17704,7 @@ REPLACE {;COMIN/my_times/;} WITH {;
 "       -b or --batch                Specify a 'batch' run. The difference
 "                                    between a 'batch' run and an interactive
 "                                    run is that in 'batch' mode unit 6 is
-"                                    connected to a file, whereas in intarctive
+"                                    connected to a file, whereas in interactive
 "                                    mode unit 6 goes to the standard output.
 "                                    The file name in batch run is determined
 "                                    as follows:
@@ -17995,12 +18043,16 @@ IF( lnblnk1(tmp_string) > lnblnk1(pegs_file) ) [
 ]
 pos2 = min(pos2,80-lnblnk1(tmp_string));
 pos2 = min(pos2,80-lnblnk1(host_name));
+pos2 = min(pos2,80-lnblnk1($CONFIG_TIME));
 IF( have_input ) pos2 = min(pos2,80-lnblnk1(input_file));
 pos2 = min(pos2,80-lnblnk1(output_file));
 IF( pos2 < pos1+2 ) pos2 = pos1 + 2;
 
 $write_description('configuration'); $egs_info('(a)',$CONFIGURATION_NAME);
-$write_description('user code'); $egs_info('(a)',$cstring(user_code));
+$write_description('configuration time'); $egs_info('(a)',$CONFIG_TIME);
+$write_description('app compile time'); $egs_info('(a)',COMPILE_TIME);
+$write_description('git commit hash'); $egs_info('(a)',GIT_HASH);
+$write_description('application'); $egs_info('(a)',$cstring(user_code));
 $write_description('pegs file'); $egs_info('(a)',$cstring(tmp_string));
 $write_description('using host'); $egs_info('(a)',$cstring(host_name));
 IF( have_input ) [
@@ -18013,6 +18065,12 @@ IF( n_parallel > 0 ) [
     $write_description('job number'); $egs_info('(i2)',i_parallel);
 ]
 $egs_info('(a)',line);
+
+IF (is_uniform_run)[
+   $egs_info('(//a,i0,a,i0,a//)',
+   '-> User requests uniform run control. I am job # ',
+   i_parallel,' of ',n_parallel,' jobs');
+]
 
 return;
 
@@ -18142,6 +18200,10 @@ IF( n_parallel > 0 | i_parallel > 0 ) [
         first_parallel = i_parallel;
     ]
 ]
+
+" Check for run control option "
+$check_argument('-u','--urc',arg);
+IF( have_arg ) is_uniform_run = .true.;
 
 $egs_debug('(a,a)','HEN_HOUSE is ',$cstring(hen_house));
 
@@ -18549,6 +18611,7 @@ $set_string(pegs_file,' ');
 $set_string(host_name,' ');
 n_parallel = 0; i_parallel = 0; n_chunk = 0; is_batch = .false.;
 first_parallel = 1;
+is_uniform_run = $URC-DEFAULT;
 return; end;
 
 "*****************************************************************************
@@ -18566,9 +18629,13 @@ character*1024 tmp_string,base,command,outfile,parfile_name,base1,
            text_string;
 integer  lnblnk1,istat,ipar,egs_system,egs_open_file;
 $INTEGER i,k,j,numparfiles,textindex;
+integer urcSleep, urcCheckIntervals;
 $LOGICAL ex,iwin;
 
 iwin=.false.; "start off assuming a non-Windows system"
+
+urcSleep          = $URC-SLEEP;    "Set to 1 s in egsnrc.macros"
+urcCheckIntervals = $URC-INTERVALS;"Set to 1 in egsnrc.macros"
 
 $set_string(base,' ');
 base = $cstring(egs_home) // $cstring(user_code) // $file_sep //
@@ -18582,6 +18649,8 @@ base1 = $cstring(egs_home) // $cstring(user_code) // $file_sep //
 $set_string(outfile,' ');
 outfile = $cstring(egs_home) // $cstring(user_code) // $file_sep //
        'parfiles_tmp';
+
+:check-output-files:;
 "try Unix/Linux first"
 $set_string(command,' ');
 command = 'ls ' // $cstring(base1) // ' | wc -l > ' // $cstring(outfile);
@@ -18591,7 +18660,8 @@ IF(istat~=0)["now assume a Windows system"
    $cstring(outfile);
    istat = egs_system($cstring(command));
    IF(istat~=0)[
-$egs_fatal(*,' Failed to write number of output files from parallel runs.');
+     $egs_fatal(*,
+     ' Failed to write number of output files from parallel runs.');
    ]
    ELSE [
      iwin=.true.;
@@ -18613,6 +18683,14 @@ ELSE[
   read(ipar,'(i256)',err=:end_of_parfile:,end=:end_of_parfile:) numparfiles;
 ]
 close(ipar);
+
+#ifdef HAVE_C_COMPILER;
+IF ( is_uniform_run & numparfiles < n_parallel & urcCheckIntervals > 0 ) [
+   call egs_sleep(urcSleep);"sleep for urcSleep seconds"
+   urcCheckIntervals -= 1;
+   goto :check-output-files:;
+]
+#endif;
 
 "now remove parfiles_tmp"
 $set_string(command,' ');
@@ -18712,7 +18790,8 @@ integer function egs_open_file(iunit,rl,action,extension);
 " If extension is an absolute file name (including path), use extension
 " as a file name, otherwise use output_file.extension in the temporary
 " working directory as name. In both cases use status='unknown' to open the
-" file. If rl = 0, open the file for formatted sequential access, otherwise
+" file. If rl = -1, open the file with stream access to write C-style binary
+" files. If rl = 0, open the file for formatted sequential access, otherwise
 " open for unformatted direct access with record length = rl.
 "******************************************************************************
 implicit none;
@@ -18745,6 +18824,10 @@ IF( egs_is_absolute_path(extension) ) [
              ' Will not try to re-open this file, assuming it has been opened',
              ' by the .io file.');
     ]
+    ELSE IF ( rl = -1 ) [
+        open(the_unit,file=extension,status='unknown',form='unformatted',
+             access='stream');
+    ]
     ELSE IF( rl = 0 ) [
         open(the_unit,file=extension,status='unknown');
     ]
@@ -18772,6 +18855,10 @@ IF(is_open)[
              ' is already opened and connected to unit ',the_unit,
              ' Will not try to re-open this file, assuming it has been opened',
              ' by specifying it in the .io file.');
+]
+ELSE IF ( rl = -1 ) [
+    open(the_unit,file=tmp_string,status='unknown',form='unformatted',
+            access='stream');
 ]
 ELSE IF( rl = 0 ) [
     open(the_unit,file=tmp_string,status='unknown',err=:open_error:);
@@ -19855,7 +19942,6 @@ $INTEGER function ibsearch(a, nsh, b);
  ]
  ibsearch = min;
  return;end;
-
 %C80
 "#############################################################################"
 "                                                                             "
@@ -19883,6 +19969,7 @@ $INTEGER function ibsearch(a, nsh, b);
 "                                                                             "
 "  Contributors:    Blake Walters                                             "
 "                   Frederic Tessier                                          "
+"                   Ernesto Mainegra-Hing                                     "
 "                                                                             "
 "#############################################################################"
 "                                                                             "
@@ -19974,7 +20061,7 @@ subroutine egs_pjob_control(ncase,n_run,n_left,n_tot,sum,sum2,res,dres);
 " n_left  no. of histories left to run after current job has been submitted
 " n_tot:  should be set to number of histories from previous runs (if any)
 "         for first call from job number 1. For all other jobs and for all
-"         other calls from job 1, it is set by egs_pjob_control to the the
+"         other calls from job 1, it is set by egs_pjob_control to the
 "         number of histories run so far (including previous runs and other
 "         parallel jobs).
 "         Note: n_case, n_run and n_tot are $LONG_INT
@@ -20033,6 +20120,21 @@ $LOGICAL first_time;
 character control_string*256;
 data first_time/.true./;
 save first_time,n_last;
+
+/*********************************/
+/* Option to not use a lock file */
+/*********************************/
+IF( is_uniform_run ) [
+    IF (first_time)[
+       n_run = ncase/n_parallel;
+       first_time = .false.;
+    ]
+    ELSE[
+       n_run = 0;
+    ]
+    n_left = 0;
+    return;
+]
 
 IF( n_parallel <= 0 ) [
     n_run = ncase; return;
@@ -20177,6 +20279,20 @@ $REAL     tmp,tmp2,res,dres,t_run;
 real      egs_time_diff;
 character control_string*256;
 
+/****************************/
+/* Option without lock file */
+/****************************/
+IF( is_uniform_run )[
+    IF( i_parallel = n_parallel )[
+      n_job = 0;"I am the last job!!!"
+      goto :complete_calculation:;
+    ]
+    ELSE ["nothing to do here"
+      n_job = 1;"Only last job allowed to finish!"
+      return;
+    ]
+]
+
 " Lock and rewind the job control file "
 call egs_rewind_control_file(istat);
 IF( istat ~= 0 ) [
@@ -20217,15 +20333,25 @@ IF( n_job > 0 ) [  " Other jobs still running "
 /* call egs_unlock_control_file(istat); */
 call egs_close_control_file(istat);
 call egs_remove_lockfile(istat);
+
+:complete_calculation:;
 i_parallel = 0; call egs_open_units(.false.);
-call egs_date_and_time(t_end);
-t_run = egs_time_diff(t_start,t_end);
-$egs_info('(/a/,a,t55,i3/,a,t55,i3/,a,f9.1,a,f9.4,a/,a//)',
-'**************** finished parallel execution ******************',
-' number of parallel jobs requested: ',n_parallel,
-' max. number of jobs executing simultaneously: ',n_max_parallel,
-' elapsed time since first job started: ',t_run,' s (',t_run/3600,' h)',
-'***************************************************************');
+IF ( is_uniform_run )[
+   $egs_info('(/a/,a,t55,i3/,a//)',
+   '**************** finished parallel execution ******************',
+   ' number of parallel jobs requested: ',n_parallel,
+   '***************************************************************');
+]
+ELSE[
+  call egs_date_and_time(t_end);
+  t_run = egs_time_diff(t_start,t_end);
+  $egs_info('(/a/,a,t55,i3/,a,t55,i3/,a,f9.1,a,f9.4,a/,a//)',
+  '**************** finished parallel execution ******************',
+  ' number of parallel jobs requested: ',n_parallel,
+  ' max. number of jobs executing simultaneously: ',n_max_parallel,
+  ' elapsed time since first job started: ',t_run,' s (',t_run/3600,' h)',
+  '***************************************************************');
+]
 return;
 
 :error2_lockfile_read:;
@@ -25487,7 +25613,7 @@ IF( iedgfl(irl) ~= 0 ) [" User requested atomic relaxations "
       $RANDOMSET br; logE = log(peig);
       "DO k=1,nne(medium) ["
       DO k=nne(medium),1,-1 [
-          iZ = int( zelem(medium,k) + 0.5 );zpos = pe_zpos(iZ);
+          iz = int(pe_zsorted(k,medium)+0.5); zpos = pe_zpos(iZ);
           IF( iZ < 1 | iZ > $MXELEMENT ) [
               $egs_info(*,' Error in egs_shellwise_photo: ');
               $egs_fatal(*,'   Atomic number of element ',k,
@@ -26943,30 +27069,9 @@ IF (IQI = 2) ["PI-ZERO OPTION"
   CALL UPHI(3,2);
 ]"end of pi-zero option"
 
-"The following convoluted logic is difficult to follow"
-"when one modifies the outcome of certain interactions"
-"using nbr_split, Russian Roulette, or one of the     "
-"particle selection macros. I'm simplifying it        "
-"so that ircode becomes irrelevant. IK, August 2002   "
-":TOPSTACK:"
-"LOOP["
-"   $KERMA-INSERT;"
-"   IF(IQ(NP) = 0) GO TO :PHOTON:;"
-"   LOOP ["
-"      :ELECTRON:"
-"      CALL ELECTR(IRCODE);"
-"      IF(IRCODE.EQ.2) EXIT; "
-"      :PHOTON:"
-"      CALL PHOTON(IRCODE);"
-"      IF(IRCODE.EQ.2) EXIT;"
-"   ]REPEAT"
-"   IF(NP <= 0) EXIT;"
-"]REPEAT "
-
 LOOP [
     ;
     IF( np <= 0 ) EXIT;
-    $KERMA-INSERT;  " DEFAULT FOR $KERMA-INSERT; IS ; (NULL)"
     IF( iq(np) = 0 ) [ call photon(ircode); ]
     ELSE             [ call electr(ircode); ]
 

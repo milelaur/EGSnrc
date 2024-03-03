@@ -3785,9 +3785,9 @@ REPLACE {$FOOL-INTEL-OPTIMIZER(#) #;} WITH {;
 %Q1
 "#############################################################################"
 "                                                                             "
-" EGSnrc machine dependent macro file for linux (Narvi_linux)                 "
+" EGSnrc machine dependent macro file for linux (linux_home)                  "
 "                                                                             "
-" Created by configure version 2.0 on la 17.2.2024 17.37.09 +0200             "
+" Created by configure version 2.0 on su 3.3.2024 14.04.46 +0200              "
 "                                                                             "
 " You may add your own machine dependent macros to this file,                 "
 " but be carefull to not overwrite it if you re-run configure.                "
@@ -3795,18 +3795,18 @@ REPLACE {$FOOL-INTEL-OPTIMIZER(#) #;} WITH {;
 "#############################################################################"
 
 REPLACE {$MACHINE} WITH
-  {,'linux (Narvi_linux)',};
+  {,'linux (linux_home)',};
 REPLACE {$HEN_HOUSE} WITH
-  {'/scratch/rsmina/EGSnrc/HEN_HOUSE/'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/'};
 REPLACE {$CANONICAL_SYSTEM} WITH
   {'x86_64-unknown-linux-gnu'};
 REPLACE {$CONFIGURATION_NAME} WITH
-  {'Narvi_linux'};
+  {'linux_home'};
 REPLACE {$EGS_CONFIG} WITH
-  {'/scratch/rsmina/EGSnrc/HEN_HOUSE/specs/Narvi_linux.conf'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux_home.conf'};
 
 REPLACE {$CONFIG_TIME} WITH
-  {'2024-02-17 15:37:09 UTC'};
+  {'2024-03-03 12:04:46 UTC'};
 
 " System dependent stuff "
 "========================================"
@@ -5081,6 +5081,38 @@ REPLACE {$RANGE-DISCARD;} WITH {;
     ]
 };
 
+/*
+   We want to have an additional array of ints for
+   the particle stack, which will have the splitting numbers
+ */
+REPLACE {;COMIN/STACK-EXTRA/;} WITH {
+  common/extra_stack/ nbr_splitting($MXSTACK), nbr_splittingI;
+  $INTEGER            nbr_splitting, nbr_splittingI;
+};
+APPEND {;COMIN/STACK-EXTRA/;} TO {;COMIN/STACK/;};
+REPLACE {$TRANSFERPROPERTIESTO#FROM#;} WITH {
+    X{P1}=X{P2};Y{P1}=Y{P2};Z{P1}=Z{P2};IR{P1}=IR{P2};
+    WT{P1}=WT{P2};DNEAR{P1}=DNEAR{P2};LATCH{P1}=LATCH{P2};
+    nbr_splitting{P1}=nbr_splitting{P2};
+};
+
+REPLACE {$EXCHANGE-STACK(#,#);} WITH {
+;
+FDUMMY = U({P2});     U({P2})     = U({P1});     U({P1})     = FDUMMY;
+FDUMMY = V({P2});     V({P2})     = V({P1});     V({P1})     = FDUMMY;
+FDUMMY = W({P2});     W({P2})     = W({P1});     W({P1})     = FDUMMY;
+FDUMMY = E({P2});     E({P2})     = E({P1});     E({P1})     = FDUMMY;
+FDUMMY = WT({P2});    WT({P2})    = WT({P1});    WT({P1})    = FDUMMY;
+IDUMMY = IQ({P2});    IQ({P2})    = IQ({P1});    IQ({P1})    = IDUMMY;
+"LATCH IS NOW STANDARD"
+IDUMMY = LATCH({P2}); LATCH({P2}) = LATCH({P1}); LATCH({P1}) = IDUMMY;
+"add this for the extra stack
+IDUMMY = nbr_splitting{P2};
+nbr_splitting{P2}=nbr_splitting{P1};
+nbr_splitting{P1}=IDUMMY;
+}
+;
+
 subroutine do_rayleigh;
 implicit none;
 $declare_max_medium;
@@ -5869,7 +5901,7 @@ C*****************************************************************************
 
       subroutine egs_print_configuration_name(ounit)
       integer ounit
-      write(6,'(a,$)') 'Narvi_linux'
+      write(6,'(a,$)') 'linux_home'
       return
       end
 
@@ -5883,13 +5915,13 @@ C******************************************************************************
       subroutine egs_get_configuration_name(res)
       character*(*) res
       integer l1,l2
-      l1 = lnblnk1('Narvi_linux')
+      l1 = lnblnk1('linux_home')
       l2 = len(res)
       res(:l2) = ' '
       if( l2.ge.l1 ) then
-        res(:l1) = 'Narvi_linux'
+        res(:l1) = 'linux_home'
       else
-        res(:l2) = 'Narvi_linux'
+        res(:l2) = 'linux_home'
       end if
       return
       end

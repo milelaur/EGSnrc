@@ -8182,7 +8182,7 @@ C*****************************************************************************
       END IF
       pos2 = min(pos2,80-lnblnk1(tmp_string))
       pos2 = min(pos2,80-lnblnk1(host_name))
-      pos2 = min(pos2,80-lnblnk1('2024-02-04 11:11:53 UTC'))
+      pos2 = min(pos2,80-lnblnk1('2024-03-03 12:04:46 UTC'))
       IF((have_input))pos2 = min(pos2,80-lnblnk1(input_file))
       pos2 = min(pos2,80-lnblnk1(output_file))
       IF((pos2 .LT. pos1+2))pos2 = pos1 + 2
@@ -8198,8 +8198,8 @@ C*****************************************************************************
       l = pos2 - lnblnk1('configuration time')
       write(6,'(a,$)') line1(:l)
       write(1,'(a,$)') line1(:l)
-      write(6,'(a)') '2024-02-04 11:11:53 UTC'
-      write(1,'(a)') '2024-02-04 11:11:53 UTC'
+      write(6,'(a)') '2024-03-03 12:04:46 UTC'
+      write(1,'(a)') '2024-03-03 12:04:46 UTC'
       write(6,'(a,$)') 'app compile time'
       write(1,'(a,$)') 'app compile time'
       l = pos2 - lnblnk1('app compile time')

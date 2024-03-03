@@ -66,12 +66,14 @@
      *M
       common/score/endep( 2097153), endep2( 2097153), temp2, planarefe,
      *planarefp,planarfe,planarfp, nestep, endep_tmp( 2097153), i_phsp_o
-     *ut,i_muidx_out,i_unit_out,IWATCH,mxnp, endep_last( 2097153)
+     *ut,i_muidx_out,i_unit_out,IWATCH,mxnp,i_bindos, endep_last( 209715
+     *3)
       REAL*8 endep, endep2, temp2,planarefe, planarefp, planarfe, planar
      *fp
       integer*8 nestep
       real endep_tmp
-      integer i_phsp_out,   i_muidx_out,    i_unit_out,  IWATCH,mxnp
+      integer i_phsp_out,   i_muidx_out,    i_unit_out,  i_bindos,  IWAT
+     *CH,mxnp
       integer*2 endep_last
       common/source/ esrc,  nhist,  nnread,  nshist,  nphist,  nnphsp,
      *einsrc,  xsrcold,  ysrcold,  zsrcold,  usrcold,  vsrcold,  wsrcold
@@ -84,23 +86,24 @@
      * muIndex(60000),  r_11(60000), r_12(60000), r_13(60000), r_21(6000
      *0), r_22(60000), r_23(60000), r_31(60000), r_32(60000), r_33(60000
      *), dsource, dsourcetemp(60000), ein,  eksrcm,  esrc_sp,  SSD,  ein
-     *srcold, NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  latchold,  e
-     *nflag,  dflag,  ismode,  isource,     iqin,        iqphsp,
-     *           iqinc,                          SHLflag,     calflag,
-     *   MLCflag,     ixinl,       ixinu,       jyinl,       jyinu,
-     *  kzinl,       kzinu,       klowx,       khix,        klowy,
-     * khiy,        klowz,       khiz,        survival_ratio,        nsm
-     *iss,      nsblocked,     nsrjct,      nsoutside,     nmissm,
-     *IPRIMARY,                                            OLDSRC,
-     * npassi,                     nang,         ivary(60000),     ngang
-     *(60000),       nset,            more_in_cont,                 numa
-     *ng,       dose_stat,      ndbsrjct,                        i_dbs,
-     *         iphatsrc,         e_split,                           i_ia
-     *ea_in,      i_mu_phsp,           izscore,             i_unit_in,
-     *                k_field,                       nhist_last,
-     *         the_beam_code,         the_input_file,      the_vcu_input
-     *_file,                        the_pegs_file,           the_shared_
-     *lib,                    the_vcu_code,               the_phsp_file
+     *srcold, iaea_SAD,  NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  l
+     *atchold,  enflag,  dflag,  ismode,  isource,     iqin,        iqph
+     *sp,                   iqinc,                          SHLflag,
+     * calflag,     MLCflag,     ixinl,       ixinu,       jyinl,
+     *jyinu,       kzinl,       kzinu,       klowx,       khix,        k
+     *lowy,       khiy,        klowz,       khiz,        survival_ratio,
+     *        nsmiss,      nsblocked,     nsrjct,      nsoutside,     nm
+     *issm,      IPRIMARY,                                            OL
+     *DSRC,       npassi,                     nang,         ivary(60000)
+     *,     ngang(60000),       nset,            more_in_cont,
+     *       numang,       dose_stat,      ndbsrjct,
+     *    i_dbs,          iphatsrc,         e_split,
+     *       i_iaea_in,      i_mu_phsp,           izscore,             i
+     *_unit_in,                  k_field,                       nhist_la
+     *st,                 the_beam_code,         the_input_file,      th
+     *e_vcu_input_file,                        the_pegs_file,
+     *the_shared_lib,                    the_vcu_code,               the
+     *_phsp_file
       real*8    esrc,muIndex
       integer*8 nhist, nnread,nshist,nphist,nnphsp
       real*8 einsrc, xsrcold, ysrcold,usrcold,vsrcold,wsrcold,weightold,
@@ -112,7 +115,8 @@
      *max,pgang,r_11, r_12, r_13, r_21,                       r_22, r_23
      *, r_31, r_32, r_33,dsource,dsourcetemp,
      *    ein, eksrcm, esrc_sp, SSD, NINCSRC,
-     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold
+     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold,ia
+     *ea_SAD
       integer*4 isource, iqin, iqphsp, iqinc,latchold,iqinold,MLCflag,SH
      *Lflag,         calflag, ixinl, ixinu, jyinl, jyinu, kzinl, kzinu,
      *                             klowx, khix, klowy, khiy, klowz, khiz
@@ -127,9 +131,9 @@
       character*256 the_phsp_file
       COMMON/SOURCE_FORPARALLEL/nnphsp_max, nnphsp_min
       integer*8 nnphsp_max, nnphsp_min
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -247,6 +251,8 @@
       integer*4 n_repeat,i_repeat
       REAL z_score_tmp
       external combine_results
+      character medChar(128)
+      character encoding*62
 #ifdef HAVE_C_COMPILER
       real*8 part_dose, part2_dose, current_result, current_uncertainty
       integer*8 n_run,n_tot,n_last,n_left,other_num_1,other_num_2,p_per_
@@ -257,6 +263,8 @@
       logical is_finished
       real CPUT0,CPUT1,CPUT2,TDUM
       real egs_tot_time, egs_etime
+      encoding = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr
+     *stuvwxyz'
       call egs_init
       tdum = egs_tot_time(1)
       cput0=egs_etime()
@@ -305,6 +313,7 @@
       IPHANT=0
       doseprint=1
       i_phsp_out=0
+      i_bindos=0
       CALL DATETIME(1)
       WRITE(6,1040)TIMEN, DATEN
       WRITE(1,1040)TIMEN, DATEN
@@ -315,8 +324,8 @@
      *earch Council of Canada', ' and',T79,'**'/ ' **',T15,'Universityof
      * Wisconsin as part of the OMEGA project', T79,'**'/ ' **',T79,'**'
      */ ' **',T15, T79,'**'/ ' **',T79,'**'/ 1X ,79('*'))
-      WRITE(6,1050)20,10000,128,128,128, 2097153,1
-      WRITE(1,1050)20,10000,128,128,128, 2097153,1
+      WRITE(6,1050)20,900000,128,128,128, 2097153,1
+      WRITE(1,1050)20,900000,128,128,128, 2097153,1
 1050  FORMAT(/'     The following parameters may be adjusted in dosxyz_u
      *ser_macros.mortran'/' $MXMED:    Max number of media:',I3,/ ' $MXS
      *TACK:  Max stack size:',I10/ ' $IMAX,etc: Max dose scoring regions
@@ -421,21 +430,25 @@
      *12.5,' - ',F12.5,' cm'/ ' z range : ',F12.5,' - ',F12.5,' cm')
           DO 1241 k=1,KMAX
               DO 1251 j=1,JMAX
-                  read(45,1260) (med((1 + i + (j-1)*IMAX + (k-1)*ijmax))
-     *            ,i=1,IMAX)
+                  read(45,1260) (medChar(i),i=1,IMAX)
+                  DO 1271 i=1,IMAX
+                      med((1 + i + (j-1)*IMAX + (k-1)*ijmax)) = index(en
+     *                coding, medChar(i)) - 1
+1271              CONTINUE
+1272              CONTINUE
 1251          CONTINUE
 1252          CONTINUE
               read(45,*)
 1241      CONTINUE
 1242      CONTINUE
-1260      FORMAT(128i1)
+1260      FORMAT(128a1)
           maxrhor=0.
           minrhor=999.
-          DO 1271 k=1,KMAX
-              DO 1281 j=1,JMAX
+          DO 1281 k=1,KMAX
+              DO 1291 j=1,JMAX
                   read(45,*) (rhor((1 + i + (j-1)*IMAX + (k-1)*ijmax)),i
      *            =1,IMAX)
-                  DO 1291 i=1,IMAX
+                  DO 1301 i=1,IMAX
                       IF ((rhor((1 + i + (j-1)*IMAX + (k-1)*ijmax)) .GT.
      *                 maxrhor)) THEN
                           maxrhor=rhor((1 + i + (j-1)*IMAX + (k-1)*ijmax
@@ -446,27 +459,27 @@
                           minrhor=rhor((1 + i + (j-1)*IMAX + (k-1)*ijmax
      *                    ))
                       END IF
-1291              CONTINUE
-1292              CONTINUE
-1281          CONTINUE
-1282          CONTINUE
+1301              CONTINUE
+1302              CONTINUE
+1291          CONTINUE
+1292          CONTINUE
               read(45,*)
-1271      CONTINUE
-1272      CONTINUE
-          WRITE(6,1300)minrhor,maxrhor
-          WRITE(1,1300)minrhor,maxrhor
-1300      FORMAT(/' Densities range from ',F12.5,' - ',F12.5,' g/cc')
+1281      CONTINUE
+1282      CONTINUE
+          WRITE(6,1310)minrhor,maxrhor
+          WRITE(1,1310)minrhor,maxrhor
+1310      FORMAT(/' Densities range from ',F12.5,' - ',F12.5,' g/cc')
           close(45)
-          WRITE(6,1310)
-          WRITE(1,1310)
-1310      FORMAT(/' ECUTIN,PCUTIN,(SMAX--DUMMY INPUT): ',$)
+          WRITE(6,1320)
+          WRITE(1,1320)
+1320      FORMAT(/' ECUTIN,PCUTIN,(SMAX--DUMMY INPUT): ',$)
           read(5,'(3F15.0)') ECUTIN,PCUTIN,SMAX
-          WRITE(6,1320)ECUTIN,PCUTIN,SMAX
-          WRITE(1,1320)ECUTIN,PCUTIN,SMAX
-1320      FORMAT(/t10,3f10.3)
-          WRITE(6,1330)
-          WRITE(1,1330)
-1330      FORMAT(/' Input zeroairdose (1 to zero dose in air in .3ddosef
+          WRITE(6,1330)ECUTIN,PCUTIN,SMAX
+          WRITE(1,1330)ECUTIN,PCUTIN,SMAX
+1330      FORMAT(/t10,3f10.3)
+          WRITE(6,1340)
+          WRITE(1,1340)
+1340      FORMAT(/' Input zeroairdose (1 to zero dose in air in .3ddosef
      *ile; 0[default]'/ ' to not zero this dose), doseprint (1 for full 
      *dose output in .egslst;'/ ' 0[default] otherwise), MAX20 (1 to pri
      *nt out summary of 20 highest'/ ' doses; 0[default] to not print th
@@ -475,9 +488,9 @@
           IF((zeroairdose .NE.1))zeroairdose=0
           IF((MAX20 .NE. 1))MAX20=0
           IF((doseprint .NE. 1))doseprint=0
-          WRITE(6,1340)zeroairdose,doseprint,MAX20
-          WRITE(1,1340)zeroairdose,doseprint,MAX20
-1340      FORMAT(3I5)
+          WRITE(6,1350)zeroairdose,doseprint,MAX20
+          WRITE(1,1350)zeroairdose,doseprint,MAX20
+1350      FORMAT(3I5)
           idgrp=1
           idosl(idgrp)=1
           idosu(idgrp)=IMAX
@@ -487,33 +500,33 @@
           kdosu(idgrp)=KMAX
           IZSCAN(idgrp)=1
       ELSE
-          DO 1351 n=1,NMED
-              WRITE(6,1360)n
-              WRITE(1,1360)n
-1360          FORMAT(' Medium',i3,':  ',$)
-              READ(5,1370)(media(j,n),j=1,24)
-1370          FORMAT(24a1)
-              WRITE(6,1380)(media(j,n),j=1,24)
-              WRITE(1,1380)(media(j,n),j=1,24)
-1380          FORMAT(' ',t20,24a1)
-1351      CONTINUE
-1352      CONTINUE
+          DO 1361 n=1,NMED
+              WRITE(6,1370)n
+              WRITE(1,1370)n
+1370          FORMAT(' Medium',i3,':  ',$)
+              READ(5,1380)(media(j,n),j=1,24)
+1380          FORMAT(24a1)
+              WRITE(6,1390)(media(j,n),j=1,24)
+              WRITE(1,1390)(media(j,n),j=1,24)
+1390          FORMAT(' ',t20,24a1)
+1361      CONTINUE
+1362      CONTINUE
           med(1)=0
-          DO 1391 n=2, 2097154
+          DO 1401 n=2, 2097154
               med(n)=1
-1391      CONTINUE
-1392      CONTINUE
-          WRITE(6,1400)
-          WRITE(1,1400)
-1400      FORMAT(/' ECUTIN,PCUTIN,(ESTEPE,SMAX--DUMMY INPUTS): ',$)
+1401      CONTINUE
+1402      CONTINUE
+          WRITE(6,1410)
+          WRITE(1,1410)
+1410      FORMAT(/' ECUTIN,PCUTIN,(ESTEPE,SMAX--DUMMY INPUTS): ',$)
           read(5,'(2F15.0,30F10.0,F15.0)') ECUTIN,PCUTIN,(ESTEPM(i),i=1,
      *    NMED),SMAX
-          WRITE(6,1410)ECUTIN,PCUTIN,(ESTEPM(i),i=1,NMED),SMAX
-          WRITE(1,1410)ECUTIN,PCUTIN,(ESTEPM(i),i=1,NMED),SMAX
-1410      FORMAT(/t10,13f10.3)
-          write(6,1420)128,128,128
-          write(1,1420)128,128,128
-1420      format(/' # regions in x (max=',I4,'),y (max=',I4,'),z (max=',
+          WRITE(6,1420)ECUTIN,PCUTIN,(ESTEPM(i),i=1,NMED),SMAX
+          WRITE(1,1420)ECUTIN,PCUTIN,(ESTEPM(i),i=1,NMED),SMAX
+1420      FORMAT(/t10,13f10.3)
+          write(6,1430)128,128,128
+          write(1,1430)128,128,128
+1430      format(/' # regions in x (max=',I4,'),y (max=',I4,'),z (max=',
      *I4,') directions'/ ' (if<0,implies # groups of reg), IPHANT (1 to 
      *output a .egsphant'/ ' file for dosxyz_show, 0[default] to not out
      *put this file)'/ '     : ',$)
@@ -524,72 +537,72 @@
           IF((maxy.GT.128))maxy=128
           IF((maxz .EQ. 0))maxz=1
           IF((maxz.GT.128))maxz=128
-          WRITE(6,1430)maxx,maxy,maxz,IPHANT
-          WRITE(1,1430)maxx,maxy,maxz,IPHANT
-1430      FORMAT(' ',4i6)
+          WRITE(6,1440)maxx,maxy,maxz,IPHANT
+          WRITE(1,1440)maxx,maxy,maxz,IPHANT
+1440      FORMAT(' ',4i6)
           IF ((IPHANT.EQ.1)) THEN
-              WRITE(6,1440)
-1440          FORMAT(//' Will output a .egsphant file to display isodose
+              WRITE(6,1450)
+1450          FORMAT(//' Will output a .egsphant file to display isodose
      * contours'/ ' with dosxyz_show.'//)
           END IF
           maxbd=128
-          WRITE(6,1450)
-          WRITE(1,1450)
-1450      FORMAT( / ' Input boundaries in the x-direction'/ ' ----------
+          WRITE(6,1460)
+          WRITE(1,1460)
+1460      FORMAT( / ' Input boundaries in the x-direction'/ ' ----------
      *-------------------------')
           mindelX=1.e20
           IF ((maxX .GT. 0)) THEN
               mindelX=1.e20
               IF ((maxX .GT. maxbd)) THEN
-                  WRITE(6,1460)maxbd
-                  WRITE(1,1460)maxbd
-1460              FORMAT(t15,'***ERROR:'/ t15,'number of regions > max a
+                  WRITE(6,1470)maxbd
+                  WRITE(1,1470)maxbd
+1470              FORMAT(t15,'***ERROR:'/ t15,'number of regions > max a
      *llowed (',i5,')')
                   STOP
               END IF
-              DO 1471 i=1,maxX
-                  WRITE(6,1480)i
-                  WRITE(1,1480)i
-1480              FORMAT(' Small boundary for region(',i3,')  ',$)
+              DO 1481 i=1,maxX
+                  WRITE(6,1490)i
+                  WRITE(1,1490)i
+1490              FORMAT(' Small boundary for region(',i3,')  ',$)
                   read(5,'(F15.0)') Xbound(i)
                   IF (( (i .NE.1 ) .AND. ( Xbound(i) .LE. Xbound(i-1) ))
      *            ) THEN
-                      WRITE(6,1490)
-                      WRITE(1,1490)
-1490                  FORMAT(' *** Boundary out of order ***')
+                      WRITE(6,1500)
+                      WRITE(1,1500)
+1500                  FORMAT(' *** Boundary out of order ***')
                   END IF
-                  WRITE(6,1500)Xbound(i)
-                  WRITE(1,1500)Xbound(i)
-1500              FORMAT(' ',t10,f12.3)
+                  WRITE(6,1510)Xbound(i)
+                  WRITE(1,1510)Xbound(i)
+1510              FORMAT(' ',t10,f12.3)
                   IF ((i.GE.2 .AND. Xbound(i)-Xbound(i-1).LT.mindelX)) T
      *            HEN
                       mindelX=Xbound(i)-Xbound(i-1)
                   END IF
-1471          CONTINUE
-1472          CONTINUE
-              WRITE(6,1510)maxX
-              WRITE(1,1510)maxX
-1510          FORMAT(' Outer boundary for region(',i3,')  ',$)
+1481          CONTINUE
+1482          CONTINUE
+              WRITE(6,1520)maxX
+              WRITE(1,1520)maxX
+1520          FORMAT(' Outer boundary for region(',i3,')  ',$)
               read(5,'(F15.0)') Xbound(maxX + 1)
-              WRITE(6,1520)Xbound(maxX+1)
-              WRITE(1,1520)Xbound(maxX+1)
-1520          FORMAT(' ',t10,f12.3)
+              WRITE(6,1530)Xbound(maxX+1)
+              WRITE(1,1530)Xbound(maxX+1)
+1530          FORMAT(' ',t10,f12.3)
               IF((Xbound(maxX+1)-Xbound(maxX).LT.mindelX))mindelX=Xbound
      *        (maxX+1)-Xbound(maxX)
           ELSE
-              WRITE(6,1530)
-              WRITE(1,1530)
-1530          FORMAT(' Initial boundary: ',$)
+              WRITE(6,1540)
+              WRITE(1,1540)
+1540          FORMAT(' Initial boundary: ',$)
               read(5,'(F15.0)') Xbound(1)
-              WRITE(6,1540)Xbound(1)
-              WRITE(1,1540)Xbound(1)
-1540          FORMAT(' ',f12.3)
+              WRITE(6,1550)Xbound(1)
+              WRITE(1,1550)Xbound(1)
+1550          FORMAT(' ',f12.3)
               ngroup = - maxX
               maxX = 0
-              DO 1551 igroup=1,ngroup
-                  WRITE(6,1560)
-                  WRITE(1,1560)
-1560              FORMAT(' Width in this group, number of regions in gro
+              DO 1561 igroup=1,ngroup
+                  WRITE(6,1570)
+                  WRITE(1,1570)
+1570              FORMAT(' Width in this group, number of regions in gro
      *up: ',$)
                   read(5,'(F15.0,I10)') width,nn
                   IF ((nn.LE.0)) THEN
@@ -599,89 +612,89 @@
                       width=1.0
                   END IF
                   IF((width.LT.mindelX))mindelX=width
-                  WRITE(6,1570)width,nn
-                  WRITE(1,1570)width,nn
-1570              FORMAT(' ',f12.3,i5)
+                  WRITE(6,1580)width,nn
+                  WRITE(1,1580)width,nn
+1580              FORMAT(' ',f12.3,i5)
                   nnn = min(nn,maxbd-maxX)
                   IF ((nnn .NE. 0)) THEN
-                      DO 1581 in=maxX+1,maxX+nnn
+                      DO 1591 in=maxX+1,maxX+nnn
                           Xbound(in+1) = Xbound(in)+width
-1581                  CONTINUE
-1582                  CONTINUE
+1591                  CONTINUE
+1592                  CONTINUE
                   END IF
                   IF ((nn .NE. nnn)) THEN
-                      WRITE(6,1590)maxbd
-                      WRITE(1,1590)maxbd
-1590                  FORMAT(t15,'***ERROR:'/ t15,'number of regions > m
+                      WRITE(6,1600)maxbd
+                      WRITE(1,1600)maxbd
+1600                  FORMAT(t15,'***ERROR:'/ t15,'number of regions > m
      *ax allowed (',i5,')')
                       STOP
                   END IF
                   maxX = maxX+nnn
-1551          CONTINUE
-1552          CONTINUE
-              WRITE(6,1600)(Xbound(i),i=1,maxX+1)
-              WRITE(1,1600)(Xbound(i),i=1,maxX+1)
-1600          FORMAT(' Boundaries'/(6f12.3))
+1561          CONTINUE
+1562          CONTINUE
+              WRITE(6,1610)(Xbound(i),i=1,maxX+1)
+              WRITE(1,1610)(Xbound(i),i=1,maxX+1)
+1610          FORMAT(' Boundaries'/(6f12.3))
           END IF
           IMAX=maxx
           maxbd=128
-          WRITE(6,1610)
-          WRITE(1,1610)
-1610      FORMAT( / ' Input boundaries in the y-direction'/ ' ----------
+          WRITE(6,1620)
+          WRITE(1,1620)
+1620      FORMAT( / ' Input boundaries in the y-direction'/ ' ----------
      *-------------------------')
           mindelY=1.e20
           IF ((maxY .GT. 0)) THEN
               mindelY=1.e20
               IF ((maxY .GT. maxbd)) THEN
-                  WRITE(6,1620)maxbd
-                  WRITE(1,1620)maxbd
-1620              FORMAT(t15,'***ERROR:'/ t15,'number of regions > max a
+                  WRITE(6,1630)maxbd
+                  WRITE(1,1630)maxbd
+1630              FORMAT(t15,'***ERROR:'/ t15,'number of regions > max a
      *llowed (',i5,')')
                   STOP
               END IF
-              DO 1631 i=1,maxY
-                  WRITE(6,1640)i
-                  WRITE(1,1640)i
-1640              FORMAT(' Small boundary for region(',i3,')  ',$)
+              DO 1641 i=1,maxY
+                  WRITE(6,1650)i
+                  WRITE(1,1650)i
+1650              FORMAT(' Small boundary for region(',i3,')  ',$)
                   read(5,'(F15.0)') Ybound(i)
                   IF (( (i .NE.1 ) .AND. ( Ybound(i) .LE. Ybound(i-1) ))
      *            ) THEN
-                      WRITE(6,1650)
-                      WRITE(1,1650)
-1650                  FORMAT(' *** Boundary out of order ***')
+                      WRITE(6,1660)
+                      WRITE(1,1660)
+1660                  FORMAT(' *** Boundary out of order ***')
                   END IF
-                  WRITE(6,1660)Ybound(i)
-                  WRITE(1,1660)Ybound(i)
-1660              FORMAT(' ',t10,f12.3)
+                  WRITE(6,1670)Ybound(i)
+                  WRITE(1,1670)Ybound(i)
+1670              FORMAT(' ',t10,f12.3)
                   IF ((i.GE.2 .AND. Ybound(i)-Ybound(i-1).LT.mindelY)) T
      *            HEN
                       mindelY=Ybound(i)-Ybound(i-1)
                   END IF
-1631          CONTINUE
-1632          CONTINUE
-              WRITE(6,1670)maxY
-              WRITE(1,1670)maxY
-1670          FORMAT(' Outer boundary for region(',i3,')  ',$)
+1641          CONTINUE
+1642          CONTINUE
+              WRITE(6,1680)maxY
+              WRITE(1,1680)maxY
+1680          FORMAT(' Outer boundary for region(',i3,')  ',$)
               read(5,'(F15.0)') Ybound(maxY + 1)
-              WRITE(6,1680)Ybound(maxY+1)
-              WRITE(1,1680)Ybound(maxY+1)
-1680          FORMAT(' ',t10,f12.3)
+              WRITE(6,1690)Ybound(maxY+1)
+              WRITE(1,1690)Ybound(maxY+1)
+1690          FORMAT(' ',t10,f12.3)
               IF((Ybound(maxY+1)-Ybound(maxY).LT.mindelY))mindelY=Ybound
      *        (maxY+1)-Ybound(maxY)
           ELSE
-              WRITE(6,1690)
-              WRITE(1,1690)
-1690          FORMAT(' Initial boundary: ',$)
+              WRITE(6,1700)
+              WRITE(1,1700)
+1700          FORMAT(' Initial boundary: ',$)
               read(5,'(F15.0)') Ybound(1)
-              WRITE(6,1700)Ybound(1)
-              WRITE(1,1700)Ybound(1)
-1700          FORMAT(' ',f12.3)
+              WRITE(6,1710)Ybound(1)
+              WRITE(1,1710)Ybound(1)
+1710          FORMAT(' ',f12.3)
               ngroup = - maxY
               maxY = 0
-              DO 1711 igroup=1,ngroup
-                  WRITE(6,1720)
-                  WRITE(1,1720)
-1720              FORMAT(' Width in this group, number of regions in gro
+              DO 1721 igroup=1,ngroup
+                  WRITE(6,1730)
+                  WRITE(1,1730)
+1730              FORMAT(' Width in this group, number of regions in gro
      *up: ',$)
                   read(5,'(F15.0,I10)') width,nn
                   IF ((nn.LE.0)) THEN
@@ -691,89 +704,89 @@
                       width=1.0
                   END IF
                   IF((width.LT.mindelY))mindelY=width
-                  WRITE(6,1730)width,nn
-                  WRITE(1,1730)width,nn
-1730              FORMAT(' ',f12.3,i5)
+                  WRITE(6,1740)width,nn
+                  WRITE(1,1740)width,nn
+1740              FORMAT(' ',f12.3,i5)
                   nnn = min(nn,maxbd-maxY)
                   IF ((nnn .NE. 0)) THEN
-                      DO 1741 in=maxY+1,maxY+nnn
+                      DO 1751 in=maxY+1,maxY+nnn
                           Ybound(in+1) = Ybound(in)+width
-1741                  CONTINUE
-1742                  CONTINUE
+1751                  CONTINUE
+1752                  CONTINUE
                   END IF
                   IF ((nn .NE. nnn)) THEN
-                      WRITE(6,1750)maxbd
-                      WRITE(1,1750)maxbd
-1750                  FORMAT(t15,'***ERROR:'/ t15,'number of regions > m
+                      WRITE(6,1760)maxbd
+                      WRITE(1,1760)maxbd
+1760                  FORMAT(t15,'***ERROR:'/ t15,'number of regions > m
      *ax allowed (',i5,')')
                       STOP
                   END IF
                   maxY = maxY+nnn
-1711          CONTINUE
-1712          CONTINUE
-              WRITE(6,1760)(Ybound(i),i=1,maxY+1)
-              WRITE(1,1760)(Ybound(i),i=1,maxY+1)
-1760          FORMAT(' Boundaries'/(6f12.3))
+1721          CONTINUE
+1722          CONTINUE
+              WRITE(6,1770)(Ybound(i),i=1,maxY+1)
+              WRITE(1,1770)(Ybound(i),i=1,maxY+1)
+1770          FORMAT(' Boundaries'/(6f12.3))
           END IF
           JMAX=maxy
           maxbd=128
-          WRITE(6,1770)
-          WRITE(1,1770)
-1770      FORMAT( / ' Input boundaries in the z-direction'/ ' ----------
+          WRITE(6,1780)
+          WRITE(1,1780)
+1780      FORMAT( / ' Input boundaries in the z-direction'/ ' ----------
      *-------------------------')
           mindelZ=1.e20
           IF ((maxZ .GT. 0)) THEN
               mindelZ=1.e20
               IF ((maxZ .GT. maxbd)) THEN
-                  WRITE(6,1780)maxbd
-                  WRITE(1,1780)maxbd
-1780              FORMAT(t15,'***ERROR:'/ t15,'number of regions > max a
+                  WRITE(6,1790)maxbd
+                  WRITE(1,1790)maxbd
+1790              FORMAT(t15,'***ERROR:'/ t15,'number of regions > max a
      *llowed (',i5,')')
                   STOP
               END IF
-              DO 1791 i=1,maxZ
-                  WRITE(6,1800)i
-                  WRITE(1,1800)i
-1800              FORMAT(' Small boundary for region(',i3,')  ',$)
+              DO 1801 i=1,maxZ
+                  WRITE(6,1810)i
+                  WRITE(1,1810)i
+1810              FORMAT(' Small boundary for region(',i3,')  ',$)
                   read(5,'(F15.0)') Zbound(i)
                   IF (( (i .NE.1 ) .AND. ( Zbound(i) .LE. Zbound(i-1) ))
      *            ) THEN
-                      WRITE(6,1810)
-                      WRITE(1,1810)
-1810                  FORMAT(' *** Boundary out of order ***')
+                      WRITE(6,1820)
+                      WRITE(1,1820)
+1820                  FORMAT(' *** Boundary out of order ***')
                   END IF
-                  WRITE(6,1820)Zbound(i)
-                  WRITE(1,1820)Zbound(i)
-1820              FORMAT(' ',t10,f12.3)
+                  WRITE(6,1830)Zbound(i)
+                  WRITE(1,1830)Zbound(i)
+1830              FORMAT(' ',t10,f12.3)
                   IF ((i.GE.2 .AND. Zbound(i)-Zbound(i-1).LT.mindelZ)) T
      *            HEN
                       mindelZ=Zbound(i)-Zbound(i-1)
                   END IF
-1791          CONTINUE
-1792          CONTINUE
-              WRITE(6,1830)maxZ
-              WRITE(1,1830)maxZ
-1830          FORMAT(' Outer boundary for region(',i3,')  ',$)
+1801          CONTINUE
+1802          CONTINUE
+              WRITE(6,1840)maxZ
+              WRITE(1,1840)maxZ
+1840          FORMAT(' Outer boundary for region(',i3,')  ',$)
               read(5,'(F15.0)') Zbound(maxZ + 1)
-              WRITE(6,1840)Zbound(maxZ+1)
-              WRITE(1,1840)Zbound(maxZ+1)
-1840          FORMAT(' ',t10,f12.3)
+              WRITE(6,1850)Zbound(maxZ+1)
+              WRITE(1,1850)Zbound(maxZ+1)
+1850          FORMAT(' ',t10,f12.3)
               IF((Zbound(maxZ+1)-Zbound(maxZ).LT.mindelZ))mindelZ=Zbound
      *        (maxZ+1)-Zbound(maxZ)
           ELSE
-              WRITE(6,1850)
-              WRITE(1,1850)
-1850          FORMAT(' Initial boundary: ',$)
+              WRITE(6,1860)
+              WRITE(1,1860)
+1860          FORMAT(' Initial boundary: ',$)
               read(5,'(F15.0)') Zbound(1)
-              WRITE(6,1860)Zbound(1)
-              WRITE(1,1860)Zbound(1)
-1860          FORMAT(' ',f12.3)
+              WRITE(6,1870)Zbound(1)
+              WRITE(1,1870)Zbound(1)
+1870          FORMAT(' ',f12.3)
               ngroup = - maxZ
               maxZ = 0
-              DO 1871 igroup=1,ngroup
-                  WRITE(6,1880)
-                  WRITE(1,1880)
-1880              FORMAT(' Width in this group, number of regions in gro
+              DO 1881 igroup=1,ngroup
+                  WRITE(6,1890)
+                  WRITE(1,1890)
+1890              FORMAT(' Width in this group, number of regions in gro
      *up: ',$)
                   read(5,'(F15.0,I10)') width,nn
                   IF ((nn.LE.0)) THEN
@@ -783,29 +796,29 @@
                       width=1.0
                   END IF
                   IF((width.LT.mindelZ))mindelZ=width
-                  WRITE(6,1890)width,nn
-                  WRITE(1,1890)width,nn
-1890              FORMAT(' ',f12.3,i5)
+                  WRITE(6,1900)width,nn
+                  WRITE(1,1900)width,nn
+1900              FORMAT(' ',f12.3,i5)
                   nnn = min(nn,maxbd-maxZ)
                   IF ((nnn .NE. 0)) THEN
-                      DO 1901 in=maxZ+1,maxZ+nnn
+                      DO 1911 in=maxZ+1,maxZ+nnn
                           Zbound(in+1) = Zbound(in)+width
-1901                  CONTINUE
-1902                  CONTINUE
+1911                  CONTINUE
+1912                  CONTINUE
                   END IF
                   IF ((nn .NE. nnn)) THEN
-                      WRITE(6,1910)maxbd
-                      WRITE(1,1910)maxbd
-1910                  FORMAT(t15,'***ERROR:'/ t15,'number of regions > m
+                      WRITE(6,1920)maxbd
+                      WRITE(1,1920)maxbd
+1920                  FORMAT(t15,'***ERROR:'/ t15,'number of regions > m
      *ax allowed (',i5,')')
                       STOP
                   END IF
                   maxZ = maxZ+nnn
-1871          CONTINUE
-1872          CONTINUE
-              WRITE(6,1920)(Zbound(i),i=1,maxZ+1)
-              WRITE(1,1920)(Zbound(i),i=1,maxZ+1)
-1920          FORMAT(' Boundaries'/(6f12.3))
+1881          CONTINUE
+1882          CONTINUE
+              WRITE(6,1930)(Zbound(i),i=1,maxZ+1)
+              WRITE(1,1930)(Zbound(i),i=1,maxZ+1)
+1930          FORMAT(' Boundaries'/(6f12.3))
           END IF
           KMAX=maxz
           xbound_min = xbound(1)
@@ -816,30 +829,30 @@
           zbound_max = zbound(KMAX+1)
           ijmax = IMAX*JMAX
           irmax =1 + IMAX*JMAX*KMAX
-          WRITE(6,1930)irmax
-          WRITE(1,1930)irmax
-1930      FORMAT(/' Total # regions including exterior =',i10)
+          WRITE(6,1940)irmax
+          WRITE(1,1940)irmax
+1940      FORMAT(/' Total # regions including exterior =',i10)
           IF ((irmax .GT.  2097154)) THEN
-              WRITE(6,1940)
-              WRITE(1,1940)
-1940          FORMAT(/' *** That is too many regions ***'//)
+              WRITE(6,1950)
+              WRITE(1,1950)
+1950          FORMAT(/' *** That is too many regions ***'//)
               stop ' *** Stopping because too many regions asked for ***
      *'
           END IF
-          WRITE(6,1950)
-          WRITE(1,1950)
-1950      FORMAT(/' Input groups of regions for which density and medium
+          WRITE(6,1960)
+          WRITE(1,1960)
+1960      FORMAT(/' Input groups of regions for which density and medium
      * are not defaults')
-1961      CONTINUE
-              WRITE(6,1970)
-              WRITE(1,1970)
-1970          FORMAT(' Lower,upper i, j, k,  MEDIUM, DENSITY',$)
+1971      CONTINUE
+              WRITE(6,1980)
+              WRITE(1,1980)
+1980          FORMAT(' Lower,upper i, j, k,  MEDIUM, DENSITY',$)
               read(5,'(7I10,F15.0)') IL,IU,JL,JU,KL,KU,MEDTMP,RHOTMP
               IF (( (IL .EQ. 0) .AND. (IU .EQ. 0) )) THEN
-                  WRITE(6,1980)
-                  WRITE(1,1980)
-1980              FORMAT(/'    Found blank line => end of this input')
-                  GO TO1962
+                  WRITE(6,1990)
+                  WRITE(1,1990)
+1990              FORMAT(/'    Found blank line => end of this input')
+                  GO TO1972
               END IF
               IF(((IL .LE. 0).OR.(IL .GT. IMAX)))IL = 1
               IF(((IU .LT. IL).OR.(IU .GT. IMAX)))IU = IMAX
@@ -848,50 +861,50 @@
               IF(((KL .LE. 0).OR.(KL .GT. KMAX)))KL = 1
               IF(((KU .LT. KL).OR.(KU .GT. KMAX)))KU = KMAX
               IF(((medtmp .LT. 0).OR.(medtmp .GT. NMED)))medtmp = 1
-              WRITE(6,1990)IL,IU,JL,JU,KL,KU,MEDTMP,RHOTMP
-              WRITE(1,1990)IL,IU,JL,JU,KL,KU,MEDTMP,RHOTMP
-1990          FORMAT(' ',3('(',i3,i4,')'), i4, f10.3)
-              DO 2001 i=Il,IU
-                  DO 2011 j=JL,JU
-                      DO 2021 k=KL,KU
+              WRITE(6,2000)IL,IU,JL,JU,KL,KU,MEDTMP,RHOTMP
+              WRITE(1,2000)IL,IU,JL,JU,KL,KU,MEDTMP,RHOTMP
+2000          FORMAT(' ',3('(',i3,i4,')'), i4, f10.3)
+              DO 2011 i=Il,IU
+                  DO 2021 j=JL,JU
+                      DO 2031 k=KL,KU
                           irl = (1 + i + (j-1)*IMAX + (k-1)*ijmax)
                           rhor(irl)=rhotmp
                           med(irl)=medtmp
-2021                  CONTINUE
-2022                  CONTINUE
-2011              CONTINUE
-2012              CONTINUE
-2001          CONTINUE
-2002          CONTINUE
-          GO TO 1961
-1962      CONTINUE
-          WRITE(6,2030)
-          WRITE(1,2030)
-2030      FORMAT(//' Input groups of regions for which ECUT and PCUT are
-     * not defaults')
+2031                  CONTINUE
+2032                  CONTINUE
+2021              CONTINUE
+2022              CONTINUE
+2011          CONTINUE
+2012          CONTINUE
+          GO TO 1971
+1972      CONTINUE
           WRITE(6,2040)
           WRITE(1,2040)
-2040      FORMAT(' NB This option is disabled, just input 8 zeros.')
-2051      CONTINUE
-              WRITE(6,2060)
-              WRITE(1,2060)
-2060          FORMAT(' Dummy values of lower,upper i, j, k,  ECUT, PCUT'
+2040      FORMAT(//' Input groups of regions for which ECUT and PCUT are
+     * not defaults')
+          WRITE(6,2050)
+          WRITE(1,2050)
+2050      FORMAT(' NB This option is disabled, just input 8 zeros.')
+2061      CONTINUE
+              WRITE(6,2070)
+              WRITE(1,2070)
+2070          FORMAT(' Dummy values of lower,upper i, j, k,  ECUT, PCUT'
      *,$)
               read(5,'(6I10,2F15.0)') IL,IU,JL,JU,KL,KU,ECUTL,PCUTL
               IF (( IL .EQ. 0 .AND. IU .EQ. 0)) THEN
-                  WRITE(6,2070)
-                  WRITE(1,2070)
-2070              FORMAT(/'    Found blank line => end of this input')
-                  GO TO2052
+                  WRITE(6,2080)
+                  WRITE(1,2080)
+2080              FORMAT(/'    Found blank line => end of this input')
+                  GO TO2062
               END IF
-              WRITE(6,2080)IL,IU,JL,JU,KL,KU,ECUTL,PCUTL
-              WRITE(1,2080)IL,IU,JL,JU,KL,KU,ECUTL,PCUTL
-2080          FORMAT(' ',3('(',i3,i4,')'),2(f10.3,1x))
-          GO TO 2051
-2052      CONTINUE
-          WRITE(6,2090)
-          WRITE(1,2090)
-2090      FORMAT(//' Enter 8 numbers on one line'/ '   3 pairs definingl
+              WRITE(6,2090)IL,IU,JL,JU,KL,KU,ECUTL,PCUTL
+              WRITE(1,2090)IL,IU,JL,JU,KL,KU,ECUTL,PCUTL
+2090          FORMAT(' ',3('(',i3,i4,')'),2(f10.3,1x))
+          GO TO 2061
+2062      CONTINUE
+          WRITE(6,2100)
+          WRITE(1,2100)
+2100      FORMAT(//' Enter 8 numbers on one line'/ '   3 pairs definingl
      *ower,upper x,y,z indicies of dose regions'/ '                 for 
      *which results are to be output'/ '   IZSCAN:       non-zero for z-
      *scan/page'/ '   MAX20:        if any one = 1, output summary of ma
@@ -899,31 +912,31 @@
      * dose printed, MAX20 is still read from first line'/)
           idgrp=0
           tempmax20=0
-2101      CONTINUE
+2111      CONTINUE
               idgrp=idgrp+1
               read(5,'(8I10)') idosl(idgrp),idosu(idgrp),jdosl(idgrp),jd
      *        osu(idgrp), kdosl(idgrp),kdosu(idgrp),IZSCAN(idgrp),tempma
      *        x20
               IF (((idosl(idgrp) .EQ. 0).AND.(idosu(idgrp) .EQ. 0))) THE
      *        N
-                  WRITE(6,2110)
-                  WRITE(1,2110)
-2110              FORMAT('    Found blank line => end of this input')
+                  WRITE(6,2120)
+                  WRITE(1,2120)
+2120              FORMAT('    Found blank line => end of this input')
                   IF ((idgrp .EQ. 1)) THEN
                       IF ((tempmax20 .EQ. 1 )) THEN
                           MAX20 = 1
-                          WRITE(6,2120)
-                          WRITE(1,2120)
-2120                      FORMAT('   MAX20 =1 so will print largest 20 d
-     *oses only')
-                      ELSE
                           WRITE(6,2130)
                           WRITE(1,2130)
-2130                      FORMAT(' No doses will be output to egslst fil
+2130                      FORMAT('   MAX20 =1 so will print largest 20 d
+     *oses only')
+                      ELSE
+                          WRITE(6,2140)
+                          WRITE(1,2140)
+2140                      FORMAT(' No doses will be output to egslst fil
      *e')
                       END IF
                   END IF
-                  GO TO2102
+                  GO TO2112
               END IF
               IF((idosl(idgrp).LE.0))idosl(idgrp)=1
               IF((idosu(idgrp).LE.0 .OR.idosu(idgrp).GE.IMAX))idosu(idgr
@@ -935,28 +948,29 @@
               IF((kdosu(idgrp).LE.0 .OR.kdosu(idgrp).GE.KMAX))kdosu(idgr
      *        p)=KMAX
               IF((tempmax20.EQ.1))MAX20=1
-              WRITE(6,2140)idosl(idgrp),idosu(idgrp),jdosl(idgrp),jdosu(
+              WRITE(6,2150)idosl(idgrp),idosu(idgrp),jdosl(idgrp),jdosu(
      *        idgrp), kdosl(idgrp),kdosu(idgrp),IZSCAN(idgrp),tempmax20
-              WRITE(1,2140)idosl(idgrp),idosu(idgrp),jdosl(idgrp),jdosu(
+              WRITE(1,2150)idosl(idgrp),idosu(idgrp),jdosl(idgrp),jdosu(
      *        idgrp), kdosl(idgrp),kdosu(idgrp),IZSCAN(idgrp),tempmax20
-2140          FORMAT(t5,3(i6,i4),i6,i6)
-          GO TO 2101
-2102      CONTINUE
+2150          FORMAT(t5,3(i6,i4),i6,i6)
+          GO TO 2111
+2112      CONTINUE
           idgrp=idgrp-1
       END IF
       dose_stat=0
       call srcinput(ieof)
-      WRITE(6,2150)
-      WRITE(1,2150)
-2150  FORMAT(//' NCASE,IWATCH,TIMMAX,INSEED1,INSEED2,BEAM_SIZE,ISMOOTH,I
+      WRITE(6,2160)
+      WRITE(1,2160)
+2160  FORMAT(//' NCASE,IWATCH,TIMMAX,INSEED1,INSEED2,BEAM_SIZE,ISMOOTH,I
      *RESTART,IDAT,'/ ' IREJECT,ESAVE_GLOBAL,NRCYCL,IPARALLEL,PARNUM,n_s
-     *plit,ihowfarless,i_phsp_out'/ ' : ',$)
-      read(5,'(2I16,F15.0,2I10,F15.0,4I10,F15.0,6I10)') NCASE,IWATCH,TIM
+     *plit,ihowfarless,i_phsp_out,'/' i_bindos '/ ' : ',$)
+      read(5,'(2I16,F15.0,2I10,F15.0,4I10,F15.0,7I10)') NCASE,IWATCH,TIM
      *MAX,IXXIN,JXXIN,BEAM_SIZE,ISMOOTH,IRESTART,IDAT,IREJECT, ESAVE_GLO
-     *BAL,NRCYCL,IPARALLEL,PARNUM,n_split,ihowfarless,i_phsp_out
+     *BAL,NRCYCL,IPARALLEL,PARNUM,n_split,ihowfarless,i_phsp_out,i_bindo
+     *s
       IF ((n_split.LE.1 .AND. e_split.GT.1)) THEN
-          WRITE(6,2160)
-2160      FORMAT(//' ***Warning: Electron splitting on with no photon sp
+          WRITE(6,2170)
+2170      FORMAT(//' ***Warning: Electron splitting on with no photon sp
      *litting.'/ '             Electron splitting will not be done.'//)
       END IF
       IF ((TIMMAX.LE.0.0)) THEN
@@ -971,14 +985,14 @@
       jcase = NCASE/10
       NCASE = jcase*10
       IF (((IXXIN .LE. 0) .OR. (IXXIN .GT. 31328))) THEN
-          WRITE(6,2170)
-2170      FORMAT(' First RN seed outside allowed range and default value
+          WRITE(6,2180)
+2180      FORMAT(' First RN seed outside allowed range and default value
      * set')
           IXXIN=1802
       END IF
       IF (((JXXIN .LE. 0) .OR. (JXXIN .GT. 30081))) THEN
-          WRITE(6,2180)
-2180      FORMAT(' Second RN seed outside allowed range and default valu
+          WRITE(6,2190)
+2190      FORMAT(' Second RN seed outside allowed range and default valu
      *e set')
           JXXIN=9373
       END IF
@@ -989,8 +1003,8 @@
       IF((PARNUM.LT.0))PARNUM=0
 #ifdef HAVE_C_COMPILER
       IF ((IPARALLEL.GT.1 .AND. n_parallel.GT.0)) THEN
-          WRITE(6,2190)IPARALLEL, n_parallel
-2190      FORMAT(/' You have set IPARALLEL in the input file to ',I4,/ '
+          WRITE(6,2200)IPARALLEL, n_parallel
+2200      FORMAT(/' You have set IPARALLEL in the input file to ',I4,/ '
      * But you are also running a C compiled code with n_parallel=',I4,/
      *' IPARALLEL will be reset to 1, and control of the parallel run '/
      * ' will be from the code.'/)
@@ -999,8 +1013,8 @@
 #endif
       IF ((IPARALLEL.GT.1 .AND. PARNUM.GT.IPARALLEL .AND. (isource .EQ.
      *2 .OR. isource .EQ. 8 .OR. isource .EQ. 20))) THEN
-          WRITE(6,2200)
-2200      FORMAT(//' ****WARNING:'/ ' PARNUM is > IPARALLEL '/ ' It must
+          WRITE(6,2210)
+2210      FORMAT(//' ****WARNING:'/ ' PARNUM is > IPARALLEL '/ ' It must
      * be in the range 1<=PARNUM<=IPARALLEL if you'/ ' want to partition
      * a phase space source.'/ ' PARNUM will be set to 0 for now, and th
      *e phase space'/ ' source will not be partitioned.'//)
@@ -1048,41 +1062,41 @@
       ELSE
           etotin = ein + prm
       END IF
-      WRITE(6,2210)NCASE,IWATCH,TIMMAX,IXXIN,JXXIN,BEAM_SIZE,ISMOOTH,IRE
+      WRITE(6,2220)NCASE,IWATCH,TIMMAX,IXXIN,JXXIN,BEAM_SIZE,ISMOOTH,IRE
      *START,IDAT, IREJECT,ESAVE_GLOBAL,NRCYCL,IPARALLEL,PARNUM,n_split,i
      *howfarless,i_phsp_out
-      WRITE(1,2210)NCASE,IWATCH,TIMMAX,IXXIN,JXXIN,BEAM_SIZE,ISMOOTH,IRE
+      WRITE(1,2220)NCASE,IWATCH,TIMMAX,IXXIN,JXXIN,BEAM_SIZE,ISMOOTH,IRE
      *START,IDAT, IREJECT,ESAVE_GLOBAL,NRCYCL,IPARALLEL,PARNUM,n_split,i
      *howfarless,i_phsp_out
-2210  FORMAT(/i12,i4,f7.2,2i10,f7.2,i7,i5,i4,i4,F7.2,i4,i4,i4,i4,i4,i4/)
+2220  FORMAT(/i12,i4,f7.2,2i10,f7.2,i7,i5,i4,i4,F7.2,i4,i4,i4,i4,i4,i4/)
       IF ((IRESTART.EQ.1)) THEN
-          WRITE(6,2220)
-          WRITE(1,2220)
-2220      FORMAT(/' Above RNG seeds will be replaced by those from previ
+          WRITE(6,2230)
+          WRITE(1,2230)
+2230      FORMAT(/' Above RNG seeds will be replaced by those from previ
      *ous run.')
       END IF
       IF((i_phsp_out.LT.0 .OR. i_phsp_out.GT.2))i_phsp_out=0
       IF ((i_phsp_out.NE.0 .AND. (isource .NE. 2 .AND. isource .NE. 8 .A
      *ND. isource .NE. 9 .AND. isource .NE. 10 .AND. isource .NE. 20 .AN
      *D. isource .NE. 21))) THEN
-          WRITE(6,2230)
-2230      FORMAT(/' Warning: Phase space data can only be output for pha
+          WRITE(6,2240)
+2240      FORMAT(/' Warning: Phase space data can only be output for pha
      *se space '/ ' or BEAM simulation sources.  Resetting i_phsp_out to
      * 0 for '/ ' now.'/)
           i_phsp_out=0
       ELSE IF((i_phsp_out.NE.0)) THEN
           IF ((i_phsp_out.EQ.1)) THEN
-              WRITE(6,2240)
-2240          FORMAT(/' Will output IAEA format phase space data in DOSX
+              WRITE(6,2250)
+2250          FORMAT(/' Will output IAEA format phase space data in DOSX
      *YZnrc '/ ' coordinates.'/)
           ELSE IF((i_phsp_out.EQ.2)) THEN
-              WRITE(6,2250)
-2250          FORMAT(/' Will output IAEA format phase space data in BEAM
+              WRITE(6,2260)
+2260          FORMAT(/' Will output IAEA format phase space data in BEAM
      *nrc '/ ' coordinates.'/)
           END IF
           IF ((i_muidx_out.EQ.1)) THEN
-              WRITE(6,2260)
-2260          FORMAT(/' Fractional MU index will be included in phase sp
+              WRITE(6,2270)
+2270          FORMAT(/' Fractional MU index will be included in phase sp
      *ace data.'/)
           END IF
       END IF
@@ -1097,26 +1111,26 @@
           SMAXIR=5.
       END IF
       smax = smaxir
-      WRITE(6,2270)
-2270  FORMAT(/ / ' Call hatch'/ ' ----------'/)
+      WRITE(6,2280)
+2280  FORMAT(/ / ' Call hatch'/ ' ----------'/)
       call hatch
       call show_transport_parameter(6)
       call show_transport_parameter(iout)
-      IF ((ECUTIN.GT.ECUT)) THEN
-          WRITE(6,2280)ECUT
-2280      FORMAT(/' ****WARNING****'/ ' ECUTIN > ECUT input in EGSnrc pa
-     *rameters ( ',F10.4,' MeV).'/ ' ECUT defaults to ECUTIN.'/)
+      IF ((ECUTIN .GT. ECUT + 1e-10)) THEN
+          WRITE(6,2290)ECUTIN,ECUT
+2290      FORMAT(/' WARNING'/ ' ECUTIN(=',F13.9,') > ECUT(=',F13.9,') in
+     *put in EGSnrc parameters'/ ' ECUT defaults to ECUTIN.'/)
           ECUT=ECUTIN
       ELSE
           ECUTIN=ECUT
       END IF
-      IF ((PCUTIN.GT.PCUT)) THEN
-          WRITE(6,2290)PCUT
-2290      FORMAT(/' ****WARNING****'/ ' PCUTIN > PCUT input in EGSnrc pa
-     *rameters ( ',F10.4,' MeV).'/ ' PCUT defaults to PCUTIN.'/)
+      IF ((PCUTIN .GT. PCUT + 1e-10)) THEN
+          WRITE(6,2300)PCUTIN,PCUT
+2300      FORMAT(/' WARNING'/ ' PCUTIN(=',F13.9,') > PCUT(=',F13.9,') in
+     *put in EGSnrc parameters'/ ' PCUT defaults to PCUTIN.'/)
           PCUT=PCUTIN
       ELSE
-          ECUTIN=ECUT
+          PCUTIN=PCUT
       END IF
       call srcinit(weight)
       IF ((isource.EQ.20)) THEN
@@ -1155,85 +1169,85 @@
       IF (( isource .EQ. 2 .OR. isource .EQ. 8 .OR. isource .EQ. 20)) TH
      *EN
           IF ((NRCYCL.GT.0)) THEN
-              WRITE(6,2300)NRCYCL
-2300          FORMAT(' Will recyle each phase space particle ',I4,' time
+              WRITE(6,2310)NRCYCL
+2310          FORMAT(' Will recyle each phase space particle ',I4,' time
      *s before going on '/ ' to next particle.')
           END IF
           IF (( ISMOOTH .EQ. 1)) THEN
-              WRITE(6,2310)
-2310          FORMAT(/' Will redistribute phase space particles if phase
+              WRITE(6,2320)
+2320          FORMAT(/' Will redistribute phase space particles if phase
      * space file'/ ' restarted and/or individual particles recycled')
           ELSE
-              WRITE(6,2320)
-2320          FORMAT(' Restarted phase space files and recycled particle
+              WRITE(6,2330)
+2330          FORMAT(' Restarted phase space files and recycled particle
      *s are not'/ ' redistributed')
           END IF
       END IF
       IF ((IRESTART .EQ. 0)) THEN
-          WRITE(6,2330)
-2330      FORMAT(/' Starting a new calculation')
-      ELSE IF((IRESTART .EQ. 1)) THEN
           WRITE(6,2340)
-2340      FORMAT(/' Restarting from a previous run')
-      ELSE IF((IRESTART .EQ. 2)) THEN
+2340      FORMAT(/' Starting a new calculation')
+      ELSE IF((IRESTART .EQ. 1)) THEN
           WRITE(6,2350)
-2350      FORMAT(/' Just create input file and exit')
-      ELSE IF((IRESTART .EQ. 3)) THEN
+2350      FORMAT(/' Restarting from a previous run')
+      ELSE IF((IRESTART .EQ. 2)) THEN
           WRITE(6,2360)
-2360      FORMAT(/' Read in stored data and analyse')
-      ELSE IF((IRESTART .EQ. 4)) THEN
+2360      FORMAT(/' Just create input file and exit')
+      ELSE IF((IRESTART .EQ. 3)) THEN
           WRITE(6,2370)
-2370      FORMAT(/' Recombining parallel runs')
+2370      FORMAT(/' Read in stored data and analyse')
+      ELSE IF((IRESTART .EQ. 4)) THEN
+          WRITE(6,2380)
+2380      FORMAT(/' Recombining parallel runs')
       ELSE
           IRESTART = 0
-          WRITE(6,2380)
-2380      FORMAT(/' IRESTART set to 0, start new caln')
+          WRITE(6,2390)
+2390      FORMAT(/' IRESTART set to 0, start new caln')
       END IF
       IF ((IDAT .EQ. 0)) THEN
-          WRITE(6,2390)
-2390      FORMAT(/' Store intermediate files for each batch')
-      ELSE IF((IDAT .EQ. 1)) THEN
           WRITE(6,2400)
-2400      FORMAT(/' Do not store intermediate files at all')
-      ELSE IF((IDAT .EQ. 2)) THEN
+2400      FORMAT(/' Store intermediate files for each batch')
+      ELSE IF((IDAT .EQ. 1)) THEN
           WRITE(6,2410)
-2410      FORMAT(/' Store data files at end of run only')
+2410      FORMAT(/' Do not store intermediate files at all')
+      ELSE IF((IDAT .EQ. 2)) THEN
+          WRITE(6,2420)
+2420      FORMAT(/' Store data files at end of run only')
       ELSE
           IDAT = 0
-          WRITE(6,2420)
-2420      FORMAT(/' Store intermediate files for each batch')
+          WRITE(6,2430)
+2430      FORMAT(/' Store intermediate files for each batch')
       END IF
       IF ((IPARALLEL.GT.1)) THEN
-          WRITE(6,2430)
-2430      FORMAT(/' Will output binary .pardose files.'/ '   With this s
+          WRITE(6,2440)
+2440      FORMAT(/' Will output binary .pardose files.'/ '   With this s
      *et, the egslst files do not contain dose listings either.')
       END IF
       IF ((IWATCH.EQ.4)) THEN
           ioutgeom=egs_open_file(ioutgeom,0,1,'.egsgeom')
-          write(ioutgeom,2440)1,'QUAD', xbound_min,ybound_min,zbound_min
+          write(ioutgeom,2450)1,'QUAD', xbound_min,ybound_min,zbound_min
      *    , xbound_min,ybound_max,zbound_min, xbound_max,ybound_max,zbou
      *    nd_min, xbound_max,ybound_min,zbound_min
-2440      format(' ',I1,A4,12(F7.2,','))
-          write(ioutgeom,2450)1,'QUAD', xbound_min,ybound_min,zbound_max
+2450      format(' ',I1,A4,12(F7.2,','))
+          write(ioutgeom,2460)1,'QUAD', xbound_min,ybound_min,zbound_max
      *    , xbound_min,ybound_max,zbound_max, xbound_max,ybound_max,zbou
      *    nd_max, xbound_max,ybound_min,zbound_max
-2450      format(' ',I1,A4,12(F7.2,','))
-          write(ioutgeom,2460)1,'QUAD', xbound_min,ybound_min,zbound_min
+2460      format(' ',I1,A4,12(F7.2,','))
+          write(ioutgeom,2470)1,'QUAD', xbound_min,ybound_min,zbound_min
      *    , xbound_min,ybound_min,zbound_max, xbound_min,ybound_max,zbou
      *    nd_max, xbound_min,ybound_max,zbound_min
-2460      format(' ',I1,A4,12(F7.2,','))
-          write(ioutgeom,2470)1,'QUAD', xbound_max,ybound_min,zbound_min
+2470      format(' ',I1,A4,12(F7.2,','))
+          write(ioutgeom,2480)1,'QUAD', xbound_max,ybound_min,zbound_min
      *    , xbound_max,ybound_min,zbound_max, xbound_max,ybound_max,zbou
      *    nd_max, xbound_max,ybound_max,zbound_min
-2470      format(' ',I1,A4,12(F7.2,','))
-          write(ioutgeom,2480)1,'QUAD', xbound_min,ybound_min,zbound_min
+2480      format(' ',I1,A4,12(F7.2,','))
+          write(ioutgeom,2490)1,'QUAD', xbound_min,ybound_min,zbound_min
      *    , xbound_min,ybound_min,zbound_max, xbound_max,ybound_min,zbou
      *    nd_max, xbound_max,ybound_min,zbound_min
-2480      format(' ',I1,A4,12(F7.2,','))
-          write(ioutgeom,2490)1,'QUAD', xbound_min,ybound_max,zbound_min
+2490      format(' ',I1,A4,12(F7.2,','))
+          write(ioutgeom,2500)1,'QUAD', xbound_min,ybound_max,zbound_min
      *    , xbound_min,ybound_max,zbound_max, xbound_max,ybound_max,zbou
      *    nd_max, xbound_max,ybound_max,zbound_min
-2490      format(' ',I1,A4,12(F7.2,','))
+2500      format(' ',I1,A4,12(F7.2,','))
           IF ((isource .EQ. 2 .OR. isource .EQ. 8)) THEN
               XMIN_YMIN_ZMIN = r_11(1)*(-BEAM_SIZE/2) + r_12(1)*(-BEAM_S
      *        IZE/2) + r_13(1)*(dsource+0.1) + xiso
@@ -1283,38 +1297,38 @@
      *        E/2) + r_23(1)*(dsource-0.1) + yiso
               ZMAX_XMAX_YMAX = r_31(1)*(BEAM_SIZE/2) + r_32(1)*(BEAM_SIZ
      *        E/2) + r_33(1)*(dsource-0.1) + ziso
-              write(ioutgeom,2500)3,'QUAD', XMIN_YMIN_ZMIN,YMIN_XMIN_ZMI
+              write(ioutgeom,2510)3,'QUAD', XMIN_YMIN_ZMIN,YMIN_XMIN_ZMI
      *        N,ZMIN_XMIN_YMIN, XMIN_YMAX_ZMIN,YMAX_XMIN_ZMIN,ZMIN_XMIN_
      *        YMAX, XMAX_YMAX_ZMIN,YMAX_XMAX_ZMIN,ZMIN_XMAX_YMAX, XMAX_Y
      *        MIN_ZMIN,YMIN_XMAX_ZMIN,ZMIN_XMAX_YMIN
-2500          format(' ',I1,A4,12(F7.2,','))
-              write(ioutgeom,2510)3,'QUAD', XMIN_YMIN_ZMAX,YMIN_XMIN_ZMA
+2510          format(' ',I1,A4,12(F7.2,','))
+              write(ioutgeom,2520)3,'QUAD', XMIN_YMIN_ZMAX,YMIN_XMIN_ZMA
      *        X,ZMAX_XMIN_YMIN, XMIN_YMAX_ZMAX,YMAX_XMIN_ZMAX,ZMAX_XMIN_
      *        YMAX, XMAX_YMAX_ZMAX,YMAX_XMAX_ZMAX,ZMAX_XMAX_YMAX, XMAX_Y
      *        MIN_ZMAX,YMIN_XMAX_ZMAX,ZMAX_XMAX_YMIN
-2510          format(' ',I1,A4,12(F7.2,','))
-              write(ioutgeom,2520)3,'QUAD', XMIN_YMIN_ZMIN,YMIN_XMIN_ZMI
+2520          format(' ',I1,A4,12(F7.2,','))
+              write(ioutgeom,2530)3,'QUAD', XMIN_YMIN_ZMIN,YMIN_XMIN_ZMI
      *        N,ZMIN_XMIN_YMIN, XMIN_YMIN_ZMAX,YMIN_XMIN_ZMAX,ZMAX_XMIN_
      *        YMIN, XMIN_YMAX_ZMAX,YMAX_XMIN_ZMAX,ZMAX_XMIN_YMAX, XMIN_Y
      *        MAX_ZMIN,YMAX_XMIN_ZMIN,ZMIN_XMIN_YMAX
-2520          format(' ',I1,A4,12(F7.2,','))
-              write(ioutgeom,2530)3,'QUAD', XMAX_YMIN_ZMIN,YMIN_XMAX_ZMI
+2530          format(' ',I1,A4,12(F7.2,','))
+              write(ioutgeom,2540)3,'QUAD', XMAX_YMIN_ZMIN,YMIN_XMAX_ZMI
      *        N,ZMIN_XMAX_YMIN, XMAX_YMIN_ZMAX,YMIN_XMAX_ZMAX,ZMAX_XMAX_
      *        YMIN, XMAX_YMAX_ZMAX,YMAX_XMAX_ZMAX,ZMAX_XMAX_YMAX, XMAX_Y
      *        MAX_ZMIN,YMAX_XMAX_ZMIN,ZMIN_XMAX_YMAX
-2530          format(' ',I1,A4,12(F7.2,','))
-              write(ioutgeom,2540)3,'QUAD', XMIN_YMIN_ZMIN,YMIN_XMIN_ZMI
+2540          format(' ',I1,A4,12(F7.2,','))
+              write(ioutgeom,2550)3,'QUAD', XMIN_YMIN_ZMIN,YMIN_XMIN_ZMI
      *        N,ZMIN_XMIN_YMIN, XMIN_YMIN_ZMAX,YMIN_XMIN_ZMAX,ZMAX_XMIN_
      *        YMIN, XMAX_YMIN_ZMAX,YMIN_XMAX_ZMAX,ZMAX_XMAX_YMIN, XMAX_Y
      *        MIN_ZMIN,YMIN_XMAX_ZMIN,ZMIN_XMAX_YMIN
-2540          format(' ',I1,A4,12(F7.2,','))
-              write(ioutgeom,2550)3,'QUAD', XMIN_YMAX_ZMIN,YMAX_XMIN_ZMI
+2550          format(' ',I1,A4,12(F7.2,','))
+              write(ioutgeom,2560)3,'QUAD', XMIN_YMAX_ZMIN,YMAX_XMIN_ZMI
      *        N,ZMIN_XMIN_YMAX, XMIN_YMAX_ZMAX,YMAX_XMIN_ZMAX,ZMAX_XMIN_
      *        YMAX, XMAX_YMAX_ZMAX,YMAX_XMAX_ZMAX,ZMAX_XMAX_YMAX, XMAX_Y
      *        MAX_ZMIN,YMAX_XMAX_ZMIN,ZMIN_XMAX_YMAX
-2550          format(' ',I1,A4,12(F7.2,','))
+2560          format(' ',I1,A4,12(F7.2,','))
               IF ((isource.EQ.8)) THEN
-                  DO 2561 I=2,numang
+                  DO 2571 I=2,numang
                       XMIN_YMIN_ZMIN = r_11(I)*(-BEAM_SIZE/2) + r_12(I)*
      *                (-BEAM_SIZE/2) + r_13(I)*(dsource+0.1) + xiso
                       YMIN_XMIN_ZMIN = r_21(I)*(-BEAM_SIZE/2) + r_22(I)*
@@ -1363,66 +1377,66 @@
      *                BEAM_SIZE/2) + r_23(I)*(dsource-0.1) + yiso
                       ZMAX_XMAX_YMAX = r_31(I)*(BEAM_SIZE/2) + r_32(I)*(
      *                BEAM_SIZE/2) + r_33(I)*(dsource-0.1) + ziso
-                      write(ioutgeom,2570)3,'QUAD', XMIN_YMIN_ZMIN,YMIN_
+                      write(ioutgeom,2580)3,'QUAD', XMIN_YMIN_ZMIN,YMIN_
      *                XMIN_ZMIN,ZMIN_XMIN_YMIN, XMIN_YMAX_ZMIN,YMAX_XMIN
      *                _ZMIN,ZMIN_XMIN_YMAX, XMAX_YMAX_ZMIN,YMAX_XMAX_ZMI
      *                N,ZMIN_XMAX_YMAX, XMAX_YMIN_ZMIN,YMIN_XMAX_ZMIN,ZM
      *                IN_XMAX_YMIN
-2570                  format(' ',I1,A4,12(F7.2,','))
-                      write(ioutgeom,2580)3,'QUAD', XMIN_YMIN_ZMAX,YMIN_
+2580                  format(' ',I1,A4,12(F7.2,','))
+                      write(ioutgeom,2590)3,'QUAD', XMIN_YMIN_ZMAX,YMIN_
      *                XMIN_ZMAX,ZMAX_XMIN_YMIN, XMIN_YMAX_ZMAX,YMAX_XMIN
      *                _ZMAX,ZMAX_XMIN_YMAX, XMAX_YMAX_ZMAX,YMAX_XMAX_ZMA
      *                X,ZMAX_XMAX_YMAX, XMAX_YMIN_ZMAX,YMIN_XMAX_ZMAX,ZM
      *                AX_XMAX_YMIN
-2580                  format(' ',I1,A4,12(F7.2,','))
-                      write(ioutgeom,2590)3,'QUAD', XMIN_YMIN_ZMIN,YMIN_
+2590                  format(' ',I1,A4,12(F7.2,','))
+                      write(ioutgeom,2600)3,'QUAD', XMIN_YMIN_ZMIN,YMIN_
      *                XMIN_ZMIN,ZMIN_XMIN_YMIN, XMIN_YMIN_ZMAX,YMIN_XMIN
      *                _ZMAX,ZMAX_XMIN_YMIN, XMIN_YMAX_ZMAX,YMAX_XMIN_ZMA
      *                X,ZMAX_XMIN_YMAX, XMIN_YMAX_ZMIN,YMAX_XMIN_ZMIN,ZM
      *                IN_XMIN_YMAX
-2590                  format(' ',I1,A4,12(F7.2,','))
-                      write(ioutgeom,2600)3,'QUAD', XMAX_YMIN_ZMIN,YMIN_
+2600                  format(' ',I1,A4,12(F7.2,','))
+                      write(ioutgeom,2610)3,'QUAD', XMAX_YMIN_ZMIN,YMIN_
      *                XMAX_ZMIN,ZMIN_XMAX_YMIN, XMAX_YMIN_ZMAX,YMIN_XMAX
      *                _ZMAX,ZMAX_XMAX_YMIN, XMAX_YMAX_ZMAX,YMAX_XMAX_ZMA
      *                X,ZMAX_XMAX_YMAX, XMAX_YMAX_ZMIN,YMAX_XMAX_ZMIN,ZM
      *                IN_XMAX_YMAX
-2600                  format(' ',I1,A4,12(F7.2,','))
-                      write(ioutgeom,2610)3,'QUAD', XMIN_YMIN_ZMIN,YMIN_
+2610                  format(' ',I1,A4,12(F7.2,','))
+                      write(ioutgeom,2620)3,'QUAD', XMIN_YMIN_ZMIN,YMIN_
      *                XMIN_ZMIN,ZMIN_XMIN_YMIN, XMIN_YMIN_ZMAX,YMIN_XMIN
      *                _ZMAX,ZMAX_XMIN_YMIN, XMAX_YMIN_ZMAX,YMIN_XMAX_ZMA
      *                X,ZMAX_XMAX_YMIN, XMAX_YMIN_ZMIN,YMIN_XMAX_ZMIN,ZM
      *                IN_XMAX_YMIN
-2610                  format(' ',I1,A4,12(F7.2,','))
-                      write(ioutgeom,2620)3,'QUAD', XMIN_YMAX_ZMIN,YMAX_
+2620                  format(' ',I1,A4,12(F7.2,','))
+                      write(ioutgeom,2630)3,'QUAD', XMIN_YMAX_ZMIN,YMAX_
      *                XMIN_ZMIN,ZMIN_XMIN_YMAX, XMIN_YMAX_ZMAX,YMAX_XMIN
      *                _ZMAX,ZMAX_XMIN_YMAX, XMAX_YMAX_ZMAX,YMAX_XMAX_ZMA
      *                X,ZMAX_XMAX_YMAX, XMAX_YMAX_ZMIN,YMAX_XMAX_ZMIN,ZM
      *                IN_XMAX_YMAX
-2620                  format(' ',I1,A4,12(F7.2,','))
-2561              CONTINUE
-2562              CONTINUE
+2630                  format(' ',I1,A4,12(F7.2,','))
+2571              CONTINUE
+2572              CONTINUE
               END IF
               IF ((isource.EQ.20 .OR. isource.EQ.21)) THEN
-                  WRITE(6,2630)17
-2630              FORMAT(/' Not displaying all 10000 source planes'/)
+                  WRITE(6,2640)17
+2640              FORMAT(/' Not displaying all 10000 source planes'/)
               END IF
           END IF
       END IF
       call srcout
       IF((howfarless))call modify_tmxs(MIN(mindelX,mindelY,mindelZ))
-      WRITE(6,2640)
-      WRITE(1,2640)
-2640  FORMAT(/' Medium',t24,'AE',t34,'AP')
-      DO 2651 n=1,NMED
-          WRITE(6,2660)(media(j,n),j=1,15),ae(n),ap(n)
-          WRITE(1,2660)(media(j,n),j=1,15),ae(n),ap(n)
-2660      FORMAT(1x,15a1,2f10.3)
-2651  CONTINUE
-2652  CONTINUE
-      DO 2671 irl=1,irmax
+      WRITE(6,2650)
+      WRITE(1,2650)
+2650  FORMAT(/' Medium',t24,'AE',t34,'AP')
+      DO 2661 n=1,NMED
+          WRITE(6,2670)(media(j,n),j=1,15),ae(n),ap(n)
+          WRITE(1,2670)(media(j,n),j=1,15),ae(n),ap(n)
+2670      FORMAT(1x,15a1,2f10.3)
+2661  CONTINUE
+2662  CONTINUE
+      DO 2681 irl=1,irmax
           endep_last(irl)=0
-2671  CONTINUE
-2672  CONTINUE
+2681  CONTINUE
+2682  CONTINUE
       IHSTRY=0
       IF ((IRESTART .EQ. 0)) THEN
           nnread = 0
@@ -1458,24 +1472,24 @@
                   call exit(1)
               END IF
           END IF
-          DO 2681 irl=1,irmax
+          DO 2691 irl=1,irmax
               endep(irl)=0.0
               endep2(irl)=0.0
               endep_tmp(irl)=0.0
-2681      CONTINUE
-2682      CONTINUE
+2691      CONTINUE
+2692      CONTINUE
           tcpuold=0.
       ELSE IF((IRESTART .EQ. 1)) THEN
-          WRITE(6,2690)
-2690      FORMAT(/' *** About to read dose data from previous run ***')
+          WRITE(6,2700)
+2700      FORMAT(/' *** About to read dose data from previous run ***')
           i_par_temp=i_parallel
           IF((IPARALLEL.GT.0 .AND. n_parallel.EQ.0))i_parallel=0
           iorstrt=egs_open_datfile(iorstrt,0,1,'.egsdat')
           i_parallel=i_par_temp
-          DO 2701 irl=1,irmax
+          DO 2711 irl=1,irmax
               READ(iorstrt,*)endep(irl),endep2(irl)
-2701      CONTINUE
-2702      CONTINUE
+2711      CONTINUE
+2712      CONTINUE
           READ(iorstrt,*) ncaseold,nnread,nsmiss,nmissm,nnphsp,NofREPEAT
      *    ,tcpuold,esrc, planarefe,planarefp,planarfe,planarfp,nestep,ns
      *    rjct,nsoutside,ndbsrjct, nhist,nsblocked
@@ -1483,38 +1497,38 @@
      *    , rng_array
           twom24 = 1./16777216.
           CLOSE(iorstrt)
-          WRITE(6,2710)ncaseold
-          WRITE(1,2710)ncaseold
-2710      FORMAT(/' Histories finshed in previous run',i12)
+          WRITE(6,2720)ncaseold
+          WRITE(1,2720)ncaseold
+2720      FORMAT(/' Histories finshed in previous run',i12)
           IF ((isource.EQ.2 .OR. isource.EQ.8 .OR. isource.EQ.9)) THEN
-              WRITE(6,2720)nhist
-              WRITE(1,2720)nhist
-2720          FORMAT(/' Equivalent no. of primary histories',i12)
+              WRITE(6,2730)nhist
+              WRITE(1,2730)nhist
+2730          FORMAT(/' Equivalent no. of primary histories',i12)
           END IF
-          WRITE(6,2730)tcpuold/3600.
-          WRITE(1,2730)tcpuold/3600.
-2730      FORMAT(/' Total previou CPU time (hour)    ',f10.3)
-          WRITE(6,2740)
-          WRITE(1,2740)
-2740      FORMAT(/' Random number seeds for restart  ',$)
+          WRITE(6,2740)tcpuold/3600.
+          WRITE(1,2740)tcpuold/3600.
+2740      FORMAT(/' Total previou CPU time (hour)    ',f10.3)
+          WRITE(6,2750)
+          WRITE(1,2750)
+2750      FORMAT(/' Random number seeds for restart  ',$)
           write(6,'(a,2i4,$)') ' ixx jxx = ',ixx,jxx
           write(1,'(a,2i4,$)') ' ixx jxx = ',ixx,jxx
-          WRITE(6,2750)
-2750      FORMAT(/' ***Successfully read previous dose data file ***')
+          WRITE(6,2760)
+2760      FORMAT(/' ***Successfully read previous dose data file ***')
       ELSE IF((IRESTART .EQ. 2)) THEN
-          GO TO 2760
+          GO TO 2770
       ELSE IF((IRESTART .EQ. 3)) THEN
           NCASE=0
-          WRITE(6,2770)
-2770      FORMAT(/' *** About to read dose data from previous run ***')
+          WRITE(6,2780)
+2780      FORMAT(/' *** About to read dose data from previous run ***')
           i_par_temp=i_parallel
           IF((IPARALLEL.GT.0 .AND. n_parallel.EQ.0))i_parallel=0
           iorstrt=egs_open_datfile(iorstrt,0,1,'.egsdat')
           i_parallel=i_par_temp
-          DO 2781 irl=1,irmax
+          DO 2791 irl=1,irmax
               READ(iorstrt,*)endep(irl),endep2(irl)
-2781      CONTINUE
-2782      CONTINUE
+2791      CONTINUE
+2792      CONTINUE
           READ(iorstrt,*) ncaseold,nnread,nsmiss,nmissm,nnphsp,NofREPEAT
      *    ,tcpuold,esrc, planarefe,planarefp,planarfe,planarfp,nestep,ns
      *    rjct,nsoutside,ndbsrjct, nhist,nsblocked
@@ -1522,24 +1536,24 @@
      *    , rng_array
           twom24 = 1./16777216.
           CLOSE(iorstrt)
-          WRITE(6,2790)ncaseold
-          WRITE(1,2790)ncaseold
-2790      FORMAT(/' Histories finished in previous run',i12)
-          WRITE(6,2800)tcpuold/3600.
-          WRITE(1,2800)tcpuold/3600.
-2800      FORMAT(/' Total CPU time (hour) by then    ',f10.3)
+          WRITE(6,2800)ncaseold
+          WRITE(1,2800)ncaseold
+2800      FORMAT(/' Histories finished in previous run',i12)
+          WRITE(6,2810)tcpuold/3600.
+          WRITE(1,2810)tcpuold/3600.
+2810      FORMAT(/' Total CPU time (hour) by then    ',f10.3)
           timcpu=0
           NCASE=0
-          WRITE(6,2810)
-2810      FORMAT(/' ***Successfully read previous dose data file ***')
-          GO TO 2820
+          WRITE(6,2820)
+2820      FORMAT(/' ***Successfully read previous dose data file ***')
+          GO TO 2830
       ELSE IF((IRESTART.EQ.4)) THEN
           call egs_combine_runs(combine_results,'.pardose')
           ainflu=temp2
           IF(((isource .EQ. 0 .OR. isource .EQ. 1 .OR. isource .EQ. 3 .O
      *    R. isource .EQ. 7) .AND. beamarea.GT.0.))ainflu=ainflu/beamare
      *    a
-          goto 2830
+          goto 2840
       END IF
       IF ((i_phsp_out.NE.0)) THEN
           phsp_out_fn=egs_home(:lnblnk1(egs_home))//user_code(:lnblnk1(u
@@ -1622,20 +1636,20 @@
           END IF
       END IF
       IF ((IREJECT .EQ. 1)) THEN
-          WRITE(6,2840)ESAVE_GLOBAL
-          WRITE(1,2840)ESAVE_GLOBAL
-2840      FORMAT(/' Will perform charged-particle range rejection agains
+          WRITE(6,2850)ESAVE_GLOBAL
+          WRITE(1,2850)ESAVE_GLOBAL
+2850      FORMAT(/' Will perform charged-particle range rejection agains
      *t voxel boundaries'/ ' if particle energy is below ',F12.5,' MeV.'
      *)
           IF ((ESAVE_GLOBAL .LE. ECUTIN)) THEN
-              WRITE(6,2850)
-              WRITE(1,2850)
-2850          FORMAT(///' ******  NB ESAVE_GLOBAL <= ECUT  so NO Range R
+              WRITE(6,2860)
+              WRITE(1,2860)
+2860          FORMAT(///' ******  NB ESAVE_GLOBAL <= ECUT  so NO Range R
      *ejection', ' ***' //)
               IREJECT=0
           ELSE
               lelec=-1
-              DO 2861 MEDIUM=1,NMED
+              DO 2871 MEDIUM=1,NMED
                   IF ((ECUTIN .EQ. AE(MEDIUM))) THEN
                       RANGE_ECUTRR(MEDIUM)=0.0
                   ELSE
@@ -1664,18 +1678,18 @@
                       RANGE_ECUTRR(MEDIUM)=RANGE_ECUTRR(MEDIUM)+range_ep
      *                (0,LELKE,MEDIUM)
                   END IF
-2861          CONTINUE
-2862          CONTINUE
+2871          CONTINUE
+2872          CONTINUE
           END IF
       ELSE
           IREJECT=0
-          WRITE(6,2870)
-          WRITE(1,2870)
-2870      FORMAT(/' No range rejection.')
+          WRITE(6,2880)
+          WRITE(1,2880)
+2880      FORMAT(/' No range rejection.')
           IF ((ESAVE_GLOBAL .GT. ECUTIN)) THEN
-              WRITE(6,2880)
-              WRITE(1,2880)
-2880          FORMAT(T10,' Why is ESAVE_GLOBAL set when there is no rang
+              WRITE(6,2890)
+              WRITE(1,2890)
+2890          FORMAT(T10,' Why is ESAVE_GLOBAL set when there is no rang
      *e rejection?', /T15,'It is set to zero'/)
               ESAVE_GLOBAL = 0.0
           END IF
@@ -1684,33 +1698,33 @@
           iausfl(8) = 1
           iausfl(14) = 1
           iausfl(15) = 1
-          WRITE(6,2890)n_split
-          WRITE(1,2890)n_split
-2890      FORMAT(/' Photons will be split ',I4,' times'/)
+          WRITE(6,2900)n_split
+          WRITE(1,2900)n_split
+2900      FORMAT(/' Photons will be split ',I4,' times'/)
       END IF
-      WRITE(6,2900)
-      WRITE(1,2900)
-2900  FORMAT(//' *******************************************************
+      WRITE(6,2910)
+      WRITE(1,2910)
+2910  FORMAT(//' *******************************************************
      *********')
       IF ((isource.EQ.20)) THEN
-          WRITE(6,2910)NCASE
-          WRITE(1,2910)NCASE
-2910      FORMAT(/ '  Histories to be simulated into the phantom for thi
+          WRITE(6,2920)NCASE
+          WRITE(1,2920)NCASE
+2920      FORMAT(/ '  Histories to be simulated into the phantom for thi
      *s run ',i12)
-          WRITE(6,2920)compensated_NCASE
-          WRITE(1,2920)compensated_NCASE
-2920      FORMAT( / '  Predicted histories required ',i12)
+          WRITE(6,2930)compensated_NCASE
+          WRITE(1,2930)compensated_NCASE
+2930      FORMAT( / '  Predicted histories required ',i12)
       ELSE
-          WRITE(6,2930)NCASE
-          WRITE(1,2930)NCASE
-2930      FORMAT(/ '  Histories to be simulated for this run ',i12)
-          WRITE(6,2940)ncaseold+NCASE
-          WRITE(1,2940)ncaseold+NCASE
-2940      FORMAT(/ '  Histories to be analyzed after this run',i12)
+          WRITE(6,2940)NCASE
+          WRITE(1,2940)NCASE
+2940      FORMAT(/ '  Histories to be simulated for this run ',i12)
+          WRITE(6,2950)ncaseold+NCASE
+          WRITE(1,2950)ncaseold+NCASE
+2950      FORMAT(/ '  Histories to be analyzed after this run',i12)
       END IF
-      WRITE(6,2950)
-      WRITE(1,2950)
-2950  FORMAT(/ ' *******************************************************
+      WRITE(6,2960)
+      WRITE(1,2960)
+2960  FORMAT(/ ' *******************************************************
      *********')
       IF ((IDAT.EQ.0 .OR. IDAT.EQ.2)) THEN
           i_par_temp=i_parallel
@@ -1722,15 +1736,15 @@
           call watch(-99,IWATCH)
       END IF
       TIMEB = egs_tot_time(0)
-      WRITE(6,2960)TIMEB
-      WRITE(1,2960)TIMEB
-2960  FORMAT('   Elapsed wall clock time to this point=',f12.3,' s'/)
+      WRITE(6,2970)TIMEB
+      WRITE(1,2970)TIMEB
+2970  FORMAT('   Elapsed wall clock time to this point=',f12.3,' s'/)
       tdum = egs_tot_time(1)
       ETIMETOT=0
       cput1=egs_etime()
-      WRITE(6,2970)cput1 - cput0
-      WRITE(1,2970)cput1 - cput0
-2970  FORMAT(/'   CPU time so far for this run =',f12.3,' s'/)
+      WRITE(6,2980)cput1 - cput0
+      WRITE(1,2980)cput1 - cput0
+2980  FORMAT(/'   CPU time so far for this run =',f12.3,' s'/)
       NETADJ=0
       CYCLNUM=0
       nhist_last=0
@@ -1740,7 +1754,7 @@
       is_finished = .false.
       part_dose=0
       part2_dose=0
-2980  CONTINUE
+2990  CONTINUE
       IF ((isource .EQ. 20 .OR. isource .EQ. 21)) THEN
           more_in_cont=0
           frMU_indx=-1.0
@@ -1751,7 +1765,7 @@
           IF (( n_run .EQ. 0 )) THEN
               write(6,'(//a,a//)') '****** No histories left in job cont
      *rol file', '       => end simulation'
-              goto 2820
+              goto 2830
           END IF
           jcase = n_run/10
           IF (( jcase .LT. 1 )) THEN
@@ -1805,42 +1819,42 @@
           END IF
       END IF
 #endif
-      DO 2991 ibatch=1,10
+      DO 3001 ibatch=1,10
           IF ((ibatch .EQ. 1)) THEN
               CALL DATETIME(1)
-              WRITE(6,3000)TIMEN
-              WRITE(1,3000)TIMEN
-3000          FORMAT(/' BATCH #',2X,'TIME-ELAPSED',2X,'TOTAL CPUTIME',2X
+              WRITE(6,3010)TIMEN
+              WRITE(1,3010)TIMEN
+3010          FORMAT(/' BATCH #',2X,'TIME-ELAPSED',2X,'TOTAL CPUTIME',2X
      *,'RATIO',2X, 'TIME OF DAY',2X,'RNG pointers'// ' ',4X,'1',10X,'0.0
      *',12X,'0.0',6X,'0.00',4X,A,'  ',$)
               write(6,'(a,2i4,$)') ' ixx jxx = ',ixx,jxx
               write(1,'(a,2i4,$)') ' ixx jxx = ',ixx,jxx
-              WRITE(6,3010)
-              WRITE(1,3010)
-3010          FORMAT(' ')
+              WRITE(6,3020)
+              WRITE(1,3020)
+3020          FORMAT(' ')
           ELSE
               TIMEB = egs_tot_time(0)
               ETIMETOT=ETIMETOT+TIMEB
               CPUT2=egs_etime()
               CALL DATETIME(1)
               TIMCPU=CPUT2-CPUT1
-              WRITE(6,3020)IBATCH,ETIMETOT,TIMCPU,ETIMETOT/TIMCPU,TIMEN
-              WRITE(1,3020)IBATCH,ETIMETOT,TIMCPU,ETIMETOT/TIMCPU,TIMEN
-3020          FORMAT(4X,I2,5X,F8.1,7X,F8.1,2X,F8.2,4X,A,'  ',$)
+              WRITE(6,3030)IBATCH,ETIMETOT,TIMCPU,ETIMETOT/TIMCPU,TIMEN
+              WRITE(1,3030)IBATCH,ETIMETOT,TIMCPU,ETIMETOT/TIMCPU,TIMEN
+3030          FORMAT(4X,I2,5X,F8.1,7X,F8.1,2X,F8.2,4X,A,'  ',$)
               write(6,'(a,2i4,$)') ' ixx jxx = ',ixx,jxx
               write(1,'(a,2i4,$)') ' ixx jxx = ',ixx,jxx
-              WRITE(6,3030)
-              WRITE(1,3030)
-3030          FORMAT(' ')
+              WRITE(6,3040)
+              WRITE(1,3040)
+3040          FORMAT(' ')
               BATCHT=TIMCPU/FLOAT(IBATCH-1)
               IF ((TIMCPU+1.1*BATCHT .GT. TIMMAX*3600.)) THEN
-                  WRITE(6,3040)
-                  WRITE(1,3040)
-3040              FORMAT(' Not enough time for another batch within time
+                  WRITE(6,3050)
+                  WRITE(1,3050)
+3050              FORMAT(' Not enough time for another batch within time
      * limit')
               END IF
           END IF
-          DO 3051 ihist=1,jcase
+          DO 3061 ihist=1,jcase
               nhist_old=nhist
               IHSTRY=IHSTRY+1
               IF ((isource.EQ.21 .AND. more_in_cont.EQ.0)) THEN
@@ -1868,14 +1882,14 @@
                   END IF
               ELSE IF((enflag .EQ. 4)) THEN
               ELSE IF((enflag .GT. 5 )) THEN
-                  WRITE(6,3060)enflag
-3060              FORMAT(' Wrong enflag:',I10)
+                  WRITE(6,3070)enflag
+3070              FORMAT(' Wrong enflag:',I10)
                   STOP
               END IF
               IF ((IWATCH .GT. 0)) THEN
-                  WRITE(6,3070) 1,etotin,iqin,irin,xin,yin,zin,uin,vin,w
+                  WRITE(6,3080) 1,etotin,iqin,irin,xin,yin,zin,uin,vin,w
      *            in,latchi,weight
-3070              FORMAT(/' Initial shower values', t36,':',i3,f9.3,2i4,
+3080              FORMAT(/' Initial shower values', t36,':',i3,f9.3,2i4,
      *3f8.3,3f7.3,i10,1pe10.3)
               END IF
               IF ((xin*xin+yin*yin.LT.0.31831)) THEN
@@ -1898,10 +1912,10 @@
               IF ((nhist.NE.nhist_old)) THEN
                   nhist_last=nhist_last+1
                   IF ((nhist_last.EQ.32700)) THEN
-                      DO 3081 irl=1,irmax-1
+                      DO 3091 irl=1,irmax-1
                           endep_last(irl)=0
-3081                  CONTINUE
-3082                  CONTINUE
+3091                  CONTINUE
+3092                  CONTINUE
                       nhist_last=1
                   END IF
               END IF
@@ -1913,14 +1927,14 @@
               ELSE
                   n_repeat = 1
               END IF
-              DO 3091 i_repeat=1,n_repeat
+              DO 3101 i_repeat=1,n_repeat
                   call shower(iqin,etotin,xin,yin,zin,uin,vin,win,irin,w
      *            eight/n_repeat)
-3091          CONTINUE
-3092          CONTINUE
+3101          CONTINUE
+3102          CONTINUE
               IF((IWATCH .NE. 0))call watch(-1,IWATCH)
-3051      CONTINUE
-3052      CONTINUE
+3061      CONTINUE
+3062      CONTINUE
           cput2=egs_etime()
           timcpu=cput2-cput1
           IF ((i_phsp_out.GT.0)) THEN
@@ -1954,13 +1968,13 @@
           IF ((IDAT .EQ. 0 .OR. (IDAT .EQ. 2 .AND. ibatch .EQ. 10) )) TH
      *    EN
               rewind(iorstrt)
-              DO 3101 irl=1,irmax
+              DO 3111 irl=1,irmax
                   endep(irl)=endep(irl)+endep_tmp(irl)
                   endep2(irl)=endep2(irl)+endep_tmp(irl)*endep_tmp(irl)
                   endep_tmp(irl)=0.
                   WRITE(iorstrt,*)endep(irl),endep2(irl)
-3101          CONTINUE
-3102          CONTINUE
+3111          CONTINUE
+3112          CONTINUE
               WRITE(iorstrt,*) IHSTRY+ncaseold, nnread, nsmiss, nmissm,
      *        nnphsp, NofREPEAT, tcpuold+timcpu, esrc, planarefe, planar
      *        efp, planarfe, planarfp, nestep, nsrjct,nsoutside,ndbsrjct
@@ -1968,11 +1982,11 @@
               write(iorstrt,*) urndm,crndm,cdrndm, cmrndm, ixx, jxx, rng
      *        _seed, rng_array
           END IF
-2991  CONTINUE
-2992  CONTINUE
+3001  CONTINUE
+3002  CONTINUE
 #ifdef HAVE_C_COMPILER
       IF (( n_parallel .GT. 0 )) THEN
-          goto 2980
+          goto 2990
       END IF
 #endif
       IF((IDAT.EQ.0 .OR. IDAT.EQ.2))close(iorstrt)
@@ -1987,36 +2001,36 @@
      *        _out
           END IF
       END IF
-2820  CONTINUE
+2830  CONTINUE
       IF ((IRESTART .NE. 3)) THEN
-          WRITE(6,3110)timcpu,timcpu/3600.,dble(IHSTRY)/(timcpu/3600.)
-          WRITE(1,3110)timcpu,timcpu/3600.,dble(IHSTRY)/(timcpu/3600.)
-3110      FORMAT(/' Total CPU time for run =',f8.1,' s =',f8.3,' hr =>',
+          WRITE(6,3120)timcpu,timcpu/3600.,dble(IHSTRY)/(timcpu/3600.)
+          WRITE(1,3120)timcpu,timcpu/3600.,dble(IHSTRY)/(timcpu/3600.)
+3120      FORMAT(/' Total CPU time for run =',f8.1,' s =',f8.3,' hr =>',
      *F12.0,' hist/hr'/T3,' On  ','linux (linux_home)',' ')
       END IF
       IF ((IRESTART .EQ. 1)) THEN
-          WRITE(6,3120)timcpu+tcpuold,(timcpu+tcpuold)/3600.,dble(IHSTRY
+          WRITE(6,3130)timcpu+tcpuold,(timcpu+tcpuold)/3600.,dble(IHSTRY
      *    +ncaseold) /((timcpu+tcpuold)/3600.)
-          WRITE(1,3120)timcpu+tcpuold,(timcpu+tcpuold)/3600.,dble(IHSTRY
+          WRITE(1,3130)timcpu+tcpuold,(timcpu+tcpuold)/3600.,dble(IHSTRY
      *    +ncaseold) /((timcpu+tcpuold)/3600.)
-3120      FORMAT(/' CPU time for this+previous run =',f8.1,' s =',f8.3,'
+3130      FORMAT(/' CPU time for this+previous run =',f8.1,' s =',f8.3,'
      * hr =>', F12.0,' hist/hr'/T3,' On  ','linux (linux_home)',' ')
       ELSE IF((IRESTART .EQ. 3)) THEN
-          WRITE(6,3130)timcpu+tcpuold,(timcpu+tcpuold)/3600.,float(ncase
+          WRITE(6,3140)timcpu+tcpuold,(timcpu+tcpuold)/3600.,float(ncase
      *    old) /((timcpu+tcpuold)/3600.)
-          WRITE(1,3130)timcpu+tcpuold,(timcpu+tcpuold)/3600.,float(ncase
+          WRITE(1,3140)timcpu+tcpuold,(timcpu+tcpuold)/3600.,float(ncase
      *    old) /((timcpu+tcpuold)/3600.)
-3130      FORMAT(/' Total CPU time for old run =',f8.1,' s =',f8.3,' hr=
+3140      FORMAT(/' Total CPU time for old run =',f8.1,' s =',f8.3,' hr=
      *>', F12.0,' hist/hr'/T3,' On  ','linux (linux_home)',' ')
       END IF
       IF ((isource .EQ. 2 .OR. isource .EQ. 8 )) THEN
-          WRITE(6,3140)nnread,nhist,nsrjct,nsoutside,ndbsrjct,nsmiss, fl
+          WRITE(6,3150)nnread,nhist,nsrjct,nsoutside,ndbsrjct,nsmiss, fl
      *    oat((NRCYCL+1)*(nnread-nsrjct-nsoutside-ndbsrjct)-nsmiss)/floa
      *    t(nnread), NRCYCL,IHSTRY+ncaseold,OUTCNT
-          WRITE(1,3140)nnread,nhist,nsrjct,nsoutside,ndbsrjct,nsmiss, fl
+          WRITE(1,3150)nnread,nhist,nsrjct,nsoutside,ndbsrjct,nsmiss, fl
      *    oat((NRCYCL+1)*(nnread-nsrjct-nsoutside-ndbsrjct)-nsmiss)/floa
      *    t(nnread), NRCYCL,IHSTRY+ncaseold,OUTCNT
-3140      FORMAT(/'  ***************************************************
+3150      FORMAT(/'  ***************************************************
      ******************'/ /' # of particles read from ph-sp file (N_read
      *)                   =',i12/ ' # of primary (non ph-sp) histories r
      *ead from ph-sp file        =',i12/ ' # of particles discarded duet
@@ -2032,11 +2046,11 @@
      *       =',i12/ /'  ***********************************************
      **********************')
       ELSE IF((isource.EQ.9 .OR. isource .EQ.10)) THEN
-          WRITE(6,3150)nnread,nhist,nsrjct,nsoutside,ndbsrjct,nsmiss,IHS
+          WRITE(6,3160)nnread,nhist,nsrjct,nsoutside,ndbsrjct,nsmiss,IHS
      *    TRY+ncaseold, dble(IHSTRY+ncaseold)/float(nnread)
-          WRITE(1,3150)nnread,nhist,nsrjct,nsoutside,ndbsrjct,nsmiss,IHS
+          WRITE(1,3160)nnread,nhist,nsrjct,nsoutside,ndbsrjct,nsmiss,IHS
      *    TRY+ncaseold, dble(IHSTRY+ncaseold)/float(nnread)
-3150      FORMAT(/'  ***************************************************
+3160      FORMAT(/'  ***************************************************
      ******************'// ' # of particles read from BEAM simulation (N
      *_read)              =',i12/ ' # of primary particles incident in B
      *EAM simulation             =',i12/ ' # of particles discarded duet
@@ -2048,13 +2062,13 @@
      *2/ '                        N_used/N_read       =',f12.3/ /'  ****
      *****************************************************************')
       ELSE IF((isource.EQ.20)) THEN
-          WRITE(6,3160)NCASE,survival_ratio,compensated_NCASE,nnread,nsr
+          WRITE(6,3170)NCASE,survival_ratio,compensated_NCASE,nnread,nsr
      *    jct,nsoutside, ndbsrjct, nsmiss, nsblocked,IHSTRY+ncaseold, db
      *    le(IHSTRY+ncaseold)/(float(nnread)*(NRCYCL+1)),OUTCNT
-          WRITE(1,3160)NCASE,survival_ratio,compensated_NCASE,nnread,nsr
+          WRITE(1,3170)NCASE,survival_ratio,compensated_NCASE,nnread,nsr
      *    jct,nsoutside, ndbsrjct, nsmiss, nsblocked,IHSTRY+ncaseold, db
      *    le(IHSTRY+ncaseold)/(float(nnread)*(NRCYCL+1)),OUTCNT
-3160      FORMAT(/'  ***************************************************
+3170      FORMAT(/'  ***************************************************
      ******************'// ' # of particles originally requested (NCASE)
      *                    =',i12/ '   predicted survival ratio (based on
      * shared library blockage)  =',f12.3/ ' # calculated number to read
@@ -2071,11 +2085,11 @@
      *                =',i12/ /'  **************************************
      *******************************')
       ELSE IF((isource.EQ.21)) THEN
-          WRITE(6,3170)nnread,nhist,nsrjct,nsoutside,ndbsrjct,nsmiss,nsb
+          WRITE(6,3180)nnread,nhist,nsrjct,nsoutside,ndbsrjct,nsmiss,nsb
      *    locked, IHSTRY+ncaseold,dble(IHSTRY+ncaseold)/float(nnread)
-          WRITE(1,3170)nnread,nhist,nsrjct,nsoutside,ndbsrjct,nsmiss,nsb
+          WRITE(1,3180)nnread,nhist,nsrjct,nsoutside,ndbsrjct,nsmiss,nsb
      *    locked, IHSTRY+ncaseold,dble(IHSTRY+ncaseold)/float(nnread)
-3170      FORMAT(/'  ***************************************************
+3180      FORMAT(/'  ***************************************************
      ******************'// ' # of particles read from BEAM simulation (N
      *_read)              =',i12/ ' # of primary particles incident in B
      *EAM simulation             =',i12/ ' # of particles discarded duet
@@ -2089,34 +2103,34 @@
      *******************************************************************
      ***')
       ELSE IF((isource .EQ. 1)) THEN
-          WRITE(6,3180)nmissm
-          WRITE(1,3180)nmissm
-3180      FORMAT(/'  ***************************************************
+          WRITE(6,3190)nmissm
+          WRITE(1,3190)nmissm
+3190      FORMAT(/'  ***************************************************
      ******************'/ /'  # of particles which missed the phantom wi
      *th source 1       =',i12/ /'  ************************************
      *********************************')
       ELSE IF((isource .EQ.4 )) THEN
       END IF
       etot=0.
-      DO 3191 irl=1,irmax-1
+      DO 3201 irl=1,irmax-1
           etot=etot+endep(irl)
-3191  CONTINUE
-3192  CONTINUE
+3201  CONTINUE
+3202  CONTINUE
       IF ((enflag .EQ. 0)) THEN
-          WRITE(6,3200)etot/(dble(IHSTRY+ncaseold)*ein)
-          WRITE(1,3200)etot/(dble(IHSTRY+ncaseold)*ein)
-3200      FORMAT(/' Fraction of incident energy deposited in the phantom
+          WRITE(6,3210)etot/(dble(IHSTRY+ncaseold)*ein)
+          WRITE(1,3210)etot/(dble(IHSTRY+ncaseold)*ein)
+3210      FORMAT(/' Fraction of incident energy deposited in the phantom
      * =',f12.4/)
       ELSE IF(((enflag.EQ.1).OR.(enflag.EQ.2).OR.(enflag.EQ.3).OR.(enfla
      *g.EQ.4))) THEN
-          WRITE(6,3210)etot/esrc
-          WRITE(1,3210)etot/esrc
-3210      FORMAT(/' Fraction of incident energy deposited in the phantom
+          WRITE(6,3220)etot/esrc
+          WRITE(1,3220)etot/esrc
+3220      FORMAT(/' Fraction of incident energy deposited in the phantom
      * =',f12.4/)
           IF (((enflag .GT. 1))) THEN
-              WRITE(6,3220)endep(irl)/esrc
-              WRITE(1,3220)endep(irl)/esrc
-3220          FORMAT(/' Fraction of incident energy deposited in the reg
+              WRITE(6,3230)endep(irl)/esrc
+              WRITE(1,3230)endep(irl)/esrc
+3230          FORMAT(/' Fraction of incident energy deposited in the reg
      *ion surrounding'/ ' the phantom when incident particles go through
      * it   =',f12.4/)
           END IF
@@ -2146,39 +2160,39 @@
           ainflu = dble((NRCYCL+1)*(nnread))/dble(nshist)*NINCSRC
           temp2=ainflu
       END IF
-      WRITE(6,3230)nestep,dble(nestep)/ainflu,count_pII_steps/dble(neste
+      WRITE(6,3240)nestep,dble(nestep)/ainflu,count_pII_steps/dble(neste
      *p)
-      WRITE(1,3230)nestep,dble(nestep)/ainflu,count_pII_steps/dble(neste
+      WRITE(1,3240)nestep,dble(nestep)/ainflu,count_pII_steps/dble(neste
      *p)
-3230  FORMAT(/' Number of charged particle steps simulated,   N_step   =
+3240  FORMAT(/' Number of charged particle steps simulated,   N_step   =
      *',I15/ ' Number of charged particle steps/incident fluence      ='
      *,1PE15.5/ ' No. of PRESTA-II steps/total no. of charged particle s
      *teps =',0PF15.5/)
       IF ((dose_stat.EQ.1)) THEN
-          WRITE(6,3240)
-          WRITE(1,3240)
-3240      FORMAT(//' ***WARNING***'/ ' Could not read no. of primary (no
+          WRITE(6,3250)
+          WRITE(1,3250)
+3250      FORMAT(//' ***WARNING***'/ ' Could not read no. of primary (no
      *n-phsp) histories from ph-sp file.'/ ' Dose analyzed assuming each
      * particle read from the ph-sp'/ ' file is an independent history. 
      *May result in an underestimate'/ ' of the uncertainty.'//)
       ELSE IF((OUTCNT.GT.0)) THEN
-          WRITE(6,3250)
-          WRITE(1,3250)
-3250      FORMAT(//' ***WARNING***'/ ' The ph-sp source was restarted at
+          WRITE(6,3260)
+          WRITE(1,3260)
+3260      FORMAT(//' ***WARNING***'/ ' The ph-sp source was restarted at
      * least once.  This may lead'/ ' to an underestimate of uncertainty
      *, especially if restarted'/ ' many times.  If restarted many times
      *, try re-running with'/ ' NRCYCL recalculated as described at topo
      *f dosxyznrc.mortran'//)
       END IF
-      DO 3261 irl=1,irmax-1
+      DO 3271 irl=1,irmax-1
           IF ((IDAT.EQ.1)) THEN
               endep(irl)=endep(irl)+endep_tmp(irl)
               endep2(irl)=endep2(irl)+endep_tmp(irl)*endep_tmp(irl)
           END IF
           endep(irl)=endep(irl)/rhor(irl+1)
           endep2(irl)=endep2(irl)/(rhor(irl+1)*rhor(irl+1))
-3261  CONTINUE
-3262  CONTINUE
+3271  CONTINUE
+3272  CONTINUE
 #ifdef HAVE_C_COMPILER
       IF ((IPARALLEL.GT.1 .OR. n_parallel.GT.0)) THEN
           parname=egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(use
@@ -2193,10 +2207,10 @@
           call write_pardose(temp2,IMAX,JMAX,KMAX,endep,endep2,parname)
       END IF
 #endif
-2830  CONTINUE
-      DO 3271 i=1,IMAX
-          DO 3281 j=1,JMAX
-              DO 3291 k=1,KMAX
+2840  CONTINUE
+      DO 3281 i=1,IMAX
+          DO 3291 j=1,JMAX
+              DO 3301 k=1,KMAX
                   irl= (i + (j-1)*IMAX + (k-1)*ijmax)
                   temp=endep(irl)/temp2
                   endep2(irl)=endep2(irl)/temp2
@@ -2210,33 +2224,33 @@
                       endep(irl) = endep(irl)*1.602e-10/(amass*ainflu)
                   ELSE
                       endep(irl) = 0.0
-                      WRITE(6,3300)i,j,k
-                      WRITE(1,3300)i,j,k
-3300                  FORMAT('AMASS is zero in  I= ',I4,'J= ',I4,' K= ',
+                      WRITE(6,3310)i,j,k
+                      WRITE(1,3310)i,j,k
+3310                  FORMAT('AMASS is zero in  I= ',I4,'J= ',I4,' K= ',
      *I4)
-                      WRITE(6,3310)
-                      WRITE(1,3310)
-3310                  FORMAT('So the dose has been set to zero.')
+                      WRITE(6,3320)
+                      WRITE(1,3320)
+3320                  FORMAT('So the dose has been set to zero.')
                   END IF
                   IF((endep(irl).EQ.0.))endep2(irl)=0.9999999
-3291          CONTINUE
-3292          CONTINUE
-3281      CONTINUE
-3282      CONTINUE
-3271  CONTINUE
-3272  CONTINUE
+3301          CONTINUE
+3302          CONTINUE
+3291      CONTINUE
+3292      CONTINUE
+3281  CONTINUE
+3282  CONTINUE
       IF ((doseprint .NE. 1)) THEN
           IF (((n_parallel.GT.0 .AND. is_finished).OR.IRESTART.EQ.4 )) T
      *    HEN
-              write(1,3320)title
-3320          format(//,'1',80a1 // t10, 'DOSXYZnrc Dose outputs (dose/F
+              write(1,3330)title
+3330          format(//,'1',80a1 // t10, 'DOSXYZnrc Dose outputs (dose/F
      *, Gy.cm**2)')
           ELSE
               IF ((((isource.EQ.0).OR.( isource.EQ.1).OR.( isource.EQ.3)
      *        .OR. (isource.EQ.7)).AND. (beamarea .NE. 0.))) THEN
-                  write(1,3330)title,planarefe,planarefp,planarfe,planar
+                  write(1,3340)title,planarefe,planarefp,planarfe,planar
      *            fp,ainflu
-3330              format( '1',80a1 // t5,'Elec/positron planar energy fl
+3340              format( '1',80a1 // t5,'Elec/positron planar energy fl
      *uence scored in a 1cm**2 circle '/ t5,'centered at z-axis on the p
      *hantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar energy f
      *luence scored in a 1cm**2 circle '/ t5,'centered at z-axis on thep
@@ -2248,9 +2262,9 @@
      *er/beam area), F =', 1pe11.3,'(1/cm**2)'// t10, 'DOSXYZnrc Doseout
      *puts (dose/F, Gy.cm**2)')
               ELSE IF((isource.EQ.2.OR.isource.EQ.8)) THEN
-                  write(1,3340)title,planarefe,planarefp,planarfe,planar
+                  write(1,3350)title,planarefe,planarefp,planarfe,planar
      *            fp, IHSTRY+ncaseold
-3340              format( '1',80a1 / t5,'Elec/positron planar energy flu
+3350              format( '1',80a1 / t5,'Elec/positron planar energy flu
      *ence scored in a 1cm**2 circle '/ t5,'centered at z-axis on the ph
      *antom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar energy fl
      *uence scored in a 1cm**2 circle '/ t5,'centered at z-axis on the p
@@ -2261,21 +2275,21 @@
      * surface =',1pe11.3,'(1/cm**2)'// t5,'No. of particles incident fr
      *om phase space file =',1i13/)
                   IF ((OLDSRC.EQ.1)) THEN
-                      write(1,3350)
-3350                  format(t10,'           DOSXYZnrc Dose outputs '/ t
+                      write(1,3360)
+3360                  format(t10,'           DOSXYZnrc Dose outputs '/ t
      *10,'(Dose/incident particle from phase space file, Gy)')
                   ELSE
-                      write(1,3360)ainflu
-3360                  format(t5,'No. of particles incident from original
+                      write(1,3370)ainflu
+3370                  format(t5,'No. of particles incident from original
      * source  =',1f13.1// t10,'           DOSXYZnrc Dose outputs '/ t10
      *,'(Dose/incident particle from original source, Gy)')
                   END IF
               ELSE IF((((isource.EQ.4).OR.(isource.EQ.5)).OR. (((isource
      *        .EQ.0).OR.( isource.EQ.1).OR.( isource.EQ.3).OR. (isource.
      *        EQ.7)).AND.(beamarea.EQ.0.)))) THEN
-                  write(1,3370)title,planarefe,planarefp,planarfe,planar
+                  write(1,3380)title,planarefe,planarefp,planarfe,planar
      *            fp,ainflu
-3370              format( '1',80a1 / t5,'Elec/positron planar energy flu
+3380              format( '1',80a1 / t5,'Elec/positron planar energy flu
      *ence scored in a 1cm**2 circle '/ t5,'centered at z-axis on the ph
      *antom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar energy fl
      *uence scored in a 1cm**2 circle '/ t5,'centered at z-axis on the p
@@ -2287,14 +2301,14 @@
      *ticles =',1pe11.3// t10,'DOSXYZnrc', ' Dose outputs (Dose/incident
      * particle, Gy)')
               ELSE IF((isource.EQ.6)) THEN
-                  write(1,3380)title,ainflu
-3380              format( '1',80a1 / t5,'Total number of incident partic
+                  write(1,3390)title,ainflu
+3390              format( '1',80a1 / t5,'Total number of incident partic
      *les =',1pe11.3// t10,'DOSXYZnrc', ' Dose outputs (Dose/incident pa
      *rticle, Gy)')
               ELSE IF(((isource.EQ.9).OR.(isource.EQ.21))) THEN
-                  write(1,3390)title,planarefe,planarefp,planarfe,planar
+                  write(1,3400)title,planarefe,planarefp,planarfe,planar
      *            fp, IHSTRY+ncaseold,nhist
-3390              format( '1',80a1 / t5,'Elec/positron planar energy flu
+3400              format( '1',80a1 / t5,'Elec/positron planar energy flu
      *ence scored in a 1cm**2 circle '/ t5,'centered at z-axis on the ph
      *antom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar energy fl
      *uence scored in a 1cm**2 circle '/ t5,'centered at z-axis on the p
@@ -2308,9 +2322,9 @@
      * outputs '/ t10,'(Dose/incident particle from original source, Gy)
      *')
               ELSE IF((isource.EQ.20)) THEN
-                  write(1,3400)title,planarefe,planarefp,planarfe,planar
+                  write(1,3410)title,planarefe,planarefp,planarfe,planar
      *            fp, IHSTRY+ncaseold,nhist
-3400              format( '1',80a1 / t5,'Elec/positron planar energy flu
+3410              format( '1',80a1 / t5,'Elec/positron planar energy flu
      *ence scored in a 1cm**2 circle '/ t5,'centered at z-axis on the ph
      *antom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar energy fl
      *uence scored in a 1cm**2 circle '/ t5,'centered at z-axis on the p
@@ -2324,9 +2338,9 @@
      *Dose outputs '/ t10,'(Dose/incident particle from original source,
      * Gy)')
               ELSE
-                  write(1,3410)title,planarefe,planarefp,planarfe,planar
+                  write(1,3420)title,planarefe,planarefp,planarfe,planar
      *            fp,ainflu
-3410              format( '1',80a1 / t5,'Elec/positron planar energy flu
+3420              format( '1',80a1 / t5,'Elec/positron planar energy flu
      *ence scored in a 1cm**2 circle '/ t5,'centered at z-axis on the ph
      *antom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar energy fl
      *uence scored in a 1cm**2 circle '/ t5,'centered at z-axis on the p
@@ -2339,33 +2353,33 @@
      *y/incident particle)')
               END IF
           END IF
-          write(1,3420)
-3420      format(/t5,'full dose output suppressed in this run')
+          write(1,3430)
+3430      format(/t5,'full dose output suppressed in this run')
       ELSE
-          DO 3431 idose=1,idgrp
+          DO 3441 idose=1,idgrp
               IF ((IZSCAN(idose) .EQ. 1)) THEN
                   k = (kdosu(idose) - kdosl(idose))
                   k = k + k/5 + 7
                   nperpg = 60/k
                   IF ((nperpg .EQ. 0)) THEN
-                      WRITE(6,3440)nperpg
-3440                  FORMAT(' Sets of depths per page = ',I2)
-                      nperpg = 1
                       WRITE(6,3450)nperpg
-3450                  FORMAT(' Set to  = ',I2)
+3450                  FORMAT(' Sets of depths per page = ',I2)
+                      nperpg = 1
+                      WRITE(6,3460)nperpg
+3460                  FORMAT(' Set to  = ',I2)
                   END IF
                   IF (((n_parallel.GT.0 .AND. is_finished).OR.IRESTART.E
      *            Q.4 )) THEN
-                      write(1,3460)title
-3460                  format(//,'1',80a1 // t10, 'DOSXYZnrc Dose outputs
+                      write(1,3470)title
+3470                  format(//,'1',80a1 // t10, 'DOSXYZnrc Dose outputs
      * (dose/F, Gy.cm**2)')
                   ELSE
                       IF ((((isource.EQ.0).OR.( isource.EQ.1).OR.( isour
      *                ce.EQ.3).OR. (isource.EQ.7)).AND. (beamarea .NE. 0
      *                .))) THEN
-                          write(1,3470)title,planarefe,planarefp,planarf
+                          write(1,3480)title,planarefe,planarefp,planarf
      *                    e,planarfp,ainflu
-3470                      format( '1',80a1 // t5,'Elec/positron planar e
+3480                      format( '1',80a1 // t5,'Elec/positron planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planaren
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
@@ -2377,9 +2391,9 @@
      *ce (number/beam area), F =', 1pe11.3,'(1/cm**2)'// t10, 'DOSXYZnrc
      * Dose outputs (dose/F, Gy.cm**2)')
                       ELSE IF((isource.EQ.2.OR.isource.EQ.8)) THEN
-                          write(1,3480)title,planarefe,planarefp,planarf
+                          write(1,3490)title,planarefe,planarefp,planarf
      *                    e,planarfp, IHSTRY+ncaseold
-3480                      format( '1',80a1 / t5,'Elec/positron planar en
+3490                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -2390,12 +2404,12 @@
      *phantom surface =',1pe11.3,'(1/cm**2)'// t5,'No. of particles inci
      *dent from phase space file =',1i13/)
                           IF ((OLDSRC.EQ.1)) THEN
-                              write(1,3490)
-3490                          format(t10,'           DOSXYZnrc Dose outp
+                              write(1,3500)
+3500                          format(t10,'           DOSXYZnrc Dose outp
      *uts '/ t10,'(Dose/incident particle from phase space file, Gy)')
                           ELSE
-                              write(1,3500)ainflu
-3500                          format(t5,'No. of particles incident fromo
+                              write(1,3510)ainflu
+3510                          format(t5,'No. of particles incident fromo
      *riginal source  =',1f13.1// t10,'           DOSXYZnrc Dose outputs
      * '/ t10,'(Dose/incident particle from original source, Gy)')
                           END IF
@@ -2403,9 +2417,9 @@
      *                (isource.EQ.0).OR.( isource.EQ.1).OR.( isource.EQ.
      *                3).OR. (isource.EQ.7)).AND.(beamarea.EQ.0.)))) THE
      *                N
-                          write(1,3510)title,planarefe,planarefp,planarf
+                          write(1,3520)title,planarefe,planarefp,planarf
      *                    e,planarfp,ainflu
-3510                      format( '1',80a1 / t5,'Elec/positron planar en
+3520                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -2417,14 +2431,14 @@
      *ent particles =',1pe11.3// t10,'DOSXYZnrc', ' Dose outputs (Dose/i
      *ncident particle, Gy)')
                       ELSE IF((isource.EQ.6)) THEN
-                          write(1,3520)title,ainflu
-3520                      format( '1',80a1 / t5,'Total number of inciden
+                          write(1,3530)title,ainflu
+3530                      format( '1',80a1 / t5,'Total number of inciden
      *t particles =',1pe11.3// t10,'DOSXYZnrc', ' Dose outputs (Dose/inc
      *ident particle, Gy)')
                       ELSE IF(((isource.EQ.9).OR.(isource.EQ.21))) THEN
-                          write(1,3530)title,planarefe,planarefp,planarf
+                          write(1,3540)title,planarefe,planarefp,planarf
      *                    e,planarfp, IHSTRY+ncaseold,nhist
-3530                      format( '1',80a1 / t5,'Elec/positron planar en
+3540                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -2438,9 +2452,9 @@
      *rc Dose outputs '/ t10,'(Dose/incident particle from original sour
      *ce, Gy)')
                       ELSE IF((isource.EQ.20)) THEN
-                          write(1,3540)title,planarefe,planarefp,planarf
+                          write(1,3550)title,planarefe,planarefp,planarf
      *                    e,planarfp, IHSTRY+ncaseold,nhist
-3540                      format( '1',80a1 / t5,'Elec/positron planar en
+3550                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -2454,9 +2468,9 @@
      *XYZnrc Dose outputs '/ t10,'(Dose/incident particle from original 
      *source, Gy)')
                       ELSE
-                          write(1,3550)title,planarefe,planarefp,planarf
+                          write(1,3560)title,planarefe,planarefp,planarf
      *                    e,planarfp,ainflu
-3550                      format( '1',80a1 / t5,'Elec/positron planar en
+3560                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -2470,46 +2484,46 @@
                       END IF
                   END IF
                   ipage=1
-                  DO 3561 i=idosl(idose),idosu(idose)
-                      DO 3571 j=jdosl(idose),jdosu(idose),4
+                  DO 3571 i=idosl(idose),idosu(idose)
+                      DO 3581 j=jdosl(idose),jdosu(idose),4
                           JL=j
                           JU=min(j+3,jdosu(idose))
-                          write(1,3580)xbound(i),xbound(i+1),i
-3580                      format(//t15,'for x=',f10.3,' to',f10.3,5x,'i=
+                          write(1,3590)xbound(i),xbound(i+1),i
+3590                      format(//t15,'for x=',f10.3,' to',f10.3,5x,'i=
      *',i3)
-                          write(1,3590)(ybound(jj),jj=JL,JU+1)
-3590                      format(/' ybounds:',f7.3,f12.3,3f17.3)
-                          write(1,3600)(jj,jj=JL ,JU)
-3600                      format(t10,'j=',t17,5(i4,13x))
-                          write(1,3610)zbound(kdosl(idose))
-3610                      format(' zbounds (',f10.3,')')
-                          DO 3621 k=kdosl(idose),kdosu(idose)
-                              write(1,3630)zbound(k+1),k, (endep((i + (j
+                          write(1,3600)(ybound(jj),jj=JL,JU+1)
+3600                      format(/' ybounds:',f7.3,f12.3,3f17.3)
+                          write(1,3610)(jj,jj=JL ,JU)
+3610                      format(t10,'j=',t17,5(i4,13x))
+                          write(1,3620)zbound(kdosl(idose))
+3620                      format(' zbounds (',f10.3,')')
+                          DO 3631 k=kdosl(idose),kdosu(idose)
+                              write(1,3640)zbound(k+1),k, (endep((i + (j
      *                        j-1)*IMAX + (k-1)*ijmax)),min(99.9d0, 100d
      *                        0*endep2((i + (jj-1)*IMAX + (k-1)*ijmax)))
      *                        ,jj=JL,JU)
-3630                          format(f8.3,i4,4(1pe11.3,'-',0pf4.1,'%') )
+3640                          format(f8.3,i4,4(1pe11.3,'-',0pf4.1,'%') )
                               IF ((mod(k,5) .EQ. 0)) THEN
-                                  write(1,3640)
-3640                              format(' ')
+                                  write(1,3650)
+3650                              format(' ')
                               END IF
-3621                      CONTINUE
-3622                      CONTINUE
+3631                      CONTINUE
+3632                      CONTINUE
                           IF (( ( mod(ipage,nperpg) .EQ. 0) .AND. ( ( JU
      *                     .NE. jdosu(idose) ) .OR. ( i .NE. idosu(idose
      *                    ) )))) THEN
                               IF (((n_parallel.GT.0 .AND. is_finished).O
      *                        R.IRESTART.EQ.4 )) THEN
-                                  write(1,3650)title
-3650                              format(//,'1',80a1 // t10, 'DOSXYZnrcD
+                                  write(1,3660)title
+3660                              format(//,'1',80a1 // t10, 'DOSXYZnrcD
      *ose outputs (dose/F, Gy.cm**2)')
                               ELSE
                                   IF ((((isource.EQ.0).OR.( isource.EQ.1
      *                            ).OR.( isource.EQ.3).OR. (isource.EQ.7
      *                            )).AND. (beamarea .NE. 0.))) THEN
-                                      write(1,3660)title,planarefe,plana
+                                      write(1,3670)title,planarefe,plana
      *                                refp,planarfe,planarfp,ainflu
-3660                                  format( '1',80a1 // t5,'Elec/posit
+3670                                  format( '1',80a1 // t5,'Elec/posit
      *ron planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
      *d at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Ph
      *oton planar energy fluence scored in a 1cm**2 circle '/ t5,'center
@@ -2522,10 +2536,10 @@
      *10, 'DOSXYZnrc Dose outputs (dose/F, Gy.cm**2)')
                                   ELSE IF((isource.EQ.2.OR.isource.EQ.8)
      *                            ) THEN
-                                      write(1,3670)title,planarefe,plana
+                                      write(1,3680)title,planarefe,plana
      *                                refp,planarfe,planarfp, IHSTRY+nca
      *                                seold
-3670                                  format( '1',80a1 / t5,'Elec/positr
+3680                                  format( '1',80a1 / t5,'Elec/positr
      *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
      * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
      *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
@@ -2536,13 +2550,13 @@
      *-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'No. ofpa
      *rticles incident from phase space file =',1i13/)
                                       IF ((OLDSRC.EQ.1)) THEN
-                                          write(1,3680)
-3680                                      format(t10,'           DOSXYZn
+                                          write(1,3690)
+3690                                      format(t10,'           DOSXYZn
      *rc Dose outputs '/ t10,'(Dose/incident particle from phase space f
      *ile, Gy)')
                                       ELSE
-                                          write(1,3690)ainflu
-3690                                      format(t5,'No. of particles in
+                                          write(1,3700)ainflu
+3700                                      format(t5,'No. of particles in
      *cident from original source  =',1f13.1// t10,'           DOSXYZnrc
      * Dose outputs '/ t10,'(Dose/incident particle from original source
      *, Gy)')
@@ -2551,9 +2565,9 @@
      *                            Q.5)).OR. (((isource.EQ.0).OR.( isourc
      *                            e.EQ.1).OR.( isource.EQ.3).OR. (isourc
      *                            e.EQ.7)).AND.(beamarea.EQ.0.)))) THEN
-                                      write(1,3700)title,planarefe,plana
+                                      write(1,3710)title,planarefe,plana
      *                                refp,planarfe,planarfp,ainflu
-3700                                  format( '1',80a1 / t5,'Elec/positr
+3710                                  format( '1',80a1 / t5,'Elec/positr
      *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
      * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
      *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
@@ -2565,29 +2579,12 @@
      *mber of incident particles =',1pe11.3// t10,'DOSXYZnrc', ' Dose ou
      *tputs (Dose/incident particle, Gy)')
                                   ELSE IF((isource.EQ.6)) THEN
-                                      write(1,3710)title,ainflu
-3710                                  format( '1',80a1 / t5,'Total numbe
+                                      write(1,3720)title,ainflu
+3720                                  format( '1',80a1 / t5,'Total numbe
      *r of incident particles =',1pe11.3// t10,'DOSXYZnrc', ' Dose outpu
      *ts (Dose/incident particle, Gy)')
                                   ELSE IF(((isource.EQ.9).OR.(isource.EQ
      *                            .21))) THEN
-                                      write(1,3720)title,planarefe,plana
-     *                                refp,planarfe,planarfp, IHSTRY+nca
-     *                                seold,nhist
-3720                                  format( '1',80a1 / t5,'Elec/positr
-     *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
-     * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
-     *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
-     *d at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'El
-     *ec/positron planar fluence scored in a 1cm**2 circle '/ t5,'center
-     *ed at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'P
-     *hoton planar fluence scored in a 1cm**2 circle '/ t5,'centered atz
-     *-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'  No. of
-     * particles incident on DOSXYZ phantom =',1i13// t5,'No. of primary
-     * particles incident in BEAM simulation =',1i13// t10,'       DOSXY
-     *Znrc Dose outputs '/ t10,'(Dose/incident particle from original so
-     *urce, Gy)')
-                                  ELSE IF((isource.EQ.20)) THEN
                                       write(1,3730)title,planarefe,plana
      *                                refp,planarfe,planarfp, IHSTRY+nca
      *                                seold,nhist
@@ -2601,13 +2598,30 @@
      *hoton planar fluence scored in a 1cm**2 circle '/ t5,'centered atz
      *-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'  No. of
      * particles incident on DOSXYZ phantom =',1i13// t5,'No. of primary
+     * particles incident in BEAM simulation =',1i13// t10,'       DOSXY
+     *Znrc Dose outputs '/ t10,'(Dose/incident particle from original so
+     *urce, Gy)')
+                                  ELSE IF((isource.EQ.20)) THEN
+                                      write(1,3740)title,planarefe,plana
+     *                                refp,planarfe,planarfp, IHSTRY+nca
+     *                                seold,nhist
+3740                                  format( '1',80a1 / t5,'Elec/positr
+     *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
+     * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
+     *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
+     *d at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'El
+     *ec/positron planar fluence scored in a 1cm**2 circle '/ t5,'center
+     *ed at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'P
+     *hoton planar fluence scored in a 1cm**2 circle '/ t5,'centered atz
+     *-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'  No. of
+     * particles incident on DOSXYZ phantom =',1i13// t5,'No. of primary
      * particles incident in VCU/BEAM simulation =',1i13// t10,'        
      *   DOSXYZnrc Dose outputs '/ t10,'(Dose/incident particlefrom orig
      *inal source, Gy)')
                                   ELSE
-                                      write(1,3740)title,planarefe,plana
+                                      write(1,3750)title,planarefe,plana
      *                                refp,planarfe,planarfp,ainflu
-3740                                  format( '1',80a1 / t5,'Elec/positr
+3750                                  format( '1',80a1 / t5,'Elec/positr
      *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
      * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
      *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
@@ -2624,33 +2638,33 @@
                           ELSE
                               ipage = ipage+1
                           END IF
-3571                  CONTINUE
-3572                  CONTINUE
-3561              CONTINUE
-3562              CONTINUE
+3581                  CONTINUE
+3582                  CONTINUE
+3571              CONTINUE
+3572              CONTINUE
               ELSE IF((IZSCAN(idose) .EQ. 0)) THEN
                   i = (idosu(idose) - idosl(idose))
                   i = i + i/5 + 7
                   nperpg = 60/i
                   IF ((nperpg .EQ. 0)) THEN
-                      WRITE(6,3750)nperpg
-3750                  FORMAT(' Sets of X scans per page = ',I2)
-                      nperpg = 1
                       WRITE(6,3760)nperpg
-3760                  FORMAT(' Set to  = ',I2)
+3760                  FORMAT(' Sets of X scans per page = ',I2)
+                      nperpg = 1
+                      WRITE(6,3770)nperpg
+3770                  FORMAT(' Set to  = ',I2)
                   END IF
                   IF (((n_parallel.GT.0 .AND. is_finished).OR.IRESTART.E
      *            Q.4 )) THEN
-                      write(1,3770)title
-3770                  format(//,'1',80a1 // t10, 'DOSXYZnrc Dose outputs
+                      write(1,3780)title
+3780                  format(//,'1',80a1 // t10, 'DOSXYZnrc Dose outputs
      * (dose/F, Gy.cm**2)')
                   ELSE
                       IF ((((isource.EQ.0).OR.( isource.EQ.1).OR.( isour
      *                ce.EQ.3).OR. (isource.EQ.7)).AND. (beamarea .NE. 0
      *                .))) THEN
-                          write(1,3780)title,planarefe,planarefp,planarf
+                          write(1,3790)title,planarefe,planarefp,planarf
      *                    e,planarfp,ainflu
-3780                      format( '1',80a1 // t5,'Elec/positron planar e
+3790                      format( '1',80a1 // t5,'Elec/positron planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planaren
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
@@ -2662,9 +2676,9 @@
      *ce (number/beam area), F =', 1pe11.3,'(1/cm**2)'// t10, 'DOSXYZnrc
      * Dose outputs (dose/F, Gy.cm**2)')
                       ELSE IF((isource.EQ.2.OR.isource.EQ.8)) THEN
-                          write(1,3790)title,planarefe,planarefp,planarf
+                          write(1,3800)title,planarefe,planarefp,planarf
      *                    e,planarfp, IHSTRY+ncaseold
-3790                      format( '1',80a1 / t5,'Elec/positron planar en
+3800                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -2675,12 +2689,12 @@
      *phantom surface =',1pe11.3,'(1/cm**2)'// t5,'No. of particles inci
      *dent from phase space file =',1i13/)
                           IF ((OLDSRC.EQ.1)) THEN
-                              write(1,3800)
-3800                          format(t10,'           DOSXYZnrc Dose outp
+                              write(1,3810)
+3810                          format(t10,'           DOSXYZnrc Dose outp
      *uts '/ t10,'(Dose/incident particle from phase space file, Gy)')
                           ELSE
-                              write(1,3810)ainflu
-3810                          format(t5,'No. of particles incident fromo
+                              write(1,3820)ainflu
+3820                          format(t5,'No. of particles incident fromo
      *riginal source  =',1f13.1// t10,'           DOSXYZnrc Dose outputs
      * '/ t10,'(Dose/incident particle from original source, Gy)')
                           END IF
@@ -2688,9 +2702,9 @@
      *                (isource.EQ.0).OR.( isource.EQ.1).OR.( isource.EQ.
      *                3).OR. (isource.EQ.7)).AND.(beamarea.EQ.0.)))) THE
      *                N
-                          write(1,3820)title,planarefe,planarefp,planarf
+                          write(1,3830)title,planarefe,planarefp,planarf
      *                    e,planarfp,ainflu
-3820                      format( '1',80a1 / t5,'Elec/positron planar en
+3830                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -2702,14 +2716,14 @@
      *ent particles =',1pe11.3// t10,'DOSXYZnrc', ' Dose outputs (Dose/i
      *ncident particle, Gy)')
                       ELSE IF((isource.EQ.6)) THEN
-                          write(1,3830)title,ainflu
-3830                      format( '1',80a1 / t5,'Total number of inciden
+                          write(1,3840)title,ainflu
+3840                      format( '1',80a1 / t5,'Total number of inciden
      *t particles =',1pe11.3// t10,'DOSXYZnrc', ' Dose outputs (Dose/inc
      *ident particle, Gy)')
                       ELSE IF(((isource.EQ.9).OR.(isource.EQ.21))) THEN
-                          write(1,3840)title,planarefe,planarefp,planarf
+                          write(1,3850)title,planarefe,planarefp,planarf
      *                    e,planarfp, IHSTRY+ncaseold,nhist
-3840                      format( '1',80a1 / t5,'Elec/positron planar en
+3850                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -2723,9 +2737,9 @@
      *rc Dose outputs '/ t10,'(Dose/incident particle from original sour
      *ce, Gy)')
                       ELSE IF((isource.EQ.20)) THEN
-                          write(1,3850)title,planarefe,planarefp,planarf
+                          write(1,3860)title,planarefe,planarefp,planarf
      *                    e,planarfp, IHSTRY+ncaseold,nhist
-3850                      format( '1',80a1 / t5,'Elec/positron planar en
+3860                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -2739,9 +2753,9 @@
      *XYZnrc Dose outputs '/ t10,'(Dose/incident particle from original 
      *source, Gy)')
                       ELSE
-                          write(1,3860)title,planarefe,planarefp,planarf
+                          write(1,3870)title,planarefe,planarefp,planarf
      *                    e,planarfp,ainflu
-3860                      format( '1',80a1 / t5,'Elec/positron planar en
+3870                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -2755,46 +2769,46 @@
                       END IF
                   END IF
                   ipage=1
-                  DO 3871 k=kdosl(idose),kdosu(idose)
-                      DO 3881 j=jdosl(idose),jdosu(idose),4
+                  DO 3881 k=kdosl(idose),kdosu(idose)
+                      DO 3891 j=jdosl(idose),jdosu(idose),4
                           JL=J
                           JU=min(j+3,jdosu(idose))
-                          write(1,3890)zbound(k),zbound(k+1),k
-3890                      format(//t15,'for z=',f10.3,' to',f10.3,5x,'k=
+                          write(1,3900)zbound(k),zbound(k+1),k
+3900                      format(//t15,'for z=',f10.3,' to',f10.3,5x,'k=
      *',i3)
-                          write(1,3900)(ybound(jj),jj=JL,JU+1)
-3900                      format(/' ybounds:',f7.3,f12.3,3f17.3)
-                          write(1,3910)(jj,jj=JL ,JU)
-3910                      format(t10,'j=',t17,5(i4,13x))
-                          write(1,3920)xbound(idosl(idose))
-3920                      format(' xbounds (',f10.3,')')
-                          DO 3931 i=idosl(idose),idosu(idose)
-                              write(1,3940)xbound(i+1),i, (endep((i + (j
+                          write(1,3910)(ybound(jj),jj=JL,JU+1)
+3910                      format(/' ybounds:',f7.3,f12.3,3f17.3)
+                          write(1,3920)(jj,jj=JL ,JU)
+3920                      format(t10,'j=',t17,5(i4,13x))
+                          write(1,3930)xbound(idosl(idose))
+3930                      format(' xbounds (',f10.3,')')
+                          DO 3941 i=idosl(idose),idosu(idose)
+                              write(1,3950)xbound(i+1),i, (endep((i + (j
      *                        j-1)*IMAX + (k-1)*ijmax)),min(99.9d0, 100d
      *                        0*endep2((i + (jj-1)*IMAX + (k-1)*ijmax)))
      *                        ,jj=JL,JU)
-3940                          format(f8.3,i4,4(1pe11.3,'-',0pf4.1,'%') )
+3950                          format(f8.3,i4,4(1pe11.3,'-',0pf4.1,'%') )
                               IF ((mod(i,5) .EQ. 0)) THEN
-                                  write(1,3950)
-3950                              format(' ')
+                                  write(1,3960)
+3960                              format(' ')
                               END IF
-3931                      CONTINUE
-3932                      CONTINUE
+3941                      CONTINUE
+3942                      CONTINUE
                           IF (( ( mod(ipage,nperpg) .EQ. 0) .AND. ( ( JU
      *                     .NE. jdosu(idose) ) .OR. ( k .NE. kdosu(idose
      *                    ) )))) THEN
                               IF (((n_parallel.GT.0 .AND. is_finished).O
      *                        R.IRESTART.EQ.4 )) THEN
-                                  write(1,3960)title
-3960                              format(//,'1',80a1 // t10, 'DOSXYZnrcD
+                                  write(1,3970)title
+3970                              format(//,'1',80a1 // t10, 'DOSXYZnrcD
      *ose outputs (dose/F, Gy.cm**2)')
                               ELSE
                                   IF ((((isource.EQ.0).OR.( isource.EQ.1
      *                            ).OR.( isource.EQ.3).OR. (isource.EQ.7
      *                            )).AND. (beamarea .NE. 0.))) THEN
-                                      write(1,3970)title,planarefe,plana
+                                      write(1,3980)title,planarefe,plana
      *                                refp,planarfe,planarfp,ainflu
-3970                                  format( '1',80a1 // t5,'Elec/posit
+3980                                  format( '1',80a1 // t5,'Elec/posit
      *ron planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
      *d at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Ph
      *oton planar energy fluence scored in a 1cm**2 circle '/ t5,'center
@@ -2807,10 +2821,10 @@
      *10, 'DOSXYZnrc Dose outputs (dose/F, Gy.cm**2)')
                                   ELSE IF((isource.EQ.2.OR.isource.EQ.8)
      *                            ) THEN
-                                      write(1,3980)title,planarefe,plana
+                                      write(1,3990)title,planarefe,plana
      *                                refp,planarfe,planarfp, IHSTRY+nca
      *                                seold
-3980                                  format( '1',80a1 / t5,'Elec/positr
+3990                                  format( '1',80a1 / t5,'Elec/positr
      *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
      * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
      *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
@@ -2821,13 +2835,13 @@
      *-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'No. ofpa
      *rticles incident from phase space file =',1i13/)
                                       IF ((OLDSRC.EQ.1)) THEN
-                                          write(1,3990)
-3990                                      format(t10,'           DOSXYZn
+                                          write(1,4000)
+4000                                      format(t10,'           DOSXYZn
      *rc Dose outputs '/ t10,'(Dose/incident particle from phase space f
      *ile, Gy)')
                                       ELSE
-                                          write(1,4000)ainflu
-4000                                      format(t5,'No. of particles in
+                                          write(1,4010)ainflu
+4010                                      format(t5,'No. of particles in
      *cident from original source  =',1f13.1// t10,'           DOSXYZnrc
      * Dose outputs '/ t10,'(Dose/incident particle from original source
      *, Gy)')
@@ -2836,9 +2850,9 @@
      *                            Q.5)).OR. (((isource.EQ.0).OR.( isourc
      *                            e.EQ.1).OR.( isource.EQ.3).OR. (isourc
      *                            e.EQ.7)).AND.(beamarea.EQ.0.)))) THEN
-                                      write(1,4010)title,planarefe,plana
+                                      write(1,4020)title,planarefe,plana
      *                                refp,planarfe,planarfp,ainflu
-4010                                  format( '1',80a1 / t5,'Elec/positr
+4020                                  format( '1',80a1 / t5,'Elec/positr
      *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
      * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
      *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
@@ -2850,29 +2864,12 @@
      *mber of incident particles =',1pe11.3// t10,'DOSXYZnrc', ' Dose ou
      *tputs (Dose/incident particle, Gy)')
                                   ELSE IF((isource.EQ.6)) THEN
-                                      write(1,4020)title,ainflu
-4020                                  format( '1',80a1 / t5,'Total numbe
+                                      write(1,4030)title,ainflu
+4030                                  format( '1',80a1 / t5,'Total numbe
      *r of incident particles =',1pe11.3// t10,'DOSXYZnrc', ' Dose outpu
      *ts (Dose/incident particle, Gy)')
                                   ELSE IF(((isource.EQ.9).OR.(isource.EQ
      *                            .21))) THEN
-                                      write(1,4030)title,planarefe,plana
-     *                                refp,planarfe,planarfp, IHSTRY+nca
-     *                                seold,nhist
-4030                                  format( '1',80a1 / t5,'Elec/positr
-     *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
-     * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
-     *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
-     *d at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'El
-     *ec/positron planar fluence scored in a 1cm**2 circle '/ t5,'center
-     *ed at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'P
-     *hoton planar fluence scored in a 1cm**2 circle '/ t5,'centered atz
-     *-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'  No. of
-     * particles incident on DOSXYZ phantom =',1i13// t5,'No. of primary
-     * particles incident in BEAM simulation =',1i13// t10,'       DOSXY
-     *Znrc Dose outputs '/ t10,'(Dose/incident particle from original so
-     *urce, Gy)')
-                                  ELSE IF((isource.EQ.20)) THEN
                                       write(1,4040)title,planarefe,plana
      *                                refp,planarfe,planarfp, IHSTRY+nca
      *                                seold,nhist
@@ -2886,13 +2883,30 @@
      *hoton planar fluence scored in a 1cm**2 circle '/ t5,'centered atz
      *-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'  No. of
      * particles incident on DOSXYZ phantom =',1i13// t5,'No. of primary
+     * particles incident in BEAM simulation =',1i13// t10,'       DOSXY
+     *Znrc Dose outputs '/ t10,'(Dose/incident particle from original so
+     *urce, Gy)')
+                                  ELSE IF((isource.EQ.20)) THEN
+                                      write(1,4050)title,planarefe,plana
+     *                                refp,planarfe,planarfp, IHSTRY+nca
+     *                                seold,nhist
+4050                                  format( '1',80a1 / t5,'Elec/positr
+     *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
+     * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
+     *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
+     *d at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'El
+     *ec/positron planar fluence scored in a 1cm**2 circle '/ t5,'center
+     *ed at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'P
+     *hoton planar fluence scored in a 1cm**2 circle '/ t5,'centered atz
+     *-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'  No. of
+     * particles incident on DOSXYZ phantom =',1i13// t5,'No. of primary
      * particles incident in VCU/BEAM simulation =',1i13// t10,'        
      *   DOSXYZnrc Dose outputs '/ t10,'(Dose/incident particlefrom orig
      *inal source, Gy)')
                                   ELSE
-                                      write(1,4050)title,planarefe,plana
+                                      write(1,4060)title,planarefe,plana
      *                                refp,planarfe,planarfp,ainflu
-4050                                  format( '1',80a1 / t5,'Elec/positr
+4060                                  format( '1',80a1 / t5,'Elec/positr
      *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
      * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
      *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
@@ -2909,33 +2923,33 @@
                           ELSE
                               ipage = ipage+1
                           END IF
-3881                  CONTINUE
-3882                  CONTINUE
-3871              CONTINUE
-3872              CONTINUE
+3891                  CONTINUE
+3892                  CONTINUE
+3881              CONTINUE
+3882              CONTINUE
               ELSE
                   j = (idosu(idose) - idosl(idose))
                   j = j + j/5 + 7
                   nperpg = 60/j
                   IF ((nperpg .EQ. 0)) THEN
-                      WRITE(6,4060)nperpg
-4060                  FORMAT(' Sets of Y scans per page = ',I2)
-                      nperpg = 1
                       WRITE(6,4070)nperpg
-4070                  FORMAT(' Set to  = ',I2)
+4070                  FORMAT(' Sets of Y scans per page = ',I2)
+                      nperpg = 1
+                      WRITE(6,4080)nperpg
+4080                  FORMAT(' Set to  = ',I2)
                   END IF
                   IF (((n_parallel.GT.0 .AND. is_finished).OR.IRESTART.E
      *            Q.4 )) THEN
-                      write(1,4080)title
-4080                  format(//,'1',80a1 // t10, 'DOSXYZnrc Dose outputs
+                      write(1,4090)title
+4090                  format(//,'1',80a1 // t10, 'DOSXYZnrc Dose outputs
      * (dose/F, Gy.cm**2)')
                   ELSE
                       IF ((((isource.EQ.0).OR.( isource.EQ.1).OR.( isour
      *                ce.EQ.3).OR. (isource.EQ.7)).AND. (beamarea .NE. 0
      *                .))) THEN
-                          write(1,4090)title,planarefe,planarefp,planarf
+                          write(1,4100)title,planarefe,planarefp,planarf
      *                    e,planarfp,ainflu
-4090                      format( '1',80a1 // t5,'Elec/positron planar e
+4100                      format( '1',80a1 // t5,'Elec/positron planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planaren
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
@@ -2947,9 +2961,9 @@
      *ce (number/beam area), F =', 1pe11.3,'(1/cm**2)'// t10, 'DOSXYZnrc
      * Dose outputs (dose/F, Gy.cm**2)')
                       ELSE IF((isource.EQ.2.OR.isource.EQ.8)) THEN
-                          write(1,4100)title,planarefe,planarefp,planarf
+                          write(1,4110)title,planarefe,planarefp,planarf
      *                    e,planarfp, IHSTRY+ncaseold
-4100                      format( '1',80a1 / t5,'Elec/positron planar en
+4110                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -2960,12 +2974,12 @@
      *phantom surface =',1pe11.3,'(1/cm**2)'// t5,'No. of particles inci
      *dent from phase space file =',1i13/)
                           IF ((OLDSRC.EQ.1)) THEN
-                              write(1,4110)
-4110                          format(t10,'           DOSXYZnrc Dose outp
+                              write(1,4120)
+4120                          format(t10,'           DOSXYZnrc Dose outp
      *uts '/ t10,'(Dose/incident particle from phase space file, Gy)')
                           ELSE
-                              write(1,4120)ainflu
-4120                          format(t5,'No. of particles incident fromo
+                              write(1,4130)ainflu
+4130                          format(t5,'No. of particles incident fromo
      *riginal source  =',1f13.1// t10,'           DOSXYZnrc Dose outputs
      * '/ t10,'(Dose/incident particle from original source, Gy)')
                           END IF
@@ -2973,9 +2987,9 @@
      *                (isource.EQ.0).OR.( isource.EQ.1).OR.( isource.EQ.
      *                3).OR. (isource.EQ.7)).AND.(beamarea.EQ.0.)))) THE
      *                N
-                          write(1,4130)title,planarefe,planarefp,planarf
+                          write(1,4140)title,planarefe,planarefp,planarf
      *                    e,planarfp,ainflu
-4130                      format( '1',80a1 / t5,'Elec/positron planar en
+4140                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -2987,14 +3001,14 @@
      *ent particles =',1pe11.3// t10,'DOSXYZnrc', ' Dose outputs (Dose/i
      *ncident particle, Gy)')
                       ELSE IF((isource.EQ.6)) THEN
-                          write(1,4140)title,ainflu
-4140                      format( '1',80a1 / t5,'Total number of inciden
+                          write(1,4150)title,ainflu
+4150                      format( '1',80a1 / t5,'Total number of inciden
      *t particles =',1pe11.3// t10,'DOSXYZnrc', ' Dose outputs (Dose/inc
      *ident particle, Gy)')
                       ELSE IF(((isource.EQ.9).OR.(isource.EQ.21))) THEN
-                          write(1,4150)title,planarefe,planarefp,planarf
+                          write(1,4160)title,planarefe,planarefp,planarf
      *                    e,planarfp, IHSTRY+ncaseold,nhist
-4150                      format( '1',80a1 / t5,'Elec/positron planar en
+4160                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -3008,9 +3022,9 @@
      *rc Dose outputs '/ t10,'(Dose/incident particle from original sour
      *ce, Gy)')
                       ELSE IF((isource.EQ.20)) THEN
-                          write(1,4160)title,planarefe,planarefp,planarf
+                          write(1,4170)title,planarefe,planarefp,planarf
      *                    e,planarfp, IHSTRY+ncaseold,nhist
-4160                      format( '1',80a1 / t5,'Elec/positron planar en
+4170                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -3024,9 +3038,9 @@
      *XYZnrc Dose outputs '/ t10,'(Dose/incident particle from original 
      *source, Gy)')
                       ELSE
-                          write(1,4170)title,planarefe,planarefp,planarf
+                          write(1,4180)title,planarefe,planarefp,planarf
      *                    e,planarfp,ainflu
-4170                      format( '1',80a1 / t5,'Elec/positron planar en
+4180                      format( '1',80a1 / t5,'Elec/positron planar en
      *ergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axis o
      *n the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Photon planar e
      *nergy fluence scored in a 1cm**2 circle '/ t5,'centered at z-axiso
@@ -3040,46 +3054,46 @@
                       END IF
                   END IF
                   ipage=1
-                  DO 4181 k=kdosl(idose),kdosu(idose)
-                      DO 4191 i=idosl(idose),idosu(idose),4
+                  DO 4191 k=kdosl(idose),kdosu(idose)
+                      DO 4201 i=idosl(idose),idosu(idose),4
                           JL=i
                           JU=min(i+3,idosu(idose))
-                          write(1,4200)zbound(k),zbound(k+1),k
-4200                      format(//t15,'for z=',f10.3,' to',f10.3,5x,'k=
+                          write(1,4210)zbound(k),zbound(k+1),k
+4210                      format(//t15,'for z=',f10.3,' to',f10.3,5x,'k=
      *',i3)
-                          write(1,4210)(xbound(jj),jj=JL,JU+1)
-4210                      format(/' xbounds:',f7.3,f12.3,3f17.3)
-                          write(1,4220)(jj,jj=JL ,JU)
-4220                      format(t10,'i=',t17,5(i4,13x))
-                          write(1,4230)ybound(jdosl(idose))
-4230                      format(' ybounds (',f10.3,')')
-                          DO 4241 j=jdosl(idose),jdosu(idose)
-                              write(1,4250)ybound(j+1),j, (endep((jj + (
+                          write(1,4220)(xbound(jj),jj=JL,JU+1)
+4220                      format(/' xbounds:',f7.3,f12.3,3f17.3)
+                          write(1,4230)(jj,jj=JL ,JU)
+4230                      format(t10,'i=',t17,5(i4,13x))
+                          write(1,4240)ybound(jdosl(idose))
+4240                      format(' ybounds (',f10.3,')')
+                          DO 4251 j=jdosl(idose),jdosu(idose)
+                              write(1,4260)ybound(j+1),j, (endep((jj + (
      *                        j-1)*IMAX + (k-1)*ijmax)),min(99.9d0, 100d
      *                        0*endep2((jj + (j-1)*IMAX + (k-1)*ijmax)))
      *                        ,jj=JL,JU)
-4250                          format(f8.3,i4,4(1pe11.3,'-',0pf4.1,'%') )
+4260                          format(f8.3,i4,4(1pe11.3,'-',0pf4.1,'%') )
                               IF ((mod(j,5) .EQ. 0)) THEN
-                                  write(1,4260)
-4260                              format(' ')
+                                  write(1,4270)
+4270                              format(' ')
                               END IF
-4241                      CONTINUE
-4242                      CONTINUE
+4251                      CONTINUE
+4252                      CONTINUE
                           IF (( ( mod(ipage,nperpg) .EQ. 0) .AND. ( ( JU
      *                     .NE. idosu(idose) ) .OR. ( k .NE. kdosu(idose
      *                    ) )))) THEN
                               IF (((n_parallel.GT.0 .AND. is_finished).O
      *                        R.IRESTART.EQ.4 )) THEN
-                                  write(1,4270)title
-4270                              format(//,'1',80a1 // t10, 'DOSXYZnrcD
+                                  write(1,4280)title
+4280                              format(//,'1',80a1 // t10, 'DOSXYZnrcD
      *ose outputs (dose/F, Gy.cm**2)')
                               ELSE
                                   IF ((((isource.EQ.0).OR.( isource.EQ.1
      *                            ).OR.( isource.EQ.3).OR. (isource.EQ.7
      *                            )).AND. (beamarea .NE. 0.))) THEN
-                                      write(1,4280)title,planarefe,plana
+                                      write(1,4290)title,planarefe,plana
      *                                refp,planarfe,planarfp,ainflu
-4280                                  format( '1',80a1 // t5,'Elec/posit
+4290                                  format( '1',80a1 // t5,'Elec/posit
      *ron planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
      *d at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Ph
      *oton planar energy fluence scored in a 1cm**2 circle '/ t5,'center
@@ -3092,10 +3106,10 @@
      *10, 'DOSXYZnrc Dose outputs (dose/F, Gy.cm**2)')
                                   ELSE IF((isource.EQ.2.OR.isource.EQ.8)
      *                            ) THEN
-                                      write(1,4290)title,planarefe,plana
+                                      write(1,4300)title,planarefe,plana
      *                                refp,planarfe,planarfp, IHSTRY+nca
      *                                seold
-4290                                  format( '1',80a1 / t5,'Elec/positr
+4300                                  format( '1',80a1 / t5,'Elec/positr
      *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
      * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
      *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
@@ -3106,13 +3120,13 @@
      *-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'No. ofpa
      *rticles incident from phase space file =',1i13/)
                                       IF ((OLDSRC.EQ.1)) THEN
-                                          write(1,4300)
-4300                                      format(t10,'           DOSXYZn
+                                          write(1,4310)
+4310                                      format(t10,'           DOSXYZn
      *rc Dose outputs '/ t10,'(Dose/incident particle from phase space f
      *ile, Gy)')
                                       ELSE
-                                          write(1,4310)ainflu
-4310                                      format(t5,'No. of particles in
+                                          write(1,4320)ainflu
+4320                                      format(t5,'No. of particles in
      *cident from original source  =',1f13.1// t10,'           DOSXYZnrc
      * Dose outputs '/ t10,'(Dose/incident particle from original source
      *, Gy)')
@@ -3121,9 +3135,9 @@
      *                            Q.5)).OR. (((isource.EQ.0).OR.( isourc
      *                            e.EQ.1).OR.( isource.EQ.3).OR. (isourc
      *                            e.EQ.7)).AND.(beamarea.EQ.0.)))) THEN
-                                      write(1,4320)title,planarefe,plana
+                                      write(1,4330)title,planarefe,plana
      *                                refp,planarfe,planarfp,ainflu
-4320                                  format( '1',80a1 / t5,'Elec/positr
+4330                                  format( '1',80a1 / t5,'Elec/positr
      *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
      * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
      *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
@@ -3135,29 +3149,12 @@
      *mber of incident particles =',1pe11.3// t10,'DOSXYZnrc', ' Dose ou
      *tputs (Dose/incident particle, Gy)')
                                   ELSE IF((isource.EQ.6)) THEN
-                                      write(1,4330)title,ainflu
-4330                                  format( '1',80a1 / t5,'Total numbe
+                                      write(1,4340)title,ainflu
+4340                                  format( '1',80a1 / t5,'Total numbe
      *r of incident particles =',1pe11.3// t10,'DOSXYZnrc', ' Dose outpu
      *ts (Dose/incident particle, Gy)')
                                   ELSE IF(((isource.EQ.9).OR.(isource.EQ
      *                            .21))) THEN
-                                      write(1,4340)title,planarefe,plana
-     *                                refp,planarfe,planarfp, IHSTRY+nca
-     *                                seold,nhist
-4340                                  format( '1',80a1 / t5,'Elec/positr
-     *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
-     * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
-     *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
-     *d at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'El
-     *ec/positron planar fluence scored in a 1cm**2 circle '/ t5,'center
-     *ed at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'P
-     *hoton planar fluence scored in a 1cm**2 circle '/ t5,'centered atz
-     *-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'  No. of
-     * particles incident on DOSXYZ phantom =',1i13// t5,'No. of primary
-     * particles incident in BEAM simulation =',1i13// t10,'       DOSXY
-     *Znrc Dose outputs '/ t10,'(Dose/incident particle from original so
-     *urce, Gy)')
-                                  ELSE IF((isource.EQ.20)) THEN
                                       write(1,4350)title,planarefe,plana
      *                                refp,planarfe,planarfp, IHSTRY+nca
      *                                seold,nhist
@@ -3171,13 +3168,30 @@
      *hoton planar fluence scored in a 1cm**2 circle '/ t5,'centered atz
      *-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'  No. of
      * particles incident on DOSXYZ phantom =',1i13// t5,'No. of primary
+     * particles incident in BEAM simulation =',1i13// t10,'       DOSXY
+     *Znrc Dose outputs '/ t10,'(Dose/incident particle from original so
+     *urce, Gy)')
+                                  ELSE IF((isource.EQ.20)) THEN
+                                      write(1,4360)title,planarefe,plana
+     *                                refp,planarfe,planarfp, IHSTRY+nca
+     *                                seold,nhist
+4360                                  format( '1',80a1 / t5,'Elec/positr
+     *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
+     * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
+     *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
+     *d at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'El
+     *ec/positron planar fluence scored in a 1cm**2 circle '/ t5,'center
+     *ed at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'P
+     *hoton planar fluence scored in a 1cm**2 circle '/ t5,'centered atz
+     *-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'  No. of
+     * particles incident on DOSXYZ phantom =',1i13// t5,'No. of primary
      * particles incident in VCU/BEAM simulation =',1i13// t10,'        
      *   DOSXYZnrc Dose outputs '/ t10,'(Dose/incident particlefrom orig
      *inal source, Gy)')
                                   ELSE
-                                      write(1,4360)title,planarefe,plana
+                                      write(1,4370)title,planarefe,plana
      *                                refp,planarfe,planarfp,ainflu
-4360                                  format( '1',80a1 / t5,'Elec/positr
+4370                                  format( '1',80a1 / t5,'Elec/positr
      *on planar energy fluence scored in a 1cm**2 circle '/ t5,'centered
      * at z-axis on the phantom surface =',1pe11.3,'(1/cm**2)'// t5,'Pho
      *ton planar energy fluence scored in a 1cm**2 circle '/ t5,'centere
@@ -3194,13 +3208,13 @@
                           ELSE
                               ipage = ipage+1
                           END IF
-4191                  CONTINUE
-4192                  CONTINUE
-4181              CONTINUE
-4182              CONTINUE
+4201                  CONTINUE
+4202                  CONTINUE
+4191              CONTINUE
+4192              CONTINUE
               END IF
-3431      CONTINUE
-3432      CONTINUE
+3441      CONTINUE
+3442      CONTINUE
           WRITE(1,'(''1'')')
       END IF
       IF ((IPHANT.EQ.1 .AND. (n_parallel.EQ.0.OR.(n_parallel.GT.0 .AND.
@@ -3209,28 +3223,28 @@
      *    xbound,ybound, zbound,rhor,med)
       END IF
       IF ((zeroairdose .EQ. 1)) THEN
-          DO 4371 i=1,IMAX
-              DO 4381 j=1,JMAX
-                  DO 4391 k=1,KMAX
+          DO 4381 i=1,IMAX
+              DO 4391 j=1,JMAX
+                  DO 4401 k=1,KMAX
                       IF ((rhor((1 + i + (j-1)*IMAX + (k-1)*ijmax)) .LE.
      *                 0.044)) THEN
                           endep((i + (j-1)*IMAX + (k-1)*ijmax))=0.0
                           endep2((i + (j-1)*IMAX + (k-1)*ijmax))=0.99999
      *                    99
                       END IF
-4391              CONTINUE
-4392              CONTINUE
-4381          CONTINUE
-4382          CONTINUE
-4371      CONTINUE
-4372      CONTINUE
+4401              CONTINUE
+4402              CONTINUE
+4391          CONTINUE
+4392          CONTINUE
+4381      CONTINUE
+4382      CONTINUE
       END IF
       zerodose=1
       zerocount=0
       IF ((zerodose .EQ. 1)) THEN
-          DO 4401 i=1,IMAX
-              DO 4411 j=1,JMAX
-                  DO 4421 k=1,KMAX
+          DO 4411 i=1,IMAX
+              DO 4421 j=1,JMAX
+                  DO 4431 k=1,KMAX
                       IF ((endep2((i + (j-1)*IMAX + (k-1)*ijmax)).GT.0.5
      *                 .AND. endep((i + (j-1)*IMAX + (k-1)*ijmax)) .GT.
      *                0.0)) THEN
@@ -3239,47 +3253,47 @@
      *                    99
                           zerocount=zerocount+1
                       END IF
-4421              CONTINUE
-4422              CONTINUE
-4411          CONTINUE
-4412          CONTINUE
-4401      CONTINUE
-4402      CONTINUE
+4431              CONTINUE
+4432              CONTINUE
+4421          CONTINUE
+4422          CONTINUE
+4411      CONTINUE
+4412      CONTINUE
       END IF
       IF ((zerodose.EQ.1 .AND. zerocount .GT.0)) THEN
-          WRITE(6,4430)zerocount
-          WRITE(1,4430)zerocount
-4430      FORMAT(/' The dose values in ',I10,' voxels had error > 50% an
+          WRITE(6,4440)zerocount
+          WRITE(1,4440)zerocount
+4440      FORMAT(/' The dose values in ',I10,' voxels had error > 50% an
      *d have been'/ ' zeroed in the .3ddose file.'/)
       END IF
       IF (((IPARALLEL .LE. 1 .AND. n_parallel .EQ. 0) .OR. (n_parallel .
      *GT. 0 .AND. is_finished))) THEN
           call write_dose(IMAX,JMAX,KMAX,xbound,ybound,zbound,endep,ende
-     *    p2,idd,MAX20)
+     *    p2,idd,MAX20 ,i_bindos)
       ELSE
-          WRITE(6,4440)
-          WRITE(1,4440)
-4440      FORMAT(//' No dose outputs since this is a parallel run '//)
+          WRITE(6,4450)
+          WRITE(1,4450)
+4450      FORMAT(//' No dose outputs since this is a parallel run '//)
       END IF
       cput2=egs_etime()
       timcpu=1.0*(cput2-cput0)
-      WRITE(6,4450)timcpu,timcpu/3600.
-      WRITE(1,4450)timcpu,timcpu/3600.
-4450  FORMAT(/' Total CPU time for this run =',f8.1,' s =',f8.3,' hr')
+      WRITE(6,4460)timcpu,timcpu/3600.
+      WRITE(1,4460)timcpu,timcpu/3600.
+4460  FORMAT(/' Total CPU time for this run =',f8.1,' s =',f8.3,' hr')
       IF ((IRESTART.EQ.4)) THEN
-          WRITE(6,4460)
-          WRITE(1,4460)
-4460      FORMAT(/' CPU time is for combining .pardose files only.')
-      ELSE IF((n_parallel.GT.0 .AND. is_finished)) THEN
           WRITE(6,4470)
           WRITE(1,4470)
-4470      FORMAT(/' CPU time is for last run to finish only.')
+4470      FORMAT(/' CPU time is for combining .pardose files only.')
+      ELSE IF((n_parallel.GT.0 .AND. is_finished)) THEN
+          WRITE(6,4480)
+          WRITE(1,4480)
+4480      FORMAT(/' CPU time is for last run to finish only.')
       END IF
       CALL DATETIME(1)
-      WRITE(6,4480)DATEN, TIMEN
-      WRITE(1,4480)DATEN, TIMEN
-4480  FORMAT(/' END OF RUN          ',A11,1X,A8/)
-2760  CONTINUE
+      WRITE(6,4490)DATEN, TIMEN
+      WRITE(1,4490)DATEN, TIMEN
+4490  FORMAT(/' END OF RUN          ',A11,1X,A8/)
+2770  CONTINUE
       call egs_finish
 #ifdef HAVE_C_COMPILER
       IF (( n_parallel .GT. 0 .AND. .NOT.is_finished )) THEN
@@ -3293,7 +3307,7 @@
      *        /beamarea
               call show_transport_parameter(iout)
               call srcout
-              goto 2830
+              goto 2840
           END IF
       END IF
 #endif
@@ -3318,16 +3332,18 @@
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
       common/score/endep( 2097153), endep2( 2097153), temp2, planarefe,
      *planarefp,planarfe,planarfp, nestep, endep_tmp( 2097153), i_phsp_o
-     *ut,i_muidx_out,i_unit_out,IWATCH,mxnp, endep_last( 2097153)
+     *ut,i_muidx_out,i_unit_out,IWATCH,mxnp,i_bindos, endep_last( 209715
+     *3)
       REAL*8 endep, endep2, temp2,planarefe, planarefp, planarfe, planar
      *fp
       integer*8 nestep
       real endep_tmp
-      integer i_phsp_out,   i_muidx_out,    i_unit_out,  IWATCH,mxnp
+      integer i_phsp_out,   i_muidx_out,    i_unit_out,  i_bindos,  IWAT
+     *CH,mxnp
       integer*2 endep_last
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -3352,23 +3368,24 @@
      * muIndex(60000),  r_11(60000), r_12(60000), r_13(60000), r_21(6000
      *0), r_22(60000), r_23(60000), r_31(60000), r_32(60000), r_33(60000
      *), dsource, dsourcetemp(60000), ein,  eksrcm,  esrc_sp,  SSD,  ein
-     *srcold, NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  latchold,  e
-     *nflag,  dflag,  ismode,  isource,     iqin,        iqphsp,
-     *           iqinc,                          SHLflag,     calflag,
-     *   MLCflag,     ixinl,       ixinu,       jyinl,       jyinu,
-     *  kzinl,       kzinu,       klowx,       khix,        klowy,
-     * khiy,        klowz,       khiz,        survival_ratio,        nsm
-     *iss,      nsblocked,     nsrjct,      nsoutside,     nmissm,
-     *IPRIMARY,                                            OLDSRC,
-     * npassi,                     nang,         ivary(60000),     ngang
-     *(60000),       nset,            more_in_cont,                 numa
-     *ng,       dose_stat,      ndbsrjct,                        i_dbs,
-     *         iphatsrc,         e_split,                           i_ia
-     *ea_in,      i_mu_phsp,           izscore,             i_unit_in,
-     *                k_field,                       nhist_last,
-     *         the_beam_code,         the_input_file,      the_vcu_input
-     *_file,                        the_pegs_file,           the_shared_
-     *lib,                    the_vcu_code,               the_phsp_file
+     *srcold, iaea_SAD,  NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  l
+     *atchold,  enflag,  dflag,  ismode,  isource,     iqin,        iqph
+     *sp,                   iqinc,                          SHLflag,
+     * calflag,     MLCflag,     ixinl,       ixinu,       jyinl,
+     *jyinu,       kzinl,       kzinu,       klowx,       khix,        k
+     *lowy,       khiy,        klowz,       khiz,        survival_ratio,
+     *        nsmiss,      nsblocked,     nsrjct,      nsoutside,     nm
+     *issm,      IPRIMARY,                                            OL
+     *DSRC,       npassi,                     nang,         ivary(60000)
+     *,     ngang(60000),       nset,            more_in_cont,
+     *       numang,       dose_stat,      ndbsrjct,
+     *    i_dbs,          iphatsrc,         e_split,
+     *       i_iaea_in,      i_mu_phsp,           izscore,             i
+     *_unit_in,                  k_field,                       nhist_la
+     *st,                 the_beam_code,         the_input_file,      th
+     *e_vcu_input_file,                        the_pegs_file,
+     *the_shared_lib,                    the_vcu_code,               the
+     *_phsp_file
       real*8    esrc,muIndex
       integer*8 nhist, nnread,nshist,nphist,nnphsp
       real*8 einsrc, xsrcold, ysrcold,usrcold,vsrcold,wsrcold,weightold,
@@ -3380,7 +3397,8 @@
      *max,pgang,r_11, r_12, r_13, r_21,                       r_22, r_23
      *, r_31, r_32, r_33,dsource,dsourcetemp,
      *    ein, eksrcm, esrc_sp, SSD, NINCSRC,
-     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold
+     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold,ia
+     *ea_SAD
       integer*4 isource, iqin, iqphsp, iqinc,latchold,iqinold,MLCflag,SH
      *Lflag,         calflag, ixinl, ixinu, jyinl, jyinu, kzinl, kzinu,
      *                             klowx, khix, klowy, khiy, klowz, khiz
@@ -3474,15 +3492,15 @@
       DATA edep_save/0.0/
       IF((IWATCH .NE.0))call watch(iarg,IWATCH)
       mxnp=max(mxnp,np)
-      IF ((np .GE. 10000)) THEN
-          WRITE(6,4490)np, 10000
-          WRITE(1,4490)np, 10000
-4490      FORMAT(//' In ausgab, np=',i3,' >= maximum stack allowed which
+      IF ((np .GE. 900000)) THEN
+          WRITE(6,4500)np, 900000
+          WRITE(1,4500)np, 900000
+4500      FORMAT(//' In ausgab, np=',i3,' >= maximum stack allowed which
      * is',i3/ 1X,79('*')//)
-          IF ((mxnp .GT. 10000)) THEN
-              WRITE(6,4500)np, 10000
-              WRITE(1,4500)np, 10000
-4500          FORMAT(//' In ausgab, np=',i3,' > maximum stack allowed wh
+          IF ((mxnp .GT. 900000)) THEN
+              WRITE(6,4510)np, 900000
+              WRITE(1,4510)np, 900000
+4510          FORMAT(//' In ausgab, np=',i3,' > maximum stack allowed wh
      *ich is',i3/ 1X,79('*')//'  Must stop - you must increase $MXSTACKi
      *n'/ '   dosxyz_user_macros.mortran')
               stop '*** Stack overflow ***'
@@ -3490,7 +3508,7 @@
       END IF
       IF (( n_split .GT. 1 )) THEN
           IF (( iarg .EQ. 7 .OR. iarg .EQ. 13 .OR. iarg .EQ. 14 )) THEN
-              DO 4511 ip=NPold,NP
+              DO 4521 ip=NPold,NP
                   IF (( iq(ip) .EQ. 0 )) THEN
                       IF((rng_seed .GT. 128))call ranmar_get
                       XSI = rng_array(rng_seed)*twom24
@@ -3502,8 +3520,8 @@
                           wt(ip) = wt(ip)*n_split
                       END IF
                   END IF
-4511          CONTINUE
-4512          CONTINUE
+4521          CONTINUE
+4522          CONTINUE
           END IF
       END IF
       IF ((howfarless .AND. (iarg.EQ.15 .OR. iarg.EQ.17 .OR. iarg.EQ.19
@@ -3599,7 +3617,7 @@
               irnew_loc=irold_loc
               edep_frac=edep_save/t_tot
               outside=0
-              DO 4521 i=1,2
+              DO 4531 i=1,2
                   IF ((t(i).GT.0. .AND. irold_loc.GT.1)) THEN
                       IF ((i.EQ.2)) THEN
                           xi=xi+ui(1)*t(1)
@@ -3646,7 +3664,7 @@
                           distz=1e20
                       END IF
                       dist_tot=0.
-4531                  CONTINUE
+4541                  CONTINUE
                           dist_max=t(i)-dist_tot
                           IF ((distx.LT.disty .AND. distx.LT.distz .AND.
      *                     distx.LT.dist_max)) THEN
@@ -3710,12 +3728,12 @@
                           irold_loc=irnew_loc
                           dist_tot=dist_tot+dist_loc
                           IF(((dist_tot.GE.t(i).OR.outside.EQ.1)))GO TO4
-     *                    532
-                      GO TO 4531
-4532                  CONTINUE
+     *                    542
+                      GO TO 4541
+4542                  CONTINUE
                   END IF
-4521          CONTINUE
-4522          CONTINUE
+4531          CONTINUE
+4532          CONTINUE
               irnew=irnew_loc
               IF((irnew.NE.irold))ir(np)=irnew
           END IF
@@ -3783,6 +3801,9 @@
      *        _field)*w_temp
               w(np)=r_13(k_field)*u_temp + r_23(k_field)*v_temp + r_33(k
      *        _field)*w_temp
+              IF ((i_iaea_in.EQ.1)) THEN
+                  z(np) = z(np) + iaea_SAD
+              END IF
               IF ((0.EQ.0)) THEN
                   ESHORT=e(np)
                   iaea_n_stat=nhist-IHSTRY_PHSP(1)
@@ -3894,9 +3915,9 @@
      * ybound_max, zbound_min, zbound_max,dsurround
       integer medsur,IMAX, JMAX, KMAX, ijmax,irmax
       logical howfarless
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -3911,23 +3932,24 @@
      * muIndex(60000),  r_11(60000), r_12(60000), r_13(60000), r_21(6000
      *0), r_22(60000), r_23(60000), r_31(60000), r_32(60000), r_33(60000
      *), dsource, dsourcetemp(60000), ein,  eksrcm,  esrc_sp,  SSD,  ein
-     *srcold, NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  latchold,  e
-     *nflag,  dflag,  ismode,  isource,     iqin,        iqphsp,
-     *           iqinc,                          SHLflag,     calflag,
-     *   MLCflag,     ixinl,       ixinu,       jyinl,       jyinu,
-     *  kzinl,       kzinu,       klowx,       khix,        klowy,
-     * khiy,        klowz,       khiz,        survival_ratio,        nsm
-     *iss,      nsblocked,     nsrjct,      nsoutside,     nmissm,
-     *IPRIMARY,                                            OLDSRC,
-     * npassi,                     nang,         ivary(60000),     ngang
-     *(60000),       nset,            more_in_cont,                 numa
-     *ng,       dose_stat,      ndbsrjct,                        i_dbs,
-     *         iphatsrc,         e_split,                           i_ia
-     *ea_in,      i_mu_phsp,           izscore,             i_unit_in,
-     *                k_field,                       nhist_last,
-     *         the_beam_code,         the_input_file,      the_vcu_input
-     *_file,                        the_pegs_file,           the_shared_
-     *lib,                    the_vcu_code,               the_phsp_file
+     *srcold, iaea_SAD,  NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  l
+     *atchold,  enflag,  dflag,  ismode,  isource,     iqin,        iqph
+     *sp,                   iqinc,                          SHLflag,
+     * calflag,     MLCflag,     ixinl,       ixinu,       jyinl,
+     *jyinu,       kzinl,       kzinu,       klowx,       khix,        k
+     *lowy,       khiy,        klowz,       khiz,        survival_ratio,
+     *        nsmiss,      nsblocked,     nsrjct,      nsoutside,     nm
+     *issm,      IPRIMARY,                                            OL
+     *DSRC,       npassi,                     nang,         ivary(60000)
+     *,     ngang(60000),       nset,            more_in_cont,
+     *       numang,       dose_stat,      ndbsrjct,
+     *    i_dbs,          iphatsrc,         e_split,
+     *       i_iaea_in,      i_mu_phsp,           izscore,             i
+     *_unit_in,                  k_field,                       nhist_la
+     *st,                 the_beam_code,         the_input_file,      th
+     *e_vcu_input_file,                        the_pegs_file,
+     *the_shared_lib,                    the_vcu_code,               the
+     *_phsp_file
       real*8    esrc,muIndex
       integer*8 nhist, nnread,nshist,nphist,nnphsp
       real*8 einsrc, xsrcold, ysrcold,usrcold,vsrcold,wsrcold,weightold,
@@ -3939,7 +3961,8 @@
      *max,pgang,r_11, r_12, r_13, r_21,                       r_22, r_23
      *, r_31, r_32, r_33,dsource,dsourcetemp,
      *    ein, eksrcm, esrc_sp, SSD, NINCSRC,
-     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold
+     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold,ia
+     *ea_SAD
       integer*4 isource, iqin, iqphsp, iqinc,latchold,iqinold,MLCflag,SH
      *Lflag,         calflag, ixinl, ixinu, jyinl, jyinu, kzinl, kzinu,
      *                             klowx, khix, klowy, khiy, klowz, khiz
@@ -3972,10 +3995,10 @@
                   IF (( (ysrcp .GE. ybound_min) .AND. (ysrcp .LE. ybound
      *            _max) .AND. (zsrcp .GE. zbound_min) .AND. (zsrcp .LE.
      *            zbound_max))) THEN
-                      DO 4541 j=1,JMAX
+                      DO 4551 j=1,JMAX
                           IF (( (ybound(j) .LE. ysrcp) .AND. (ysrcp .LE.
      *                     ybound(j+1)) )) THEN
-                              DO 4551 k=1,KMAX
+                              DO 4561 k=1,KMAX
                                   IF (( (zbound(k) .LE. zsrcp) .AND. (zs
      *                            rcp .LE. zbound(k+1)) )) THEN
                                       IF ((dist .LT. ustep)) THEN
@@ -3987,11 +4010,11 @@
                                       END IF
                                       return
                                   END IF
-4551                          CONTINUE
-4552                          CONTINUE
+4561                          CONTINUE
+4562                          CONTINUE
                           END IF
-4541                  CONTINUE
-4542                  CONTINUE
+4551                  CONTINUE
+4552                  CONTINUE
                       stop ' * Stopped in howfar on lower x-plane. Canno
      *t find irnew! *'
                   END IF
@@ -4004,10 +4027,10 @@
                   IF (( (ysrcp .GE. ybound_min) .AND. (ysrcp .LE. ybound
      *            _max) .AND. (zsrcp .GE. zbound_min) .AND. (zsrcp .LE.
      *            zbound_max))) THEN
-                      DO 4561 j=1,JMAX
+                      DO 4571 j=1,JMAX
                           IF (( (ybound(j) .LE. ysrcp) .AND. (ysrcp .LE.
      *                     ybound(j+1)) )) THEN
-                              DO 4571 k=1,KMAX
+                              DO 4581 k=1,KMAX
                                   IF (((zbound(k).LE. zsrcp).AND.(zsrcp.
      *                            LE. zbound(k+1)))) THEN
                                       IF ((dist .LT. ustep)) THEN
@@ -4019,11 +4042,11 @@
                                       END IF
                                       return
                                   END IF
-4571                          CONTINUE
-4572                          CONTINUE
+4581                          CONTINUE
+4582                          CONTINUE
                           END IF
-4561                  CONTINUE
-4562                  CONTINUE
+4571                  CONTINUE
+4572                  CONTINUE
                       stop ' * Stopped in howfar on upper x-plane. Canno
      *t find irnew! *'
                   END IF
@@ -4037,10 +4060,10 @@
                   IF (( (xsrcp .GE. xbound_min) .AND. (xsrcp .LE. xbound
      *            _max) .AND. (zsrcp .GE. zbound_min) .AND. (zsrcp .LE.
      *            zbound_max))) THEN
-                      DO 4581 i=1,IMAX
+                      DO 4591 i=1,IMAX
                           IF (( (xbound(i) .LE. xsrcp) .AND. (xsrcp .LE.
      *                     xbound(i+1)) )) THEN
-                              DO 4591 k=1,KMAX
+                              DO 4601 k=1,KMAX
                                   IF (( (zbound(k) .LE. zsrcp) .AND. (zs
      *                            rcp .LE. zbound(k+1)))) THEN
                                       IF ((dist .LT. ustep)) THEN
@@ -4051,11 +4074,11 @@
                                       END IF
                                       return
                                   END IF
-4591                          CONTINUE
-4592                          CONTINUE
+4601                          CONTINUE
+4602                          CONTINUE
                           END IF
-4581                  CONTINUE
-4582                  CONTINUE
+4591                  CONTINUE
+4592                  CONTINUE
                       stop ' * Stopped in howfar on lower y-plane. Canno
      *t find irnew! *'
                   END IF
@@ -4068,10 +4091,10 @@
                   IF (( (xsrcp .GE. xbound_min) .AND. (xsrcp .LE. xbound
      *            _max) .AND. (zsrcp .GE. zbound_min) .AND. (zsrcp .LE.
      *            zbound_max))) THEN
-                      DO 4601 i=1,IMAX
+                      DO 4611 i=1,IMAX
                           IF (( (xbound(i) .LE. xsrcp) .AND. (xsrcp .LE.
      *                     xbound(i+1)) )) THEN
-                              DO 4611 k=1,KMAX
+                              DO 4621 k=1,KMAX
                                   IF (( (zbound(k) .LE. zsrcp) .AND. (zs
      *                            rcp .LE. zbound(k+1)) )) THEN
                                       IF ((dist .LT. ustep)) THEN
@@ -4082,11 +4105,11 @@
                                       END IF
                                       return
                                   END IF
-4611                          CONTINUE
-4612                          CONTINUE
+4621                          CONTINUE
+4622                          CONTINUE
                           END IF
-4601                  CONTINUE
-4602                  CONTINUE
+4611                  CONTINUE
+4612                  CONTINUE
                       stop ' * Stopped in howfar on upper y-plane. Canno
      *t find irnew! *'
                   END IF
@@ -4100,10 +4123,10 @@
                   IF (( (xsrcp .GE. xbound_min) .AND. (xsrcp .LE. xbound
      *            _max) .AND. (ysrcp .GE. ybound_min) .AND. (ysrcp .LE.
      *            ybound_max))) THEN
-                      DO 4621 i=1,IMAX
+                      DO 4631 i=1,IMAX
                           IF (( (xbound(i) .LE. xsrcp) .AND. (xsrcp .LE.
      *                     xbound(i+1)) )) THEN
-                              DO 4631 j=1,JMAX
+                              DO 4641 j=1,JMAX
                                   IF (( (ybound(j) .LE. ysrcp) .AND. (ys
      *                            rcp .LE. ybound(j+1)) )) THEN
                                       IF ((dist .LT. ustep)) THEN
@@ -4114,11 +4137,11 @@
                                       END IF
                                       return
                                   END IF
-4631                          CONTINUE
-4632                          CONTINUE
+4641                          CONTINUE
+4642                          CONTINUE
                           END IF
-4621                  CONTINUE
-4622                  CONTINUE
+4631                  CONTINUE
+4632                  CONTINUE
                       stop ' * Stopped in howfar on lower z-plane. Canno
      *t find irnew! *'
                   END IF
@@ -4131,10 +4154,10 @@
                   IF (( (xsrcp .GE. xbound_min) .AND. (xsrcp .LE. xbound
      *            _max) .AND. (ysrcp .GE. ybound_min) .AND. (ysrcp .LE.
      *            ybound_max))) THEN
-                      DO 4641 i=1,IMAX
+                      DO 4651 i=1,IMAX
                           IF (( (xbound(i) .LE. xsrcp) .AND. (xsrcp .LE.
      *                     xbound(i+1)) )) THEN
-                              DO 4651 j=1,JMAX
+                              DO 4661 j=1,JMAX
                                   IF (( (ybound(j) .LE. ysrcp) .AND. (ys
      *                            rcp .LE. ybound(j+1)) )) THEN
                                       IF ((dist .LT. ustep)) THEN
@@ -4145,11 +4168,11 @@
                                       END IF
                                       return
                                   END IF
-4651                          CONTINUE
-4652                          CONTINUE
+4661                          CONTINUE
+4662                          CONTINUE
                           END IF
-4641                  CONTINUE
-4642                  CONTINUE
+4651                  CONTINUE
+4652                  CONTINUE
                       stop ' * Stopped in howfar on upper z-plane. Canno
      *t find irnew! *'
                   END IF
@@ -4368,66 +4391,122 @@
       RETURN
       end
       subroutine write_dose(iimax,jjmax,kkmax,xbnd,ybnd,zbnd,dd,ddun,uni
-     *tnum, writemax20)
+     *tnum, writemax20,bindos)
       IMPLICIT NONE
-      INTEGER iimax,  jjmax,  kkmax,  ijkmax,  irtmp,  writemax20,  unit
-     *num,  ii,jj,kk,mm,nn,  NUMFRAC,  MAXI(20),MAXJ(20),MAXK(20), egs_o
-     *pen_file
-      REAL xbnd(128+1),  ybnd(128+1),  zbnd(128+1),  MAXDOS(20),  MAXDOS
-     *AVG,  ERRMAXDOSAVG,  ERR50AVG,  ERR50FRAC,   DOSEFRAC,  DOSEmin,
-     *ARUFRAC
+      INTEGER iimax,  jjmax,  kkmax,  ijkmax,  irtmp,  writemax20,  bind
+     *os,  unitnum,  ii,jj,kk,mm,nn,  NUMFRAC,  MAXI(20),MAXJ(20),MAXK(2
+     *0), num_nonzero,  num_blocks,  start_block,  voxel_blocks( 2097153
+     *),  egs_open_file
+      REAL xbnd(128+1),  ybnd(128+1),  zbnd(128+1),  dtemp,  MAXDOS(20),
+     *  MAXDOSAVG,  ERRMAXDOSAVG,  ERR50AVG,  ERR50FRAC,   DOSEFRAC,  DO
+     *SEmin,  ARUFRAC
       REAL*8 dd( 2097153),  ddun( 2097153)
-      unitnum=egs_open_file(unitnum,0,1,'.3ddose')
-      write(unitnum,*)iimax,jjmax,kkmax
-      write(unitnum,*)(xbnd(ii),ii=1,iimax+1)
-      write(unitnum,*)(ybnd(jj),jj=1,jjmax+1)
-      write(unitnum,*)(zbnd(kk),kk=1,kkmax+1)
-      write(unitnum,*)(((dd((ii+(jj-1)*iimax+(kk-1)*iimax*jjmax)),ii=1,i
-     *imax),jj=1,jjmax),kk=1,kkmax)
-      write(unitnum,*)(((ddun((ii+(jj-1)*iimax+(kk-1)*iimax*jjmax)),ii=1
-     *,iimax),jj=1,jjmax),kk=1,kkmax)
-      close(unitnum)
+      num_nonzero = 0
+      num_blocks = 0
+      start_block = -1
       ijkmax=iimax*jjmax*kkmax
+      IF ((bindos.EQ.0)) THEN
+          unitnum=egs_open_file(unitnum,0,1,'.3ddose')
+          write(unitnum,*)iimax,jjmax,kkmax
+          write(unitnum,*)(xbnd(ii),ii=1,iimax+1)
+          write(unitnum,*)(ybnd(jj),jj=1,jjmax+1)
+          write(unitnum,*)(zbnd(kk),kk=1,kkmax+1)
+          write(unitnum,*)(((dd((ii+(jj-1)*iimax+(kk-1)*iimax*jjmax)),ii
+     *    =1,iimax),jj=1,jjmax),kk=1,kkmax)
+          write(unitnum,*)(((ddun((ii+(jj-1)*iimax+(kk-1)*iimax*jjmax)),
+     *    ii=1,iimax),jj=1,jjmax),kk=1,kkmax)
+      ELSE
+          DO 4671 ii=1,ijkmax
+              IF ((dd(ii).GT.0.0)) THEN
+                  IF ((start_block .EQ. -1)) THEN
+                      start_block = ii
+                  END IF
+                  num_nonzero = num_nonzero + 1
+              ELSE
+                  IF ((start_block .NE. -1)) THEN
+                      num_blocks = num_blocks + 1
+                      voxel_blocks(2*num_blocks) = start_block
+                      voxel_blocks(2*num_blocks+1) = ii
+                      start_block = -1
+                  END IF
+              END IF
+4671      CONTINUE
+4672      CONTINUE
+          IF ((start_block .NE. -1)) THEN
+              num_blocks = num_blocks + 1
+              voxel_blocks(2*num_blocks) = start_block
+              voxel_blocks(2*num_blocks+1) = ijkmax
+          END IF
+          unitnum=egs_open_file(unitnum,-1,1,'.bindos')
+          write(unitnum)iimax,jjmax,kkmax
+          write(unitnum)(xbnd(ii),ii=1,iimax+1)
+          write(unitnum)(ybnd(jj),jj=1,jjmax+1)
+          write(unitnum)(zbnd(kk),kk=1,kkmax+1)
+          write(unitnum)num_nonzero
+          write(unitnum)num_blocks
+          DO 4681 ii=1,num_blocks
+              write(unitnum)voxel_blocks(2*ii) - 1
+              write(unitnum)voxel_blocks(2*ii+1) - 1
+4681      CONTINUE
+4682      CONTINUE
+          DO 4691 ii=1,num_blocks
+              DO 4701 jj=voxel_blocks(2*ii),voxel_blocks(2*ii+1)-1
+                  dtemp = dd(jj)
+                  write(unitnum)dtemp
+4701          CONTINUE
+4702          CONTINUE
+4691      CONTINUE
+4692      CONTINUE
+          DO 4711 ii=1,num_blocks
+              DO 4721 jj=voxel_blocks(2*ii),voxel_blocks(2*ii+1)-1
+                  dtemp = ddun(jj)
+                  write(unitnum)dtemp
+4721          CONTINUE
+4722          CONTINUE
+4711      CONTINUE
+4712      CONTINUE
+      END IF
+      close(unitnum)
       IF ((writemax20.EQ.1)) THEN
-          DO 4661 mm=1,20
+          DO 4731 mm=1,20
               MAXDOS(mm)=0.0
-4661      CONTINUE
-4662      CONTINUE
-          DO 4671 ii=1,iimax
-              DO 4681 jj=1,jjmax
-                  DO 4691 kk=1,kkmax
+4731      CONTINUE
+4732      CONTINUE
+          DO 4741 ii=1,iimax
+              DO 4751 jj=1,jjmax
+                  DO 4761 kk=1,kkmax
                       irtmp = (ii+(jj-1)*iimax+(kk-1)*iimax*jjmax)
-                      DO 4701 mm=1,min(20,ijkmax)
+                      DO 4771 mm=1,min(20,ijkmax)
                           IF ((dd(irtmp).GE.MAXDOS(mm))) THEN
-                              DO 4711 nn=min(20,ijkmax),mm+1,-1
+                              DO 4781 nn=min(20,ijkmax),mm+1,-1
                                   MAXDOS(nn)=MAXDOS(nn-1)
                                   MAXI(nn)=MAXI(nn-1)
                                   MAXJ(nn)=MAXJ(nn-1)
                                   MAXK(nn)=MAXK(nn-1)
-4711                          CONTINUE
-4712                          CONTINUE
+4781                          CONTINUE
+4782                          CONTINUE
                               MAXDOS(mm)=dd(irtmp)
                               MAXI(mm)=ii
                               MAXJ(mm)=jj
                               MAXK(mm)=kk
-                              GO TO4702
+                              GO TO4772
                           END IF
-4701                  CONTINUE
-4702                  CONTINUE
-4691              CONTINUE
-4692              CONTINUE
-4681          CONTINUE
-4682          CONTINUE
-4671      CONTINUE
-4672      CONTINUE
+4771                  CONTINUE
+4772                  CONTINUE
+4761              CONTINUE
+4762              CONTINUE
+4751          CONTINUE
+4752          CONTINUE
+4741      CONTINUE
+4742      CONTINUE
           MAXDOSAVG=0.
           ERRMAXDOSAVG=0.
-          DO 4721 mm=1,min(20,ijkmax)
+          DO 4791 mm=1,min(20,ijkmax)
               MAXDOSAVG=MAXDOSAVG+MAXDOS(mm)
               ERRMAXDOSAVG=ERRMAXDOSAVG+ddun((MAXI(mm)+(MAXJ(mm)-1)*iima
      *        x+(MAXK(mm)-1)*iimax*jjmax))
-4721      CONTINUE
-4722      CONTINUE
+4791      CONTINUE
+4792      CONTINUE
           MAXDOSAVG=MAXDOSAVG/float(min(20,ijkmax))
           ERRMAXDOSAVG=ERRMAXDOSAVG/float(min(20,ijkmax))
           ERR50AVG=0.
@@ -4436,9 +4515,9 @@
           DOSEmin = DOSEFRAC*MAXDOS(1)
           ARUFRAC=0.
           NUMFRAC=0
-          DO 4731 ii=1,iimax
-              DO 4741 jj=1,jjmax
-                  DO 4751 kk=1,kkmax
+          DO 4801 ii=1,iimax
+              DO 4811 jj=1,jjmax
+                  DO 4821 kk=1,kkmax
                       irtmp = (ii+(jj-1)*iimax+(kk-1)*iimax*jjmax)
                       IF ((dd(irtmp) .GT. DOSEmin )) THEN
                           ERR50AVG =ERR50AVG +ddun(irtmp)
@@ -4446,29 +4525,29 @@
                           ARUFRAC =ARUFRAC +ddun(irtmp)**2
                           NUMFRAC =NUMFRAC+1
                       END IF
-4751              CONTINUE
-4752              CONTINUE
-4741          CONTINUE
-4742          CONTINUE
-4731      CONTINUE
-4732      CONTINUE
+4821              CONTINUE
+4822              CONTINUE
+4811          CONTINUE
+4812          CONTINUE
+4801      CONTINUE
+4802      CONTINUE
           IF (( (NUMFRAC .NE. 0) .AND. (MAXDOS(1) .NE. 0.0))) THEN
               ERR50AVG=ERR50AVG/NUMFRAC
               ERR50FRAC=ERR50FRAC/(NUMFRAC*MAXDOS(1))
               ARUFRAC=SQRT(ARUFRAC/NUMFRAC)
           ELSE
-              WRITE(6,4760)DOSEFRAC
-4760          FORMAT(' Statistics really bad - analysis of average relat
+              WRITE(6,4830)DOSEFRAC
+4830          FORMAT(' Statistics really bad - analysis of average relat
      *ative uncertainty'/ ' on voxels with dose > ',F12.5,'*Dmax is mean
      *ingless')
           END IF
-          WRITE(6,4770)min(20,ijkmax), MAXDOSAVG, min(20,ijkmax), ERRMAX
+          WRITE(6,4840)min(20,ijkmax), MAXDOSAVG, min(20,ijkmax), ERRMAX
      *    DOSAVG*100., DOSEFRAC, ERR50AVG*100., DOSEFRAC, ERR50FRAC*100,
      *     DOSEFRAC, ARUFRAC*100., NUMFRAC, DOSEFRAC, min(20,ijkmax)
-          WRITE(1,4770)min(20,ijkmax), MAXDOSAVG, min(20,ijkmax), ERRMAX
+          WRITE(1,4840)min(20,ijkmax), MAXDOSAVG, min(20,ijkmax), ERRMAX
      *    DOSAVG*100., DOSEFRAC, ERR50AVG*100., DOSEFRAC, ERR50FRAC*100,
      *     DOSEFRAC, ARUFRAC*100., NUMFRAC, DOSEFRAC, min(20,ijkmax)
-4770      FORMAT(/' average of ',I2,' highest doses = ',T62,E12.5,' Gy/p
+4840      FORMAT(/' average of ',I2,' highest doses = ',T62,E12.5,' Gy/p
      *article'/ ' average % error of ',I2,' highest doses = ',T60,F9.3,'
      * %'/ ' average % error of doses >',F7.3,' of max dose = ',T60,F9.3
      *,' %'/ ' (average error of doses >',F7.3,' of max dose)/(max dose)
@@ -4477,19 +4556,19 @@
      * > ',F7.3,' of max dose ' // ' ',I2,' highest doses: '/ ' '/ '    
      *    dose (Gy/particle)                     (x,y,z) (cm)'/'        
      *-----------------                      ------------'/)
-          DO 4781 mm=1,min(20,ijkmax)
-              WRITE(6,4790)MAXDOS(mm),ddun((MAXI(mm)+(MAXJ(mm)-1)*iimax+
+          DO 4851 mm=1,min(20,ijkmax)
+              WRITE(6,4860)MAXDOS(mm),ddun((MAXI(mm)+(MAXJ(mm)-1)*iimax+
      *        (MAXK(mm)-1)*iimax*jjmax))*100, (xbnd(MAXI(mm)+1)+xbnd(MAX
      *        I(mm)))/2., (ybnd(MAXJ(mm)+1)+ybnd(MAXJ(mm)))/2., (zbnd(MA
      *        XK(mm)+1)+zbnd(MAXK(mm)))/2.
-              WRITE(1,4790)MAXDOS(mm),ddun((MAXI(mm)+(MAXJ(mm)-1)*iimax+
+              WRITE(1,4860)MAXDOS(mm),ddun((MAXI(mm)+(MAXJ(mm)-1)*iimax+
      *        (MAXK(mm)-1)*iimax*jjmax))*100, (xbnd(MAXI(mm)+1)+xbnd(MAX
      *        I(mm)))/2., (ybnd(MAXJ(mm)+1)+ybnd(MAXJ(mm)))/2., (zbnd(MA
      *        XK(mm)+1)+zbnd(MAXK(mm)))/2.
-4790          FORMAT(' ',E12.5,' +/- ',F12.5,' %  ( ',F12.5,',',F12.5,',
+4860          FORMAT(' ',E12.5,' +/- ',F12.5,' %  ( ',F12.5,',',F12.5,',
      *',F12.5,' )')
-4781      CONTINUE
-4782      CONTINUE
+4851      CONTINUE
+4852      CONTINUE
       END IF
       RETURN
       end
@@ -4502,36 +4581,40 @@
       integer*2 med( 2097154)
       REAL xbnd(128+1),  ybnd(128+1),  zbnd(128+1),  estepe(20)
       real*8 rho( 2097154)
+      character encoding(62)
+      encoding = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr
+     *stuvwxyz'
       iunit=egs_open_file(iunit,0,1,'.egsphant')
       WRITE(iunit,'(i2)') nmed
-      DO 4801 ii=1,nmed
+      DO 4871 ii=1,nmed
           Write(iunit,'(24a1)') (media(jj,ii),jj=1,24)
-4801  CONTINUE
-4802  CONTINUE
+4871  CONTINUE
+4872  CONTINUE
       WRITE(iunit,*) (estepe(ii),ii=1,nmed)
       WRITE(iunit,'(3i5)') iimax,jjmax,kkmax
       WRITE(iunit,*) (xbnd(ii),ii=1,iimax+1)
       WRITE(iunit,*) (ybnd(jj),jj=1,jjmax+1)
       WRITE(iunit,*) (zbnd(kk),kk=1,kkmax+1)
-      DO 4811 kk=1,kkmax
-          DO 4821 jj=1,jjmax
-              WRITE(iunit,1399) (med((1 + ii + (jj-1)*iimax + (kk-1)*iim
-     *        ax*jjmax)),ii=1,iimax)
-4821      CONTINUE
-4822      CONTINUE
+      DO 4881 kk=1,kkmax
+          DO 4891 jj=1,jjmax
+              WRITE(iunit,1399) (encoding(med((1 + ii + (jj-1)*iimax + (
+     *        kk-1)*iimax*jjmax))+1:med((1 + ii + (jj-1)*iimax + (kk-1)*
+     *        iimax*jjmax))+1),ii=1,iimax)
+4891      CONTINUE
+4892      CONTINUE
           WRITE(iunit,*)
-4811  CONTINUE
-4812  CONTINUE
-1399  FORMAT(128i1)
-      DO 4831 kk=1,kkmax
-          DO 4841 jj=1,jjmax
+4881  CONTINUE
+4882  CONTINUE
+1399  FORMAT(128a1)
+      DO 4901 kk=1,kkmax
+          DO 4911 jj=1,jjmax
               WRITE(iunit,*) (rho((1 + ii + (jj-1)*iimax + (kk-1)*iimax*
      *        jjmax)),ii=1,iimax)
-4841      CONTINUE
-4842      CONTINUE
+4911      CONTINUE
+4912      CONTINUE
           WRITE(iunit,*)
-4831  CONTINUE
-4832  CONTINUE
+4901  CONTINUE
+4902  CONTINUE
       close(iunit)
       RETURN
       end
@@ -4539,12 +4622,14 @@
       implicit none
       common/score/endep( 2097153), endep2( 2097153), temp2, planarefe,
      *planarefp,planarfe,planarfp, nestep, endep_tmp( 2097153), i_phsp_o
-     *ut,i_muidx_out,i_unit_out,IWATCH,mxnp, endep_last( 2097153)
+     *ut,i_muidx_out,i_unit_out,IWATCH,mxnp,i_bindos, endep_last( 209715
+     *3)
       REAL*8 endep, endep2, temp2,planarefe, planarefp, planarfe, planar
      *fp
       integer*8 nestep
       real endep_tmp
-      integer i_phsp_out,   i_muidx_out,    i_unit_out,  IWATCH,mxnp
+      integer i_phsp_out,   i_muidx_out,    i_unit_out,  i_bindos,  IWAT
+     *CH,mxnp
       integer*2 endep_last
       character*(*) file_name
       integer*4 I,IMAX,JMAX,KMAX,lnblnk1
@@ -4554,32 +4639,32 @@
       data first_time/.true./
       save first_time
       IF ((first_time)) THEN
-          WRITE(6,4850)
-          WRITE(1,4850)
-4850      FORMAT(/1X,'Summing the following .pardose files')
-          WRITE(6,4860)
-          WRITE(1,4860)
-4860      FORMAT(1X,'------------------------------------'/)
+          WRITE(6,4920)
+          WRITE(1,4920)
+4920      FORMAT(/1X,'Summing the following .pardose files')
+          WRITE(6,4930)
+          WRITE(1,4930)
+4930      FORMAT(1X,'------------------------------------'/)
       END IF
-      WRITE(6,4870)file_name(:lnblnk1(file_name))
-      WRITE(1,4870)file_name(:lnblnk1(file_name))
-4870  FORMAT(A)
+      WRITE(6,4940)file_name(:lnblnk1(file_name))
+      WRITE(1,4940)file_name(:lnblnk1(file_name))
+4940  FORMAT(A)
       file_name=file_name(:lnblnk1(file_name))//char(0)
       call read_pardose(TTEMP2,IMAX,JMAX,KMAX,TENDEP,TENDEP2,file_name)
       IF ((first_time)) THEN
           first_time = .false.
           TEMP2=0.
-          DO 4881 I=1,IMAX*JMAX*KMAX
+          DO 4951 I=1,IMAX*JMAX*KMAX
               endep(I)=0.0
               endep2(I)=0.0
-4881      CONTINUE
-4882      CONTINUE
+4951      CONTINUE
+4952      CONTINUE
       END IF
-      DO 4891 I=1,IMAX*JMAX*KMAX
+      DO 4961 I=1,IMAX*JMAX*KMAX
           endep(i)=endep(i)+tendep(i)
           endep2(i)=endep2(i)+ tendep2(i)
-4891  CONTINUE
-4892  CONTINUE
+4961  CONTINUE
+4962  CONTINUE
       TEMP2=TEMP2+TTEMP2
       return
       end
@@ -4591,15 +4676,15 @@
       min = 1
       max = nsh
       x = a
-4901  IF(min.GE.max-1)GO TO 4902
+4971  IF(min.GE.max-1)GO TO 4972
           help = (max+min) / 2
           IF (( b(help).LE.x)) THEN
               min = help
           ELSE
               max = help
           END IF
-      GO TO 4901
-4902  CONTINUE
+      GO TO 4971
+4972  CONTINUE
       ibsearch4 = min
       return
       end
@@ -4662,7 +4747,7 @@
       real*8 eil,ei,p2,beta2,chi_a2,elke,eke,dedx0,estepx,si,sip1,tmxs_o
      *rig, mindel
       integer*4 i,neke,leil,lelke
-      DO 4911 medium=1,nmed
+      DO 4981 medium=1,nmed
           neke = meke(medium)
           eil = (1 - eke0(medium))/eke1(medium)
           leil = 1
@@ -4680,7 +4765,7 @@
           END IF
           si = estepx*ei/dedx0
           IF((si .LT. mindel/2.))si = mindel/2.
-          DO 4921 i=1,neke - 1
+          DO 4991 i=1,neke - 1
               elke = (i + 1 - eke0(medium))/eke1(medium)
               lelke = i
               tmxs_orig=tmxs1(i,MEDIUM)*elke+tmxs0(i,MEDIUM)
@@ -4701,12 +4786,12 @@
               tmxs1(i,medium) = (sip1 - si)*eke1(medium)
               tmxs0(i,medium) = sip1 - tmxs1(i,medium)*elke
               si = sip1
-4921      CONTINUE
-4922      CONTINUE
+4991      CONTINUE
+4992      CONTINUE
           tmxs0(neke,medium) = tmxs0(neke - 1,medium)
           tmxs1(neke,medium) = tmxs1(neke - 1,medium)
-4911  CONTINUE
-4912  CONTINUE
+4981  CONTINUE
+4982  CONTINUE
       return
       end
       SUBROUTINE GET_INPUT
@@ -4765,13 +4850,13 @@
       IDEBUG = .false.
       ERROR_FLAG = 0
       IF ((IDEBUG)) THEN
-          WRITE(6,4930)NMIN,NMAX, 100
-4930      FORMAT(' Entering get_inputs seeking values', I5,' to', I5, ' 
+          WRITE(6,5000)NMIN,NMAX, 100
+5000      FORMAT(' Entering get_inputs seeking values', I5,' to', I5, ' 
      *with a max allowed of',I5)
       END IF
       IF ((NMAX .LT. NMIN .OR. NMAX .GT. 100)) THEN
-          WRITE(6,4940)NMAX, NMIN, 100
-4940      FORMAT(//' Error entering get_inputs: Asked for values from',I
+          WRITE(6,5010)NMAX, NMIN, 100
+5010      FORMAT(//' Error entering get_inputs: Asked for values from',I
      *5,' to',I5, '    with a max of',I5//' This implies a bug in the ca
      *lling routine'/ ' Fix it up and try again.  Stopping now.')
           STOP
@@ -4780,27 +4865,27 @@
       UNITNUM=i_input
       DELIM_START=':START '//DELIMETER(:lnblnk1(DELIMETER))//':'
       DELIM_END=':STOP '//DELIMETER(:lnblnk1(DELIMETER))//':'
-      DO 4951 Kconvert=1,lnblnk1(DELIM_START)
+      DO 5021 Kconvert=1,lnblnk1(DELIM_START)
           CURSOR=ICHAR(DELIM_START(Kconvert:Kconvert))
           IF (((CURSOR.GE.97).AND.(CURSOR.LE.122))) THEN
               CURSOR=CURSOR-32
               DELIM_START(Kconvert:Kconvert)=CHAR(CURSOR)
           END IF
-4951  CONTINUE
-4952  CONTINUE
-      DO 4961 Kconvert=1,lnblnk1(DELIM_END)
+5021  CONTINUE
+5022  CONTINUE
+      DO 5031 Kconvert=1,lnblnk1(DELIM_END)
           CURSOR=ICHAR(DELIM_END(Kconvert:Kconvert))
           IF (((CURSOR.GE.97).AND.(CURSOR.LE.122))) THEN
               CURSOR=CURSOR-32
               DELIM_END(Kconvert:Kconvert)=CHAR(CURSOR)
           END IF
-4961  CONTINUE
-4962  CONTINUE
+5031  CONTINUE
+5032  CONTINUE
       IF ((IDEBUG)) THEN
-          WRITE(6,4970)DELIM_START,DELIM_END
-4970      FORMAT(' start and stop delimeters are:'/ A/A/)
+          WRITE(6,5040)DELIM_START,DELIM_END
+5040      FORMAT(' start and stop delimeters are:'/ A/A/)
       END IF
-      DO 4981 I=NMIN,NMAX
+      DO 5051 I=NMIN,NMAX
           REWIND (UNITNUM)
           LINE=0
           CHECK=0
@@ -4824,40 +4909,40 @@
               END IF
               ERROR_FLAG=1
               ERROR_FLAGS(I)=1
-              goto 4990
+              goto 5060
           END IF
-          DO 5001 Kconvert=1,lnblnk1(vname)
+          DO 5071 Kconvert=1,lnblnk1(vname)
               CURSOR=ICHAR(vname(Kconvert:Kconvert))
               IF (((CURSOR.GE.97).AND.(CURSOR.LE.122))) THEN
                   CURSOR=CURSOR-32
                   vname(Kconvert:Kconvert)=CHAR(CURSOR)
               END IF
-5001      CONTINUE
-5002      CONTINUE
+5071      CONTINUE
+5072      CONTINUE
           iindex = 0
           IF ((DELIMETER .EQ. 'NONE')) THEN
               start_found = .true.
           ELSE
               start_found = .false.
           END IF
-5011      IF(iindex.NE.0)GO TO 5012
-5020          CONTINUE
+5081      IF(iindex.NE.0)GO TO 5082
+5090          CONTINUE
               LINE=LINE+1
               IF (( start_found )) THEN
-                  READ(UNITNUM,END=5030,ERR=5040,FMT='(A256)') TEXT
+                  READ(UNITNUM,END=5100,ERR=5110,FMT='(A256)') TEXT
               ELSE
-                  READ(UNITNUM,END=5050,ERR=5040,FMT='(A256)') TEXT
+                  READ(UNITNUM,END=5120,ERR=5110,FMT='(A256)') TEXT
               END IF
               length = len(text)
-5061          IF(index(text,blank).NE.1)GO TO 5062
+5131          IF(index(text,blank).NE.1)GO TO 5132
                   IF (( length .GE. 2 )) THEN
                       text=text(2:)
                   ELSE
-                      GO TO5062
+                      GO TO5132
                   END IF
                   length = length - 1
-              GO TO 5061
-5062          CONTINUE
+              GO TO 5131
+5132          CONTINUE
               ifound = INDEX(text,'#')
               IF (( ifound .GT. 1 )) THEN
                   text = text(1:ifound-1)
@@ -4877,19 +4962,19 @@
               length = lnblnk1(TEXT)
               TEXT=TEXT(:length)
               origtext = text(:length)
-              DO 5071 Kconvert=1,lnblnk1(text)
+              DO 5141 Kconvert=1,lnblnk1(text)
                   CURSOR=ICHAR(text(Kconvert:Kconvert))
                   IF (((CURSOR.GE.97).AND.(CURSOR.LE.122))) THEN
                       CURSOR=CURSOR-32
                       text(Kconvert:Kconvert)=CHAR(CURSOR)
                   END IF
-5071          CONTINUE
-5072          CONTINUE
+5141          CONTINUE
+5142          CONTINUE
               IF (( .NOT.start_found )) THEN
                   IF ((INDEX(TEXT,DELIM_START) .NE. 0 )) THEN
                       start_found = .true.
                   END IF
-                  goto 5020
+                  goto 5090
               END IF
               iindex=INDEX(TEXT,VNAME(:iVNAME))
               IF (( DELIMETER.NE.'NONE' )) THEN
@@ -4904,30 +4989,30 @@
                       END IF
                       ERROR_FLAG=1
                       ERROR_FLAGS(I)=1
-                      GOTO 4990
+                      GOTO 5060
                   END IF
               END IF
-          GO TO 5011
-5012      CONTINUE
+          GO TO 5081
+5082      CONTINUE
           CHECK=0
           IF (( idebug )) THEN
               write(i_log,*) ' ******* Found: '
               write(i_log,'(a,$)') ' text:     '
               length = lnblnk1(text)
               IF (( length .GT. 0 )) THEN
-                  DO 5081 lll=1,length
+                  DO 5151 lll=1,length
                       write(i_log,'(a1,$)') text(lll:lll)
-5081              CONTINUE
-5082              CONTINUE
+5151              CONTINUE
+5152              CONTINUE
                   write(i_log,*)
               END IF
               write(i_log,'(a,$)') ' origtext: '
               length = lnblnk1(origtext)
               IF (( length .GT. 0 )) THEN
-                  DO 5091 lll=1,length
+                  DO 5161 lll=1,length
                       write(i_log,'(a1,$)') origtext(lll:lll)
-5091              CONTINUE
-5092              CONTINUE
+5161              CONTINUE
+5162              CONTINUE
                   write(i_log,*)
               END IF
           END IF
@@ -4939,19 +5024,19 @@
               write(i_log,'(a,$)') ' text:     '
               length = lnblnk1(text)
               IF (( length .GT. 0 )) THEN
-                  DO 5101 lll=1,length
+                  DO 5171 lll=1,length
                       write(i_log,'(a1,$)') text(lll:lll)
-5101              CONTINUE
-5102              CONTINUE
+5171              CONTINUE
+5172              CONTINUE
                   write(i_log,*)
               END IF
               write(i_log,'(a,$)') ' origtext: '
               length = lnblnk1(origtext)
               IF (( length .GT. 0 )) THEN
-                  DO 5111 lll=1,length
+                  DO 5181 lll=1,length
                       write(i_log,'(a1,$)') origtext(lll:lll)
-5111              CONTINUE
-5112              CONTINUE
+5181              CONTINUE
+5182              CONTINUE
                   write(i_log,*)
               END IF
           END IF
@@ -4971,19 +5056,19 @@
               write(i_log,'(a,$)') ' text:     '
               length = lnblnk1(text)
               IF (( length .GT. 0 )) THEN
-                  DO 5121 lll=1,length
+                  DO 5191 lll=1,length
                       write(i_log,'(a1,$)') text(lll:lll)
-5121              CONTINUE
-5122              CONTINUE
+5191              CONTINUE
+5192              CONTINUE
                   write(i_log,*)
               END IF
               write(i_log,'(a,$)') ' origtext: '
               length = lnblnk1(origtext)
               IF (( length .GT. 0 )) THEN
-                  DO 5131 lll=1,length
+                  DO 5201 lll=1,length
                       write(i_log,'(a1,$)') origtext(lll:lll)
-5131              CONTINUE
-5132              CONTINUE
+5201              CONTINUE
+5202              CONTINUE
                   write(i_log,*)
               END IF
           END IF
@@ -4993,26 +5078,26 @@
                   IF ((lnblnk1(TEXTPIECE).NE.0)) THEN
                       TEXT=TEXTPIECE(:lnblnk1(TEXTPIECE))
                       length = len(text)
-5141                  IF(index(text,blank).NE.1)GO TO 5142
+5211                  IF(index(text,blank).NE.1)GO TO 5212
                           IF (( length .GE. 2 )) THEN
                               text=text(2:)
                           ELSE
-                              GO TO5142
+                              GO TO5212
                           END IF
                           length = length - 1
-                      GO TO 5141
-5142                  CONTINUE
+                      GO TO 5211
+5212                  CONTINUE
                       length = len(origtext)
-5151                  IF(index(origtext,blank).NE.1)GO TO 5152
+5221                  IF(index(origtext,blank).NE.1)GO TO 5222
                           IF (( length .GE. 2 )) THEN
                               origtext=origtext(2:)
                           ELSE
-                              GO TO5152
+                              GO TO5222
                           END IF
                           length = length - 1
-                      GO TO 5151
-5152                  CONTINUE
-                      GOTO 5160
+                      GO TO 5221
+5222                  CONTINUE
+                      GOTO 5230
                   END IF
               END IF
               IF (( error_level .GT. 0 )) THEN
@@ -5024,7 +5109,7 @@
               ERROR_FLAGS(I)=1
               RETURN
           END IF
-5160      CONTINUE
+5230      CONTINUE
           iindex = index(text,'DEFAULT')
           IF (( iindex .NE. 0 )) THEN
               IF (( type(i) .NE. 2 )) THEN
@@ -5033,7 +5118,7 @@
                   ELSE
                       VALUE(I,1)=0
                   END IF
-                  goto 4990
+                  goto 5060
               END IF
           END IF
           IF (((TYPE(I) .EQ. 0).OR.(TYPE(I) .EQ. 1))) THEN
@@ -5042,7 +5127,7 @@
                   write(i_log,*) ' *** Reading an integer or a real valu
      *e! '
               END IF
-5171          CONTINUE
+5241          CONTINUE
                   IF (( idebug )) THEN
                       write(i_log,*) ' In LOOP, ival = ',ival
                   END IF
@@ -5057,7 +5142,7 @@
                       ERROR_FLAGS(I)=1
                       RETURN
                   END IF
-                  READ(TEXT,END=5180,ERR=5190,FMT=*) VALUE(I,IVAL)
+                  READ(TEXT,END=5250,ERR=5260,FMT=*) VALUE(I,IVAL)
                   IF (( idebug )) THEN
                       write(i_log,*) ' Read value: ',ival,VALUE(I,IVAL)
                   END IF
@@ -5068,39 +5153,39 @@
                           IF (( error_level .GT. 0 )) THEN
                               WRITE(ERR,*) '************WARNING*********
      ****'
-                              WRITE(ERR,5200) INT_VALUE, VALUES_SOUGHT(I
+                              WRITE(ERR,5270) INT_VALUE, VALUES_SOUGHT(I
      *                        )(:lnblnk1(VALUES_SOUGHT(I)))
                           END IF
-5200                      FORMAT ( 'Default= ',I9,' used for: ', A )
+5270                      FORMAT ( 'Default= ',I9,' used for: ', A )
                           INT_VALUE=VALUE(I,IVAL)
                           INT_VALUE_MIN=VALUE_MIN(I)
                           INT_VALUE_MAX=VALUE_MAX(I)
                           IF (( error_level .GT. 0 )) THEN
-                              WRITE(ERR,5210) VALUES_SOUGHT(I)(:lnblnk1(
+                              WRITE(ERR,5280) VALUES_SOUGHT(I)(:lnblnk1(
      *                        VALUES_SOUGHT(I))), INT_VALUE, INT_VALUE_M
      *                        IN,INT_VALUE_MAX
                           END IF
-5210                      FORMAT (A,'=', I9,' should be between ', I9,'a
+5280                      FORMAT (A,'=', I9,' should be between ', I9,'a
      *nd ', I9)
                       END IF
                       IF ((TYPE(I).EQ.1)) THEN
                           IF (( error_level .GT. 0 )) THEN
                               WRITE(ERR,*) '************WARNING*********
      ****'
-                              WRITE(ERR,5220) DEFAULT(I), VALUES_SOUGHT(
+                              WRITE(ERR,5290) DEFAULT(I), VALUES_SOUGHT(
      *                        I)(:lnblnk1(VALUES_SOUGHT(I)))
-5220                          FORMAT ( 'Default= ',F12.6,' used for: ',A
+5290                          FORMAT ( 'Default= ',F12.6,' used for: ',A
      * )
-                              WRITE(ERR,5230) VALUES_SOUGHT(I)(:lnblnk1(
+                              WRITE(ERR,5300) VALUES_SOUGHT(I)(:lnblnk1(
      *                        VALUES_SOUGHT(I))), VALUE(I,IVAL), VALUE_M
      *                        IN(I),VALUE_MAX(I)
-5230                          FORMAT (A,'=', F12.6,' should be between '
+5300                          FORMAT (A,'=', F12.6,' should be between '
      *, G14.6,' and ', G14.6)
                           END IF
                       END IF
                       VALUE(I,IVAL)=DEFAULT(I)
                   END IF
-                  IF((IVAL .EQ. NVALUE(I)))GO TO5172
+                  IF((IVAL .EQ. NVALUE(I)))GO TO5242
                   IF (((INDEX(TEXT,',').NE.0).OR.(lnblnk1(TEXT).EQ.0)))
      *            THEN
                       IF (( idebug )) THEN
@@ -5109,24 +5194,24 @@
                           write(i_log,*) ' searching for further input'
                       END IF
                       TEXT=TEXT(INDEX(TEXT,',')+1:)
-5241                  IF(lnblnk1(TEXT).NE.0)GO TO 5242
+5311                  IF(lnblnk1(TEXT).NE.0)GO TO 5312
                           IF (( idebug )) THEN
                               write(i_log,*) ' Empty text -> reading nex
      *t line! '
                           END IF
                           LINE=LINE+1
-                          READ (UNITNUM,END=5180,ERR=5190,FMT='(A256)')
+                          READ (UNITNUM,END=5250,ERR=5260,FMT='(A256)')
      *                    TEXT
                           length = len(text)
-5251                      IF(index(text,blank).NE.1)GO TO 5252
+5321                      IF(index(text,blank).NE.1)GO TO 5322
                               IF (( length .GE. 2 )) THEN
                                   text=text(2:)
                               ELSE
-                                  GO TO5252
+                                  GO TO5322
                               END IF
                               length = length - 1
-                          GO TO 5251
-5252                      CONTINUE
+                          GO TO 5321
+5322                      CONTINUE
                           ifound = INDEX(text,'#')
                           IF (( ifound .GT. 1 )) THEN
                               text = text(1:ifound-1)
@@ -5146,30 +5231,30 @@
                           length = lnblnk1(TEXT)
                           TEXT=TEXT(:length)
                           origtext = text(:length)
-                          DO 5261 Kconvert=1,lnblnk1(text)
+                          DO 5331 Kconvert=1,lnblnk1(text)
                               CURSOR=ICHAR(text(Kconvert:Kconvert))
                               IF (((CURSOR.GE.97).AND.(CURSOR.LE.122)))
      *                        THEN
                                   CURSOR=CURSOR-32
                                   text(Kconvert:Kconvert)=CHAR(CURSOR)
                               END IF
-5261                      CONTINUE
-5262                      CONTINUE
-                          DO 5271 K=1,NMAX
+5331                      CONTINUE
+5332                      CONTINUE
+                          DO 5341 K=1,NMAX
                               vname1 = VALUES_SOUGHT(K)
                               length = lnblnk1(vname1)
                               IF (( length .GT. 0 )) THEN
                                   length = len(vname1)
-5281                              IF(index(vname1,blank).NE.1)GO TO 5282
+5351                              IF(index(vname1,blank).NE.1)GO TO 5352
                                       IF (( length .GE. 2 )) THEN
                                           vname1=vname1(2:)
                                       ELSE
-                                          GO TO5282
+                                          GO TO5352
                                       END IF
                                       length = length - 1
-                                  GO TO 5281
-5282                              CONTINUE
-                                  DO 5291 Kconvert=1,lnblnk1(vname1)
+                                  GO TO 5351
+5352                              CONTINUE
+                                  DO 5361 Kconvert=1,lnblnk1(vname1)
                                       CURSOR=ICHAR(vname1(Kconvert:Kconv
      *                                ert))
                                       IF (((CURSOR.GE.97).AND.(CURSOR.LE
@@ -5178,8 +5263,8 @@
                                           vname1(Kconvert:Kconvert)=CHAR
      *                                    (CURSOR)
                                       END IF
-5291                              CONTINUE
-5292                              CONTINUE
+5361                              CONTINUE
+5362                              CONTINUE
                                   IF ((INDEX(TEXT,vname1(:length)).NE.0)
      *                            ) THEN
                                       IF (( error_level .GT. 0 )) THEN
@@ -5199,39 +5284,39 @@
                                       ERROR_FLAGS(I)=1
                                   END IF
                               END IF
-5271                      CONTINUE
-5272                      CONTINUE
+5341                      CONTINUE
+5342                      CONTINUE
                           IF (( idebug )) THEN
                               write(i_log,*) ' Next line: '
                               write(i_log,'(a,$)') ' text:     '
                               length = lnblnk1(text)
                               IF (( length .GT. 0 )) THEN
-                                  DO 5301 lll=1,length
+                                  DO 5371 lll=1,length
                                       write(i_log,'(a1,$)') text(lll:lll
      *                                )
-5301                              CONTINUE
-5302                              CONTINUE
+5371                              CONTINUE
+5372                              CONTINUE
                                   write(i_log,*)
                               END IF
                               write(i_log,'(a,$)') ' origtext: '
                               length = lnblnk1(origtext)
                               IF (( length .GT. 0 )) THEN
-                                  DO 5311 lll=1,length
+                                  DO 5381 lll=1,length
                                       write(i_log,'(a1,$)') origtext(lll
      *                                :lll)
-5311                              CONTINUE
-5312                              CONTINUE
+5381                              CONTINUE
+5382                              CONTINUE
                                   write(i_log,*)
                               END IF
                           END IF
-                      GO TO 5241
-5242                  CONTINUE
+                      GO TO 5311
+5312                  CONTINUE
                   ELSE
-                      GO TO5172
+                      GO TO5242
                   END IF
                   IVAL=IVAL+1
-              GO TO 5171
-5172          CONTINUE
+              GO TO 5241
+5242          CONTINUE
               IF (((NVALUE(I).NE.0).AND.(NVALUE(I).NE.IVAL))) THEN
                   IF (( error_level .GT. 0 )) THEN
                       WRITE (ERR,*) '**************ERROR**************'
@@ -5245,14 +5330,14 @@
               ELSE
                   NVALUE(I)=IVAL
               END IF
-5180          CONTINUE
+5250          CONTINUE
           END IF
           IF (((TYPE(I) .EQ. 2) .OR. (TYPE(I) .EQ. 3))) THEN
               IVAL=1
               IF (( idebug )) THEN
                   write(i_log,*) ' Trying to read a string! '
               END IF
-5321          CONTINUE
+5391          CONTINUE
                   IF (( idebug )) THEN
                       write(i_log,*) ' In LOOP, ival = ',ival
                   END IF
@@ -5269,7 +5354,7 @@
                   END IF
                   IF ((vname(:ivname).EQ.'TITLE')) THEN
                       TEXTPIECE=origtext
-                      GOTO 5330
+                      GOTO 5400
                   END IF
                   iindex = INDEX(origtext,',')
                   IF (( iindex .NE. 0 )) THEN
@@ -5277,33 +5362,33 @@
                   ELSE
                       TEXTPIECE=origtext
                   END IF
-5330              CONTINUE
-                  READ(TEXTPIECE,ERR=5340,FMT='(A256)') CHAR_VALUE(I,IVA
+5400              CONTINUE
+                  READ(TEXTPIECE,ERR=5410,FMT='(A256)') CHAR_VALUE(I,IVA
      *            L)
                   length = len(CHAR_VALUE(I,IVAL))
-5351              IF(index(CHAR_VALUE(I,IVAL),blank).NE.1)GO TO 5352
+5421              IF(index(CHAR_VALUE(I,IVAL),blank).NE.1)GO TO 5422
                       IF (( length .GE. 2 )) THEN
                           CHAR_VALUE(I,IVAL)=CHAR_VALUE(I,IVAL)(2:)
                       ELSE
-                          GO TO5352
+                          GO TO5422
                       END IF
                       length = length - 1
-                  GO TO 5351
-5352              CONTINUE
+                  GO TO 5421
+5422              CONTINUE
                   IF (( idebug )) THEN
                       write(i_log,*) ' Read the following char string: '
                       length = lnblnk1(CHAR_VALUE(I,IVAL))
                       IF (( length .GT. 0 )) THEN
-                          DO 5361 lll=1,length
+                          DO 5431 lll=1,length
                               write(i_log,'(a1,$)') CHAR_VALUE(I,IVAL)(l
      *                        ll:lll)
-5361                      CONTINUE
-5362                      CONTINUE
+5431                      CONTINUE
+5432                      CONTINUE
                           write(i_log,*)
                       END IF
                   END IF
                   IF ((TYPE(I) .EQ. 3)) THEN
-                      DO 5371 Kconvert=1,lnblnk1(CHAR_VALUE(I,IVAL))
+                      DO 5441 Kconvert=1,lnblnk1(CHAR_VALUE(I,IVAL))
                           CURSOR=ICHAR(CHAR_VALUE(I,IVAL)(Kconvert:Kconv
      *                    ert))
                           IF (((CURSOR.GE.97).AND.(CURSOR.LE.122))) THEN
@@ -5311,24 +5396,24 @@
                               CHAR_VALUE(I,IVAL)(Kconvert:Kconvert)=CHAR
      *                        (CURSOR)
                           END IF
-5371                  CONTINUE
-5372                  CONTINUE
+5441                  CONTINUE
+5442                  CONTINUE
                       ALLOWED=.FALSE.
-                      DO 5381 K=0,5
+                      DO 5451 K=0,5
                           vname1 = ALLOWED_INPUTS(I,K)
                           length = len(ALLOWED_INPUTS(I,K))
-5391                      IF(index(ALLOWED_INPUTS(I,K),blank).NE.1)GO TO
-     *                     5392
+5461                      IF(index(ALLOWED_INPUTS(I,K),blank).NE.1)GO TO
+     *                     5462
                               IF (( length .GE. 2 )) THEN
                                   ALLOWED_INPUTS(I,K)=ALLOWED_INPUTS(I,K
      *                            )(2:)
                               ELSE
-                                  GO TO5392
+                                  GO TO5462
                               END IF
                               length = length - 1
-                          GO TO 5391
-5392                      CONTINUE
-                          DO 5401 Kconvert=1,lnblnk1(ALLOWED_INPUTS(I,K)
+                          GO TO 5461
+5462                      CONTINUE
+                          DO 5471 Kconvert=1,lnblnk1(ALLOWED_INPUTS(I,K)
      *                    )
                               CURSOR=ICHAR(ALLOWED_INPUTS(I,K)(Kconvert:
      *                        Kconvert))
@@ -5338,8 +5423,8 @@
                                   ALLOWED_INPUTS(I,K)(Kconvert:Kconvert)
      *                            =CHAR(CURSOR)
                               END IF
-5401                      CONTINUE
-5402                      CONTINUE
+5471                      CONTINUE
+5472                      CONTINUE
                           IF ((ALLOWED_INPUTS(I,K).EQ.CHAR_VALUE(I,IVAL)
      *                    )) THEN
                               ALLOWED=.TRUE.
@@ -5349,8 +5434,8 @@
      * match ',k
                               END IF
                           END IF
-5381                  CONTINUE
-5382                  CONTINUE
+5451                  CONTINUE
+5452                  CONTINUE
                       IF ((.NOT.ALLOWED)) THEN
                           WRITE(ERR,*) '*************ERROR*************'
                           IF ((IVAL.NE.1)) THEN
@@ -5366,39 +5451,39 @@
      *                        )(:lnblnk1(CHAR_VALUE(I,IVAL))), '<--NOT A
      *LLOWED'
                               WRITE(ERR,*) 'OPTIONS ARE:'
-                              WRITE(ERR,5410) (ALLOWED_INPUTS(I,K)(:lnbl
+                              WRITE(ERR,5480) (ALLOWED_INPUTS(I,K)(:lnbl
      *                        nk1(ALLOWED_INPUTS(I,K))),K=0,5)
                           END IF
-5410                      FORMAT(A40)
+5480                      FORMAT(A40)
                           ERROR_FLAG=1
                           ERROR_FLAGS(I)=1
                       END IF
                   END IF
                   IF ((vname(:ivname).EQ.'TITLE')) THEN
-                      GO TO5322
+                      GO TO5392
                   END IF
-                  DO 5421 K=1,LEN(KEEPTEXT)
+                  DO 5491 K=1,LEN(KEEPTEXT)
                       KEEPTEXT(K:K)=' '
-5421              CONTINUE
-5422              CONTINUE
+5491              CONTINUE
+5492              CONTINUE
                   KEEPTEXT(:lnblnk1(TEXT))=TEXT
                   iindex = INDEX(TEXT,',')
                   IF (( iindex .NE. 0 .OR. lnblnk1(TEXT).EQ.0 )) THEN
                       TEXT=TEXT(INDEX(TEXT,',')+1:)
                       origtext=origtext(iindex+1:)
-5431                  IF(lnblnk1(TEXT).NE.0)GO TO 5432
+5501                  IF(lnblnk1(TEXT).NE.0)GO TO 5502
                           LINE=LINE+1
-                          READ (UNITNUM,ERR=5340,FMT='(A256)') TEXT
+                          READ (UNITNUM,ERR=5410,FMT='(A256)') TEXT
                           length = len(text)
-5441                      IF(index(text,blank).NE.1)GO TO 5442
+5511                      IF(index(text,blank).NE.1)GO TO 5512
                               IF (( length .GE. 2 )) THEN
                                   text=text(2:)
                               ELSE
-                                  GO TO5442
+                                  GO TO5512
                               END IF
                               length = length - 1
-                          GO TO 5441
-5442                      CONTINUE
+                          GO TO 5511
+5512                      CONTINUE
                           ifound = INDEX(text,'#')
                           IF (( ifound .GT. 1 )) THEN
                               text = text(1:ifound-1)
@@ -5418,30 +5503,30 @@
                           length = lnblnk1(TEXT)
                           TEXT=TEXT(:length)
                           origtext = text(:length)
-                          DO 5451 Kconvert=1,lnblnk1(text)
+                          DO 5521 Kconvert=1,lnblnk1(text)
                               CURSOR=ICHAR(text(Kconvert:Kconvert))
                               IF (((CURSOR.GE.97).AND.(CURSOR.LE.122)))
      *                        THEN
                                   CURSOR=CURSOR-32
                                   text(Kconvert:Kconvert)=CHAR(CURSOR)
                               END IF
-5451                      CONTINUE
-5452                      CONTINUE
-                          DO 5461 K=1,NMAX
+5521                      CONTINUE
+5522                      CONTINUE
+                          DO 5531 K=1,NMAX
                               vname1 = VALUES_SOUGHT(K)
                               length = lnblnk1(vname1)
                               IF (( length .GT. 0 )) THEN
                                   length = len(vname1)
-5471                              IF(index(vname1,blank).NE.1)GO TO 5472
+5541                              IF(index(vname1,blank).NE.1)GO TO 5542
                                       IF (( length .GE. 2 )) THEN
                                           vname1=vname1(2:)
                                       ELSE
-                                          GO TO5472
+                                          GO TO5542
                                       END IF
                                       length = length - 1
-                                  GO TO 5471
-5472                              CONTINUE
-                                  DO 5481 Kconvert=1,lnblnk1(vname1)
+                                  GO TO 5541
+5542                              CONTINUE
+                                  DO 5551 Kconvert=1,lnblnk1(vname1)
                                       CURSOR=ICHAR(vname1(Kconvert:Kconv
      *                                ert))
                                       IF (((CURSOR.GE.97).AND.(CURSOR.LE
@@ -5450,8 +5535,8 @@
                                           vname1(Kconvert:Kconvert)=CHAR
      *                                    (CURSOR)
                                       END IF
-5481                              CONTINUE
-5482                              CONTINUE
+5551                              CONTINUE
+5552                              CONTINUE
                                   IF ((INDEX(TEXT,vname1(:length)).NE.0)
      *                            ) THEN
                                       WRITE(ERR,*) '************ERROR***
@@ -5469,16 +5554,16 @@
                                       ERROR_FLAGS(I)=1
                                   END IF
                               END IF
-5461                      CONTINUE
-5462                      CONTINUE
-                      GO TO 5431
-5432                  CONTINUE
+5531                      CONTINUE
+5532                      CONTINUE
+                      GO TO 5501
+5502                  CONTINUE
                   ELSE
-                      GO TO5322
+                      GO TO5392
                   END IF
                   IVAL=IVAL+1
-              GO TO 5321
-5322          CONTINUE
+              GO TO 5391
+5392          CONTINUE
               IF (((NVALUE(I).NE.0).AND.(NVALUE(I).NE.IVAL))) THEN
                   IF (( error_level .GT. 0 )) THEN
                       WRITE (ERR,*) '*******************ERROR***********
@@ -5493,8 +5578,8 @@
                   NVALUE(I)=IVAL
               END IF
           END IF
-          goto 4990
-5030      IF (( error_level .GT. 0 )) THEN
+          goto 5060
+5100      IF (( error_level .GT. 0 )) THEN
               WRITE (ERR,*) '******************ERROR********************
      ****'
               WRITE (ERR,*) 'END OF FILE REACHED BUT VALUE SOUGHT NOT FO
@@ -5508,8 +5593,8 @@
           END IF
           ERROR_FLAG=1
           ERROR_FLAGS(I)=1
-          goto 4990
-5050      IF (( error_level .GT. 0 )) THEN
+          goto 5060
+5120      IF (( error_level .GT. 0 )) THEN
               WRITE (ERR,*) '******************ERROR********************
      ****'
               WRITE (ERR,*) 'END OF FILE REACHED BUT VALUE SOUGHT NOT FO
@@ -5523,8 +5608,8 @@
           END IF
           ERROR_FLAG=1
           ERROR_FLAGS(I)=1
-          goto 4990
-5190      IF (( error_level .GT. 0 )) THEN
+          goto 5060
+5260      IF (( error_level .GT. 0 )) THEN
               WRITE (ERR,*) '***************ERROR***************'
               IF ((IVAL.GT.1)) THEN
                   J=IVAL
@@ -5541,8 +5626,8 @@
           END IF
           ERROR_FLAG=1
           ERROR_FLAGS(I)=1
-          GOTO 4990
-5340      IF (( error_level .GT. 0 )) THEN
+          GOTO 5060
+5410      IF (( error_level .GT. 0 )) THEN
               WRITE (ERR,*) '***************ERROR***************'
               WRITE (ERR,*) 'ERROR READING VALUE SOUGHT: ', VALUES_SOUGH
      *        T(I)
@@ -5551,14 +5636,14 @@
           END IF
           ERROR_FLAG=1
           ERROR_FLAGS(I)=1
-4990      CONTINUE
-4981  CONTINUE
-4982  CONTINUE
+5060      CONTINUE
+5051  CONTINUE
+5052  CONTINUE
       RETURN
-5040  WRITE (ERR,*) '***************ERROR***************'
+5110  WRITE (ERR,*) '***************ERROR***************'
       WRITE (ERR,*) 'ERROR READING TEXT ', TEXT,' ON LINE ',LINE
-      goto 5490
-5490  CONTINUE
+      goto 5560
+5560  CONTINUE
       ERROR_FLAG=1
       ERROR_FLAGS(I)=1
       RETURN
@@ -5675,10 +5760,10 @@
       save ecut_inregions,pcut_inregions,smax_inregions, incoh_inregions
      *,coh_inregions,relax_inregions, pe_inregions,aux_inregions,photonu
      *c_inregions, num_photonuc
-      DO 5501 k=1,80
+      DO 5571 k=1,80
           line(k:k) = '='
-5501  CONTINUE
-5502  CONTINUE
+5571  CONTINUE
+5572  CONTINUE
       delimeter = 'MC TRANSPORT PARAMETER'
       ival = 0
       ecut_inregions=.false.
@@ -5926,22 +6011,22 @@
       Nmax = num_photonuc_xsec
       CALL GET_INPUT
       IF (( error_flags(num_ecut) .EQ. 0 )) THEN
-          DO 5511 j=1, 2097154
+          DO 5581 j=1, 2097154
               ECUT = value(num_ecut,1)
-5511      CONTINUE
-5512      CONTINUE
+5581      CONTINUE
+5582      CONTINUE
       END IF
       IF (( error_flags(num_pcut) .EQ. 0 )) THEN
-          DO 5521 j=1, 2097154
+          DO 5591 j=1, 2097154
               PCUT = value(num_pcut,1)
-5521      CONTINUE
-5522      CONTINUE
+5591      CONTINUE
+5592      CONTINUE
       END IF
       IF (( error_flags(num_smax) .EQ. 0 )) THEN
-          DO 5531 j=1, 2097154
+          DO 5601 j=1, 2097154
               SMAXIR = value(num_smax,1)
-5531      CONTINUE
-5532      CONTINUE
+5601      CONTINUE
+5602      CONTINUE
       END IF
       IF (( error_flags(num_brems_ang) .EQ. 0 )) THEN
           ibrdst = value(num_brems_ang,1)
@@ -6097,11 +6182,11 @@
                   write(i_log,'(/a)') '***************** Quiting now.'
                   call exit(1)
               END IF
-              DO 5541 i=1,nvalue(num_ffmed)
+              DO 5611 i=1,nvalue(num_ffmed)
                   iray_ff_media(i) = char_value(num_ffmed,i)
                   iray_ff_file(i) = char_value(num_ffiles,i)
-5541          CONTINUE
-5542          CONTINUE
+5611          CONTINUE
+5612          CONTINUE
               value(num_coh,1) = 1
           END IF
           write(*,'(/)')
@@ -6132,12 +6217,12 @@
      *        EQ. 0 )) THEN
                   IF (( nvalue(ival) .EQ. nvalue(ival-1) )) THEN
                       iitmp = itmp-2
-                      DO 5551 j=1, 2097154
+                      DO 5621 j=1, 2097154
                           ibcmp = iitmp
-5551                  CONTINUE
-5552                  CONTINUE
+5621                  CONTINUE
+5622                  CONTINUE
                       iitmp = 1 - iitmp
-                      DO 5561 k=1,nvalue(ival)
+                      DO 5631 k=1,nvalue(ival)
                           istart = value(ival-1,k)
                           iend = value(ival,k)
                           write(i_log,*) 'Bound Compton start region',is
@@ -6145,14 +6230,14 @@
                           write(i_log,*) 'Bound Compton stop region',ien
      *                    d
                           IF (( istart .LE. iend )) THEN
-                              DO 5571 j=istart,iend
+                              DO 5641 j=istart,iend
                                   ibcmp = iitmp
-5571                          CONTINUE
-5572                          CONTINUE
+5641                          CONTINUE
+5642                          CONTINUE
                               aux_inregions = .true.
                           END IF
-5561                  CONTINUE
-5562                  CONTINUE
+5631                  CONTINUE
+5632                  CONTINUE
                   ELSE
                       value(num_incoh,1) = ibcmp
                   END IF
@@ -6162,10 +6247,10 @@
           ELSE
               IF((itmp .GT. 3))itmp = itmp-2
               write(i_log,*) ' Setting all to ',itmp
-              DO 5581 j=1, 2097154
+              DO 5651 j=1, 2097154
                   ibcmp = itmp
-5581          CONTINUE
-5582          CONTINUE
+5651          CONTINUE
+5652          CONTINUE
           END IF
       ELSE
           IF ((ibcmp .EQ. 2 .OR. ibcmp .EQ. 3)) THEN
@@ -6201,25 +6286,25 @@
      *        EQ. 0 )) THEN
                   IF (( nvalue(ival) .EQ. nvalue(ival-1) )) THEN
                       iitmp = itmp-2
-                      DO 5591 j=1, 2097154
+                      DO 5661 j=1, 2097154
                           IRAYLR = iitmp
-5591                  CONTINUE
-5592                  CONTINUE
+5661                  CONTINUE
+5662                  CONTINUE
                       iitmp = 1 - iitmp
-                      DO 5601 k=1,nvalue(ival)
+                      DO 5671 k=1,nvalue(ival)
                           istart = value(ival-1,k)
                           iend = value(ival,k)
                           write(i_log,*) 'Rayleigh start region',istart
                           write(i_log,*) 'Rayleigh stop region',iend
                           IF (( istart .LE. iend )) THEN
-                              DO 5611 j=istart,iend
+                              DO 5681 j=istart,iend
                                   IRAYLR = iitmp
-5611                          CONTINUE
-5612                          CONTINUE
+5681                          CONTINUE
+5682                          CONTINUE
                               aux_inregions = .true.
                           END IF
-5601                  CONTINUE
-5602                  CONTINUE
+5671                  CONTINUE
+5672                  CONTINUE
                   ELSE
                       value(num_coh,1) = IRAYLR
                   END IF
@@ -6229,10 +6314,10 @@
           ELSE
               IF((itmp .GT. 3))itmp = itmp-2
               write(i_log,*) ' Setting all to ',itmp
-              DO 5621 j=1, 2097154
+              DO 5691 j=1, 2097154
                   IRAYLR = itmp
-5621          CONTINUE
-5622          CONTINUE
+5691          CONTINUE
+5692          CONTINUE
           END IF
       ELSE
           IF ((IRAYLR .EQ. 2 .OR. IRAYLR .EQ. 3)) THEN
@@ -6268,26 +6353,26 @@
      *        EQ. 0 )) THEN
                   IF (( nvalue(ival) .EQ. nvalue(ival-1) )) THEN
                       iitmp = itmp-2
-                      DO 5631 j=1, 2097154
+                      DO 5701 j=1, 2097154
                           IEDGFL = iitmp
-5631                  CONTINUE
-5632                  CONTINUE
+5701                  CONTINUE
+5702                  CONTINUE
                       iitmp = 1 - iitmp
-                      DO 5641 k=1,nvalue(ival)
+                      DO 5711 k=1,nvalue(ival)
                           istart = value(ival-1,k)
                           iend = value(ival,k)
                           write(i_log,*) 'Relaxations start region',ista
      *                    rt
                           write(i_log,*) 'Relaxations stop region',iend
                           IF (( istart .LE. iend )) THEN
-                              DO 5651 j=istart,iend
+                              DO 5721 j=istart,iend
                                   IEDGFL = iitmp
-5651                          CONTINUE
-5652                          CONTINUE
+5721                          CONTINUE
+5722                          CONTINUE
                               aux_inregions = .true.
                           END IF
-5641                  CONTINUE
-5642                  CONTINUE
+5711                  CONTINUE
+5712                  CONTINUE
                   ELSE
                       value(num_relax,1) = IEDGFL
                   END IF
@@ -6297,10 +6382,10 @@
           ELSE
               IF((itmp .GT. 3))itmp = itmp-2
               write(i_log,*) ' Setting all to ',itmp
-              DO 5661 j=1, 2097154
+              DO 5731 j=1, 2097154
                   IEDGFL = itmp
-5661          CONTINUE
-5662          CONTINUE
+5731          CONTINUE
+5732          CONTINUE
           END IF
       ELSE
           IF ((IEDGFL .EQ. 2 .OR. IEDGFL .EQ. 3)) THEN
@@ -6336,26 +6421,26 @@
      *        EQ. 0 )) THEN
                   IF (( nvalue(ival) .EQ. nvalue(ival-1) )) THEN
                       iitmp = itmp-2
-                      DO 5671 j=1, 2097154
+                      DO 5741 j=1, 2097154
                           IPHTER = iitmp
-5671                  CONTINUE
-5672                  CONTINUE
+5741                  CONTINUE
+5742                  CONTINUE
                       iitmp = 1 - iitmp
-                      DO 5681 k=1,nvalue(ival)
+                      DO 5751 k=1,nvalue(ival)
                           istart = value(ival-1,k)
                           iend = value(ival,k)
                           write(i_log,*) 'PE sampling start region',ista
      *                    rt
                           write(i_log,*) 'PE sampling stop region',iend
                           IF (( istart .LE. iend )) THEN
-                              DO 5691 j=istart,iend
+                              DO 5761 j=istart,iend
                                   IPHTER = iitmp
-5691                          CONTINUE
-5692                          CONTINUE
+5761                          CONTINUE
+5762                          CONTINUE
                               aux_inregions = .true.
                           END IF
-5681                  CONTINUE
-5682                  CONTINUE
+5751                  CONTINUE
+5752                  CONTINUE
                   ELSE
                       value(num_pe_ang,1) = IPHTER
                   END IF
@@ -6365,10 +6450,10 @@
           ELSE
               IF((itmp .GT. 3))itmp = itmp-2
               write(i_log,*) ' Setting all to ',itmp
-              DO 5701 j=1, 2097154
+              DO 5771 j=1, 2097154
                   IPHTER = itmp
-5701          CONTINUE
-5702          CONTINUE
+5771          CONTINUE
+5772          CONTINUE
           END IF
       ELSE
           IF ((IPHTER .EQ. 2 .OR. IPHTER .EQ. 3)) THEN
@@ -6404,26 +6489,26 @@
      *        EQ. 0 )) THEN
                   IF (( nvalue(ival) .EQ. nvalue(ival-1) )) THEN
                       iitmp = itmp-2
-                      DO 5711 j=1, 2097154
+                      DO 5781 j=1, 2097154
                           iphotonucr(j) = iitmp
-5711                  CONTINUE
-5712                  CONTINUE
+5781                  CONTINUE
+5782                  CONTINUE
                       iitmp = 1 - iitmp
-                      DO 5721 k=1,nvalue(ival)
+                      DO 5791 k=1,nvalue(ival)
                           istart = value(ival-1,k)
                           iend = value(ival,k)
                           write(i_log,*) 'Photonuclear start region',ist
      *                    art
                           write(i_log,*) 'Photonuclear stop region',iend
                           IF (( istart .LE. iend )) THEN
-                              DO 5731 j=istart,iend
+                              DO 5801 j=istart,iend
                                   iphotonucr(j) = iitmp
-5731                          CONTINUE
-5732                          CONTINUE
+5801                          CONTINUE
+5802                          CONTINUE
                               aux_inregions = .true.
                           END IF
-5721                  CONTINUE
-5722                  CONTINUE
+5791                  CONTINUE
+5792                  CONTINUE
                   ELSE
                       value(num_photonuc,1) = iphotonucr(1)
                   END IF
@@ -6433,10 +6518,10 @@
           ELSE
               IF((itmp .GT. 3))itmp = itmp-2
               write(i_log,*) ' Setting all to ',itmp
-              DO 5741 j=1, 2097154
+              DO 5811 j=1, 2097154
                   iphotonucr(j) = itmp
-5741          CONTINUE
-5742          CONTINUE
+5811          CONTINUE
+5812          CONTINUE
           END IF
       ELSE
           IF ((iphotonucr(1) .EQ. 2 .OR. iphotonucr(1) .EQ. 3)) THEN
@@ -6476,18 +6561,18 @@
       IF (( error_flag .EQ. 0 )) THEN
           IF (( nvalue(num_ecut) .EQ. nvalue(ival) .AND. nvalue(ival-1)
      *    .EQ. nvalue(ival) )) THEN
-              DO 5751 k=1,nvalue(ival)
+              DO 5821 k=1,nvalue(ival)
                   istart = value(ival-1,k)
                   iend = value(ival,k)
                   IF (( istart .LE. iend )) THEN
-                      DO 5761 j=istart,iend
+                      DO 5831 j=istart,iend
                           ECUT = value(num_ecut,k)
-5761                  CONTINUE
-5762                  CONTINUE
+5831                  CONTINUE
+5832                  CONTINUE
                       aux_inregions = .true.
                   END IF
-5751          CONTINUE
-5752          CONTINUE
+5821          CONTINUE
+5822          CONTINUE
           END IF
       END IF
       ecut_inregions = aux_inregions
@@ -6521,18 +6606,18 @@
       IF (( error_flag .EQ. 0 )) THEN
           IF (( nvalue(num_pcut) .EQ. nvalue(ival) .AND. nvalue(ival-1)
      *    .EQ. nvalue(ival) )) THEN
-              DO 5771 k=1,nvalue(ival)
+              DO 5841 k=1,nvalue(ival)
                   istart = value(ival-1,k)
                   iend = value(ival,k)
                   IF (( istart .LE. iend )) THEN
-                      DO 5781 j=istart,iend
+                      DO 5851 j=istart,iend
                           PCUT = value(num_pcut,k)
-5781                  CONTINUE
-5782                  CONTINUE
+5851                  CONTINUE
+5852                  CONTINUE
                       aux_inregions = .true.
                   END IF
-5771          CONTINUE
-5772          CONTINUE
+5841          CONTINUE
+5842          CONTINUE
           END IF
       END IF
       pcut_inregions = aux_inregions
@@ -6566,18 +6651,18 @@
       IF (( error_flag .EQ. 0 )) THEN
           IF (( nvalue(num_smax) .EQ. nvalue(ival) .AND. nvalue(ival-1)
      *    .EQ. nvalue(ival) )) THEN
-              DO 5791 k=1,nvalue(ival)
+              DO 5861 k=1,nvalue(ival)
                   istart = value(ival-1,k)
                   iend = value(ival,k)
                   IF (( istart .LE. iend )) THEN
-                      DO 5801 j=istart,iend
+                      DO 5871 j=istart,iend
                           SMAXIR = value(num_smax,k)
-5801                  CONTINUE
-5802                  CONTINUE
+5871                  CONTINUE
+5872                  CONTINUE
                       aux_inregions = .true.
                   END IF
-5791          CONTINUE
-5792          CONTINUE
+5861          CONTINUE
+5862          CONTINUE
           END IF
       END IF
       smax_inregions = aux_inregions
@@ -6801,7 +6886,7 @@
       delimeter = 'MC TRANSPORT PARAMETER'
       call get_input_set_error_level(0)
       ival = 0
-      DO 5811 imed=1,nmed
+      DO 5881 imed=1,nmed
           call egs_get_medium_name(imed,medname)
           ival = ival + 1
           values_sought(ival) = 'scale elastic scattering in '// medname
@@ -6811,20 +6896,20 @@
           value_min(ival) = 1e-3
           value_max(ival) = 1e3
           default(ival) = 1
-5811  CONTINUE
-5812  CONTINUE
+5881  CONTINUE
+5882  CONTINUE
       Nmin = 1
       Nmax = nmed
       CALL GET_INPUT
       nchanged = 0
-      DO 5821 imed=1,nmed
+      DO 5891 imed=1,nmed
           IF((error_flags(imed) .EQ. 0))nchanged = nchanged + 1
-5821  CONTINUE
-5822  CONTINUE
+5891  CONTINUE
+5892  CONTINUE
       IF (( nchanged .GT. 0 )) THEN
           write(ounit,'(//a)') '================ Elastic scattering scal
      *ed as follows =================='
-          DO 5831 imed=1,nmed
+          DO 5901 imed=1,nmed
               IF (( error_flags(imed) .EQ. 0 )) THEN
                   call egs_get_medium_name(imed,medname)
                   xcc(imed) = xcc(imed)*value(imed,1)
@@ -6832,8 +6917,8 @@
                   write(ounit,'(a,t30,f10.6)') medname(:lnblnk1(medname)
      *            ), value(imed,1)
               END IF
-5831      CONTINUE
-5832      CONTINUE
+5901      CONTINUE
+5902      CONTINUE
           write(ounit,'(a//)') '========================================
      *================================'
       END IF
@@ -6896,13 +6981,13 @@
       IDEBUG = .false.
       ERROR_FLAG = 0
       IF ((IDEBUG)) THEN
-          WRITE(6,5840)NMIN,NMAX, 100
-5840      FORMAT(' Entering get_inputs seeking values', I5,' to', I5, ' 
+          WRITE(6,5910)NMIN,NMAX, 100
+5910      FORMAT(' Entering get_inputs seeking values', I5,' to', I5, ' 
      *with a max allowed of',I5)
       END IF
       IF ((NMAX .LT. NMIN .OR. NMAX .GT. 100)) THEN
-          WRITE(6,5850)NMAX, NMIN, 100
-5850      FORMAT(//' Error entering get_inputs: Asked for values from',I
+          WRITE(6,5920)NMAX, NMIN, 100
+5920      FORMAT(//' Error entering get_inputs: Asked for values from',I
      *5,' to',I5, '    with a max of',I5//' This implies a bug in the ca
      *lling routine'/ ' Fix it up and try again.  Stopping now.')
           STOP
@@ -6911,69 +6996,69 @@
       DELIM_START=DELIM_START(:lnblnk1(DELIM_START))
       DELIM_END=DELIM_END(:lnblnk1(DELIM_END))
       length = len(DELIM_START)
-5861  IF(index(DELIM_START,blank).NE.1)GO TO 5862
+5931  IF(index(DELIM_START,blank).NE.1)GO TO 5932
           IF (( length .GE. 2 )) THEN
               DELIM_START=DELIM_START(2:)
           ELSE
-              GO TO5862
+              GO TO5932
           END IF
           length = length - 1
-      GO TO 5861
-5862  CONTINUE
+      GO TO 5931
+5932  CONTINUE
       length = len(DELIM_END)
-5871  IF(index(DELIM_END,blank).NE.1)GO TO 5872
+5941  IF(index(DELIM_END,blank).NE.1)GO TO 5942
           IF (( length .GE. 2 )) THEN
               DELIM_END=DELIM_END(2:)
           ELSE
-              GO TO5872
+              GO TO5942
           END IF
           length = length - 1
-      GO TO 5871
-5872  CONTINUE
-      DO 5881 Kconvert=1,lnblnk1(DELIM_START)
+      GO TO 5941
+5942  CONTINUE
+      DO 5951 Kconvert=1,lnblnk1(DELIM_START)
           CURSOR=ICHAR(DELIM_START(Kconvert:Kconvert))
           IF (((CURSOR.GE.97).AND.(CURSOR.LE.122))) THEN
               CURSOR=CURSOR-32
               DELIM_START(Kconvert:Kconvert)=CHAR(CURSOR)
           END IF
-5881  CONTINUE
-5882  CONTINUE
-      DO 5891 Kconvert=1,lnblnk1(DELIM_END)
+5951  CONTINUE
+5952  CONTINUE
+      DO 5961 Kconvert=1,lnblnk1(DELIM_END)
           CURSOR=ICHAR(DELIM_END(Kconvert:Kconvert))
           IF (((CURSOR.GE.97).AND.(CURSOR.LE.122))) THEN
               CURSOR=CURSOR-32
               DELIM_END(Kconvert:Kconvert)=CHAR(CURSOR)
           END IF
-5891  CONTINUE
-5892  CONTINUE
+5961  CONTINUE
+5962  CONTINUE
       length = len(ENDSTRING)
-5901  IF(index(ENDSTRING,blank).NE.1)GO TO 5902
+5971  IF(index(ENDSTRING,blank).NE.1)GO TO 5972
           IF (( length .GE. 2 )) THEN
               ENDSTRING=ENDSTRING(2:)
           ELSE
-              GO TO5902
+              GO TO5972
           END IF
           length = length - 1
-      GO TO 5901
-5902  CONTINUE
+      GO TO 5971
+5972  CONTINUE
       IF ((ENDSTRING.EQ.blank)) THEN
           end_string=.false.
       ELSE
-          DO 5911 Kconvert=1,lnblnk1(ENDSTRING)
+          DO 5981 Kconvert=1,lnblnk1(ENDSTRING)
               CURSOR=ICHAR(ENDSTRING(Kconvert:Kconvert))
               IF (((CURSOR.GE.97).AND.(CURSOR.LE.122))) THEN
                   CURSOR=CURSOR-32
                   ENDSTRING(Kconvert:Kconvert)=CHAR(CURSOR)
               END IF
-5911      CONTINUE
-5912      CONTINUE
+5981      CONTINUE
+5982      CONTINUE
           end_string=.false.
       END IF
       IF ((IDEBUG)) THEN
-          WRITE(6,5920)DELIM_START,DELIM_END
-5920      FORMAT(' start and stop delimeters are:'/ A/A/)
+          WRITE(6,5990)DELIM_START,DELIM_END
+5990      FORMAT(' start and stop delimeters are:'/ A/A/)
       END IF
-      DO 5931 I=NMIN,NMAX
+      DO 6001 I=NMIN,NMAX
           REWIND (UNITNUM)
           LINE=0
           CHECK=0
@@ -6997,40 +7082,40 @@
               END IF
               ERROR_FLAG=1
               ERROR_FLAGS(I)=1
-              goto 4990
+              goto 5060
           END IF
-          DO 5941 Kconvert=1,lnblnk1(vname)
+          DO 6011 Kconvert=1,lnblnk1(vname)
               CURSOR=ICHAR(vname(Kconvert:Kconvert))
               IF (((CURSOR.GE.97).AND.(CURSOR.LE.122))) THEN
                   CURSOR=CURSOR-32
                   vname(Kconvert:Kconvert)=CHAR(CURSOR)
               END IF
-5941      CONTINUE
-5942      CONTINUE
+6011      CONTINUE
+6012      CONTINUE
           iindex = 0
           IF ((DELIM_START .EQ. 'NONE')) THEN
               start_found = .true.
           ELSE
               start_found = .false.
           END IF
-5951      IF(iindex.NE.0)GO TO 5952
-5020          CONTINUE
+6021      IF(iindex.NE.0)GO TO 6022
+5090          CONTINUE
               LINE=LINE+1
               IF (( start_found )) THEN
-                  READ(UNITNUM,END=5030,ERR=5040,FMT='(A256)') TEXT
+                  READ(UNITNUM,END=5100,ERR=5110,FMT='(A256)') TEXT
               ELSE
-                  READ(UNITNUM,END=5050,ERR=5040,FMT='(A256)') TEXT
+                  READ(UNITNUM,END=5120,ERR=5110,FMT='(A256)') TEXT
               END IF
               length = len(text)
-5961          IF(index(text,blank).NE.1)GO TO 5962
+6031          IF(index(text,blank).NE.1)GO TO 6032
                   IF (( length .GE. 2 )) THEN
                       text=text(2:)
                   ELSE
-                      GO TO5962
+                      GO TO6032
                   END IF
                   length = length - 1
-              GO TO 5961
-5962          CONTINUE
+              GO TO 6031
+6032          CONTINUE
               ifound = INDEX(text,'#')
               IF (( ifound .GT. 1 )) THEN
                   text = text(1:ifound-1)
@@ -7050,19 +7135,19 @@
               length = lnblnk1(TEXT)
               TEXT=TEXT(:length)
               origtext = text(:length)
-              DO 5971 Kconvert=1,lnblnk1(text)
+              DO 6041 Kconvert=1,lnblnk1(text)
                   CURSOR=ICHAR(text(Kconvert:Kconvert))
                   IF (((CURSOR.GE.97).AND.(CURSOR.LE.122))) THEN
                       CURSOR=CURSOR-32
                       text(Kconvert:Kconvert)=CHAR(CURSOR)
                   END IF
-5971          CONTINUE
-5972          CONTINUE
+6041          CONTINUE
+6042          CONTINUE
               IF (( .NOT.start_found )) THEN
                   IF ((INDEX(TEXT,DELIM_START) .NE. 0 )) THEN
                       start_found = .true.
                   END IF
-                  goto 5020
+                  goto 5090
               END IF
               iindex=INDEX(TEXT,VNAME(:iVNAME))
               IF (( DELIM_END.NE.'NONE' )) THEN
@@ -7076,30 +7161,30 @@
                       END IF
                       ERROR_FLAG=1
                       ERROR_FLAGS(I)=1
-                      GOTO 4990
+                      GOTO 5060
                   END IF
               END IF
-          GO TO 5951
-5952      CONTINUE
+          GO TO 6021
+6022      CONTINUE
           CHECK=0
           IF (( idebug )) THEN
               write(i_log,*) ' ******* Found: '
               write(i_log,'(a,$)') ' text:     '
               length = lnblnk1(text)
               IF (( length .GT. 0 )) THEN
-                  DO 5981 lll=1,length
+                  DO 6051 lll=1,length
                       write(i_log,'(a1,$)') text(lll:lll)
-5981              CONTINUE
-5982              CONTINUE
+6051              CONTINUE
+6052              CONTINUE
                   write(i_log,*)
               END IF
               write(i_log,'(a,$)') ' origtext: '
               length = lnblnk1(origtext)
               IF (( length .GT. 0 )) THEN
-                  DO 5991 lll=1,length
+                  DO 6061 lll=1,length
                       write(i_log,'(a1,$)') origtext(lll:lll)
-5991              CONTINUE
-5992              CONTINUE
+6061              CONTINUE
+6062              CONTINUE
                   write(i_log,*)
               END IF
           END IF
@@ -7111,19 +7196,19 @@
               write(i_log,'(a,$)') ' text:     '
               length = lnblnk1(text)
               IF (( length .GT. 0 )) THEN
-                  DO 6001 lll=1,length
+                  DO 6071 lll=1,length
                       write(i_log,'(a1,$)') text(lll:lll)
-6001              CONTINUE
-6002              CONTINUE
+6071              CONTINUE
+6072              CONTINUE
                   write(i_log,*)
               END IF
               write(i_log,'(a,$)') ' origtext: '
               length = lnblnk1(origtext)
               IF (( length .GT. 0 )) THEN
-                  DO 6011 lll=1,length
+                  DO 6081 lll=1,length
                       write(i_log,'(a1,$)') origtext(lll:lll)
-6011              CONTINUE
-6012              CONTINUE
+6081              CONTINUE
+6082              CONTINUE
                   write(i_log,*)
               END IF
           END IF
@@ -7143,19 +7228,19 @@
               write(i_log,'(a,$)') ' text:     '
               length = lnblnk1(text)
               IF (( length .GT. 0 )) THEN
-                  DO 6021 lll=1,length
+                  DO 6091 lll=1,length
                       write(i_log,'(a1,$)') text(lll:lll)
-6021              CONTINUE
-6022              CONTINUE
+6091              CONTINUE
+6092              CONTINUE
                   write(i_log,*)
               END IF
               write(i_log,'(a,$)') ' origtext: '
               length = lnblnk1(origtext)
               IF (( length .GT. 0 )) THEN
-                  DO 6031 lll=1,length
+                  DO 6101 lll=1,length
                       write(i_log,'(a1,$)') origtext(lll:lll)
-6031              CONTINUE
-6032              CONTINUE
+6101              CONTINUE
+6102              CONTINUE
                   write(i_log,*)
               END IF
           END IF
@@ -7165,26 +7250,26 @@
                   IF ((lnblnk1(TEXTPIECE).NE.0)) THEN
                       TEXT=TEXTPIECE(:lnblnk1(TEXTPIECE))
                       length = len(text)
-6041                  IF(index(text,blank).NE.1)GO TO 6042
+6111                  IF(index(text,blank).NE.1)GO TO 6112
                           IF (( length .GE. 2 )) THEN
                               text=text(2:)
                           ELSE
-                              GO TO6042
+                              GO TO6112
                           END IF
                           length = length - 1
-                      GO TO 6041
-6042                  CONTINUE
+                      GO TO 6111
+6112                  CONTINUE
                       length = len(origtext)
-6051                  IF(index(origtext,blank).NE.1)GO TO 6052
+6121                  IF(index(origtext,blank).NE.1)GO TO 6122
                           IF (( length .GE. 2 )) THEN
                               origtext=origtext(2:)
                           ELSE
-                              GO TO6052
+                              GO TO6122
                           END IF
                           length = length - 1
-                      GO TO 6051
-6052                  CONTINUE
-                      GOTO 5160
+                      GO TO 6121
+6122                  CONTINUE
+                      GOTO 5230
                   END IF
               END IF
               IF (( error_level .GT. 0 )) THEN
@@ -7196,7 +7281,7 @@
               ERROR_FLAGS(I)=1
               RETURN
           END IF
-5160      CONTINUE
+5230      CONTINUE
           iindex = index(text,'DEFAULT')
           IF (( iindex .NE. 0 )) THEN
               IF (( type(i) .NE. 2 )) THEN
@@ -7205,7 +7290,7 @@
                   ELSE
                       VALUE(I,1)=0
                   END IF
-                  goto 4990
+                  goto 5060
               END IF
           END IF
           IF (((TYPE(I) .EQ. 0).OR.(TYPE(I) .EQ. 1))) THEN
@@ -7214,7 +7299,7 @@
                   write(i_log,*) ' *** Reading an integer or a real valu
      *e! '
               END IF
-6061          CONTINUE
+6131          CONTINUE
                   IF (( idebug )) THEN
                       write(i_log,*) ' In LOOP, ival = ',ival
                   END IF
@@ -7229,7 +7314,7 @@
                       ERROR_FLAGS(I)=1
                       RETURN
                   END IF
-                  READ(TEXT,END=5180,ERR=5190,FMT=*) VALUE(I,IVAL)
+                  READ(TEXT,END=5250,ERR=5260,FMT=*) VALUE(I,IVAL)
                   IF (( idebug )) THEN
                       write(i_log,*) ' Read value: ',ival,VALUE(I,IVAL)
                   END IF
@@ -7240,39 +7325,39 @@
                           IF (( error_level .GT. 0 )) THEN
                               WRITE(ERR,*) '************WARNING*********
      ****'
-                              WRITE(ERR,5200) INT_VALUE, VALUES_SOUGHT(I
+                              WRITE(ERR,5270) INT_VALUE, VALUES_SOUGHT(I
      *                        )(:lnblnk1(VALUES_SOUGHT(I)))
                           END IF
-5200                      FORMAT ( 'Default= ',I9,' used for: ', A )
+5270                      FORMAT ( 'Default= ',I9,' used for: ', A )
                           INT_VALUE=VALUE(I,IVAL)
                           INT_VALUE_MIN=VALUE_MIN(I)
                           INT_VALUE_MAX=VALUE_MAX(I)
                           IF (( error_level .GT. 0 )) THEN
-                              WRITE(ERR,5210) VALUES_SOUGHT(I)(:lnblnk1(
+                              WRITE(ERR,5280) VALUES_SOUGHT(I)(:lnblnk1(
      *                        VALUES_SOUGHT(I))), INT_VALUE, INT_VALUE_M
      *                        IN,INT_VALUE_MAX
                           END IF
-5210                      FORMAT (A,'=', I9,' should be between ', I9,'a
+5280                      FORMAT (A,'=', I9,' should be between ', I9,'a
      *nd ', I9)
                       END IF
                       IF ((TYPE(I).EQ.1)) THEN
                           IF (( error_level .GT. 0 )) THEN
                               WRITE(ERR,*) '************WARNING*********
      ****'
-                              WRITE(ERR,5220) DEFAULT(I), VALUES_SOUGHT(
+                              WRITE(ERR,5290) DEFAULT(I), VALUES_SOUGHT(
      *                        I)(:lnblnk1(VALUES_SOUGHT(I)))
-5220                          FORMAT ( 'Default= ',F12.6,' used for: ',A
+5290                          FORMAT ( 'Default= ',F12.6,' used for: ',A
      * )
-                              WRITE(ERR,5230) VALUES_SOUGHT(I)(:lnblnk1(
+                              WRITE(ERR,5300) VALUES_SOUGHT(I)(:lnblnk1(
      *                        VALUES_SOUGHT(I))), VALUE(I,IVAL), VALUE_M
      *                        IN(I),VALUE_MAX(I)
-5230                          FORMAT (A,'=', F12.6,' should be between '
+5300                          FORMAT (A,'=', F12.6,' should be between '
      *, G14.6,' and ', G14.6)
                           END IF
                       END IF
                       VALUE(I,IVAL)=DEFAULT(I)
                   END IF
-                  IF((IVAL .EQ. NVALUE(I)))GO TO6062
+                  IF((IVAL .EQ. NVALUE(I)))GO TO6132
                   IF (((INDEX(TEXT,',').NE.0).OR.(lnblnk1(TEXT).EQ.0)))
      *            THEN
                       IF (( idebug )) THEN
@@ -7281,24 +7366,24 @@
                           write(i_log,*) ' searching for further input'
                       END IF
                       TEXT=TEXT(INDEX(TEXT,',')+1:)
-6071                  IF(lnblnk1(TEXT).NE.0)GO TO 6072
+6141                  IF(lnblnk1(TEXT).NE.0)GO TO 6142
                           IF (( idebug )) THEN
                               write(i_log,*) ' Empty text -> reading nex
      *t line! '
                           END IF
                           LINE=LINE+1
-                          READ (UNITNUM,END=5180,ERR=5190,FMT='(A256)')
+                          READ (UNITNUM,END=5250,ERR=5260,FMT='(A256)')
      *                    TEXT
                           length = len(text)
-6081                      IF(index(text,blank).NE.1)GO TO 6082
+6151                      IF(index(text,blank).NE.1)GO TO 6152
                               IF (( length .GE. 2 )) THEN
                                   text=text(2:)
                               ELSE
-                                  GO TO6082
+                                  GO TO6152
                               END IF
                               length = length - 1
-                          GO TO 6081
-6082                      CONTINUE
+                          GO TO 6151
+6152                      CONTINUE
                           ifound = INDEX(text,'#')
                           IF (( ifound .GT. 1 )) THEN
                               text = text(1:ifound-1)
@@ -7318,30 +7403,30 @@
                           length = lnblnk1(TEXT)
                           TEXT=TEXT(:length)
                           origtext = text(:length)
-                          DO 6091 Kconvert=1,lnblnk1(text)
+                          DO 6161 Kconvert=1,lnblnk1(text)
                               CURSOR=ICHAR(text(Kconvert:Kconvert))
                               IF (((CURSOR.GE.97).AND.(CURSOR.LE.122)))
      *                        THEN
                                   CURSOR=CURSOR-32
                                   text(Kconvert:Kconvert)=CHAR(CURSOR)
                               END IF
-6091                      CONTINUE
-6092                      CONTINUE
-                          DO 6101 K=1,NMAX
+6161                      CONTINUE
+6162                      CONTINUE
+                          DO 6171 K=1,NMAX
                               vname1 = VALUES_SOUGHT(K)
                               length = lnblnk1(vname1)
                               IF (( length .GT. 0 )) THEN
                                   length = len(vname1)
-6111                              IF(index(vname1,blank).NE.1)GO TO 6112
+6181                              IF(index(vname1,blank).NE.1)GO TO 6182
                                       IF (( length .GE. 2 )) THEN
                                           vname1=vname1(2:)
                                       ELSE
-                                          GO TO6112
+                                          GO TO6182
                                       END IF
                                       length = length - 1
-                                  GO TO 6111
-6112                              CONTINUE
-                                  DO 6121 Kconvert=1,lnblnk1(vname1)
+                                  GO TO 6181
+6182                              CONTINUE
+                                  DO 6191 Kconvert=1,lnblnk1(vname1)
                                       CURSOR=ICHAR(vname1(Kconvert:Kconv
      *                                ert))
                                       IF (((CURSOR.GE.97).AND.(CURSOR.LE
@@ -7350,8 +7435,8 @@
                                           vname1(Kconvert:Kconvert)=CHAR
      *                                    (CURSOR)
                                       END IF
-6121                              CONTINUE
-6122                              CONTINUE
+6191                              CONTINUE
+6192                              CONTINUE
                                   IF ((INDEX(TEXT,vname1(:length)).NE.0)
      *                            ) THEN
                                       IF (( error_level .GT. 0 )) THEN
@@ -7371,39 +7456,39 @@
                                       ERROR_FLAGS(I)=1
                                   END IF
                               END IF
-6101                      CONTINUE
-6102                      CONTINUE
+6171                      CONTINUE
+6172                      CONTINUE
                           IF (( idebug )) THEN
                               write(i_log,*) ' Next line: '
                               write(i_log,'(a,$)') ' text:     '
                               length = lnblnk1(text)
                               IF (( length .GT. 0 )) THEN
-                                  DO 6131 lll=1,length
+                                  DO 6201 lll=1,length
                                       write(i_log,'(a1,$)') text(lll:lll
      *                                )
-6131                              CONTINUE
-6132                              CONTINUE
+6201                              CONTINUE
+6202                              CONTINUE
                                   write(i_log,*)
                               END IF
                               write(i_log,'(a,$)') ' origtext: '
                               length = lnblnk1(origtext)
                               IF (( length .GT. 0 )) THEN
-                                  DO 6141 lll=1,length
+                                  DO 6211 lll=1,length
                                       write(i_log,'(a1,$)') origtext(lll
      *                                :lll)
-6141                              CONTINUE
-6142                              CONTINUE
+6211                              CONTINUE
+6212                              CONTINUE
                                   write(i_log,*)
                               END IF
                           END IF
-                      GO TO 6071
-6072                  CONTINUE
+                      GO TO 6141
+6142                  CONTINUE
                   ELSE
-                      GO TO6062
+                      GO TO6132
                   END IF
                   IVAL=IVAL+1
-              GO TO 6061
-6062          CONTINUE
+              GO TO 6131
+6132          CONTINUE
               IF (((NVALUE(I).NE.0).AND.(NVALUE(I).NE.IVAL))) THEN
                   IF (( error_level .GT. 0 )) THEN
                       WRITE (ERR,*) '**************ERROR**************'
@@ -7417,14 +7502,14 @@
               ELSE
                   NVALUE(I)=IVAL
               END IF
-5180          CONTINUE
+5250          CONTINUE
           END IF
           IF (((TYPE(I) .EQ. 2) .OR. (TYPE(I) .EQ. 3))) THEN
               IVAL=1
               IF (( idebug )) THEN
                   write(i_log,*) ' Trying to read a string! '
               END IF
-6151          CONTINUE
+6221          CONTINUE
                   IF (( idebug )) THEN
                       write(i_log,*) ' In LOOP, ival = ',ival
                   END IF
@@ -7441,7 +7526,7 @@
                   END IF
                   IF ((vname(:ivname).EQ.'TITLE')) THEN
                       TEXTPIECE=origtext
-                      GOTO 5330
+                      GOTO 5400
                   END IF
                   iindex = INDEX(origtext,',')
                   IF (( iindex .NE. 0 )) THEN
@@ -7449,33 +7534,33 @@
                   ELSE
                       TEXTPIECE=origtext
                   END IF
-5330              CONTINUE
-                  READ(TEXTPIECE,ERR=5340,FMT='(A256)') CHAR_VALUE(I,IVA
+5400              CONTINUE
+                  READ(TEXTPIECE,ERR=5410,FMT='(A256)') CHAR_VALUE(I,IVA
      *            L)
                   length = len(CHAR_VALUE(I,IVAL))
-6161              IF(index(CHAR_VALUE(I,IVAL),blank).NE.1)GO TO 6162
+6231              IF(index(CHAR_VALUE(I,IVAL),blank).NE.1)GO TO 6232
                       IF (( length .GE. 2 )) THEN
                           CHAR_VALUE(I,IVAL)=CHAR_VALUE(I,IVAL)(2:)
                       ELSE
-                          GO TO6162
+                          GO TO6232
                       END IF
                       length = length - 1
-                  GO TO 6161
-6162              CONTINUE
+                  GO TO 6231
+6232              CONTINUE
                   IF (( idebug )) THEN
                       write(i_log,*) ' Read the following char string: '
                       length = lnblnk1(CHAR_VALUE(I,IVAL))
                       IF (( length .GT. 0 )) THEN
-                          DO 6171 lll=1,length
+                          DO 6241 lll=1,length
                               write(i_log,'(a1,$)') CHAR_VALUE(I,IVAL)(l
      *                        ll:lll)
-6171                      CONTINUE
-6172                      CONTINUE
+6241                      CONTINUE
+6242                      CONTINUE
                           write(i_log,*)
                       END IF
                   END IF
                   IF ((TYPE(I) .EQ. 3)) THEN
-                      DO 6181 Kconvert=1,lnblnk1(CHAR_VALUE(I,IVAL))
+                      DO 6251 Kconvert=1,lnblnk1(CHAR_VALUE(I,IVAL))
                           CURSOR=ICHAR(CHAR_VALUE(I,IVAL)(Kconvert:Kconv
      *                    ert))
                           IF (((CURSOR.GE.97).AND.(CURSOR.LE.122))) THEN
@@ -7483,24 +7568,24 @@
                               CHAR_VALUE(I,IVAL)(Kconvert:Kconvert)=CHAR
      *                        (CURSOR)
                           END IF
-6181                  CONTINUE
-6182                  CONTINUE
+6251                  CONTINUE
+6252                  CONTINUE
                       ALLOWED=.FALSE.
-                      DO 6191 K=0,5
+                      DO 6261 K=0,5
                           vname1 = ALLOWED_INPUTS(I,K)
                           length = len(ALLOWED_INPUTS(I,K))
-6201                      IF(index(ALLOWED_INPUTS(I,K),blank).NE.1)GO TO
-     *                     6202
+6271                      IF(index(ALLOWED_INPUTS(I,K),blank).NE.1)GO TO
+     *                     6272
                               IF (( length .GE. 2 )) THEN
                                   ALLOWED_INPUTS(I,K)=ALLOWED_INPUTS(I,K
      *                            )(2:)
                               ELSE
-                                  GO TO6202
+                                  GO TO6272
                               END IF
                               length = length - 1
-                          GO TO 6201
-6202                      CONTINUE
-                          DO 6211 Kconvert=1,lnblnk1(ALLOWED_INPUTS(I,K)
+                          GO TO 6271
+6272                      CONTINUE
+                          DO 6281 Kconvert=1,lnblnk1(ALLOWED_INPUTS(I,K)
      *                    )
                               CURSOR=ICHAR(ALLOWED_INPUTS(I,K)(Kconvert:
      *                        Kconvert))
@@ -7510,8 +7595,8 @@
                                   ALLOWED_INPUTS(I,K)(Kconvert:Kconvert)
      *                            =CHAR(CURSOR)
                               END IF
-6211                      CONTINUE
-6212                      CONTINUE
+6281                      CONTINUE
+6282                      CONTINUE
                           IF ((ALLOWED_INPUTS(I,K).EQ.CHAR_VALUE(I,IVAL)
      *                    )) THEN
                               ALLOWED=.TRUE.
@@ -7521,8 +7606,8 @@
      * match ',k
                               END IF
                           END IF
-6191                  CONTINUE
-6192                  CONTINUE
+6261                  CONTINUE
+6262                  CONTINUE
                       IF ((.NOT.ALLOWED)) THEN
                           WRITE(ERR,*) '*************ERROR*************'
                           IF ((IVAL.NE.1)) THEN
@@ -7538,39 +7623,39 @@
      *                        )(:lnblnk1(CHAR_VALUE(I,IVAL))), '<--NOT A
      *LLOWED'
                               WRITE(ERR,*) 'OPTIONS ARE:'
-                              WRITE(ERR,5410) (ALLOWED_INPUTS(I,K)(:lnbl
+                              WRITE(ERR,5480) (ALLOWED_INPUTS(I,K)(:lnbl
      *                        nk1(ALLOWED_INPUTS(I,K))),K=0,5)
                           END IF
-5410                      FORMAT(A40)
+5480                      FORMAT(A40)
                           ERROR_FLAG=1
                           ERROR_FLAGS(I)=1
                       END IF
                   END IF
                   IF ((vname(:ivname).EQ.'TITLE')) THEN
-                      GO TO6152
+                      GO TO6222
                   END IF
-                  DO 6221 K=1,LEN(KEEPTEXT)
+                  DO 6291 K=1,LEN(KEEPTEXT)
                       KEEPTEXT(K:K)=' '
-6221              CONTINUE
-6222              CONTINUE
+6291              CONTINUE
+6292              CONTINUE
                   KEEPTEXT(:lnblnk1(TEXT))=TEXT
                   iindex = INDEX(TEXT,',')
                   IF (( iindex .NE. 0 .OR. lnblnk1(TEXT).EQ.0 )) THEN
                       TEXT=TEXT(INDEX(TEXT,',')+1:)
                       origtext=origtext(iindex+1:)
-6231                  IF(lnblnk1(TEXT).NE.0)GO TO 6232
+6301                  IF(lnblnk1(TEXT).NE.0)GO TO 6302
                           LINE=LINE+1
-                          READ (UNITNUM,ERR=5340,FMT='(A256)') TEXT
+                          READ (UNITNUM,ERR=5410,FMT='(A256)') TEXT
                           length = len(text)
-6241                      IF(index(text,blank).NE.1)GO TO 6242
+6311                      IF(index(text,blank).NE.1)GO TO 6312
                               IF (( length .GE. 2 )) THEN
                                   text=text(2:)
                               ELSE
-                                  GO TO6242
+                                  GO TO6312
                               END IF
                               length = length - 1
-                          GO TO 6241
-6242                      CONTINUE
+                          GO TO 6311
+6312                      CONTINUE
                           ifound = INDEX(text,'#')
                           IF (( ifound .GT. 1 )) THEN
                               text = text(1:ifound-1)
@@ -7590,30 +7675,30 @@
                           length = lnblnk1(TEXT)
                           TEXT=TEXT(:length)
                           origtext = text(:length)
-                          DO 6251 Kconvert=1,lnblnk1(text)
+                          DO 6321 Kconvert=1,lnblnk1(text)
                               CURSOR=ICHAR(text(Kconvert:Kconvert))
                               IF (((CURSOR.GE.97).AND.(CURSOR.LE.122)))
      *                        THEN
                                   CURSOR=CURSOR-32
                                   text(Kconvert:Kconvert)=CHAR(CURSOR)
                               END IF
-6251                      CONTINUE
-6252                      CONTINUE
-                          DO 6261 K=1,NMAX
+6321                      CONTINUE
+6322                      CONTINUE
+                          DO 6331 K=1,NMAX
                               vname1 = VALUES_SOUGHT(K)
                               length = lnblnk1(vname1)
                               IF (( length .GT. 0 )) THEN
                                   length = len(vname1)
-6271                              IF(index(vname1,blank).NE.1)GO TO 6272
+6341                              IF(index(vname1,blank).NE.1)GO TO 6342
                                       IF (( length .GE. 2 )) THEN
                                           vname1=vname1(2:)
                                       ELSE
-                                          GO TO6272
+                                          GO TO6342
                                       END IF
                                       length = length - 1
-                                  GO TO 6271
-6272                              CONTINUE
-                                  DO 6281 Kconvert=1,lnblnk1(vname1)
+                                  GO TO 6341
+6342                              CONTINUE
+                                  DO 6351 Kconvert=1,lnblnk1(vname1)
                                       CURSOR=ICHAR(vname1(Kconvert:Kconv
      *                                ert))
                                       IF (((CURSOR.GE.97).AND.(CURSOR.LE
@@ -7622,8 +7707,8 @@
                                           vname1(Kconvert:Kconvert)=CHAR
      *                                    (CURSOR)
                                       END IF
-6281                              CONTINUE
-6282                              CONTINUE
+6351                              CONTINUE
+6352                              CONTINUE
                                   IF ((INDEX(TEXT,vname1(:length)).NE.0)
      *                            ) THEN
                                       WRITE(ERR,*) '************ERROR***
@@ -7641,16 +7726,16 @@
                                       ERROR_FLAGS(I)=1
                                   END IF
                               END IF
-6261                      CONTINUE
-6262                      CONTINUE
-                      GO TO 6231
-6232                  CONTINUE
+6331                      CONTINUE
+6332                      CONTINUE
+                      GO TO 6301
+6302                  CONTINUE
                   ELSE
-                      GO TO6152
+                      GO TO6222
                   END IF
                   IVAL=IVAL+1
-              GO TO 6151
-6152          CONTINUE
+              GO TO 6221
+6222          CONTINUE
               IF (((NVALUE(I).NE.0).AND.(NVALUE(I).NE.IVAL))) THEN
                   IF (( error_level .GT. 0 )) THEN
                       WRITE (ERR,*) '*******************ERROR***********
@@ -7665,8 +7750,8 @@
                   NVALUE(I)=IVAL
               END IF
           END IF
-          goto 4990
-5030      IF (( error_level .GT. 0 )) THEN
+          goto 5060
+5100      IF (( error_level .GT. 0 )) THEN
               WRITE (ERR,*) '******************ERROR********************
      ****'
               WRITE (ERR,*) 'END OF FILE REACHED BUT VALUE SOUGHT NOT FO
@@ -7680,8 +7765,8 @@
           END IF
           ERROR_FLAG=1
           ERROR_FLAGS(I)=1
-          goto 4990
-5050      IF (( error_level .GT. 0 )) THEN
+          goto 5060
+5120      IF (( error_level .GT. 0 )) THEN
               WRITE (ERR,*) '******************ERROR********************
      ****'
               WRITE (ERR,*) 'END OF FILE REACHED BUT VALUE SOUGHT NOT FO
@@ -7695,8 +7780,8 @@
           END IF
           ERROR_FLAG=1
           ERROR_FLAGS(I)=1
-          goto 4990
-5190      IF (( error_level .GT. 0 )) THEN
+          goto 5060
+5260      IF (( error_level .GT. 0 )) THEN
               WRITE (ERR,*) '***************ERROR***************'
               IF ((IVAL.GT.1)) THEN
                   J=IVAL
@@ -7713,8 +7798,8 @@
           END IF
           ERROR_FLAG=1
           ERROR_FLAGS(I)=1
-          GOTO 4990
-5340      IF (( error_level .GT. 0 )) THEN
+          GOTO 5060
+5410      IF (( error_level .GT. 0 )) THEN
               WRITE (ERR,*) '***************ERROR***************'
               WRITE (ERR,*) 'ERROR READING VALUE SOUGHT: ', VALUES_SOUGH
      *        T(I)
@@ -7723,14 +7808,14 @@
           END IF
           ERROR_FLAG=1
           ERROR_FLAGS(I)=1
-4990      CONTINUE
-5931  CONTINUE
-5932  CONTINUE
+5060      CONTINUE
+6001  CONTINUE
+6002  CONTINUE
       RETURN
-5040  WRITE (ERR,*) '***************ERROR***************'
+5110  WRITE (ERR,*) '***************ERROR***************'
       WRITE (ERR,*) 'ERROR READING TEXT ', TEXT,' ON LINE ',LINE
-      goto 5490
-5490  CONTINUE
+      goto 5560
+5560  CONTINUE
       ERROR_FLAG=1
       ERROR_FLAGS(I)=1
       RETURN
@@ -7914,11 +7999,11 @@
       END IF
       ecut_min=999.
       pcut_min=999.
-      DO 6291 i=1, 2097154
+      DO 6361 i=1, 2097154
           IF((ECUT.LT.ecut_min))ecut_min=ECUT
           IF((PCUT.LT.pcut_min))pcut_min=PCUT
-6291  CONTINUE
-6292  CONTINUE
+6361  CONTINUE
+6362  CONTINUE
       delimeter = 'MEDIA DEFINITION'
       ival = 0
       ival = ival + 1
@@ -7941,7 +8026,7 @@
               write(i_log,'(/a)') '***************** Quiting now.'
               call exit(1)
           END IF
-          open(i_medfile,file=material_file,status='old',err=6300)
+          open(i_medfile,file=material_file,status='old',err=6370)
           medfile_specified=.true.
       ELSE
           IF ((n_parallel.EQ.0 .OR. i_parallel.EQ.first_parallel)) THEN
@@ -8050,11 +8135,11 @@
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
       END IF
-      DO 6311 i=1,NMED
-          DO 6321 j=1,24
+      DO 6381 i=1,NMED
+          DO 6391 j=1,24
               medium_name(j:j)=media(j,i)
-6321      CONTINUE
-6322      CONTINUE
+6391      CONTINUE
+6392      CONTINUE
           elements_specified=.false.
           rho_specified=.false.
           densityfile_specified=.false.
@@ -8089,8 +8174,8 @@
           nmax=ival_elements
           CALL GET_INPUT
           IF ((error_flags(ival_elements).EQ.0)) THEN
-              DO 6331 j=1,nvalue(ival_elements)
-                  DO 6341 Kconvert=1,lnblnk1(char_value(ival_elements,j)
+              DO 6401 j=1,nvalue(ival_elements)
+                  DO 6411 Kconvert=1,lnblnk1(char_value(ival_elements,j)
      *            )
                       CURSOR=ICHAR(char_value(ival_elements,j)(Kconvert:
      *                Kconvert))
@@ -8099,10 +8184,10 @@
                           char_value(ival_elements,j)(Kconvert:Kconvert)
      *                    =CHAR(CURSOR)
                       END IF
-6341              CONTINUE
-6342              CONTINUE
-6331          CONTINUE
-6332          CONTINUE
+6411              CONTINUE
+6412              CONTINUE
+6401          CONTINUE
+6402          CONTINUE
               ival=ival+1
               ival_pz=ival
               nne_tmp=nvalue(ival_elements)
@@ -8113,11 +8198,11 @@
               nmax=ival_pz
               CALL GET_INPUT
               IF ((nne_tmp.GT.1 .AND. error_flags(ival_pz).EQ.0)) THEN
-                  DO 6351 j=1,nne_tmp
+                  DO 6421 j=1,nne_tmp
                       asym_tmp(j)=char_value(ival_elements,j)
                       pz_tmp(j)=value(ival_pz,j)
-6351              CONTINUE
-6352              CONTINUE
+6421              CONTINUE
+6422              CONTINUE
                   elements_specified=.true.
                   spec_by_pz=.true.
               ELSE
@@ -8135,11 +8220,11 @@
                   END IF
                   CALL GET_INPUT
                   IF ((error_flags(ival_rhoz).EQ.0)) THEN
-                      DO 6361 j=1,nne_tmp
+                      DO 6431 j=1,nne_tmp
                           asym_tmp(j)=char_value(ival_elements,j)
                           rhoz_tmp(j)=value(ival_rhoz,j)
-6361                  CONTINUE
-6362                  CONTINUE
+6431                  CONTINUE
+6432                  CONTINUE
                       elements_specified=.true.
                       spec_by_rhoz=.true.
                   END IF
@@ -8299,9 +8384,9 @@
               rewind(i_medfile)
               start_delim_found=.false.
               end_delim_found=.false.
-6371          IF((.NOT.(.NOT.start_delim_found)).AND.(.NOT.(.NOT.end_del
-     *        im_found)))GO TO 6372
-                  read(i_medfile,'(a)',end=6380)text_string
+6441          IF((.NOT.(.NOT.start_delim_found)).AND.(.NOT.(.NOT.end_del
+     *        im_found)))GO TO 6442
+                  read(i_medfile,'(a)',end=6450)text_string
                   text_save=text_string
                   text_string=toUpper(text_string(:lnblnk1(text_string))
      *            )
@@ -8311,15 +8396,15 @@
                       text_string=text_save(eindex+1:)
                       text_string=text_string(:lnblnk1(text_string))
                       length = len(text_string)
-6391                  IF(index(text_string,blank).NE.1)GO TO 6392
+6461                  IF(index(text_string,blank).NE.1)GO TO 6462
                           IF (( length .GE. 2 )) THEN
                               text_string=text_string(2:)
                           ELSE
-                              GO TO6392
+                              GO TO6462
                           END IF
                           length = length - 1
-                      GO TO 6391
-6392                  CONTINUE
+                      GO TO 6461
+6462                  CONTINUE
                       IF ((text_string.EQ.medium_name)) THEN
                           delim_start=text_save
                           start_delim_found=.true.
@@ -8328,9 +8413,9 @@
                           end_delim_found=.true.
                       END IF
                   END IF
-              GO TO 6371
-6372          CONTINUE
-6380          IF ((.NOT.start_delim_found)) THEN
+              GO TO 6441
+6442          CONTINUE
+6450          IF ((.NOT.start_delim_found)) THEN
                   IF ((n_parallel.EQ.0 .OR. i_parallel.EQ.first_parallel
      *            )) THEN
                       write(i_mederr,*)' Warning: Data for ',medium_name
@@ -8368,12 +8453,12 @@
      *                    m_end)
                           IF ((nne_tmp.GT.1 .AND. error_flags(ival_pz).E
      *                    Q.0)) THEN
-                              DO 6401 j=1,nne_tmp
+                              DO 6471 j=1,nne_tmp
                                   asym_tmp(j)=char_value(ival_elements,j
      *                            )
                                   pz_tmp(j)=value(ival_pz,j)
-6401                          CONTINUE
-6402                          CONTINUE
+6471                          CONTINUE
+6472                          CONTINUE
                               elements_specified=.true.
                               spec_by_pz=.true.
                           ELSE
@@ -8392,12 +8477,12 @@
                               CALL GET_INPUT_PLUS(i_medfile,delim_start,
      *                        delim_end)
                               IF ((error_flags(ival_rhoz).EQ.0)) THEN
-                                  DO 6411 j=1,nne_tmp
+                                  DO 6481 j=1,nne_tmp
                                       asym_tmp(j)=char_value(ival_elemen
      *                                ts,j)
                                       rhoz_tmp(j)=value(ival_rhoz,j)
-6411                              CONTINUE
-6412                              CONTINUE
+6481                              CONTINUE
+6482                              CONTINUE
                                   elements_specified=.true.
                                   spec_by_rhoz=.true.
                               END IF
@@ -8580,31 +8665,31 @@
                   tmp_string=egs_home(:lnblnk1(egs_home)) // 'pegs4' //
      *            '/' // 'density_corrections' // '/' // density_file
                   inquire(file=tmp_string,exist=ex)
-                  IF((ex))goto 6420
+                  IF((ex))goto 6490
                   tmp_string=egs_home(:lnblnk1(egs_home)) // 'pegs4' //
      *            '/' // 'density_corrections' // '/' // 'elements' // '
      */' // density_file
                   inquire(file=tmp_string,exist=ex)
-                  IF((ex))goto 6420
+                  IF((ex))goto 6490
                   tmp_string=egs_home(:lnblnk1(egs_home)) // 'pegs4' //
      *            '/' // 'density_corrections' // '/' // 'compounds' //
      *            '/' // density_file
                   inquire(file=tmp_string,exist=ex)
-                  IF((ex))goto 6420
+                  IF((ex))goto 6490
                   tmp_string=egs_home(:lnblnk1(egs_home)) // 'pegs4' //
      *            '/' // 'density' // '/' // density_file
                   inquire(file=tmp_string,exist=ex)
-                  IF((ex))goto 6420
+                  IF((ex))goto 6490
                   tmp_string=hen_house(:lnblnk1(hen_house)) // 'pegs4' /
      *            / '/' // 'density_corrections' // '/' // 'elements' //
      *             '/' // density_file
                   inquire(file=tmp_string,exist=ex)
-                  IF((ex))goto 6420
+                  IF((ex))goto 6490
                   tmp_string=hen_house(:lnblnk1(hen_house)) // 'pegs4' /
      *            / '/' // 'density_corrections' // '/' // 'compounds' /
      *            / '/' // density_file
                   inquire(file=tmp_string,exist=ex)
-                  IF((ex))goto 6420
+                  IF((ex))goto 6490
                   IF ((n_parallel.EQ.0 .OR. i_parallel.EQ.first_parallel
      *            )) THEN
                       write(i_mederr,*)' Error: Density correction file'
@@ -8643,7 +8728,7 @@
                       write(i_mederr,*)' $HEN_HOUSE/pegs4/density_correc
      *tions/compounds.'
                   END IF
-6420              CONTINUE
+6490              CONTINUE
               END IF
           END IF
           IF ((densityfile_specified)) THEN
@@ -8656,33 +8741,33 @@
                   write(i_log,'(/a)') '***************** Quiting now.'
                   call exit(1)
               END IF
-              open(i_density,file=tmp_string,status='old',err=6430)
+              open(i_density,file=tmp_string,status='old',err=6500)
               density_file=tmp_string
               densityfile_specified=.true.
               epstfl_tmp=1
               read(i_density,'(a)')title
               read(i_density,*)nepst_df,iev_df,rho_df,nne_df
               read(i_density,*)(z_df(j),rhoz_df(j),j=1,nne_df)
-              DO 6441 j=1,nne_df
+              DO 6511 j=1,nne_df
                   i01=z_df(j)
                   asym_df(j)=ASYMT(i01)
-6441          CONTINUE
-6442          CONTINUE
+6511          CONTINUE
+6512          CONTINUE
               IF ((elements_specified)) THEN
                   IF ((nne_tmp.NE.nne_df)) THEN
                       df_if_elem_mismatch(i)=.true.
                   ELSE
                       rhoz_tot=0.
-                      DO 6451 j=1,nne_tmp
+                      DO 6521 j=1,nne_tmp
                           IF ((spec_by_pz)) THEN
                               i01=ZTBL(asym_tmp(j))
                               rhoz_tmp(j)=pz_tmp(j)*WATBL(i01)
                           END IF
                           rhoz_tot=rhoz_tot+rhoz_tmp(j)
-6451                  CONTINUE
-6452                  CONTINUE
-                      DO 6461 j=1,nne_df
-                          DO 6471 k=1,nne_tmp
+6521                  CONTINUE
+6522                  CONTINUE
+                      DO 6531 j=1,nne_df
+                          DO 6541 k=1,nne_tmp
                               IF ((asym_df(j).EQ.asym_tmp(k))) THEN
                                   IF ((rhoz_df(j).GT.(1+0.01)*rhoz_tmp(k
      *                            )/rhoz_tot .OR. rhoz_df(j).LT.(1-0.01)
@@ -8691,15 +8776,15 @@
                                   END IF
                                   exit
                               END IF
-6471                      CONTINUE
-6472                      CONTINUE
+6541                      CONTINUE
+6542                      CONTINUE
                           IF((k.GT.nne_tmp))df_if_elem_mismatch(i)=.true
      *                    .
                           IF ((df_if_elem_mismatch(i))) THEN
                               exit
                           END IF
-6461                  CONTINUE
-6462                  CONTINUE
+6531                  CONTINUE
+6532                  CONTINUE
                   END IF
                   IF ((df_if_elem_mismatch(i))) THEN
                       IF ((n_parallel.EQ.0 .OR. i_parallel.EQ.first_para
@@ -8718,12 +8803,12 @@
      *ecified in the density correction file.'
                       END IF
                       nne_tmp=nne_df
-                      DO 6481 j=1,nne_tmp
+                      DO 6551 j=1,nne_tmp
                           z_tmp(j)=z_df(j)
                           rhoz_tmp(j)=rhoz_df(j)
                           asym_tmp(j)=asym_df(j)
-6481                  CONTINUE
-6482                  CONTINUE
+6551                  CONTINUE
+6552                  CONTINUE
                       spec_by_rhoz=.true.
                   END IF
               ELSE
@@ -8733,12 +8818,12 @@
      *y correction file'
                   END IF
                   nne_tmp=nne_df
-                  DO 6491 j=1,nne_tmp
+                  DO 6561 j=1,nne_tmp
                       z_tmp(j)=z_df(j)
                       rhoz_tmp(j)=rhoz_df(j)
                       asym_tmp(j)=asym_df(j)
-6491              CONTINUE
-6492              CONTINUE
+6561              CONTINUE
+6562              CONTINUE
                   spec_by_rhoz=.true.
                   elements_specified=.true.
               END IF
@@ -8789,13 +8874,13 @@
               ue(i)=ue_tmp
               ap(i)=ap_tmp
               up(i)=up_tmp
-              DO 6501 j=1,24
+              DO 6571 j=1,24
                   inpstrn(j,i) = sterncid_tmp(j:j)
-6501          CONTINUE
-6502          CONTINUE
+6571          CONTINUE
+6572          CONTINUE
               nne(i)=nne_tmp
               rho(i)=rho_tmp
-              DO 6511 j=1,nne_tmp
+              DO 6581 j=1,nne_tmp
                   inpasym(i,j)=asym_tmp(j)
                   zelem(i,j)=ZTBL(asym_tmp(j))
                   i01=zelem(i,j)
@@ -8812,8 +8897,8 @@
                       rhoz(i,j)=pz(i,j)*wa(i,j)
                       rhoz4(i,j)=pz4(i,j)*wa4(i,j)
                   END IF
-6511          CONTINUE
-6512          CONTINUE
+6581          CONTINUE
+6582          CONTINUE
               iunrst(i)=iunrst_tmp
               iaprim(i)=iaprim_tmp
               epstfl(i)=epstfl_tmp
@@ -8826,8 +8911,8 @@
      *orrectly defined.'
               END IF
           END IF
-6311  CONTINUE
-6312  CONTINUE
+6381  CONTINUE
+6382  CONTINUE
       IF((medfile_specified))close(i_medfile)
       IF((n_parallel.EQ.0 .OR. i_parallel.EQ.first_parallel))close(i_med
      *err)
@@ -8850,7 +8935,7 @@
               write(ounit,*)' .egsinp file or density correction file.'
           END IF
           write(ounit,*)
-          DO 6521 i=1,nmed
+          DO 6591 i=1,nmed
               write(ounit,'(a,24a1)')'   Medium: ',(media(j,i),j=1,24)
               write(ounit,'(a,24a1)')' Sterncid: ',(inpstrn(j,i),j=1,24)
               write(ounit,'(a,1p,e14.5,a)')'     rho: ',rho(i),' g/cm^3'
@@ -8901,13 +8986,13 @@
      *le fortran unit for', ' stopping power output file.'
                   END IF
                   open(i_outfile,file=spoutput_file(i),status='unknown',
-     *            err=6530)
-                  goto 6540
-6530              write(i_log,'(/a)') '***************** Warning: '
+     *            err=6600)
+                  goto 6610
+6600              write(i_log,'(/a)') '***************** Warning: '
                   write(i_log,'(a)') 'Warning: Failed to open stopping p
      *ower output file ', spoutput_file(i)
-                  goto 6550
-6540              IFLAG1=0
+                  goto 6620
+6610              IFLAG1=0
                   IFLAG2=0
                   IPLOTE=0
                   MEDIUM=i
@@ -8917,8 +9002,8 @@
                   YAXISPmfp = 'mean free path / cm'
                   write(GRAPHTITLE,'(24a1)')(media(j,i),j=1,24)
                   SUBTITLE = 'Electron data'
-                  DO 6561 j=1,8
-                      DO 6571 k=1,16
+                  DO 6631 j=1,8
+                      DO 6641 k=1,16
                           EKE=ETAB(k)*10.**(j-4)
                           IF ((EKE .LE. AE(1)-PRM)) THEN
                               IF ((IFLAG1 .EQ. 0)) THEN
@@ -8951,10 +9036,10 @@
                               PLOTEEN(IPLOTE)=EKE
                               PLOTE(IPLOTE)=DEDXE/RHO(MEDIUM)
                           END IF
-6571                  CONTINUE
-6572                  CONTINUE
-6561              CONTINUE
-6562              CONTINUE
+6641                  CONTINUE
+6642                  CONTINUE
+6631              CONTINUE
+6632              CONTINUE
                   IF ((IPLOTE.GT.0)) THEN
                       IF ((iunrst(i).EQ.0)) THEN
                           SERIES='restricted total stopping power'
@@ -8976,19 +9061,19 @@
      *                XIS,YAXISE,GRAPHTITLE,SUBTITLE,i_outfile,2)
                   END IF
                   close(i_outfile)
-6550              CONTINUE
+6620              CONTINUE
               END IF
-6521      CONTINUE
-6522      CONTINUE
+6591      CONTINUE
+6592      CONTINUE
       END IF
       return
-6300  write(i_log,'(/a)') '***************** Error: '
+6370  write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(a)') 'Error: Cannot open material data file',materia
      *l_file
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
       return
-6430  write(i_log,'(/a)') '***************** Error: '
+6500  write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(a)') 'Error: Cannot open density correction file: ',
      * density_file(:lnblnk1(density_file))
       write(i_log,'(/a)') '***************** Quiting now.'
@@ -9023,8 +9108,8 @@
       logical TESTFILE, ALLPOS
       FUDGE = 1.e-10
       IF (( NPTS .gt. MAX)) THEN
-          WRITE(6,6580)NPTS, MAX
-6580      FORMAT(//' **************************'/ ' Number of points ask
+          WRITE(6,6650)NPTS, MAX
+6650      FORMAT(//' **************************'/ ' Number of points ask
      *ed for =', I5, ' is greater than max allowed of', I4/ ' Setting NP
      *TS to MAX, you could adjust MAX in xvgrplot.mortran'/ ' **********
      *****************'//)
@@ -9034,8 +9119,8 @@
       END IF
       INQUIRE(UNIT = UNITNUM,OPENED=TESTFILE)
       IF ((.NOT.TESTFILE)) THEN
-          WRITE(6,6590) UNITNUM
-6590      FORMAT (//'  ---------Error in Subroutine XVGRPLOT---------' ,
+          WRITE(6,6660) UNITNUM
+6660      FORMAT (//'  ---------Error in Subroutine XVGRPLOT---------' ,
      */'   Unit specified (',I2,') is not open.' ,/'   Unit must beopene
      *d before using subroutine.' ,/'   Data not written to file.',/'  -
      *---------------------------------------------'//)
@@ -9046,32 +9131,32 @@
       XAXISLENGTH = 61
       YAXISLENGTH = 61
       SERIESLENGTH = 61
-6601  CONTINUE
+6671  CONTINUE
           TITLELENGTH = TITLELENGTH - 1
-          IF(((GRAPHTITLE(TITLELENGTH:TITLELENGTH) .NE. ' ')))GO TO6602
-      GO TO 6601
-6602  CONTINUE
-6611  CONTINUE
+          IF(((GRAPHTITLE(TITLELENGTH:TITLELENGTH) .NE. ' ')))GO TO6672
+      GO TO 6671
+6672  CONTINUE
+6681  CONTINUE
           SUBLENGTH = SUBLENGTH - 1
-          IF(((SUBTITLE(SUBLENGTH:SUBLENGTH) .NE. ' ')))GO TO6612
-      GO TO 6611
-6612  CONTINUE
-6621  CONTINUE
+          IF(((SUBTITLE(SUBLENGTH:SUBLENGTH) .NE. ' ')))GO TO6682
+      GO TO 6681
+6682  CONTINUE
+6691  CONTINUE
           XAXISLENGTH = XAXISLENGTH - 1
-          IF(((XTITLE(XAXISLENGTH:XAXISLENGTH) .NE. ' ')))GO TO6622
-      GO TO 6621
-6622  CONTINUE
-6631  CONTINUE
+          IF(((XTITLE(XAXISLENGTH:XAXISLENGTH) .NE. ' ')))GO TO6692
+      GO TO 6691
+6692  CONTINUE
+6701  CONTINUE
           YAXISLENGTH = YAXISLENGTH - 1
-          IF(((YTITLE(YAXISLENGTH:YAXISLENGTH) .NE. ' ')))GO TO6632
-      GO TO 6631
-6632  CONTINUE
-6641  CONTINUE
+          IF(((YTITLE(YAXISLENGTH:YAXISLENGTH) .NE. ' ')))GO TO6702
+      GO TO 6701
+6702  CONTINUE
+6711  CONTINUE
           SERIESLENGTH = SERIESLENGTH - 1
-          IF(((SERIESTITLE(SERIESLENGTH:SERIESLENGTH) .NE. ' ')))GO TO66
-     *    42
-      GO TO 6641
-6642  CONTINUE
+          IF(((SERIESTITLE(SERIESLENGTH:SERIESLENGTH) .NE. ' ')))GO TO67
+     *    12
+      GO TO 6711
+6712  CONTINUE
       LOGX = 0
       LOGY = 0
       ALLPOS=.TRUE.
@@ -9085,7 +9170,7 @@
       ELSE
           SMALLESTY=Y(1)
       END IF
-      DO 6651 COUNT=1,NPTS1
+      DO 6721 COUNT=1,NPTS1
           IF (((X(COUNT) .LT. SMALLESTX) .AND. (X(COUNT).NE.0.))) THEN
               SMALLESTX=X(COUNT)
           END IF
@@ -9095,73 +9180,73 @@
           IF (((X(COUNT) .LT. 0.).OR.(Y(COUNT) .LT. 0.))) THEN
               ALLPOS=.FALSE.
           END IF
-6651  CONTINUE
-6652  CONTINUE
+6721  CONTINUE
+6722  CONTINUE
       IF ((ALLPOS)) THEN
-          DO 6661 COUNT=1,NPTS1
+          DO 6731 COUNT=1,NPTS1
               IF ((X(COUNT).EQ.0.)) THEN
                   X(COUNT)=SMALLESTX*FUDGE
               END IF
               IF ((Y(COUNT).EQ.0.)) THEN
                   Y(COUNT)=SMALLESTY*FUDGE
               END IF
-6661      CONTINUE
-6662      CONTINUE
+6731      CONTINUE
+6732      CONTINUE
       END IF
       IF ((AXISTYPE .GT. 0)) THEN
-          DO 6671 COUNT=1,NPTS1
+          DO 6741 COUNT=1,NPTS1
               IF ((X(COUNT) .LE. 0.)) THEN
                   LOGX = 1
               END IF
               IF ((Y(COUNT) .LE. 0.)) THEN
                   LOGY = 1
               END IF
-6671      CONTINUE
-6672      CONTINUE
+6741      CONTINUE
+6742      CONTINUE
       END IF
       IF ((CURVENUM .EQ. 0)) THEN
           IF ((AXISTYPE .EQ. 0)) THEN
-              WRITE(UNITNUM,6680) 'xy'
+              WRITE(UNITNUM,6750) 'xy'
           ELSE IF((AXISTYPE .EQ. 1)) THEN
-              WRITE(UNITNUM,6680) 'logy'
-              WRITE(UNITNUM,6690)
+              WRITE(UNITNUM,6750) 'logy'
+              WRITE(UNITNUM,6760)
           ELSE IF((AXISTYPE .EQ. 2)) THEN
-              WRITE(UNITNUM,6680) 'logx'
-              WRITE(UNITNUM,6690)
+              WRITE(UNITNUM,6750) 'logx'
+              WRITE(UNITNUM,6760)
           ELSE IF((AXISTYPE .EQ. 3)) THEN
-              WRITE(UNITNUM,6680) 'logxy'
-              WRITE(UNITNUM,6690)
-              WRITE(UNITNUM,6700)
+              WRITE(UNITNUM,6750) 'logxy'
+              WRITE(UNITNUM,6760)
+              WRITE(UNITNUM,6770)
           ELSE
-              WRITE(6,6710) AXISTYPE
-6710          FORMAT (//'  ------------Error in Subroutine XVGRPLOT-----
+              WRITE(6,6780) AXISTYPE
+6780          FORMAT (//'  ------------Error in Subroutine XVGRPLOT-----
      *------' ,/'   AXISTYPE specified (',I2,') is not a valid option.',
      */'  ----------------------------------------------'//)
               RETURN
           END IF
-6680      FORMAT ('@g0 type ',A,' ')
-6690      FORMAT ('@    xaxis  ticklabel format exponential')
-6700      FORMAT ('@    yaxis  ticklabel format exponential')
-          WRITE(UNITNUM,6720) GRAPHTITLE(1:TITLELENGTH) ,SUBTITLE(1:SUBL
+6750      FORMAT ('@g0 type ',A,' ')
+6760      FORMAT ('@    xaxis  ticklabel format exponential')
+6770      FORMAT ('@    yaxis  ticklabel format exponential')
+          WRITE(UNITNUM,6790) GRAPHTITLE(1:TITLELENGTH) ,SUBTITLE(1:SUBL
      *    ENGTH) ,XTITLE(1:XAXISLENGTH) ,YTITLE(1:YAXISLENGTH)
-6720      FORMAT ('@    title "',A,'"'/ ,'@    subtitle "',A,'"'/ ,'@ le
+6790      FORMAT ('@    title "',A,'"'/ ,'@    subtitle "',A,'"'/ ,'@ le
      *gend on'/ ,'@    legend box linestyle 0'/ ,'@    legend x1 0.6'/ ,
      *'@    legend y1 0.75'/ ,'@    view xmin 0.250000'/ ,'@    xaxis  l
      *abel "',A,'"'/ ,'@    timestamp on'/ ,'@    yaxis  label "',A,'"')
       END IF
       IF ((AXISTYPE .EQ. 1 .AND. LOGY .EQ. 1)) THEN
-          WRITE(UNITNUM,6680) 'xy'
-          WRITE(6,6730)
-6730      FORMAT (/' ----------WARNING from Subroutine XVGRPLOT---------
+          WRITE(UNITNUM,6750) 'xy'
+          WRITE(6,6800)
+6800      FORMAT (/' ----------WARNING from Subroutine XVGRPLOT---------
      *' ,/'  Log scale requested for Y axis when one or more   ' ,/'  Yd
      *ata points are 0 or negative.                  ' ,//'  Y axis scal
      *e changed to linear.                   ' ,/' ---------------------
      *------------------------------'/)
       END IF
       IF ((AXISTYPE .EQ. 2 .AND. LOGX .EQ. 1)) THEN
-          WRITE(UNITNUM,6680) 'xy'
-          WRITE(6,6740)
-6740      FORMAT (/' ----------WARNING from Subroutine XVGRPLOT---------
+          WRITE(UNITNUM,6750) 'xy'
+          WRITE(6,6810)
+6810      FORMAT (/' ----------WARNING from Subroutine XVGRPLOT---------
      *' ,/'  Log scale requested for X axis when one or more   ' ,/'  Xd
      *ata points are 0 or negative.                  ' ,//'  X axis scal
      *e changed to linear.                   ' ,/' ---------------------
@@ -9169,19 +9254,19 @@
       END IF
       IF ((AXISTYPE .EQ. 3 .AND. (LOGX .EQ. 1 .OR. LOGY .EQ. 1))) THEN
           IF ((LOGX .EQ. 1 .AND. LOGY .EQ. 1)) THEN
-              WRITE(UNITNUM,6680) 'xy'
-              WRITE(6,6750)
-6750          FORMAT (/' ----------WARNING from Subroutine XVGRPLOT-----
+              WRITE(UNITNUM,6750) 'xy'
+              WRITE(6,6820)
+6820          FORMAT (/' ----------WARNING from Subroutine XVGRPLOT-----
      *----' ,/'  Log scale requested for X axis and Y axis when    ' ,/'
      *  one or more X and Y data points are 0 or negative.' ,//'  X andY
      * axes scales changed to linear.            ' ,/' -----------------
      *----------------------------------'/)
           ELSE IF((LOGX .EQ. 1)) THEN
-              WRITE(UNITNUM,6680) 'logy'
-              WRITE(6,6740)
+              WRITE(UNITNUM,6750) 'logy'
+              WRITE(6,6810)
           ELSE
-              WRITE(UNITNUM,6680) 'logx'
-              WRITE(6,6730)
+              WRITE(UNITNUM,6750) 'logx'
+              WRITE(6,6800)
           END IF
       END IF
       IF ((CURVENUM .LT. 10 )) THEN
@@ -9189,31 +9274,31 @@
       ELSE
           WRITE(UNITNUM,'(''@    s'',I2,'' on'')') CURVENUM
       END IF
-      WRITE(UNITNUM,6760) CURVENUM,SERIESTITLE(1:SERIESLENGTH)
-6760  FORMAT ('@    legend string ',I2,' "',A,'"')
-      WRITE(UNITNUM,6770)
-6770  FORMAT ('@TYPE xy')
+      WRITE(UNITNUM,6830) CURVENUM,SERIESTITLE(1:SERIESLENGTH)
+6830  FORMAT ('@    legend string ',I2,' "',A,'"')
+      WRITE(UNITNUM,6840)
+6840  FORMAT ('@TYPE xy')
       IF ((CURVENUM .LT. 10)) THEN
-          WRITE(UNITNUM,6780) CURVENUM
+          WRITE(UNITNUM,6850) CURVENUM
           IF ((CURVENUM .EQ. 9)) THEN
-              WRITE(UNITNUM,6790) CURVENUM, CURVENUM+1
+              WRITE(UNITNUM,6860) CURVENUM, CURVENUM+1
           ELSE
-              WRITE(UNITNUM,6800) CURVENUM, CURVENUM+1
+              WRITE(UNITNUM,6870) CURVENUM, CURVENUM+1
           END IF
       ELSE
-          WRITE(UNITNUM,6810) CURVENUM
-          WRITE(UNITNUM,6820) CURVENUM, CURVENUM+1
+          WRITE(UNITNUM,6880) CURVENUM
+          WRITE(UNITNUM,6890) CURVENUM, CURVENUM+1
       END IF
-6780  FORMAT ('@    s',I1,' errorbar length 0.000000')
-6810  FORMAT ('@    s',I2,' errorbar length 0.000000')
-6790  FORMAT ('@    s',I1,' symbol color ',I2)
-6800  FORMAT ('@    s',I1,' symbol color ',I1)
-6820  FORMAT ('@    s',I2,' symbol color ',I2)
-      DO 6831 COUNT=1,NPTS1
-          WRITE(UNITNUM,6840) X(COUNT),Y(COUNT)
-6831  CONTINUE
-6832  CONTINUE
-6840  FORMAT (1PE15.4,1PE15.4)
+6850  FORMAT ('@    s',I1,' errorbar length 0.000000')
+6880  FORMAT ('@    s',I2,' errorbar length 0.000000')
+6860  FORMAT ('@    s',I1,' symbol color ',I2)
+6870  FORMAT ('@    s',I1,' symbol color ',I1)
+6890  FORMAT ('@    s',I2,' symbol color ',I2)
+      DO 6901 COUNT=1,NPTS1
+          WRITE(UNITNUM,6910) X(COUNT),Y(COUNT)
+6901  CONTINUE
+6902  CONTINUE
+6910  FORMAT (1PE15.4,1PE15.4)
       WRITE(UNITNUM,'(''&'')')
       RETURN
       END
@@ -10087,12 +10172,14 @@ C*****************************************************************************
      *M
       common/score/endep( 2097153), endep2( 2097153), temp2, planarefe,
      *planarefp,planarfe,planarfp, nestep, endep_tmp( 2097153), i_phsp_o
-     *ut,i_muidx_out,i_unit_out,IWATCH,mxnp, endep_last( 2097153)
+     *ut,i_muidx_out,i_unit_out,IWATCH,mxnp,i_bindos, endep_last( 209715
+     *3)
       REAL*8 endep, endep2, temp2,planarefe, planarefp, planarfe, planar
      *fp
       integer*8 nestep
       real endep_tmp
-      integer i_phsp_out,   i_muidx_out,    i_unit_out,  IWATCH,mxnp
+      integer i_phsp_out,   i_muidx_out,    i_unit_out,  i_bindos,  IWAT
+     *CH,mxnp
       integer*2 endep_last
       common/source/ esrc,  nhist,  nnread,  nshist,  nphist,  nnphsp,
      *einsrc,  xsrcold,  ysrcold,  zsrcold,  usrcold,  vsrcold,  wsrcold
@@ -10105,23 +10192,24 @@ C*****************************************************************************
      * muIndex(60000),  r_11(60000), r_12(60000), r_13(60000), r_21(6000
      *0), r_22(60000), r_23(60000), r_31(60000), r_32(60000), r_33(60000
      *), dsource, dsourcetemp(60000), ein,  eksrcm,  esrc_sp,  SSD,  ein
-     *srcold, NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  latchold,  e
-     *nflag,  dflag,  ismode,  isource,     iqin,        iqphsp,
-     *           iqinc,                          SHLflag,     calflag,
-     *   MLCflag,     ixinl,       ixinu,       jyinl,       jyinu,
-     *  kzinl,       kzinu,       klowx,       khix,        klowy,
-     * khiy,        klowz,       khiz,        survival_ratio,        nsm
-     *iss,      nsblocked,     nsrjct,      nsoutside,     nmissm,
-     *IPRIMARY,                                            OLDSRC,
-     * npassi,                     nang,         ivary(60000),     ngang
-     *(60000),       nset,            more_in_cont,                 numa
-     *ng,       dose_stat,      ndbsrjct,                        i_dbs,
-     *         iphatsrc,         e_split,                           i_ia
-     *ea_in,      i_mu_phsp,           izscore,             i_unit_in,
-     *                k_field,                       nhist_last,
-     *         the_beam_code,         the_input_file,      the_vcu_input
-     *_file,                        the_pegs_file,           the_shared_
-     *lib,                    the_vcu_code,               the_phsp_file
+     *srcold, iaea_SAD,  NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  l
+     *atchold,  enflag,  dflag,  ismode,  isource,     iqin,        iqph
+     *sp,                   iqinc,                          SHLflag,
+     * calflag,     MLCflag,     ixinl,       ixinu,       jyinl,
+     *jyinu,       kzinl,       kzinu,       klowx,       khix,        k
+     *lowy,       khiy,        klowz,       khiz,        survival_ratio,
+     *        nsmiss,      nsblocked,     nsrjct,      nsoutside,     nm
+     *issm,      IPRIMARY,                                            OL
+     *DSRC,       npassi,                     nang,         ivary(60000)
+     *,     ngang(60000),       nset,            more_in_cont,
+     *       numang,       dose_stat,      ndbsrjct,
+     *    i_dbs,          iphatsrc,         e_split,
+     *       i_iaea_in,      i_mu_phsp,           izscore,             i
+     *_unit_in,                  k_field,                       nhist_la
+     *st,                 the_beam_code,         the_input_file,      th
+     *e_vcu_input_file,                        the_pegs_file,
+     *the_shared_lib,                    the_vcu_code,               the
+     *_phsp_file
       real*8    esrc,muIndex
       integer*8 nhist, nnread,nshist,nphist,nnphsp
       real*8 einsrc, xsrcold, ysrcold,usrcold,vsrcold,wsrcold,weightold,
@@ -10133,7 +10221,8 @@ C*****************************************************************************
      *max,pgang,r_11, r_12, r_13, r_21,                       r_22, r_23
      *, r_31, r_32, r_33,dsource,dsourcetemp,
      *    ein, eksrcm, esrc_sp, SSD, NINCSRC,
-     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold
+     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold,ia
+     *ea_SAD
       integer*4 isource, iqin, iqphsp, iqinc,latchold,iqinold,MLCflag,SH
      *Lflag,         calflag, ixinl, ixinu, jyinl, jyinu, kzinl, kzinu,
      *                             klowx, khix, klowy, khiy, klowz, khiz
@@ -10214,10 +10303,10 @@ C*****************************************************************************
       enflag = 0
       i_muidx_out = 0
       calflag = 0
-      WRITE(6,6850)
-6850  FORMAT(/ / ' Source configuration'/)
-      WRITE(6,6860)
-6860  FORMAT('      (0) Parallel, rectangular beam incident from the fro
+      WRITE(6,6920)
+6920  FORMAT(/ / ' Source configuration'/)
+      WRITE(6,6930)
+6930  FORMAT('      (0) Parallel, rectangular beam incident from the fro
      *nt' / '          Requires 9 inputs:' / '          charge (-1,0,1),
      *' / '          0 (mandatory, to identify source type),' / '   lowe
      *r x-coordinate of the beam (cm),' / '          upper x-coordinate 
@@ -10228,8 +10317,8 @@ C*****************************************************************************
      *s),'/ '          angle of beam with respect to the negative z-axis
      * (degrees) '/ '            (angles default to 90,90,0--incident on
      * front of phantom)'/)
-      WRITE(6,6870)
-6870  FORMAT('   or (1) Parallel, rectangular beam incident from any dir
+      WRITE(6,6940)
+6940  FORMAT('   or (1) Parallel, rectangular beam incident from any dir
      *ection'/ '          Requires 10 inputs:' / '          charge (-1,0
      *,1),' / '          1 (mandatory, to identify source type),' / '   
      *    x-coordinate of the isocenter (cm),' / '          y-coordinate
@@ -10249,8 +10338,8 @@ C*****************************************************************************
      *grees),                     ' / '             (+ve rotation is cou
      *nterclockwise looking along' / '              the beam direction' 
      */)
-      WRITE(6,6880)
-6880  FORMAT('  or  (2) Full phase-space of each particle' / 'Requires 9
+      WRITE(6,6950)
+6950  FORMAT('  or  (2) Full phase-space of each particle' / 'Requires 9
      * inputs plus data stored in units 43 and 44:'/ '  charge (-1 elect
      *ron,0 photon,1 positron, 2 all),' / '          2 (mandatory, to id
      *entify source type),' / '          x-coordinateof the isocenter (c
@@ -10274,16 +10363,16 @@ C*****************************************************************************
      *ng radius (cm),'/ '          SSD at which splitting radius defined
      * (cm),'/ '          Z at which phsp source collected (cm),'/ '  No
      *. of times to split charged particles.'/)
-      WRITE(6,6890)
-6890  FORMAT('   or (3) Point, rectangular beam incident from the front'
+      WRITE(6,6960)
+6960  FORMAT('   or (3) Point, rectangular beam incident from the front'
      */ '          Requires 7 inputs:' / '          charge (-1,0,1),' /'
      *          3 (mandatory, to identify source type),' / 'lower x-coor
      *dinate of the beam (cm),' / '          upper x-coordinate of the b
      *eam (cm),' / '          lower y-coordinate of the beam (cm),' / ' 
      *         upper y-coordinate of the beam (cm),' / '      distance t
      *o the plane (cm),'/)
-      WRITE(6,6900)
-6900  FORMAT('  or  (6) Uniform isotropically radiating parallelepiped w
+      WRITE(6,6970)
+6970  FORMAT('  or  (6) Uniform isotropically radiating parallelepiped w
      *ithin'/ '          the phantom'/ '          Requires 8 inputs:'/ '
      *          charge (-1,0,1),' / '          6 (mandatory, to identify
      * source type),' / '          lower x-coordinate of active volume (
@@ -10292,8 +10381,8 @@ C*****************************************************************************
      *-coordinate of active volume (cm),' / '          lower z-coordinat
      *e of active volume (cm)  ' / '          upper z-coordinate of acti
      *ve volume (cm) '/)
-      WRITE(6,6910)
-6910  FORMAT('  or  (7) Parallel beam incident from multiple, user-selec
+      WRITE(6,6980)
+6980  FORMAT('  or  (7) Parallel beam incident from multiple, user-selec
      *ted angles'/ '          Requires 9 inputs on this line:'/ '   char
      *ge (-1,0,1),' / '          7 (mandatory, to identify source type),
      *' / '          x-coordinate of the isocenter (cm),' / '      y-coo
@@ -10310,8 +10399,8 @@ C*****************************************************************************
      *tor plane perpendicular to the beam' / '   direction (degrees),   
      *                  ' / '             (+ve rotation is counterclockw
      *ise looking along' / '              thebeam direction' /)
-      WRITE(6,6920)
-6920  FORMAT('  or  (8) Full phase-space incident from multiple angles'/
+      WRITE(6,6990)
+6990  FORMAT('  or  (8) Full phase-space incident from multiple angles'/
      * '          Requires 8 inputs on this line and data stored in unit
      *s 43,44:'/ '          charge (-1 electron,0 photon,1 positron, 2al
      *l),' / '          2 (mandatory, to identify source type),' / '    
@@ -10334,8 +10423,8 @@ C*****************************************************************************
      *'/ '          SSD at which splitting radius defined(cm),'/ '      
      *    Z at which phsp source collected (cm)',/ '     No. of times to
      * split charged particles.'/)
-      WRITE(6,6930)
-6930  FORMAT('  or  (9) BEAM simulation of treatment head' / 'Requires 1
+      WRITE(6,7000)
+7000  FORMAT('  or  (9) BEAM simulation of treatment head' / 'Requires 1
      *1 inputs plus name of accelerator simulation,'/ '   input file use
      *d in accelerator simulation, and pegs4'/ '   data used in accelera
      *tor simulation:'/ '          charge (-1 electron,0 photon,1 positr
@@ -10354,8 +10443,8 @@ C*****************************************************************************
      *king down the axis),' / '          i_dbs--set to 1 if DBS is being
      * used in BEAM simulation' / '    and you want to reject fat photon
      *s, 0 otherwise,'/ 'No. of times to split charged particles.'/)
-      WRITE(6,6940)
-6940  FORMAT('  or  (10) BEAM simulation source incident from multiple a
+      WRITE(6,7010)
+7010  FORMAT('  or  (10) BEAM simulation source incident from multiple a
      *ngles' / '          Requires 10 inputs plus name of accelerator si
      *mulation,'/ '          input file used in accelerator simulation,a
      *nd pegs4'/ '          data used in accelerator simulation:'/ '    
@@ -10374,8 +10463,8 @@ C*****************************************************************************
      *    i_dbs--set to 1 if DBS is being used in BEAM simulation' / '  
      *           and you want to reject fat photons, 0 otherwise,'/ '   
      *       No. of times to splitcharged particles.'/)
-      WRITE(6,6950)
-6950  FORMAT('  or  (20) Phase Space Incident from multiple settings '/'
+      WRITE(6,7020)
+7020  FORMAT('  or  (20) Phase Space Incident from multiple settings '/'
      *  optionally through an MLC or through a BEAM accel.'/ ' Requires 
      *6 inputs plus name of the input file used'/ '       forBEAM/vcu SI
      *M. and the BEAM/VCU code if used'/ '          data used in simulat
@@ -10392,8 +10481,8 @@ C*****************************************************************************
      *    in output phase space (i_phsp_out=1 or 2)'/ '          calflag
      *: Set to 1 to skip the calibrationrun performed'/ '             to
      * refine the estimate of NRCYCL.'/)
-      WRITE(6,6960)
-6960  FORMAT('  or  (21) BEAM simulation of treatment head will multiple
+      WRITE(6,7030)
+7030  FORMAT('  or  (21) BEAM simulation of treatment head will multiple
      * settings' / '  optionally through a MLC'/ '          Requires  na
      *me of accelerator simulation,'/ '          input file used in acce
      *lerator simulation, and pegs4'/ '          data used in accelerato
@@ -10406,10 +10495,10 @@ C*****************************************************************************
      *         No. of times to split charged particles.'/ 'i_muidx_out: 
      *Set to 1 to include fractional MU index'/ '   in output phase spac
      *e (i_phsp_out=1 or 2)'/)
-      WRITE(6,6970)
-6970  FORMAT(' All inputs on one line:',$)
-      READ(5,6980)iqin,isource,(temp(i),i=1,12)
-6980  FORMAT(2i12,12f15.0)
+      WRITE(6,7040)
+7040  FORMAT(' All inputs on one line:',$)
+      READ(5,7050)iqin,isource,(temp(i),i=1,12)
+7050  FORMAT(2i12,12f15.0)
       IF (( (iqin .LT. -1) .OR. (iqin .GT. 1 .AND. isource .NE. 2 .AND.
      *isource .LT. 8) .OR. (iqin .GT. 2) )) THEN
           iqin=0
@@ -10422,8 +10511,8 @@ C*****************************************************************************
           thetax = temp(5)
           thetay = temp(6)
           thetaz = temp(7)
-          WRITE(6,6990)iqin,xinl,xinu,yinl,yinu,thetax,thetay,thetaz
-6990      FORMAT(/ ' Parallel beam incident from the front(+ve z-axis)'/
+          WRITE(6,7060)iqin,xinl,xinu,yinl,yinu,thetax,thetay,thetaz
+7060      FORMAT(/ ' Parallel beam incident from the front(+ve z-axis)'/
      *' Electric charge of the source:',t40,i12 / ' x-boundaries:',t26,f
      *10.4,' cm --',f10.4,' cm' / ' y-boundaries:',t26,f10.4,'cm --',f10
      *.4,' cm' / ' Angle relative to +x:',t40,f10.4 / ' Anglerelative to
@@ -10437,9 +10526,9 @@ C*****************************************************************************
           xcol = temp(6)
           ycol = temp(7)
           phicol = temp(8)
-          WRITE(6,7000)iqin,xiso,yiso,ziso,theta(1),phi(1),xcol,ycol,phi
+          WRITE(6,7070)iqin,xiso,yiso,ziso,theta(1),phi(1),xcol,ycol,phi
      *    col
-7000      FORMAT(/ ' Parallel beam incident from an arbitrary direction'
+7070      FORMAT(/ ' Parallel beam incident from an arbitrary direction'
      */ ' Electric charge of the source:' ,t40,i12 / ' x-coordinateof th
      *e isocenter:' ,t40,f10.4 / ' y-coordinate of the isocenter:',t40,f
      *10.4 / ' z-coordinate of the isocenter:' ,t40,f10.4 / 'Polar angle
@@ -10461,9 +10550,9 @@ C*****************************************************************************
           ssd_dbs=temp(10)
           z_dbs=temp(11)
           e_split=temp(12)
-          WRITE(6,7010)xiso,yiso,ziso,theta(1),phi(1),dsource,phicol,e_s
+          WRITE(6,7080)xiso,yiso,ziso,theta(1),phi(1),dsource,phicol,e_s
      *    plit
-7010      FORMAT(/ ' Full phase space from an arbitrary direction'/ ' x-
+7080      FORMAT(/ ' Full phase space from an arbitrary direction'/ ' x-
      *coordinate of the isocenter:' ,t55,f10.4/ ' y-coordinate of the is
      *ocenter:' ,t55,f10.4/ ' z-coordinate of the isocenter:' ,t55,f10.4
      */ ' Polar angle of origin in source plane:',t55,f10.4/ ' Azimuthal
@@ -10471,16 +10560,16 @@ C*****************************************************************************
      *center to origin in source plane:',t55,f10.4/ ' Source rotation an
      *gle:' ,t55,f10.4/ ' No. of times to split e+/e-:' ,t55,i10/)
           IF ((i_dbs.EQ.1)) THEN
-              WRITE(6,7020)r_dbs,ssd_dbs,z_dbs
-7020          FORMAT(/ ' Directional Bremsstrahlung Splitting (DBS) used
+              WRITE(6,7090)r_dbs,ssd_dbs,z_dbs
+7090          FORMAT(/ ' Directional Bremsstrahlung Splitting (DBS) used
      *'/ ' in BEAM simulation to generate phase space source with:'/ '  
      *DBS splitting radius:',t55,f10.4/ '    SSD where radius defined:',
      *t55,f10.4/ '    Z where source scored:',t55,f10.4/ ' Photons whose
      * trajectory takes them outside the DBS splitting'/ ' radius at the
      * SSD will be rejected.'/)
               IF ((ssd_dbs.LT.z_dbs)) THEN
-                  WRITE(6,7030)
-7030              FORMAT(//' ***WARNING:'/ ' SSD where DBS splitting rad
+                  WRITE(6,7100)
+7100              FORMAT(//' ***WARNING:'/ ' SSD where DBS splitting rad
      *ius is defined < the Z'/ ' value of scoring plane for this source.
      *'/ ' Particle rejection will be turned off.'//)
                   i_dbs=0
@@ -10489,11 +10578,11 @@ C*****************************************************************************
               i_dbs=0
           END IF
           IF ((iqphsp.EQ.2)) THEN
-              WRITE(6,7040)
-7040          FORMAT(/' Charge of incident particles to use: -1, 0, 1'/)
+              WRITE(6,7110)
+7110          FORMAT(/' Charge of incident particles to use: -1, 0, 1'/)
           ELSE
-              WRITE(6,7050)iqphsp
-7050          FORMAT(/' Charge of incident particles to use: ',i2/)
+              WRITE(6,7120)iqphsp
+7120          FORMAT(/' Charge of incident particles to use: ',i2/)
           END IF
       ELSE IF((isource .EQ. 3)) THEN
           xinl = temp(1)
@@ -10501,14 +10590,14 @@ C*****************************************************************************
           yinl = temp(3)
           yinu = temp(4)
           ssd = temp(5)
-          WRITE(6,7060)iqin,xinl,xinu,yinl,yinu,ssd
-7060      FORMAT(/ ' Point source incident from the front(+ve z-axis)'/'
+          WRITE(6,7130)iqin,xinl,xinu,yinl,yinu,ssd
+7130      FORMAT(/ ' Point source incident from the front(+ve z-axis)'/'
      * Electric charge of the source:',t40,i12 / ' x-boundaries:',t26,f1
      *0.4,' cm --',f10.4,' cm' / ' y-boundaries:',t26,f10.4,' cm --',f10
      *.4,' cm' / ' SSD                     :',t40,f10.4 /)
       ELSE IF((isource .EQ. 4)) THEN
-          WRITE(6,7070)
-7070      FORMAT(/ ' Beam characterization model not implemented, use so
+          WRITE(6,7140)
+7140      FORMAT(/ ' Beam characterization model not implemented, use so
      *urce 1 - 3!'//)
       ELSE IF((isource .EQ. 6)) THEN
           xinl = temp(1)
@@ -10517,24 +10606,24 @@ C*****************************************************************************
           yinu = temp(4)
           zinl = temp(5)
           zinu = temp(6)
-          WRITE(6,7080)iqin,xinl,xinu,yinl,yinu,zinl,zinu
-7080      FORMAT(/ ' Uniform isotropically radiating parallelepiped:'/ '
+          WRITE(6,7150)iqin,xinl,xinu,yinl,yinu,zinl,zinu
+7150      FORMAT(/ ' Uniform isotropically radiating parallelepiped:'/ '
      * Electric charge of the source:',t40,i12 / ' x-boundaries:',t26,f1
      *0.4,' cm --',f10.4,' cm' / ' y-boundaries:',t26,f10.4,' cm --',f10
      *.4,' cm' / ' z-boundaries:',t26,f10.4,' cm --',f10.4,' cm'/)
           IF ((xinl.GT.xinu)) THEN
-              WRITE(6,7090)
-7090          FORMAT(//' ***ERROR in source 6:'/ ' xinl > xinu '//)
+              WRITE(6,7160)
+7160          FORMAT(//' ***ERROR in source 6:'/ ' xinl > xinu '//)
               STOP
           END IF
           IF ((yinl.GT.yinu)) THEN
-              WRITE(6,7100)
-7100          FORMAT(//' ***ERROR in source 6:'/ ' yinl > yinu '//)
+              WRITE(6,7170)
+7170          FORMAT(//' ***ERROR in source 6:'/ ' yinl > yinu '//)
               STOP
           END IF
           IF ((zinl.GT.zinu)) THEN
-              WRITE(6,7110)
-7110          FORMAT(//' ***ERROR in source 6:'/ ' zinl > zinu '//)
+              WRITE(6,7180)
+7180          FORMAT(//' ***ERROR in source 6:'/ ' zinl > zinu '//)
               STOP
           END IF
       ELSE IF((isource .EQ. 7)) THEN
@@ -10546,8 +10635,8 @@ C*****************************************************************************
           ycol = temp(6)
           phicol = temp(7)
           IF ((nang.GT.0)) THEN
-              WRITE(6,7120)iqin,xiso,yiso,ziso,nang,xcol,ycol,phicol
-7120          FORMAT(/ ' Parallel beam incident from multiple, user-sele
+              WRITE(6,7190)iqin,xiso,yiso,ziso,nang,xcol,ycol,phicol
+7190          FORMAT(/ ' Parallel beam incident from multiple, user-sele
      *cted angles'/ ' Electric charge of the source:' ,t40,i12 / ' x-coo
      *rdinate of the isocenter:' ,t40,f10.4 / ' y-coordinate of the isoc
      *enter:' ,t40,f10.4 / ' z-coordinate of the isocenter:' ,t40,f10.4/
@@ -10555,36 +10644,36 @@ C*****************************************************************************
      *width:' ,t40,f10.4 / ' Total y-collimator width:' ,t40,f10.4 / ' C
      *ollimator rotation angle:' ,t40,f10.4 /)
               IF ((nang.GT.60000)) THEN
-                  WRITE(6,7130)60000
-                  WRITE(1,7130)60000
-7130              FORMAT(//' ***ERROR in source 7***'/ ' Number of incid
+                  WRITE(6,7200)60000
+                  WRITE(1,7200)60000
+7200              FORMAT(//' ***ERROR in source 7***'/ ' Number of incid
      *ent theta-phi > max. allowed (',I4,')'/ ' Increase $MXANG in dosxy
      *z_user_macros.mortran, recompile'/ ' and try again.'//)
                   STOP
               END IF
               temp(1)=0.
-              DO 7141 I=1,nang
-                  WRITE(6,7150)I
-7150              FORMAT(' Incident theta-phi pair ',I4,':'/ '    theta(
+              DO 7211 I=1,nang
+                  WRITE(6,7220)I
+7220              FORMAT(' Incident theta-phi pair ',I4,':'/ '    theta(
      *deg.), phi (deg.), probability:',$)
-                  READ(5,7160)theta(I),phi(I),pang(I)
-7160              FORMAT(3F15.0)
-                  WRITE(6,7170)theta(I),phi(I),pang(I)
-7170              FORMAT(3F10.4)
+                  READ(5,7230)theta(I),phi(I),pang(I)
+7230              FORMAT(3F15.0)
+                  WRITE(6,7240)theta(I),phi(I),pang(I)
+7240              FORMAT(3F10.4)
                   temp(1)=temp(1)+pang(I)
-7141          CONTINUE
-7142          CONTINUE
-              DO 7181 I=1,nang
+7211          CONTINUE
+7212          CONTINUE
+              DO 7251 I=1,nang
                   pang(I)=pang(I)/temp(1)
                   IF ((I.GT.1)) THEN
                       pang(I)=pang(I)+pang(I-1)
                   END IF
-7181          CONTINUE
-7182          CONTINUE
+7251          CONTINUE
+7252          CONTINUE
               numang=nang
           ELSE IF((nang.LT.0)) THEN
-              WRITE(6,7190)iqin,xiso,yiso,ziso,-nang,xcol,ycol,phicol
-7190          FORMAT(/ ' Parallel beam incident from multiple, user-sele
+              WRITE(6,7260)iqin,xiso,yiso,ziso,-nang,xcol,ycol,phicol
+7260          FORMAT(/ ' Parallel beam incident from multiple, user-sele
      *cted angles'/ ' Electric charge of the source:' ,t40,i12 / ' x-coo
      *rdinate of the isocenter:' ,t40,f10.4 / ' y-coordinate of the isoc
      *enter:' ,t40,f10.4 / ' z-coordinate of the isocenter:' ,t40,f10.4/
@@ -10592,39 +10681,39 @@ C*****************************************************************************
      *:' ,t40,f10.4 / ' Total y-collimator width:' ,t40,f10.4 /' Collima
      *tor rotation angle:' ,t40,f10.4 /)
               temp(1)=0.
-              WRITE(6,7200)
-7200          FORMAT(' For each theta-phi group, input:'/ '   ivary (=0t
+              WRITE(6,7270)
+7270          FORMAT(' For each theta-phi group, input:'/ '   ivary (=0t
      *o vary phi, 1 to vary theta), fixed theta/phi (deg.), '/ '   min. 
      *varying theta/phi (deg.), max. varying theta/phi (deg.), '/ '   no
      *. of varying angles in group (including min. and max.), '/ '   pro
      *bability for group (all on one line).')
-              DO 7211 I=1,-nang
-                  WRITE(6,7220)I
-7220              FORMAT(' Incident theta-phi group ',I4,/ ' :',$)
-                  READ(5,7230)ivary(I),angfixed(I),angmin(I),angmax(I),n
+              DO 7281 I=1,-nang
+                  WRITE(6,7290)I
+7290              FORMAT(' Incident theta-phi group ',I4,/ ' :',$)
+                  READ(5,7300)ivary(I),angfixed(I),angmin(I),angmax(I),n
      *            gang(I),pgang(I)
-7230              FORMAT(I12,3F15.0,I12,F15.0)
+7300              FORMAT(I12,3F15.0,I12,F15.0)
                   IF ((ngang(I).LT.2)) THEN
-                      WRITE(6,7240)
-7240                  FORMAT(//' ***WARNING***'/ ' ngang(i) must be >=2.
+                      WRITE(6,7310)
+7310                  FORMAT(//' ***WARNING***'/ ' ngang(i) must be >=2.
      *  It will be reset to 2 '/ ' in this case. '//)
                       ngang(I)=2
                   END IF
-                  WRITE(6,7250)ivary(I),angfixed(I),angmin(I),angmax(I),
+                  WRITE(6,7320)ivary(I),angfixed(I),angmin(I),angmax(I),
      *            ngang(I),pgang(I)
-7250              FORMAT(I10,3F10.4,I10,F10.4)
+7320              FORMAT(I10,3F10.4,I10,F10.4)
                   temp(1)=temp(1)+pgang(I)
-7211          CONTINUE
-7212          CONTINUE
+7281          CONTINUE
+7282          CONTINUE
               K=0
-              DO 7261 I=1,-nang
+              DO 7331 I=1,-nang
                   pgang(I)=pgang(I)/temp(1)
-                  DO 7271 J=1,ngang(I)
+                  DO 7341 J=1,ngang(I)
                       K=K+1
                       IF ((K.GT.60000)) THEN
-                          WRITE(6,7280)60000
-                          WRITE(1,7280)60000
-7280                      FORMAT(//' ***ERROR in source 7***'/ ' Numbero
+                          WRITE(6,7350)60000
+                          WRITE(1,7350)60000
+7350                      FORMAT(//' ***ERROR in source 7***'/ ' Numbero
      *f incident theta-phi > max. allowed (',I4,')'/ ' Increase $MXANGin
      * dosxyz_user_macros.mortran, recompile'/ ' and try again.'//)
                           STOP
@@ -10642,14 +10731,14 @@ C*****************************************************************************
                       IF ((K.GT.1)) THEN
                           pang(K)=pang(K)+pang(K-1)
                       END IF
-7271              CONTINUE
-7272              CONTINUE
-7261          CONTINUE
-7262          CONTINUE
+7341              CONTINUE
+7342              CONTINUE
+7331          CONTINUE
+7332          CONTINUE
               numang=K
           END IF
-          WRITE(6,7290)
-7290      FORMAT(' ')
+          WRITE(6,7360)
+7360      FORMAT(' ')
       ELSE IF((isource .EQ. 8)) THEN
           xiso = temp(1)
           yiso = temp(2)
@@ -10664,24 +10753,24 @@ C*****************************************************************************
           z_dbs=temp(10)
           e_split=temp(11)
           IF ((nang.GT.0)) THEN
-              WRITE(6,7300)xiso,yiso,ziso,nang,dsource,phicol,e_split
-7300          FORMAT(/ ' Full hase space from multiple, user-selected an
+              WRITE(6,7370)xiso,yiso,ziso,nang,dsource,phicol,e_split
+7370          FORMAT(/ ' Full hase space from multiple, user-selected an
      *gles'/ ' x-coordinate of the isocenter:' ,t55,f10.4/ ' y-coordinat
      *e of the isocenter:' ,t55,f10.4/ ' z-coordinate of the isocenter:'
      *,t55,f10.4/ ' Number of incident theta-phi:',t55,i10/ ' Distance f
      *rom isocenter to origin in source plane:',t55,f10.4/ ' Source rota
      *tion angle:' ,t55,f10.4/ ' No. of times to split e+/e-:',t55,i10/)
               IF ((i_dbs.EQ.1)) THEN
-                  WRITE(6,7310)r_dbs,ssd_dbs,z_dbs
-7310              FORMAT(/ ' Directional Bremsstrahlung Splitting (DBS)u
+                  WRITE(6,7380)r_dbs,ssd_dbs,z_dbs
+7380              FORMAT(/ ' Directional Bremsstrahlung Splitting (DBS)u
      *sed'/ ' in BEAM simulation to generate phase space source with:'/'
      *    DBS splitting radius:',t55,f10.4/ '    SSD where radius define
      *d:',t55,f10.4/ '    Z where source scored:',t55,f10.4/ ' Photons w
      *hose trajectory takes them outside the DBS splitting'/ ' radius at
      * the SSD will be rejected.'/)
                   IF ((ssd_dbs.LT.z_dbs)) THEN
-                      WRITE(6,7320)
-7320                  FORMAT(//' ***WARNING:'/ ' SSD where DBS splitting
+                      WRITE(6,7390)
+7390                  FORMAT(//' ***WARNING:'/ ' SSD where DBS splitting
      * radius is defined < the Z'/ ' value of scoring plane for this sou
      *rce.'/ ' Particle rejection will be turned off.'//)
                       i_dbs=0
@@ -10690,60 +10779,60 @@ C*****************************************************************************
                   i_dbs=0
               END IF
               IF ((iqphsp.EQ.2)) THEN
-                  WRITE(6,7330)
-7330              FORMAT(/' Charge of incident particles to use: -1, 0,1
+                  WRITE(6,7400)
+7400              FORMAT(/' Charge of incident particles to use: -1, 0,1
      *'/)
               ELSE
-                  WRITE(6,7340)iqphsp
-7340              FORMAT(/' Charge of incident particles to use: ',i2/)
+                  WRITE(6,7410)iqphsp
+7410              FORMAT(/' Charge of incident particles to use: ',i2/)
               END IF
               IF ((nang.GT.60000)) THEN
-                  WRITE(6,7350)60000
-                  WRITE(1,7350)60000
-7350              FORMAT(//' ***ERROR in source 7***'/ ' Number of incid
+                  WRITE(6,7420)60000
+                  WRITE(1,7420)60000
+7420              FORMAT(//' ***ERROR in source 7***'/ ' Number of incid
      *ent theta-phi > max. allowed (',I4,')'/ ' Increase $MXANG in dosxy
      *z_user_macros.mortran, recompile'/ ' and try again.'//)
                   STOP
               END IF
               temp(1)=0.
-              DO 7361 I=1,nang
-                  WRITE(6,7370)I
-7370              FORMAT(' Incident theta-phi pair ',I4,':'/ '    theta(
+              DO 7431 I=1,nang
+                  WRITE(6,7440)I
+7440              FORMAT(' Incident theta-phi pair ',I4,':'/ '    theta(
      *deg.), phi (deg.), probability:',$)
-                  READ(5,7380)theta(I),phi(I),pang(I)
-7380              FORMAT(3F15.0)
-                  WRITE(6,7390)theta(I),phi(I),pang(I)
-7390              FORMAT(3F10.4)
+                  READ(5,7450)theta(I),phi(I),pang(I)
+7450              FORMAT(3F15.0)
+                  WRITE(6,7460)theta(I),phi(I),pang(I)
+7460              FORMAT(3F10.4)
                   temp(1)=temp(1)+pang(I)
-7361          CONTINUE
-7362          CONTINUE
-              DO 7401 I=1,nang
+7431          CONTINUE
+7432          CONTINUE
+              DO 7471 I=1,nang
                   pang(I)=pang(I)/temp(1)
                   IF ((I.GT.1)) THEN
                       pang(I)=pang(I)+pang(I-1)
                   END IF
-7401          CONTINUE
-7402          CONTINUE
+7471          CONTINUE
+7472          CONTINUE
               numang=nang
           ELSE IF((nang.LT.0)) THEN
-              WRITE(6,7410)xiso,yiso,ziso,-nang,dsource,phicol
-7410          FORMAT(/ ' Full phase space from multiple, user-selected a
+              WRITE(6,7480)xiso,yiso,ziso,-nang,dsource,phicol
+7480          FORMAT(/ ' Full phase space from multiple, user-selected a
      *ngles'/ ' x-coordinate of the isocenter:' ,t55,f10.4/ ' y-coordina
      *te of the isocenter:' ,t55,f10.4/ ' z-coordinate of the isocenter:
      *' ,t55,f10.4/ ' Number of theta-phi groups:',t55,i10/ ' Distance f
      *rom isocenter to origin in source plane:',t55,f10.4/ ' Source rota
      *tion angle:' ,t55,f10.4/)
               IF ((i_dbs.EQ.1)) THEN
-                  WRITE(6,7420)r_dbs,ssd_dbs,z_dbs
-7420              FORMAT(/ ' Directional Bremsstrahlung Splitting (DBS)u
+                  WRITE(6,7490)r_dbs,ssd_dbs,z_dbs
+7490              FORMAT(/ ' Directional Bremsstrahlung Splitting (DBS)u
      *sed'/ ' in BEAM simulation to generate phase space source with:'/'
      *    DBS splitting radius:',t55,f10.4/ '    SSD where radius define
      *d:',t55,f10.4/ '    Z where source scored:',t55,f10.4/ ' Photons w
      *hose trajectory takes them outside the DBS splitting'/ ' radius at
      * the SSD will be rejected.'/)
                   IF ((ssd_dbs.LT.z_dbs)) THEN
-                      WRITE(6,7430)
-7430                  FORMAT(//' ***WARNING:'/ ' SSD where DBS splitting
+                      WRITE(6,7500)
+7500                  FORMAT(//' ***WARNING:'/ ' SSD where DBS splitting
      * radius is defined < the Z'/ ' value of scoring plane for this sou
      *rce.'/ ' Particle rejection will be turned off.'//)
                       i_dbs=0
@@ -10752,47 +10841,47 @@ C*****************************************************************************
                   i_dbs=0
               END IF
               IF ((iqphsp.EQ.2)) THEN
-                  WRITE(6,7440)
-7440              FORMAT(/' Charge of incident particles to use: -1, 0,1
+                  WRITE(6,7510)
+7510              FORMAT(/' Charge of incident particles to use: -1, 0,1
      *'/)
               ELSE
-                  WRITE(6,7450)iqphsp
-7450              FORMAT(/' Charge of incident particles to use: ',i2/)
+                  WRITE(6,7520)iqphsp
+7520              FORMAT(/' Charge of incident particles to use: ',i2/)
               END IF
               temp(1)=0.
-              WRITE(6,7460)
-7460          FORMAT(' For each theta-phi group, input:'/ '   ivary (=0t
+              WRITE(6,7530)
+7530          FORMAT(' For each theta-phi group, input:'/ '   ivary (=0t
      *o vary phi, 1 to vary theta), fixed theta/phi (deg.), '/ '   min. 
      *varying theta/phi (deg.), max. varying theta/phi (deg.), '/ '   no
      *. of varying angles in group (including min. and max.), '/ '   pro
      *bability for group (all on one line).')
-              DO 7471 I=1,-nang
-                  WRITE(6,7480)I
-7480              FORMAT(' Incident theta-phi group ',I4,/ ' :',$)
-                  READ(5,7490)ivary(I),angfixed(I),angmin(I),angmax(I),n
+              DO 7541 I=1,-nang
+                  WRITE(6,7550)I
+7550              FORMAT(' Incident theta-phi group ',I4,/ ' :',$)
+                  READ(5,7560)ivary(I),angfixed(I),angmin(I),angmax(I),n
      *            gang(I),pgang(I)
-7490              FORMAT(I12,3F15.0,I12,F15.0)
+7560              FORMAT(I12,3F15.0,I12,F15.0)
                   IF ((ngang(I).LT.2)) THEN
-                      WRITE(6,7500)
-7500                  FORMAT(//' ***WARNING***'/ ' ngang(i) must be >=2.
+                      WRITE(6,7570)
+7570                  FORMAT(//' ***WARNING***'/ ' ngang(i) must be >=2.
      *  It will be reset to 2 '/ ' in this case. '//)
                       ngang(I)=2
                   END IF
-                  WRITE(6,7510)ivary(I),angfixed(I),angmin(I),angmax(I),
+                  WRITE(6,7580)ivary(I),angfixed(I),angmin(I),angmax(I),
      *            ngang(I),pgang(I)
-7510              FORMAT(I10,3F10.4,I10,F10.4)
+7580              FORMAT(I10,3F10.4,I10,F10.4)
                   temp(1)=temp(1)+pgang(I)
-7471          CONTINUE
-7472          CONTINUE
+7541          CONTINUE
+7542          CONTINUE
               K=0
-              DO 7521 I=1,-nang
+              DO 7591 I=1,-nang
                   pgang(I)=pgang(I)/temp(1)
-                  DO 7531 J=1,ngang(I)
+                  DO 7601 J=1,ngang(I)
                       K=K+1
                       IF ((K.GT.60000)) THEN
-                          WRITE(6,7540)60000
-                          WRITE(1,7540)60000
-7540                      FORMAT(//' ***ERROR in source 7***'/ ' Numbero
+                          WRITE(6,7610)60000
+                          WRITE(1,7610)60000
+7610                      FORMAT(//' ***ERROR in source 7***'/ ' Numbero
      *f incident theta-phi > max. allowed (',I4,')'/ ' Increase $MXANGin
      * dosxyz_user_macros.mortran, recompile'/ ' and try again.'//)
                           STOP
@@ -10810,14 +10899,14 @@ C*****************************************************************************
                       IF ((K.GT.1)) THEN
                           pang(K)=pang(K)+pang(K-1)
                       END IF
-7531              CONTINUE
-7532              CONTINUE
-7521          CONTINUE
-7522          CONTINUE
+7601              CONTINUE
+7602              CONTINUE
+7591          CONTINUE
+7592          CONTINUE
               numang=K
           END IF
-          WRITE(6,7550)
-7550      FORMAT(' ')
+          WRITE(6,7620)
+7620      FORMAT(' ')
       ELSE IF((isource .EQ. 9)) THEN
           xiso = temp(1)
           yiso = temp(2)
@@ -10829,9 +10918,9 @@ C*****************************************************************************
           iqinc=iqin
           i_dbs=temp(8)
           e_split=temp(9)
-          WRITE(6,7560)xiso,yiso,ziso,theta(1),phi(1),dsource,phicol,e_s
+          WRITE(6,7630)xiso,yiso,ziso,theta(1),phi(1),dsource,phicol,e_s
      *    plit
-7560      FORMAT(/ ' BEAM simulation of treatment head incident from any
+7630      FORMAT(/ ' BEAM simulation of treatment head incident from any
      * direction'/ ' x-coordinate of the isocenter:' ,t55,f10.4/ ' y-coo
      *rdinate of the isocenter:' ,t55,f10.4/ ' z-coordinate of the isoce
      *nter:' ,t55,f10.4/ ' Polar angle of beam central axis:',t55,f10.4/
@@ -10840,21 +10929,21 @@ C*****************************************************************************
      *ulation:',t55,f10.4/ ' Rotation angle about beam axis:',t55,f10.4/
      * ' No. of times to split e+/e-:',t55,i10/)
           IF ((i_dbs.EQ.1)) THEN
-              WRITE(6,7570)
-7570          FORMAT(' Fat photons resulting from DBS will be rejected'/
+              WRITE(6,7640)
+7640          FORMAT(' Fat photons resulting from DBS will be rejected'/
      *)
           ELSE
-              WRITE(6,7580)
-7580          FORMAT(' Fat photons resulting from DBS will not be reject
+              WRITE(6,7650)
+7650          FORMAT(' Fat photons resulting from DBS will not be reject
      *ed'/)
               i_dbs=0
           END IF
           IF ((iqinc.EQ.2)) THEN
-              WRITE(6,7590)
-7590          FORMAT(/' Charge of incident particles to use: -1, 0, 1'/)
+              WRITE(6,7660)
+7660          FORMAT(/' Charge of incident particles to use: -1, 0, 1'/)
           ELSE
-              WRITE(6,7600)iqinc
-7600          FORMAT(/' Charge of incident particles to use: ',i2/)
+              WRITE(6,7670)iqinc
+7670          FORMAT(/' Charge of incident particles to use: ',i2/)
           END IF
       ELSE IF((isource .EQ. 10)) THEN
           xiso = temp(1)
@@ -10867,8 +10956,8 @@ C*****************************************************************************
           i_dbs=temp(7)
           e_split=temp(8)
           IF ((nang.GT.0)) THEN
-              WRITE(6,7610)xiso,yiso,ziso,nang,dsource,phicol,e_split
-7610          FORMAT(/ ' BEAM simulation source incident from multiple a
+              WRITE(6,7680)xiso,yiso,ziso,nang,dsource,phicol,e_split
+7680          FORMAT(/ ' BEAM simulation source incident from multiple a
      *ngles'/ ' x-coordinate of the isocenter:' ,t55,f10.4/ ' y-coordina
      *te of the isocenter:' ,t55,f10.4/ ' z-coordinate of the isocenter:
      *' ,t55,f10.4/ ' No. of incident theta-phi:',t55,i10/ ' Distance fr
@@ -10876,8 +10965,8 @@ C*****************************************************************************
      *ulation:',t55,f10.4/ ' Rotation angle about beam axis:',t55,f10.4/
      *' No. of time to split e+/e-:',t55,i10/)
           ELSE IF((nang.LT.0)) THEN
-              WRITE(6,7620)xiso,yiso,ziso,-nang,dsource,phicol,e_split
-7620          FORMAT(/ ' BEAM simulation source incident from multiple a
+              WRITE(6,7690)xiso,yiso,ziso,-nang,dsource,phicol,e_split
+7690          FORMAT(/ ' BEAM simulation source incident from multiple a
      *ngles'/ ' x-coordinate of the isocenter:' ,t55,f10.4/ ' y-coordina
      *te of the isocenter:' ,t55,f10.4/ ' z-coordinate of the isocenter:
      *' ,t55,f10.4/ ' No. of theta-phi groups:',t55,i10/ ' Distance from
@@ -10886,86 +10975,86 @@ C*****************************************************************************
      * No. of time to split e+/e-:',t55,i10/)
           END IF
           IF ((i_dbs.EQ.1)) THEN
-              WRITE(6,7630)
-7630          FORMAT(' Fat photons resulting from DBS will be rejected'/
+              WRITE(6,7700)
+7700          FORMAT(' Fat photons resulting from DBS will be rejected'/
      *)
           ELSE
-              WRITE(6,7640)
-7640          FORMAT(' Fat photons resulting from DBS will not be reject
+              WRITE(6,7710)
+7710          FORMAT(' Fat photons resulting from DBS will not be reject
      *ed'/)
               i_dbs=0
           END IF
           IF ((iqinc.EQ.2)) THEN
-              WRITE(6,7650)
-7650          FORMAT(/' Charge of incident particles to use: -1, 0, 1'/)
+              WRITE(6,7720)
+7720          FORMAT(/' Charge of incident particles to use: -1, 0, 1'/)
           ELSE
-              WRITE(6,7660)iqinc
-7660          FORMAT(/' Charge of incident particles to use: ',i2/)
+              WRITE(6,7730)iqinc
+7730          FORMAT(/' Charge of incident particles to use: ',i2/)
           END IF
           IF ((nang.GT.0)) THEN
               IF ((nang.GT.60000)) THEN
-                  WRITE(6,7670)60000
-                  WRITE(1,7670)60000
-7670              FORMAT(//' ***ERROR in source 7***'/ ' Number of incid
+                  WRITE(6,7740)60000
+                  WRITE(1,7740)60000
+7740              FORMAT(//' ***ERROR in source 7***'/ ' Number of incid
      *ent theta-phi > max. allowed (',I4,')'/ ' Increase $MXANG in dosxy
      *z_user_macros.mortran, recompile'/ ' and try again.'//)
                   STOP
               END IF
               temp(1)=0.
-              DO 7681 I=1,nang
-                  WRITE(6,7690)I
-7690              FORMAT(' Incident theta-phi pair ',I4,':'/ '    theta(
+              DO 7751 I=1,nang
+                  WRITE(6,7760)I
+7760              FORMAT(' Incident theta-phi pair ',I4,':'/ '    theta(
      *deg.), phi (deg.), probability:',$)
-                  READ(5,7700)theta(I),phi(I),pang(I)
-7700              FORMAT(3F15.0)
-                  WRITE(6,7710)theta(I),phi(I),pang(I)
-7710              FORMAT(3F10.4)
+                  READ(5,7770)theta(I),phi(I),pang(I)
+7770              FORMAT(3F15.0)
+                  WRITE(6,7780)theta(I),phi(I),pang(I)
+7780              FORMAT(3F10.4)
                   temp(1)=temp(1)+pang(I)
-7681          CONTINUE
-7682          CONTINUE
-              DO 7721 I=1,nang
+7751          CONTINUE
+7752          CONTINUE
+              DO 7791 I=1,nang
                   pang(I)=pang(I)/temp(1)
                   IF ((I.GT.1)) THEN
                       pang(I)=pang(I)+pang(I-1)
                   END IF
-7721          CONTINUE
-7722          CONTINUE
+7791          CONTINUE
+7792          CONTINUE
               numang=nang
           ELSE IF((nang.LT.0)) THEN
               temp(1)=0.
-              WRITE(6,7730)
-7730          FORMAT(' For each theta-phi group, input:'/ '   ivary (=0t
+              WRITE(6,7800)
+7800          FORMAT(' For each theta-phi group, input:'/ '   ivary (=0t
      *o vary phi, 1 to vary theta), fixed theta/phi (deg.), '/ '   min. 
      *varying theta/phi (deg.), max. varying theta/phi (deg.), '/ '   no
      *. of varying angles in group (including min. and max.), '/ '   pro
      *bability for group (all on one line).')
-              DO 7741 I=1,-nang
-                  WRITE(6,7750)I
-7750              FORMAT(' Incident theta-phi group ',I4,/ ' :',$)
-                  READ(5,7760)ivary(I),angfixed(I),angmin(I),angmax(I),n
+              DO 7811 I=1,-nang
+                  WRITE(6,7820)I
+7820              FORMAT(' Incident theta-phi group ',I4,/ ' :',$)
+                  READ(5,7830)ivary(I),angfixed(I),angmin(I),angmax(I),n
      *            gang(I),pgang(I)
-7760              FORMAT(I12,3F15.0,I12,F15.0)
+7830              FORMAT(I12,3F15.0,I12,F15.0)
                   IF ((ngang(I).LT.2)) THEN
-                      WRITE(6,7770)
-7770                  FORMAT(//' ***WARNING***'/ ' ngang(i) must be >=2.
+                      WRITE(6,7840)
+7840                  FORMAT(//' ***WARNING***'/ ' ngang(i) must be >=2.
      *  It will be reset to 2 '/ ' in this case. '//)
                       ngang(I)=2
                   END IF
-                  WRITE(6,7780)ivary(I),angfixed(I),angmin(I),angmax(I),
+                  WRITE(6,7850)ivary(I),angfixed(I),angmin(I),angmax(I),
      *            ngang(I),pgang(I)
-7780              FORMAT(I10,3F10.4,I10,F10.4)
+7850              FORMAT(I10,3F10.4,I10,F10.4)
                   temp(1)=temp(1)+pgang(I)
-7741          CONTINUE
-7742          CONTINUE
+7811          CONTINUE
+7812          CONTINUE
               K=0
-              DO 7791 I=1,-nang
+              DO 7861 I=1,-nang
                   pgang(I)=pgang(I)/temp(1)
-                  DO 7801 J=1,ngang(I)
+                  DO 7871 J=1,ngang(I)
                       K=K+1
                       IF ((K.GT.60000)) THEN
-                          WRITE(6,7810)60000
-                          WRITE(1,7810)60000
-7810                      FORMAT(//' ***ERROR in source 7***'/ ' Numbero
+                          WRITE(6,7880)60000
+                          WRITE(1,7880)60000
+7880                      FORMAT(//' ***ERROR in source 7***'/ ' Numbero
      *f incident theta-phi > max. allowed (',I4,')'/ ' Increase $MXANGin
      * dosxyz_user_macros.mortran, recompile'/ ' and try again.'//)
                           STOP
@@ -10983,14 +11072,14 @@ C*****************************************************************************
                       IF ((K.GT.1)) THEN
                           pang(K)=pang(K)+pang(K-1)
                       END IF
-7801              CONTINUE
-7802              CONTINUE
-7791          CONTINUE
-7792          CONTINUE
+7871              CONTINUE
+7872              CONTINUE
+7861          CONTINUE
+7862          CONTINUE
               numang=K
           END IF
-          WRITE(6,7820)
-7820      FORMAT(' ')
+          WRITE(6,7890)
+7890      FORMAT(' ')
       ELSE IF((isource .EQ. 20)) THEN
           nset = temp(1)
           iqinc=iqin
@@ -11006,28 +11095,28 @@ C*****************************************************************************
               e_split = temp(3)
           END IF
           IF ((nset.GT.1)) THEN
-              WRITE(6,7830)nset,e_split
-7830          FORMAT(/ ' Phase Space source though dynamic library withm
+              WRITE(6,7900)nset,e_split
+7900          FORMAT(/ ' Phase Space source though dynamic library withm
      *ultiple variable'/ ' geometry settings'/ ' Number of settings:',t5
      *5,i10/ ' No. of time to split e+/e-:',t55,i10/)
               IF ((i_dbs.EQ.1)) THEN
-                  WRITE(6,7840)r_dbs,ssd_dbs,z_dbs
-7840              FORMAT(/ ' Directional Bremsstrahlung Splitting (DBS)u
+                  WRITE(6,7910)r_dbs,ssd_dbs,z_dbs
+7910              FORMAT(/ ' Directional Bremsstrahlung Splitting (DBS)u
      *sed'/ ' in BEAM simulation to generate phase space source with:'/'
      *    DBS splitting radius:',t55,f10.4/ '    SSD where radius define
      *d:',t55,f10.4/ '    Z where source scored:',t55,f10.4/ ' Photons w
      *hose trajectory takes them outside the DBS splitting'/ ' radius at
      * the SSD will be rejected.'/)
                   IF ((ssd_dbs.LT.z_dbs)) THEN
-                      WRITE(6,7850)
-7850                  FORMAT(//' ***WARNING:'/ ' SSD where DBS splitting
+                      WRITE(6,7920)
+7920                  FORMAT(//' ***WARNING:'/ ' SSD where DBS splitting
      * radius is defined < the Z'/ ' value of scoring plane for this sou
      *rce.'/ ' Particle rejection will be turned off.'//)
                       i_dbs=0
                   END IF
                   IF ((r_dbs.EQ.0)) THEN
-                      WRITE(6,7860)
-7860                  FORMAT(//' ***WARNING:'/ ' DBS splitting radius is
+                      WRITE(6,7930)
+7930                  FORMAT(//' ***WARNING:'/ ' DBS splitting radius is
      * 0.'/ ' Make sure it is defined correctly in the input file.'/ ' P
      *article rejection will be turned off.'//)
                       i_dbs=0
@@ -11036,58 +11125,58 @@ C*****************************************************************************
                   i_dbs=0
               END IF
               IF ((iqinc.EQ.2)) THEN
-                  WRITE(6,7870)
-7870              FORMAT(/' Charge of incident particles to use: -1, 0,1
+                  WRITE(6,7940)
+7940              FORMAT(/' Charge of incident particles to use: -1, 0,1
      *'/)
               ELSE
-                  WRITE(6,7880)iqinc
-7880              FORMAT(/' Charge of incident particles to use: ',i2/)
+                  WRITE(6,7950)iqinc
+7950              FORMAT(/' Charge of incident particles to use: ',i2/)
               END IF
               IF ((nset.GT.60000)) THEN
-                  WRITE(6,7890)60000
-                  WRITE(1,7890)60000
-7890              FORMAT(//' ***ERROR in source 20***'/ ' Number of inci
+                  WRITE(6,7960)60000
+                  WRITE(1,7960)60000
+7960              FORMAT(//' ***ERROR in source 20***'/ ' Number of inci
      *dent settings > max. allowed (',I4,')'/ ' Increase $MXANG in dosxy
      *z_user_macros.mortran, recompile'/ ' and try again.'//)
                   STOP
               END IF
               IF((i_muidx_out.LT.0 .OR. i_muidx_out.GT.1))i_muidx_out=0
               IF ((i_muidx_out.EQ.1)) THEN
-                  WRITE(6,7900)
-7900              FORMAT(' If writing phase space data on exit from phan
+                  WRITE(6,7970)
+7970              FORMAT(' If writing phase space data on exit from phan
      *tom (i_phsp_out=1 or 2)'/ ' frMU_indx (fractional monitor unit ind
      *ex) will be included.')
               END IF
               IF((calflag .LT. 0 .OR. calflag .GT. 1))calflag = 0
               IF ((calflag .EQ. 1)) THEN
-                  WRITE(6,7910)
-7910              FORMAT(' Skipping calibration run. Make sure that your
+                  WRITE(6,7980)
+7980              FORMAT(' Skipping calibration run. Make sure that your
      * phase space file has'/ ' enough particles to avoid rewinding, oth
      *erwise uncertainty values'/ ' will be inaccurate.')
               END IF
-              DO 7921 I=1,nset
-                  WRITE(6,7930)I
-7930              FORMAT(' Incident setting ',I4,':'/ '    xiso (cm), yi
+              DO 7991 I=1,nset
+                  WRITE(6,8000)I
+8000              FORMAT(' Incident setting ',I4,':'/ '    xiso (cm), yi
      *so (cm), ziso (cm), theta (deg.)', ', phi (deg.), phicol (deg.),SA
      *D (cm), MU Index:',$)
-                  READ(5,7940)xtemp(I),ytemp(I),ztemp(I),thetatemp(I),ph
+                  READ(5,8010)xtemp(I),ytemp(I),ztemp(I),thetatemp(I),ph
      *            itemp(I), phicoltemp(I),dsourcetemp(I),muIndex(I)
-7940              FORMAT(8F15.0)
-                  WRITE(6,7950)xtemp(I),ytemp(I),ztemp(I),thetatemp(I),p
+8010              FORMAT(8F15.0)
+                  WRITE(6,8020)xtemp(I),ytemp(I),ztemp(I),thetatemp(I),p
      *            hitemp(I), phicoltemp(I),dsourcetemp(I), muIndex(I)
-7950              FORMAT(8F10.4)
-7921          CONTINUE
-7922          CONTINUE
+8020              FORMAT(8F10.4)
+7991          CONTINUE
+7992          CONTINUE
               dsource=dsourcetemp(1)
           ELSE IF((nset.LT.2)) THEN
-              WRITE(6,7960)nset
-              WRITE(1,7960)nset
-7960          FORMAT(//' ***ERROR in source 20***'/ 'nset (',I8,') mustb
+              WRITE(6,8030)nset
+              WRITE(1,8030)nset
+8030          FORMAT(//' ***ERROR in source 20***'/ 'nset (',I8,') mustb
      *e >= 2'//)
               STOP
           END IF
-          WRITE(6,7970)
-7970      FORMAT(' ')
+          WRITE(6,8040)
+8040      FORMAT(' ')
       ELSE IF((isource .EQ. 21)) THEN
           nset=temp(1)
           i_dbs=temp(2)
@@ -11095,88 +11184,88 @@ C*****************************************************************************
           i_muidx_out=temp(4)
           iqinc=iqin
           IF ((nset.GT.1)) THEN
-              WRITE(6,7980)nset,e_split
-7980          FORMAT(/ ' Full BEAM Sim. incident from multiple settings'
+              WRITE(6,8050)nset,e_split
+8050          FORMAT(/ ' Full BEAM Sim. incident from multiple settings'
      */ ' Number of settings:',t55,i10/ ' No. of time to split e+/e-:',t
      *55,i10/)
               IF ((i_dbs.EQ.1)) THEN
-                  WRITE(6,7990)
-7990              FORMAT(' Fat photons resulting from DBS will be reject
+                  WRITE(6,8060)
+8060              FORMAT(' Fat photons resulting from DBS will be reject
      *ed'/)
               ELSE
-                  WRITE(6,8000)
-8000              FORMAT(' Fat photons resulting from DBS will not be re
+                  WRITE(6,8070)
+8070              FORMAT(' Fat photons resulting from DBS will not be re
      *jected'/)
                   i_dbs=0
               END IF
               IF ((iqinc.EQ.2)) THEN
-                  WRITE(6,8010)
-8010              FORMAT(/' Charge of incident particles to use: -1, 0,1
+                  WRITE(6,8080)
+8080              FORMAT(/' Charge of incident particles to use: -1, 0,1
      *'/)
               ELSE
-                  WRITE(6,8020)iqphsp
-8020              FORMAT(/' Charge of incident particles to use: ',i2/)
+                  WRITE(6,8090)iqphsp
+8090              FORMAT(/' Charge of incident particles to use: ',i2/)
               END IF
               IF ((nset.GT.60000)) THEN
-                  WRITE(6,8030)60000
-                  WRITE(1,8030)60000
-8030              FORMAT(//' ***ERROR in source 12***'/ ' Number of inci
+                  WRITE(6,8100)60000
+                  WRITE(1,8100)60000
+8100              FORMAT(//' ***ERROR in source 12***'/ ' Number of inci
      *dent settings > max. allowed (',I4,')'/ ' Increase $MXANG in dosxy
      *z_user_macros.mortran, recompile'/ ' and try again.'//)
                   STOP
               END IF
               IF((i_muidx_out.LT.0 .OR. i_muidx_out.GT.1))i_muidx_out=0
               IF ((i_muidx_out.EQ.1)) THEN
-                  WRITE(6,8040)
-8040              FORMAT(' If writing phase space data on exit from phan
+                  WRITE(6,8110)
+8110              FORMAT(' If writing phase space data on exit from phan
      *tom (i_phsp_out=1 or 2)'/ ' frMU_indx (fractional monitor unit ind
      *ex) will be included.')
               END IF
-              DO 8051 I=1,nset
-                  WRITE(6,8060)I
-8060              FORMAT(' Incident setting ',I4,':'/ '  xiso (cm), yiso
+              DO 8121 I=1,nset
+                  WRITE(6,8130)I
+8130              FORMAT(' Incident setting ',I4,':'/ '  xiso (cm), yiso
      * (cm), ziso (cm), theta (deg.)', '  phi (deg.), phicol (deg.), SAD
      * (cm), MU Index:',$)
-                  READ(5,8070)xtemp(I),ytemp(I),ztemp(I),thetatemp(I),ph
+                  READ(5,8140)xtemp(I),ytemp(I),ztemp(I),thetatemp(I),ph
      *            itemp(I), phicoltemp(I),dsourcetemp(I), muIndex(I)
-8070              FORMAT(8F15.0)
-                  WRITE(6,8080)xtemp(I),ytemp(I),ztemp(I),thetatemp(I),p
+8140              FORMAT(8F15.0)
+                  WRITE(6,8150)xtemp(I),ytemp(I),ztemp(I),thetatemp(I),p
      *            hitemp(I), phicoltemp(I),dsourcetemp(I),muIndex(I)
-8080              FORMAT(8F10.4)
-8051          CONTINUE
-8052          CONTINUE
+8150              FORMAT(8F10.4)
+8121          CONTINUE
+8122          CONTINUE
               dsource=dsourcetemp(1)
           ELSE IF((nset.LT.2)) THEN
-              WRITE(6,8090)nset
-              WRITE(1,8090)nset
-8090          FORMAT(//' ***ERROR in source 21***'/ 'nset (',I8,') mustb
+              WRITE(6,8160)nset
+              WRITE(1,8160)nset
+8160          FORMAT(//' ***ERROR in source 21***'/ 'nset (',I8,') mustb
      *e >= 2'//)
               STOP
           END IF
-          WRITE(6,8100)
-8100      FORMAT(' ')
+          WRITE(6,8170)
+8170      FORMAT(' ')
       ELSE
-          WRITE(6,8110)isource
-          WRITE(1,8110)isource
-8110      FORMAT(' ***ISOURCE =', I10,' not valid: stopping')
+          WRITE(6,8180)isource
+          WRITE(1,8180)isource
+8180      FORMAT(' ***ISOURCE =', I10,' not valid: stopping')
           stop
       END IF
-      WRITE(6,8120)
-8120  FORMAT(' Enflag(0=mono-E,1=spectr,2=phsp or full BEAM sim.,3=dosec
+      WRITE(6,8190)
+8190  FORMAT(' Enflag(0=mono-E,1=spectr,2=phsp or full BEAM sim.,3=dosec
      *omp,4=beam model),'/' Mode(0,2), medsur(0 = vacuum), dsurround(1),
      * dflag(0=1 dsurround,'/ ' 1=4 dsurrounds), dsurround(2), dsurround
      *(3), dsurround(4)',/,' :',$)
-      READ(5,8130)enflag,ismode,medsur,dsurround(1),dflag,dsurround(2),d
+      READ(5,8200)enflag,ismode,medsur,dsurround(1),dflag,dsurround(2),d
      *surround(3), dsurround(4)
-8130  FORMAT(3I12,F15.0,I12,3F15.0)
+8200  FORMAT(3I12,F15.0,I12,3F15.0)
       IF ((enflag.GT.1)) THEN
           IF((ismode .NE. 2))ismode=0
           IF ((dflag.NE.1)) THEN
               dflag=0
               IF ((dsurround(1).LE.0.)) THEN
                   dsurround(1)=50.
-                  WRITE(6,8140)dsurround(1)
-8140              FORMAT(/10x,' dsurround(1) defaults to',F8.3,' cm.'/)
+                  WRITE(6,8210)dsurround(1)
+8210              FORMAT(/10x,' dsurround(1) defaults to',F8.3,' cm.'/)
               END IF
               dsurround(2)=dsurround(1)
               dsurround(3)=dsurround(1)
@@ -11184,49 +11273,49 @@ C*****************************************************************************
           ELSE
               IF ((dsurround(1).LT.0.)) THEN
                   dsurround(1)=0.
-                  WRITE(6,8150)dsurround(1)
-8150              FORMAT(/10x,' dsurround(1) defaults to',F8.3,' cm.'/)
+                  WRITE(6,8220)dsurround(1)
+8220              FORMAT(/10x,' dsurround(1) defaults to',F8.3,' cm.'/)
               END IF
               IF ((dsurround(2).LT.0.)) THEN
                   dsurround(2)=0.
-                  WRITE(6,8160)dsurround(2)
-8160              FORMAT(/10x,' dsurround(2) defaults to',F8.3,' cm.'/)
+                  WRITE(6,8230)dsurround(2)
+8230              FORMAT(/10x,' dsurround(2) defaults to',F8.3,' cm.'/)
               END IF
               IF ((dsurround(3).LT.0.)) THEN
                   dsurround(3)=0.
-                  WRITE(6,8170)dsurround(3)
-8170              FORMAT(/10x,' dsurround(3) defaults to',F8.3,' cm.'/)
+                  WRITE(6,8240)dsurround(3)
+8240              FORMAT(/10x,' dsurround(3) defaults to',F8.3,' cm.'/)
               END IF
               IF ((dsurround(4).LT.0.)) THEN
                   dsurround(4)=0.
-                  WRITE(6,8180)dsurround(4)
-8180              FORMAT(/10x,' dsurround(4) defaults to',F8.3,' cm.'/)
+                  WRITE(6,8250)dsurround(4)
+8250              FORMAT(/10x,' dsurround(4) defaults to',F8.3,' cm.'/)
               END IF
           END IF
       END IF
       IF ((enflag .GT. 1 .AND. dflag .EQ. 1)) THEN
-          WRITE(6,8190)enflag,ismode,medsur,dsurround(1),dflag,dsurround
+          WRITE(6,8260)enflag,ismode,medsur,dsurround(1),dflag,dsurround
      *    (2),dsurround(3), dsurround(4)
-8190      FORMAT(3I12,F8.3,I12,3F8.3)
+8260      FORMAT(3I12,F8.3,I12,3F8.3)
       ELSE
-          WRITE(6,8200)enflag,ismode,medsur,dsurround(1),dflag
-8200      FORMAT(3I12,F8.3,I12)
+          WRITE(6,8270)enflag,ismode,medsur,dsurround(1),dflag
+8270      FORMAT(3I12,F8.3,I12)
       END IF
       IF ((enflag.GT.1)) THEN
           IF ((medsur.LE.0) .OR. ( medsur.GT.nmed)) THEN
               med((1 + imax + (jmax-1)*IMAX + (kmax-1)*ijmax)+1)=0
               IF ((dflag.EQ.0)) THEN
-                  WRITE(6,8210)dsurround(1)
-                  WRITE(1,8210)dsurround(1)
-8210              FORMAT(/' The material in the region outside the phant
+                  WRITE(6,8280)dsurround(1)
+                  WRITE(1,8280)dsurround(1)
+8280              FORMAT(/' The material in the region outside the phant
      *om is vacuum.'/ ' The thickness of this region (in x, y & z direct
      *ion) is:',F8.3,' cm'/)
               ELSE
-                  WRITE(6,8220)dsurround(1),dsurround(2),dsurround(3),ds
+                  WRITE(6,8290)dsurround(1),dsurround(2),dsurround(3),ds
      *            urround(4)
-                  WRITE(1,8220)dsurround(1),dsurround(2),dsurround(3),ds
+                  WRITE(1,8290)dsurround(1),dsurround(2),dsurround(3),ds
      *            urround(4)
-8220              FORMAT(/' The material in the region outside the phant
+8290              FORMAT(/' The material in the region outside the phant
      *om is vacuum.'/ ' The thickness of this region in the x directioni
      *s:',F8.3,' cm'/ ' The thickness in the y direction is:',F8.3,' cm'
      */ ' The thickness in the +z direction is:',F8.3,' cm'/ ' The thick
@@ -11235,17 +11324,17 @@ C*****************************************************************************
           ELSE
               med((1 + imax + (jmax-1)*IMAX + (kmax-1)*ijmax)+1)=medsur
               IF ((dflag.EQ.0)) THEN
-                  WRITE(6,8230)(media(j,medsur),j=1,24),dsurround(1)
-                  WRITE(1,8230)(media(j,medsur),j=1,24),dsurround(1)
-8230              FORMAT(/' The material in the region outside the phant
+                  WRITE(6,8300)(media(j,medsur),j=1,24),dsurround(1)
+                  WRITE(1,8300)(media(j,medsur),j=1,24),dsurround(1)
+8300              FORMAT(/' The material in the region outside the phant
      *om is:',24a1/ ' The thickness of this region (in x, y & z directio
      *n) is:',F8.3,' cm'/)
               ELSE
-                  WRITE(6,8240)(media(j,medsur),j=1,24),dsurround(1),dsu
+                  WRITE(6,8310)(media(j,medsur),j=1,24),dsurround(1),dsu
      *            rround(2), dsurround(3),dsurround(4)
-                  WRITE(1,8240)(media(j,medsur),j=1,24),dsurround(1),dsu
+                  WRITE(1,8310)(media(j,medsur),j=1,24),dsurround(1),dsu
      *            rround(2), dsurround(3),dsurround(4)
-8240              FORMAT(/' The material in the region outside the phant
+8310              FORMAT(/' The material in the region outside the phant
      *om is:',24a1/ ' The thickness of this region in the x direction is
      *:',F8.3,' cm'/ ' The thickness in the y direction is:',F8.3,' cm'/
      *' The thickness in the +z direction is:',F8.3,' cm'/' The thicknes
@@ -11258,106 +11347,106 @@ C*****************************************************************************
           dsurround(4)=dsurround(4)+0.0001
       END IF
       IF ((enflag .EQ. 0)) THEN
-          WRITE(6,8250)
-8250      FORMAT(' Beam Energy (K.E. in MeV):',$)
+          WRITE(6,8320)
+8320      FORMAT(' Beam Energy (K.E. in MeV):',$)
           read(5,*) ein
-          WRITE(6,8260)ein
-8260      FORMAT(F10.3)
+          WRITE(6,8330)ein
+8330      FORMAT(F10.3)
       ELSE IF((enflag .EQ. 1)) THEN
-          WRITE(6,8270)
-8270      FORMAT(' Energy spectrum:')
-          WRITE(6,8280)
-8280      FORMAT(' Input name of file with spectrum data (A256): ',$)
-          READ(5,101,ERR=8290) FILNAM
+          WRITE(6,8340)
+8340      FORMAT(' Energy spectrum:')
+          WRITE(6,8350)
+8350      FORMAT(' Input name of file with spectrum data (A256): ',$)
+          READ(5,101,ERR=8360) FILNAM
 101       FORMAT(A256)
-          WRITE(6,8300)FILNAM
-          WRITE(1,8300)FILNAM
-8300      FORMAT(/'   Read input energy spectrum from: ',/A)
+          WRITE(6,8370)FILNAM
+          WRITE(1,8370)FILNAM
+8370      FORMAT(/'   Read input energy spectrum from: ',/A)
           call replace_env(FILNAM)
           OPEN(UNIT=99,STATUS='OLD',file=FILNAM)
           READ(99,101) SPEC_TITLE
           READ(99,'(I10,F15.0,I5)')NENSRC,ENMIN,IMODE
           IF ((NENSRC .GT. 200)) THEN
-              WRITE(6,8310)NENSRC,200
-              WRITE(1,8310)NENSRC,200
-8310          FORMAT(//' Number of energy bins=',I4, ' is greater than m
+              WRITE(6,8380)NENSRC,200
+              WRITE(1,8380)NENSRC,200
+8380          FORMAT(//' Number of energy bins=',I4, ' is greater than m
      *ax allowed =',I4/' Reduced to max allowed.'//)
               NENSRC = 200
           END IF
           READ(99,'(2F20.0)')(ENSRCD(IB),SRCPDF(IB),IB=1,NENSRC)
           CLOSE(UNIT=99)
-          WRITE(6,8320)NENSRC
-          WRITE(1,8320)NENSRC
-8320      FORMAT('  Have read',I5,' input energy bins from file')
+          WRITE(6,8390)NENSRC
+          WRITE(1,8390)NENSRC
+8390      FORMAT('  Have read',I5,' input energy bins from file')
           IF ((IMODE.EQ.0)) THEN
-              WRITE(6,8330)
-              WRITE(1,8330)
-8330          FORMAT('      Counts/bin assumed')
+              WRITE(6,8400)
+              WRITE(1,8400)
+8400          FORMAT('      Counts/bin assumed')
           ELSE IF((IMODE .EQ. 1)) THEN
-              WRITE(6,8340)
-              WRITE(1,8340)
-8340          FORMAT('      Counts/MeV assumed')
+              WRITE(6,8410)
+              WRITE(1,8410)
+8410          FORMAT('      Counts/MeV assumed')
               SRCPDF(1) = SRCPDF(1)*(ENSRCD(1)-ENMIN)
-              DO 8351 IB=2,NENSRC
+              DO 8421 IB=2,NENSRC
                   SRCPDF(IB) = SRCPDF(IB)*(ENSRCD(IB)-ENSRCD(IB-1))
-8351          CONTINUE
-8352          CONTINUE
+8421          CONTINUE
+8422          CONTINUE
           ELSE
-              WRITE(6,8360)IMODE
-              WRITE(1,8360)IMODE
-8360          FORMAT(///'*****MODE not 0 or 1 in spectrum file? **' /80(
+              WRITE(6,8430)IMODE
+              WRITE(1,8430)IMODE
+8430          FORMAT(///'*****MODE not 0 or 1 in spectrum file? **' /80(
      *'*') //)
           END IF
           EIN = ENSRCD(NENSRC)
-          WRITE(6,8370)ENMIN,EIN
-          WRITE(1,8370)ENMIN,EIN
-8370      FORMAT('    Energy ranges from',F10.3,' MeV to',F12.3,' MeV')
+          WRITE(6,8440)ENMIN,EIN
+          WRITE(1,8440)ENMIN,EIN
+8440      FORMAT('    Energy ranges from',F10.3,' MeV to',F12.3,' MeV')
           IF ((SRCPDF(1).GT.0.0)) THEN
               IF ((iqin.EQ.-1.AND.ENMIN.LT.ECUT)) THEN
-                  WRITE(6,8380)
-                  WRITE(1,8380)
-8380              FORMAT(//' *******WARNING:'/ ' min. energy of spectrum
+                  WRITE(6,8450)
+                  WRITE(1,8450)
+8450              FORMAT(//' *******WARNING:'/ ' min. energy of spectrum
      * < ECUT'/ ' May lead to artifically high dose in voxel(s) on which
      * source is incident'//)
               ELSE IF((iqin.EQ.0.AND.ENMIN.LT.PCUT)) THEN
-                  WRITE(6,8390)
-                  WRITE(1,8390)
-8390              FORMAT(//' *******WARNING:'/ ' min. energy of spectrum
+                  WRITE(6,8460)
+                  WRITE(1,8460)
+8460              FORMAT(//' *******WARNING:'/ ' min. energy of spectrum
      * < PCUT'/ ' May lead to artifically high dose in voxel(s) on which
      * source is incident'//)
               END IF
           ELSE
-              DO 8401 IB=2,NENSRC
+              DO 8471 IB=2,NENSRC
                   IF ((SRCPDF(IB).GT.0.)) THEN
                       IF ((iqin.EQ.-1.AND.ENSRCD(IB-1).LT.ECUT)) THEN
-                          WRITE(6,8410)
-                          WRITE(1,8410)
-8410                      FORMAT(//' *******WARNING:'/ ' min. energy ofs
+                          WRITE(6,8480)
+                          WRITE(1,8480)
+8480                      FORMAT(//' *******WARNING:'/ ' min. energy ofs
      *pectrum < ECUT'/ ' May lead to artifically high dose in voxel(s)on
      * which source is incident'//)
                       ELSE IF((iqin.EQ.0.AND.ENSRCD(IB-1).LT.PCUT)) THEN
      *
-                          WRITE(6,8420)
-                          WRITE(1,8420)
-8420                      FORMAT(//' *******WARNING:'/ ' min. energy ofs
+                          WRITE(6,8490)
+                          WRITE(1,8490)
+8490                      FORMAT(//' *******WARNING:'/ ' min. energy ofs
      *pectrum < PCUT'/ ' May lead to artifically high dose in voxel(s)on
      * which source is incident'//)
                       END IF
-                      GO TO8402
+                      GO TO8472
                   END IF
-8401          CONTINUE
-8402          CONTINUE
+8471          CONTINUE
+8472          CONTINUE
           END IF
           SRCCDF(1)=SRCPDF(1)
-          DO 8431 IB=2,NENSRC
+          DO 8501 IB=2,NENSRC
               SRCCDF(IB)=SRCCDF(IB-1)+SRCPDF(IB)
-8431      CONTINUE
-8432      CONTINUE
+8501      CONTINUE
+8502      CONTINUE
           FNORM=1./SRCCDF(NENSRC)
           BINSOK=0.0
           DELTAK=1000
           GRIDSZ=1/DELTAK
-          DO 8441 IB=1,NENSRC
+          DO 8511 IB=1,NENSRC
               SRCCDF(IB)=FNORM*SRCCDF(IB)
               IF ((IB .EQ. 1)) THEN
                   IF ((SRCCDF(1) .LE. 3.*GRIDSZ )) THEN
@@ -11368,50 +11457,50 @@ C*****************************************************************************
                       BINSOK=1.0
                   END IF
               END IF
-8441      CONTINUE
-8442      CONTINUE
+8511      CONTINUE
+8512      CONTINUE
           IF ((BINSOK.NE.0.0)) THEN
-              WRITE(6,8450)
-              WRITE(1,8450)
-8450          FORMAT(///' *******WARNING******'/ T20,'SOME OF NORMALIZED
+              WRITE(6,8520)
+              WRITE(1,8520)
+8520          FORMAT(///' *******WARNING******'/ T20,'SOME OF NORMALIZED
      * BIN PROBABILITIES SO SMALL BINS MAY BE MISSED'/)
           END IF
-          DO 8461 K=1,1000
+          DO 8531 K=1,1000
               AK= FLOAT(K)*GRIDSZ
-              DO 8471 I=1,NENSRC
+              DO 8541 I=1,NENSRC
                   IF ((AK .LE. SRCCDF(I))) THEN
-                      GO TO 8480
+                      GO TO 8550
                   END IF
-8471          CONTINUE
-8472          CONTINUE
-8480          IF ((I .NE. 1)) THEN
+8541          CONTINUE
+8542          CONTINUE
+8550          IF ((I .NE. 1)) THEN
                   CDFINV(K,1) = ENSRCD(I-1)
               ELSE
                   CDFINV(K,1) = ENMIN
               END IF
               CDFINV(K,2) = ENSRCD(I)-CDFINV(K,1)
-8461      CONTINUE
-8462      CONTINUE
+8531      CONTINUE
+8532      CONTINUE
           IF ((IWATCH .NE. 0)) THEN
-              WRITE(6,8490)SPEC_TITLE
-8490          FORMAT(1x,80A1)
-              WRITE(6,8500)
-8500          FORMAT(/' ENSRCD,   SRCPDF,   SRCCDF:'//)
-              WRITE(6,8510)(ENSRCD(IB),SRCPDF(IB),SRCCDF(IB),IB=1,NENSRC
+              WRITE(6,8560)SPEC_TITLE
+8560          FORMAT(1x,80A1)
+              WRITE(6,8570)
+8570          FORMAT(/' ENSRCD,   SRCPDF,   SRCCDF:'//)
+              WRITE(6,8580)(ENSRCD(IB),SRCPDF(IB),SRCCDF(IB),IB=1,NENSRC
      *        )
-8510          FORMAT(3E17.7)
-              WRITE(6,8520)
-8520          FORMAT(//)
+8580          FORMAT(3E17.7)
+              WRITE(6,8590)
+8590          FORMAT(//)
           END IF
       ELSE IF(( (enflag .EQ. 2) .OR. (enflag .EQ. 3) )) THEN
           IF ((isource.EQ.2 .OR. isource.EQ.8)) THEN
               OLDSRC=0
-              WRITE(6,8530)
-8530          FORMAT(' Input name of phase space file (A256)'/'  : ',$)
-              READ(5,101,ERR=8540) FILNAM
-              WRITE(6,8550)FILNAM
-              WRITE(1,8550)FILNAM
-8550          FORMAT(/' Particles will be read from file: ',/A)
+              WRITE(6,8600)
+8600          FORMAT(' Input name of phase space file (A256)'/'  : ',$)
+              READ(5,101,ERR=8610) FILNAM
+              WRITE(6,8620)FILNAM
+              WRITE(1,8620)FILNAM
+8620          FORMAT(/' Particles will be read from file: ',/A)
               call replace_env(FILNAM)
               i_iaea_in=0
               ilen=lnblnk1(FILNAM)
@@ -11466,24 +11555,24 @@ C*****************************************************************************
                       write(i_log,*)' Error getting types of extra varia
      *bles stored in IAEA phsp'
                   END IF
-                  DO 8561 I_PHSP=1,iaea_n_extra_ints
+                  DO 8631 I_PHSP=1,iaea_n_extra_ints
                       IF ((iaea_extra_int_types(I_PHSP).EQ.2)) THEN
                           iaea_i_latch=I_PHSP
-                          GO TO8562
+                          GO TO8632
                       END IF
-8561              CONTINUE
-8562              CONTINUE
+8631              CONTINUE
+8632              CONTINUE
                   IF ((iaea_i_latch.EQ.-99)) THEN
                       write(i_log,*)' Warning: IAEA format phsp file doe
      *s not store LATCH'
                   END IF
-                  DO 8571 I_PHSP=1,iaea_n_extra_floats
+                  DO 8641 I_PHSP=1,iaea_n_extra_floats
                       IF ((iaea_extra_float_types(I_PHSP).EQ.3)) THEN
                           iaea_i_zlast=I_PHSP
-                          GO TO8572
+                          GO TO8642
                       END IF
-8571              CONTINUE
-8572              CONTINUE
+8641              CONTINUE
+8642              CONTINUE
                   IF ((iaea_i_zlast.EQ.-99)) THEN
                       ismode=0
                   ELSE
@@ -11497,15 +11586,15 @@ C*****************************************************************************
                   ELSE
                       i_mu_phsp=1
                   END IF
-                  WRITE(6,8580)nshist,nphist,ein,NINCSRC
-8580              FORMAT(T10,' IAEA format Phase space source with:'/ T5
+                  WRITE(6,8650)nshist,nphist,ein,NINCSRC
+8650              FORMAT(T10,' IAEA format Phase space source with:'/ T5
      *,'                    Total number of particles =',I13/ T5,'      
      *                      Number of photons =',I13/ T5,'              
      *Maximum particle kinetic energy =',F13.3,' MeV'/ T5,' # of particl
      *es incident from original source =',F13.3/)
                   IF ((izscore.EQ.0)) THEN
-                      WRITE(6,8590)Z_SOURCE
-8590                  FORMAT(T5,'                        Z where sources
+                      WRITE(6,8660)Z_SOURCE
+8660                  FORMAT(T5,'                        Z where sources
      *cored =',F13.3,' cm'/)
                   END IF
                   call iaea_check_file_size_byte_order(i_unit_in,iaea_re
@@ -11547,80 +11636,10 @@ C*****************************************************************************
      *                ='DIRECT', RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR
      *                _PHSP)
                       IF ((IERR_PHSP.NE.0)) THEN
-                          WRITE(6,8600)
-8600                      FORMAT(/' ***error opening file as MODE2 ****'
+                          WRITE(6,8670)
+8670                      FORMAT(/' ***error opening file as MODE2 ****'
      */' *** THE FILE FORMAT MAY BE WRONG (I.E., NOT A MODE2 FILE) ***'/
      * /' *** WE NOW TRY TO OPEN IT AS A MODE3 FILE ***'//)
-                          OPEN(UNIT=44,STATUS='OLD',FILE=FILNAM, FORM='U
-     *NFORMATTED', IOSTAT=IERR_PHSP)
-                          IF ((IERR_PHSP.NE.0)) THEN
-                              WRITE(6,8610)
-8610                          FORMAT(//' *** PHASE SPACE FILE CANNOT BEF
-     *OUND. ***')
-                              STOP
-                          END IF
-                          READ(44,REC=1,IOSTAT=IERR_PHSP)MODE,NUM_PHSP_T
-     *                    OT,PHOT_PHSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP
-     *                    _SHORT,NINC_PHSP_SHORT
-                          nshist=NUM_PHSP_TOT
-                          nphist=PHOT_PHSP_TOT
-                          ein=EKMAX_PHSP_SHORT
-                          temp(2)=EKMINE_PHSP_SHORT
-                          NINCSRC=NINC_PHSP_SHORT
-                          IF ((IERR_PHSP.NE.0)) THEN
-                              WRITE(6,8620)
-8620                          FORMAT(//' ***ERROR READING HEADER OF PHAS
-     *E SPACE FILE*** '//)
-                              STOP
-                          END IF
-                          IF ((MODE .NE. 'MODE3')) THEN
-                              WRITE(6,8630)
-8630                          FORMAT(//' That file does not start with M
-     *ODE3,', ' as all old compressed files (with ZLAST) must'/ '  Check
-     * it out and try again!'///)
-                              IERR_PHSP=1
-                              STOP
-                          ELSE
-                              WRITE(6,8640)
-8640                          FORMAT(//' This is a MODE3 file! '/ ' Plea
-     *se convert it into a MODE2 file using [readphsp] ', ' and try agai
-     *n!'///)
-                              IERR_PHSP=1
-                              STOP
-                          END IF
-                      END IF
-                      READ(44,REC=1,IOSTAT=IERR_PHSP)MODE,NUM_PHSP_TOT,P
-     *                HOT_PHSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP_SHORT,N
-     *                INC_PHSP_SHORT
-                      nshist=NUM_PHSP_TOT
-                      nphist=PHOT_PHSP_TOT
-                      ein=EKMAX_PHSP_SHORT
-                      temp(2)=EKMINE_PHSP_SHORT
-                      NINCSRC=NINC_PHSP_SHORT
-                      IF ((IERR_PHSP.NE.0)) THEN
-                          WRITE(6,8650)
-8650                      FORMAT(//' ***ERROR READING HEADER OF PHASE SP
-     *ACE FILE*** '//)
-                          STOP
-                      END IF
-                      IF ((MODE .NE. 'MODE2')) THEN
-                          WRITE(6,8660)
-8660                      FORMAT(//' That file does not start with MODE2
-     *,', ' as standard compressed files with ZLAST must'/ '  Check it o
-     *ut and try again!'///)
-                          IERR_PHSP=1
-                          STOP
-                      END IF
-                  ELSE IF((ismode.EQ.0)) THEN
-                      PHSP_RECL=4*7
-                      OPEN(UNIT=44,FILE=FILNAM,FORM='UNFORMATTED',ACCESS
-     *                ='DIRECT', RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR
-     *                _PHSP)
-                      IF ((IERR_PHSP.NE.0)) THEN
-                          WRITE(6,8670)
-8670                      FORMAT(/' ***ERROR opening file as MODE0****'/
-     *' *** THE FILE FORMAT MAY BE WRONG (I.E., NOT A MODE0 FILE) ***'/ 
-     */' *** WE NOW TRY TO OPEN IT AS A MODE1 FILE***'//)
                           OPEN(UNIT=44,STATUS='OLD',FILE=FILNAM, FORM='U
      *NFORMATTED', IOSTAT=IERR_PHSP)
                           IF ((IERR_PHSP.NE.0)) THEN
@@ -11643,18 +11662,18 @@ C*****************************************************************************
      *E SPACE FILE*** '//)
                               STOP
                           END IF
-                          IF ((MODE .NE. 'MODE1')) THEN
+                          IF ((MODE .NE. 'MODE3')) THEN
                               WRITE(6,8700)
 8700                          FORMAT(//' That file does not start with M
-     *ODE1,', ' as all old compressed files must'/ '  Check it out and t
-     *ry again!'///)
+     *ODE3,', ' as all old compressed files (with ZLAST) must'/ '  Check
+     * it out and try again!'///)
                               IERR_PHSP=1
                               STOP
                           ELSE
                               WRITE(6,8710)
-8710                          FORMAT(//' This is a MODE1 file! '/ ' Plea
-     *se convert it into a MODE0 file using [readphsp] ', 'and try again
-     *!'///)
+8710                          FORMAT(//' This is a MODE3 file! '/ ' Plea
+     *se convert it into a MODE2 file using [readphsp] ', ' and try agai
+     *n!'///)
                               IERR_PHSP=1
                               STOP
                           END IF
@@ -11673,31 +11692,101 @@ C*****************************************************************************
      *ACE FILE*** '//)
                           STOP
                       END IF
-                      IF ((MODE .NE. 'MODE0')) THEN
+                      IF ((MODE .NE. 'MODE2')) THEN
                           WRITE(6,8730)
-8730                      FORMAT(/' Does not start with MODE0 as files w
-     *ithout ZLAST must'/ '  Try again!'//)
+8730                      FORMAT(//' That file does not start with MODE2
+     *,', ' as standard compressed files with ZLAST must'/ '  Check it o
+     *ut and try again!'///)
                           IERR_PHSP=1
                           STOP
                       END IF
-                  ELSE IF((ismode.LT.0)) THEN
-                      WRITE(6,8740)
-8740                  FORMAT(/' First, try to open it as a MODE0 file')
+                  ELSE IF((ismode.EQ.0)) THEN
                       PHSP_RECL=4*7
                       OPEN(UNIT=44,FILE=FILNAM,FORM='UNFORMATTED',ACCESS
      *                ='DIRECT', RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR
      *                _PHSP)
                       IF ((IERR_PHSP.NE.0)) THEN
-                          WRITE(6,8750)
-8750                      FORMAT(/' Now try to open it as a MODE2 file')
+                          WRITE(6,8740)
+8740                      FORMAT(/' ***ERROR opening file as MODE0****'/
+     *' *** THE FILE FORMAT MAY BE WRONG (I.E., NOT A MODE0 FILE) ***'/ 
+     */' *** WE NOW TRY TO OPEN IT AS A MODE1 FILE***'//)
+                          OPEN(UNIT=44,STATUS='OLD',FILE=FILNAM, FORM='U
+     *NFORMATTED', IOSTAT=IERR_PHSP)
+                          IF ((IERR_PHSP.NE.0)) THEN
+                              WRITE(6,8750)
+8750                          FORMAT(//' *** PHASE SPACE FILE CANNOT BEF
+     *OUND. ***')
+                              STOP
+                          END IF
+                          READ(44,REC=1,IOSTAT=IERR_PHSP)MODE,NUM_PHSP_T
+     *                    OT,PHOT_PHSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP
+     *                    _SHORT,NINC_PHSP_SHORT
+                          nshist=NUM_PHSP_TOT
+                          nphist=PHOT_PHSP_TOT
+                          ein=EKMAX_PHSP_SHORT
+                          temp(2)=EKMINE_PHSP_SHORT
+                          NINCSRC=NINC_PHSP_SHORT
+                          IF ((IERR_PHSP.NE.0)) THEN
+                              WRITE(6,8760)
+8760                          FORMAT(//' ***ERROR READING HEADER OF PHAS
+     *E SPACE FILE*** '//)
+                              STOP
+                          END IF
+                          IF ((MODE .NE. 'MODE1')) THEN
+                              WRITE(6,8770)
+8770                          FORMAT(//' That file does not start with M
+     *ODE1,', ' as all old compressed files must'/ '  Check it out and t
+     *ry again!'///)
+                              IERR_PHSP=1
+                              STOP
+                          ELSE
+                              WRITE(6,8780)
+8780                          FORMAT(//' This is a MODE1 file! '/ ' Plea
+     *se convert it into a MODE0 file using [readphsp] ', 'and try again
+     *!'///)
+                              IERR_PHSP=1
+                              STOP
+                          END IF
+                      END IF
+                      READ(44,REC=1,IOSTAT=IERR_PHSP)MODE,NUM_PHSP_TOT,P
+     *                HOT_PHSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP_SHORT,N
+     *                INC_PHSP_SHORT
+                      nshist=NUM_PHSP_TOT
+                      nphist=PHOT_PHSP_TOT
+                      ein=EKMAX_PHSP_SHORT
+                      temp(2)=EKMINE_PHSP_SHORT
+                      NINCSRC=NINC_PHSP_SHORT
+                      IF ((IERR_PHSP.NE.0)) THEN
+                          WRITE(6,8790)
+8790                      FORMAT(//' ***ERROR READING HEADER OF PHASE SP
+     *ACE FILE*** '//)
+                          STOP
+                      END IF
+                      IF ((MODE .NE. 'MODE0')) THEN
+                          WRITE(6,8800)
+8800                      FORMAT(/' Does not start with MODE0 as files w
+     *ithout ZLAST must'/ '  Try again!'//)
+                          IERR_PHSP=1
+                          STOP
+                      END IF
+                  ELSE IF((ismode.LT.0)) THEN
+                      WRITE(6,8810)
+8810                  FORMAT(/' First, try to open it as a MODE0 file')
+                      PHSP_RECL=4*7
+                      OPEN(UNIT=44,FILE=FILNAM,FORM='UNFORMATTED',ACCESS
+     *                ='DIRECT', RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR
+     *                _PHSP)
+                      IF ((IERR_PHSP.NE.0)) THEN
+                          WRITE(6,8820)
+8820                      FORMAT(/' Now try to open it as a MODE2 file')
                           ismode=1
                           PHSP_RECL=4*8
                           OPEN(UNIT=44,FILE=FILNAM,FORM='UNFORMATTED',AC
      *                    CESS='DIRECT', RECL=PHSP_RECL,STATUS='OLD',IOS
      *                    TAT=IERR_PHSP)
                           IF ((IERR_PHSP.NE.0)) THEN
-                              WRITE(6,8760)
-8760                          FORMAT(//' *** PHASE SPACE FILE CANNOT BEF
+                              WRITE(6,8830)
+8830                          FORMAT(//' *** PHASE SPACE FILE CANNOT BEF
      *OUND. ***')
                           ELSE
                               READ(44,REC=1,IOSTAT=IERR_PHSP)MODE,NUM_PH
@@ -11709,14 +11798,14 @@ C*****************************************************************************
                               temp(2)=EKMINE_PHSP_SHORT
                               NINCSRC=NINC_PHSP_SHORT
                               IF ((IERR_PHSP.NE.0)) THEN
-                                  WRITE(6,8770)
-8770                              FORMAT(//' ***ERROR READING HEADER OFP
+                                  WRITE(6,8840)
+8840                              FORMAT(//' ***ERROR READING HEADER OFP
      *HASE SPACE FILE*** '//)
                                   STOP
                               END IF
                               IF ((MODE.NE.'MODE2')) THEN
-                                  WRITE(6,8780)
-8780                              FORMAT(//' That file does not start wi
+                                  WRITE(6,8850)
+8850                              FORMAT(//' That file does not start wi
      *th MODE2,', ' as standard compressed files with ZLAST must'/ '  Ch
      *eck it out and try again!'///)
                                   CLOSE(44)
@@ -11733,27 +11822,27 @@ C*****************************************************************************
                           temp(2)=EKMINE_PHSP_SHORT
                           NINCSRC=NINC_PHSP_SHORT
                           IF ((IERR_PHSP.NE.0)) THEN
-                              WRITE(6,8790)
-8790                          FORMAT(//' ***ERROR READING HEADER OF PHAS
+                              WRITE(6,8860)
+8860                          FORMAT(//' ***ERROR READING HEADER OF PHAS
      *E SPACE FILE*** '//)
                               STOP
                           END IF
                           ismode=0
                           IF ((MODE.NE.'MODE0')) THEN
-                              WRITE(6,8800)
-8800                          FORMAT(/' The file does not start with MOD
+                              WRITE(6,8870)
+8870                          FORMAT(/' The file does not start with MOD
      *E0 as it supposed to')
                               CLOSE(44)
-                              WRITE(6,8810)
-8810                          FORMAT(/' Now try to open it as a MODE2 fi
+                              WRITE(6,8880)
+8880                          FORMAT(/' Now try to open it as a MODE2 fi
      *le')
                               ismode=1
                               PHSP_RECL=4*8
                               OPEN(UNIT=44,FILE=FILNAM,FORM='UNFORMATTED
      *',ACCESS='DIRECT', RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP)
                               IF ((IERR_PHSP.NE.0)) THEN
-                                  WRITE(6,8820)
-8820                              FORMAT(//' *** PHASE SPACE FILE CANNOT
+                                  WRITE(6,8890)
+8890                              FORMAT(//' *** PHASE SPACE FILE CANNOT
      * BE OPENED. ***')
                               ELSE
                                   READ(44,REC=1,IOSTAT=IERR_PHSP)MODE,NU
@@ -11765,14 +11854,14 @@ C*****************************************************************************
                                   temp(2)=EKMINE_PHSP_SHORT
                                   NINCSRC=NINC_PHSP_SHORT
                                   IF ((IERR_PHSP.NE.0)) THEN
-                                      WRITE(6,8830)
-8830                                  FORMAT(//' ***ERROR READING HEADER
+                                      WRITE(6,8900)
+8900                                  FORMAT(//' ***ERROR READING HEADER
      * OF PHASE SPACE FILE*** '//)
                                       STOP
                                   END IF
                                   IF ((MODE.NE.'MODE2')) THEN
-                                      WRITE(6,8840)
-8840                                  FORMAT(//' That file does not star
+                                      WRITE(6,8910)
+8910                                  FORMAT(//' That file does not star
      *t with MODE2,', ' as standard compressed files with ZLAST must'/ '
      *  Check it out and try again!'///)
                                       CLOSE(44)
@@ -11783,9 +11872,9 @@ C*****************************************************************************
                       END IF
                   END IF
                   IF ((NINCSRC.LT.2.)) THEN
-                      WRITE(6,8850)
-                      WRITE(1,8850)
-8850                  FORMAT(//' ******WARNING*****'/ ' PHASE SPACE SOUR
+                      WRITE(6,8920)
+                      WRITE(1,8920)
+8920                  FORMAT(//' ******WARNING*****'/ ' PHASE SPACE SOUR
      *CE WAS GENERATED USING AN OLDER'/ ' VERSION OF BEAM IN WHICH # OFP
      *ARTICLES INCIDENT FROM'/ ' ORIGINAL SOURCE WAS NOT STORED.  THISNU
      *MBER WILL'/ ' BE SET EQUAL TO THE NUMBER OF PARTICLES IN THE PHASE
@@ -11795,9 +11884,9 @@ C*****************************************************************************
                       NINCSRC=nshist
                       OLDSRC=1
                   END IF
-                  WRITE(6,8860)nshist,nphist,ein,temp(2),NINCSRC
-                  WRITE(1,8860)nshist,nphist,ein,temp(2),NINCSRC
-8860              FORMAT(/' Total number of particles in file      :',I1
+                  WRITE(6,8930)nshist,nphist,ein,temp(2),NINCSRC
+                  WRITE(1,8930)nshist,nphist,ein,temp(2),NINCSRC
+8930              FORMAT(/' Total number of particles in file      :',I1
      *3/ ' Total number of photons                :',I13/ 'The rest are 
      *electrons/positrons.'/ ' '/ ' Maximum kinetic energyof the particl
      *es:     ',F13.3,' MeV'/ ' Minimum kinetic energy ofthe electrons: 
@@ -11831,8 +11920,8 @@ C*****************************************************************************
                   IF((ismode.NE.0))zlastm=ZLAST_PHSP_SHORT
                   IF ((nhistm.NE.1)) THEN
                       dose_stat=1
-                      WRITE(6,8870)
-8870                  FORMAT(//' ***WARNING***'/ ' Cannot read no. of pr
+                      WRITE(6,8940)
+8940                  FORMAT(//' ***WARNING***'/ ' Cannot read no. of pr
      *imary (non-phsp) histories from ph-sp source.'/ ' Dose and fluence
      * will be analyzed assuming each particle read from'/ ' the ph-sp f
      *ile is an independent history.  May result in an'/ ' underestimate
@@ -11840,90 +11929,90 @@ C*****************************************************************************
                   END IF
               END IF
           ELSE IF((isource .EQ.9 .OR. isource.EQ.10 )) THEN
-              WRITE(6,8880)
-8880          FORMAT(' Input name of beam code (BEAM_accelname), input f
+              WRITE(6,8950)
+8950          FORMAT(' Input name of beam code (BEAM_accelname), input f
      *ile (no ext.), '/ ' pegs data (no ext.) (A256)'/'  : ',$)
-              READ(5,'(A)',ERR=8890) FILNAM
-              WRITE(6,8900)FILNAM(:lnblnk1(FILNAM))
-8900          FORMAT(A)
+              READ(5,'(A)',ERR=8960) FILNAM
+              WRITE(6,8970)FILNAM(:lnblnk1(FILNAM))
+8970          FORMAT(A)
               the_beam_code=FILNAM(:INDEX(FILNAM,',')-1)
               FILNAM=FILNAM(INDEX(FILNAM,',')+1:)
-8911          IF(INDEX(the_beam_code,' ').NE.1)GO TO 8912
+8981          IF(INDEX(the_beam_code,' ').NE.1)GO TO 8982
                   ilen = lnblnk1(the_beam_code) - 1
                   IF ((ilen.GE.2)) THEN
                       the_beam_code=the_beam_code(2:)
                   ELSE
-                      GO TO8912
-                  END IF
-              GO TO 8911
-8912          CONTINUE
-              the_beam_code=the_beam_code(:lnblnk1(the_beam_code))
-              the_input_file=FILNAM(:INDEX(FILNAM,',')-1)
-              FILNAM=FILNAM(INDEX(FILNAM,',')+1:)
-8921          IF(INDEX(the_input_file,' ').NE.1)GO TO 8922
-                  ilen = lnblnk1(the_input_file) - 1
-                  IF ((ilen.GE.2)) THEN
-                      the_input_file=the_input_file(2:)
-                  ELSE
-                      GO TO8922
-                  END IF
-              GO TO 8921
-8922          CONTINUE
-              the_input_file=the_input_file(:lnblnk1(the_input_file))
-              the_pegs_file=FILNAM(:lnblnk1(FILNAM))
-8931          IF(INDEX(the_pegs_file,' ').NE.1)GO TO 8932
-                  ilen = lnblnk1(the_pegs_file) - 1
-                  IF ((ilen.GE.2)) THEN
-                      the_pegs_file=the_pegs_file(2:)
-                  ELSE
-                      the_pegs_file='pegsless'
-                      GO TO8932
-                  END IF
-              GO TO 8931
-8932          CONTINUE
-              WRITE(6,8940)the_beam_code(:lnblnk1(the_beam_code)),the_in
-     *        put_file(:lnblnk1(the_input_file)), the_pegs_file(:lnblnk1
-     *        (the_pegs_file))
-8940          FORMAT(/' BEAM simulation name: ',A/ '           input fil
-     *e: ',A/ '   pegs data for BEAM: ',A/)
-          ELSE IF((isource .EQ. 20)) THEN
-              WRITE(6,8950)
-8950          FORMAT(' Name of BEAM/MLC code (e.g. particelDmlc)--leaveb
-     *lank if no geometry, '/ ' phase space file above shared library,'/
-     * ' input file for BEAM/MLC code (A256), '/'  : ',$)
-              READ(5,'(A)',ERR=8960) FILNAM
-              WRITE(6,8970)FILNAM(:lnblnk1(FILNAM))
-8970          FORMAT(A)
-              the_shared_lib=FILNAM(:INDEX(FILNAM,',')-1)
-              FILNAM=FILNAM(INDEX(FILNAM,',')+1:)
-8981          IF(INDEX(the_shared_lib,' ').NE.1)GO TO 8982
-                  ilen = lnblnk1(the_shared_lib) - 1
-                  IF ((ilen.GE.2)) THEN
-                      the_shared_lib=the_shared_lib(2:)
-                  ELSE
-                      the_shared_lib='0'
                       GO TO8982
                   END IF
               GO TO 8981
 8982          CONTINUE
-              the_shared_lib=the_shared_lib(:lnblnk1(the_shared_lib))
-              the_phsp_file=FILNAM(:INDEX(FILNAM,',')-1)
+              the_beam_code=the_beam_code(:lnblnk1(the_beam_code))
+              the_input_file=FILNAM(:INDEX(FILNAM,',')-1)
               FILNAM=FILNAM(INDEX(FILNAM,',')+1:)
-8991          IF(INDEX(the_phsp_file,' ').NE.1)GO TO 8992
-                  ilen = lnblnk1(the_phsp_file) - 1
-                  IF ((ilen .GE.2)) THEN
-                      the_phsp_file=the_phsp_file(2:)
+8991          IF(INDEX(the_input_file,' ').NE.1)GO TO 8992
+                  ilen = lnblnk1(the_input_file) - 1
+                  IF ((ilen.GE.2)) THEN
+                      the_input_file=the_input_file(2:)
                   ELSE
                       GO TO8992
                   END IF
               GO TO 8991
 8992          CONTINUE
+              the_input_file=the_input_file(:lnblnk1(the_input_file))
+              the_pegs_file=FILNAM(:lnblnk1(FILNAM))
+9001          IF(INDEX(the_pegs_file,' ').NE.1)GO TO 9002
+                  ilen = lnblnk1(the_pegs_file) - 1
+                  IF ((ilen.GE.2)) THEN
+                      the_pegs_file=the_pegs_file(2:)
+                  ELSE
+                      the_pegs_file='pegsless'
+                      GO TO9002
+                  END IF
+              GO TO 9001
+9002          CONTINUE
+              WRITE(6,9010)the_beam_code(:lnblnk1(the_beam_code)),the_in
+     *        put_file(:lnblnk1(the_input_file)), the_pegs_file(:lnblnk1
+     *        (the_pegs_file))
+9010          FORMAT(/' BEAM simulation name: ',A/ '           input fil
+     *e: ',A/ '   pegs data for BEAM: ',A/)
+          ELSE IF((isource .EQ. 20)) THEN
+              WRITE(6,9020)
+9020          FORMAT(' Name of BEAM/MLC code (e.g. particelDmlc)--leaveb
+     *lank if no geometry, '/ ' phase space file above shared library,'/
+     * ' input file for BEAM/MLC code (A256), '/'  : ',$)
+              READ(5,'(A)',ERR=9030) FILNAM
+              WRITE(6,9040)FILNAM(:lnblnk1(FILNAM))
+9040          FORMAT(A)
+              the_shared_lib=FILNAM(:INDEX(FILNAM,',')-1)
+              FILNAM=FILNAM(INDEX(FILNAM,',')+1:)
+9051          IF(INDEX(the_shared_lib,' ').NE.1)GO TO 9052
+                  ilen = lnblnk1(the_shared_lib) - 1
+                  IF ((ilen.GE.2)) THEN
+                      the_shared_lib=the_shared_lib(2:)
+                  ELSE
+                      the_shared_lib='0'
+                      GO TO9052
+                  END IF
+              GO TO 9051
+9052          CONTINUE
+              the_shared_lib=the_shared_lib(:lnblnk1(the_shared_lib))
+              the_phsp_file=FILNAM(:INDEX(FILNAM,',')-1)
+              FILNAM=FILNAM(INDEX(FILNAM,',')+1:)
+9061          IF(INDEX(the_phsp_file,' ').NE.1)GO TO 9062
+                  ilen = lnblnk1(the_phsp_file) - 1
+                  IF ((ilen .GE.2)) THEN
+                      the_phsp_file=the_phsp_file(2:)
+                  ELSE
+                      GO TO9062
+                  END IF
+              GO TO 9061
+9062          CONTINUE
               the_phsp_file=the_phsp_file(:lnblnk1(the_phsp_file))
-              WRITE(6,9000)the_phsp_file(:lnblnk1(the_phsp_file))
-9000          FORMAT(/'phase space file: ',A/)
-              WRITE(6,9010)the_phsp_file
-              WRITE(1,9010)the_phsp_file
-9010          FORMAT(/' Particles will be read from file: ',/A)
+              WRITE(6,9070)the_phsp_file(:lnblnk1(the_phsp_file))
+9070          FORMAT(/'phase space file: ',A/)
+              WRITE(6,9080)the_phsp_file
+              WRITE(1,9080)the_phsp_file
+9080          FORMAT(/' Particles will be read from file: ',/A)
               call replace_env(the_phsp_file)
               i_iaea_in=0
               dosxyz2beam_izscore=0
@@ -11980,24 +12069,24 @@ C*****************************************************************************
                       write(i_log,*)' Error getting types of extra varia
      *bles stored in IAEA phsp'
                   END IF
-                  DO 9021 I_PHSP=1,iaea_n_extra_ints
+                  DO 9091 I_PHSP=1,iaea_n_extra_ints
                       IF ((iaea_extra_int_types(I_PHSP).EQ.2)) THEN
                           iaea_i_latch=I_PHSP
-                          GO TO9022
+                          GO TO9092
                       END IF
-9021              CONTINUE
-9022              CONTINUE
+9091              CONTINUE
+9092              CONTINUE
                   IF ((iaea_i_latch.EQ.-99)) THEN
                       write(i_log,*)' Warning: IAEA format phsp file doe
      *s not store LATCH'
                   END IF
-                  DO 9031 I_PHSP=1,iaea_n_extra_floats
+                  DO 9101 I_PHSP=1,iaea_n_extra_floats
                       IF ((iaea_extra_float_types(I_PHSP).EQ.3)) THEN
                           iaea_i_zlast=I_PHSP
-                          GO TO9032
+                          GO TO9102
                       END IF
-9031              CONTINUE
-9032              CONTINUE
+9101              CONTINUE
+9102              CONTINUE
                   IF ((iaea_i_zlast.EQ.-99)) THEN
                       ismode=0
                   ELSE
@@ -12011,20 +12100,20 @@ C*****************************************************************************
                   ELSE
                       i_mu_phsp=1
                   END IF
-                  WRITE(6,9040)nshist,nphist,ein,NINCSRC
-9040              FORMAT(T10,' IAEA format Phase space source with:'/ T5
+                  WRITE(6,9110)nshist,nphist,ein,NINCSRC
+9110              FORMAT(T10,' IAEA format Phase space source with:'/ T5
      *,'                    Total number of particles =',I13/ T5,'      
      *                      Number of photons =',I13/ T5,'              
      *Maximum particle kinetic energy =',F13.3,' MeV'/ T5,' # of particl
      *es incident from original source =',F13.3/)
                   IF ((izscore.EQ.0)) THEN
-                      WRITE(6,9050)Z_SOURCE
-9050                  FORMAT(T5,'                        Z where sources
+                      WRITE(6,9120)Z_SOURCE
+9120                  FORMAT(T5,'                        Z where sources
      *cored =',F13.3,' cm'/)
                   END IF
                   IF ((i_mu_phsp.EQ.1)) THEN
-                      WRITE(6,9060)
-9060                  FORMAT(T5,' Fractional MU index stored in phase sp
+                      WRITE(6,9130)
+9130                  FORMAT(T5,' Fractional MU index stored in phase sp
      *ace data.'/ T5,' This will be used to set the MU index in the DOSX
      *YZ'/ T5,' simulation.'/)
                   END IF
@@ -12068,80 +12157,10 @@ C*****************************************************************************
      *                ,ACCESS='DIRECT', RECL=PHSP_RECL,STATUS='OLD',IOST
      *                AT=IERR_PHSP)
                       IF ((IERR_PHSP.NE.0)) THEN
-                          WRITE(6,9070)
-9070                      FORMAT(/' ***error opening file as MODE2 ****'
+                          WRITE(6,9140)
+9140                      FORMAT(/' ***error opening file as MODE2 ****'
      */' *** THE FILE FORMAT MAY BE WRONG (I.E., NOT A MODE2 FILE) ***'/
      * /' *** WE NOW TRY TO OPEN IT AS A MODE3 FILE ***'//)
-                          OPEN(UNIT=44,STATUS='OLD',FILE=the_phsp_file,
-     *                    FORM='UNFORMATTED', IOSTAT=IERR_PHSP)
-                          IF ((IERR_PHSP.NE.0)) THEN
-                              WRITE(6,9080)
-9080                          FORMAT(//' *** PHASE SPACE FILE CANNOT BEF
-     *OUND. ***')
-                              STOP
-                          END IF
-                          READ(44,REC=1,IOSTAT=IERR_PHSP)MODE,NUM_PHSP_T
-     *                    OT,PHOT_PHSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP
-     *                    _SHORT,NINC_PHSP_SHORT
-                          nshist=NUM_PHSP_TOT
-                          nphist=PHOT_PHSP_TOT
-                          ein=EKMAX_PHSP_SHORT
-                          temp(2)=EKMINE_PHSP_SHORT
-                          NINCSRC=NINC_PHSP_SHORT
-                          IF ((IERR_PHSP.NE.0)) THEN
-                              WRITE(6,9090)
-9090                          FORMAT(//' ***ERROR READING HEADER OF PHAS
-     *E SPACE FILE*** '//)
-                              STOP
-                          END IF
-                          IF ((MODE .NE. 'MODE3')) THEN
-                              WRITE(6,9100)
-9100                          FORMAT(//' That file does not start with M
-     *ODE3,', ' as all old compressed files (with ZLAST) must'/ '  Check
-     * it out and try again!'///)
-                              IERR_PHSP=1
-                              STOP
-                          ELSE
-                              WRITE(6,9110)
-9110                          FORMAT(//' This is a MODE3 file! '/ ' Plea
-     *se convert it into a MODE2 file using [readphsp] ', ' and try agai
-     *n!'///)
-                              IERR_PHSP=1
-                              STOP
-                          END IF
-                      END IF
-                      READ(44,REC=1,IOSTAT=IERR_PHSP)MODE,NUM_PHSP_TOT,P
-     *                HOT_PHSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP_SHORT,N
-     *                INC_PHSP_SHORT
-                      nshist=NUM_PHSP_TOT
-                      nphist=PHOT_PHSP_TOT
-                      ein=EKMAX_PHSP_SHORT
-                      temp(2)=EKMINE_PHSP_SHORT
-                      NINCSRC=NINC_PHSP_SHORT
-                      IF ((IERR_PHSP.NE.0)) THEN
-                          WRITE(6,9120)
-9120                      FORMAT(//' ***ERROR READING HEADER OF PHASE SP
-     *ACE FILE*** '//)
-                          STOP
-                      END IF
-                      IF ((MODE .NE. 'MODE2')) THEN
-                          WRITE(6,9130)
-9130                      FORMAT(//' That file does not start with MODE2
-     *,', ' as standard compressed files with ZLAST must'/ '  Check it o
-     *ut and try again!'///)
-                          IERR_PHSP=1
-                          STOP
-                      END IF
-                  ELSE IF((ismode.EQ.0)) THEN
-                      PHSP_RECL=4*7
-                      OPEN(UNIT=44,FILE=the_phsp_file,FORM='UNFORMATTED'
-     *                ,ACCESS='DIRECT', RECL=PHSP_RECL,STATUS='OLD',IOST
-     *                AT=IERR_PHSP)
-                      IF ((IERR_PHSP.NE.0)) THEN
-                          WRITE(6,9140)
-9140                      FORMAT(/' ***ERROR opening file as MODE0****'/
-     *' *** THE FILE FORMAT MAY BE WRONG (I.E., NOT A MODE0 FILE) ***'/ 
-     */' *** WE NOW TRY TO OPEN IT AS A MODE1 FILE***'//)
                           OPEN(UNIT=44,STATUS='OLD',FILE=the_phsp_file,
      *                    FORM='UNFORMATTED', IOSTAT=IERR_PHSP)
                           IF ((IERR_PHSP.NE.0)) THEN
@@ -12164,18 +12183,18 @@ C*****************************************************************************
      *E SPACE FILE*** '//)
                               STOP
                           END IF
-                          IF ((MODE .NE. 'MODE1')) THEN
+                          IF ((MODE .NE. 'MODE3')) THEN
                               WRITE(6,9170)
 9170                          FORMAT(//' That file does not start with M
-     *ODE1,', ' as all old compressed files must'/ '  Check it out and t
-     *ry again!'///)
+     *ODE3,', ' as all old compressed files (with ZLAST) must'/ '  Check
+     * it out and try again!'///)
                               IERR_PHSP=1
                               STOP
                           ELSE
                               WRITE(6,9180)
-9180                          FORMAT(//' This is a MODE1 file! '/ ' Plea
-     *se convert it into a MODE0 file using [readphsp] ', 'and try again
-     *!'///)
+9180                          FORMAT(//' This is a MODE3 file! '/ ' Plea
+     *se convert it into a MODE2 file using [readphsp] ', ' and try agai
+     *n!'///)
                               IERR_PHSP=1
                               STOP
                           END IF
@@ -12194,31 +12213,101 @@ C*****************************************************************************
      *ACE FILE*** '//)
                           STOP
                       END IF
-                      IF ((MODE .NE. 'MODE0')) THEN
+                      IF ((MODE .NE. 'MODE2')) THEN
                           WRITE(6,9200)
-9200                      FORMAT(/' Does not start with MODE0 as files w
-     *ithout ZLAST must'/ '  Try again!'//)
+9200                      FORMAT(//' That file does not start with MODE2
+     *,', ' as standard compressed files with ZLAST must'/ '  Check it o
+     *ut and try again!'///)
                           IERR_PHSP=1
                           STOP
                       END IF
-                  ELSE IF((ismode.LT.0)) THEN
-                      WRITE(6,9210)
-9210                  FORMAT(/' First, try to open it as a MODE0 file')
+                  ELSE IF((ismode.EQ.0)) THEN
                       PHSP_RECL=4*7
                       OPEN(UNIT=44,FILE=the_phsp_file,FORM='UNFORMATTED'
      *                ,ACCESS='DIRECT', RECL=PHSP_RECL,STATUS='OLD',IOST
      *                AT=IERR_PHSP)
                       IF ((IERR_PHSP.NE.0)) THEN
-                          WRITE(6,9220)
-9220                      FORMAT(/' Now try to open it as a MODE2 file')
+                          WRITE(6,9210)
+9210                      FORMAT(/' ***ERROR opening file as MODE0****'/
+     *' *** THE FILE FORMAT MAY BE WRONG (I.E., NOT A MODE0 FILE) ***'/ 
+     */' *** WE NOW TRY TO OPEN IT AS A MODE1 FILE***'//)
+                          OPEN(UNIT=44,STATUS='OLD',FILE=the_phsp_file,
+     *                    FORM='UNFORMATTED', IOSTAT=IERR_PHSP)
+                          IF ((IERR_PHSP.NE.0)) THEN
+                              WRITE(6,9220)
+9220                          FORMAT(//' *** PHASE SPACE FILE CANNOT BEF
+     *OUND. ***')
+                              STOP
+                          END IF
+                          READ(44,REC=1,IOSTAT=IERR_PHSP)MODE,NUM_PHSP_T
+     *                    OT,PHOT_PHSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP
+     *                    _SHORT,NINC_PHSP_SHORT
+                          nshist=NUM_PHSP_TOT
+                          nphist=PHOT_PHSP_TOT
+                          ein=EKMAX_PHSP_SHORT
+                          temp(2)=EKMINE_PHSP_SHORT
+                          NINCSRC=NINC_PHSP_SHORT
+                          IF ((IERR_PHSP.NE.0)) THEN
+                              WRITE(6,9230)
+9230                          FORMAT(//' ***ERROR READING HEADER OF PHAS
+     *E SPACE FILE*** '//)
+                              STOP
+                          END IF
+                          IF ((MODE .NE. 'MODE1')) THEN
+                              WRITE(6,9240)
+9240                          FORMAT(//' That file does not start with M
+     *ODE1,', ' as all old compressed files must'/ '  Check it out and t
+     *ry again!'///)
+                              IERR_PHSP=1
+                              STOP
+                          ELSE
+                              WRITE(6,9250)
+9250                          FORMAT(//' This is a MODE1 file! '/ ' Plea
+     *se convert it into a MODE0 file using [readphsp] ', 'and try again
+     *!'///)
+                              IERR_PHSP=1
+                              STOP
+                          END IF
+                      END IF
+                      READ(44,REC=1,IOSTAT=IERR_PHSP)MODE,NUM_PHSP_TOT,P
+     *                HOT_PHSP_TOT, EKMAX_PHSP_SHORT,EKMINE_PHSP_SHORT,N
+     *                INC_PHSP_SHORT
+                      nshist=NUM_PHSP_TOT
+                      nphist=PHOT_PHSP_TOT
+                      ein=EKMAX_PHSP_SHORT
+                      temp(2)=EKMINE_PHSP_SHORT
+                      NINCSRC=NINC_PHSP_SHORT
+                      IF ((IERR_PHSP.NE.0)) THEN
+                          WRITE(6,9260)
+9260                      FORMAT(//' ***ERROR READING HEADER OF PHASE SP
+     *ACE FILE*** '//)
+                          STOP
+                      END IF
+                      IF ((MODE .NE. 'MODE0')) THEN
+                          WRITE(6,9270)
+9270                      FORMAT(/' Does not start with MODE0 as files w
+     *ithout ZLAST must'/ '  Try again!'//)
+                          IERR_PHSP=1
+                          STOP
+                      END IF
+                  ELSE IF((ismode.LT.0)) THEN
+                      WRITE(6,9280)
+9280                  FORMAT(/' First, try to open it as a MODE0 file')
+                      PHSP_RECL=4*7
+                      OPEN(UNIT=44,FILE=the_phsp_file,FORM='UNFORMATTED'
+     *                ,ACCESS='DIRECT', RECL=PHSP_RECL,STATUS='OLD',IOST
+     *                AT=IERR_PHSP)
+                      IF ((IERR_PHSP.NE.0)) THEN
+                          WRITE(6,9290)
+9290                      FORMAT(/' Now try to open it as a MODE2 file')
                           ismode=1
                           PHSP_RECL=4*8
                           OPEN(UNIT=44,FILE=the_phsp_file,FORM='UNFORMAT
      *TED',ACCESS='DIRECT', RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_PHSP
      *                    )
                           IF ((IERR_PHSP.NE.0)) THEN
-                              WRITE(6,9230)
-9230                          FORMAT(//' *** PHASE SPACE FILE CANNOT BEF
+                              WRITE(6,9300)
+9300                          FORMAT(//' *** PHASE SPACE FILE CANNOT BEF
      *OUND. ***')
                           ELSE
                               READ(44,REC=1,IOSTAT=IERR_PHSP)MODE,NUM_PH
@@ -12230,14 +12319,14 @@ C*****************************************************************************
                               temp(2)=EKMINE_PHSP_SHORT
                               NINCSRC=NINC_PHSP_SHORT
                               IF ((IERR_PHSP.NE.0)) THEN
-                                  WRITE(6,9240)
-9240                              FORMAT(//' ***ERROR READING HEADER OFP
+                                  WRITE(6,9310)
+9310                              FORMAT(//' ***ERROR READING HEADER OFP
      *HASE SPACE FILE*** '//)
                                   STOP
                               END IF
                               IF ((MODE.NE.'MODE2')) THEN
-                                  WRITE(6,9250)
-9250                              FORMAT(//' That file does not start wi
+                                  WRITE(6,9320)
+9320                              FORMAT(//' That file does not start wi
      *th MODE2,', ' as standard compressed files with ZLAST must'/ '  Ch
      *eck it out and try again!'///)
                                   CLOSE(44)
@@ -12254,19 +12343,19 @@ C*****************************************************************************
                           temp(2)=EKMINE_PHSP_SHORT
                           NINCSRC=NINC_PHSP_SHORT
                           IF ((IERR_PHSP.NE.0)) THEN
-                              WRITE(6,9260)
-9260                          FORMAT(//' ***ERROR READING HEADER OF PHAS
+                              WRITE(6,9330)
+9330                          FORMAT(//' ***ERROR READING HEADER OF PHAS
      *E SPACE FILE*** '//)
                               STOP
                           END IF
                           ismode=0
                           IF ((MODE.NE.'MODE0')) THEN
-                              WRITE(6,9270)
-9270                          FORMAT(/' The file does not start with MOD
+                              WRITE(6,9340)
+9340                          FORMAT(/' The file does not start with MOD
      *E0 as it supposed to')
                               CLOSE(44)
-                              WRITE(6,9280)
-9280                          FORMAT(/' Now try to open it as a MODE2 fi
+                              WRITE(6,9350)
+9350                          FORMAT(/' Now try to open it as a MODE2 fi
      *le')
                               ismode=1
                               PHSP_RECL=4*8
@@ -12274,8 +12363,8 @@ C*****************************************************************************
      *RMATTED',ACCESS='DIRECT', RECL=PHSP_RECL,STATUS='OLD',IOSTAT=IERR_
      *                        PHSP)
                               IF ((IERR_PHSP.NE.0)) THEN
-                                  WRITE(6,9290)
-9290                              FORMAT(//' *** PHASE SPACE FILE CANNOT
+                                  WRITE(6,9360)
+9360                              FORMAT(//' *** PHASE SPACE FILE CANNOT
      * BE OPENED. ***')
                               ELSE
                                   READ(44,REC=1,IOSTAT=IERR_PHSP)MODE,NU
@@ -12287,14 +12376,14 @@ C*****************************************************************************
                                   temp(2)=EKMINE_PHSP_SHORT
                                   NINCSRC=NINC_PHSP_SHORT
                                   IF ((IERR_PHSP.NE.0)) THEN
-                                      WRITE(6,9300)
-9300                                  FORMAT(//' ***ERROR READING HEADER
+                                      WRITE(6,9370)
+9370                                  FORMAT(//' ***ERROR READING HEADER
      * OF PHASE SPACE FILE*** '//)
                                       STOP
                                   END IF
                                   IF ((MODE.NE.'MODE2')) THEN
-                                      WRITE(6,9310)
-9310                                  FORMAT(//' That file does not star
+                                      WRITE(6,9380)
+9380                                  FORMAT(//' That file does not star
      *t with MODE2,', ' as standard compressed files with ZLAST must'/ '
      *  Check it out and try again!'///)
                                       CLOSE(44)
@@ -12305,9 +12394,9 @@ C*****************************************************************************
                       END IF
                   END IF
                   IF ((NINCSRC.LT.2.)) THEN
-                      WRITE(6,9320)
-                      WRITE(1,9320)
-9320                  FORMAT(//' ******WARNING*****'/ ' PHASE SPACE SOUR
+                      WRITE(6,9390)
+                      WRITE(1,9390)
+9390                  FORMAT(//' ******WARNING*****'/ ' PHASE SPACE SOUR
      *CE WAS GENERATED USING AN OLDER'/ ' VERSION OF BEAM IN WHICH # OFP
      *ARTICLES INCIDENT FROM'/ ' ORIGINAL SOURCE WAS NOT STORED.  THISNU
      *MBER WILL'/ ' BE SET EQUAL TO THE NUMBER OF PARTICLES IN THE PHASE
@@ -12317,9 +12406,9 @@ C*****************************************************************************
                       NINCSRC=nshist
                       OLDSRC=1
                   END IF
-                  WRITE(6,9330)nshist,nphist,ein,temp(2),NINCSRC
-                  WRITE(1,9330)nshist,nphist,ein,temp(2),NINCSRC
-9330              FORMAT(/' Total number of particles in file      :',I1
+                  WRITE(6,9400)nshist,nphist,ein,temp(2),NINCSRC
+                  WRITE(1,9400)nshist,nphist,ein,temp(2),NINCSRC
+9400              FORMAT(/' Total number of particles in file      :',I1
      *3/ ' Total number of photons                :',I13/ 'The rest are 
      *electrons/positrons.'/ ' '/ ' Maximum kinetic energyof the particl
      *es:     ',F13.3,' MeV'/ ' Minimum kinetic energy ofthe electrons: 
@@ -12353,8 +12442,8 @@ C*****************************************************************************
                   IF((ismode.NE.0))zlastm=ZLAST_PHSP_SHORT
                   IF ((nhistm.NE.1)) THEN
                       dose_stat=1
-                      WRITE(6,9340)
-9340                  FORMAT(//' ***WARNING***'/ ' Cannot read no. of pr
+                      WRITE(6,9410)
+9410                  FORMAT(//' ***WARNING***'/ ' Cannot read no. of pr
      *imary (non-phsp) histories from ph-sp source.'/ ' Dose and fluence
      * will be analyzed assuming each particle read from'/ ' the ph-sp f
      *ile is an independent history.  May result in an'/ ' underestimate
@@ -12362,28 +12451,28 @@ C*****************************************************************************
                   END IF
               END IF
               the_input_file=FILNAM(:lnblnk1(FILNAM))
-9351          IF(INDEX(the_input_file,' ').NE.1)GO TO 9352
+9421          IF(INDEX(the_input_file,' ').NE.1)GO TO 9422
                   ilen = lnblnk1(the_input_file) - 1
                   IF ((ilen.GE.2)) THEN
                       the_input_file=the_input_file(2:)
                   ELSE
-                      GO TO9352
+                      GO TO9422
                   END IF
-              GO TO 9351
-9352          CONTINUE
+              GO TO 9421
+9422          CONTINUE
               the_input_file=the_input_file(:lnblnk1(the_input_file))
               IF ((the_shared_lib.EQ.'0')) THEN
                   SHLflag = 0
               ELSE IF((the_shared_lib.EQ.'particleDmlc')) THEN
                   MLCflag =1
                   SHLflag = 1
-                  WRITE(6,9360)
-                  WRITE(1,9360)
-9360              FORMAT(/' Will use VCU simulation compiled as shared l
+                  WRITE(6,9430)
+                  WRITE(1,9430)
+9430              FORMAT(/' Will use VCU simulation compiled as shared l
      *ibrary:'/)
-                  WRITE(6,9370)the_input_file
-                  WRITE(1,9370)the_input_file
-9370              FORMAT(/' VCU input file: ',/A80)
+                  WRITE(6,9440)the_input_file
+                  WRITE(1,9440)the_input_file
+9440              FORMAT(/' VCU input file: ',/A80)
               ELSE
                   SHLflag =1
                   MLCflag=0
@@ -12392,73 +12481,73 @@ C*****************************************************************************
                   ELSE
                       the_pegs_file= pegs_file
                   END IF
-                  WRITE(6,9380)the_shared_lib
-                  WRITE(1,9380)the_shared_lib
-9380              FORMAT(/' BEAM library: ',/A80)
-                  WRITE(6,9390)the_input_file
-                  WRITE(1,9390)the_input_file
-9390              FORMAT(' BEAM input file: ',/A80)
-                  WRITE(6,9400)the_pegs_file
-                  WRITE(1,9400)the_pegs_file
-9400              FORMAT(' BEAM pegs data: ',/A80)
+                  WRITE(6,9450)the_shared_lib
+                  WRITE(1,9450)the_shared_lib
+9450              FORMAT(/' BEAM library: ',/A80)
+                  WRITE(6,9460)the_input_file
+                  WRITE(1,9460)the_input_file
+9460              FORMAT(' BEAM input file: ',/A80)
+                  WRITE(6,9470)the_pegs_file
+                  WRITE(1,9470)the_pegs_file
+9470              FORMAT(' BEAM pegs data: ',/A80)
               END IF
           ELSE IF((isource.EQ.21)) THEN
-              WRITE(6,9410)
-9410          FORMAT(' Input name of beam code (BEAM_accelname), BEAM in
+              WRITE(6,9480)
+9480          FORMAT(' Input name of beam code (BEAM_accelname), BEAM in
      *put file (no ext.), '/ ' BEAM pegs data (no ext.), name of MLC cod
      *e (e.g. particelDmlc), '/ ' MLC code input file (A256)'/'  : ',$)
-              READ(5,'(A)',ERR=9420) FILNAM
-              WRITE(6,9430)FILNAM(:lnblnk1(FILNAM))
-9430          FORMAT(A)
+              READ(5,'(A)',ERR=9490) FILNAM
+              WRITE(6,9500)FILNAM(:lnblnk1(FILNAM))
+9500          FORMAT(A)
               the_beam_code=FILNAM(:INDEX(FILNAM,',')-1)
               FILNAM=FILNAM(INDEX(FILNAM,',')+1:)
-9441          IF(INDEX(the_beam_code,' ').NE.1)GO TO 9442
+9511          IF(INDEX(the_beam_code,' ').NE.1)GO TO 9512
                   ilen = lnblnk1(the_beam_code) - 1
                   IF ((ilen.GE.2)) THEN
                       the_beam_code=the_beam_code(2:)
                   ELSE
-                      GO TO9442
+                      GO TO9512
                   END IF
-              GO TO 9441
-9442          CONTINUE
+              GO TO 9511
+9512          CONTINUE
               the_beam_code=the_beam_code(:lnblnk1(the_beam_code))
               the_input_file=FILNAM(:INDEX(FILNAM,',')-1)
               FILNAM=FILNAM(INDEX(FILNAM,',')+1:)
-9451          IF(INDEX(the_input_file,' ').NE.1)GO TO 9452
+9521          IF(INDEX(the_input_file,' ').NE.1)GO TO 9522
                   ilen = lnblnk1(the_input_file) - 1
                   IF ((ilen.GE.2)) THEN
                       the_input_file=the_input_file(2:)
                   ELSE
-                      GO TO9452
+                      GO TO9522
                   END IF
-              GO TO 9451
-9452          CONTINUE
+              GO TO 9521
+9522          CONTINUE
               the_input_file=the_input_file(:lnblnk1(the_input_file))
               the_pegs_file=FILNAM(:INDEX(FILNAM,',')-1)
               FILNAM=FILNAM(INDEX(FILNAM,',')+1:)
-9461          IF(INDEX(the_pegs_file,' ').NE.1)GO TO 9462
+9531          IF(INDEX(the_pegs_file,' ').NE.1)GO TO 9532
                   ilen = lnblnk1(the_pegs_file) - 1
                   IF ((ilen.GE.2)) THEN
                       the_pegs_file=the_pegs_file(2:)
                   ELSE
                       the_pegs_file='pegsless'
-                      GO TO9462
+                      GO TO9532
                   END IF
-              GO TO 9461
-9462          CONTINUE
+              GO TO 9531
+9532          CONTINUE
               the_pegs_file = the_pegs_file(:lnblnk1(the_pegs_file))
               the_vcu_code=FILNAM(:INDEX(FILNAM,',')-1)
               FILNAM=FILNAM(INDEX(FILNAM,',')+1:)
-9471          IF(INDEX(the_vcu_code,' ').NE.1)GO TO 9472
+9541          IF(INDEX(the_vcu_code,' ').NE.1)GO TO 9542
                   ilen = lnblnk1(the_vcu_code) - 1
                   IF ((ilen.GE.2)) THEN
                       the_vcu_code=the_vcu_code(2:)
                   ELSE
                       the_vcu_code='0'
-                      GO TO9472
+                      GO TO9542
                   END IF
-              GO TO 9471
-9472          CONTINUE
+              GO TO 9541
+9542          CONTINUE
               the_vcu_code=the_vcu_code(:lnblnk1(the_vcu_code))
               IF ((the_vcu_code.EQ.'0')) THEN
                   MLCflag = 0
@@ -12466,174 +12555,174 @@ C*****************************************************************************
                   MLCflag = 1
               END IF
               the_vcu_input_file=FILNAM(:lnblnk1(FILNAM))
-9481          IF(INDEX(the_vcu_input_file,' ').NE.1)GO TO 9482
+9551          IF(INDEX(the_vcu_input_file,' ').NE.1)GO TO 9552
                   ilen = lnblnk1(the_vcu_input_file) - 1
                   IF ((ilen.GE.2)) THEN
                       the_vcu_input_file=the_vcu_input_file(2:)
                   ELSE
-                      GO TO9482
+                      GO TO9552
                   END IF
-              GO TO 9481
-9482          CONTINUE
+              GO TO 9551
+9552          CONTINUE
               the_vcu_input_file=the_vcu_input_file(:lnblnk1(the_vcu_inp
      *        ut_file))
-              WRITE(6,9490)the_beam_code(:lnblnk1(the_beam_code)),the_in
+              WRITE(6,9560)the_beam_code(:lnblnk1(the_beam_code)),the_in
      *        put_file(:lnblnk1(the_input_file)), the_pegs_file(:lnblnk1
      *        (the_pegs_file)),the_vcu_code(:lnblnk1(the_vcu_code)), the
      *        _vcu_input_file(:lnblnk1(the_vcu_input_file))
-9490          FORMAT(/' BEAM simulation name: ',A/ '           input fil
+9560          FORMAT(/' BEAM simulation name: ',A/ '           input fil
      *e: ',A/ '   pegs data for BEAM: ',A/ '  VCU simulation name: ',A/'
      *       vcu input file: ',A/)
           END IF
           IF (( enflag .EQ. 3)) THEN
-              WRITE(6,9500)
-              WRITE(1,9500)
-9500          FORMAT(/' I_BIT_FILTER(0-incl/excl bits,1-excl bits,2-incl
+              WRITE(6,9570)
+              WRITE(1,9570)
+9570          FORMAT(/' I_BIT_FILTER(0-incl/excl bits,1-excl bits,2-incl
      * regions,3-excl regions),'/ ' NBIT1(# bits/regions to incl [I_BIT_
      *FILTER=0 or 2] '/ '                      or excl [I_BIT_FILTER=1 o
      *r 3],'/ ' NBIT2(# bits to excl [I_BIT_FILTER=0 only])--all on onel
      *ine'/ ' :',$)
-              READ(5,9510)I_BIT_FILTER,NBIT1,NBIT2
-9510          FORMAT(3i5)
-              WRITE(6,9520)I_BIT_FILTER,NBIT1,NBIT2
-              WRITE(1,9520)I_BIT_FILTER,NBIT1,NBIT2
-9520          FORMAT(3i5)
+              READ(5,9580)I_BIT_FILTER,NBIT1,NBIT2
+9580          FORMAT(3i5)
+              WRITE(6,9590)I_BIT_FILTER,NBIT1,NBIT2
+              WRITE(1,9590)I_BIT_FILTER,NBIT1,NBIT2
+9590          FORMAT(3i5)
               IF ((I_BIT_FILTER.LT.0 .OR. I_BIT_FILTER .GT. 3)) THEN
-                  WRITE(6,9530)
-9530              FORMAT(//' ***ERROR: I_BIT_FILTER out of range.'//)
+                  WRITE(6,9600)
+9600              FORMAT(//' ***ERROR: I_BIT_FILTER out of range.'//)
                   STOP
               END IF
               IF ((I_BIT_FILTER.NE.0 .AND. NBIT2 .NE. 0)) THEN
-                  WRITE(6,9540)
-                  WRITE(1,9540)
-9540              FORMAT(//' ***WARNING: NBIT2 is not 0 and you are usin
+                  WRITE(6,9610)
+                  WRITE(1,9610)
+9610              FORMAT(//' ***WARNING: NBIT2 is not 0 and you are usin
      *g'/ ' I_BIT_FILTER=1, 2 or 3.  NBIT2 set to 0 here.'//)
                   NBIT2=0
               END IF
               IF ((NBIT1.LT.0)) THEN
-                  WRITE(6,9550)
-                  WRITE(1,9550)
-9550              FORMAT(//' ***ERROR: NBIT1 < 0'//)
+                  WRITE(6,9620)
+                  WRITE(1,9620)
+9620              FORMAT(//' ***ERROR: NBIT1 < 0'//)
                   STOP
               END IF
               IF ((NBIT2.LT.0)) THEN
-                  WRITE(6,9560)
-                  WRITE(1,9560)
-9560              FORMAT(//' ***ERROR: NBIT2 < 0'//)
+                  WRITE(6,9630)
+                  WRITE(1,9630)
+9630              FORMAT(//' ***ERROR: NBIT2 < 0'//)
                   STOP
               END IF
               IF ((I_BIT_FILTER .LT. 2 .AND. (NBIT1+NBIT2.LT.0.OR.NBIT1+
      *        NBIT2.GT.29))) THEN
-                  WRITE(6,9570)
-                  WRITE(1,9570)
-9570              FORMAT(//' ***ERROR: '/ ' Total # of bits must be >= 0
+                  WRITE(6,9640)
+                  WRITE(1,9640)
+9640              FORMAT(//' ***ERROR: '/ ' Total # of bits must be >= 0
      * and <= 29'//)
                   STOP
               ELSE IF((NBIT1.LT.0.OR.NBIT1.GT.24)) THEN
-                  WRITE(6,9580)
-                  WRITE(1,9580)
-9580              FORMAT(//' ***ERROR: '/ ' Total # of regions must be >
+                  WRITE(6,9650)
+                  WRITE(1,9650)
+9650              FORMAT(//' ***ERROR: '/ ' Total # of regions must be >
      *= 0 and <= 23'//)
                   STOP
               END IF
               IF ((NBIT1 .NE. 0)) THEN
                   IF ((I_BIT_FILTER.EQ.0.OR.I_BIT_FILTER.EQ.2)) THEN
-                      WRITE(6,9590)
-                      WRITE(1,9590)
-9590                  FORMAT(/' BIT(I)/IREGION_TO_BIT(I) (I=1,NBIT1) toi
+                      WRITE(6,9660)
+                      WRITE(1,9660)
+9660                  FORMAT(/' BIT(I)/IREGION_TO_BIT(I) (I=1,NBIT1) toi
      *nclude:'/' ',$)
                   END IF
                   IF ((I_BIT_FILTER.EQ.1.OR.I_BIT_FILTER.EQ.3)) THEN
-                      WRITE(6,9600)
-                      WRITE(1,9600)
-9600                  FORMAT(/' BIT(I)/IREGION_TO_BIT(I) (I=1,Nbit1) toe
+                      WRITE(6,9670)
+                      WRITE(1,9670)
+9670                  FORMAT(/' BIT(I)/IREGION_TO_BIT(I) (I=1,Nbit1) toe
      *xclude:'/' ',$)
                   END IF
-                  READ(5,9610)(LATBIT(i),i=1,NBIT1)
-9610              FORMAT(30i5)
-                  WRITE(6,9620)(LATBIT(i),i=1,NBIT1)
-                  WRITE(1,9620)(LATBIT(i),i=1,NBIT1)
-9620              FORMAT(30i5)
-                  DO 9631 i=1,NBIT1
+                  READ(5,9680)(LATBIT(i),i=1,NBIT1)
+9680              FORMAT(30i5)
+                  WRITE(6,9690)(LATBIT(i),i=1,NBIT1)
+                  WRITE(1,9690)(LATBIT(i),i=1,NBIT1)
+9690              FORMAT(30i5)
+                  DO 9701 i=1,NBIT1
                       IF ((I_BIT_FILTER .LT. 2 .AND. (LATBIT(i).LT.0.OR.
      *                LATBIT(i).GT.28))) THEN
-                          WRITE(6,9640)
-9640                      FORMAT(//' ***ERROR:'/ ' BIT(I) must be >= 0 a
+                          WRITE(6,9710)
+9710                      FORMAT(//' ***ERROR:'/ ' BIT(I) must be >= 0 a
      *nd <= 28'//)
                           STOP
                       ELSE IF((LATBIT(I).LT.0.OR.LATBIT(I).GT.23)) THEN
-                          WRITE(6,9650)
-9650                      FORMAT(//' ***ERROR:'/ ' IREGION_TO_BIT(I) mus
+                          WRITE(6,9720)
+9720                      FORMAT(//' ***ERROR:'/ ' IREGION_TO_BIT(I) mus
      *t be >=0 and <= 23'//)
                           STOP
                       END IF
-9631              CONTINUE
-9632              CONTINUE
+9701              CONTINUE
+9702              CONTINUE
               END IF
               IF ((NBIT2 .NE. 0)) THEN
-                  WRITE(6,9660)
-                  WRITE(1,9660)
-9660              FORMAT(/' BIT(I)/IREGION_TO_BIT(I) (I=NBIT1+1,NBIT1+NB
+                  WRITE(6,9730)
+                  WRITE(1,9730)
+9730              FORMAT(/' BIT(I)/IREGION_TO_BIT(I) (I=NBIT1+1,NBIT1+NB
      *IT2) to exclude:'/' ',$)
-                  READ(5,9670)(LATBIT(NBIT1+i),i=1,NBIT2)
-9670              FORMAT(30i5)
-                  WRITE(6,9680)(LATBIT(NBIT1+i),i=1,NBIT2)
-                  WRITE(1,9680)(LATBIT(NBIT1+i),i=1,NBIT2)
-9680              FORMAT(30i5)
-                  DO 9691 i=1,NBIT2
+                  READ(5,9740)(LATBIT(NBIT1+i),i=1,NBIT2)
+9740              FORMAT(30i5)
+                  WRITE(6,9750)(LATBIT(NBIT1+i),i=1,NBIT2)
+                  WRITE(1,9750)(LATBIT(NBIT1+i),i=1,NBIT2)
+9750              FORMAT(30i5)
+                  DO 9761 i=1,NBIT2
                       IF ((LATBIT(NBIT1+i).LT.0 .OR. LATBIT(NBIT1+i).GT.
      *                28)) THEN
-                          WRITE(6,9700)
-9700                      FORMAT(//' ***ERROR:'/ ' BIT(I) must be  >= 0a
+                          WRITE(6,9770)
+9770                      FORMAT(//' ***ERROR:'/ ' BIT(I) must be  >= 0a
      *nd <= 28'//)
                           STOP
                       END IF
-9691              CONTINUE
-9692              CONTINUE
+9761              CONTINUE
+9762              CONTINUE
               END IF
           END IF
       ELSE IF((isource .EQ. 4)) THEN
-          WRITE(6,9710)
-9710      FORMAT(/ ' Beam characterization model not implemented, use so
+          WRITE(6,9780)
+9780      FORMAT(/ ' Beam characterization model not implemented, use so
      *urce 1 - 3!'//)
       ELSE
-          WRITE(6,9720)
-9720      FORMAT('In srcxyznrc:  error on input, ENFLAG inconsistent ')
+          WRITE(6,9790)
+9790      FORMAT('In srcxyznrc:  error on input, ENFLAG inconsistent ')
           STOP
       END IF
       return
-8290  CONTINUE
-      WRITE(6,9730)
-      WRITE(1,9730)
-9730  FORMAT(//' *** error on reading spectrum file name ***')
+8360  CONTINUE
+      WRITE(6,9800)
+      WRITE(1,9800)
+9800  FORMAT(//' *** error on reading spectrum file name ***')
       STOP
-8540  CONTINUE
-      WRITE(6,9740)
-      WRITE(1,9740)
-9740  FORMAT(//' *** error on reading file name ***')
+8610  CONTINUE
+      WRITE(6,9810)
+      WRITE(1,9810)
+9810  FORMAT(//' *** error on reading file name ***')
       STOP
-9750  CONTINUE
-      WRITE(6,9760)
-      WRITE(1,9760)
-9760  FORMAT(//' *** Error on opening file ***'// ' *** Please check whe
+9820  CONTINUE
+      WRITE(6,9830)
+      WRITE(1,9830)
+9830  FORMAT(//' *** Error on opening file ***'// ' *** Please check whe
      *ther this is a MODE0 file or '/ ' *** it is in the right directory
      *, and try again!'//)
       STOP
-8890  CONTINUE
-      WRITE(6,9770)
-      WRITE(1,9770)
-9770  FORMAT(//' *** error on reading accelerator, input file, pegs data
+8960  CONTINUE
+      WRITE(6,9840)
+      WRITE(1,9840)
+9840  FORMAT(//' *** error on reading accelerator, input file, pegs data
      ****')
       STOP
-8960  CONTINUE
-      WRITE(6,9780)
-      WRITE(1,9780)
-9780  FORMAT(//' *** error on reading VCU sim., input file names ***')
+9030  CONTINUE
+      WRITE(6,9850)
+      WRITE(1,9850)
+9850  FORMAT(//' *** error on reading VCU sim., input file names ***')
       STOP
-9420  CONTINUE
-      WRITE(6,9790)
-      WRITE(1,9790)
-9790  FORMAT(//' *** error on reading accelerator, input file, pegs data
+9490  CONTINUE
+      WRITE(6,9860)
+      WRITE(1,9860)
+9860  FORMAT(//' *** error on reading accelerator, input file, pegs data
      ****'// ' (MLC code, MLC input file if selected) '//)
       STOP
       end
@@ -12665,23 +12754,24 @@ C*****************************************************************************
      * muIndex(60000),  r_11(60000), r_12(60000), r_13(60000), r_21(6000
      *0), r_22(60000), r_23(60000), r_31(60000), r_32(60000), r_33(60000
      *), dsource, dsourcetemp(60000), ein,  eksrcm,  esrc_sp,  SSD,  ein
-     *srcold, NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  latchold,  e
-     *nflag,  dflag,  ismode,  isource,     iqin,        iqphsp,
-     *           iqinc,                          SHLflag,     calflag,
-     *   MLCflag,     ixinl,       ixinu,       jyinl,       jyinu,
-     *  kzinl,       kzinu,       klowx,       khix,        klowy,
-     * khiy,        klowz,       khiz,        survival_ratio,        nsm
-     *iss,      nsblocked,     nsrjct,      nsoutside,     nmissm,
-     *IPRIMARY,                                            OLDSRC,
-     * npassi,                     nang,         ivary(60000),     ngang
-     *(60000),       nset,            more_in_cont,                 numa
-     *ng,       dose_stat,      ndbsrjct,                        i_dbs,
-     *         iphatsrc,         e_split,                           i_ia
-     *ea_in,      i_mu_phsp,           izscore,             i_unit_in,
-     *                k_field,                       nhist_last,
-     *         the_beam_code,         the_input_file,      the_vcu_input
-     *_file,                        the_pegs_file,           the_shared_
-     *lib,                    the_vcu_code,               the_phsp_file
+     *srcold, iaea_SAD,  NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  l
+     *atchold,  enflag,  dflag,  ismode,  isource,     iqin,        iqph
+     *sp,                   iqinc,                          SHLflag,
+     * calflag,     MLCflag,     ixinl,       ixinu,       jyinl,
+     *jyinu,       kzinl,       kzinu,       klowx,       khix,        k
+     *lowy,       khiy,        klowz,       khiz,        survival_ratio,
+     *        nsmiss,      nsblocked,     nsrjct,      nsoutside,     nm
+     *issm,      IPRIMARY,                                            OL
+     *DSRC,       npassi,                     nang,         ivary(60000)
+     *,     ngang(60000),       nset,            more_in_cont,
+     *       numang,       dose_stat,      ndbsrjct,
+     *    i_dbs,          iphatsrc,         e_split,
+     *       i_iaea_in,      i_mu_phsp,           izscore,             i
+     *_unit_in,                  k_field,                       nhist_la
+     *st,                 the_beam_code,         the_input_file,      th
+     *e_vcu_input_file,                        the_pegs_file,
+     *the_shared_lib,                    the_vcu_code,               the
+     *_phsp_file
       real*8    esrc,muIndex
       integer*8 nhist, nnread,nshist,nphist,nnphsp
       real*8 einsrc, xsrcold, ysrcold,usrcold,vsrcold,wsrcold,weightold,
@@ -12693,7 +12783,8 @@ C*****************************************************************************
      *max,pgang,r_11, r_12, r_13, r_21,                       r_22, r_23
      *, r_31, r_32, r_33,dsource,dsourcetemp,
      *    ein, eksrcm, esrc_sp, SSD, NINCSRC,
-     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold
+     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold,ia
+     *ea_SAD
       integer*4 isource, iqin, iqphsp, iqinc,latchold,iqinold,MLCflag,SH
      *Lflag,         calflag, ixinl, ixinu, jyinl, jyinu, kzinl, kzinu,
      *                             klowx, khix, klowy, khiy, klowz, khiz
@@ -12754,9 +12845,9 @@ C*****************************************************************************
       CHARACTER*32 REC_TEMP_OUT
       real*8 weight, costheta,sintheta, coscol,sincol, cosphi,sinphi
       integer*4 i
-      WRITE(6,9800)
-      WRITE(1,9800)
-9800  FORMAT(' ')
+      WRITE(6,9870)
+      WRITE(1,9870)
+9870  FORMAT(' ')
       IF ((isource .EQ. 0)) THEN
           IF ((xinl .LT. xbound(1))) THEN
               xinl = xbound(1)
@@ -12770,30 +12861,30 @@ C*****************************************************************************
           IF (( xinl .GT. xbound(imax+1) )) THEN
               xinl=xbound(imax+1)
           END IF
-          WRITE(6,9810)
-          WRITE(1,9810)
-9810      FORMAT(/' Index ranges of beam field'/ ' ---------------------
+          WRITE(6,9880)
+          WRITE(1,9880)
+9880      FORMAT(/' Index ranges of beam field'/ ' ---------------------
      *-----'/)
           ixinl=0
-9821      CONTINUE
+9891      CONTINUE
               ixinl=ixinl+1
               IF(((xbound(ixinl) .LE. xinl .AND. xbound(ixinl+1) .GT. xi
-     *        nl)))GO TO9822
-          GO TO 9821
-9822      CONTINUE
+     *        nl)))GO TO9892
+          GO TO 9891
+9892      CONTINUE
           ixinu=ixinl-1
-9831      CONTINUE
+9901      CONTINUE
               ixinu=ixinu+1
               IF(((xbound(ixinu) .LE. xinu .AND. xbound(ixinu+1) .GE. xi
-     *        nu)))GO TO9832
-          GO TO 9831
-9832      CONTINUE
-          WRITE(6,9840)xinl,xinu
-          WRITE(1,9840)xinl,xinu
-9840      FORMAT(' ',2f10.3,$)
-          WRITE(6,9850)ixinl,ixinu
-          WRITE(1,9850)ixinl,ixinu
-9850      FORMAT('   i index ranges over i=',i3,' to',i4)
+     *        nu)))GO TO9902
+          GO TO 9901
+9902      CONTINUE
+          WRITE(6,9910)xinl,xinu
+          WRITE(1,9910)xinl,xinu
+9910      FORMAT(' ',2f10.3,$)
+          WRITE(6,9920)ixinl,ixinu
+          WRITE(1,9920)ixinl,ixinu
+9920      FORMAT('   i index ranges over i=',i3,' to',i4)
           IF ((yinl .LT. ybound(1))) THEN
               yinl = ybound(1)
           END IF
@@ -12807,51 +12898,51 @@ C*****************************************************************************
               yinl=ybound(jmax+1)
           END IF
           jyinl=0
-9861      CONTINUE
+9931      CONTINUE
               jyinl=jyinl+1
               IF(((ybound(jyinl) .LE. yinl .AND. ybound(jyinl+1) .GT. yi
-     *        nl)))GO TO9862
-          GO TO 9861
-9862      CONTINUE
+     *        nl)))GO TO9932
+          GO TO 9931
+9932      CONTINUE
           jyinu=jyinl-1
-9871      CONTINUE
+9941      CONTINUE
               jyinu=jyinu+1
               IF(((ybound(jyinu) .LE. yinu .AND. ybound(jyinu+1) .GE. yi
-     *        nu)))GO TO9872
-          GO TO 9871
-9872      CONTINUE
-          WRITE(6,9880)yinl,yinu
-          WRITE(1,9880)yinl,yinu
-9880      FORMAT(' ',2f10.3,$)
-          WRITE(6,9890)jyinl,jyinu
-          WRITE(1,9890)jyinl,jyinu
-9890      FORMAT('   j index ranges over j=',i3,' to',i4)
+     *        nu)))GO TO9942
+          GO TO 9941
+9942      CONTINUE
+          WRITE(6,9950)yinl,yinu
+          WRITE(1,9950)yinl,yinu
+9950      FORMAT(' ',2f10.3,$)
+          WRITE(6,9960)jyinl,jyinu
+          WRITE(1,9960)jyinl,jyinu
+9960      FORMAT('   j index ranges over j=',i3,' to',i4)
           winc = cos(thetaz*3.141593/180.)
           uinc = cos(thetax*3.141593/180.)
           vinc = cos(thetay*3.141593/180.)
           IF ((thetaz .GT. 90. .OR. thetaz .LT. -90.)) THEN
-              WRITE(6,9900)
-9900          FORMAT(//' ***ERROR in source 0'/ ' thetaz set so that sou
+              WRITE(6,9970)
+9970          FORMAT(//' ***ERROR in source 0'/ ' thetaz set so that sou
      *rce is not incident on front of'/ ' phantom.  Check incident angle
      *s and try again.'//)
               STOP
           ELSE IF((thetax .GT. 180. .OR. thetax .LT. 0.)) THEN
-              WRITE(6,9910)
-9910          FORMAT(//' ***ERROR in source 0'/ ' thetax set so that sou
+              WRITE(6,9980)
+9980          FORMAT(//' ***ERROR in source 0'/ ' thetax set so that sou
      *rce is not incident on front of'/ ' phantom.  Check incident angle
      *s and try again.'//)
               STOP
           ELSE IF((thetay .GT. 180. .OR. thetay .LT. 0.)) THEN
-              WRITE(6,9920)
-9920          FORMAT(//' ***ERROR in source 0'/ ' thetay set so that sou
+              WRITE(6,9990)
+9990          FORMAT(//' ***ERROR in source 0'/ ' thetay set so that sou
      *rce is not incident on front of'/ ' phantom.  Check incident angle
      *s and try again.'//)
               STOP
           END IF
           IF ((uinc*uinc+vinc*vinc+winc*winc.GT.1.001 .OR. uinc*uinc+vin
      *    c*vinc+winc*winc.LT.0.009)) THEN
-              WRITE(6,9930)
-9930          FORMAT(//' ***ERROR in source 0'/ ' Sum of squares of inci
+              WRITE(6,10000)
+10000         FORMAT(//' ***ERROR in source 0'/ ' Sum of squares of inci
      *dent direction cosines must be 1.'/ ' Check angles and try again.'
      *//)
               STOP
@@ -12859,13 +12950,13 @@ C*****************************************************************************
               winc=SQRT(1-uinc*uinc-vinc*vinc)
               thetaz = acos(winc)*180./3.141593
           END IF
-          WRITE(6,9940)
-          WRITE(1,9940)
-9940      FORMAT(/' Angle of beam to'/ '  axes(in deg, 90,90,0 is normal
+          WRITE(6,10010)
+          WRITE(1,10010)
+10010     FORMAT(/' Angle of beam to'/ '  axes(in deg, 90,90,0 is normal
      *): ',$)
-          WRITE(6,9950)thetax,thetay,thetaz
-          WRITE(1,9950)thetax,thetay,thetaz
-9950      FORMAT(' ',3f10.2,' deg')
+          WRITE(6,10020)thetax,thetay,thetaz
+          WRITE(1,10020)thetax,thetay,thetaz
+10020     FORMAT(' ',3f10.2,' deg')
           beamarea = (xinu - xinl)*(yinu - yinl)
           zinc = zbound(1)
           weight = 1.0
@@ -12901,30 +12992,30 @@ C*****************************************************************************
           IF (( xinl .GT. xbound(imax+1) )) THEN
               xinl=xbound(imax+1)
           END IF
-          WRITE(6,9960)
-          WRITE(1,9960)
-9960      FORMAT(/' Index ranges of beam field'/ ' ---------------------
+          WRITE(6,10030)
+          WRITE(1,10030)
+10030     FORMAT(/' Index ranges of beam field'/ ' ---------------------
      *-----'/)
           ixinl=0
-9971      CONTINUE
+10041     CONTINUE
               ixinl=ixinl+1
               IF(((xbound(ixinl) .LE. xinl .AND. xbound(ixinl+1) .GT. xi
-     *        nl)))GO TO9972
-          GO TO 9971
-9972      CONTINUE
+     *        nl)))GO TO10042
+          GO TO 10041
+10042     CONTINUE
           ixinu=ixinl-1
-9981      CONTINUE
+10051     CONTINUE
               ixinu=ixinu+1
               IF(((xbound(ixinu) .LE. xinu .AND. xbound(ixinu+1) .GE. xi
-     *        nu)))GO TO9982
-          GO TO 9981
-9982      CONTINUE
-          WRITE(6,9990)xinl,xinu
-          WRITE(1,9990)xinl,xinu
-9990      FORMAT(' ',2f10.3,$)
-          WRITE(6,10000)ixinl,ixinu
-          WRITE(1,10000)ixinl,ixinu
-10000     FORMAT('   i index ranges over i=',i3,' to',i4)
+     *        nu)))GO TO10052
+          GO TO 10051
+10052     CONTINUE
+          WRITE(6,10060)xinl,xinu
+          WRITE(1,10060)xinl,xinu
+10060     FORMAT(' ',2f10.3,$)
+          WRITE(6,10070)ixinl,ixinu
+          WRITE(1,10070)ixinl,ixinu
+10070     FORMAT('   i index ranges over i=',i3,' to',i4)
           IF ((yinl .LT. ybound(1))) THEN
               yinl = ybound(1)
           END IF
@@ -12938,25 +13029,25 @@ C*****************************************************************************
               yinl=ybound(jmax+1)
           END IF
           jyinl=0
-10011     CONTINUE
+10081     CONTINUE
               jyinl=jyinl+1
               IF(((ybound(jyinl) .LE. yinl .AND. ybound(jyinl+1) .GT. yi
-     *        nl)))GO TO10012
-          GO TO 10011
-10012     CONTINUE
+     *        nl)))GO TO10082
+          GO TO 10081
+10082     CONTINUE
           jyinu=jyinl-1
-10021     CONTINUE
+10091     CONTINUE
               jyinu=jyinu+1
               IF(((ybound(jyinu) .LE. yinu .AND. ybound(jyinu+1) .GE. yi
-     *        nu)))GO TO10022
-          GO TO 10021
-10022     CONTINUE
-          WRITE(6,10030)yinl,yinu
-          WRITE(1,10030)yinl,yinu
-10030     FORMAT(' ',2f10.3,$)
-          WRITE(6,10040)jyinl,jyinu
-          WRITE(1,10040)jyinl,jyinu
-10040     FORMAT('   j index ranges over j=',i3,' to',i4)
+     *        nu)))GO TO10092
+          GO TO 10091
+10092     CONTINUE
+          WRITE(6,10100)yinl,yinu
+          WRITE(1,10100)yinl,yinu
+10100     FORMAT(' ',2f10.3,$)
+          WRITE(6,10110)jyinl,jyinu
+          WRITE(1,10110)jyinl,jyinu
+10110     FORMAT('   j index ranges over j=',i3,' to',i4)
           beamarea = (xinu - xinl)*(yinu - yinl)
           zinc = zbound(1)
           weight = 1.0
@@ -12964,157 +13055,157 @@ C*****************************************************************************
       ELSE IF((isource .EQ. 6 )) THEN
           IF ((xinl.LT.xbound(1))) THEN
               IF ((xinu .LT. xbound(1))) THEN
-                  WRITE(6,10050)
-10050             FORMAT(//' ***ERROR in source 6:'/ ' xinl & xinu < xbo
+                  WRITE(6,10120)
+10120             FORMAT(//' ***ERROR in source 6:'/ ' xinl & xinu < xbo
      *und(1) of volume'//)
                   STOP
               ELSE
                   xinl= xbound(1)
-                  WRITE(6,10060)xinl
-                  WRITE(1,10060)xinl
-10060             FORMAT(//' ***WARNING in source 6:'/ ' xinl < xbound(1
+                  WRITE(6,10130)xinl
+                  WRITE(1,10130)xinl
+10130             FORMAT(//' ***WARNING in source 6:'/ ' xinl < xbound(1
      *)'/ ' xinl reset to',F10.4,' cm'//)
               END IF
           END IF
           IF ((xinu .GT. xbound(imax+1))) THEN
               IF ((xinl .GT. xbound(imax+1))) THEN
-                  WRITE(6,10070)
-10070             FORMAT(//' ***ERROR in source 6:'/ ' xinl & xinu > max
+                  WRITE(6,10140)
+10140             FORMAT(//' ***ERROR in source 6:'/ ' xinl & xinu > max
      * xbound of volume'//)
                   STOP
               ELSE
                   xinu=xbound(imax+1)
-                  WRITE(6,10080)xinu
-                  WRITE(1,10080)xinu
-10080             FORMAT(//' ***WARNING in source 6:'/ ' xinu > max xbou
+                  WRITE(6,10150)xinu
+                  WRITE(1,10150)xinu
+10150             FORMAT(//' ***WARNING in source 6:'/ ' xinu > max xbou
      *nd of geometry'/ ' xinu reset to',F10.4,' cm'//)
               END IF
           END IF
           IF ((yinl.LT.ybound(1))) THEN
               IF ((yinu .LT. ybound(1))) THEN
-                  WRITE(6,10090)
-10090             FORMAT(//' ***ERROR in source 6:'/ ' yinl & yinu < ybo
+                  WRITE(6,10160)
+10160             FORMAT(//' ***ERROR in source 6:'/ ' yinl & yinu < ybo
      *und(1) of volume'//)
                   STOP
               ELSE
                   yinl= ybound(1)
-                  WRITE(6,10100)yinl
-                  WRITE(1,10100)yinl
-10100             FORMAT(//' ***WARNING in source 6:'/ ' yinl < ybound(1
+                  WRITE(6,10170)yinl
+                  WRITE(1,10170)yinl
+10170             FORMAT(//' ***WARNING in source 6:'/ ' yinl < ybound(1
      *)'/ ' yinl reset to',F10.4,' cm'//)
               END IF
           END IF
           IF ((yinu .GT. ybound(jmax+1))) THEN
               IF ((yinl .GT. ybound(jmax+1))) THEN
-                  WRITE(6,10110)
-10110             FORMAT(//' ***ERROR in source 6:'/ ' yinl & yinu > max
+                  WRITE(6,10180)
+10180             FORMAT(//' ***ERROR in source 6:'/ ' yinl & yinu > max
      * ybound of volume'//)
                   STOP
               ELSE
                   yinu=ybound(jmax+1)
-                  WRITE(6,10120)yinu
-                  WRITE(1,10120)yinu
-10120             FORMAT(//' ***WARNING in source 6:'/ ' yinu > max ybou
+                  WRITE(6,10190)yinu
+                  WRITE(1,10190)yinu
+10190             FORMAT(//' ***WARNING in source 6:'/ ' yinu > max ybou
      *nd of geometry'/ ' yinu reset to',F10.4,' cm'//)
               END IF
           END IF
           IF ((zinl.LT.zbound(1))) THEN
               IF ((zinu .LT. zbound(1))) THEN
-                  WRITE(6,10130)
-10130             FORMAT(//' ***ERROR in source 6:'/ ' zinl & zinu < zbo
+                  WRITE(6,10200)
+10200             FORMAT(//' ***ERROR in source 6:'/ ' zinl & zinu < zbo
      *und(1) of volume'//)
                   STOP
               ELSE
                   zinl= zbound(1)
-                  WRITE(6,10140)zinl
-                  WRITE(1,10140)zinl
-10140             FORMAT(//' ***WARNING in source 6:'/ ' zinl < zbound(1
+                  WRITE(6,10210)zinl
+                  WRITE(1,10210)zinl
+10210             FORMAT(//' ***WARNING in source 6:'/ ' zinl < zbound(1
      *)'/ ' zinl reset to',F10.4,' cm'//)
               END IF
           END IF
           IF ((zinu .GT. zbound(kmax+1))) THEN
               IF ((zinl .GT. zbound(kmax+1))) THEN
-                  WRITE(6,10150)
-10150             FORMAT(//' ***ERROR in source 6:'/ ' zinl & zinu > max
+                  WRITE(6,10220)
+10220             FORMAT(//' ***ERROR in source 6:'/ ' zinl & zinu > max
      * zbound of volume'//)
                   STOP
               ELSE
                   zinu=zbound(kmax+1)
-                  WRITE(6,10160)zinu
-                  WRITE(1,10160)zinu
-10160             FORMAT(//' ***WARNING in source 6:'/ ' zinu > max zbou
+                  WRITE(6,10230)zinu
+                  WRITE(1,10230)zinu
+10230             FORMAT(//' ***WARNING in source 6:'/ ' zinu > max zbou
      *nd of geometry'/ ' zinu reset to',F10.4,' cm'//)
               END IF
           END IF
-          WRITE(6,10170)
-          WRITE(1,10170)
-10170     FORMAT(/' Index ranges of source volume'/ ' ------------------
+          WRITE(6,10240)
+          WRITE(1,10240)
+10240     FORMAT(/' Index ranges of source volume'/ ' ------------------
      *-----------'/)
           ixinl=0
-10181     CONTINUE
+10251     CONTINUE
               ixinl=ixinl+1
               IF(((xbound(ixinl) .LE. xinl .AND. xbound(ixinl+1) .GT. xi
-     *        nl)))GO TO10182
-          GO TO 10181
-10182     CONTINUE
+     *        nl)))GO TO10252
+          GO TO 10251
+10252     CONTINUE
           ixinu=ixinl-1
-10191     CONTINUE
+10261     CONTINUE
               ixinu=ixinu+1
               IF(((xbound(ixinu) .LE. xinu .AND. xbound(ixinu+1) .GE. xi
-     *        nu)))GO TO10192
-          GO TO 10191
-10192     CONTINUE
-          WRITE(6,10200)xinl,xinu
-          WRITE(1,10200)xinl,xinu
-10200     FORMAT(' ',2f10.3,$)
-          WRITE(6,10210)ixinl,ixinu
-          WRITE(1,10210)ixinl,ixinu
-10210     FORMAT('   i index ranges over i=',i3,' to',i4)
-          jyinl=0
-10221     CONTINUE
-              jyinl=jyinl+1
-              IF(((ybound(jyinl) .LE. yinl .AND. ybound(jyinl+1) .GT. yi
-     *        nl)))GO TO10222
-          GO TO 10221
-10222     CONTINUE
-          jyinu=jyinl-1
-10231     CONTINUE
-              jyinu=jyinu+1
-              IF(((ybound(jyinu) .LE. yinu .AND. ybound(jyinu+1) .GE. yi
-     *        nu)))GO TO10232
-          GO TO 10231
-10232     CONTINUE
-          WRITE(6,10240)yinl,yinu
-          WRITE(1,10240)yinl,yinu
-10240     FORMAT(' ',2f10.3,$)
-          WRITE(6,10250)jyinl,jyinu
-          WRITE(1,10250)jyinl,jyinu
-10250     FORMAT('   j index ranges over j=',i3,' to',i4)
-          kzinl=0
-10261     CONTINUE
-              kzinl=kzinl+1
-              IF(((zbound(kzinl) .LE. zinl .AND. zbound(kzinl+1) .GT. zi
-     *        nl)))GO TO10262
+     *        nu)))GO TO10262
           GO TO 10261
 10262     CONTINUE
+          WRITE(6,10270)xinl,xinu
+          WRITE(1,10270)xinl,xinu
+10270     FORMAT(' ',2f10.3,$)
+          WRITE(6,10280)ixinl,ixinu
+          WRITE(1,10280)ixinl,ixinu
+10280     FORMAT('   i index ranges over i=',i3,' to',i4)
+          jyinl=0
+10291     CONTINUE
+              jyinl=jyinl+1
+              IF(((ybound(jyinl) .LE. yinl .AND. ybound(jyinl+1) .GT. yi
+     *        nl)))GO TO10292
+          GO TO 10291
+10292     CONTINUE
+          jyinu=jyinl-1
+10301     CONTINUE
+              jyinu=jyinu+1
+              IF(((ybound(jyinu) .LE. yinu .AND. ybound(jyinu+1) .GE. yi
+     *        nu)))GO TO10302
+          GO TO 10301
+10302     CONTINUE
+          WRITE(6,10310)yinl,yinu
+          WRITE(1,10310)yinl,yinu
+10310     FORMAT(' ',2f10.3,$)
+          WRITE(6,10320)jyinl,jyinu
+          WRITE(1,10320)jyinl,jyinu
+10320     FORMAT('   j index ranges over j=',i3,' to',i4)
+          kzinl=0
+10331     CONTINUE
+              kzinl=kzinl+1
+              IF(((zbound(kzinl) .LE. zinl .AND. zbound(kzinl+1) .GT. zi
+     *        nl)))GO TO10332
+          GO TO 10331
+10332     CONTINUE
           kzinu=kzinl-1
-10271     CONTINUE
+10341     CONTINUE
               kzinu=kzinu+1
               IF(((zbound(kzinu) .LE. zinu .AND. zbound(kzinu+1) .GE. zi
-     *        nu)))GO TO10272
-          GO TO 10271
-10272     CONTINUE
-          WRITE(6,10280)zinl,zinu
-          WRITE(1,10280)zinl,zinu
-10280     FORMAT(' ',2f10.3,$)
-          WRITE(6,10290)kzinl,kzinu
-          WRITE(1,10290)kzinl,kzinu
-10290     FORMAT('   k index ranges over k=',i3,' to',i4)
+     *        nu)))GO TO10342
+          GO TO 10341
+10342     CONTINUE
+          WRITE(6,10350)zinl,zinu
+          WRITE(1,10350)zinl,zinu
+10350     FORMAT(' ',2f10.3,$)
+          WRITE(6,10360)kzinl,kzinu
+          WRITE(1,10360)kzinl,kzinu
+10360     FORMAT('   k index ranges over k=',i3,' to',i4)
           weight=1.0
       ELSE IF((isource .EQ. 9 .OR. isource.EQ.10)) THEN
           dsource = -dsource
-          WRITE(6,10300)'About to call init_beamsource'
-10300     FORMAT(//a)
+          WRITE(6,10370)'About to call init_beamsource'
+10370     FORMAT(//a)
           call init_beamsource(i_parallel,n_parallel,i_log,'linux_home',
      *     hen_house,egs_home,the_beam_code, the_pegs_file,the_input_fil
      *    e)
@@ -13123,56 +13214,56 @@ C*****************************************************************************
           IF ((SHLflag .EQ. 1)) THEN
               survival_ratio = 1
               IF ((MLCflag .EQ. 1)) THEN
-                  WRITE(6,10310)'About to initialise MLC code and run ca
+                  WRITE(6,10380)'About to initialise MLC code and run ca
      *libration...'
-10310             FORMAT(//a)
+10380             FORMAT(//a)
                   call init_vcusource(survival_ratio,'linux_home',hen_ho
      *            use, egs_home,the_shared_lib,the_input_file)
               ELSE
-                  WRITE(6,10320)'About to initialise BEAM code..'
-10320             FORMAT(//a)
+                  WRITE(6,10390)'About to initialise BEAM code..'
+10390             FORMAT(//a)
                   call init_beamsource(i_parallel,n_parallel,i_log,'linu
      *x_home', hen_house,egs_home,the_shared_lib, the_pegs_file,the_inpu
      *            t_file)
               END IF
               IF ((calflag .EQ. 0)) THEN
                   call calibration_run(survival_ratio)
-                  WRITE(6,10330)survival_ratio
-                  WRITE(1,10330)survival_ratio
-10330             FORMAT('Survival Ratio is: ', F12.10)
+                  WRITE(6,10400)survival_ratio
+                  WRITE(1,10400)survival_ratio
+10400             FORMAT('Survival Ratio is: ', F12.10)
               ELSE
                   survival_ratio = 1
-                  WRITE(6,10340)
-                  WRITE(1,10340)
-10340             FORMAT(/'Calibration run skipped!'/)
+                  WRITE(6,10410)
+                  WRITE(1,10410)
+10410             FORMAT(/'Calibration run skipped!'/)
               END IF
           ELSE
-              WRITE(6,10350)
-              WRITE(1,10350)
-10350         FORMAT(/'No shared library'/)
+              WRITE(6,10420)
+              WRITE(1,10420)
+10420         FORMAT(/'No shared library'/)
               survival_ratio = 1
           END IF
           esrc = 0
           OUTCNT = 0
       ELSE IF((isource .EQ. 21)) THEN
           dsource = -dsource
-          WRITE(6,10360)'About to call init_beamsource'
-10360     FORMAT(//a)
+          WRITE(6,10430)'About to call init_beamsource'
+10430     FORMAT(//a)
           call init_beamsource(i_parallel,n_parallel,i_log,'linux_home',
      *     hen_house,egs_home,the_beam_code, the_pegs_file,the_input_fil
      *    e)
-          WRITE(6,10370)'Done initialization'
-10370     FORMAT(//a)
+          WRITE(6,10440)'Done initialization'
+10440     FORMAT(//a)
           survival_ratio = 1
           IF ((MLCflag .EQ. 1)) THEN
-              WRITE(6,10380)'About to initialise MLC code...'
-10380         FORMAT(//a)
+              WRITE(6,10450)'About to initialise MLC code...'
+10450         FORMAT(//a)
               call init_vcusource(survival_ratio,'linux_home',hen_house,
      *         egs_home,the_vcu_code,the_vcu_input_file)
           ELSE
-              WRITE(6,10390)
-              WRITE(1,10390)
-10390         FORMAT(/'No external library MLC'/)
+              WRITE(6,10460)
+              WRITE(1,10460)
+10460         FORMAT(/'No external library MLC'/)
           END IF
       END IF
       IF ((isource .GT.3 .AND. isource .LT.7)) THEN
@@ -13196,7 +13287,7 @@ C*****************************************************************************
           r_33(1) = -costheta
       END IF
       IF ((isource.EQ.7 .OR. isource.EQ.8 .OR. isource.EQ.10)) THEN
-          DO 10401 I=2,numang
+          DO 10471 I=2,numang
               costheta = cos(theta(I)*3.141593/180.)
               sintheta = sin(theta(I)*3.141593/180.)
               cosphi = cos(phi(I)*3.141593/180.)
@@ -13210,8 +13301,8 @@ C*****************************************************************************
               r_31(I) = -sintheta*coscol
               r_32(I) = sintheta*sincol
               r_33(I) = -costheta
-10401     CONTINUE
-10402     CONTINUE
+10471     CONTINUE
+10472     CONTINUE
       END IF
       klowx = 2 - imax - ijmax
       khix=1 - ijmax
@@ -13240,23 +13331,24 @@ C*****************************************************************************
      * muIndex(60000),  r_11(60000), r_12(60000), r_13(60000), r_21(6000
      *0), r_22(60000), r_23(60000), r_31(60000), r_32(60000), r_33(60000
      *), dsource, dsourcetemp(60000), ein,  eksrcm,  esrc_sp,  SSD,  ein
-     *srcold, NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  latchold,  e
-     *nflag,  dflag,  ismode,  isource,     iqin,        iqphsp,
-     *           iqinc,                          SHLflag,     calflag,
-     *   MLCflag,     ixinl,       ixinu,       jyinl,       jyinu,
-     *  kzinl,       kzinu,       klowx,       khix,        klowy,
-     * khiy,        klowz,       khiz,        survival_ratio,        nsm
-     *iss,      nsblocked,     nsrjct,      nsoutside,     nmissm,
-     *IPRIMARY,                                            OLDSRC,
-     * npassi,                     nang,         ivary(60000),     ngang
-     *(60000),       nset,            more_in_cont,                 numa
-     *ng,       dose_stat,      ndbsrjct,                        i_dbs,
-     *         iphatsrc,         e_split,                           i_ia
-     *ea_in,      i_mu_phsp,           izscore,             i_unit_in,
-     *                k_field,                       nhist_last,
-     *         the_beam_code,         the_input_file,      the_vcu_input
-     *_file,                        the_pegs_file,           the_shared_
-     *lib,                    the_vcu_code,               the_phsp_file
+     *srcold, iaea_SAD,  NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  l
+     *atchold,  enflag,  dflag,  ismode,  isource,     iqin,        iqph
+     *sp,                   iqinc,                          SHLflag,
+     * calflag,     MLCflag,     ixinl,       ixinu,       jyinl,
+     *jyinu,       kzinl,       kzinu,       klowx,       khix,        k
+     *lowy,       khiy,        klowz,       khiz,        survival_ratio,
+     *        nsmiss,      nsblocked,     nsrjct,      nsoutside,     nm
+     *issm,      IPRIMARY,                                            OL
+     *DSRC,       npassi,                     nang,         ivary(60000)
+     *,     ngang(60000),       nset,            more_in_cont,
+     *       numang,       dose_stat,      ndbsrjct,
+     *    i_dbs,          iphatsrc,         e_split,
+     *       i_iaea_in,      i_mu_phsp,           izscore,             i
+     *_unit_in,                  k_field,                       nhist_la
+     *st,                 the_beam_code,         the_input_file,      th
+     *e_vcu_input_file,                        the_pegs_file,
+     *the_shared_lib,                    the_vcu_code,               the
+     *_phsp_file
       real*8    esrc,muIndex
       integer*8 nhist, nnread,nshist,nphist,nnphsp
       real*8 einsrc, xsrcold, ysrcold,usrcold,vsrcold,wsrcold,weightold,
@@ -13268,7 +13360,8 @@ C*****************************************************************************
      *max,pgang,r_11, r_12, r_13, r_21,                       r_22, r_23
      *, r_31, r_32, r_33,dsource,dsourcetemp,
      *    ein, eksrcm, esrc_sp, SSD, NINCSRC,
-     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold
+     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold,ia
+     *ea_SAD
       integer*4 isource, iqin, iqphsp, iqinc,latchold,iqinold,MLCflag,SH
      *Lflag,         calflag, ixinl, ixinu, jyinl, jyinu, kzinl, kzinu,
      *                             klowx, khix, klowy, khiy, klowz, khiz
@@ -13332,24 +13425,24 @@ C*****************************************************************************
      *_chunk, file_units, n_files,i_input,i_log,i_incoh, i_nist_data,i_m
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch, is_pegsless, is_uniform_run
-      WRITE(6,10410)'Performing BEAM calibration run...'
-10410 FORMAT(//a)
+      WRITE(6,10480)'Performing BEAM calibration run...'
+10480 FORMAT(//a)
       IF ((nshist.GT.1000000)) THEN
           num2run=1000000
       ELSE
           num2run = nshist
       END IF
-      WRITE(6,10420)num2run
-      WRITE(1,10420)num2run
-10420 FORMAT('Running ',i8, ' particles to calibrate BEAM accelerator...
+      WRITE(6,10490)num2run
+      WRITE(1,10490)num2run
+10490 FORMAT('Running ',i8, ' particles to calibrate BEAM accelerator...
      *'/)
       num_hist=1
       num_dbsrj=0
       total_survived=0.0
       more_in_cont=0
-10431 CONTINUE
+10501 CONTINUE
           IF ((more_in_cont .EQ. 0)) THEN
-10440         CONTINUE
+10510         CONTINUE
               num_hist=num_hist+1
               IF ((i_iaea_in.EQ.1)) THEN
                   npassdum=0
@@ -13459,7 +13552,7 @@ C*****************************************************************************
                   IF (((xsrc+usrc*dist_dbs)**2+(ysrc+vsrc*dist_dbs)**2.G
      *            T.r_dbs**2)) THEN
                       num_dbsrj=num_dbsrj+1
-                      goto 10440
+                      goto 10510
                   END IF
               END IF
               IF ((i_iaea_in.EQ.1 .AND. i_mu_phsp.EQ.1)) THEN
@@ -13484,9 +13577,9 @@ C*****************************************************************************
           ELSE
               num_blocked=num_blocked+1
           END IF
-          IF(((num_hist.GE.(num2run+1))))GO TO10432
-      GO TO 10431
-10432 CONTINUE
+          IF(((num_hist.GE.(num2run+1))))GO TO10502
+      GO TO 10501
+10502 CONTINUE
       IF ((i_iaea_in.EQ.1)) THEN
           iaea_dummy_long=1
           call iaea_set_record(i_unit_in,iaea_dummy_long,iaea_result)
@@ -13498,12 +13591,12 @@ C*****************************************************************************
       END IF
       more_in_cont=0
       s_ratio=total_survived/(num2run)
-      WRITE(6,10450)num2run,total_survived,num_dbsrj,num_blocked
-      WRITE(1,10450)num2run,total_survived,num_dbsrj,num_blocked
-10450 FORMAT('Number run: ', I12/ 'Number survived: ', F12.0/ 'Number db
+      WRITE(6,10520)num2run,total_survived,num_dbsrj,num_blocked
+      WRITE(1,10520)num2run,total_survived,num_dbsrj,num_blocked
+10520 FORMAT('Number run: ', I12/ 'Number survived: ', F12.0/ 'Number db
      *s rejected: ', I12/ 'Number blocked', I12)
-      WRITE(6,10460)'Calibration complete.'
-10460 FORMAT(//a)
+      WRITE(6,10530)'Calibration complete.'
+10530 FORMAT(//a)
       return
       end
       subroutine srcout
@@ -13519,23 +13612,24 @@ C*****************************************************************************
      * muIndex(60000),  r_11(60000), r_12(60000), r_13(60000), r_21(6000
      *0), r_22(60000), r_23(60000), r_31(60000), r_32(60000), r_33(60000
      *), dsource, dsourcetemp(60000), ein,  eksrcm,  esrc_sp,  SSD,  ein
-     *srcold, NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  latchold,  e
-     *nflag,  dflag,  ismode,  isource,     iqin,        iqphsp,
-     *           iqinc,                          SHLflag,     calflag,
-     *   MLCflag,     ixinl,       ixinu,       jyinl,       jyinu,
-     *  kzinl,       kzinu,       klowx,       khix,        klowy,
-     * khiy,        klowz,       khiz,        survival_ratio,        nsm
-     *iss,      nsblocked,     nsrjct,      nsoutside,     nmissm,
-     *IPRIMARY,                                            OLDSRC,
-     * npassi,                     nang,         ivary(60000),     ngang
-     *(60000),       nset,            more_in_cont,                 numa
-     *ng,       dose_stat,      ndbsrjct,                        i_dbs,
-     *         iphatsrc,         e_split,                           i_ia
-     *ea_in,      i_mu_phsp,           izscore,             i_unit_in,
-     *                k_field,                       nhist_last,
-     *         the_beam_code,         the_input_file,      the_vcu_input
-     *_file,                        the_pegs_file,           the_shared_
-     *lib,                    the_vcu_code,               the_phsp_file
+     *srcold, iaea_SAD,  NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  l
+     *atchold,  enflag,  dflag,  ismode,  isource,     iqin,        iqph
+     *sp,                   iqinc,                          SHLflag,
+     * calflag,     MLCflag,     ixinl,       ixinu,       jyinl,
+     *jyinu,       kzinl,       kzinu,       klowx,       khix,        k
+     *lowy,       khiy,        klowz,       khiz,        survival_ratio,
+     *        nsmiss,      nsblocked,     nsrjct,      nsoutside,     nm
+     *issm,      IPRIMARY,                                            OL
+     *DSRC,       npassi,                     nang,         ivary(60000)
+     *,     ngang(60000),       nset,            more_in_cont,
+     *       numang,       dose_stat,      ndbsrjct,
+     *    i_dbs,          iphatsrc,         e_split,
+     *       i_iaea_in,      i_mu_phsp,           izscore,             i
+     *_unit_in,                  k_field,                       nhist_la
+     *st,                 the_beam_code,         the_input_file,      th
+     *e_vcu_input_file,                        the_pegs_file,
+     *the_shared_lib,                    the_vcu_code,               the
+     *_phsp_file
       real*8    esrc,muIndex
       integer*8 nhist, nnread,nshist,nphist,nnphsp
       real*8 einsrc, xsrcold, ysrcold,usrcold,vsrcold,wsrcold,weightold,
@@ -13547,7 +13641,8 @@ C*****************************************************************************
      *max,pgang,r_11, r_12, r_13, r_21,                       r_22, r_23
      *, r_31, r_32, r_33,dsource,dsourcetemp,
      *    ein, eksrcm, esrc_sp, SSD, NINCSRC,
-     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold
+     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold,ia
+     *ea_SAD
       integer*4 isource, iqin, iqphsp, iqinc,latchold,iqinold,MLCflag,SH
      *Lflag,         calflag, ixinl, ixinu, jyinl, jyinu, kzinl, kzinu,
      *                             klowx, khix, klowy, khiy, klowz, khiz
@@ -13571,25 +13666,25 @@ C*****************************************************************************
      *M
       integer*4 i,lnblnk1,IOUTLIST
       IOUTLIST = 6
-      WRITE(6,10470)
-      WRITE(1,10470)
-10470 FORMAT( /' ',79('*')//t10, 'Summary of source parameters (srcxyznr
+      WRITE(6,10540)
+      WRITE(1,10540)
+10540 FORMAT( /' ',79('*')//t10, 'Summary of source parameters (srcxyznr
      *c)' / ' ',79('*')/)
       IF ((isource .EQ. 0)) THEN
-          WRITE(6,10480)iqin,xinl,xinu,yinl,yinu,thetax,thetay,thetaz
-          WRITE(1,10480)iqin,xinl,xinu,yinl,yinu,thetax,thetay,thetaz
-10480     FORMAT( t20,' Parallel beam incident from the front(+ve z-axis
+          WRITE(6,10550)iqin,xinl,xinu,yinl,yinu,thetax,thetay,thetaz
+          WRITE(1,10550)iqin,xinl,xinu,yinl,yinu,thetax,thetay,thetaz
+10550     FORMAT( t20,' Parallel beam incident from the front(+ve z-axis
      *)'/ / t25,' Electric charge of the source:',t57,i12 / t25,' x-boun
      *daries:',t43,f10.4,' cm-',f10.4,' cm' / t25,' y-boundaries:',t43,f
      *10.4,' cm-',f10.4,' cm' / T25,' Angle relative to +x:',t57,f10.4,'
      * degrees' / T25,' Angle relative to +y:',t57,f10.4,' degrees' / T2
      *5,' Angle relative to -z:',t57,f10.4,' degrees' /)
       ELSE IF((isource .EQ. 1)) THEN
-          WRITE(6,10490)iqin,xiso,yiso,ziso,theta(1),phi(1),xcol,ycol,ph
+          WRITE(6,10560)iqin,xiso,yiso,ziso,theta(1),phi(1),xcol,ycol,ph
      *    icol
-          WRITE(1,10490)iqin,xiso,yiso,ziso,theta(1),phi(1),xcol,ycol,ph
+          WRITE(1,10560)iqin,xiso,yiso,ziso,theta(1),phi(1),xcol,ycol,ph
      *    icol
-10490     FORMAT( t15,' Parallel beam incident from an arbitrary directi
+10560     FORMAT( t15,' Parallel beam incident from an arbitrary directi
      *on' / / t20,' Electric charge of the source:' ,t62,i12 / t20,' x-c
      *oordinate of the isocenter,' ,t62,f10.4,' cm' / t20,' y-coordinate
      * of the isocenter,' ,t62,f10.4,' cm' / t20,' z-coordinate of the i
@@ -13599,11 +13694,11 @@ C*****************************************************************************
      *62,f10.4,' cm' / t20,' Total y-width of collimator,' ,t62,f10.4,' 
      *cm'/ t20,' Collimator rotation angle,' ,t62,f10.4,' degrees'/)
       ELSE IF((isource .EQ. 2)) THEN
-          WRITE(6,10500)xiso,yiso,ziso,theta(1),phi(1),dsource,phicol,ns
+          WRITE(6,10570)xiso,yiso,ziso,theta(1),phi(1),dsource,phicol,ns
      *    hist
-          WRITE(1,10500)xiso,yiso,ziso,theta(1),phi(1),dsource,phicol,ns
+          WRITE(1,10570)xiso,yiso,ziso,theta(1),phi(1),dsource,phicol,ns
      *    hist
-10500     FORMAT( t15,' Full phase space input for each incident particl
+10570     FORMAT( t15,' Full phase space input for each incident particl
      *e' // t10,' x-coordinate of the isocenter,' ,t62,f10.4,' cm' / t10
      *,' y-coordinate of the isocenter,' ,t62,f10.4,' cm' / t10,' z-coor
      *dinate of the isocenter,' ,t62,f10.4,' cm' / t10,' Polar angle of 
@@ -13613,9 +13708,9 @@ C*****************************************************************************
      *urce plane rotation angle,' ,t62,f10.4,' degrees'/ t10,' Total num
      *ber of particles in phase space file:',t62,i12/)
           IF ((i_dbs.EQ.1)) THEN
-              WRITE(6,10510)r_dbs,ssd_dbs,z_dbs
-              WRITE(1,10510)r_dbs,ssd_dbs,z_dbs
-10510         FORMAT( ' Directional Bremsstrahlung Splitting (DBS) used'
+              WRITE(6,10580)r_dbs,ssd_dbs,z_dbs
+              WRITE(1,10580)r_dbs,ssd_dbs,z_dbs
+10580         FORMAT( ' Directional Bremsstrahlung Splitting (DBS) used'
      */ ' in BEAM simulation to generate phase space source with:'/ '   
      * DBS splitting radius:',t55,f10.4/ '    SSD where radius defined:'
      *,t55,f10.4/ '    Z where source scored:',t55,f10.4/ ' Photons whos
@@ -13624,65 +13719,65 @@ C*****************************************************************************
           END IF
           IF ((IPARALLEL.GT.1)) THEN
               IF ((PARNUM.GT.0)) THEN
-                  WRITE(6,10520)IPARALLEL,INT((PARNUM-1)*nshist/IPARALLE
+                  WRITE(6,10590)IPARALLEL,INT((PARNUM-1)*nshist/IPARALLE
      *            L)+1, INT(PARNUM*nshist/IPARALLEL)
-                  WRITE(1,10520)IPARALLEL,INT((PARNUM-1)*nshist/IPARALLE
+                  WRITE(1,10590)IPARALLEL,INT((PARNUM-1)*nshist/IPARALLE
      *            L)+1, INT(PARNUM*nshist/IPARALLEL)
-10520             FORMAT('    This is one of ',i4,' parallel simulations
+10590             FORMAT('    This is one of ',i4,' parallel simulations
      *.'/ '    It will use from particle ',i12,' to particle ',i12,' in'
      */ '    the phase space source for the simulation.'/)
               ELSE IF((PARNUM.EQ.0)) THEN
-                  WRITE(6,10530)IPARALLEL
-                  WRITE(1,10530)IPARALLEL
-10530             FORMAT('    This is one of ',i4,' parallel simulations
+                  WRITE(6,10600)IPARALLEL
+                  WRITE(1,10600)IPARALLEL
+10600             FORMAT('    This is one of ',i4,' parallel simulations
      *.'/ '    It will use the entire specified phase space source'/ '  
      *for the simulation.'/)
               END IF
           END IF
           IF ((iqphsp.EQ.2)) THEN
-              WRITE(6,10540)
-              WRITE(1,10540)
-10540         FORMAT(' Particles to be simulated: all'/)
+              WRITE(6,10610)
+              WRITE(1,10610)
+10610         FORMAT(' Particles to be simulated: all'/)
           ELSE IF((iqphsp.EQ.0)) THEN
-              WRITE(6,10550)
-              WRITE(1,10550)
-10550         FORMAT(' Particles to be simulated: photon only'/)
+              WRITE(6,10620)
+              WRITE(1,10620)
+10620         FORMAT(' Particles to be simulated: photon only'/)
           ELSE IF((iqphsp.EQ.1)) THEN
-              WRITE(6,10560)
-              WRITE(1,10560)
-10560         FORMAT(' Particles to be simulated: positron only'/)
+              WRITE(6,10630)
+              WRITE(1,10630)
+10630         FORMAT(' Particles to be simulated: positron only'/)
           ELSE IF((iqphsp.EQ.-1)) THEN
-              WRITE(6,10570)
-              WRITE(1,10570)
-10570         FORMAT(' Particles to be simulated: electron only'/)
+              WRITE(6,10640)
+              WRITE(1,10640)
+10640         FORMAT(' Particles to be simulated: electron only'/)
           END IF
           IF ((e_split.GT.1 .AND. iqphsp.NE.0)) THEN
-              WRITE(6,10580)e_split
-              WRITE(1,10580)e_split
-10580         FORMAT(/' Charged particles will be split ',i10,' times.'/
+              WRITE(6,10650)e_split
+              WRITE(1,10650)e_split
+10650         FORMAT(/' Charged particles will be split ',i10,' times.'/
      *)
           END IF
       ELSE IF((isource .EQ. 3)) THEN
-          WRITE(6,10590)iqin,xinl,xinu,yinl,yinu,ssd
-          WRITE(1,10590)iqin,xinl,xinu,yinl,yinu,ssd
-10590     FORMAT( t20,' Point source incident from the front(+ve z-axis)
+          WRITE(6,10660)iqin,xinl,xinu,yinl,yinu,ssd
+          WRITE(1,10660)iqin,xinl,xinu,yinl,yinu,ssd
+10660     FORMAT( t20,' Point source incident from the front(+ve z-axis)
      *'/ t25,' Electric charge of the source:',t57,i12 / t25,' x-boundar
      *ies:',t43,f10.4,' cm-',f10.4,' cm' / t25,' y-boundaries:',t43,f10.
      *4,' cm-',f10.4,' cm' / t25,' SSD                           ',f10.4
      *,' cm' /)
       ELSE IF((isource .EQ. 6)) THEN
-          WRITE(6,10600)iqin,xinl,xinu,yinl,yinu,zinl,zinu
-          WRITE(1,10600)iqin,xinl,xinu,yinl,yinu,zinl,zinu
-10600     FORMAT( t20,' Uniform isotropically radiating parallelepiped'/
+          WRITE(6,10670)iqin,xinl,xinu,yinl,yinu,zinl,zinu
+          WRITE(1,10670)iqin,xinl,xinu,yinl,yinu,zinl,zinu
+10670     FORMAT( t20,' Uniform isotropically radiating parallelepiped'/
      *t20,' within DOSXYZ volume'/ t25,' Electric charge of the source:'
      *,t57,i12 / t25,' x-boundaries:',t43,f10.4,' cm-',f10.4,' cm'/ t25,
      *' y-boundaries:',t43,f10.4,' cm-',f10.4,' cm' / t25,' z-boundaries
      *:',t43,f10.4,' cm-',f10.4,' cm'/)
       ELSE IF((isource .EQ. 7)) THEN
           IF ((nang.GT.0)) THEN
-              WRITE(6,10610)iqin,xiso,yiso,ziso,nang,xcol,ycol,phicol
-              WRITE(1,10610)iqin,xiso,yiso,ziso,nang,xcol,ycol,phicol
-10610         FORMAT( t15,' Parallel beam incident from multiple, user-s
+              WRITE(6,10680)iqin,xiso,yiso,ziso,nang,xcol,ycol,phicol
+              WRITE(1,10680)iqin,xiso,yiso,ziso,nang,xcol,ycol,phicol
+10680         FORMAT( t15,' Parallel beam incident from multiple, user-s
      *elected angles' / / t20,' Electric charge of the source:' ,t62,i12
      */ t20,' x-coordinate of the isocenter,' ,t62,f10.4,' cm'/ t20,' y-
      *coordinate of the isocenter,' ,t62,f10.4,' cm' /t20,' z-coordinate
@@ -13690,27 +13785,27 @@ C*****************************************************************************
      *ta-phi:' ,t62,i12/ t20,' Total x-width of collimator,' ,t62,f10.4,
      *' cm' / t20,' Total y-width of collimator,' ,t62,f10.4,' cm'/ t20,
      *' Collimator rotation angle,',t62,f10.4,' degrees')
-              WRITE(6,10620)
-              WRITE(1,10620)
-10620         FORMAT(t20,'  theta-phi     theta         phi        norma
+              WRITE(6,10690)
+              WRITE(1,10690)
+10690         FORMAT(t20,'  theta-phi     theta         phi        norma
      *lized'/ t20,'    pair        (deg.)       (deg.)      probability'
      *)
-              DO 10631 I=1,nang
+              DO 10701 I=1,nang
                   IF ((I.EQ.1)) THEN
-                      WRITE(6,10640)I,theta(I),phi(I),pang(I)
-                      WRITE(1,10640)I,theta(I),phi(I),pang(I)
-10640                 FORMAT(t20,i7,f16.4,f13.4,f15.4)
+                      WRITE(6,10710)I,theta(I),phi(I),pang(I)
+                      WRITE(1,10710)I,theta(I),phi(I),pang(I)
+10710                 FORMAT(t20,i7,f16.4,f13.4,f15.4)
                   ELSE
-                      WRITE(6,10650)I,theta(I),phi(I),pang(I)-pang(I-1)
-                      WRITE(1,10650)I,theta(I),phi(I),pang(I)-pang(I-1)
-10650                 FORMAT(t20,i7,f16.4,f13.4,f15.4)
+                      WRITE(6,10720)I,theta(I),phi(I),pang(I)-pang(I-1)
+                      WRITE(1,10720)I,theta(I),phi(I),pang(I)-pang(I-1)
+10720                 FORMAT(t20,i7,f16.4,f13.4,f15.4)
                   END IF
-10631         CONTINUE
-10632         CONTINUE
+10701         CONTINUE
+10702         CONTINUE
           ELSE IF((nang.LT.0)) THEN
-              WRITE(6,10660)iqin,xiso,yiso,ziso,-nang,xcol,ycol,phicol
-              WRITE(1,10660)iqin,xiso,yiso,ziso,-nang,xcol,ycol,phicol
-10660         FORMAT( t15,' Parallel beam incident from side at user-sel
+              WRITE(6,10730)iqin,xiso,yiso,ziso,-nang,xcol,ycol,phicol
+              WRITE(1,10730)iqin,xiso,yiso,ziso,-nang,xcol,ycol,phicol
+10730         FORMAT( t15,' Parallel beam incident from side at user-sel
      *ected angles' / / t20,' Electric charge of the source:' ,t62,i12 /
      *t20,' x-coordinate of the isocenter,' ,t62,f10.4,' cm' /t20,' y-co
      *ordinate of the isocenter,' ,t62,f10.4,' cm' / t20,' z-coordinate 
@@ -13718,36 +13813,36 @@ C*****************************************************************************
      *s:' ,t62,i12/ t20,' Total x-width of collimator,' ,t62,f10.4,' cm'
      * / t20,' Total y-width of collimator,' ,t62,f10.4,' cm'/ t20,' Col
      *limator rotation angle,' ,t62,f10.4,' degrees')
-              WRITE(6,10670)
-              WRITE(1,10670)
-10670         FORMAT('  theta-phi     theta (deg.)       phi (deg.)no. t
+              WRITE(6,10740)
+              WRITE(1,10740)
+10740         FORMAT('  theta-phi     theta (deg.)       phi (deg.)no. t
      *heta-   normalized'/ '    group      min.     max.      min.   max
      *.    phi pairs    probability')
-              DO 10681 I=1,-nang
+              DO 10751 I=1,-nang
                   IF ((ivary(I).EQ.1)) THEN
-                      WRITE(6,10690)I,angmin(I),angmax(I),angfixed(I),an
+                      WRITE(6,10760)I,angmin(I),angmax(I),angfixed(I),an
      *                gfixed(I),ngang(I), pgang(I)
-                      WRITE(1,10690)I,angmin(I),angmax(I),angfixed(I),an
+                      WRITE(1,10760)I,angmin(I),angmax(I),angfixed(I),an
      *                gfixed(I),ngang(I), pgang(I)
-10690                 FORMAT(I8,F11.4,F10.4,F9.4,F10.4,I7,F14.4)
+10760                 FORMAT(I8,F11.4,F10.4,F9.4,F10.4,I7,F14.4)
                   ELSE
-                      WRITE(6,10700)I,angfixed(I),angfixed(I),angmin(I),
+                      WRITE(6,10770)I,angfixed(I),angfixed(I),angmin(I),
      *                angmax(I),ngang(I), pgang(I)
-                      WRITE(1,10700)I,angfixed(I),angfixed(I),angmin(I),
+                      WRITE(1,10770)I,angfixed(I),angfixed(I),angmin(I),
      *                angmax(I),ngang(I), pgang(I)
-10700                 FORMAT(I8,F11.4,F10.4,F9.4,F10.4,I7,F14.4)
+10770                 FORMAT(I8,F11.4,F10.4,F9.4,F10.4,I7,F14.4)
                   END IF
-10681         CONTINUE
-10682         CONTINUE
+10751         CONTINUE
+10752         CONTINUE
           END IF
-          WRITE(6,10710)
-          WRITE(1,10710)
-10710     FORMAT(' ')
+          WRITE(6,10780)
+          WRITE(1,10780)
+10780     FORMAT(' ')
       ELSE IF((isource .EQ. 8)) THEN
           IF ((nang.GT.0)) THEN
-              WRITE(6,10720)xiso,yiso,ziso,nang,dsource,phicol,nshist
-              WRITE(1,10720)xiso,yiso,ziso,nang,dsource,phicol,nshist
-10720         FORMAT( t15,' Full phase space input incident from multipl
+              WRITE(6,10790)xiso,yiso,ziso,nang,dsource,phicol,nshist
+              WRITE(1,10790)xiso,yiso,ziso,nang,dsource,phicol,nshist
+10790         FORMAT( t15,' Full phase space input incident from multipl
      *e angles' // t10,' x-coordinate of the isocenter,' ,t62,f10.4,' cm
      *' / t10,' y-coordinate of the isocenter,' ,t62,f10.4,' cm' / t10,'
      * z-coordinate of the isocenter,' ,t62,f10.4,' cm' / t10,' number o
@@ -13755,27 +13850,27 @@ C*****************************************************************************
      *rigin in source', ' plane:',t62,f10.4,' cm'/ t10,' Source plane ro
      *tation angle,' ,t62,f10.4,' degrees'/ t10,' Total number of partic
      *les in phase space file:',t62,i12/)
-              WRITE(6,10730)
-              WRITE(1,10730)
-10730         FORMAT(t10,'  theta-phi     theta         phi        norma
+              WRITE(6,10800)
+              WRITE(1,10800)
+10800         FORMAT(t10,'  theta-phi     theta         phi        norma
      *lized'/ t10,'    pair        (deg.)       (deg.)      probability'
      *)
-              DO 10741 I=1,nang
+              DO 10811 I=1,nang
                   IF ((I.EQ.1)) THEN
-                      WRITE(6,10750)I,theta(I),phi(I),pang(I)
-                      WRITE(1,10750)I,theta(I),phi(I),pang(I)
-10750                 FORMAT(t10,i7,f16.4,f13.4,f15.4)
+                      WRITE(6,10820)I,theta(I),phi(I),pang(I)
+                      WRITE(1,10820)I,theta(I),phi(I),pang(I)
+10820                 FORMAT(t10,i7,f16.4,f13.4,f15.4)
                   ELSE
-                      WRITE(6,10760)I,theta(I),phi(I),pang(I)-pang(I-1)
-                      WRITE(1,10760)I,theta(I),phi(I),pang(I)-pang(I-1)
-10760                 FORMAT(t10,i7,f16.4,f13.4,f15.4)
+                      WRITE(6,10830)I,theta(I),phi(I),pang(I)-pang(I-1)
+                      WRITE(1,10830)I,theta(I),phi(I),pang(I)-pang(I-1)
+10830                 FORMAT(t10,i7,f16.4,f13.4,f15.4)
                   END IF
-10741         CONTINUE
-10742         CONTINUE
+10811         CONTINUE
+10812         CONTINUE
           ELSE IF((nang.LT.0)) THEN
-              WRITE(6,10770)xiso,yiso,ziso,-nang,dsource,phicol,nshist
-              WRITE(1,10770)xiso,yiso,ziso,-nang,dsource,phicol,nshist
-10770         FORMAT( t15,' Full phase space input incident from multipl
+              WRITE(6,10840)xiso,yiso,ziso,-nang,dsource,phicol,nshist
+              WRITE(1,10840)xiso,yiso,ziso,-nang,dsource,phicol,nshist
+10840         FORMAT( t15,' Full phase space input incident from multipl
      *e angles' // t10,' x-coordinate of the isocenter,' ,t62,f10.4,' cm
      *' / t10,' y-coordinate of the isocenter,' ,t62,f10.4,' cm' / t10,'
      * z-coordinate of the isocenter,' ,t62,f10.4,' cm' / t10,' number t
@@ -13783,35 +13878,35 @@ C*****************************************************************************
      *n in source', ' plane:',t62,f10.4,' cm'/ t10,' Source plane rotati
      *on angle,' ,t62,f10.4,' degrees'/ t10,' Total number of particlesi
      *n phase space file:',t62,i12/)
-              WRITE(6,10780)
-              WRITE(1,10780)
-10780         FORMAT('  theta-phi     theta (deg.)       phi (deg.)no. t
+              WRITE(6,10850)
+              WRITE(1,10850)
+10850         FORMAT('  theta-phi     theta (deg.)       phi (deg.)no. t
      *heta-   normalized'/ '    group      min.     max.      min.   max
      *.    phi pairs    probability')
-              DO 10791 I=1,-nang
+              DO 10861 I=1,-nang
                   IF ((ivary(I).EQ.1)) THEN
-                      WRITE(6,10800)I,angmin(I),angmax(I),angfixed(I),an
+                      WRITE(6,10870)I,angmin(I),angmax(I),angfixed(I),an
      *                gfixed(I),ngang(I), pgang(I)
-                      WRITE(1,10800)I,angmin(I),angmax(I),angfixed(I),an
+                      WRITE(1,10870)I,angmin(I),angmax(I),angfixed(I),an
      *                gfixed(I),ngang(I), pgang(I)
-10800                 FORMAT(I8,F11.4,F10.4,F9.4,F10.4,I7,F14.4)
+10870                 FORMAT(I8,F11.4,F10.4,F9.4,F10.4,I7,F14.4)
                   ELSE
-                      WRITE(6,10810)I,angfixed(I),angfixed(I),angmin(I),
+                      WRITE(6,10880)I,angfixed(I),angfixed(I),angmin(I),
      *                angmax(I),ngang(I), pgang(I)
-                      WRITE(1,10810)I,angfixed(I),angfixed(I),angmin(I),
+                      WRITE(1,10880)I,angfixed(I),angfixed(I),angmin(I),
      *                angmax(I),ngang(I), pgang(I)
-10810                 FORMAT(I8,F11.4,F10.4,F9.4,F10.4,I7,F14.4)
+10880                 FORMAT(I8,F11.4,F10.4,F9.4,F10.4,I7,F14.4)
                   END IF
-10791         CONTINUE
-10792         CONTINUE
+10861         CONTINUE
+10862         CONTINUE
           END IF
-          WRITE(6,10820)
-          WRITE(1,10820)
-10820     FORMAT(' ')
+          WRITE(6,10890)
+          WRITE(1,10890)
+10890     FORMAT(' ')
           IF ((i_dbs.EQ.1)) THEN
-              WRITE(6,10830)r_dbs,ssd_dbs,z_dbs
-              WRITE(1,10830)r_dbs,ssd_dbs,z_dbs
-10830         FORMAT( ' Directional Bremsstrahlung Splitting (DBS) used'
+              WRITE(6,10900)r_dbs,ssd_dbs,z_dbs
+              WRITE(1,10900)r_dbs,ssd_dbs,z_dbs
+10900         FORMAT( ' Directional Bremsstrahlung Splitting (DBS) used'
      */ ' in BEAM simulation to generate phase space source with:'/ '   
      * DBS splitting radius:',t55,f10.4/ '    SSD where radius defined:'
      *,t55,f10.4/ '    Z where source scored:',t55,f10.4/ ' Photons whos
@@ -13820,52 +13915,52 @@ C*****************************************************************************
           END IF
           IF ((IPARALLEL.GT.1)) THEN
               IF ((PARNUM.GT.0)) THEN
-                  WRITE(6,10840)IPARALLEL,INT((PARNUM-1)*nshist/IPARALLE
+                  WRITE(6,10910)IPARALLEL,INT((PARNUM-1)*nshist/IPARALLE
      *            L)+1, INT(PARNUM*nshist/IPARALLEL)
-                  WRITE(1,10840)IPARALLEL,INT((PARNUM-1)*nshist/IPARALLE
+                  WRITE(1,10910)IPARALLEL,INT((PARNUM-1)*nshist/IPARALLE
      *            L)+1, INT(PARNUM*nshist/IPARALLEL)
-10840             FORMAT('    This is one of ',i4,' parallel simulations
+10910             FORMAT('    This is one of ',i4,' parallel simulations
      *.'/ '    It will use from particle ',i12,' to particle ',i12,' in'
      */ '    the phase space source for the simulation.'/)
               ELSE IF((PARNUM.EQ.0)) THEN
-                  WRITE(6,10850)IPARALLEL
-                  WRITE(1,10850)IPARALLEL
-10850             FORMAT('    This is one of ',i4,' parallel simulations
+                  WRITE(6,10920)IPARALLEL
+                  WRITE(1,10920)IPARALLEL
+10920             FORMAT('    This is one of ',i4,' parallel simulations
      *.'/ '    It will use the entire specified phase space source'/ '  
      *for the simulation.'/)
               END IF
           END IF
           IF ((iqphsp.EQ.2)) THEN
-              WRITE(6,10860)
-              WRITE(1,10860)
-10860         FORMAT(' Particles to be simulated: all'/)
+              WRITE(6,10930)
+              WRITE(1,10930)
+10930         FORMAT(' Particles to be simulated: all'/)
           ELSE IF((iqphsp.EQ.0)) THEN
-              WRITE(6,10870)
-              WRITE(1,10870)
-10870         FORMAT(' Particles to be simulated: photon only'/)
+              WRITE(6,10940)
+              WRITE(1,10940)
+10940         FORMAT(' Particles to be simulated: photon only'/)
           ELSE IF((iqphsp.EQ.1)) THEN
-              WRITE(6,10880)
-              WRITE(1,10880)
-10880         FORMAT(' Particles to be simulated: positron only'/)
+              WRITE(6,10950)
+              WRITE(1,10950)
+10950         FORMAT(' Particles to be simulated: positron only'/)
           ELSE IF((iqphsp.EQ.-1)) THEN
-              WRITE(6,10890)
-              WRITE(1,10890)
-10890         FORMAT(' Particles to be simulated: electron only'/)
+              WRITE(6,10960)
+              WRITE(1,10960)
+10960         FORMAT(' Particles to be simulated: electron only'/)
           END IF
           IF ((e_split.GT.1 .AND. iqphsp.NE.0)) THEN
-              WRITE(6,10900)e_split
-              WRITE(1,10900)e_split
-10900         FORMAT(/' Charged particles will be split ',i10,' times.'/
+              WRITE(6,10970)e_split
+              WRITE(1,10970)e_split
+10970         FORMAT(/' Charged particles will be split ',i10,' times.'/
      *)
           END IF
       ELSE IF((isource.EQ.9)) THEN
-          WRITE(6,10910)xiso,yiso,ziso,theta(1),phi(1),dsource,phicol, t
+          WRITE(6,10980)xiso,yiso,ziso,theta(1),phi(1),dsource,phicol, t
      *    he_beam_code(:lnblnk1(the_beam_code)),the_input_file(:lnblnk1(
      *    the_input_file)), the_pegs_file(:lnblnk1(the_pegs_file))
-          WRITE(1,10910)xiso,yiso,ziso,theta(1),phi(1),dsource,phicol, t
+          WRITE(1,10980)xiso,yiso,ziso,theta(1),phi(1),dsource,phicol, t
      *    he_beam_code(:lnblnk1(the_beam_code)),the_input_file(:lnblnk1(
      *    the_input_file)), the_pegs_file(:lnblnk1(the_pegs_file))
-10910     FORMAT( t15,' BEAM treatment head simulation used as source:'/
+10980     FORMAT( t15,' BEAM treatment head simulation used as source:'/
      */ t10,' x-coordinate of the isocenter,' ,t62,f10.4,' cm' / t10,' y
      *-coordinate of the isocenter,' ,t62,f10.4,' cm' / t10,' z-coordina
      *te of the isocenter,' ,t62,f10.4,' cm' / t10,' Polar angle of beam
@@ -13875,46 +13970,46 @@ C*****************************************************************************
      *beam axis,' ,t62,f10.4,' degrees'/ t10,' BEAM simulation: ',a/ t10
      *,'      input file: ',a/ t10,'  pegs data file: ',a/)
           IF ((i_dbs.EQ.1)) THEN
-              WRITE(6,10920)
-              WRITE(1,10920)
-10920         FORMAT(t10,' Fat photons from DBS will be rejected.'/)
+              WRITE(6,10990)
+              WRITE(1,10990)
+10990         FORMAT(t10,' Fat photons from DBS will be rejected.'/)
           ELSE
-              WRITE(6,10930)
-              WRITE(1,10930)
-10930         FORMAT(t10,' Fat photons from DBS will not be rejected.'/)
+              WRITE(6,11000)
+              WRITE(1,11000)
+11000         FORMAT(t10,' Fat photons from DBS will not be rejected.'/)
           END IF
           IF ((iqinc.EQ.2)) THEN
-              WRITE(6,10940)
-              WRITE(1,10940)
-10940         FORMAT(' Particles to be simulated: all'/)
+              WRITE(6,11010)
+              WRITE(1,11010)
+11010         FORMAT(' Particles to be simulated: all'/)
           ELSE IF((iqinc.EQ.0)) THEN
-              WRITE(6,10950)
-              WRITE(1,10950)
-10950         FORMAT(' Particles to be simulated: photon only'/)
+              WRITE(6,11020)
+              WRITE(1,11020)
+11020         FORMAT(' Particles to be simulated: photon only'/)
           ELSE IF((iqinc.EQ.1)) THEN
-              WRITE(6,10960)
-              WRITE(1,10960)
-10960         FORMAT(' Particles to be simulated: positron only'/)
+              WRITE(6,11030)
+              WRITE(1,11030)
+11030         FORMAT(' Particles to be simulated: positron only'/)
           ELSE IF((iqinc.EQ.-1)) THEN
-              WRITE(6,10970)
-              WRITE(1,10970)
-10970         FORMAT(' Particles to be simulated: electron only'/)
+              WRITE(6,11040)
+              WRITE(1,11040)
+11040         FORMAT(' Particles to be simulated: electron only'/)
           END IF
           IF ((e_split.GT.1 .AND. iqphsp.NE.0)) THEN
-              WRITE(6,10980)e_split
-              WRITE(1,10980)e_split
-10980         FORMAT(/' Charged particles will be split ',i10,' times.'/
+              WRITE(6,11050)e_split
+              WRITE(1,11050)e_split
+11050         FORMAT(/' Charged particles will be split ',i10,' times.'/
      *)
           END IF
       ELSE IF((isource.EQ.10)) THEN
           IF ((nang.GT.0)) THEN
-              WRITE(6,10990)xiso,yiso,ziso,nang,dsource,phicol, the_beam
+              WRITE(6,11060)xiso,yiso,ziso,nang,dsource,phicol, the_beam
      *        _code(:lnblnk1(the_beam_code)),the_input_file(:lnblnk1(the
      *        _input_file)), the_pegs_file(:lnblnk1(the_pegs_file))
-              WRITE(1,10990)xiso,yiso,ziso,nang,dsource,phicol, the_beam
+              WRITE(1,11060)xiso,yiso,ziso,nang,dsource,phicol, the_beam
      *        _code(:lnblnk1(the_beam_code)),the_input_file(:lnblnk1(the
      *        _input_file)), the_pegs_file(:lnblnk1(the_pegs_file))
-10990         FORMAT( t15,' BEAM simulation source from multiple angles:
+11060         FORMAT( t15,' BEAM simulation source from multiple angles:
      *' // t10,' x-coordinate of the isocenter,' ,t62,f10.4,' cm' / t10,
      *' y-coordinate of the isocenter,' ,t62,f10.4,' cm' / t10,' z-coord
      *inate of the isocenter,' ,t62,f10.4,' cm' / t10,' number of incide
@@ -13922,31 +14017,31 @@ C*****************************************************************************
      * scoring', ' plane:',t62,f10.4,' cm'/ t10,' Rotation angle about b
      *eam axis,' ,t62,f10.4,' degrees'/ t10,' BEAM simulation:',a/ t10,'
      *      input file: ',a/ t10,'  pegs data file: ',a/)
-              WRITE(6,11000)
-              WRITE(1,11000)
-11000         FORMAT(t10,'  theta-phi     theta         phi        norma
+              WRITE(6,11070)
+              WRITE(1,11070)
+11070         FORMAT(t10,'  theta-phi     theta         phi        norma
      *lized'/ t10,'    pair        (deg.)       (deg.)      probability'
      *)
-              DO 11011 I=1,nang
+              DO 11081 I=1,nang
                   IF ((I.EQ.1)) THEN
-                      WRITE(6,11020)I,theta(I),phi(I),pang(I)
-                      WRITE(1,11020)I,theta(I),phi(I),pang(I)
-11020                 FORMAT(t10,i7,f16.4,f13.4,f15.4)
+                      WRITE(6,11090)I,theta(I),phi(I),pang(I)
+                      WRITE(1,11090)I,theta(I),phi(I),pang(I)
+11090                 FORMAT(t10,i7,f16.4,f13.4,f15.4)
                   ELSE
-                      WRITE(6,11030)I,theta(I),phi(I),pang(I)-pang(I-1)
-                      WRITE(1,11030)I,theta(I),phi(I),pang(I)-pang(I-1)
-11030                 FORMAT(t10,i7,f16.4,f13.4,f15.4)
+                      WRITE(6,11100)I,theta(I),phi(I),pang(I)-pang(I-1)
+                      WRITE(1,11100)I,theta(I),phi(I),pang(I)-pang(I-1)
+11100                 FORMAT(t10,i7,f16.4,f13.4,f15.4)
                   END IF
-11011         CONTINUE
-11012         CONTINUE
+11081         CONTINUE
+11082         CONTINUE
           ELSE IF((nang.LT.0)) THEN
-              WRITE(6,11040)xiso,yiso,ziso,-nang,dsource,phicol, the_bea
+              WRITE(6,11110)xiso,yiso,ziso,-nang,dsource,phicol, the_bea
      *        m_code(:lnblnk1(the_beam_code)),the_input_file(:lnblnk1(th
      *        e_input_file)), the_pegs_file(:lnblnk1(the_pegs_file))
-              WRITE(1,11040)xiso,yiso,ziso,-nang,dsource,phicol, the_bea
+              WRITE(1,11110)xiso,yiso,ziso,-nang,dsource,phicol, the_bea
      *        m_code(:lnblnk1(the_beam_code)),the_input_file(:lnblnk1(th
      *        e_input_file)), the_pegs_file(:lnblnk1(the_pegs_file))
-11040         FORMAT( t15,' BEAM simulation source from multiple angles:
+11110         FORMAT( t15,' BEAM simulation source from multiple angles:
      *' // t10,' x-coordinate of the isocenter,' ,t62,f10.4,' cm' / t10,
      *' y-coordinate of the isocenter,' ,t62,f10.4,' cm' / t10,' z-coord
      *inate of the isocenter,' ,t62,f10.4,' cm' / t10,' number of theta-
@@ -13954,95 +14049,95 @@ C*****************************************************************************
      *scoring', ' plane:',t62,f10.4,' cm'/ t10,' Rotation angleabout bea
      *m axis,' ,t62,f10.4,' degrees'/ t10,' BEAM simulation: ',a/ t10,' 
      *     input file: ',a/ t10,'  pegs data file: ',a/)
-              WRITE(6,11050)
-              WRITE(1,11050)
-11050         FORMAT('  theta-phi     theta (deg.)       phi (deg.)no. t
-     *heta-   normalized'/ '    group      min.     max.      min.   max
-     *.    phi pairs    probability')
-              DO 11061 I=1,-nang
-                  IF ((ivary(I).EQ.1)) THEN
-                      WRITE(6,11070)I,angmin(I),angmax(I),angfixed(I),an
-     *                gfixed(I),ngang(I), pgang(I)
-                      WRITE(1,11070)I,angmin(I),angmax(I),angfixed(I),an
-     *                gfixed(I),ngang(I), pgang(I)
-11070                 FORMAT(I8,F11.4,F10.4,F9.4,F10.4,I7,F14.4)
-                  ELSE
-                      WRITE(6,11080)I,angfixed(I),angfixed(I),angmin(I),
-     *                angmax(I),ngang(I), pgang(I)
-                      WRITE(1,11080)I,angfixed(I),angfixed(I),angmin(I),
-     *                angmax(I),ngang(I), pgang(I)
-11080                 FORMAT(I8,F11.4,F10.4,F9.4,F10.4,I7,F14.4)
-                  END IF
-11061         CONTINUE
-11062         CONTINUE
-          END IF
-          IF ((i_dbs.EQ.1)) THEN
-              WRITE(6,11090)
-              WRITE(1,11090)
-11090         FORMAT(t10,' Fat photons from DBS will be rejected.'/)
-          ELSE
-              WRITE(6,11100)
-              WRITE(1,11100)
-11100         FORMAT(t10,' Fat photons from DBS will not be rejected.'/)
-          END IF
-          IF ((iqinc.EQ.2)) THEN
-              WRITE(6,11110)
-              WRITE(1,11110)
-11110         FORMAT(' Particles to be simulated: all'/)
-          ELSE IF((iqinc.EQ.0)) THEN
               WRITE(6,11120)
               WRITE(1,11120)
-11120         FORMAT(' Particles to be simulated: photon only'/)
+11120         FORMAT('  theta-phi     theta (deg.)       phi (deg.)no. t
+     *heta-   normalized'/ '    group      min.     max.      min.   max
+     *.    phi pairs    probability')
+              DO 11131 I=1,-nang
+                  IF ((ivary(I).EQ.1)) THEN
+                      WRITE(6,11140)I,angmin(I),angmax(I),angfixed(I),an
+     *                gfixed(I),ngang(I), pgang(I)
+                      WRITE(1,11140)I,angmin(I),angmax(I),angfixed(I),an
+     *                gfixed(I),ngang(I), pgang(I)
+11140                 FORMAT(I8,F11.4,F10.4,F9.4,F10.4,I7,F14.4)
+                  ELSE
+                      WRITE(6,11150)I,angfixed(I),angfixed(I),angmin(I),
+     *                angmax(I),ngang(I), pgang(I)
+                      WRITE(1,11150)I,angfixed(I),angfixed(I),angmin(I),
+     *                angmax(I),ngang(I), pgang(I)
+11150                 FORMAT(I8,F11.4,F10.4,F9.4,F10.4,I7,F14.4)
+                  END IF
+11131         CONTINUE
+11132         CONTINUE
+          END IF
+          IF ((i_dbs.EQ.1)) THEN
+              WRITE(6,11160)
+              WRITE(1,11160)
+11160         FORMAT(t10,' Fat photons from DBS will be rejected.'/)
+          ELSE
+              WRITE(6,11170)
+              WRITE(1,11170)
+11170         FORMAT(t10,' Fat photons from DBS will not be rejected.'/)
+          END IF
+          IF ((iqinc.EQ.2)) THEN
+              WRITE(6,11180)
+              WRITE(1,11180)
+11180         FORMAT(' Particles to be simulated: all'/)
+          ELSE IF((iqinc.EQ.0)) THEN
+              WRITE(6,11190)
+              WRITE(1,11190)
+11190         FORMAT(' Particles to be simulated: photon only'/)
           ELSE IF((iqinc.EQ.1)) THEN
-              WRITE(6,11130)
-              WRITE(1,11130)
-11130         FORMAT(' Particles to be simulated: positron only'/)
+              WRITE(6,11200)
+              WRITE(1,11200)
+11200         FORMAT(' Particles to be simulated: positron only'/)
           ELSE IF((iqinc.EQ.-1)) THEN
-              WRITE(6,11140)
-              WRITE(1,11140)
-11140         FORMAT(' Particles to be simulated: electron only'/)
+              WRITE(6,11210)
+              WRITE(1,11210)
+11210         FORMAT(' Particles to be simulated: electron only'/)
           END IF
           IF ((e_split.GT.1 .AND. iqphsp.NE.0)) THEN
-              WRITE(6,11150)e_split
-              WRITE(1,11150)e_split
-11150         FORMAT(/' Charged particles will be split ',i10,' times.'/
+              WRITE(6,11220)e_split
+              WRITE(1,11220)e_split
+11220         FORMAT(/' Charged particles will be split ',i10,' times.'/
      *)
           END IF
       ELSE IF((isource.EQ.20)) THEN
           IF ((nset.GT.1)) THEN
-              WRITE(6,11160)nset,dsource,nshist,the_shared_lib(:lnblnk1(
+              WRITE(6,11230)nset,dsource,nshist,the_shared_lib(:lnblnk1(
      *        the_shared_lib)), the_input_file(:lnblnk1(the_input_file))
-              WRITE(1,11160)nset,dsource,nshist,the_shared_lib(:lnblnk1(
+              WRITE(1,11230)nset,dsource,nshist,the_shared_lib(:lnblnk1(
      *        the_shared_lib)), the_input_file(:lnblnk1(the_input_file))
-11160         FORMAT( t15,'Phase Space Incident from multiple settings t
+11230         FORMAT( t15,'Phase Space Incident from multiple settings t
      *hrough a BEAM/MLC '// t10,' number of incident settings:' ,t62,i10
      */ t10,' first distance from isocenter to origin in source', ' plan
      *e:',t62,f10.4,' cm'/ t10,' Total number of particles in phase spac
      *e file:',t62,i12/ t10,' Shared library simulation: ',a/ t10,' Shar
      *ed library input file: ',a/)
-              WRITE(6,11170)
-              WRITE(1,11170)
-11170         FORMAT(t10,'   setting      xiso      yiso           ziso 
+              WRITE(6,11240)
+              WRITE(1,11240)
+11240         FORMAT(t10,'   setting      xiso      yiso           ziso 
      *      theta', '       phi          phicol         ', 'SAD MU Index
      *'/ t10,'   num           (cm)          (cm)           (cm)        
      * (deg.)', '     (deg.)             (deg.)          (cm)')
-              DO 11181 I=1,nset
-                  WRITE(6,11190)I,xtemp(I),ytemp(I),ztemp(I),thetatemp(I
+              DO 11251 I=1,nset
+                  WRITE(6,11260)I,xtemp(I),ytemp(I),ztemp(I),thetatemp(I
      *            ),phitemp(I), phicoltemp(I),dsourcetemp(I),muIndex(I)
-                  WRITE(1,11190)I,xtemp(I),ytemp(I),ztemp(I),thetatemp(I
+                  WRITE(1,11260)I,xtemp(I),ytemp(I),ztemp(I),thetatemp(I
      *            ),phitemp(I), phicoltemp(I),dsourcetemp(I),muIndex(I)
-11190             FORMAT(t10,i7,f15.4,f11.4,f15.4,f12.4,f13.4,f11.4,f11.
+11260             FORMAT(t10,i7,f15.4,f11.4,f15.4,f12.4,f13.4,f11.4,f11.
      *4,f10.4)
-11181         CONTINUE
-11182         CONTINUE
+11251         CONTINUE
+11252         CONTINUE
           END IF
-          WRITE(6,11200)
-          WRITE(1,11200)
-11200     FORMAT(' ')
+          WRITE(6,11270)
+          WRITE(1,11270)
+11270     FORMAT(' ')
           IF ((i_dbs.EQ.1)) THEN
-              WRITE(6,11210)r_dbs,ssd_dbs,z_dbs
-              WRITE(1,11210)r_dbs,ssd_dbs,z_dbs
-11210         FORMAT( ' Directional Bremsstrahlung Splitting (DBS) used'
+              WRITE(6,11280)r_dbs,ssd_dbs,z_dbs
+              WRITE(1,11280)r_dbs,ssd_dbs,z_dbs
+11280         FORMAT( ' Directional Bremsstrahlung Splitting (DBS) used'
      */ ' in BEAM simulation to generate phase space source with:'/ '   
      * DBS splitting radius:',t55,f10.4/ '    SSD where radius defined:'
      *,t55,f10.4/ '    Z where source scored:',t55,f10.4/ ' Photons whos
@@ -14050,94 +14145,94 @@ C*****************************************************************************
      *e SSD will be rejected.'/)
           END IF
           IF ((iqinc.EQ.2)) THEN
-              WRITE(6,11220)
-              WRITE(1,11220)
-11220         FORMAT(' Particles to be simulated: all'/)
+              WRITE(6,11290)
+              WRITE(1,11290)
+11290         FORMAT(' Particles to be simulated: all'/)
           ELSE IF((iqinc.EQ.0)) THEN
-              WRITE(6,11230)
-              WRITE(1,11230)
-11230         FORMAT(' Particles to be simulated: photon only'/)
+              WRITE(6,11300)
+              WRITE(1,11300)
+11300         FORMAT(' Particles to be simulated: photon only'/)
           ELSE IF((iqinc.EQ.1)) THEN
-              WRITE(6,11240)
-              WRITE(1,11240)
-11240         FORMAT(' Particles to be simulated: positron only'/)
+              WRITE(6,11310)
+              WRITE(1,11310)
+11310         FORMAT(' Particles to be simulated: positron only'/)
           ELSE IF((iqinc.EQ.-1)) THEN
-              WRITE(6,11250)
-              WRITE(1,11250)
-11250         FORMAT(' Particles to be simulated: electron only'/)
+              WRITE(6,11320)
+              WRITE(1,11320)
+11320         FORMAT(' Particles to be simulated: electron only'/)
           END IF
           IF ((e_split.GT.1 .AND. iqphsp.NE.0)) THEN
-              WRITE(6,11260)e_split
-              WRITE(1,11260)e_split
-11260         FORMAT(/' Charged particles will be split ',i10,' times.'/
+              WRITE(6,11330)e_split
+              WRITE(1,11330)e_split
+11330         FORMAT(/' Charged particles will be split ',i10,' times.'/
      *)
           END IF
       ELSE IF((isource.EQ.21)) THEN
           IF ((nset.GT.1)) THEN
-              WRITE(6,11270)nset,dsource, the_beam_code(:lnblnk1(the_bea
+              WRITE(6,11340)nset,dsource, the_beam_code(:lnblnk1(the_bea
      *        m_code)),the_input_file(:lnblnk1(the_input_file)), the_peg
      *        s_file(:lnblnk1(the_pegs_file)),the_vcu_code(:lnblnk1(the_
      *        vcu_code)), the_vcu_input_file(:lnblnk1(the_vcu_input_file
      *        ))
-              WRITE(1,11270)nset,dsource, the_beam_code(:lnblnk1(the_bea
+              WRITE(1,11340)nset,dsource, the_beam_code(:lnblnk1(the_bea
      *        m_code)),the_input_file(:lnblnk1(the_input_file)), the_peg
      *        s_file(:lnblnk1(the_pegs_file)),the_vcu_code(:lnblnk1(the_
      *        vcu_code)), the_vcu_input_file(:lnblnk1(the_vcu_input_file
      *        ))
-11270         FORMAT( t15,'BEAM treatment simulation used as source ' //
+11340         FORMAT( t15,'BEAM treatment simulation used as source ' //
      *t10,' number of incident settings:' ,t62,i10/ t10,' first distance
      * from isocenter to origin in source', ' plane:',t62,f10.4,' cm'/ t
      *10,' BEAM simulation: ',a/ t10,' input file: ',a/t10,' pegs data f
      *ile: ',a/ t10,' VCU simulation: ',a/ t10,' VCU input file: ',a/)
-              WRITE(6,11280)
-              WRITE(1,11280)
-11280         FORMAT(t10,'   setting      xiso      yiso           ziso 
+              WRITE(6,11350)
+              WRITE(1,11350)
+11350         FORMAT(t10,'   setting      xiso      yiso           ziso 
      *      theta', '       phi          phicol         ', 'SAD MU Index
      *'/ t10,'   num           (cm)          (cm)           (cm)        
      * (deg.)', '     (deg.)             (deg.)          (cm)')
-              DO 11291 I=1,nset
-                  WRITE(6,11300)I,xtemp(I),ytemp(I),ztemp(I),thetatemp(I
+              DO 11361 I=1,nset
+                  WRITE(6,11370)I,xtemp(I),ytemp(I),ztemp(I),thetatemp(I
      *            ),phitemp(I), phicoltemp(I),dsourcetemp(I),muIndex(I)
-                  WRITE(1,11300)I,xtemp(I),ytemp(I),ztemp(I),thetatemp(I
+                  WRITE(1,11370)I,xtemp(I),ytemp(I),ztemp(I),thetatemp(I
      *            ),phitemp(I), phicoltemp(I),dsourcetemp(I),muIndex(I)
-11300             FORMAT(t10,i7,f15.4,f11.4,f15.4,f12.4,f13.4,f11.4,f11.
+11370             FORMAT(t10,i7,f15.4,f11.4,f15.4,f12.4,f13.4,f11.4,f11.
      *4,f10.4)
-11291         CONTINUE
-11292         CONTINUE
+11361         CONTINUE
+11362         CONTINUE
           END IF
-          WRITE(6,11310)
-          WRITE(1,11310)
-11310     FORMAT(' ')
+          WRITE(6,11380)
+          WRITE(1,11380)
+11380     FORMAT(' ')
           IF ((i_dbs.EQ.1)) THEN
-              WRITE(6,11320)
-              WRITE(1,11320)
-11320         FORMAT(t10,' Fat photons from DBS will be rejected.'/)
+              WRITE(6,11390)
+              WRITE(1,11390)
+11390         FORMAT(t10,' Fat photons from DBS will be rejected.'/)
           ELSE
-              WRITE(6,11330)
-              WRITE(1,11330)
-11330         FORMAT(t10,' Fat photons from DBS will not be rejected.'/)
+              WRITE(6,11400)
+              WRITE(1,11400)
+11400         FORMAT(t10,' Fat photons from DBS will not be rejected.'/)
           END IF
           IF ((iqinc.EQ.2)) THEN
-              WRITE(6,11340)
-              WRITE(1,11340)
-11340         FORMAT(' Particles to be simulated: all'/)
+              WRITE(6,11410)
+              WRITE(1,11410)
+11410         FORMAT(' Particles to be simulated: all'/)
           ELSE IF((iqinc.EQ.0)) THEN
-              WRITE(6,11350)
-              WRITE(1,11350)
-11350         FORMAT(' Particles to be simulated: photon only'/)
+              WRITE(6,11420)
+              WRITE(1,11420)
+11420         FORMAT(' Particles to be simulated: photon only'/)
           ELSE IF((iqinc.EQ.1)) THEN
-              WRITE(6,11360)
-              WRITE(1,11360)
-11360         FORMAT(' Particles to be simulated: positron only'/)
+              WRITE(6,11430)
+              WRITE(1,11430)
+11430         FORMAT(' Particles to be simulated: positron only'/)
           ELSE IF((iqinc.EQ.-1)) THEN
-              WRITE(6,11370)
-              WRITE(1,11370)
-11370         FORMAT(' Particles to be simulated: electron only'/)
+              WRITE(6,11440)
+              WRITE(1,11440)
+11440         FORMAT(' Particles to be simulated: electron only'/)
           END IF
           IF ((e_split.GT.1 .AND. iqphsp.NE.0)) THEN
-              WRITE(6,11380)e_split
-              WRITE(1,11380)e_split
-11380         FORMAT(/' Charged particles will be split ',i10,' times.'/
+              WRITE(6,11450)e_split
+              WRITE(1,11450)e_split
+11450         FORMAT(/' Charged particles will be split ',i10,' times.'/
      *)
           END IF
       END IF
@@ -14163,23 +14258,24 @@ C*****************************************************************************
      * muIndex(60000),  r_11(60000), r_12(60000), r_13(60000), r_21(6000
      *0), r_22(60000), r_23(60000), r_31(60000), r_32(60000), r_33(60000
      *), dsource, dsourcetemp(60000), ein,  eksrcm,  esrc_sp,  SSD,  ein
-     *srcold, NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  latchold,  e
-     *nflag,  dflag,  ismode,  isource,     iqin,        iqphsp,
-     *           iqinc,                          SHLflag,     calflag,
-     *   MLCflag,     ixinl,       ixinu,       jyinl,       jyinu,
-     *  kzinl,       kzinu,       klowx,       khix,        klowy,
-     * khiy,        klowz,       khiz,        survival_ratio,        nsm
-     *iss,      nsblocked,     nsrjct,      nsoutside,     nmissm,
-     *IPRIMARY,                                            OLDSRC,
-     * npassi,                     nang,         ivary(60000),     ngang
-     *(60000),       nset,            more_in_cont,                 numa
-     *ng,       dose_stat,      ndbsrjct,                        i_dbs,
-     *         iphatsrc,         e_split,                           i_ia
-     *ea_in,      i_mu_phsp,           izscore,             i_unit_in,
-     *                k_field,                       nhist_last,
-     *         the_beam_code,         the_input_file,      the_vcu_input
-     *_file,                        the_pegs_file,           the_shared_
-     *lib,                    the_vcu_code,               the_phsp_file
+     *srcold, iaea_SAD,  NINCSRC,  r_dbs,  ssd_dbs,  z_dbs,  iqinold,  l
+     *atchold,  enflag,  dflag,  ismode,  isource,     iqin,        iqph
+     *sp,                   iqinc,                          SHLflag,
+     * calflag,     MLCflag,     ixinl,       ixinu,       jyinl,
+     *jyinu,       kzinl,       kzinu,       klowx,       khix,        k
+     *lowy,       khiy,        klowz,       khiz,        survival_ratio,
+     *        nsmiss,      nsblocked,     nsrjct,      nsoutside,     nm
+     *issm,      IPRIMARY,                                            OL
+     *DSRC,       npassi,                     nang,         ivary(60000)
+     *,     ngang(60000),       nset,            more_in_cont,
+     *       numang,       dose_stat,      ndbsrjct,
+     *    i_dbs,          iphatsrc,         e_split,
+     *       i_iaea_in,      i_mu_phsp,           izscore,             i
+     *_unit_in,                  k_field,                       nhist_la
+     *st,                 the_beam_code,         the_input_file,      th
+     *e_vcu_input_file,                        the_pegs_file,
+     *the_shared_lib,                    the_vcu_code,               the
+     *_phsp_file
       real*8    esrc,muIndex
       integer*8 nhist, nnread,nshist,nphist,nnphsp
       real*8 einsrc, xsrcold, ysrcold,usrcold,vsrcold,wsrcold,weightold,
@@ -14191,7 +14287,8 @@ C*****************************************************************************
      *max,pgang,r_11, r_12, r_13, r_21,                       r_22, r_23
      *, r_31, r_32, r_33,dsource,dsourcetemp,
      *    ein, eksrcm, esrc_sp, SSD, NINCSRC,
-     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold
+     *                  r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold,ia
+     *ea_SAD
       integer*4 isource, iqin, iqphsp, iqinc,latchold,iqinold,MLCflag,SH
      *Lflag,         calflag, ixinl, ixinu, jyinl, jyinu, kzinl, kzinu,
      *                             klowx, khix, klowy, khiy, klowz, khiz
@@ -14272,22 +14369,28 @@ C*****************************************************************************
       logical is_batch, is_pegsless, is_uniform_run
       common/score/endep( 2097153), endep2( 2097153), temp2, planarefe,
      *planarefp,planarfe,planarfp, nestep, endep_tmp( 2097153), i_phsp_o
-     *ut,i_muidx_out,i_unit_out,IWATCH,mxnp, endep_last( 2097153)
+     *ut,i_muidx_out,i_unit_out,IWATCH,mxnp,i_bindos, endep_last( 209715
+     *3)
       REAL*8 endep, endep2, temp2,planarefe, planarefp, planarfe, planar
      *fp
       integer*8 nestep
       real endep_tmp
-      integer i_phsp_out,   i_muidx_out,    i_unit_out,  IWATCH,mxnp
+      integer i_phsp_out,   i_muidx_out,    i_unit_out,  i_bindos,  IWAT
+     *CH,mxnp
       integer*2 endep_last
       real*8 xsrc,ysrc,zsrc,  xsrcp,ysrcp,zsrcp,  usrc,vsrc,wsrc,  xinde
-     *l,yindel,zindel,  xin,yin,zin,  uin,vin,win,  enin,  zsrcdum,  SAD
-     *_s20,  r1,rnno1,rnno2,  fw, rxyz,  costheta,sintheta, weight,  zla
-     *st, dist, dist_dbs,  coscol,sincol, cosphi,sinphi, mu_phsp
+     *l,yindel,zindel,  xin,yin,zin,  uin,vin,win,  enin,  zsrcdum,  r1,
+     *rnno1,rnno2,  fw, rxyz,  costheta,sintheta, weight,  zlast, dist,
+     *dist_dbs,  coscol,sincol, cosphi,sinphi, mu_phsp
       real*8 RBEAM,DIST_RAY
       integer*4 ix,jy,kz,i,j,k, irin,  latchi,  ibit
       integer*8 n_hist_dum
       save wsrc
       zsrc = dsource
+      iaea_SAD = 0
+      IF ((i_iaea_in .EQ. 1)) THEN
+          iaea_SAD = -dsource
+      END IF
       IF ((isource .EQ. 0)) THEN
           xindel = xinu-xinl
           IF ((xindel .EQ. 0.0)) THEN
@@ -14315,23 +14418,23 @@ C*****************************************************************************
               ix=ixinl
           ELSE
               ix=ixinl-1
-11391         CONTINUE
+11461         CONTINUE
                   ix=ix+1
                   IF((( xbound(ix) .LE. xin .AND. xbound(ix+1) .GT. xin
-     *            )))GO TO11392
-              GO TO 11391
-11392         CONTINUE
+     *            )))GO TO11462
+              GO TO 11461
+11462         CONTINUE
           END IF
           IF ((yindel .EQ. 0.0)) THEN
               jy=jyinl
           ELSE
               jy=jyinl-1
-11401         CONTINUE
+11471         CONTINUE
                   jy=jy+1
                   IF((( ybound(jy) .LE. yin .AND. ybound(jy+1) .GT. yin)
-     *            ))GO TO11402
-              GO TO 11401
-11402         CONTINUE
+     *            ))GO TO11472
+              GO TO 11471
+11472         CONTINUE
           END IF
           irin = 1 + ix +(jy-1)*imax
           IF ((enflag .EQ. 1)) THEN
@@ -14354,7 +14457,7 @@ C*****************************************************************************
               YIN = yinl
               RXYZ=SQRT(SSD*SSD+XIN*XIN+YIN*YIN)
           ELSE
-11411         CONTINUE
+11481         CONTINUE
                   IF((rng_seed .GT. 128))call ranmar_get
                   r1 = rng_array(rng_seed)*twom24
                   rng_seed = rng_seed + 1
@@ -14369,10 +14472,10 @@ C*****************************************************************************
                   RXYZ=SQRT(SSD*SSD+xin*xin+yin*yin)
                   win=SSD/RXYZ
                   FW=win**3.
-                  IF((r1.LT.FW))GOTO 11420
-              GO TO 11411
-11412         CONTINUE
-11420         CONTINUE
+                  IF((r1.LT.FW))GOTO 11490
+              GO TO 11481
+11482         CONTINUE
+11490         CONTINUE
           END IF
           zin = zinc
           uin=XIN/RXYZ
@@ -14381,23 +14484,23 @@ C*****************************************************************************
               ix=ixinl
           ELSE
               ix=ixinl-1
-11431         CONTINUE
+11501         CONTINUE
                   ix=ix+1
                   IF((( xbound(ix) .LE. xin .AND. xbound(ix+1) .GT. xin
-     *            )))GO TO11432
-              GO TO 11431
-11432         CONTINUE
+     *            )))GO TO11502
+              GO TO 11501
+11502         CONTINUE
           END IF
           IF ((yindel .EQ. 0.0)) THEN
               jy=jyinl
           ELSE
               jy=jyinl-1
-11441         CONTINUE
+11511         CONTINUE
                   jy=jy+1
                   IF((( ybound(jy) .LE. yin .AND. ybound(jy+1) .GT. yin)
-     *            ))GO TO11442
-              GO TO 11441
-11442         CONTINUE
+     *            ))GO TO11512
+              GO TO 11511
+11512         CONTINUE
           END IF
           irin = 1 + ix +(jy-1)*imax
           IF ((enflag .EQ. 1)) THEN
@@ -14456,34 +14559,34 @@ C*****************************************************************************
               ix=ixinl
           ELSE
               ix=ixinl-1
-11451         CONTINUE
+11521         CONTINUE
                   ix=ix+1
                   IF((( xbound(ix) .LE. xin .AND. xbound(ix+1) .GT. xin
-     *            )))GO TO11452
-              GO TO 11451
-11452         CONTINUE
+     *            )))GO TO11522
+              GO TO 11521
+11522         CONTINUE
           END IF
           IF ((yindel .EQ. 0.0)) THEN
               jy=jyinl
           ELSE
               jy=jyinl-1
-11461         CONTINUE
+11531         CONTINUE
                   jy=jy+1
                   IF((( ybound(jy) .LE. yin .AND. ybound(jy+1) .GT. yin)
-     *            ))GO TO11462
-              GO TO 11461
-11462         CONTINUE
+     *            ))GO TO11532
+              GO TO 11531
+11532         CONTINUE
           END IF
           IF ((zindel .EQ. 0.0)) THEN
               kz=kzinl
           ELSE
               kz=kzinl-1
-11471         CONTINUE
+11541         CONTINUE
                   kz=kz+1
                   IF((( zbound(kz) .LE. zin .AND. zbound(kz+1) .GT. zin)
-     *            ))GO TO11472
-              GO TO 11471
-11472         CONTINUE
+     *            ))GO TO11542
+              GO TO 11541
+11542         CONTINUE
           END IF
           irin = (1 + ix + (jy-1)*IMAX + (kz-1)*ijmax)
           IF ((enflag .EQ. 1)) THEN
@@ -14498,7 +14601,7 @@ C*****************************************************************************
           END IF
           return
       END IF
-11480 CONTINUE
+11550 CONTINUE
       IF ((isource .EQ. 1 .OR. isource.EQ.7)) THEN
           wsrc = 1.0
           usrc = 0.
@@ -14538,13 +14641,13 @@ C*****************************************************************************
               weight=weightold
               latchi=latchold
           ELSE
-11491         CONTINUE
-11500             CONTINUE
+11561         CONTINUE
+11570             CONTINUE
                   IF ((n_parallel.GT.0 .AND. nnphsp.GT.nnphsp_max)) THEN
                       nnphsp=nnphsp_min
                       OUTCNT=OUTCNT+1
-                      WRITE(6,11510)
-11510                 FORMAT(///' ***WARNING*** USED ALL PARTICLES FROMC
+                      WRITE(6,11580)
+11580                 FORMAT(///' ***WARNING*** USED ALL PARTICLES FROMC
      *HUNK IN SOURCE FILE!'/ '               RESTARTING FROM FIRST PARTI
      *CLE IN THIS CHUNK.'// /1x,79('*')//)
                       IF ((i_iaea_in.EQ.1)) THEN
@@ -14562,9 +14665,9 @@ C*****************************************************************************
      *             .GT. INT(PARNUM*nshist/IPARALLEL))) THEN
                       NofREPEAT = NofREPEAT + 1
                       OUTCNT=OUTCNT+1
-                      WRITE(6,11520)
-                      WRITE(1,11520)
-11520                 FORMAT(/' *** Warning *** Used all particles fromp
+                      WRITE(6,11590)
+                      WRITE(1,11590)
+11590                 FORMAT(/' *** Warning *** Used all particles fromp
      *artition of source file'/ '                 Restarting from first 
      *particle in this partition'/)
                       nnphsp = INT((PARNUM-1)*nshist/IPARALLEL)+1
@@ -14582,9 +14685,9 @@ C*****************************************************************************
                   ELSE IF(( nnphsp .GT. nshist)) THEN
                       NofREPEAT = NofREPEAT + 1
                       OUTCNT=OUTCNT+1
-                      WRITE(6,11530)
-                      WRITE(1,11530)
-11530                 FORMAT(/' *** Warning *** Used all particles froms
+                      WRITE(6,11600)
+                      WRITE(1,11600)
+11600                 FORMAT(/' *** Warning *** Used all particles froms
      *ource file'/ '                 Restarting from first particle infi
      *le'/)
                       nnphsp = 1
@@ -14703,92 +14806,92 @@ C*****************************************************************************
                   nnread = nnread +1
                   IF ((wsrc .LT. 0.0)) THEN
                       nsrjct=nsrjct+1
-                      goto 11500
+                      goto 11570
                   END IF
                   IF (( npassi.EQ.1 )) THEN
                       nsrjct=nsrjct+1
-                      goto 11500
+                      goto 11570
                   ELSE IF(( iqin.EQ.1 .AND. iqphsp .NE. 1 .AND. iqphsp .
      *            NE.2)) THEN
                       nsrjct=nsrjct+1
-                      goto 11500
+                      goto 11570
                   ELSE IF(( iqin.EQ.0 .AND. iqphsp .NE. 0 .AND. iqphsp .
      *            NE.2)) THEN
                       nsrjct=nsrjct+1
-                      goto 11500
+                      goto 11570
                   ELSE IF(( iqin.EQ.-1 .AND. iqphsp .NE.-1 .AND. iqphsp
      *            .NE.2)) THEN
                       nsrjct=nsrjct+1
-                      goto 11500
+                      goto 11570
                   ELSE IF((i_dbs.EQ.1 .AND. iqin.EQ.0)) THEN
                       dist_dbs=(ssd_dbs-z_dbs)/wsrc
                       IF (((xsrc+usrc*dist_dbs)**2+(ysrc+vsrc*dist_dbs)*
      *                *2.GT.r_dbs**2)) THEN
                           ndbsrjct=ndbsrjct+1
-                          goto 11500
+                          goto 11570
                       END IF
                   END IF
                   IF ((enflag .EQ. 3)) THEN
                       IF ((I_BIT_FILTER .EQ. 0)) THEN
-                          DO 11541 IBIT=1,NBIT1
+                          DO 11611 IBIT=1,NBIT1
                               IF ((BTEST(latchi,LATBIT(IBIT)))) THEN
-                                  GO TO11542
+                                  GO TO11612
                               END IF
                               IF ((IBIT.EQ.NBIT1)) THEN
                                   nsrjct=nsrjct+1
-                                  goto 11500
+                                  goto 11570
                               END IF
-11541                     CONTINUE
-11542                     CONTINUE
-                          DO 11551 IBIT=1,NBIT2
+11611                     CONTINUE
+11612                     CONTINUE
+                          DO 11621 IBIT=1,NBIT2
                               IF ((BTEST(latchi,LATBIT(IBIT+NBIT1)))) TH
      *                        EN
                                   nsrjct=nsrjct+1
-                                  goto 11500
+                                  goto 11570
                               END IF
-11551                     CONTINUE
-11552                     CONTINUE
-                          goto 11560
+11621                     CONTINUE
+11622                     CONTINUE
+                          goto 11630
                       ELSE IF((I_BIT_FILTER.EQ.1)) THEN
-                          DO 11571 IBIT=1,NBIT1
+                          DO 11641 IBIT=1,NBIT1
                               IF ((BTEST(latchi,LATBIT(IBIT)))) THEN
                                   nsrjct=nsrjct+1
-                                  goto 11500
+                                  goto 11570
                               END IF
-11571                     CONTINUE
-11572                     CONTINUE
-                          goto 11560
+11641                     CONTINUE
+11642                     CONTINUE
+                          goto 11630
                       ELSE IF((I_BIT_FILTER.EQ.2)) THEN
-                          DO 11581 IBIT=1,NBIT1
+                          DO 11651 IBIT=1,NBIT1
                               IF ((IBITS(latchi,24,5).EQ.LATBIT(IBIT)))
      *                        THEN
-                                  goto 11560
+                                  goto 11630
                               END IF
-11581                     CONTINUE
-11582                     CONTINUE
+11651                     CONTINUE
+11652                     CONTINUE
                           nsrjct=nsrjct+1
-                          goto 11500
+                          goto 11570
                       ELSE IF((I_BIT_FILTER.EQ.3)) THEN
-                          DO 11591 IBIT=1,NBIT1
+                          DO 11661 IBIT=1,NBIT1
                               IF ((IBITS(latchi,24,5).EQ.LATBIT(IBIT)))
      *                        THEN
                                   nsrjct=nsrjct+1
-                                  goto 11500
+                                  goto 11570
                               END IF
-11591                     CONTINUE
-11592                     CONTINUE
-                          goto 11560
+11661                     CONTINUE
+11662                     CONTINUE
+                          goto 11630
                       END IF
                   END IF
-11560             CONTINUE
+11630             CONTINUE
                   IF ((ABS(xsrc) .GE. (BEAM_SIZE/2.0) .OR. ABS(ysrc).GE.
      *            (BEAM_SIZE/2.0))) THEN
                       nsoutside=nsoutside+1
                   END IF
                   IF(((ABS(xsrc) .LT. (BEAM_SIZE/2.0) .AND. ABS(ysrc).LT
-     *            .(BEAM_SIZE/2.0))))GO TO11492
-              GO TO 11491
-11492         CONTINUE
+     *            .(BEAM_SIZE/2.0))))GO TO11562
+              GO TO 11561
+11562         CONTINUE
               IF ((NRCYCL.GT.0)) THEN
                   CYCLNUM=1
                   NofREPEAT=0
@@ -14805,80 +14908,80 @@ C*****************************************************************************
               END IF
           END IF
       ELSE IF(( isource .EQ. 9 .OR. isource .EQ.10 )) THEN
-11601     CONTINUE
-11610         CONTINUE
+11671     CONTINUE
+11680         CONTINUE
               call sample_beamsource(einsrc,xsrc,ysrc,zsrcdum,usrc,vsrc,
      *        wsrc,weight, iqin,latchi,nhist,iphatsrc)
               nnread = nnread +1
               IF (( iqinc .LT. 2 .AND. iqin .NE. iqinc )) THEN
                   nsrjct=nsrjct+1
-                  goto 11610
+                  goto 11680
               ELSE IF(( iqinc .EQ. 3 .AND. iqin .EQ. 0 )) THEN
                   nsrjct=nsrjct+1
-                  goto 11610
+                  goto 11680
               ELSE IF((i_dbs.EQ.1 .AND. iqin.EQ.0 .AND. iphatsrc.GT.1))
      *        THEN
                   nsrjct=ndbsrjct+1
-                  goto 11610
+                  goto 11680
               END IF
               IF ((enflag .EQ. 3)) THEN
                   IF ((I_BIT_FILTER .EQ. 0)) THEN
-                      DO 11621 IBIT=1,NBIT1
+                      DO 11691 IBIT=1,NBIT1
                           IF ((BTEST(latchi,LATBIT(IBIT)))) THEN
-                              GO TO11622
+                              GO TO11692
                           END IF
                           IF ((IBIT.EQ.NBIT1)) THEN
                               nsrjct=nsrjct+1
-                              goto 11610
+                              goto 11680
                           END IF
-11621                 CONTINUE
-11622                 CONTINUE
-                      DO 11631 IBIT=1,NBIT2
+11691                 CONTINUE
+11692                 CONTINUE
+                      DO 11701 IBIT=1,NBIT2
                           IF ((BTEST(latchi,LATBIT(IBIT+NBIT1)))) THEN
                               nsrjct=nsrjct+1
-                              goto 11610
+                              goto 11680
                           END IF
-11631                 CONTINUE
-11632                 CONTINUE
-                      goto 11640
+11701                 CONTINUE
+11702                 CONTINUE
+                      goto 11710
                   ELSE IF((I_BIT_FILTER.EQ.1)) THEN
-                      DO 11651 IBIT=1,NBIT1
+                      DO 11721 IBIT=1,NBIT1
                           IF ((BTEST(latchi,LATBIT(IBIT)))) THEN
                               nsrjct=nsrjct+1
-                              goto 11610
+                              goto 11680
                           END IF
-11651                 CONTINUE
-11652                 CONTINUE
-                      goto 11640
+11721                 CONTINUE
+11722                 CONTINUE
+                      goto 11710
                   ELSE IF((I_BIT_FILTER.EQ.2)) THEN
-                      DO 11661 IBIT=1,NBIT1
+                      DO 11731 IBIT=1,NBIT1
                           IF ((IBITS(latchi,24,5).EQ.LATBIT(IBIT))) THEN
-                              goto 11640
+                              goto 11710
                           END IF
-11661                 CONTINUE
-11662                 CONTINUE
+11731                 CONTINUE
+11732                 CONTINUE
                       nsrjct=nsrjct+1
-                      goto 11610
+                      goto 11680
                   ELSE IF((I_BIT_FILTER.EQ.3)) THEN
-                      DO 11671 IBIT=1,NBIT1
+                      DO 11741 IBIT=1,NBIT1
                           IF ((IBITS(latchi,24,5).EQ.LATBIT(IBIT))) THEN
                               nsrjct=nsrjct+1
-                              goto 11610
+                              goto 11680
                           END IF
-11671                 CONTINUE
-11672                 CONTINUE
-                      goto 11640
+11741                 CONTINUE
+11742                 CONTINUE
+                      goto 11710
                   END IF
               END IF
-11640         CONTINUE
+11710         CONTINUE
               IF ((ABS(xsrc) .GE. (BEAM_SIZE/2.0) .OR. ABS(ysrc).GE.(BEA
      *        M_SIZE/2.0))) THEN
                   nsoutside=nsoutside+1
               END IF
               IF(((ABS(xsrc) .LT. (BEAM_SIZE/2.0) .AND. ABS(ysrc).LT.(BE
-     *        AM_SIZE/2.0))))GO TO11602
-          GO TO 11601
-11602     CONTINUE
+     *        AM_SIZE/2.0))))GO TO11672
+          GO TO 11671
+11672     CONTINUE
       ELSE IF(( isource .EQ. 20 )) THEN
           IF ((more_in_cont .EQ. 0)) THEN
               IF ((NRCYCL.GT.0 .AND. CYCLNUM.GT.0 .AND. CYCLNUM.LE.NRCYC
@@ -14899,14 +15002,14 @@ C*****************************************************************************
                       IF((i_mu_phsp.EQ.1))mu_phsp = mu_phspold
                   END IF
               ELSE
-11681             CONTINUE
-11690                 CONTINUE
+11751             CONTINUE
+11760                 CONTINUE
                       IF ((n_parallel.GT.0 .AND. nnphsp.GT.nnphsp_max))
      *                THEN
                           nnphsp=nnphsp_min
                           OUTCNT=OUTCNT+1
-                          WRITE(6,11700)
-11700                     FORMAT(///' ***WARNING*** USED ALL PARTICLES F
+                          WRITE(6,11770)
+11770                     FORMAT(///' ***WARNING*** USED ALL PARTICLES F
      *ROM CHUNK IN SOURCE FILE!'/ '               RESTARTING FROM FIRSTP
      *ARTICLE IN THIS CHUNK.'// /1x,79('*')//)
                           IF ((i_iaea_in.EQ.1)) THEN
@@ -14924,9 +15027,9 @@ C*****************************************************************************
      *                phsp .GT. INT(PARNUM*nshist/IPARALLEL))) THEN
                           NofREPEAT = NofREPEAT + 1
                           OUTCNT=OUTCNT+1
-                          WRITE(6,11710)
-                          WRITE(1,11710)
-11710                     FORMAT(/' *** Warning *** Used all particles f
+                          WRITE(6,11780)
+                          WRITE(1,11780)
+11780                     FORMAT(/' *** Warning *** Used all particles f
      *rom partition of source file'/ '                 Restarting from f
      *irst particle in this partition'/)
                           nnphsp = INT((PARNUM-1)*nshist/IPARALLEL)+1
@@ -14944,9 +15047,9 @@ C*****************************************************************************
                       ELSE IF(( nnphsp .GT. nshist)) THEN
                           NofREPEAT = NofREPEAT + 1
                           OUTCNT=OUTCNT+1
-                          WRITE(6,11720)
-                          WRITE(1,11720)
-11720                     FORMAT(/' *** Warning *** Used all particles f
+                          WRITE(6,11790)
+                          WRITE(1,11790)
+11790                     FORMAT(/' *** Warning *** Used all particles f
      *rom source file'/ '                 Restarting from first particle
      * in file'/)
                           nnphsp = 1
@@ -15068,10 +15171,10 @@ C*****************************************************************************
                       nnread = nnread +1
                       IF (( iqinc .LT. 2 .AND. iqin .NE. iqinc )) THEN
                           nsrjct=nsrjct+1
-                          goto 11690
+                          goto 11760
                       ELSE IF(( iqinc .EQ. 3 .AND. iqin .EQ. 0 )) THEN
                           nsrjct=nsrjct+1
-                          goto 11690
+                          goto 11760
                       ELSE IF((i_dbs.EQ.1 .AND. iqin.EQ.0)) THEN
                           IF ((i_iaea_in.EQ.1)) THEN
                               dist_dbs=(ssd_dbs-zsrc)/wsrc
@@ -15081,70 +15184,70 @@ C*****************************************************************************
                           IF (((xsrc+usrc*dist_dbs)**2+(ysrc+vsrc*dist_d
      *                    bs)**2.GT.r_dbs**2)) THEN
                               ndbsrjct=ndbsrjct+1
-                              goto 11690
+                              goto 11760
                           END IF
                       END IF
                       IF ((enflag .EQ. 3)) THEN
                           IF ((I_BIT_FILTER .EQ. 0)) THEN
-                              DO 11731 IBIT=1,NBIT1
+                              DO 11801 IBIT=1,NBIT1
                                   IF ((BTEST(latchi,LATBIT(IBIT)))) THEN
-                                      GO TO11732
+                                      GO TO11802
                                   END IF
                                   IF ((IBIT.EQ.NBIT1)) THEN
                                       nsrjct=nsrjct+1
-                                      goto 11690
+                                      goto 11760
                                   END IF
-11731                         CONTINUE
-11732                         CONTINUE
-                              DO 11741 IBIT=1,NBIT2
+11801                         CONTINUE
+11802                         CONTINUE
+                              DO 11811 IBIT=1,NBIT2
                                   IF ((BTEST(latchi,LATBIT(IBIT+NBIT1)))
      *                            ) THEN
                                       nsrjct=nsrjct+1
-                                      goto 11690
+                                      goto 11760
                                   END IF
-11741                         CONTINUE
-11742                         CONTINUE
-                              goto 11750
+11811                         CONTINUE
+11812                         CONTINUE
+                              goto 11820
                           ELSE IF((I_BIT_FILTER.EQ.1)) THEN
-                              DO 11761 IBIT=1,NBIT1
+                              DO 11831 IBIT=1,NBIT1
                                   IF ((BTEST(latchi,LATBIT(IBIT)))) THEN
                                       nsrjct=nsrjct+1
-                                      goto 11690
+                                      goto 11760
                                   END IF
-11761                         CONTINUE
-11762                         CONTINUE
-                              goto 11750
+11831                         CONTINUE
+11832                         CONTINUE
+                              goto 11820
                           ELSE IF((I_BIT_FILTER.EQ.2)) THEN
-                              DO 11771 IBIT=1,NBIT1
+                              DO 11841 IBIT=1,NBIT1
                                   IF ((IBITS(latchi,24,5).EQ.LATBIT(IBIT
      *                            ))) THEN
-                                      goto 11750
+                                      goto 11820
                                   END IF
-11771                         CONTINUE
-11772                         CONTINUE
+11841                         CONTINUE
+11842                         CONTINUE
                               nsrjct=nsrjct+1
-                              goto 11690
+                              goto 11760
                           ELSE IF((I_BIT_FILTER.EQ.3)) THEN
-                              DO 11781 IBIT=1,NBIT1
+                              DO 11851 IBIT=1,NBIT1
                                   IF ((IBITS(latchi,24,5).EQ.LATBIT(IBIT
      *                            ))) THEN
                                       nsrjct=nsrjct+1
-                                      goto 11690
+                                      goto 11760
                                   END IF
-11781                         CONTINUE
-11782                         CONTINUE
-                              goto 11750
+11851                         CONTINUE
+11852                         CONTINUE
+                              goto 11820
                           END IF
                       END IF
-11750                 CONTINUE
+11820                 CONTINUE
                       IF ((ABS(xsrc) .GE. (BEAM_SIZE/2.0) .OR. ABS(ysrc)
      *                .GE.(BEAM_SIZE/2.0))) THEN
                           nsoutside=nsoutside+1
                       END IF
                       IF(((ABS(xsrc) .LT. (BEAM_SIZE/2.0) .AND. ABS(ysrc
-     *                ).LT.(BEAM_SIZE/2.0))))GO TO11682
-                  GO TO 11681
-11682             CONTINUE
+     *                ).LT.(BEAM_SIZE/2.0))))GO TO11752
+                  GO TO 11751
+11752             CONTINUE
                   IF ((NRCYCL.GT.0)) THEN
                       CYCLNUM=1
                       NofREPEAT=0
@@ -15193,8 +15296,8 @@ C*****************************************************************************
               END IF
           END IF
       ELSE IF(( isource .EQ. 21)) THEN
-11791     CONTINUE
-11800         CONTINUE
+11861     CONTINUE
+11870         CONTINUE
               IF ((more_in_cont .EQ. 0)) THEN
                   call motionsample_beamsource(einsrc,xsrc,ysrc,zsrcdum,
      *            usrc,vsrc,wsrc, weight,iqin,latchi,nhist,iphatsrc,frMU
@@ -15214,86 +15317,86 @@ C*****************************************************************************
               END IF
               IF (( iqinc .LT. 2 .AND. iqin .NE. iqinc )) THEN
                   nsrjct=nsrjct+1
-                  goto 11800
+                  goto 11870
               ELSE IF(( iqinc .EQ. 3 .AND. iqin .EQ. 0 )) THEN
                   nsrjct=nsrjct+1
-                  goto 11800
+                  goto 11870
               ELSE IF((i_dbs.EQ.1 .AND. iqin.EQ.0 .AND. iphatsrc.GT.1))
      *        THEN
                   nsrjct=ndbsrjct+1
-                  goto 11800
+                  goto 11870
               END IF
               IF ((enflag .EQ. 3)) THEN
                   IF ((I_BIT_FILTER .EQ. 0)) THEN
-                      DO 11811 IBIT=1,NBIT1
+                      DO 11881 IBIT=1,NBIT1
                           IF ((BTEST(latchi,LATBIT(IBIT)))) THEN
-                              GO TO11812
+                              GO TO11882
                           END IF
                           IF ((IBIT.EQ.NBIT1)) THEN
                               nsrjct=nsrjct+1
-                              goto 11800
+                              goto 11870
                           END IF
-11811                 CONTINUE
-11812                 CONTINUE
-                      DO 11821 IBIT=1,NBIT2
+11881                 CONTINUE
+11882                 CONTINUE
+                      DO 11891 IBIT=1,NBIT2
                           IF ((BTEST(latchi,LATBIT(IBIT+NBIT1)))) THEN
                               nsrjct=nsrjct+1
-                              goto 11800
+                              goto 11870
                           END IF
-11821                 CONTINUE
-11822                 CONTINUE
-                      goto 11830
+11891                 CONTINUE
+11892                 CONTINUE
+                      goto 11900
                   ELSE IF((I_BIT_FILTER.EQ.1)) THEN
-                      DO 11841 IBIT=1,NBIT1
+                      DO 11911 IBIT=1,NBIT1
                           IF ((BTEST(latchi,LATBIT(IBIT)))) THEN
                               nsrjct=nsrjct+1
-                              goto 11800
+                              goto 11870
                           END IF
-11841                 CONTINUE
-11842                 CONTINUE
-                      goto 11830
+11911                 CONTINUE
+11912                 CONTINUE
+                      goto 11900
                   ELSE IF((I_BIT_FILTER.EQ.2)) THEN
-                      DO 11851 IBIT=1,NBIT1
+                      DO 11921 IBIT=1,NBIT1
                           IF ((IBITS(latchi,24,5).EQ.LATBIT(IBIT))) THEN
-                              goto 11830
+                              goto 11900
                           END IF
-11851                 CONTINUE
-11852                 CONTINUE
+11921                 CONTINUE
+11922                 CONTINUE
                       nsrjct=nsrjct+1
-                      goto 11800
+                      goto 11870
                   ELSE IF((I_BIT_FILTER.EQ.3)) THEN
-                      DO 11861 IBIT=1,NBIT1
+                      DO 11931 IBIT=1,NBIT1
                           IF ((IBITS(latchi,24,5).EQ.LATBIT(IBIT))) THEN
                               nsrjct=nsrjct+1
-                              goto 11800
+                              goto 11870
                           END IF
-11861                 CONTINUE
-11862                 CONTINUE
-                      goto 11830
+11931                 CONTINUE
+11932                 CONTINUE
+                      goto 11900
                   END IF
               END IF
-11830         CONTINUE
+11900         CONTINUE
               IF ((ABS(xsrc) .GE. (BEAM_SIZE/2.0) .OR. ABS(ysrc).GE.(BEA
      *        M_SIZE/2.0))) THEN
                   nsoutside=nsoutside+1
               END IF
               IF(((ABS(xsrc) .LT. (BEAM_SIZE/2.0) .AND. ABS(ysrc).LT.(BE
-     *        AM_SIZE/2.0))))GO TO11792
-          GO TO 11791
-11792     CONTINUE
+     *        AM_SIZE/2.0))))GO TO11862
+          GO TO 11861
+11862     CONTINUE
       END IF
       IF (((isource .EQ. 20 .OR. isource .EQ. 21) .AND. weight .EQ. 0))
      *THEN
           more_in_cont=0
           nsblocked = nsblocked + 1
-          goto 11480
+          goto 11550
       ELSE IF((isource .EQ. 4)) THEN
       END IF
       IF ((NofREPEAT .GT. 0 .AND. ISMOOTH .EQ. 1)) THEN
           CALL SHIFT_XYUV(NofREPEAT,xsrc,ysrc,usrc,vsrc)
       END IF
       IF ((isource.LT.7 .OR. isource.EQ.9)) THEN
-          IF((i_iaea_in.EQ.1))zsrc = zsrc + dsource
+          IF((i_iaea_in.EQ.1))zsrc = zsrc - iaea_SAD
           uin = r_11(1)*usrc + r_12(1)*vsrc + r_13(1)*wsrc
           vin = r_21(1)*usrc + r_22(1)*vsrc + r_23(1)*wsrc
           win = r_31(1)*usrc + r_32(1)*vsrc + r_33(1)*wsrc
@@ -15301,17 +15404,17 @@ C*****************************************************************************
           ysrcp = r_21(1)*xsrc + r_22(1)*ysrc + r_23(1)*zsrc + yiso
           zsrcp = r_31(1)*xsrc + r_32(1)*ysrc + r_33(1)*zsrc + ziso
       ELSE IF((isource.EQ.20 .OR. isource.EQ.21)) THEN
-          DO 11871 I=1,nset
+          DO 11941 I=1,nset
               IF ((frMU_indx.LT.muIndex(I))) THEN
                   K=I
-                  GO TO11872
+                  GO TO11942
               END IF
-11871     CONTINUE
-11872     CONTINUE
+11941     CONTINUE
+11942     CONTINUE
           IF ((i_iaea_in.EQ.1)) THEN
-              SAD_s20 = (dsourcetemp(K-1)+(dsourcetemp(K)-dsourcetemp(K-
-     *        1))* (frMU_indx-muIndex(K-1))/(muIndex(K)-muIndex(K-1)))
-              zsrc = zsrc - SAD_s20
+              iaea_SAD = (dsourcetemp(K-1)+(dsourcetemp(K)-dsourcetemp(K
+     *        -1))* (frMU_indx-muIndex(K-1))/(muIndex(K)-muIndex(K-1)))
+              zsrc = zsrc - iaea_SAD
           ELSE
               zsrc = -1.0*(dsourcetemp(K-1)+(dsourcetemp(K)-dsourcetemp(
      *        K-1))* (frMU_indx-muIndex(K-1))/(muIndex(K)-muIndex(K-1)))
@@ -15350,17 +15453,18 @@ C*****************************************************************************
           ysrcp = r_21(1)*xsrc + r_22(1)*ysrc + r_23(1)*zsrc + yiso
           zsrcp = r_31(1)*xsrc + r_32(1)*ysrc + r_33(1)*zsrc + ziso
       ELSE
+          IF((i_iaea_in.EQ.1))zsrc = zsrc - iaea_SAD
           IF((rng_seed .GT. 128))call ranmar_get
           RNNO1 = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
           k_field=numang
-          DO 11881 I=1,numang-1
+          DO 11951 I=1,numang-1
               IF ((RNNO1.LT.pang(I))) THEN
                   k_field=I
-                  GO TO11882
+                  GO TO11952
               END IF
-11881     CONTINUE
-11882     CONTINUE
+11951     CONTINUE
+11952     CONTINUE
           uin = r_11(k_field)*usrc + r_12(k_field)*vsrc + r_13(k_field)*
      *    wsrc
           vin = r_21(k_field)*usrc + r_22(k_field)*vsrc + r_23(k_field)*
@@ -15382,21 +15486,21 @@ C*****************************************************************************
               IF (( (yin .GE. ybound_min) .AND. (yin .LE. ybound_max) .A
      *        ND. (zin .GE. zbound_min) .AND. (zin .LE. zbound_max))) TH
      *        EN
-                  DO 11891 j=1,jmax
+                  DO 11961 j=1,jmax
                       IF (( (ybound(j) .LE. yin) .AND. (yin .LE. ybound(
      *                j+1)) )) THEN
-                          DO 11901 k=1,kmax
+                          DO 11971 k=1,kmax
                               IF (( (zbound(k) .LE. zin) .AND. (zin .LE.
      *                         zbound(k+1)) )) THEN
                                   xin = xbound_min
                                   irin = imax*j + klowx + ijmax*k
                                   return
                               END IF
-11901                     CONTINUE
-11902                     CONTINUE
+11971                     CONTINUE
+11972                     CONTINUE
                       END IF
-11891             CONTINUE
-11892             CONTINUE
+11961             CONTINUE
+11962             CONTINUE
                   stop ' * Stopped in srchst on lower x-plane. Can not f
      *ind irin! *'
               END IF
@@ -15407,21 +15511,21 @@ C*****************************************************************************
               IF (( (yin .GE. ybound_min) .AND. (yin .LE. ybound_max) .A
      *        ND. (zin .GE. zbound_min) .AND. (zin .LE. zbound_max))) TH
      *        EN
-                  DO 11911 j=1,jmax
+                  DO 11981 j=1,jmax
                       IF (( (ybound(j) .LE. yin) .AND. (yin .LE. ybound(
      *                j+1)) )) THEN
-                          DO 11921 k=1,kmax
+                          DO 11991 k=1,kmax
                               IF (( (zbound(k) .LE. zin) .AND. (zin .LE.
      *                         zbound(k+1)) )) THEN
                                   xin = xbound_max
                                   irin = imax*j + khix + ijmax*k
                                   return
                               END IF
-11921                     CONTINUE
-11922                     CONTINUE
+11991                     CONTINUE
+11992                     CONTINUE
                       END IF
-11911             CONTINUE
-11912             CONTINUE
+11981             CONTINUE
+11982             CONTINUE
                   stop ' * Stopped in srchst on upper x-plane. Can not f
      *ind irin! *'
               END IF
@@ -15433,21 +15537,21 @@ C*****************************************************************************
               IF (( (xin .GE. xbound_min) .AND. (xin .LE. xbound_max) .A
      *        ND. (zin .GE. zbound_min) .AND. (zin .LE. zbound_max))) TH
      *        EN
-                  DO 11931 i=1,imax
+                  DO 12001 i=1,imax
                       IF (( (xbound(i) .LE. xin) .AND. (xin .LE. xbound(
      *                i+1)) )) THEN
-                          DO 11941 k=1,kmax
+                          DO 12011 k=1,kmax
                               IF (( (zbound(k) .LE. zin) .AND. (zin .LE.
      *                         zbound(k+1)) )) THEN
                                   yin = ybound_min
                                   irin = i + klowy + ijmax*k
                                   return
                               END IF
-11941                     CONTINUE
-11942                     CONTINUE
+12011                     CONTINUE
+12012                     CONTINUE
                       END IF
-11931             CONTINUE
-11932             CONTINUE
+12001             CONTINUE
+12002             CONTINUE
                   stop ' * Stopped in srchst on lower y-plane. Can not f
      *ind irin! *'
               END IF
@@ -15458,21 +15562,21 @@ C*****************************************************************************
               IF (( (xin .GE. xbound_min) .AND. (xin .LE. xbound_max) .A
      *        ND. (zin .GE. zbound_min) .AND. (zin .LE. zbound_max))) TH
      *        EN
-                  DO 11951 i=1,imax
+                  DO 12021 i=1,imax
                       IF (( (xbound(i) .LE. xin) .AND. (xin .LE. xbound(
      *                i+1)) )) THEN
-                          DO 11961 k=1,kmax
+                          DO 12031 k=1,kmax
                               IF (( (zbound(k) .LE. zin) .AND. (zin .LE.
      *                         zbound(k+1)) )) THEN
                                   yin = ybound_max
                                   irin = i + khiy + ijmax*k
                                   return
                               END IF
-11961                     CONTINUE
-11962                     CONTINUE
+12031                     CONTINUE
+12032                     CONTINUE
                       END IF
-11951             CONTINUE
-11952             CONTINUE
+12021             CONTINUE
+12022             CONTINUE
                   stop ' * Stopped in srchst on upper y-plane. Can not f
      *ind irin! *'
               END IF
@@ -15484,21 +15588,21 @@ C*****************************************************************************
               IF (( (xin .GE. xbound_min) .AND. (xin .LE. xbound_max) .A
      *        ND. (yin .GE. ybound_min) .AND. (yin .LE. ybound_max))) TH
      *        EN
-                  DO 11971 i=1,imax
+                  DO 12041 i=1,imax
                       IF (( (xbound(i) .LE. xin) .AND. (xin .LE. xbound(
      *                i+1)) )) THEN
-                          DO 11981 j=1,jmax
+                          DO 12051 j=1,jmax
                               IF (( (ybound(j) .LE. yin) .AND. (yin .LE.
      *                         ybound(j+1)) )) THEN
                                   zin = zbound_min
                                   irin = i + klowz + imax*j
                                   return
                               END IF
-11981                     CONTINUE
-11982                     CONTINUE
+12051                     CONTINUE
+12052                     CONTINUE
                       END IF
-11971             CONTINUE
-11972             CONTINUE
+12041             CONTINUE
+12042             CONTINUE
                   stop ' * Stopped in srchst on lower z-plane. Can not f
      *ind irin! *'
               END IF
@@ -15509,27 +15613,27 @@ C*****************************************************************************
               IF (( (xin .GE. xbound_min) .AND. (xin .LE. xbound_max) .A
      *        ND. (yin .GE. ybound_min) .AND. (yin .LE. ybound_max))) TH
      *        EN
-                  DO 11991 i=1,imax
+                  DO 12061 i=1,imax
                       IF (( (xbound(i) .LE. xin) .AND. (xin .LE. xbound(
      *                i+1)) )) THEN
-                          DO 12001 j=1,jmax
+                          DO 12071 j=1,jmax
                               IF (( (ybound(j) .LE. yin) .AND. (yin .LE.
      *                         ybound(j+1)) )) THEN
                                   zin = zbound_max
                                   irin = i + khiz + imax*j
                                   return
                               END IF
-12001                     CONTINUE
-12002                     CONTINUE
+12071                     CONTINUE
+12072                     CONTINUE
                       END IF
-11991             CONTINUE
-11992             CONTINUE
+12061             CONTINUE
+12062             CONTINUE
                   stop ' * Stopped in srchst on upper z-plane. Can not f
      *ind irin! *'
               END IF
           END IF
           nmissm = nmissm+1
-          goto 11480
+          goto 11550
       ELSE
           xin = xsrcp
           yin = ysrcp
@@ -15540,34 +15644,34 @@ C*****************************************************************************
           IF (( (xin .GE. xbound_min) .AND. (xin .LE. xbound_max) .AND.
      *    (yin .GE. ybound_min) .AND. (yin .LE. ybound_max) .AND. (zin .
      *    GE. zbound_min) .AND. (zin .LE. zbound_max))) THEN
-              DO 12011 i=1,imax
+              DO 12081 i=1,imax
                   IF (( (xbound(i) .LE. xin) .AND. (xin .LE. xbound(i+1)
      *            ) )) THEN
-                      DO 12021 j=1,jmax
+                      DO 12091 j=1,jmax
                           IF (( (ybound(j) .LE. yin) .AND. (yin .LE. ybo
      *                    und(j+1)) )) THEN
-                              DO 12031 k=1,kmax
+                              DO 12101 k=1,kmax
                                   IF (( (zbound(k) .LE. zin) .AND. (zin
      *                            .LE. zbound(k+1)) )) THEN
                                       irin = (1 + i + (j-1)*IMAX + (k-1)
      *                                *ijmax)
                                       return
                                   END IF
-12031                         CONTINUE
-12032                         CONTINUE
+12101                         CONTINUE
+12102                         CONTINUE
                           END IF
-12021                 CONTINUE
-12022                 CONTINUE
+12091                 CONTINUE
+12092                 CONTINUE
                   END IF
-12011         CONTINUE
-12012         CONTINUE
+12081         CONTINUE
+12082         CONTINUE
               stop ' * Stopped in srchst. Cannot find irin! *'
           ELSE IF(( (xin.GT. xbound_max+dsurround(1)) .OR. (xin .LT. xbo
      *    und_min-dsurround(1)).OR. (yin.GT. ybound_max+dsurround(2)) .O
      *    R. (yin .LT. ybound_min-dsurround(2)).OR. (zin.GT. zbound_max+
      *    dsurround(3)) .OR. (zin .LT. zbound_min-dsurround(4)))) THEN
               nsmiss = nsmiss+1
-              goto 11480
+              goto 11550
           ELSE
               irin = imax*jmax*kmax+2
               return
@@ -15657,10 +15761,10 @@ C*****************************************************************************
       j = mod(ixx, 177) + 2
       k = mod(jxx/169,178) + 1
       l = mod(jxx, 169)
-      DO 12041 ii=1,97
+      DO 12111 ii=1,97
           s = 0
           t = 8388608
-          DO 12051 jj=1,24
+          DO 12121 jj=1,24
               m = mod(mod(i*j,179)*k,179)
               IF (( fool_optimizer .EQ. 999 )) THEN
                   write(6,*) i,j,k,m,s,t
@@ -15689,11 +15793,11 @@ C*****************************************************************************
               IF (( fool_optimizer .EQ. 999 )) THEN
                   write(6,*) i,j,k,m,s,t
               END IF
-12051     CONTINUE
-12052     CONTINUE
+12121     CONTINUE
+12122     CONTINUE
           urndm(ii) = s
-12041 CONTINUE
-12042 CONTINUE
+12111 CONTINUE
+12112 CONTINUE
       crndm = 362436
       cdrndm = 7654321
       cmrndm = 16777213
@@ -15712,7 +15816,7 @@ C*****************************************************************************
       real*4 twom24
       integer*4 i,iopt
       IF((rng_seed .EQ. 999999))call init_ranmar
-      DO 12061 i=1,128
+      DO 12131 i=1,128
           iopt = urndm(ixx) - urndm(jxx)
           IF((iopt .LT. 0))iopt = iopt + 16777216
           urndm(ixx) = iopt
@@ -15728,8 +15832,8 @@ C*****************************************************************************
           iopt = iopt - crndm
           IF((iopt .LT. 0))iopt = iopt + 16777216
           rng_array(i) = iopt
-12061 CONTINUE
-12062 CONTINUE
+12131 CONTINUE
+12132 CONTINUE
       rng_seed = 1
       return
       end
@@ -15742,9 +15846,9 @@ C*****************************************************************************
       integer*4 ku,kr,ka
       COMMON/BOUNDS/ECUT,PCUT,VACDST
       real*8 ECUT,  PCUT,  VACDST
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -15787,10 +15891,10 @@ C*****************************************************************************
       kr = 0
       ka = 1
       IF ((IARG .EQ. -99)) THEN
-          DO 12071 J=1,29
+          DO 12141 J=1,29
               IAUSFL(J)=1
-12071     CONTINUE
-12072     CONTINUE
+12141     CONTINUE
+12142     CONTINUE
           IAUSFL(22)=0
           IAUSFL(23)=0
           IAUSFL(24)=0
@@ -15800,11 +15904,11 @@ C*****************************************************************************
               IF (( graph_unit .LT. 0 )) THEN
                   graph_unit = egs_open_file(ku,kr,ka,'.egsgph')
               END IF
-              WRITE(graph_unit,12080) 0,0,0,0.0,0.0,0.0,0.0,JHSTRY
+              WRITE(graph_unit,12150) 0,0,0,0.0,0.0,0.0,0.0,JHSTRY
               JHSTRY=JHSTRY+1
           ELSE
-              WRITE(6,12090)JHSTRY
-12090         FORMAT(' END OF HISTORY',I8,3X,40('*')/)
+              WRITE(6,12160)JHSTRY
+12160         FORMAT(' END OF HISTORY',I8,3X,40('*')/)
               JHSTRY=JHSTRY+1
               ICOUNT=ICOUNT+2
               RETURN
@@ -15813,17 +15917,17 @@ C*****************************************************************************
       IF (( (IWATCH .NE. 4) .AND. ((ICOUNT .GE. 50) .OR. (ICOUNT .EQ. 0)
      * .OR. (IARG .EQ. -99)) )) THEN
           ICOUNT=1
-          WRITE(6,12100)
-12100     FORMAT(//T39,' NP',3X,'ENERGY  Q REGION    X',7X, 'Y',7X,'Z',6
+          WRITE(6,12170)
+12170     FORMAT(//T39,' NP',3X,'ENERGY  Q REGION    X',7X, 'Y',7X,'Z',6
      *X,'U',6X,'V',6X,'W',6X,'LATCH',2X,'WEIGHT'/)
       END IF
       IF (((IWATCH .EQ. 4) .AND. (IARG .GE. 0) .AND. (IARG .NE. 5))) THE
      *N
           IF((graph_unit .LT. 0))graph_unit = egs_open_file(ku,kr,ka,'.e
      *gsgph')
-          WRITE(graph_unit,12080) NP,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),E(N
+          WRITE(graph_unit,12150) NP,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),E(N
      *    P)
-12080     FORMAT(2I4,1X,I6,4G15.8,I12)
+12150     FORMAT(2I4,1X,I6,4G15.8,I12)
       END IF
       IF((IARG .EQ. 5 .OR. IARG .LT. 0))RETURN
       IF((IWATCH .EQ. 4))RETURN
@@ -15833,237 +15937,196 @@ C*****************************************************************************
       END IF
       IF ((IARG .EQ. 0 .AND. IWATCH .EQ. 2)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12110)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12180)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12110     FORMAT(T11,'STEP ABOUT TO OCCUR', T36,':',I5,F9.3,2I4,3F8.3,3F
+12180     FORMAT(T11,'STEP ABOUT TO OCCUR', T36,':',I5,F9.3,2I4,3F8.3,3F
      *7.3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 0)) THEN
           RETURN
       END IF
       IF (( IARG .EQ. 1)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12120)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12190)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12120     FORMAT(' Discard  AE,AP<E<ECUT',T36,':',I5,F9.3,2I4,3F8.3,3F7.
+12190     FORMAT(' Discard  AE,AP<E<ECUT',T36,':',I5,F9.3,2I4,3F8.3,3F7.
      *3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 2)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12130)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12200)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12130     FORMAT(' Discard  E<AE,AP',T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10
+12200     FORMAT(' Discard  E<AE,AP',T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10
      *,1PE10.3)
       ELSE IF((IARG .EQ. 3)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12140)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12210)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12140     FORMAT(' Discard -user request',T36,':',I5,F9.3,2I4,3F8.3,3F7.
+12210     FORMAT(' Discard -user request',T36,':',I5,F9.3,2I4,3F8.3,3F7.
      *3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 4)) THEN
-          WRITE(6,12150)EDEP,IR(NP)
-12150     FORMAT(T10,'Local energy deposition',T36,':',F12.5,' MeV in re
+          WRITE(6,12220)EDEP,IR(NP)
+12220     FORMAT(T10,'Local energy deposition',T36,':',F12.5,' MeV in re
      *gion ',I6)
       ELSE IF((IARG .EQ. 6)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12160)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12230)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12160     FORMAT(' bremsstrahlung  about to occur',T36,':',I5,F9.3,2I4,3
+12230     FORMAT(' bremsstrahlung  about to occur',T36,':',I5,F9.3,2I4,3
      *F8.3,3F7.3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 7)) THEN
           IF ((nbr_split .EQ.1)) THEN
-              DO 12171 IP=NPold,NP
+              DO 12241 IP=NPold,NP
                   IF ((IQ(IP).EQ.-1)) THEN
                       KE = E(IP) - RM
                       ICOUNT=ICOUNT+1
-                      WRITE(6,12180)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+                      WRITE(6,12250)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12180                 FORMAT(T10,'Resulting electron',T36,':',I5,F9.3,2I
+12250                 FORMAT(T10,'Resulting electron',T36,':',I5,F9.3,2I
      *4,3F8.3,3F7.3,I10,1PE10.3)
                   ELSE
                       KE = E(IP)
                       ICOUNT=ICOUNT+1
-                      WRITE(6,12190)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+                      WRITE(6,12260)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12190                 FORMAT(T10,'Resulting photon',T36,':',I5,F9.3,2I4,
+12260                 FORMAT(T10,'Resulting photon',T36,':',I5,F9.3,2I4,
      *3F8.3,3F7.3,I10,1PE10.3)
                   END IF
-12171         CONTINUE
-12172         CONTINUE
+12241         CONTINUE
+12242         CONTINUE
           ELSE
               KE = E(NPold) - RM
               ICOUNT=ICOUNT+1
-              WRITE(6,12200)NPold,KE,IQ(NPold),IR(NPold),X(NPold),Y(NPol
+              WRITE(6,12270)NPold,KE,IQ(NPold),IR(NPold),X(NPold),Y(NPol
      *        d),Z(NPold),U(NPold),V(NPold), W(NPold),LATCH(NPold),WT(NP
      *        old)
-12200         FORMAT(T10,'Resulting electron',T36,':',I5,F9.3,2I4,3F8.3,
+12270         FORMAT(T10,'Resulting electron',T36,':',I5,F9.3,2I4,3F8.3,
      *3F7.3,I10,1PE10.3)
-              DO 12211 IP=NPold+1,NP
+              DO 12281 IP=NPold+1,NP
                   KE= E(IP)
                   IF ((IP .EQ. NPold+1)) THEN
                       ICOUNT=ICOUNT+1
-                      WRITE(6,12220)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+                      WRITE(6,12290)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12220                 FORMAT(T10,'Split photons',T36,':',I5,F9.3,2I4,3F8
+12290                 FORMAT(T10,'Split photons',T36,':',I5,F9.3,2I4,3F8
      *.3,3F7.3,I10,1PE10.3)
                   ELSE
                       ICOUNT=ICOUNT+1
-                      WRITE(6,12230)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+                      WRITE(6,12300)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12230                 FORMAT(T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3
+12300                 FORMAT(T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3
      *)
                   END IF
-12211         CONTINUE
-12212         CONTINUE
+12281         CONTINUE
+12282         CONTINUE
           END IF
       ELSE IF((IARG .EQ. 8)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12240)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12310)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12240     FORMAT(' Moller   about to occur',T36,':',I5,F9.3,2I4,3F8.3,3F
+12310     FORMAT(' Moller   about to occur',T36,':',I5,F9.3,2I4,3F8.3,3F
      *7.3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 9)) THEN
           IF ((NP.EQ.NPold)) THEN
               ICOUNT=ICOUNT+1
-              WRITE(6,12250)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
+              WRITE(6,12320)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
      *        V(NP), W(NP),LATCH(NP),WT(NP)
-12250         FORMAT(T11,'Interaction rejected',T36,':',I5,F9.3,2I4,3F8.
+12320         FORMAT(T11,'Interaction rejected',T36,':',I5,F9.3,2I4,3F8.
      *3,3F7.3,I10,1PE10.3)
           ELSE
-              DO 12261 IP=NPold,NP
+              DO 12331 IP=NPold,NP
                   KE = E(IP) - ABS(IQ(NP))*RM
                   IF ((IP.EQ.NPold)) THEN
                       ICOUNT=ICOUNT+1
-                      WRITE(6,12270)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+                      WRITE(6,12340)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12270                 FORMAT(T11,'Resulting electrons',T36,':',I5,F9.3,2
+12340                 FORMAT(T11,'Resulting electrons',T36,':',I5,F9.3,2
      *I4,3F8.3,3F7.3,I10,1PE10.3)
                   ELSE
                       ICOUNT=ICOUNT+1
-                      WRITE(6,12280)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+                      WRITE(6,12350)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12280                 FORMAT(T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3
+12350                 FORMAT(T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3
      *)
                   END IF
-12261         CONTINUE
-12262         CONTINUE
+12331         CONTINUE
+12332         CONTINUE
           END IF
       ELSE IF((IARG .EQ. 10)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12290)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12360)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12290     FORMAT(' Bhabba   about to occur',T36,':',I5,F9.3,2I4,3F8.3,3F
+12360     FORMAT(' Bhabba   about to occur',T36,':',I5,F9.3,2I4,3F8.3,3F
      *7.3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 11)) THEN
           IF ((NP.EQ.NPold)) THEN
               ICOUNT=ICOUNT+1
-              WRITE(6,12300)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
+              WRITE(6,12370)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
      *        V(NP), W(NP),LATCH(NP),WT(NP)
-12300         FORMAT(T11,'Interaction rejected',T36,':',I5,F9.3,2I4,3F8.
+12370         FORMAT(T11,'Interaction rejected',T36,':',I5,F9.3,2I4,3F8.
      *3,3F7.3,I10,1PE10.3)
           ELSE
-              DO 12311 IP=NPold,NP
+              DO 12381 IP=NPold,NP
                   KE = E(IP) - ABS(IQ(IP))*RM
                   IF ((IP.EQ.NPold)) THEN
                       ICOUNT=ICOUNT+1
-                      WRITE(6,12320)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+                      WRITE(6,12390)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12320                 FORMAT(T11,'Resulting e- or e+',T36,':',I5,F9.3,2I
+12390                 FORMAT(T11,'Resulting e- or e+',T36,':',I5,F9.3,2I
      *4,3F8.3,3F7.3,I10,1PE10.3)
                   ELSE
                       ICOUNT=ICOUNT+1
-                      WRITE(6,12330)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+                      WRITE(6,12400)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12330                 FORMAT(T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3
+12400                 FORMAT(T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3
      *)
                   END IF
-12311         CONTINUE
-12312         CONTINUE
+12381         CONTINUE
+12382         CONTINUE
           END IF
       ELSE IF((IARG .EQ. 12)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12340)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12410)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12340     FORMAT(' Positron about to decay in flight',T36,':',I5,F9.3,2I
+12410     FORMAT(' Positron about to decay in flight',T36,':',I5,F9.3,2I
      *4,3F8.3,3F7.3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 13)) THEN
           IF ((NP.EQ.NPold)) THEN
               ICOUNT=ICOUNT+1
-              WRITE(6,12350)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
+              WRITE(6,12420)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
      *        V(NP), W(NP),LATCH(NP),WT(NP)
-12350         FORMAT(T11,'Interaction rejected',T36,':',I5,F9.3,2I4,3F8.
+12420         FORMAT(T11,'Interaction rejected',T36,':',I5,F9.3,2I4,3F8.
      *3,3F7.3,I10,1PE10.3)
           ELSE
-              DO 12361 IP=NPold,NP
+              DO 12431 IP=NPold,NP
                   KE = E(IP) - ABS(IQ(IP))*RM
                   IF ((IP.EQ.NPold)) THEN
                       ICOUNT=ICOUNT+1
-                      WRITE(6,12370)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+                      WRITE(6,12440)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12370                 FORMAT(T11,'Resulting photons',T36,':',I5,F9.3,2I4
+12440                 FORMAT(T11,'Resulting photons',T36,':',I5,F9.3,2I4
      *,3F8.3,3F7.3,I10,1PE10.3)
                   ELSE
                       ICOUNT=ICOUNT+1
-                      WRITE(6,12380)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+                      WRITE(6,12450)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12380                 FORMAT(T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3
+12450                 FORMAT(T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3
      *)
                   END IF
-12361         CONTINUE
-12362         CONTINUE
+12431         CONTINUE
+12432         CONTINUE
           END IF
       ELSE IF((IARG .EQ. 28)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12390)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12460)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12390     FORMAT(' Positron will annihilate at rest',T36,':',I5,F9.3,2I4
+12460     FORMAT(' Positron will annihilate at rest',T36,':',I5,F9.3,2I4
      *,3F8.3,3F7.3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 14)) THEN
           IF ((NP.EQ.NPold)) THEN
               ICOUNT=ICOUNT+1
-              WRITE(6,12400)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
-     *        V(NP), W(NP),LATCH(NP),WT(NP)
-12400         FORMAT(T11,'Interaction rejected',T36,':',I5,F9.3,2I4,3F8.
-     *3,3F7.3,I10,1PE10.3)
-          ELSE
-              DO 12411 IP=NPold,NP
-                  KE = E(IP) - ABS(IQ(IP))*RM
-                  IF ((IP.EQ.NPold)) THEN
-                      ICOUNT=ICOUNT+1
-                      WRITE(6,12420)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
-     *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12420                 FORMAT(' Positron annihilates at rest',T36,':',I5,
-     *F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3)
-                  ELSE
-                      ICOUNT=ICOUNT+1
-                      WRITE(6,12430)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
-     *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12430                 FORMAT(T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3
-     *)
-                  END IF
-12411         CONTINUE
-12412         CONTINUE
-          END IF
-      ELSE IF((IARG .EQ. 15)) THEN
-          ICOUNT=ICOUNT+1
-          WRITE(6,12440)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
-     *    ), W(NP),LATCH(NP),WT(NP)
-12440     FORMAT(' Pair production about to occur',T36,':',I5,F9.3,2I4,3
-     *F8.3,3F7.3,I10,1PE10.3)
-      ELSE IF((IARG .EQ. 16)) THEN
-          IF ((NP.EQ.NPold .AND. i_survived_rr .EQ. 0)) THEN
-              ICOUNT=ICOUNT+1
-              WRITE(6,12450)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
-     *        V(NP), W(NP),LATCH(NP),WT(NP)
-12450         FORMAT(T11,'Interaction rejected',T36,':',I5,F9.3,2I4,3F8.
-     *3,3F7.3,I10,1PE10.3)
-          ELSE IF((NP.EQ.NPold .AND. i_survived_rr .GT. 0)) THEN
-              WRITE(6,12460)i_survived_rr,prob_rr
-12460         FORMAT(T10,'Russian Roulette eliminated ',I2, ' particle(s
-     *) with probability ',F8.5)
-              ICOUNT=ICOUNT+1
               WRITE(6,12470)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
      *        V(NP), W(NP),LATCH(NP),WT(NP)
-12470         FORMAT(T10,'Now on top of stack',T36,':',I5,F9.3,2I4,3F8.3
-     *,3F7.3,I10,1PE10.3)
+12470         FORMAT(T11,'Interaction rejected',T36,':',I5,F9.3,2I4,3F8.
+     *3,3F7.3,I10,1PE10.3)
           ELSE
               DO 12481 IP=NPold,NP
                   KE = E(IP) - ABS(IQ(IP))*RM
@@ -16071,8 +16134,8 @@ C*****************************************************************************
                       ICOUNT=ICOUNT+1
                       WRITE(6,12490)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12490                 FORMAT(T11,'Resulting pair',T36,':',I5,F9.3,2I4,3F
-     *8.3,3F7.3,I10,1PE10.3)
+12490                 FORMAT(' Positron annihilates at rest',T36,':',I5,
+     *F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3)
                   ELSE
                       ICOUNT=ICOUNT+1
                       WRITE(6,12500)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
@@ -16082,137 +16145,178 @@ C*****************************************************************************
                   END IF
 12481         CONTINUE
 12482         CONTINUE
+          END IF
+      ELSE IF((IARG .EQ. 15)) THEN
+          ICOUNT=ICOUNT+1
+          WRITE(6,12510)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+     *    ), W(NP),LATCH(NP),WT(NP)
+12510     FORMAT(' Pair production about to occur',T36,':',I5,F9.3,2I4,3
+     *F8.3,3F7.3,I10,1PE10.3)
+      ELSE IF((IARG .EQ. 16)) THEN
+          IF ((NP.EQ.NPold .AND. i_survived_rr .EQ. 0)) THEN
+              ICOUNT=ICOUNT+1
+              WRITE(6,12520)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
+     *        V(NP), W(NP),LATCH(NP),WT(NP)
+12520         FORMAT(T11,'Interaction rejected',T36,':',I5,F9.3,2I4,3F8.
+     *3,3F7.3,I10,1PE10.3)
+          ELSE IF((NP.EQ.NPold .AND. i_survived_rr .GT. 0)) THEN
+              WRITE(6,12530)i_survived_rr,prob_rr
+12530         FORMAT(T10,'Russian Roulette eliminated ',I2, ' particle(s
+     *) with probability ',F8.5)
+              ICOUNT=ICOUNT+1
+              WRITE(6,12540)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
+     *        V(NP), W(NP),LATCH(NP),WT(NP)
+12540         FORMAT(T10,'Now on top of stack',T36,':',I5,F9.3,2I4,3F8.3
+     *,3F7.3,I10,1PE10.3)
+          ELSE
+              DO 12551 IP=NPold,NP
+                  KE = E(IP) - ABS(IQ(IP))*RM
+                  IF ((IP.EQ.NPold)) THEN
+                      ICOUNT=ICOUNT+1
+                      WRITE(6,12560)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+     *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
+12560                 FORMAT(T11,'Resulting pair',T36,':',I5,F9.3,2I4,3F
+     *8.3,3F7.3,I10,1PE10.3)
+                  ELSE
+                      ICOUNT=ICOUNT+1
+                      WRITE(6,12570)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+     *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
+12570                 FORMAT(T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3
+     *)
+                  END IF
+12551         CONTINUE
+12552         CONTINUE
               IF ((i_survived_rr .GT. 0)) THEN
-                  WRITE(6,12510)i_survived_rr,prob_rr
-12510             FORMAT(T10,'Russian Roulette eliminated ',I2,'        
+                  WRITE(6,12580)i_survived_rr,prob_rr
+12580             FORMAT(T10,'Russian Roulette eliminated ',I2,'        
      *                              particle(s) with probability ',F8.5)
                   ICOUNT=ICOUNT+1
-                  WRITE(6,12520)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(
+                  WRITE(6,12590)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(
      *            NP),V(NP), W(NP),LATCH(NP),WT(NP)
-12520             FORMAT(T10,'Now on top of stack',T36,':',I5,F9.3,2I4,3
+12590             FORMAT(T10,'Now on top of stack',T36,':',I5,F9.3,2I4,3
      *F8.3,3F7.3,I10,1PE10.3)
               END IF
           END IF
       ELSE IF((IARG .EQ. 17)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12530)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12600)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12530     FORMAT(' Compton  about to occur',T36,':',I5,F9.3,2I4,3F8.3,3F
+12600     FORMAT(' Compton  about to occur',T36,':',I5,F9.3,2I4,3F8.3,3F
      *7.3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 18)) THEN
           IF ((NP .EQ. NPold .AND. i_survived_rr .EQ. 0)) THEN
               ICOUNT=ICOUNT+1
-              WRITE(6,12540)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
+              WRITE(6,12610)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
      *        V(NP), W(NP),LATCH(NP),WT(NP)
-12540         FORMAT(T11,'Interaction rejected',T36,':',I5,F9.3,2I4,3F8.
+12610         FORMAT(T11,'Interaction rejected',T36,':',I5,F9.3,2I4,3F8.
      *3,3F7.3,I10,1PE10.3)
           ELSE IF((NP .GT. NPold)) THEN
-              DO 12551 IP=NPold,NPold+1
+              DO 12621 IP=NPold,NPold+1
                   KE = E(IP) - ABS(IQ(IP))*RM
                   IF ((IQ(IP).NE.0)) THEN
                       ICOUNT=ICOUNT+1
-                      WRITE(6,12560)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+                      WRITE(6,12630)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12560                 FORMAT(T11,'compton electron created',T36,':',I5,F
+12630                 FORMAT(T11,'compton electron created',T36,':',I5,F
      *9.3,2I4,3F8.3,3F7.3,I10,1PE10.3)
                   ELSE
                       ICOUNT=ICOUNT+1
-                      WRITE(6,12570)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
+                      WRITE(6,12640)IP,KE,IQ(IP),IR(IP),X(IP),Y(IP),Z(IP
      *                ),U(IP),V(IP), W(IP),LATCH(IP),WT(IP)
-12570                 FORMAT(T11,'compton scattered photon',T36,':',I5,F
+12640                 FORMAT(T11,'compton scattered photon',T36,':',I5,F
      *9.3,2I4,3F8.3,3F7.3,I10,1PE10.3)
                   END IF
-12551         CONTINUE
-12552         CONTINUE
+12621         CONTINUE
+12622         CONTINUE
           END IF
           IF ((i_survived_rr .GT. 0)) THEN
-              WRITE(6,12580)i_survived_rr,prob_rr
-12580         FORMAT(T10,'Russian Roulette eliminated ',I2, ' particle(s
+              WRITE(6,12650)i_survived_rr,prob_rr
+12650         FORMAT(T10,'Russian Roulette eliminated ',I2, ' particle(s
      *) with probability ',F8.5)
               ICOUNT=ICOUNT+1
-              WRITE(6,12590)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
+              WRITE(6,12660)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
      *        V(NP), W(NP),LATCH(NP),WT(NP)
-12590         FORMAT(T10,'Now on top of stack',T36,':',I5,F9.3,2I4,3F8.3
+12660         FORMAT(T10,'Now on top of stack',T36,':',I5,F9.3,2I4,3F8.3
      *,3F7.3,I10,1PE10.3)
           END IF
       ELSE IF((IARG .EQ. 19)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12600)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12670)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12600     FORMAT(' Photoelectric about to occur',T36,':',I5,F9.3,2I4,3F8
+12670     FORMAT(' Photoelectric about to occur',T36,':',I5,F9.3,2I4,3F8
      *.3,3F7.3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 20)) THEN
           IF ((NPold.EQ.NP .AND. IQ(NP).EQ.0 .AND. i_survived_rr .EQ. 0)
      *    ) THEN
               ICOUNT=ICOUNT+1
-              WRITE(6,12610)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
+              WRITE(6,12680)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
      *        V(NP), W(NP),LATCH(NP),WT(NP)
-12610         FORMAT(T11,'Photon energy below N-shell',/, T11,'Photon di
+12680         FORMAT(T11,'Photon energy below N-shell',/, T11,'Photon di
      *scarded',T36,':',I5,F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3)
           ELSE IF((IQ(NPold) .EQ. -1 .AND. i_survived_rr .EQ. 0)) THEN
               KE= E(NPold)-RM
               ICOUNT=ICOUNT+1
-              WRITE(6,12620)NPold,KE,IQ(NPold),IR(NPold),X(NPold),Y(NPol
+              WRITE(6,12690)NPold,KE,IQ(NPold),IR(NPold),X(NPold),Y(NPol
      *        d),Z(NPold),U(NPold),V(NPold), W(NPold),LATCH(NPold),WT(NP
      *        old)
-12620         FORMAT(T10,'Resulting photoelectron',T36,':',I5,F9.3,2I4,3
+12690         FORMAT(T10,'Resulting photoelectron',T36,':',I5,F9.3,2I4,3
      *F8.3,3F7.3,I10,1PE10.3)
           ELSE IF((i_survived_rr .GT. 0)) THEN
               IF ((NP.EQ.NPold-1 .OR. IQ(NPold) .NE. -1)) THEN
                   IF ((i_survived_rr .GT. 1)) THEN
-                      WRITE(6,12630)i_survived_rr-1,prob_rr
-12630                 FORMAT(T10,'Russian Roulette eliminated ',I4, ' pa
+                      WRITE(6,12700)i_survived_rr-1,prob_rr
+12700                 FORMAT(T10,'Russian Roulette eliminated ',I4, ' pa
      *rticle(s) with probability ',F8.5,' plus')
                   END IF
-                  WRITE(6,12640)prob_rr
-12640             FORMAT(T10,'Russian Roulette eliminated resulting phot
+                  WRITE(6,12710)prob_rr
+12710             FORMAT(T10,'Russian Roulette eliminated resulting phot
      *oelectron', ' with probability ',F8.5)
               ELSE
                   KE = E(NPold) - RM
                   ICOUNT=ICOUNT+1
-                  WRITE(6,12650)NPold,KE,IQ(NPold),IR(NPold),X(NPold),Y(
+                  WRITE(6,12720)NPold,KE,IQ(NPold),IR(NPold),X(NPold),Y(
      *            NPold),Z(NPold),U(NPold),V(NPold), W(NPold),LATCH(NPol
      *            d),WT(NPold)
-12650             FORMAT(T10,'Resulting photoelectron?',T36,':',I5,F9.3,
+12720             FORMAT(T10,'Resulting photoelectron?',T36,':',I5,F9.3,
      *2I4,3F8.3,3F7.3,I10,1PE10.3)
-                  WRITE(6,12660)i_survived_rr,prob_rr
-12660             FORMAT(T10,'Russian Roulette eliminated ',I4, ' partic
+                  WRITE(6,12730)i_survived_rr,prob_rr
+12730             FORMAT(T10,'Russian Roulette eliminated ',I4, ' partic
      *le(s) with probability ',F8.5)
               END IF
               ICOUNT=ICOUNT+1
-              WRITE(6,12670)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
+              WRITE(6,12740)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),
      *        V(NP), W(NP),LATCH(NP),WT(NP)
-12670         FORMAT(T10,'Now on top of stack',T36,':',I5,F9.3,2I4,3F8.3
+12740         FORMAT(T10,'Now on top of stack',T36,':',I5,F9.3,2I4,3F8.3
      *,3F7.3,I10,1PE10.3)
           END IF
       ELSE IF((IARG .EQ. 24)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12680)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12750)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12680     FORMAT(' Rayleigh scattering occured',T36,':',I5,F9.3,2I4,3F8.
+12750     FORMAT(' Rayleigh scattering occured',T36,':',I5,F9.3,2I4,3F8.
      *3,3F7.3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 25)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12690)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12760)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12690     FORMAT(T10,'Fluorescent X-ray created',T36,':',I5,F9.3,2I4,3F8
+12760     FORMAT(T10,'Fluorescent X-ray created',T36,':',I5,F9.3,2I4,3F8
      *.3,3F7.3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 26)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12700)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12770)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12700     FORMAT(T10,'Coster-Kronig e- created',T36,':',I5,F9.3,2I4,3F8.
+12770     FORMAT(T10,'Coster-Kronig e- created',T36,':',I5,F9.3,2I4,3F8.
      *3,3F7.3,I10,1PE10.3)
       ELSE IF((IARG .EQ. 27)) THEN
           ICOUNT=ICOUNT+1
-          WRITE(6,12710)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
+          WRITE(6,12780)NP,KE,IQ(NP),IR(NP),X(NP),Y(NP),Z(NP),U(NP),V(NP
      *    ), W(NP),LATCH(NP),WT(NP)
-12710     FORMAT(T10,'Auger electron created',T36,':',I5,F9.3,2I4,3F8.3,
+12780     FORMAT(T10,'Auger electron created',T36,':',I5,F9.3,2I4,3F8.3,
      *3F7.3,I10,1PE10.3)
       END IF
       IF ((IARG .EQ. 0 .AND. IWATCH .EQ. 2)) THEN
-          WRITE(6,12720)USTEP,TUSTEP,VSTEP,TVSTEP,EDEP
-12720     FORMAT(T5,'USTEP,TUSTEP,VSTEP,TVSTEP,EDEP',T36,':    ',5(1PE13
+          WRITE(6,12790)USTEP,TUSTEP,VSTEP,TVSTEP,EDEP
+12790     FORMAT(T5,'USTEP,TUSTEP,VSTEP,TVSTEP,EDEP',T36,':    ',5(1PE13
      *.4))
           ICOUNT=ICOUNT+1
       END IF
@@ -16221,9 +16325,9 @@ C*****************************************************************************
           N=NP-1
           KE = E(N) - ABS(IQ(N))*RM
           ICOUNT=ICOUNT+1
-          WRITE(6,12730)N,KE,IQ(N),IR(N),X(N),Y(N),Z(N),U(N),V(N), W(N),
+          WRITE(6,12800)N,KE,IQ(N),IR(N),X(N),Y(N),Z(N),U(N),V(N), W(N),
      *    LATCH(N),WT(N)
-12730     FORMAT(T10,'Now on top of stack',T36,':',I5,F9.3,2I4,3F8.3,3F7
+12800     FORMAT(T10,'Now on top of stack',T36,':',I5,F9.3,2I4,3F8.3,3F7
      *.3,I10,1PE10.3)
       END IF
       RETURN
@@ -16262,36 +16366,36 @@ C*****************************************************************************
       END IF
       IF ((ISTAT .EQ. 1)) THEN
           IERR=10
-          DO 12741 N=1,NDATA
+          DO 12811 N=1,NDATA
               DATA(N,2)=EMAX
-12741     CONTINUE
-12742     CONTINUE
+12811     CONTINUE
+12812     CONTINUE
           RETURN
       END IF
       IF ((MODE.NE.0)) THEN
           STAT=FLOAT(ISTAT)
           SDENOM=STAT*(STAT-1.)
       END IF
-      DO 12751 N=1,NDATA
+      DO 12821 N=1,NDATA
           NON0=0
           AVG=0.0
           ERROR=0.0
-          DO 12761 I=1,ISTAT
+          DO 12831 I=1,ISTAT
               DATUM=DATA(N,I)
               IF ((DATUM.NE.0.0)) THEN
                   NON0=NON0+1
                   AVG=AVG+DATUM
                   ERROR=ERROR+DATUM**2
               END IF
-12761     CONTINUE
-12762     CONTINUE
+12831     CONTINUE
+12832     CONTINUE
           IF ((NON0 .EQ. 0)) THEN
               IERR=11
               ERROR=EMAX
-              GOTO 12770
+              GOTO 12840
           ELSE IF(((NON0 .EQ. 1) .AND. (MODE .EQ. 0))) THEN
               ERROR=EMAX
-              GOTO12770
+              GOTO12840
           ELSE
               IF ((MODE .EQ. 0)) THEN
                   STAT=FLOAT(NON0)
@@ -16301,8 +16405,8 @@ C*****************************************************************************
           AVG=AVG/STAT
           ARGMNT=ERROR-STAT*AVG**2
           IF ((ARGMNT.LT.0.0)) THEN
-              WRITE(6,12780)ARGMNT,ERROR,STAT,AVG,SDENOM
-12780         FORMAT(' ***** - SQ RT IN SIGMA. ARGMNT,ERROR,STAT,AVG,SDE
+              WRITE(6,12850)ARGMNT,ERROR,STAT,AVG,SDENOM
+12850         FORMAT(' ***** - SQ RT IN SIGMA. ARGMNT,ERROR,STAT,AVG,SDE
      *NOM='/' ',5E12.4)
               ARGMNT=0.0
           END IF
@@ -16313,11 +16417,11 @@ C*****************************************************************************
               ERROR=100.*ERROR/ABS(AVG)
           END IF
           IF((MODE .EQ. 2))AVG=AVG*STAT
-12770     CONTINUE
+12840     CONTINUE
           DATA(N,1)=AVG
           DATA(N,2)=MIN(EMAX,ERROR)
-12751 CONTINUE
-12752 CONTINUE
+12821 CONTINUE
+12822 CONTINUE
       RETURN
       END
       subroutine prepare_alias_sampling(nsbin,fs_array,ws_array,ibin_arr
@@ -16328,37 +16432,37 @@ C*****************************************************************************
       integer*4 i,j_l,j_h
       real*8 sum,aux
       sum = 0
-      DO 12791 i=1,nsbin
+      DO 12861 i=1,nsbin
           IF((fs_array(i) .LT. 1e-30))fs_array(i) = 1e-30
           ws_array(i) = -fs_array(i)
           ibin_array(i) = 1
           sum = sum + fs_array(i)
-12791 CONTINUE
-12792 CONTINUE
+12861 CONTINUE
+12862 CONTINUE
       sum = sum/nsbin
-      DO 12801 i=1,nsbin-1
-          DO 12811 j_h=1,nsbin
+      DO 12871 i=1,nsbin-1
+          DO 12881 j_h=1,nsbin
               IF (( ws_array(j_h) .LT. 0 )) THEN
-                  IF((abs(ws_array(j_h)) .GT. sum))GOTO 12820
+                  IF((abs(ws_array(j_h)) .GT. sum))GOTO 12890
               END IF
-12811     CONTINUE
-12812     CONTINUE
+12881     CONTINUE
+12882     CONTINUE
           j_h = nsbin
-12820     CONTINUE
-              DO 12821 j_l=1,nsbin
+12890     CONTINUE
+              DO 12891 j_l=1,nsbin
               IF (( ws_array(j_l) .LT. 0 )) THEN
-                  IF((abs(ws_array(j_l)) .LT. sum))GOTO 12830
+                  IF((abs(ws_array(j_l)) .LT. sum))GOTO 12900
               END IF
-12821     CONTINUE
-12822     CONTINUE
+12891     CONTINUE
+12892     CONTINUE
           j_l = nsbin
-12830     aux = sum - abs(ws_array(j_l))
+12900     aux = sum - abs(ws_array(j_l))
           ws_array(j_h) = ws_array(j_h) + aux
           ws_array(j_l) = -ws_array(j_l)/sum
           ibin_array(j_l) = j_h
           IF((i .EQ. nsbin-1))ws_array(j_h) = 1
-12801 CONTINUE
-12802 CONTINUE
+12871 CONTINUE
+12872 CONTINUE
       return
       end
       real*8 function alias_sample(nsbin,xs_array,ws_array,ibin_array)
@@ -16438,14 +16542,14 @@ C*****************************************************************************
       t_cpu = egs_etime()
       dum = egs_tot_time(1)
       call egs_date_and_time(t_first)
-      DO 12841 i=1,len(line)
+      DO 12911 i=1,len(line)
         line(i:i) = '='
-12841 CONTINUE
-12842 CONTINUE
-      DO 12851 i=1,len(line1)
+12911 CONTINUE
+12912 CONTINUE
+      DO 12921 i=1,len(line1)
         line1(i:i) = '.'
-12851 CONTINUE
-12852 CONTINUE
+12921 CONTINUE
+12922 CONTINUE
       IF ((.NOT.is_pegsless)) THEN
         on_egs_home = .false.
         inquire(file=pegs_file,exist=ex)
@@ -16458,8 +16562,8 @@ C*****************************************************************************
             write(i_log,'(/a)') '***************** Quiting now.'
             call exit(1)
           END IF
-          open(kmpi,file=pegs_file,status='old',err=12860)
-          goto 12870
+          open(kmpi,file=pegs_file,status='old',err=12930)
+          goto 12940
         END IF
         arg = pegs_file(:lnblnk1(pegs_file))
         ex = egs_strip_extension(arg,'.pegs4dat')
@@ -16484,9 +16588,9 @@ C*****************************************************************************
               write(i_log,'(/a)') '***************** Quiting now.'
               call exit(1)
             END IF
-            open(kmpi,file=pegs_file,status='old',err=12860)
+            open(kmpi,file=pegs_file,status='old',err=12930)
             on_egs_home = .true.
-            goto 12870
+            goto 12940
           END IF
         END IF
         l = lnblnk1(hen_house)
@@ -16508,8 +16612,8 @@ C*****************************************************************************
               write(i_log,'(/a)') '***************** Quiting now.'
               call exit(1)
             END IF
-            open(kmpi,file=pegs_file,status='old',err=12860)
-            goto 12870
+            open(kmpi,file=pegs_file,status='old',err=12930)
+            goto 12940
           END IF
         END IF
         write(i_log,'(/a)') '***************** Error: '
@@ -16518,21 +16622,21 @@ C*****************************************************************************
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
-12870 CONTINUE
-      DO 12881 i=1,len(tmp_string)
+12940 CONTINUE
+      DO 12951 i=1,len(tmp_string)
         tmp_string(i:i) = ' '
-12881 CONTINUE
-12882 CONTINUE
+12951 CONTINUE
+12952 CONTINUE
       tmp_string = hen_house(:lnblnk1(hen_house)) // 'data' // '/'
       i_nist_data=76
       i_incoh=78
       i_photo_relax=77
       i_photo_cs=79
       i_mscat=11
-      DO 12891 i=1,len(tmp1_string)
+      DO 12961 i=1,len(tmp1_string)
         tmp1_string(i:i) = ' '
-12891 CONTINUE
-12892 CONTINUE
+12961 CONTINUE
+12962 CONTINUE
       tmp1_string = tmp_string(:lnblnk1(tmp_string)) // 'photo_cs.data'
       inquire(file=tmp1_string,exist=ex,opened=is_opened,number=itmp)
       IF (( .NOT.ex )) THEN
@@ -16551,14 +16655,14 @@ C*****************************************************************************
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
-        open(i_photo_cs,file=tmp1_string,status='old',err=12900)
+        open(i_photo_cs,file=tmp1_string,status='old',err=12970)
       ELSE
         i_photo_cs = itmp
       END IF
-      DO 12911 i=1,len(tmp1_string)
+      DO 12981 i=1,len(tmp1_string)
         tmp1_string(i:i) = ' '
-12911 CONTINUE
-12912 CONTINUE
+12981 CONTINUE
+12982 CONTINUE
       tmp1_string = tmp_string(:lnblnk1(tmp_string)) // 'msnew.data'
       inquire(file=tmp1_string,exist=ex,opened=is_opened,number=itmp)
       IF (( .NOT.ex )) THEN
@@ -16577,14 +16681,14 @@ C*****************************************************************************
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
-        open(i_mscat,file=tmp1_string,status='old',err=12900)
+        open(i_mscat,file=tmp1_string,status='old',err=12970)
       ELSE
         i_mscat = itmp
       END IF
-      DO 12921 i=1,len(tmp1_string)
+      DO 12991 i=1,len(tmp1_string)
         tmp1_string(i:i) = ' '
-12921 CONTINUE
-12922 CONTINUE
+12991 CONTINUE
+12992 CONTINUE
       tmp1_string = tmp_string(:lnblnk1(tmp_string)) // 'incoh.data'
       inquire(file=tmp1_string,exist=ex,opened=is_opened,number=itmp)
       IF (( .NOT.ex )) THEN
@@ -16603,14 +16707,14 @@ C*****************************************************************************
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
-        open(i_incoh,file=tmp1_string,status='old',err=12900)
+        open(i_incoh,file=tmp1_string,status='old',err=12970)
       ELSE
         i_incoh = itmp
       END IF
-      DO 12931 i=1,len(tmp1_string)
+      DO 13001 i=1,len(tmp1_string)
         tmp1_string(i:i) = ' '
-12931 CONTINUE
-12932 CONTINUE
+13001 CONTINUE
+13002 CONTINUE
       tmp1_string = tmp_string(:lnblnk1(tmp_string)) // 'photo_relax.dat
      *a'
       inquire(file=tmp1_string,exist=ex,opened=is_opened,number=itmp)
@@ -16630,14 +16734,14 @@ C*****************************************************************************
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
-        open(i_photo_relax,file=tmp1_string,status='old',err=12900)
+        open(i_photo_relax,file=tmp1_string,status='old',err=12970)
       ELSE
         i_photo_relax = itmp
       END IF
-      DO 12941 i=1,len(ucode_dir)
+      DO 13011 i=1,len(ucode_dir)
         ucode_dir(i:i) = ' '
-12941 CONTINUE
-12942 CONTINUE
+13011 CONTINUE
+13012 CONTINUE
       ucode_dir = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(use
      *r_code)) // '/'
       have_input = .false.
@@ -16665,12 +16769,12 @@ C*****************************************************************************
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
-        open(i_input,file=tmp_string,status='old',err=12950)
+        open(i_input,file=tmp_string,status='old',err=13020)
       END IF
-      DO 12961 i=1,len(work_dir)
+      DO 13031 i=1,len(work_dir)
         work_dir(i:i) = ' '
-12961 CONTINUE
-12962 CONTINUE
+13031 CONTINUE
+13032 CONTINUE
       work_dir = 'egsrun_'
       mypid = getpid()
       call egs_itostring(work_dir,mypid,.false.)
@@ -16684,18 +16788,18 @@ C*****************************************************************************
         work_dir = work_dir(:lnblnk1(work_dir)) // '_noinput_' // host_n
      *  ame(:lnblnk1(host_name)) // '/'
       END IF
-      DO 12971 i=1,len(tmp_string)
+      DO 13041 i=1,len(tmp_string)
         tmp_string(i:i) = ' '
-12971 CONTINUE
-12972 CONTINUE
+13041 CONTINUE
+13042 CONTINUE
       tmp_string = ucode_dir(:lnblnk1(ucode_dir)) // work_dir(:lnblnk1(w
      *ork_dir))
-      DO 12981 i=1,lnblnk1(tmp_string)
+      DO 13051 i=1,lnblnk1(tmp_string)
         IF (( tmp_string(i:i) .EQ. '/' )) THEN
           tmp_string(i:i) = '/'
         END IF
-12981 CONTINUE
-12982 CONTINUE
+13051 CONTINUE
+13052 CONTINUE
       ex = egs_isdir(tmp_string)
       IF (( ex )) THEN
         write(i_log,'(/a)') '***************** Error: '
@@ -16724,10 +16828,10 @@ C*****************************************************************************
       pos1 = lnblnk1('output file(s)')
       pos2 = 80 - lnblnk1('linux_home')
       pos2 = min(pos2,80-lnblnk1(user_code))
-      DO 12991 i=1,len(tmp_string)
+      DO 13061 i=1,len(tmp_string)
         tmp_string(i:i) = ' '
-12991 CONTINUE
-12992 CONTINUE
+13061 CONTINUE
+13062 CONTINUE
       tmp_string = pegs_file
       call egs_strip_path(tmp_string)
       ex = egs_strip_extension(tmp_string,'.pegs4dat')
@@ -16737,15 +16841,15 @@ C*****************************************************************************
         tmp_string = tmp_string(:lnblnk1(tmp_string)) // ' on HEN_HOUSE'
       END IF
       IF (( lnblnk1(tmp_string) .GT. lnblnk1(pegs_file) )) THEN
-        DO 13001 i=1,len(tmp_string)
+        DO 13071 i=1,len(tmp_string)
           tmp_string(i:i) = ' '
-13001   CONTINUE
-13002   CONTINUE
+13071   CONTINUE
+13072   CONTINUE
         tmp_string = pegs_file
       END IF
       pos2 = min(pos2,80-lnblnk1(tmp_string))
       pos2 = min(pos2,80-lnblnk1(host_name))
-      pos2 = min(pos2,80-lnblnk1('2024-02-04 11:11:53 UTC'))
+      pos2 = min(pos2,80-lnblnk1('2024-03-03 12:04:46 UTC'))
       IF((have_input))pos2 = min(pos2,80-lnblnk1(input_file))
       pos2 = min(pos2,80-lnblnk1(output_file))
       IF((pos2 .LT. pos1+2))pos2 = pos1 + 2
@@ -16756,7 +16860,7 @@ C*****************************************************************************
       write(i_log,'(a,$)') 'configuration time'
       l = pos2 - lnblnk1('configuration time')
       write(i_log,'(a,$)') line1(:l)
-      write(i_log,'(a)') '2024-02-04 11:11:53 UTC'
+      write(i_log,'(a)') '2024-03-03 12:04:46 UTC'
       write(i_log,'(a,$)') 'app compile time'
       l = pos2 - lnblnk1('app compile time')
       write(i_log,'(a,$)') line1(:l)
@@ -16803,17 +16907,17 @@ C*****************************************************************************
      *ontrol. I am job # ', i_parallel,' of ',n_parallel,' jobs'
       END IF
       return
-12950 write(i_log,'(/a)') '***************** Error: '
+13020 write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'failed to open input file ',tmp_string(:lnblnk1(tm
      *p_string))
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
-12860 write(i_log,'(/a)') '***************** Error: '
+12930 write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'failed to open existing pegs file ',pegs_file(:lnb
      *lnk1(pegs_file))
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
-12900 write(i_log,'(/a)') '***************** Error: '
+12970 write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'failed to open EGSnrc data file ',tmp1_string(:lnb
      *lnk1(tmp1_string))
       write(i_log,'(/a)') '***************** Quiting now.'
@@ -16841,7 +16945,7 @@ C*****************************************************************************
       narg = iargc()
       IF((narg .LT. 1))return
       have_arg = .false.
-      DO 13011 i=1,narg-1
+      DO 13081 i=1,narg-1
         call getarg(i,arg)
         l = lnblnk1(arg)
         IF (( ( l .EQ. lnblnk1('-H') .AND. arg(:l) .EQ. '-H' ) .OR. ( l
@@ -16849,16 +16953,16 @@ C*****************************************************************************
      *  ) THEN
           have_arg = .true.
           call getarg(i+1,arg)
-          GO TO13012
+          GO TO13082
         END IF
-13011 CONTINUE
-13012 CONTINUE
+13081 CONTINUE
+13082 CONTINUE
       IF (( have_arg )) THEN
         l = lnblnk1(arg)
-        DO 13021 i=1,len(hen_house)
+        DO 13091 i=1,len(hen_house)
           hen_house(i:i) = ' '
-13021   CONTINUE
-13022   CONTINUE
+13091   CONTINUE
+13092   CONTINUE
         IF (( l .GT. 0 )) THEN
           IF (( l .GT. 254 )) THEN
             write(i_log,'(/a)') '***************** Error: '
@@ -16874,12 +16978,12 @@ C*****************************************************************************
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
-        DO 13031 i=1,lnblnk1(hen_house)
+        DO 13101 i=1,lnblnk1(hen_house)
           IF (( hen_house(i:i) .EQ. '/' )) THEN
             hen_house(i:i) = '/'
           END IF
-13031   CONTINUE
-13032   CONTINUE
+13101   CONTINUE
+13102   CONTINUE
       END IF
       IF (( .NOT.egs_isdir(hen_house) )) THEN
         write(i_log,'(/a)') '***************** Warning: '
@@ -16889,16 +16993,16 @@ C*****************************************************************************
      *oing.'
       END IF
       have_arg = .false.
-      DO 13041 i=1,narg
+      DO 13111 i=1,narg
         call getarg(i,arg)
         l = lnblnk1(arg)
         IF (( ( l .EQ. lnblnk1('-h') .AND. arg(:l) .EQ. '-h' ) .OR. ( l
      *  .EQ. lnblnk1('--help') .AND. arg(:l) .EQ. '--help' ) )) THEN
           have_arg = .true.
-          GO TO13042
+          GO TO13112
         END IF
-13041 CONTINUE
-13042 CONTINUE
+13111 CONTINUE
+13112 CONTINUE
       IF (( have_arg )) THEN
         call getarg(0,arg)
         call egs_strip_path(arg)
@@ -16915,34 +17019,34 @@ C*****************************************************************************
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
-        open(i_help,file=tmp_string,status='old',err=13050)
-13061   CONTINUE
-          read(i_help,'(a)',err=13070,end=13070) line1
+        open(i_help,file=tmp_string,status='old',err=13120)
+13131   CONTINUE
+          read(i_help,'(a)',err=13140,end=13140) line1
           write(i_log,'(a)') line1
-        GO TO 13061
-13062   CONTINUE
-13070   CONTINUE
+        GO TO 13131
+13132   CONTINUE
+13140   CONTINUE
         call exit(0)
-13050   CONTINUE
+13120   CONTINUE
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,*) 'Did not find the help_message file!'
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
       have_arg = .false.
-      DO 13081 i=1,narg
+      DO 13151 i=1,narg
         call getarg(i,arg)
         l = lnblnk1(arg)
         IF (( ( l .EQ. lnblnk1('-b') .AND. arg(:l) .EQ. '-b' ) .OR. ( l
      *  .EQ. lnblnk1('--batch') .AND. arg(:l) .EQ. '--batch' ) )) THEN
           have_arg = .true.
-          GO TO13082
+          GO TO13152
         END IF
-13081 CONTINUE
-13082 CONTINUE
+13151 CONTINUE
+13152 CONTINUE
       IF((have_arg))is_batch = .true.
       have_arg = .false.
-      DO 13091 i=1,narg-1
+      DO 13161 i=1,narg-1
         call getarg(i,arg)
         l = lnblnk1(arg)
         IF (( ( l .EQ. lnblnk1('-P') .AND. arg(:l) .EQ. '-P' ) .OR. ( l
@@ -16950,45 +17054,45 @@ C*****************************************************************************
      *  THEN
           have_arg = .true.
           call getarg(i+1,arg)
-          GO TO13092
+          GO TO13162
         END IF
-13091 CONTINUE
-13092 CONTINUE
+13161 CONTINUE
+13162 CONTINUE
       IF (( have_arg )) THEN
-        read(arg,*,err=13100) n_parallel
-        IF((n_parallel .LT. 0))goto 13100
-        goto 13110
-13100   CONTINUE
+        read(arg,*,err=13170) n_parallel
+        IF((n_parallel .LT. 0))goto 13170
+        goto 13180
+13170   CONTINUE
         write(i_log,'(/a)') '***************** Warning: '
         write(i_log,*) ' Wrong/missing parallel job number argument, -P
      *option ignored'
         n_parallel = 0
-13110   CONTINUE
+13180   CONTINUE
       END IF
       have_arg = .false.
-      DO 13121 i=1,narg-1
+      DO 13191 i=1,narg-1
         call getarg(i,arg)
         l = lnblnk1(arg)
         IF (( ( l .EQ. lnblnk1('-j') .AND. arg(:l) .EQ. '-j' ) .OR. ( l
      *  .EQ. lnblnk1('--job') .AND. arg(:l) .EQ. '--job' ) )) THEN
           have_arg = .true.
           call getarg(i+1,arg)
-          GO TO13122
+          GO TO13192
         END IF
-13121 CONTINUE
-13122 CONTINUE
+13191 CONTINUE
+13192 CONTINUE
       IF (( have_arg )) THEN
-        read(arg,*,err=13130) i_parallel
-        IF((i_parallel .LT. 0))goto 13130
-        goto 13140
-13130   CONTINUE
+        read(arg,*,err=13200) i_parallel
+        IF((i_parallel .LT. 0))goto 13200
+        goto 13210
+13200   CONTINUE
         write(i_log,'(/a)') '***************** Warning: '
         write(i_log,*) ' Wrong/missing job argument, -j option ognored'
         i_parallel = 0
-13140   CONTINUE
+13210   CONTINUE
       END IF
       have_arg = .false.
-      DO 13151 i=1,narg-1
+      DO 13221 i=1,narg-1
         call getarg(i,arg)
         l = lnblnk1(arg)
         IF (( ( l .EQ. lnblnk1('-f') .AND. arg(:l) .EQ. '-f' ) .OR. ( l
@@ -16996,20 +17100,20 @@ C*****************************************************************************
      *  ) THEN
           have_arg = .true.
           call getarg(i+1,arg)
-          GO TO13152
+          GO TO13222
         END IF
-13151 CONTINUE
-13152 CONTINUE
+13221 CONTINUE
+13222 CONTINUE
       IF (( have_arg )) THEN
-        read(arg,*,err=13160) first_parallel
-        IF((first_parallel .LT. 1))goto 13160
-        goto 13170
-13160   CONTINUE
+        read(arg,*,err=13230) first_parallel
+        IF((first_parallel .LT. 1))goto 13230
+        goto 13240
+13230   CONTINUE
         write(i_log,'(/a)') '***************** Warning: '
         write(i_log,*) ' Wrong/missing first job argument, -f option ogn
      *ored'
         first_parallel = 1
-13170   CONTINUE
+13240   CONTINUE
       END IF
       IF (( n_parallel .GT. 0 .OR. i_parallel .GT. 0 )) THEN
         IF (( n_parallel*i_parallel .EQ. 0 )) THEN
@@ -17027,19 +17131,19 @@ C*****************************************************************************
         END IF
       END IF
       have_arg = .false.
-      DO 13181 i=1,narg
+      DO 13251 i=1,narg
         call getarg(i,arg)
         l = lnblnk1(arg)
         IF (( ( l .EQ. lnblnk1('-u') .AND. arg(:l) .EQ. '-u' ) .OR. ( l
      *  .EQ. lnblnk1('--urc') .AND. arg(:l) .EQ. '--urc' ) )) THEN
           have_arg = .true.
-          GO TO13182
+          GO TO13252
         END IF
-13181 CONTINUE
-13182 CONTINUE
+13251 CONTINUE
+13252 CONTINUE
       IF((have_arg))is_uniform_run = .true.
       have_arg = .false.
-      DO 13191 i=1,narg-1
+      DO 13261 i=1,narg-1
         call getarg(i,arg)
         l = lnblnk1(arg)
         IF (( ( l .EQ. lnblnk1('-e') .AND. arg(:l) .EQ. '-e' ) .OR. ( l
@@ -17047,16 +17151,16 @@ C*****************************************************************************
      *  THEN
           have_arg = .true.
           call getarg(i+1,arg)
-          GO TO13192
+          GO TO13262
         END IF
-13191 CONTINUE
-13192 CONTINUE
+13261 CONTINUE
+13262 CONTINUE
       IF (( have_arg )) THEN
         l = lnblnk1(arg)
-        DO 13201 i=1,len(egs_home)
+        DO 13271 i=1,len(egs_home)
           egs_home(i:i) = ' '
-13201   CONTINUE
-13202   CONTINUE
+13271   CONTINUE
+13272   CONTINUE
         IF (( l .EQ. 0 )) THEN
           write(i_log,'(/a)') '***************** Error: '
           write(i_log,'(a)') ' empty argument after -e'
@@ -17071,12 +17175,12 @@ C*****************************************************************************
         END IF
         egs_home(:l) = arg(:lnblnk1(arg))
         IF((egs_home(l:l) .NE. '/'))egs_home(l+1:l+1) = '/'
-        DO 13211 i=1,lnblnk1(egs_home)
+        DO 13281 i=1,lnblnk1(egs_home)
           IF (( egs_home(i:i) .EQ. '/' )) THEN
             egs_home(i:i) = '/'
           END IF
-13211   CONTINUE
-13212   CONTINUE
+13281   CONTINUE
+13282   CONTINUE
       END IF
       IF (( .NOT.egs_isdir(egs_home) )) THEN
         write(i_log,'(/a)') '***************** Error: '
@@ -17088,7 +17192,7 @@ C*****************************************************************************
       on_egs_home = .false.
       is_pegsless=.false.
       have_arg = .false.
-      DO 13221 i=1,narg-1
+      DO 13291 i=1,narg-1
         call getarg(i,arg)
         l = lnblnk1(arg)
         IF (( ( l .EQ. lnblnk1('-p') .AND. arg(:l) .EQ. '-p' ) .OR. ( l
@@ -17096,10 +17200,10 @@ C*****************************************************************************
      *  ) THEN
           have_arg = .true.
           call getarg(i+1,arg)
-          GO TO13222
+          GO TO13292
         END IF
-13221 CONTINUE
-13222 CONTINUE
+13291 CONTINUE
+13292 CONTINUE
       IF (( .NOT.have_arg )) THEN
         write(i_log,'(/a)') '***************** Warning: '
         write(i_log,*) 'No pegs4 file name supplied.  Will assume you ar
@@ -17111,17 +17215,17 @@ C*****************************************************************************
       END IF
       call egs_get_usercode(user_code)
       have_arg = .false.
-      DO 13231 i=1,narg-1
+      DO 13301 i=1,narg-1
         call getarg(i,arg)
         l = lnblnk1(arg)
         IF (( ( l .EQ. lnblnk1('-i') .AND. arg(:l) .EQ. '-i' ) .OR. ( l
      *  .EQ. lnblnk1('--input') .AND. arg(:l) .EQ. '--input' ) )) THEN
           have_arg = .true.
           call getarg(i+1,arg)
-          GO TO13232
+          GO TO13302
         END IF
-13231 CONTINUE
-13232 CONTINUE
+13301 CONTINUE
+13302 CONTINUE
       IF (( have_arg )) THEN
         ex = egs_strip_extension(arg,'.egsinp')
         l2 = lnblnk1(arg) + lnblnk1('.egsinp')
@@ -17134,17 +17238,17 @@ C*****************************************************************************
         input_file = arg(:lnblnk1(arg))
       END IF
       have_arg = .false.
-      DO 13241 i=1,narg-1
+      DO 13311 i=1,narg-1
         call getarg(i,arg)
         l = lnblnk1(arg)
         IF (( ( l .EQ. lnblnk1('-o') .AND. arg(:l) .EQ. '-o' ) .OR. ( l
      *  .EQ. lnblnk1('--output') .AND. arg(:l) .EQ. '--output' ) )) THEN
           have_arg = .true.
           call getarg(i+1,arg)
-          GO TO13242
+          GO TO13312
         END IF
-13241 CONTINUE
-13242 CONTINUE
+13311 CONTINUE
+13312 CONTINUE
       IF (( have_arg )) THEN
         l = lnblnk1(arg)
         IF (( l .GT. 256 )) THEN
@@ -17184,14 +17288,14 @@ C*****************************************************************************
      *de_dir*1024, input_line*100, arg*20
       integer i,lnblnk1,u,l,istart,egs_get_unit,i_iofile
       logical ex,is_open
-      DO 13251 i=1,len(tmp_string)
+      DO 13321 i=1,len(tmp_string)
         tmp_string(i:i) = ' '
-13251 CONTINUE
-13252 CONTINUE
-      DO 13261 i=1,len(ucode_dir)
+13321 CONTINUE
+13322 CONTINUE
+      DO 13331 i=1,len(ucode_dir)
         ucode_dir(i:i) = ' '
-13261 CONTINUE
-13262 CONTINUE
+13331 CONTINUE
+13332 CONTINUE
       ucode_dir = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(use
      *r_code)) // '/'
       IF (( flag )) THEN
@@ -17206,19 +17310,19 @@ C*****************************************************************************
         tmp_string = tmp_string(:lnblnk1(tmp_string)) // '_w'
         call egs_itostring(tmp_string,i_parallel,.false.)
       END IF
-      DO 13271 i=1,len(tmp1_string)
+      DO 13341 i=1,len(tmp1_string)
         tmp1_string(i:i) = ' '
-13271 CONTINUE
-13272 CONTINUE
+13341 CONTINUE
+13342 CONTINUE
       i_log=6
       IF (( is_batch )) THEN
         tmp1_string = tmp_string(:lnblnk1(tmp_string)) // '.egslog'
-        open(i_log,file=tmp1_string,status='unknown',err=13280)
+        open(i_log,file=tmp1_string,status='unknown',err=13350)
       END IF
-      DO 13291 i=1,len(tmp2_string)
+      DO 13361 i=1,len(tmp2_string)
         tmp2_string(i:i) = ' '
-13291 CONTINUE
-13292 CONTINUE
+13361 CONTINUE
+13362 CONTINUE
       tmp2_string = ucode_dir(:lnblnk1(ucode_dir)) // user_code(:lnblnk1
      *(user_code)) // '.io'
       inquire(file=tmp2_string,exist=ex)
@@ -17233,27 +17337,27 @@ C*****************************************************************************
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
-        open(i_iofile,file=tmp2_string,status='old',err=13300)
-13311   CONTINUE
-          read(i_iofile,'(a)',err=13320,end=13320) input_line
-          IF((input_line(1:1) .EQ. '#'))GO TO13311
-          read(input_line,*,err=13330,end=13330) u
+        open(i_iofile,file=tmp2_string,status='old',err=13370)
+13381   CONTINUE
+          read(i_iofile,'(a)',err=13390,end=13390) input_line
+          IF((input_line(1:1) .EQ. '#'))GO TO13381
+          read(input_line,*,err=13400,end=13400) u
           istart = 1
-          DO 13341 i=lnblnk1(input_line),1,-1
+          DO 13411 i=lnblnk1(input_line),1,-1
             IF (( input_line(i:i) .EQ. ' ' )) THEN
               istart = i+1
-              GO TO13342
+              GO TO13412
             END IF
-13341     CONTINUE
-13342     CONTINUE
-          DO 13351 i=1,len(arg)
+13411     CONTINUE
+13412     CONTINUE
+          DO 13421 i=1,len(arg)
             arg(i:i) = ' '
-13351     CONTINUE
-13352     CONTINUE
-          DO 13361 i=istart,lnblnk1(input_line)
+13421     CONTINUE
+13422     CONTINUE
+          DO 13431 i=istart,lnblnk1(input_line)
             arg(i+1-istart:i+1-istart) = input_line(i:i)
-13361     CONTINUE
-13362     CONTINUE
+13431     CONTINUE
+13432     CONTINUE
           inquire(unit=u,opened=is_open)
           IF (( is_open )) THEN
             write(i_log,'(/a)') '***************** Warning: '
@@ -17271,10 +17375,10 @@ C*****************************************************************************
               call exit(1)
             END IF
             file_units(n_files) = u
-            DO 13371 i=1,len(file_extensions(n_files))
+            DO 13441 i=1,len(file_extensions(n_files))
               file_extensions(n_files)(i:i) = ' '
-13371       CONTINUE
-13372       CONTINUE
+13441       CONTINUE
+13442       CONTINUE
             l = lnblnk1(arg)
             IF (( l .GT. 10 )) THEN
               write(i_log,'(/a)') '***************** Error: '
@@ -17289,18 +17393,18 @@ C*****************************************************************************
      *      k1(arg))
             open(u,file=tmp1_string,status='unknown')
           END IF
-13330     CONTINUE
-        GO TO 13311
-13312   CONTINUE
-13320   close(i_iofile)
+13400     CONTINUE
+        GO TO 13381
+13382   CONTINUE
+13390   close(i_iofile)
       END IF
       return
-13280 write(i_log,'(/a)') '***************** Error: '
+13350 write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'failed to open output file ',tmp1_string(:lnblnk1(
      *tmp1_string))
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
-13300 write(i_log,'(/a)') '***************** Error: '
+13370 write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'failed to open existing .io file',tmp2_string(:lnb
      *lnk1(tmp2_string))
       write(i_log,'(/a)') '***************** Quiting now.'
@@ -17333,10 +17437,10 @@ C*****************************************************************************
      *unit
       logical is_open,egs_isdir
       real*8 t1,t2,tt_cpu
-      DO 13381 i=1,len(line)
+      DO 13451 i=1,len(line)
         line(i:i) = '='
-13381 CONTINUE
-13382 CONTINUE
+13451 CONTINUE
+13452 CONTINUE
       IF (( n_parallel .EQ. 0 .OR. i_parallel .GT. 0 )) THEN
         t_elapsed = egs_tot_time(1)
         tt_cpu = egs_etime() - t_cpu
@@ -17354,13 +17458,13 @@ C*****************************************************************************
       call egs_get_fdate(dattim)
       write(i_log,'(//a,t56,a,/,a)') 'End of run ',dattim,line
       n_open=0
-      DO 13391 i=1,len(base)
+      DO 13461 i=1,len(base)
         base(i:i) = ' '
-13391 CONTINUE
-13392 CONTINUE
+13461 CONTINUE
+13462 CONTINUE
       base = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(user_cod
      *e))
-      DO 13401 i=1,99
+      DO 13471 i=1,99
         IF (( is_batch .OR. i .NE. i_log )) THEN
           inquire(i,opened=is_open)
           IF (( is_open )) THEN
@@ -17372,32 +17476,32 @@ C*****************************************************************************
             END IF
           END IF
         END IF
-13401 CONTINUE
-13402 CONTINUE
+13471 CONTINUE
+13472 CONTINUE
       IF (( lnblnk1(work_dir) .EQ. 0 )) THEN
         return
       END IF
-      DO 13411 i=1,len(base)
+      DO 13481 i=1,len(base)
         base(i:i) = ' '
-13411 CONTINUE
-13412 CONTINUE
+13481 CONTINUE
+13482 CONTINUE
       base = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(user_cod
      *e)) // '/' // work_dir(:lnblnk1(work_dir))
-      DO 13421 i=1,lnblnk1(base)
+      DO 13491 i=1,lnblnk1(base)
         IF (( base(i:i) .EQ. '/' )) THEN
           base(i:i) = '/'
         END IF
-13421 CONTINUE
-13422 CONTINUE
+13491 CONTINUE
+13492 CONTINUE
       IF (( egs_isdir(base) )) THEN
-        DO 13431 i=1,len(tmp_string)
+        DO 13501 i=1,len(tmp_string)
           tmp_string(i:i) = ' '
-13431   CONTINUE
-13432   CONTINUE
-        DO 13441 i=1,len(junk_file)
+13501   CONTINUE
+13502   CONTINUE
+        DO 13511 i=1,len(junk_file)
           junk_file(i:i) = ' '
-13441   CONTINUE
-13442   CONTINUE
+13511   CONTINUE
+13512   CONTINUE
         junk_file = work_dir(:lnblnk1(work_dir))
         l = lnblnk1(junk_file)
         junk_file(l:l) = ' '
@@ -17416,18 +17520,18 @@ C*****************************************************************************
         open(i_junk,file=tmp_string,status='unknown')
         write(i_junk,*) 'junk'
         close(i_junk)
-        DO 13451 i=1,len(base1)
+        DO 13521 i=1,len(base1)
           base1(i:i) = ' '
-13451   CONTINUE
-13452   CONTINUE
+13521   CONTINUE
+13522   CONTINUE
         base = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(user_c
      *  ode)) // '/' // work_dir(:lnblnk1(work_dir))
         base1 = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(user_
      *  code))
-        DO 13461 i=1,len(tmp_string)
+        DO 13531 i=1,len(tmp_string)
           tmp_string(i:i) = ' '
-13461   CONTINUE
-13462   CONTINUE
+13531   CONTINUE
+13532   CONTINUE
         tmp_string = 'mv -f ' // base(:lnblnk1(base)) // '*  ' // base1(
      *  :lnblnk1(base1))
         l = lnblnk1(tmp_string)+1
@@ -17438,10 +17542,10 @@ C*****************************************************************************
           write(i_log,*) 'Moving files from working directory failed ?'
           write(i_log,*) '=> will not remove working directory'
         ELSE
-          DO 13471 i=1,len(tmp_string)
+          DO 13541 i=1,len(tmp_string)
             tmp_string(i:i) = ' '
-13471     CONTINUE
-13472     CONTINUE
+13541     CONTINUE
+13542     CONTINUE
           tmp_string = 'rm -rf ' // base(:lnblnk1(base))
           l = lnblnk1(tmp_string)+1
           tmp_string(l:l) = char(0)
@@ -17451,10 +17555,10 @@ C*****************************************************************************
             write(i_log,*) 'Failed to remove working directory ', work_d
      *      ir(:lnblnk1(work_dir))
           END IF
-          DO 13481 i=1,len(tmp_string)
+          DO 13551 i=1,len(tmp_string)
             tmp_string(i:i) = ' '
-13481     CONTINUE
-13482     CONTINUE
+13551     CONTINUE
+13552     CONTINUE
           tmp_string = base1(:lnblnk1(base1)) // '/' // junk_file(:lnbln
      *    k1(junk_file))
           l = lnblnk1(tmp_string)+1
@@ -17462,10 +17566,10 @@ C*****************************************************************************
           istat = unlink(tmp_string)
         END IF
       END IF
-      DO 13491 i=1,len(work_dir)
+      DO 13561 i=1,len(work_dir)
         work_dir(i:i) = ' '
-13491 CONTINUE
-13492 CONTINUE
+13561 CONTINUE
+13562 CONTINUE
       return
       end
       subroutine egs_set_defaults
@@ -17565,9 +17669,9 @@ C*****************************************************************************
       integer*4 urndm, crndm, cdrndm, cmrndm, i4opt, ixx, jxx, fool_opti
      *mizer,rng_seed,rng_array
       real*4 twom24
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -17637,7 +17741,7 @@ C*****************************************************************************
       data fool_dec/'/'/
       data fool_intel_optimizer/.false./
       vacdst = 1e8
-      DO 13501 i=1, 2097154
+      DO 13571 i=1, 2097154
         ECUT = 0.
         PCUT = 0.
         ibcmp = 0
@@ -17650,8 +17754,8 @@ C*****************************************************************************
         rhor(i) = 0
         IRAYLR = 0
         iphotonucr(i) = 0
-13501 CONTINUE
-13502 CONTINUE
+13571 CONTINUE
+13572 CONTINUE
       eii_flag = 0
       eii_xfile = 'Off'
       eii_L_factor = 1.0
@@ -17679,45 +17783,45 @@ C*****************************************************************************
      *THEN
         emfield_on=.true.
       END IF
-      DO 13511 i=1,20
+      DO 13581 i=1,20
         iraylm(i) = 0
-        DO 13521 j=1,len(iray_ff_file(i))
+        DO 13591 j=1,len(iray_ff_file(i))
           iray_ff_file(i)(j:j) = ' '
-13521   CONTINUE
-13522   CONTINUE
-        DO 13531 j=1,len(iray_ff_media(i))
+13591   CONTINUE
+13592   CONTINUE
+        DO 13601 j=1,len(iray_ff_media(i))
           iray_ff_media(i)(j:j) = ' '
-13531   CONTINUE
-13532   CONTINUE
+13601   CONTINUE
+13602   CONTINUE
         ae(i)=0
         ap(i)=0
         ue(i)=0
         up(i)=0
         te(i)=0
         thmoll(i)=0
-13511 CONTINUE
-13512 CONTINUE
-      DO 13541 i=1,30
-        DO 13551 j=1,100
+13581 CONTINUE
+13582 CONTINUE
+      DO 13611 i=1,30
+        DO 13621 j=1,100
           binding_energies(i,j) = 0
-13551   CONTINUE
-13552   CONTINUE
-13541 CONTINUE
-13542 CONTINUE
+13621   CONTINUE
+13622   CONTINUE
+13611 CONTINUE
+13612 CONTINUE
       ibrdst = 0
       ibr_nist = 0
       pair_nrc = 0
       itriplet = 0
       iprdst = 1
       rhof = 1
-      DO 13561 i=1,5
+      DO 13631 i=1,5
         iausfl(i) = 1
-13561 CONTINUE
-13562 CONTINUE
-      DO 13571 i=6,35
+13631 CONTINUE
+13632 CONTINUE
+      DO 13641 i=6,35
         iausfl(i) = 0
-13571 CONTINUE
-13572 CONTINUE
+13641 CONTINUE
+13642 CONTINUE
       ximax = 0.5
       estepe = 0.25
       skindepth_for_bca = 3
@@ -17744,53 +17848,53 @@ C*****************************************************************************
       i_survived_RR = 0
       prob_RR = -1
       n_RR_warning = 0
-      DO 13581 i=1,len(hen_house)
+      DO 13651 i=1,len(hen_house)
         hen_house(i:i) = ' '
-13581 CONTINUE
-13582 CONTINUE
+13651 CONTINUE
+13652 CONTINUE
       i = lnblnk1('/home/miia/EGSnrc/HEN_HOUSE/')
       hen_house(:i) = '/home/miia/EGSnrc/HEN_HOUSE/'
       IF (( '/' .NE. fool_dec )) THEN
-        DO 13591 j=1,i
+        DO 13661 j=1,i
           IF((hen_house(j:j) .EQ. '/'))hen_house(j:j) = '/'
-13591   CONTINUE
-13592   CONTINUE
+13661   CONTINUE
+13662   CONTINUE
       END IF
       IF((hen_house(i:i) .NE. '/'))hen_house(i+1:i+1) = '/'
       n_files = 0
-      DO 13601 i=1,len(egs_home)
+      DO 13671 i=1,len(egs_home)
         egs_home(i:i) = ' '
-13601 CONTINUE
-13602 CONTINUE
+13671 CONTINUE
+13672 CONTINUE
       call getenv('EGS_HOME',egs_home)
       i = lnblnk1(egs_home)
       IF (( '/' .NE. fool_dec )) THEN
-        DO 13611 j=1,i
+        DO 13681 j=1,i
           IF((egs_home(j:j) .EQ. '/'))egs_home(j:j) = '/'
-13611   CONTINUE
-13612   CONTINUE
+13681   CONTINUE
+13682   CONTINUE
       END IF
       IF((i .GT. 0 .AND. egs_home(i:i) .NE. '/'))egs_home(i+1:i+1) = '/'
-      DO 13621 i=1,len(input_file)
+      DO 13691 i=1,len(input_file)
         input_file(i:i) = ' '
-13621 CONTINUE
-13622 CONTINUE
-      DO 13631 i=1,len(output_file)
+13691 CONTINUE
+13692 CONTINUE
+      DO 13701 i=1,len(output_file)
         output_file(i:i) = ' '
-13631 CONTINUE
-13632 CONTINUE
-      DO 13641 i=1,len(work_dir)
+13701 CONTINUE
+13702 CONTINUE
+      DO 13711 i=1,len(work_dir)
         work_dir(i:i) = ' '
-13641 CONTINUE
-13642 CONTINUE
-      DO 13651 i=1,len(pegs_file)
+13711 CONTINUE
+13712 CONTINUE
+      DO 13721 i=1,len(pegs_file)
         pegs_file(i:i) = ' '
-13651 CONTINUE
-13652 CONTINUE
-      DO 13661 i=1,len(host_name)
+13721 CONTINUE
+13722 CONTINUE
+      DO 13731 i=1,len(host_name)
         host_name(i:i) = ' '
-13661 CONTINUE
-13662 CONTINUE
+13731 CONTINUE
+13732 CONTINUE
       n_parallel = 0
       i_parallel = 0
       n_chunk = 0
@@ -17825,30 +17929,30 @@ C*****************************************************************************
       iwin=.false.
       urcSleep = 1
       urcCheckIntervals = 1
-      DO 13671 i=1,len(base)
+      DO 13741 i=1,len(base)
         base(i:i) = ' '
-13671 CONTINUE
-13672 CONTINUE
+13741 CONTINUE
+13742 CONTINUE
       base = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(user_cod
      *e)) // '/' // output_file(:lnblnk1(output_file)) // '_w'
-      DO 13681 i=1,len(base1)
+      DO 13751 i=1,len(base1)
         base1(i:i) = ' '
-13681 CONTINUE
-13682 CONTINUE
+13751 CONTINUE
+13752 CONTINUE
       base1 = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(user_co
      *de)) // '/' // output_file(:lnblnk1(output_file)) // '_w*' // exte
      *nsion(:lnblnk1(extension))
-      DO 13691 i=1,len(outfile)
+      DO 13761 i=1,len(outfile)
         outfile(i:i) = ' '
-13691 CONTINUE
-13692 CONTINUE
+13761 CONTINUE
+13762 CONTINUE
       outfile = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(user_
      *code)) // '/' // 'parfiles_tmp'
-13700 CONTINUE
-      DO 13711 i=1,len(command)
+13770 CONTINUE
+      DO 13781 i=1,len(command)
         command(i:i) = ' '
-13711 CONTINUE
-13712 CONTINUE
+13781 CONTINUE
+13782 CONTINUE
       command = 'ls ' // base1(:lnblnk1(base1)) // ' | wc -l > ' // outf
      *ile(:lnblnk1(outfile))
       istat = egs_system(command(:lnblnk1(command)))
@@ -17869,13 +17973,13 @@ C*****************************************************************************
       ipar=1
       ipar=egs_open_file(ipar,0,1,outfile(:lnblnk1(outfile)))
       IF ((iwin)) THEN
-        read(ipar,'(a)',err=13720,end=13720) text_string
+        read(ipar,'(a)',err=13790,end=13790) text_string
         text_string = text_string(:lnblnk1(text_string))
         textindex = index(text_string,'File(s)')
         text_string = text_string(:textindex-1)
-        read(text_string,'(i256)',err=13720) numparfiles
+        read(text_string,'(i256)',err=13790) numparfiles
       ELSE
-        read(ipar,'(i256)',err=13720,end=13720) numparfiles
+        read(ipar,'(i256)',err=13790,end=13790) numparfiles
       END IF
       close(ipar)
 #ifdef HAVE_C_COMPILER
@@ -17883,13 +17987,13 @@ C*****************************************************************************
      *eckIntervals .GT. 0 )) THEN
         call egs_sleep(urcSleep)
         urcCheckIntervals = urcCheckIntervals - 1
-        goto 13700
+        goto 13770
       END IF
 #endif
-      DO 13731 i=1,len(command)
+      DO 13801 i=1,len(command)
         command(i:i) = ' '
-13731 CONTINUE
-13732 CONTINUE
+13801 CONTINUE
+13802 CONTINUE
       IF ((iwin)) THEN
         command = 'del /Q ' // outfile(:lnblnk1(outfile))
       ELSE
@@ -17903,11 +18007,11 @@ C*****************************************************************************
       END IF
       k=1
       j=1
-13741 IF(j.GT.numparfiles)GO TO 13742
-        DO 13751 i=1,len(tmp_string)
+13811 IF(j.GT.numparfiles)GO TO 13812
+        DO 13821 i=1,len(tmp_string)
           tmp_string(i:i) = ' '
-13751   CONTINUE
-13752   CONTINUE
+13821   CONTINUE
+13822   CONTINUE
         tmp_string = base(:lnblnk1(base))
         call egs_itostring(tmp_string,k,.false.)
         tmp_string = tmp_string(:lnblnk1(tmp_string)) // extension(:lnbl
@@ -17918,10 +18022,10 @@ C*****************************************************************************
           j=j+1
         END IF
         k=k+1
-      GO TO 13741
-13742 CONTINUE
+      GO TO 13811
+13812 CONTINUE
       return
-13720 write(i_log,'(/a)') '***************** Error: '
+13790 write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) ' Failed to read number of output files from parall
      *el runs.'
       write(i_log,'(/a)') '***************** Quiting now.'
@@ -17935,10 +18039,10 @@ C*****************************************************************************
       l2 = lnblnk1(fext)
       IF (( l1 .GE. l2 .AND. filen(l1-l2+1:l1) .EQ. fext(:l2) )) THEN
         egs_strip_extension = .true.
-        DO 13761 i=l1-l2+1,len(filen)
+        DO 13831 i=l1-l2+1,len(filen)
           filen(i:i) = ' '
-13761   CONTINUE
-13762   CONTINUE
+13831   CONTINUE
+13832   CONTINUE
       ELSE
         egs_strip_extension = .false.
       END IF
@@ -17948,13 +18052,13 @@ C*****************************************************************************
       implicit none
       character*(*) fn
       integer i,lnblnk1
-      DO 13771 i=1,lnblnk1(fn)
+      DO 13841 i=1,lnblnk1(fn)
         IF (( fn(i:i) .EQ. '/' )) THEN
           egs_is_absolute_path = .true.
           return
         END IF
-13771 CONTINUE
-13772 CONTINUE
+13841 CONTINUE
+13842 CONTINUE
       egs_is_absolute_path = .false.
       return
       end
@@ -17969,14 +18073,14 @@ C*****************************************************************************
           return
         END IF
       END IF
-      DO 13781 i=1,99
+      DO 13851 i=1,99
         inquire(i,opened=is_open)
         IF (( .NOT.is_open )) THEN
           egs_get_unit = i
           return
         END IF
-13781 CONTINUE
-13782 CONTINUE
+13851 CONTINUE
+13852 CONTINUE
       egs_get_unit = -1
       return
       end
@@ -18035,10 +18139,10 @@ C*****************************************************************************
         egs_open_file = the_unit
         return
       END IF
-      DO 13791 i=1,len(tmp_string)
+      DO 13861 i=1,len(tmp_string)
         tmp_string(i:i) = ' '
-13791 CONTINUE
-13792 CONTINUE
+13861 CONTINUE
+13862 CONTINUE
       tmp_string = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(us
      *er_code)) // '/' // work_dir(:lnblnk1(work_dir)) // output_file(:l
      *nblnk1(output_file))
@@ -18060,14 +18164,14 @@ C*****************************************************************************
         open(the_unit,file=tmp_string,status='unknown',form='unformatted
      *', access='stream')
       ELSE IF(( rl .EQ. 0 )) THEN
-        open(the_unit,file=tmp_string,status='unknown',err=13800)
+        open(the_unit,file=tmp_string,status='unknown',err=13870)
       ELSE
         open(the_unit,file=tmp_string,status='unknown',form='unformatted
-     *', access='direct', recl=rl,err=13800)
+     *', access='direct', recl=rl,err=13870)
       END IF
       egs_open_file = the_unit
       return
-13800 error_string = 'In egs_open_file: failed to open file ' // tmp_str
+13870 error_string = 'In egs_open_file: failed to open file ' // tmp_str
      *ing(:lnblnk1(tmp_string)) // char(10) // 'iunit = '
       call egs_itostring(error_string,iunit,.false.)
       error_string = error_string(:lnblnk1(error_string)) // ' the_unit
@@ -18112,14 +18216,14 @@ C*****************************************************************************
       END IF
       IF (( egs_is_absolute_path(extension) )) THEN
         IF (( rl .EQ. 0 )) THEN
-          open(the_unit,file=extension,status='old',err=13810)
+          open(the_unit,file=extension,status='old',err=13880)
         ELSE
           open(the_unit,file=extension,status='old',form='unformatted',
-     *    access='direct',recl=rl,err=13810)
+     *    access='direct',recl=rl,err=13880)
         END IF
         egs_open_datfile = the_unit
         return
-13810   CONTINUE
+13880   CONTINUE
         IF (( action .EQ. 0 )) THEN
           egs_open_datfile = -2
           return
@@ -18130,14 +18234,14 @@ C*****************************************************************************
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
-      DO 13821 i=1,len(base)
+      DO 13891 i=1,len(base)
         base(i:i) = ' '
-13821 CONTINUE
-13822 CONTINUE
-      DO 13831 i=1,len(fn)
+13891 CONTINUE
+13892 CONTINUE
+      DO 13901 i=1,len(fn)
         fn(i:i) = ' '
-13831 CONTINUE
-13832 CONTINUE
+13901 CONTINUE
+13902 CONTINUE
       base = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(user_cod
      *e)) // '/'
       IF (( i_parallel .GT. 0 )) THEN
@@ -18150,20 +18254,20 @@ C*****************************************************************************
      *  // extension(:lnblnk1(extension))
       END IF
       IF (( rl .EQ. 0 )) THEN
-        open(the_unit,file=fn,status='old',err=13840)
+        open(the_unit,file=fn,status='old',err=13910)
       ELSE
         open(the_unit,file=fn,status='old',form='unformatted',access='di
-     *rect', recl=rl,err=13840)
+     *rect', recl=rl,err=13910)
       END IF
       egs_open_datfile = the_unit
       return
-13840 CONTINUE
+13910 CONTINUE
       write(i_log,'(/a)') '***************** Warning: '
       write(i_log,'(a,a)') 'Failed to open ',fn(:lnblnk1(fn))
-      DO 13851 i=1,len(fn)
+      DO 13921 i=1,len(fn)
         fn(i:i) = ' '
-13851 CONTINUE
-13852 CONTINUE
+13921 CONTINUE
+13922 CONTINUE
       IF (( i_parallel .GT. 0 )) THEN
         fn = base(:lnblnk1(base)) // input_file(:lnblnk1(input_file)) //
      *   '_w'
@@ -18174,14 +18278,14 @@ C*****************************************************************************
      *   extension(:lnblnk1(extension))
       END IF
       IF (( rl .EQ. 0 )) THEN
-        open(the_unit,file=fn,status='old',err=13860)
+        open(the_unit,file=fn,status='old',err=13930)
       ELSE
         open(the_unit,file=fn,status='old',form='unformatted',access='di
-     *rect', recl=rl,err=13860)
+     *rect', recl=rl,err=13930)
       END IF
       egs_open_datfile = the_unit
       return
-13860 CONTINUE
+13930 CONTINUE
       write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'Failed to open data file'
       write(i_log,'(/a)') '***************** Quiting now.'
@@ -18215,23 +18319,23 @@ C*****************************************************************************
         END IF
       END IF
       IF (( the_unit .EQ. 0 )) THEN
-        DO 13871 i=1,99
+        DO 13941 i=1,99
           inquire(unit=i,opened=aux)
           IF (( .NOT.aux )) THEN
             the_unit = i
-            GO TO13872
+            GO TO13942
           END IF
-13871   CONTINUE
-13872   CONTINUE
+13941   CONTINUE
+13942   CONTINUE
         IF (( the_unit .EQ. 0 )) THEN
           egs_open_file_junk = -1
           return
         END IF
       END IF
-      open(the_unit,file=filen,status='old',err=13880)
+      open(the_unit,file=filen,status='old',err=13950)
       egs_open_file_junk = the_unit
       return
-13880 egs_open_file_junk = -3
+13950 egs_open_file_junk = -3
       return
       end
       subroutine egs_strip_path(fname)
@@ -18241,24 +18345,24 @@ C*****************************************************************************
       character slash
       slash = '/'
       l = lnblnk1(fname)
-      DO 13891 i=1,l
+      DO 13961 i=1,l
         IF (( fname(i:i) .EQ. slash )) THEN
           fname(i:i) = '/'
         END IF
-13891 CONTINUE
-13892 CONTINUE
-      DO 13901 i=l,1,-1
+13961 CONTINUE
+13962 CONTINUE
+      DO 13971 i=l,1,-1
         IF (( fname(i:i) .EQ. '/' .OR. fname(i:i) .EQ. slash )) THEN
           l1 = l-i
           fname(:l1) = fname(i+1:l)
-          DO 13911 j=l1+1,len(fname)
+          DO 13981 j=l1+1,len(fname)
             fname(j:j) = ' '
-13911     CONTINUE
-13912     CONTINUE
+13981     CONTINUE
+13982     CONTINUE
           return
         END IF
-13901 CONTINUE
-13902 CONTINUE
+13971 CONTINUE
+13972 CONTINUE
       return
       end
       subroutine replace_env(fname)
@@ -18350,10 +18454,10 @@ C*****************************************************************************
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
-      DO 13921 i=1,len(ucode)
+      DO 13991 i=1,len(ucode)
         ucode(i:i) = ' '
-13921 CONTINUE
-13922 CONTINUE
+13991 CONTINUE
+13992 CONTINUE
       ucode(:l) = arg(:l)
       return
       end
@@ -18425,40 +18529,40 @@ C*****************************************************************************
       logical same
       l = min(len(medname),24)
       medname_len = l
-      DO 13931 i=1,l
+      DO 14001 i=1,l
         c = medname(i:i)
         IF (( ichar(c) .EQ. 0 )) THEN
           medname_len = i-1
-          GO TO13932
+          GO TO14002
         END IF
-13931 CONTINUE
-13932 CONTINUE
-      DO 13941 imed=1,nmed
+14001 CONTINUE
+14002 CONTINUE
+      DO 14011 imed=1,nmed
         l = 24
-        DO 13951 i=1,24
+        DO 14021 i=1,24
           IF (( media(i,imed)(1:1) .EQ. ' ' )) THEN
             l = i-1
-            GO TO13952
+            GO TO14022
           END IF
-13951   CONTINUE
-13952   CONTINUE
+14021   CONTINUE
+14022   CONTINUE
         IF (( l .EQ. medname_len )) THEN
           same = .true.
-          DO 13961 i=1,l
+          DO 14031 i=1,l
             c = medname(i:i)
             IF (( c .NE. media(i,imed)(1:1) )) THEN
               same = .false.
-              GO TO13962
+              GO TO14032
             END IF
-13961     CONTINUE
-13962     CONTINUE
+14031     CONTINUE
+14032     CONTINUE
           IF (( same )) THEN
             egs_add_medium = imed
             return
           END IF
         END IF
-13941 CONTINUE
-13942 CONTINUE
+14011 CONTINUE
+14012 CONTINUE
       nmed = nmed + 1
       IF (( nmed .GT. 20 )) THEN
         write(i_log,'(/a)') '***************** Error: '
@@ -18469,21 +18573,21 @@ C*****************************************************************************
         call exit(1)
       END IF
       l = min(len(medname),24)
-      DO 13971 i=1,l
+      DO 14041 i=1,l
         c = medname(i:i)
         IF (( ichar(c) .EQ. 0 )) THEN
           l = i-1
-          GO TO13972
+          GO TO14042
         END IF
         media(i,nmed) = ' '
         media(i,nmed)(1:1) = c
-13971 CONTINUE
-13972 CONTINUE
+14041 CONTINUE
+14042 CONTINUE
       IF (( l .LT. 24 )) THEN
-        DO 13981 i=l+1,24
+        DO 14051 i=l+1,24
           media(i,nmed) = ' '
-13981   CONTINUE
-13982   CONTINUE
+14051   CONTINUE
+14052   CONTINUE
       END IF
       egs_add_medium = nmed
       return
@@ -18517,23 +18621,23 @@ C*****************************************************************************
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch, is_pegsless, is_uniform_run
       integer*4 i,l,imed
-      DO 13991 i=1,len(medname)
+      DO 14061 i=1,len(medname)
         medname(i:i) = ' '
-13991 CONTINUE
-13992 CONTINUE
+14061 CONTINUE
+14062 CONTINUE
       IF (( imed .LT. 1 .OR. imed .GT. nmed )) THEN
         return
       END IF
       l = 24
-      DO 14001 l=24,1,-1
-        IF((media(l,imed)(1:1) .NE. ' '))GO TO14002
-14001 CONTINUE
-14002 CONTINUE
+      DO 14071 l=24,1,-1
+        IF((media(l,imed)(1:1) .NE. ' '))GO TO14072
+14071 CONTINUE
+14072 CONTINUE
       l = min(l,len(medname))
-      DO 14011 i=1,l
+      DO 14081 i=1,l
         medname(i:i) = media(i,imed)(1:1)
-14011 CONTINUE
-14012 CONTINUE
+14081 CONTINUE
+14082 CONTINUE
       return
       end
       subroutine egs_get_electron_data(func,imed,which)
@@ -18718,16 +18822,16 @@ C*****************************************************************************
      *, ' N1',' N2',' N3',' N4',' N5',' N6',' N7'/
       write(i_log,'(a,a,a)') 'Binding energies from ',photon_xsections(:
      *lnblnk1(photon_xsections)), ' photon cross section library'
-      DO 14021 j=1,100
-        DO 14031 i=1,16
+      DO 14091 j=1,100
+        DO 14101 i=1,16
           IF (( binding_energies(i,j) .GT. 0 )) THEN
             write(i_log,'(a,i3,a,a,a,1pe12.4,a)') ' Eb(',j,',',labels(i)
      *      ,') = ',binding_energies(i,j),' MeV'
           END IF
-14031   CONTINUE
-14032   CONTINUE
-14021 CONTINUE
-14022 CONTINUE
+14101   CONTINUE
+14102   CONTINUE
+14091 CONTINUE
+14092 CONTINUE
       return
       end
       subroutine egs_scale_xcc(imed,factor)
@@ -18804,39 +18908,39 @@ C*****************************************************************************
       m1 = 2
       m2 = n-1
       s = 0
-      DO 14041 m=1,m2
+      DO 14111 m=1,m2
         d(m) = x(m+1) - x(m)
         r = (f(m+1) - f(m))/d(m)
         c(m) = r - s
         s = r
-14041 CONTINUE
-14042 CONTINUE
+14111 CONTINUE
+14112 CONTINUE
       s=0
       r=0
       c(1)=0
       c(n)=0
-      DO 14051 m=m1,m2
+      DO 14121 m=m1,m2
         c(m) = c(m) + r*c(m-1)
         b(m) = 2*(x(m-1) - x(m+1)) - r*s
         s = d(m)
         r = s/b(m)
-14051 CONTINUE
-14052 CONTINUE
+14121 CONTINUE
+14122 CONTINUE
       mr = m2
-      DO 14061 m=m1,m2
+      DO 14131 m=m1,m2
         c(mr) = (d(mr)*c(mr+1) - c(mr))/b(mr)
         mr = mr - 1
-14061 CONTINUE
-14062 CONTINUE
-      DO 14071 m=1,m2
+14131 CONTINUE
+14132 CONTINUE
+      DO 14141 m=1,m2
         s = d(m)
         r = c(m+1) - c(m)
         d(m) = r/s
         c(m) = 3*c(m)
         b(m) = (f(m+1)-f(m))/s - (c(m)+r)*s
         a(m) = f(m)
-14071 CONTINUE
-14072 CONTINUE
+14141 CONTINUE
+14142 CONTINUE
       return
       end
       real*8 function spline(s,x,a,b,c,d,n)
@@ -18861,15 +18965,15 @@ C*****************************************************************************
       ELSE
         ml = m_lower
         mu = m_upper
-14081   IF(iabs(mu-ml).LE.1)GO TO 14082
+14151   IF(iabs(mu-ml).LE.1)GO TO 14152
           mav = (ml+mu)/2
           IF (( s .LT. x(mav) )) THEN
             mu = mav
           ELSE
             ml = mav
           END IF
-        GO TO 14081
-14082   CONTINUE
+        GO TO 14151
+14152   CONTINUE
         m = mu + direction - 1
       END IF
       q = s - x(m)
@@ -18885,39 +18989,39 @@ C*****************************************************************************
       integer*4 i,j_l,j_h
       real*8 sum,aux
       sum = 0
-      DO 14091 i=1,nsbin
+      DO 14161 i=1,nsbin
         aux = 0.5*(fs_array(i)+fs_array(i-1))*(xs_array(i)-xs_array(i-1)
      *  )
         IF((aux .LT. 1e-30))aux = 1e-30
         ws_array(i) = -aux
         ibin_array(i) = 1
         sum = sum + aux
-14091 CONTINUE
-14092 CONTINUE
+14161 CONTINUE
+14162 CONTINUE
       sum = sum/nsbin
-      DO 14101 i=1,nsbin-1
-        DO 14111 j_h=1,nsbin
+      DO 14171 i=1,nsbin-1
+        DO 14181 j_h=1,nsbin
           IF (( ws_array(j_h) .LT. 0 )) THEN
-            IF((abs(ws_array(j_h)) .GT. sum))GOTO 14120
+            IF((abs(ws_array(j_h)) .GT. sum))GOTO 14190
           END IF
-14111   CONTINUE
-14112   CONTINUE
+14181   CONTINUE
+14182   CONTINUE
         j_h = nsbin
-14120   CONTINUE
-          DO 14121 j_l=1,nsbin
+14190   CONTINUE
+          DO 14191 j_l=1,nsbin
           IF (( ws_array(j_l) .LT. 0 )) THEN
-            IF((abs(ws_array(j_l)) .LT. sum))GOTO 14130
+            IF((abs(ws_array(j_l)) .LT. sum))GOTO 14200
           END IF
-14121   CONTINUE
-14122   CONTINUE
+14191   CONTINUE
+14192   CONTINUE
         j_l = nsbin
-14130   aux = sum - abs(ws_array(j_l))
+14200   aux = sum - abs(ws_array(j_l))
         ws_array(j_h) = ws_array(j_h) + aux
         ws_array(j_l) = -ws_array(j_l)/sum
         ibin_array(j_l) = j_h
         IF((i .EQ. nsbin-1))ws_array(j_h) = 1
-14101 CONTINUE
-14102 CONTINUE
+14171 CONTINUE
+14172 CONTINUE
       return
       end
       real*8 function alias_sample1(nsbin,xs_array,fs_array,ws_array,ibi
@@ -18965,36 +19069,36 @@ C*****************************************************************************
       integer*4 i,j_l,j_h
       real*8 sum,aux
       sum = 0
-      DO 14141 i=1,nsbin
+      DO 14211 i=1,nsbin
         sum = sum + ws_array(i)
         ibin_array(i) = -1
-14141 CONTINUE
-14142 CONTINUE
+14211 CONTINUE
+14212 CONTINUE
       sum = sum/nsbin
-      DO 14151 i=1,nsbin-1
-        DO 14161 j_h=1,nsbin
+      DO 14221 i=1,nsbin-1
+        DO 14231 j_h=1,nsbin
           IF((ibin_array(j_h) .LT. 0 .AND. ws_array(j_h) .GT. sum))GO TO
-     *    14162
-14161   CONTINUE
-14162   CONTINUE
-        DO 14171 j_l=1,nsbin
+     *    14232
+14231   CONTINUE
+14232   CONTINUE
+        DO 14241 j_l=1,nsbin
           IF((ibin_array(j_l) .LT. 0 .AND. ws_array(j_l) .LT. sum))GO TO
-     *    14172
-14171   CONTINUE
-14172   CONTINUE
+     *    14242
+14241   CONTINUE
+14242   CONTINUE
         aux = sum - ws_array(j_l)
         ws_array(j_h) = ws_array(j_h) - aux
         ws_array(j_l) = ws_array(j_l)/sum
         ibin_array(j_l) = j_h
-14151 CONTINUE
-14152 CONTINUE
-      DO 14181 i=1,nsbin
+14221 CONTINUE
+14222 CONTINUE
+      DO 14251 i=1,nsbin
         IF (( ibin_array(i) .LT. 0 )) THEN
           ibin_array(i) = i
           ws_array(i) = 1
         END IF
-14181 CONTINUE
-14182 CONTINUE
+14251 CONTINUE
+14252 CONTINUE
       return
       end
       integer*4 function sample_alias_histogram(nsbin,ws_array,ibin_arra
@@ -19031,35 +19135,35 @@ C*****************************************************************************
       m = (n + 1)/2
       xm=0.5d0*(x2+x1)
       xl=0.5d0*(x2-x1)
-      DO 14191 i=1,m
+      DO 14261 i=1,m
         z=cos(Pi*(i-.25d0)/(n+.5d0))
-14201   CONTINUE
+14271   CONTINUE
           p1=1.d0
           p2=0.d0
-          DO 14211 j=1,n
+          DO 14281 j=1,n
             p3 = p2
             p2 = p1
             p1=((2.d0*j-1.d0)*z*p2-(j-1.d0)*p3)/j
-14211     CONTINUE
-14212     CONTINUE
+14281     CONTINUE
+14282     CONTINUE
           pp=n*(z*p1-p2)/(z*z-1.d0)
           z1=z
           z=z1-p1/pp
-          IF(((abs(z-z1) .LT. eps)))GO TO14202
-        GO TO 14201
-14202   CONTINUE
+          IF(((abs(z-z1) .LT. eps)))GO TO14272
+        GO TO 14271
+14272   CONTINUE
         x(i)=xm-xl*z
         x(n+1-i)=xm+xl*z
         w(i)=2.d0*xl/((1.d0-z*z)*pp*pp)
         w(n+1-i)=w(i)
-14191 CONTINUE
-14192 CONTINUE
+14261 CONTINUE
+14262 CONTINUE
       return
       end
       integer function lnblnk1(string)
       character*(*) string
       integer i
-      DO 14221 i=len(string),1,-1
+      DO 14291 i=len(string),1,-1
         j = ichar(string(i:i))
         IF (( j .EQ. 0 )) THEN
           lnblnk1 = i-1
@@ -19070,8 +19174,8 @@ C*****************************************************************************
           lnblnk1 = i
           return
         END IF
-14221 CONTINUE
-14222 CONTINUE
+14291 CONTINUE
+14292 CONTINUE
       lnblnk1 = 0
       return
       end
@@ -19106,12 +19210,12 @@ C*****************************************************************************
       FAC = 2.0 * ( 2.0 * Y*Y - 1.0 )
       BN1 = 0.0
       BN = 0.0
-      DO 14231 n=NLIM(K),0,-1
+      DO 14301 n=NLIM(K),0,-1
         BN2 = BN1
         BN1 = BN
         BN = FAC * BN1 - BN2 + A(N,K)
-14231 CONTINUE
-14232 CONTINUE
+14301 CONTINUE
+14302 CONTINUE
       IF (( k .EQ. 1 )) THEN
         erf1 = CONST * Y * ( BN - BN1 )
       ELSE
@@ -19124,35 +19228,35 @@ C*****************************************************************************
       integer*4 i
       real*8 x, xtemp
       x = 1.E-20
-      DO 14241 i=1,100
+      DO 14311 i=1,100
         IF ((x .EQ. 0.0)) THEN
-          GO TO14242
+          GO TO14312
         ELSE
           xtemp = x
         END IF
         x = x/1.E5
-14241 CONTINUE
-14242 CONTINUE
+14311 CONTINUE
+14312 CONTINUE
       x = xtemp
-      DO 14251 i=1,5
+      DO 14321 i=1,5
         IF ((x .NE. 0.0)) THEN
           xtemp = x
         ELSE
-          GO TO14252
+          GO TO14322
         END IF
         x = x/10
-14251 CONTINUE
-14252 CONTINUE
+14321 CONTINUE
+14322 CONTINUE
       x = xtemp
-      DO 14261 i=2,10
+      DO 14331 i=2,10
         IF ((x .NE. 0.0)) THEN
           xtemp = x
         ELSE
-          GO TO14262
+          GO TO14332
         END IF
         x = x/i
-14261 CONTINUE
-14262 CONTINUE
+14331 CONTINUE
+14332 CONTINUE
       zero = xtemp
       return
       end
@@ -19162,14 +19266,14 @@ C*****************************************************************************
       integer*4 cursor, i, lnblnk1
       toUpper = a_string
       the_string = a_string
-      DO 14271 i=1,lnblnk1(the_string)
+      DO 14341 i=1,lnblnk1(the_string)
         cursor=ICHAR(the_string(i:i))
         IF (((cursor.GE.97).AND.(cursor.LE.122))) THEN
           cursor=cursor-32
           toUpper(i:i)=CHAR(cursor)
         END IF
-14271 CONTINUE
-14272 CONTINUE
+14341 CONTINUE
+14342 CONTINUE
       return
       end
       integer*1 function egs_read_byte(iunit, jrec)
@@ -19223,7 +19327,7 @@ C*****************************************************************************
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch, is_pegsless, is_uniform_run
       j = 0
-      DO 14281 i=jrec,jrec+1
+      DO 14351 i=jrec,jrec+1
         j = j + 1
         read(iunit,rec=i,IOSTAT=ierr) c_2(j)
         IF ((ierr.ne.0)) THEN
@@ -19234,8 +19338,8 @@ C*****************************************************************************
           egs_read_short = -1
           return
         END IF
-14281 CONTINUE
-14282 CONTINUE
+14351 CONTINUE
+14352 CONTINUE
       jrec = jrec + 2
       egs_read_short = i_2
       return
@@ -19260,7 +19364,7 @@ C*****************************************************************************
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch, is_pegsless, is_uniform_run
       j = 0
-      DO 14291 i=jrec,jrec+3
+      DO 14361 i=jrec,jrec+3
         j = j + 1
         read(iunit,rec=i,IOSTAT=ierr) c_4(j)
         IF ((ierr.ne.0)) THEN
@@ -19270,8 +19374,8 @@ C*****************************************************************************
           egs_read_int = -1
           return
         END IF
-14291 CONTINUE
-14292 CONTINUE
+14361 CONTINUE
+14362 CONTINUE
       jrec = jrec + 4
       egs_read_int = i_4
       return
@@ -19296,7 +19400,7 @@ C*****************************************************************************
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch, is_pegsless, is_uniform_run
       j = 0
-      DO 14301 i=jrec,jrec+3
+      DO 14371 i=jrec,jrec+3
         j = j + 1
         read(iunit,rec=i,IOSTAT=ierr) c_4(j)
         IF ((ierr.ne.0)) THEN
@@ -19306,8 +19410,8 @@ C*****************************************************************************
           egs_read_real = -1
           return
         END IF
-14301 CONTINUE
-14302 CONTINUE
+14371 CONTINUE
+14372 CONTINUE
       jrec = jrec + 4
       egs_read_real = r_4
       return
@@ -19320,15 +19424,15 @@ C*****************************************************************************
       min = 1
       max = nsh
       x = a
-14311 IF(min.GE.max-1)GO TO 14312
+14381 IF(min.GE.max-1)GO TO 14382
         help = (max+min)/2
         IF (( b(help).le.x)) THEN
           min = help
         ELSE
           max = help
         END IF
-      GO TO 14311
-14312 CONTINUE
+      GO TO 14381
+14382 CONTINUE
       ibsearch = min
       return
       end
@@ -19350,10 +19454,10 @@ C*****************************************************************************
       logical is_batch, is_pegsless, is_uniform_run
       character*512 fname
       integer*4 i,lnblnk1,l,istat
-      DO 14321 i=1,len(fname)
+      DO 14391 i=1,len(fname)
         fname(i:i) = ' '
-14321 CONTINUE
-14322 CONTINUE
+14391 CONTINUE
+14392 CONTINUE
       fname = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(user_co
      *de)) // '/' // output_file(:lnblnk1(output_file)) // '.lock'
       l = lnblnk1(fname)+1
@@ -19386,10 +19490,10 @@ C*****************************************************************************
       logical is_batch, is_pegsless, is_uniform_run
       character*512 fname
       integer*4 i,lnblnk1,l,istat
-      DO 14331 i=1,len(fname)
+      DO 14401 i=1,len(fname)
         fname(i:i) = ' '
-14331 CONTINUE
-14332 CONTINUE
+14401 CONTINUE
+14402 CONTINUE
       fname = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(user_co
      *de)) // '/' // output_file(:lnblnk1(output_file)) // '.lock'
       l = lnblnk1(fname)+1
@@ -19422,10 +19526,10 @@ C*****************************************************************************
       logical is_batch, is_pegsless, is_uniform_run
       character*512 fname
       integer*4 i,lnblnk1,l
-      DO 14341 i=1,len(fname)
+      DO 14411 i=1,len(fname)
         fname(i:i) = ' '
-14341 CONTINUE
-14342 CONTINUE
+14411 CONTINUE
+14412 CONTINUE
       fname = egs_home(:lnblnk1(egs_home)) // user_code(:lnblnk1(user_co
      *de)) // '/' // output_file(:lnblnk1(output_file)) // '.lock'
       l = lnblnk1(fname)+1
@@ -19479,10 +19583,10 @@ C*****************************************************************************
         return
       END IF
       IF((first_time))n_last = 0
-      DO 14351 i=1,len(control_string)
+      DO 14421 i=1,len(control_string)
         control_string(i:i) = ' '
-14351 CONTINUE
-14352 CONTINUE
+14421 CONTINUE
+14422 CONTINUE
       n_run = ncase/n_parallel/10
       n_left = ncase
       IF (( first_time )) THEN
@@ -19537,7 +19641,7 @@ C*****************************************************************************
       END IF
       n_read = len(control_string)
       call egs_read_control_file(control_string,n_read,istat)
-      read(control_string,*,err=14360) n_left,nn_tot,n_job,tmp,tmp2, res
+      read(control_string,*,err=14430) n_left,nn_tot,n_job,tmp,tmp2, res
      *,dres,(t_dum(i),i=1,8)
       nn_tot = nn_tot + n_last
       tmp = tmp + sum
@@ -19567,10 +19671,10 @@ C*****************************************************************************
         n_left = n_left - n_run
       END IF
       n_last = n_run
-      DO 14371 i=1,len(control_string)
+      DO 14441 i=1,len(control_string)
         control_string(i:i) = ' '
-14371 CONTINUE
-14372 CONTINUE
+14441 CONTINUE
+14442 CONTINUE
       write(control_string,'(2i15,i4,2(1pe16.8),1pe13.5,0pf7.2,2x,8i5)')
      * n_left,n_tot,n_job,tmp,tmp2,res,dres,(t_dum(i),i=1,8)
       call egs_rewind_control_file(istat)
@@ -19600,7 +19704,7 @@ C*****************************************************************************
       END IF
       IF((n_job .GT. n_max_parallel))n_max_parallel = n_job
       return
-14360 write(i_log,'(/a)') '***************** Error: '
+14430 write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(a,/a)') 'Failed to read from job control file: got '
      *, control_string(:lnblnk1(control_string))
       write(i_log,'(/a)') '***************** Quiting now.'
@@ -19636,7 +19740,7 @@ C*****************************************************************************
       IF (( is_uniform_run )) THEN
         IF (( i_parallel .EQ. n_parallel )) THEN
           n_job = 0
-          goto 14380
+          goto 14450
         ELSE
           n_job = 1
           return
@@ -19652,14 +19756,14 @@ C*****************************************************************************
       END IF
       n_read = len(control_string)
       call egs_read_control_file(control_string,n_read,istat)
-      read(control_string,*,end=14390,err=14390) n_left,n_tot,n_job,tmp,
+      read(control_string,*,end=14460,err=14460) n_left,n_tot,n_job,tmp,
      *tmp2,res,dres,(t_start(i),i=1,8)
       n_job = n_job - 1
       IF (( n_job .GT. 0 )) THEN
-        DO 14401 i=1,len(control_string)
+        DO 14471 i=1,len(control_string)
           control_string(i:i) = ' '
-14401   CONTINUE
-14402   CONTINUE
+14471   CONTINUE
+14472   CONTINUE
         write(control_string,'(2i15,i4,2(1pe16.8),1pe13.5,0pf7.2,2x,8i5)
      *') n_left,n_tot,n_job,tmp,tmp2,res,dres,(t_start(i),i=1,8)
         call egs_rewind_control_file(istat)
@@ -19685,7 +19789,7 @@ C*****************************************************************************
       END IF
       call egs_close_control_file(istat)
       call egs_remove_lockfile(istat)
-14380 CONTINUE
+14450 CONTINUE
       i_parallel = 0
       call egs_open_units(.false.)
       IF (( is_uniform_run )) THEN
@@ -19704,7 +19808,7 @@ C*****************************************************************************
      ********************************************************'
       END IF
       return
-14390 CONTINUE
+14460 CONTINUE
       write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(a,/a)') 'In egs_pjob_finish: failed to read from con
      *trol string ', control_string(:lnblnk1(control_string))
@@ -19790,8 +19894,8 @@ C*****************************************************************************
         V(7)=1.0
         V(8)=TMXS(E)
       ELSE
-        WRITE(6,14410)IUNRSTP
-14410   FORMAT(//'*********IUNRST=',I4,' NOT ALLOWED BY EFUNS*****'/ ' I
+        WRITE(6,14480)IUNRSTP
+14480   FORMAT(//'*********IUNRST=',I4,' NOT ALLOWED BY EFUNS*****'/ ' I
      *UNRST=6 OR 7 ONLY ALLOWED WITH CALL OR PLTN OPTIONS'//)
         call exit(20)
       END IF
@@ -19823,10 +19927,10 @@ C*****************************************************************************
       real*4 PZP,ZELEMP,WAP,RHOZP,GASPP,EZ,TPZ
       CHARACTER*4 IDSTRN
       BREMRM=0.
-      DO 14421 I=1,NEP
+      DO 14491 I=1,NEP
         BREMRM=BREMRM+PZP(I)*BREMRZ(ZELEMP(I),E,K1,K2)
-14421 CONTINUE
-14422 CONTINUE
+14491 CONTINUE
+14492 CONTINUE
       RETURN
       END
       real*4 FUNCTION BREMRZ(Z,E,K1,K2)
@@ -20089,28 +20193,28 @@ C*****************************************************************************
       ELSE
         IF ((E0 .GE. EPSTEN(IEPST))) THEN
           IF ((E0 .EQ. EPSTEN(IEPST))) THEN
-            GO TO 14430
+            GO TO 14500
           END IF
-          DO 14441 I=IEPST,NEPST-1
+          DO 14511 I=IEPST,NEPST-1
             IF ((E0.LT.EPSTEN(I+1))) THEN
               IEPST = I
-              GO TO 14430
+              GO TO 14500
             END IF
-14441     CONTINUE
-14442     CONTINUE
+14511     CONTINUE
+14512     CONTINUE
           IEPST = NEPST
-          GO TO 14430
+          GO TO 14500
         ELSE
-          DO 14451 I=IEPST,2,-1
+          DO 14521 I=IEPST,2,-1
             IF ((E0 .GE. EPSTEN(I-1))) THEN
               IEPST = I-1
-              GO TO 14430
+              GO TO 14500
             END IF
-14451     CONTINUE
-14452     CONTINUE
+14521     CONTINUE
+14522     CONTINUE
           IEPST = 1
         END IF
-14430   IF ((IEPST .LT. NEPST)) THEN
+14500   IF ((IEPST .LT. NEPST)) THEN
           DELTA = EPSTD(IEPST) + (E0 - EPSTEN(IEPST))/ (EPSTEN(IEPST+1)
      *    - EPSTEN(IEPST)) * (EPSTD(IEPST+1) - EPSTD(IEPST))
         ELSE
@@ -20150,10 +20254,10 @@ C*****************************************************************************
       real*4 PZP,ZELEMP,WAP,RHOZP,GASPP,EZ,TPZ
       CHARACTER*4 IDSTRN
       BRMSRM=0.
-      DO 14461 I=1,NEP
+      DO 14531 I=1,NEP
         BRMSRM=BRMSRM+PZP(I)*BRMSRZ(ZELEMP(I),E,K1,K2)
-14461 CONTINUE
-14462 CONTINUE
+14531 CONTINUE
+14532 CONTINUE
       RETURN
       END
       real*4 FUNCTION BRMSRZ(Z,E,K1,K2)
@@ -20233,11 +20337,11 @@ C*****************************************************************************
           APRIM=1.
         ELSE
           EM=E/RMP
-          DO 14471 IE=1,18
+          DO 14541 IE=1,18
             APRIMZ(IE)= AINTP(Z,ZPRIM,5,APRIMD(IE,1),115,.FALSE.,.FALSE.
      *      )
-14471     CONTINUE
-14472     CONTINUE
+14541     CONTINUE
+14542     CONTINUE
           APRIM=AINTP(EM,EPRIM,18,APRIMZ,1,.FALSE.,.FALSE.)
         END IF
       ELSE IF((IAPRIMP.EQ.1)) THEN
@@ -20252,38 +20356,38 @@ C*****************************************************************************
             write(i_log,'(/a)') '***************** Quiting now.'
             call exit(1)
           END IF
-          open(aprim_unit,file=aprim_file,status='old',err=14480)
+          open(aprim_unit,file=aprim_file,status='old',err=14550)
           READ(aprim_unit,*) NAPRZ, NAPRE
           IF ((NAPRZ.GT.14)) THEN
-            WRITE(6,14490)
-14490       FORMAT(//,' TOO MANY ELEMENTS FOR APRIME INTERPOLATION:', /,
+            WRITE(6,14560)
+14560       FORMAT(//,' TOO MANY ELEMENTS FOR APRIME INTERPOLATION:', /,
      *'   CHANGE $NAPRZ AND RECOMPILE PEGS')
             call exit(24)
           END IF
           IF ((NAPRE.GT.115)) THEN
-            WRITE(6,14500)
-14500       FORMAT(//,' TOO MANY ENERGIES FOR APRIME INTERPOLATION:', /,
+            WRITE(6,14570)
+14570       FORMAT(//,' TOO MANY ENERGIES FOR APRIME INTERPOLATION:', /,
      *'   CHANGE $NAPRE AND RECOMPILE PEGS')
             call exit(24)
           END IF
           READ(aprim_unit,*) (EPRIM(IE),IE=1,NAPRE)
-          DO 14511 IE=1,NAPRE
+          DO 14581 IE=1,NAPRE
             EPRIM(IE)=1.+EPRIM(IE)/RMP
-14511     CONTINUE
-14512     CONTINUE
-          DO 14521 IZ=1,NAPRZ
+14581     CONTINUE
+14582     CONTINUE
+          DO 14591 IZ=1,NAPRZ
             READ(aprim_unit,*)ZPRIM(IZ),(APRIMD(IE,IZ),IE=1,NAPRE)
-14521     CONTINUE
-14522     CONTINUE
+14591     CONTINUE
+14592     CONTINUE
           IAPRFL=1
           close(aprim_unit)
         END IF
         EM=E/RMP
-        DO 14531 IE=1,NAPRE
+        DO 14601 IE=1,NAPRE
           APRIMZ(IE)= AINTP(Z,ZPRIM,NAPRZ,APRIMD(IE,1),115,.TRUE.,.FALSE
      *    .)
-14531   CONTINUE
-14532   CONTINUE
+14601   CONTINUE
+14602   CONTINUE
         APRIM=AINTP(EM,EPRIM,NAPRE,APRIMZ,1,.FALSE.,.FALSE.)
       ELSE IF((IAPRIMP.EQ.2)) THEN
         IF ((IAPRFL .EQ. 0)) THEN
@@ -20291,12 +20395,12 @@ C*****************************************************************************
         END IF
         APRIM=1.0
       ELSE
-        WRITE(6,14540)IAPRIMP
-14540   FORMAT(//,' ILLEGAL VALUE FOR IAPRIM: ',I4)
+        WRITE(6,14610)IAPRIMP
+14610   FORMAT(//,' ILLEGAL VALUE FOR IAPRIM: ',I4)
         call exit(24)
       END IF
       RETURN
-14480 write(i_log,'(/a)') '***************** Error: '
+14550 write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'Cannot open file $HEN_HOUSE/pegs4/aprime.data'
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
@@ -20311,12 +20415,12 @@ C*****************************************************************************
       integer*4 I,J
       real*4 XI,XJ,XV,YI,YJ
       XLOGL=XLOG
-      DO 14551 J=2,NX
-        IF((X.LT.XA(J)))GO TO 14560
-14551 CONTINUE
-14552 CONTINUE
+      DO 14621 J=2,NX
+        IF((X.LT.XA(J)))GO TO 14630
+14621 CONTINUE
+14622 CONTINUE
       J=NX
-14560 I=J-1
+14630 I=J-1
       IF ((XA(I).LE.0.0)) THEN
         XLOGL=.FALSE.
       END IF
@@ -20420,20 +20524,20 @@ C*****************************************************************************
       NL=0
       NU=1
       IPRN=0
-14571 CONTINUE
+14641 CONTINUE
         NJ=MIN0(NU,NIMX)
         IF((QFIT(NJ,XL,XU,XR,EP,ZTHR,ZEP,REM,NIP,XFUN,XFI, AX,BX,NALM,NF
-     *  UN,AF,BF,VFUNS,0)))GO TO14572
+     *  UN,AF,BF,VFUNS,0)))GO TO14642
         IF ((NU.GE.NIMX)) THEN
           NI=NJ
           RETURN
         END IF
         NL=NU
         NU=NU*2
-      GO TO 14571
-14572 CONTINUE
+      GO TO 14641
+14642 CONTINUE
       NU=NJ
-14581 IF(NU.LE.NL+1)GO TO 14582
+14651 IF(NU.LE.NL+1)GO TO 14652
         NJ=(NL+NU)/2
         NK=NJ
         IF ((QFIT(NJ,XL,XU,XR,EP,ZTHR,ZEP,REM,NIP,XFUN,XFI, AX,BX,NALM,N
@@ -20442,13 +20546,13 @@ C*****************************************************************************
         ELSE
           NL=NK
         END IF
-      GO TO 14581
-14582 CONTINUE
+      GO TO 14651
+14652 CONTINUE
       NI=NU
       IF((NI.EQ.NJ))RETURN
       IF((.NOT.QFIT(NI,XL,XU,XR,EP,ZTHR,ZEP,REM,NIP,XFUN,XFI, AX,BX,NALM
-     *,NFUN,AF,BF,VFUNS,0)))WRITE(6,14590)NI
-14590 FORMAT(' CATASTROPHE---DOES NOT FIT WHEN IT SHOULD,NI=',I5)
+     *,NFUN,AF,BF,VFUNS,0)))WRITE(6,14660)NI
+14660 FORMAT(' CATASTROPHE---DOES NOT FIT WHEN IT SHOULD,NI=',I5)
       RETURN
       END
       LOGICAL FUNCTION QFIT(NJ,XL,XH,XR,EP,ZTHR,ZEP,REM,NJP,XFUN,XFI, AX
@@ -20480,8 +20584,8 @@ C*****************************************************************************
       DATA NKP/3/
       save nkp
       IF ((XH.LE.XL)) THEN
-        WRITE(6,14600)XL,XH
-14600   FORMAT(' QFIT ERROR:XL SHOULD BE < XH. XL,XH=',2G14.6)
+        WRITE(6,14670)XL,XH
+14670   FORMAT(' QFIT ERROR:XL SHOULD BE < XH. XL,XH=',2G14.6)
         QFIT=.FALSE.
         RETURN
       END IF
@@ -20514,28 +20618,28 @@ C*****************************************************************************
       ISUB=0
       XSXF=XFI(SXFL)
       CALL VFUNS(XSXF,FSXL)
-      IF((IPRN.NE.0))WRITE(6,5410) ISUB,SXFL,XSXF,(FSXL(IFUN),IFUN=1,NFU
+      IF((IPRN.NE.0))WRITE(6,5480) ISUB,SXFL,XSXF,(FSXL(IFUN),IFUN=1,NFU
      *N)
-5410  FORMAT(' QFIT:ISUB,SXF,XSXF,FSX()=',I4,1P,9G11.4/(1X,12G11.4))
-      DO 14611 ISUB=1,NI
+5480  FORMAT(' QFIT:ISUB,SXF,XSXF,FSX()=',I4,1P,9G11.4/(1X,12G11.4))
+      DO 14681 ISUB=1,NI
         JSUB=ISUB+1
         SXFH=AMIN1(XLL+W*ISUB,XH)
         XSXF=XFI(SXFH)
         CALL VFUNS(XSXF,FSXH)
-        IF((IPRN.NE.0))WRITE(6,5410)ISUB,SXFH,XSXF,(FSXH(IFUN),IFUN=1,NF
+        IF((IPRN.NE.0))WRITE(6,5480)ISUB,SXFH,XSXF,(FSXH(IFUN),IFUN=1,NF
      *  UN)
         DSXF=SXFH-SXFL
-        DO 14621 IFUN=1,NFUN
+        DO 14691 IFUN=1,NFUN
           AF(JSUB,IFUN)=(FSXH(IFUN)-FSXL(IFUN))/DSXF
           BF(JSUB,IFUN)=(FSXL(IFUN)*SXFH-FSXH(IFUN)*SXFL)/DSXF
-14621   CONTINUE
-14622   CONTINUE
+14691   CONTINUE
+14692   CONTINUE
         WIP=DSXF/(NIP+1)
-        DO 14631 IP=1,NIP
+        DO 14701 IP=1,NIP
           SXFIP=SXFL+IP*WIP
           XIP=XFI(SXFIP)
           CALL VFUNS(XIP,FIP)
-          DO 14641 IFUN=1,NFUN
+          DO 14711 IFUN=1,NFUN
             FFIP(IFUN)=AF(JSUB,IFUN)*SXFIP+BF(JSUB,IFUN)
             AFIP(IFUN)=ABS(FIP(IFUN))
             AER(IFUN)=ABS(FFIP(IFUN)-FIP(IFUN))
@@ -20548,30 +20652,30 @@ C*****************************************************************************
             ELSE IF((AER(IFUN).GT.ZEP(IFUN))) THEN
               QFIT=.FALSE.
             END IF
-14641     CONTINUE
-14642     CONTINUE
+14711     CONTINUE
+14712     CONTINUE
           IF ((IPRN.NE.0)) THEN
-            WRITE(6,14650)ISUB,IP,SXFIP,XIP,REM,QFIT,(FIP(IFUN),FFIP(IFU
+            WRITE(6,14720)ISUB,IP,SXFIP,XIP,REM,QFIT,(FIP(IFUN),FFIP(IFU
      *      N), RE(IFUN),AER(IFUN),IFUN=1,NFUN)
-14650       FORMAT(1X,2I4,1P,2G12.5,6P,F12.0,L2,1P,2G11.4,6P,F11.0,1P,G1
+14720       FORMAT(1X,2I4,1P,2G12.5,6P,F12.0,L2,1P,2G11.4,6P,F11.0,1P,G1
      *1.4/ (1X,3(1P,2G11.4,6P,F11.0,1P,G11.4)))
           END IF
-14631   CONTINUE
-14632   CONTINUE
+14701   CONTINUE
+14702   CONTINUE
         SXFL=SXFH
-        DO 14661 IFUN=1,NFUN
+        DO 14731 IFUN=1,NFUN
           FSXL(IFUN)=FSXH(IFUN)
-14661   CONTINUE
-14662   CONTINUE
-14611 CONTINUE
-14612 CONTINUE
-      DO 14671 IFUN=1,NFUN
+14731   CONTINUE
+14732   CONTINUE
+14681 CONTINUE
+14682 CONTINUE
+      DO 14741 IFUN=1,NFUN
         AF(1,IFUN)=AF(2,IFUN)
         BF(1,IFUN)=BF(2,IFUN)
         AF(NI+2,IFUN)=AF(NI+1,IFUN)
         BF(NI+2,IFUN)=BF(NI+1,IFUN)
-14671 CONTINUE
-14672 CONTINUE
+14741 CONTINUE
+14742 CONTINUE
       QFIT=QFIT.AND.REM.LE.EP
       NJ=NI+2
       RETURN
@@ -20603,8 +20707,8 @@ C*****************************************************************************
       BDUM=B
       QD=DCADRE(F,ADUM,BDUM,1.E-16,1.E-5,ERRDUM,IER)
       IF ((IER.GT.66)) THEN
-        WRITE(6,14680)IER,MSG,A,B,QD,ERRDUM
-14680   FORMAT(' DCADRE CODE=',I4,' FOR INTEGRAL ',A6,' FROM ',1P,G14.6,
+        WRITE(6,14750)IER,MSG,A,B,QD,ERRDUM
+14750   FORMAT(' DCADRE CODE=',I4,' FOR INTEGRAL ',A6,' FROM ',1P,G14.6,
      *' TO ',G14.6, ',QD=',G14.6,'+-',G14.6)
       END IF
       RETURN
@@ -20687,24 +20791,24 @@ C*****************************************************************************
       HOVN=STEP/FN
       III=IEND
       FI=ONE
-      DO 14691 I=1,N2,2
+      DO 14761 I=1,N2,2
         TS(III)=TS(II)
         RVAL=END-FI*HOVN
         TS(III-1)=F(RVAL)
         FI=FI+TWO
         III=III-2
         II=II-1
-14691 CONTINUE
-14692 CONTINUE
+14761 CONTINUE
+14762 CONTINUE
       ISTEP=2
 25    ISTEP2=IBEG + ISTEP/2
       SUM=ZERO
       SUMABS=ZERO
-      DO 14701 I=ISTEP2,IEND,ISTEP
+      DO 14771 I=ISTEP2,IEND,ISTEP
         SUM=SUM + TS(I)
         SUMABS=SUMABS + ABS(TS(I))
-14701 CONTINUE
-14702 CONTINUE
+14771 CONTINUE
+14772 CONTINUE
       T(L,1)=T(L-1,1)*HALF+SUM/FN
       TABS=TABS*HALF+SUMABS/FN
       ABSI=ASTEP*TABS
@@ -20716,12 +20820,12 @@ C*****************************************************************************
       ERGL=ASTEP*FNSIZE*TEN
       ERGOAL=STAGE*DMAX1(ERRA,ERRR*ABS(CUREST+VINT))
       FEXTRP=ONE
-      DO 14711 I=1,LM1
+      DO 14781 I=1,LM1
         FEXTRP=FEXTRP*FOUR
         T(I,L)=T(L,I) - T(L-1,I)
         T(L,I+1)=T(L,I) + T(I,L)/(FEXTRP-ONE)
-14711 CONTINUE
-14712 CONTINUE
+14781 CONTINUE
+14782 CONTINUE
       ERRER=ASTEP*ABS(T(1,L))
       IF((L.GT.2))GO TO 40
       IF((TABS+P1*ABS(T(1,2)).EQ.TABS))GO TO 135
@@ -20968,12 +21072,12 @@ C*****************************************************************************
         EPSTFLP = 0
       END IF
       IF ((EPSTFLP.EQ.0)) THEN
-14720   CONTINUE
-          DO 14721 IM=1,NUMSTMED
-          DO 14731 J=1,LMED
-            IF((IDSTRN(J).NE.MEDTBL(J,IM)))GO TO 14721
-14731     CONTINUE
-14732     CONTINUE
+14790   CONTINUE
+          DO 14791 IM=1,NUMSTMED
+          DO 14801 J=1,LMED
+            IF((IDSTRN(J).NE.MEDTBL(J,IM)))GO TO 14791
+14801     CONTINUE
+14802     CONTINUE
           AFACT=STDATA(1,IM)
           SK=STDATA(2,IM)
           X0=STDATA(3,IM)
@@ -20982,15 +21086,15 @@ C*****************************************************************************
           CBAR=STDATA(6,IM)
           IMEV=IEV*1.0E-6
           VPLASM=SQRT(EDEN*R0*C**2/PIP)
-          GO TO 14740
-14721   CONTINUE
-14722   CONTINUE
+          GO TO 14810
+14791   CONTINUE
+14792   CONTINUE
         IM=0
         IF ((NEP.EQ.1)) THEN
           IZ=ZELEMP(1)
           IF ((IZ.EQ.1.OR.IZ.EQ.7.OR.IZ.EQ.8)) THEN
-            WRITE(6,14750)
-14750       FORMAT(' STOPPED IN SUBROUTINE SPINIT BECAUSE THIS',/, ' ELE
+            WRITE(6,14820)
+14820       FORMAT(' STOPPED IN SUBROUTINE SPINIT BECAUSE THIS',/, ' ELE
      *MENT (H, N, OR O) CAN ONLY EXIST AS A DIATOMIC MOLECULE.',/, ' REM
      *EDY:  USE COMP OPTION FOR H2, N2, OR O2 WITH NE=2,PZ=1,1'/, '     
      *AND, IN THE CASE OF A GAS, DEFINE STERNHEIMER ID',/, '   (I.E., ID
@@ -21000,7 +21104,7 @@ C*****************************************************************************
           IEV=ITBL(IZ)
         ELSE
           ALIADG=0.0
-          DO 14761 IE=1,NEP
+          DO 14831 IE=1,NEP
             IZ=ZELEMP(IE)
             IF ((IZ.EQ.1)) THEN
               IEV=19.2
@@ -21026,8 +21130,8 @@ C*****************************************************************************
               IEV=1.13*ITBL(IZ)
             END IF
             ALIADG=ALIADG + PZP(IE)*ZELEMP(IE)*LOG(IEV)
-14761     CONTINUE
-14762     CONTINUE
+14831     CONTINUE
+14832     CONTINUE
           ALIADG=ALIADG/ZC
           IEV=EXP(ALIADG)
         END IF
@@ -21075,8 +21179,8 @@ C*****************************************************************************
               END IF
             END IF
             IF ((X0.GE.X1)) THEN
-              WRITE(6,14770)X0,X1,CBAR
-14770         FORMAT(' STOPPED IN SPINIT DUE TO X0.GE.X1 , X0,X1,CBAR=',
+              WRITE(6,14840)X0,X1,CBAR
+14840         FORMAT(' STOPPED IN SPINIT DUE TO X0.GE.X1 , X0,X1,CBAR=',
      *3G15.5,/ ,' IF THIS IS GAS, YOU MUST DEFINE GASP(ATM)')
               call exit(21)
             END IF
@@ -21105,7 +21209,7 @@ C*****************************************************************************
             END IF
           END IF
         END IF
-14740   IF ((GASPP.NE.0.0)) THEN
+14810   IF ((GASPP.NE.0.0)) THEN
           ALGASP=LOG(GASPP)
           CBAR=CBAR - ALGASP
           X0=X0 - ALGASP/TOLN10
@@ -21124,33 +21228,33 @@ C*****************************************************************************
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
-        open(density_unit,file=density_file,status='old',err=6430)
-        READ(density_unit,14780)EPSTTL
-14780   FORMAT(A)
+        open(density_unit,file=density_file,status='old',err=6500)
+        READ(density_unit,14850)EPSTTL
+14850   FORMAT(A)
         READ(density_unit,*) NEPST,IEV,EPSTRH,NELEPS
         READ(density_unit,*) (ZEPST(I),WEPST(I),I=1,NELEPS)
         READ(density_unit,*) (EPSTEN(I),EPSTD(I),I=1,NEPST)
         close(density_unit)
         IF ((NEPST.GT.150)) THEN
-          WRITE(6,14790)NEPST
-14790     FORMAT(//' *****NEPST=',I4,' IS GREATER THAN THE 150 ALLOWED')
+          WRITE(6,14860)NEPST
+14860     FORMAT(//' *****NEPST=',I4,' IS GREATER THAN THE 150 ALLOWED')
           call exit(22)
         END IF
-        DO 14801 I=1,NEPST
+        DO 14871 I=1,NEPST
           EPSTEN(I) = EPSTEN(I) + RMP
-14801   CONTINUE
-14802   CONTINUE
+14871   CONTINUE
+14872   CONTINUE
         IMEV = IEV*1.E-06
         IF (( AEP .LT. EPSTEN(1))) THEN
-          WRITE(6,14810)EPSTEN(1),AEP
-14810     FORMAT(//' ****LOWEST ENERGY INPUT FOR DENSITY EFFECT IS',1P,E
+          WRITE(6,14880)EPSTEN(1),AEP
+14880     FORMAT(//' ****LOWEST ENERGY INPUT FOR DENSITY EFFECT IS',1P,E
      *10.3/ T20,'WHICH IS HIGHER THAN THE VALUE OF AE=',1P,E10.3,' MEV'/
      * ' ***IT HAS BEEN SET TO AE***'//)
           EPSTEN(1) = AEP
         END IF
         IF (( UEP .GT. EPSTEN(NEPST))) THEN
-          WRITE(6,14820)EPSTEN(NEPST),UEP
-14820     FORMAT(//' ****HIGHEST ENERGY INPUT FOR DENSITY EFFECT IS',1P,
+          WRITE(6,14890)EPSTEN(NEPST),UEP
+14890     FORMAT(//' ****HIGHEST ENERGY INPUT FOR DENSITY EFFECT IS',1P,
      *E10.3/ T20,'WHICH IS LOWER THAN THE VALUE OF UE=',1P,E10.3,' MEV'/
      * ' ***IT HAS BEEN SET TO UE***'//)
           EPSTEN(NEPST) = UEP
@@ -21161,40 +21265,40 @@ C*****************************************************************************
         IF(((ICHECK.EQ.0) .AND. ( (EPSTRH.LT.((1.0-TLRNCE)*RHOP)) .OR. (
      *  EPSTRH.GT.((1.0+TLRNCE)*RHOP)) )))ICHECK=1
         EPSTWT = 0.0
-        DO 14831 I=1,NEP
+        DO 14901 I=1,NEP
           EPSTWT = EPSTWT + RHOZP(I)
-14831   CONTINUE
-14832   CONTINUE
+14901   CONTINUE
+14902   CONTINUE
         IF ((EPSTWT.EQ.0.0)) THEN
-          WRITE(6,14840)
-14840     FORMAT(//' *****IN SPINIT***SOMETHING WRONG, MOLECULAR WEIGHTO
+          WRITE(6,14910)
+14910     FORMAT(//' *****IN SPINIT***SOMETHING WRONG, MOLECULAR WEIGHTO
      *F', 'MOLECULE IS ZERO (I.E. SUM OF RHOZ)***'//)
         END IF
         IF ((ICHECK.EQ.0)) THEN
           IESPEL=0
           ICHECK=1
-14851     CONTINUE
+14921     CONTINUE
             IESPEL=IESPEL+1
             IPEGEL=0
-14861       CONTINUE
+14931       CONTINUE
               IPEGEL=IPEGEL+1
               IF ((INT(ZELEMP(IPEGEL)).EQ.ZEPST(IESPEL))) THEN
                 ICHECK=0
-                GO TO14862
+                GO TO14932
               END IF
-              IF(IPEGEL.GE.NEP)GO TO14862
-            GO TO 14861
-14862       CONTINUE
+              IF(IPEGEL.GE.NEP)GO TO14932
+            GO TO 14931
+14932       CONTINUE
             IF(((ICHECK.EQ.0)  .AND. ( (WEPST(IESPEL).LT.((1.0-TLRNCE)*R
      *      HOZP(IPEGEL)/EPSTWT)) .OR. (WEPST(IESPEL).GT.((1.0+TLRNCE)*R
      *      HOZP(IPEGEL)/EPSTWT)) )))ICHECK=1
-            IF(IESPEL.GE.NELEPS)GO TO14852
-          GO TO 14851
-14852     CONTINUE
+            IF(IESPEL.GE.NELEPS)GO TO14922
+          GO TO 14921
+14922     CONTINUE
         END IF
         IF ((ICHECK.EQ.1)) THEN
-          WRITE(6,14870)
-14870     FORMAT(////'0*** COMPOSITION IN INPUT DENSITY FILE DOES NOT MA
+          WRITE(6,14940)
+14940     FORMAT(////'0*** COMPOSITION IN INPUT DENSITY FILE DOES NOT MA
      *TCH ', ' THAT BEING USED BY PEGS'//' ***** QUITTING EARLY***'////)
           call exit(23)
         END IF
@@ -21202,7 +21306,7 @@ C*****************************************************************************
       SPC1=2.*PIP*R0**2*RMP*EDEN*RLCP
       SPC2=LOG((IMEV/RMP)**2/2.0)
       RETURN
-6430  write(i_log,'(/a)') '***************** Error: '
+6500  write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) ' Failed to open density file ',density_file
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
@@ -21248,7 +21352,7 @@ C*****************************************************************************
       ZE=0.0
       ZX=0.0
       ZAB=0.0
-      DO 14881 I=1,NEP
+      DO 14951 I=1,NEP
         TPZ = TPZ + PZP(I)
         WM = WM + PZP(I)*WAP(I)
         ZC = ZC + PZP(I)*ZELEMP(I)
@@ -21269,8 +21373,8 @@ C*****************************************************************************
         ZS = ZS + ZZ(I)
         ZE = ZE + ZZ(I)*((-2./3.)*LOG(ZELEMP(I)))
         ZX = ZX + ZZ(I)*LOG(1.+3.34*FZC(I))
-14881 CONTINUE
-14882 CONTINUE
+14951 CONTINUE
+14952 CONTINUE
       EZ = ZC/TPZ
       ZA = AL183*ZT
       ZG = ZB/ZT
@@ -21413,15 +21517,15 @@ C*****************************************************************************
         ZTBL=18.0
         RETURN
       END IF
-      DO 14891 IE=1,NET
+      DO 14961 IE=1,NET
         IF ((IASYM.EQ.ASYMT(IE))) THEN
           ZTBL=IE
           RETURN
         END IF
-14891 CONTINUE
-14892 CONTINUE
-      WRITE(6,14900)IASYM,NET
-14900 FORMAT(1X,A2,' NOT AN ATOMIC SYMBOL FOR AN ELEMENT WITH Z LE ',I3)
+14961 CONTINUE
+14962 CONTINUE
+      WRITE(6,14970)IASYM,NET
+14970 FORMAT(1X,A2,' NOT AN ATOMIC SYMBOL FOR AN ELEMENT WITH Z LE ',I3)
       ZTBL=0.0
       RETURN
       END
@@ -21429,9 +21533,9 @@ C*****************************************************************************
       implicit none
       COMMON/QDEBUG/QDEBUG
       LOGICAL QDEBUG
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -21506,15 +21610,15 @@ C*****************************************************************************
       IF (( nbr_split .GT. 1 )) THEN
         wt(np) = wt(np)/nbr_split
       END IF
-      DO 14911 ibr=1,nbr_split
-        IF (( np+1 .GT. 10000 )) THEN
+      DO 14981 ibr=1,nbr_split
+        IF (( np+1 .GT. 900000 )) THEN
           write(i_log,'(/a)') '***************** Error: '
           write(i_log,'(//a,i6,a//)') ' Stack overflow in ANNIH! np = ',
      *    np+1, ' Increase $MXSTACK and try again'
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
-14921   CONTINUE
+14991   CONTINUE
           IF((rng_seed .GT. 128))call ranmar_get
           RNNO01 = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
@@ -21523,9 +21627,9 @@ C*****************************************************************************
           RNNO02 = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
           REJF = 1 - (EP*A-1)**2/(EP*(A*A-2))
-          IF(((RNNO02 .LE. REJF)))GO TO14922
-        GO TO 14921
-14922   CONTINUE
+          IF(((RNNO02 .LE. REJF)))GO TO14992
+        GO TO 14991
+14992   CONTINUE
         ESG1=AVIP*EP
         PESG1=ESG1
         E(NP)=PESG1
@@ -21544,7 +21648,7 @@ C*****************************************************************************
         LATCH(np)=LATCH(ip)
         COSTHE=MAX(-1.0,MIN(1.0,(ESG1-RM)*POT/ESG1))
         SINTHE=SQRT(1.0-COSTHE*COSTHE)
-14931   CONTINUE
+15001   CONTINUE
           IF((rng_seed .GT. 128))call ranmar_get
           xphi = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
@@ -21555,9 +21659,9 @@ C*****************************************************************************
           rng_seed = rng_seed + 1
           yphi2 = yphi*yphi
           rhophi2 = xphi2 + yphi2
-          IF(rhophi2.LE.1)GO TO14932
-        GO TO 14931
-14932   CONTINUE
+          IF(rhophi2.LE.1)GO TO15002
+        GO TO 15001
+15002   CONTINUE
         rhophi2 = 1/rhophi2
         cphi = (xphi2 - yphi2)*rhophi2
         sphi = 2*xphi*yphi*rhophi2
@@ -21598,8 +21702,8 @@ C*****************************************************************************
           w(np) = cc*costhe
         END IF
         np = np + 1
-14911 CONTINUE
-14912 CONTINUE
+14981 CONTINUE
+14982 CONTINUE
       np = np-1
       RETURN
       END
@@ -21607,9 +21711,9 @@ C*****************************************************************************
       implicit none
       COMMON/QDEBUG/QDEBUG
       LOGICAL QDEBUG
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -21647,24 +21751,24 @@ C*****************************************************************************
       integer*4 ibr,ip
       real*8 xphi,xphi2,yphi,yphi2,rhophi2
       NPold = NP
-      IF (( np+2*nbr_split-1 .GT. 10000 )) THEN
+      IF (( np+2*nbr_split-1 .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','ANNIH_AT_RES
-     *T', ' stack size exceeded! ',' $MAXSTACK = ',10000,' np = ',np+2*n
-     *  br_split-1
+     *T', ' stack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np+2*
+     *  nbr_split-1
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
       IF (( nbr_split .GT. 1 )) THEN
         wt(np) = wt(np)/nbr_split
       END IF
-      DO 14941 ibr=1,nbr_split
+      DO 15011 ibr=1,nbr_split
         IF((rng_seed .GT. 128))call ranmar_get
         costhe = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
         costhe = 2*costhe-1
         sinthe = sqrt(max(0.0,(1-costhe)*(1+costhe)))
-14951   CONTINUE
+15021   CONTINUE
           IF((rng_seed .GT. 128))call ranmar_get
           xphi = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
@@ -21675,9 +21779,9 @@ C*****************************************************************************
           rng_seed = rng_seed + 1
           yphi2 = yphi*yphi
           rhophi2 = xphi2 + yphi2
-          IF(rhophi2.LE.1)GO TO14952
-        GO TO 14951
-14952   CONTINUE
+          IF(rhophi2.LE.1)GO TO15022
+        GO TO 15021
+15022   CONTINUE
         rhophi2 = 1/rhophi2
         cphi = (xphi2 - yphi2)*rhophi2
         sphi = 2*xphi*yphi*rhophi2
@@ -21712,8 +21816,8 @@ C*****************************************************************************
         v(np) = -v(np-1)
         w(np) = -w(np-1)
         np = np+1
-14941 CONTINUE
-14942 CONTINUE
+15011 CONTINUE
+15012 CONTINUE
       np = np-1
       return
       end
@@ -21721,9 +21825,9 @@ C*****************************************************************************
       implicit none
       COMMON/QDEBUG/QDEBUG
       LOGICAL QDEBUG
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -21785,7 +21889,7 @@ C*****************************************************************************
       B3=B4+YP2
       B2=YP*(3.+Y2)
       B1=2.-Y2
-14961 CONTINUE
+15031 CONTINUE
         IF((rng_seed .GT. 128))call ranmar_get
         RNNO03 = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
@@ -21794,13 +21898,13 @@ C*****************************************************************************
         RNNO04 = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
         REJF2=(1.0-BETA2*BR*(B1-BR*(B2-BR*(B3-BR*B4))))
-        IF((RNNO04.LE.REJF2))GO TO14962
-      GO TO 14961
-14962 CONTINUE
-      IF (( np+1 .GT. 10000 )) THEN
+        IF((RNNO04.LE.REJF2))GO TO15032
+      GO TO 15031
+15032 CONTINUE
+      IF (( np+1 .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','BHABHA', ' s
-     *tack size exceeded! ',' $MAXSTACK = ',10000,' np = ',np+1
+     *tack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np+1
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -21858,9 +21962,9 @@ C*****************************************************************************
       real*8 nb_fdata,nb_xdata,nb_wdata,nb_emin,nb_emax,nb_lemin,nb_lema
      *x, nb_dle,nb_dlei,log_ap
       integer*4 nb_idata
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -21962,7 +22066,7 @@ C*****************************************************************************
           ajj = -1
         END IF
       END IF
-      DO 14971 ibr=1,nbr_split
+      DO 15041 ibr=1,nbr_split
         IF (( ibr_nist .GE. 1 )) THEN
           IF (( ekin .GT. nb_emin(medium) )) THEN
             IF((rng_seed .GT. 128))call ranmar_get
@@ -21985,7 +22089,7 @@ C*****************************************************************************
           pese = peie - pesg
           ese = pese
         ELSE
-14981     CONTINUE
+15051     CONTINUE
             IF((rng_seed .GT. 128))call ranmar_get
             rnno06 = rng_array(rng_seed)*twom24
             rng_seed = rng_seed + 1
@@ -22010,12 +22114,12 @@ C*****************************************************************************
               phi2 = phi1
             END IF
             rejf = (1+aux*aux)*phi1 - 2*aux*phi2/3
-            IF(((rnno07 .LT. rejf)))GO TO14982
-          GO TO 14981
-14982     CONTINUE
+            IF(((rnno07 .LT. rejf)))GO TO15052
+          GO TO 15051
+15052     CONTINUE
         END IF
         np=np+1
-        IF (( np .GT. 10000 )) THEN
+        IF (( np .GT. 900000 )) THEN
           write(i_log,'(/a)') '***************** Error: '
           write(i_log,'(//a,i6,a//)') ' Stack overflow in BREMS! np = ',
      *    np+1, ' Increase $MXSTACK and try again'
@@ -22051,7 +22155,7 @@ C*****************************************************************************
               rjarg3 = log(aux/(1+aux1))
             END IF
             rejmax = rjarg1*rjarg3-rjarg2
-14991       CONTINUE
+15061       CONTINUE
               IF((rng_seed .GT. 128))call ranmar_get
               y2tst = rng_array(rng_seed)*twom24
               rng_seed = rng_seed + 1
@@ -22064,12 +22168,12 @@ C*****************************************************************************
               y2tst1 = esedei*y2tst/aux3**4
               aux4 = 16*y2tst1-rjarg2
               aux5 = rjarg1-4*y2tst1
-              IF((rtest .LT. aux4 + aux5*rjarg3))GO TO14992
+              IF((rtest .LT. aux4 + aux5*rjarg3))GO TO15062
               aux2 = log(aux/(1+aux1/aux3**4))
               rejtst = aux4+aux5*aux2
-              IF(((rtest .LT. rejtst )))GO TO14992
-            GO TO 14991
-14992       CONTINUE
+              IF(((rtest .LT. rejtst )))GO TO15062
+            GO TO 15061
+15062       CONTINUE
           ELSE
             IF((rng_seed .GT. 128))call ranmar_get
             y2tst = rng_array(rng_seed)*twom24
@@ -22078,7 +22182,7 @@ C*****************************************************************************
           END IF
           costhe = 1 - 2*y2tst*y2maxi
           sinthe = sqrt(max((1-costhe)*(1+costhe),0.0))
-15001     CONTINUE
+15071     CONTINUE
             IF((rng_seed .GT. 128))call ranmar_get
             xphi = rng_array(rng_seed)*twom24
             rng_seed = rng_seed + 1
@@ -22089,9 +22193,9 @@ C*****************************************************************************
             rng_seed = rng_seed + 1
             yphi2 = yphi*yphi
             rhophi2 = xphi2 + yphi2
-            IF(rhophi2.LE.1)GO TO15002
-          GO TO 15001
-15002     CONTINUE
+            IF(rhophi2.LE.1)GO TO15072
+          GO TO 15071
+15072     CONTINUE
           rhophi2 = 1/rhophi2
           cphi = (xphi2 - yphi2)*rhophi2
           sphi = 2*xphi*yphi*rhophi2
@@ -22107,8 +22211,8 @@ C*****************************************************************************
             w(np) = c*costhe
           END IF
         END IF
-14971 CONTINUE
-14972 CONTINUE
+15041 CONTINUE
+15042 CONTINUE
       e(npold) = pese
       RETURN
       END
@@ -22132,9 +22236,9 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -22193,7 +22297,7 @@ C*****************************************************************************
       irl = ir(np)
       first_time = .true.
       ibcmpl = ibcmp
-15010 CONTINUE
+15080 CONTINUE
       IF (( ibcmpl .GT. 0 )) THEN
         IF((rng_seed .GT. 128))call ranmar_get
         rnno17 = rng_array(rng_seed)*twom24
@@ -22206,14 +22310,14 @@ C*****************************************************************************
         Uj = be_array(j)
         IF (( ko .LE. Uj )) THEN
           IF (( ibcmpl .EQ. 1 )) THEN
-            goto 15020
+            goto 15090
           ELSE
-            goto 15010
+            goto 15080
           END IF
         END IF
         Jo = Jo_array(j)
       END IF
-15030 CONTINUE
+15100 CONTINUE
       IF (( ko .GT. 2 )) THEN
         IF (( first_time )) THEN
           broi2 = broi*broi
@@ -22222,7 +22326,7 @@ C*****************************************************************************
           alph2 = ko*(broi+1)*bro*bro
           alpha = alph1+alph2
         END IF
-15041   CONTINUE
+15111   CONTINUE
           IF((rng_seed .GT. 128))call ranmar_get
           rnno15 = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
@@ -22241,16 +22345,16 @@ C*****************************************************************************
           IF((rng_seed .GT. 128))call ranmar_get
           rnno19 = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
-          IF((rnno19*aux.le.rejf3))GO TO15042
-        GO TO 15041
-15042   CONTINUE
+          IF((rnno19*aux.le.rejf3))GO TO15112
+        GO TO 15111
+15112   CONTINUE
       ELSE
         IF (( first_time )) THEN
           bro = 1./broi
           bro1 = 1 - bro
           rejmax = broi + bro
         END IF
-15051   CONTINUE
+15121   CONTINUE
           IF((rng_seed .GT. 128))call ranmar_get
           rnno15 = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
@@ -22261,9 +22365,9 @@ C*****************************************************************************
           temp = (1-br)/(ko*br)
           sinthe = Max(0.,temp*(2-temp))
           rejf3 = 1 + br*br - br*sinthe
-          IF((rnno16*br*rejmax.le.rejf3))GO TO15052
-        GO TO 15051
-15052   CONTINUE
+          IF((rnno16*br*rejmax.le.rejf3))GO TO15122
+        GO TO 15121
+15122   CONTINUE
       END IF
       first_time = .false.
       IF ((br .LT. bro .OR. br .GT. 1)) THEN
@@ -22272,12 +22376,12 @@ C*****************************************************************************
           write(i_log,*) ' sampled br outside of allowed range! ',ko,1./
      *    broi,br
         END IF
-        goto 15030
+        goto 15100
       END IF
       costhe = 1 - temp
       IF (( ibcmp .EQ. 0 )) THEN
         Uj = 0
-        goto 15060
+        goto 15130
       END IF
       br2 = br*br
       aux = ko*(ko-Uj)*temp
@@ -22285,9 +22389,9 @@ C*****************************************************************************
       pzmax = aux - Uj
       IF (( pzmax .LT. 0 .AND. pzmax*pzmax .GE. aux1 )) THEN
         IF (( ibcmpl .EQ. 1 )) THEN
-          goto 15020
+          goto 15090
         ELSE
-          goto 15010
+          goto 15080
         END IF
       END IF
       pzmax = pzmax/sqrt(aux1)
@@ -22298,7 +22402,7 @@ C*****************************************************************************
         af = 0
         Fmax = 1
         fpz = 1
-        goto 15070
+        goto 15140
       END IF
       aux3 = 1 + 2*Jo*abs(pzmax)
       aux4 = 0.5*(1-aux3*aux3)
@@ -22311,14 +22415,14 @@ C*****************************************************************************
         rng_seed = rng_seed + 1
         IF (( eta_incoh .GT. fpz )) THEN
           IF (( ibcmpl .EQ. 1 )) THEN
-            goto 15020
+            goto 15090
           ELSE
-            goto 15010
+            goto 15080
           END IF
         END IF
         af = 0
         Fmax = 1
-        goto 15070
+        goto 15140
       END IF
       IF (( pzmax .LT. -0.15 )) THEN
         Fmax = 1-af*0.15
@@ -22344,12 +22448,12 @@ C*****************************************************************************
       rng_seed = rng_seed + 1
       IF ((eta_incoh*Jo .GT. fpz1 )) THEN
         IF (( ibcmpl .EQ. 1 )) THEN
-          goto 15020
+          goto 15090
         ELSE
-          goto 15010
+          goto 15080
         END IF
       END IF
-15070 CONTINUE
+15140 CONTINUE
       IF (( ibcmpl .NE. 2 )) THEN
         IF((rng_seed .GT. 128))call ranmar_get
         rnno18 = rng_array(rng_seed)*twom24
@@ -22362,7 +22466,7 @@ C*****************************************************************************
           rnno18 = 2*(1-rnno18)
           pz = 0.5*(Sqrt(1-2*Log(rnno18))-1)/Jo
         END IF
-        IF((abs(pz) .GT. 1))goto 15070
+        IF((abs(pz) .GT. 1))goto 15140
         IF (( pz .LT. 0.15 )) THEN
           IF (( pz .LT. -0.15 )) THEN
             frej = 1 - af*0.15
@@ -22372,7 +22476,7 @@ C*****************************************************************************
           IF((rng_seed .GT. 128))call ranmar_get
           eta = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
-          IF((eta*Fmax .GT. frej))goto 15070
+          IF((eta*Fmax .GT. frej))goto 15140
         END IF
       ELSE
         pz = 0
@@ -22390,7 +22494,7 @@ C*****************************************************************************
         END IF
       END IF
       Uj = Uj*prm
-15060 pesg = br*peig
+15130 pesg = br*peig
       pese = peig - pesg - Uj + prm
       sinthe = Sqrt(sinthe)
       call uphi(2,1)
@@ -22409,10 +22513,10 @@ C*****************************************************************************
         sinthe = -1
       END IF
       np = np + 1
-      IF (( np .GT. 10000 )) THEN
+      IF (( np .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','COMPT', ' st
-     *ack size exceeded! ',' $MAXSTACK = ',10000,' np = ',np
+     *ack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -22445,13 +22549,13 @@ C*****************************************************************************
         IF (( prob_RR .LE. 0 )) THEN
           IF (( n_RR_warning .LT. 50 )) THEN
             n_RR_warning = n_RR_warning + 1
-            WRITE(6,15080)prob_RR
-15080       FORMAT('**** Warning, attempt to play Roussian Roulette with
+            WRITE(6,15150)prob_RR
+15150       FORMAT('**** Warning, attempt to play Roussian Roulette with
      * prob_RR<=0! ',g14.6)
           END IF
         ELSE
           ip = NPold+1
-15091     CONTINUE
+15161     CONTINUE
             IF (( iq(ip) .NE. 0 )) THEN
               IF((rng_seed .GT. 128))call ranmar_get
               rnno_RR = rng_array(rng_seed)*twom24
@@ -22474,9 +22578,9 @@ C*****************************************************************************
             ELSE
               ip = ip+1
             END IF
-            IF(((ip .GT. np)))GO TO15092
-          GO TO 15091
-15092     CONTINUE
+            IF(((ip .GT. np)))GO TO15162
+          GO TO 15161
+15162     CONTINUE
           IF (( np .EQ. 0 )) THEN
             np = 1
             e(np) = 0
@@ -22486,7 +22590,7 @@ C*****************************************************************************
         END IF
       END IF
       return
-15020 return
+15090 return
       end
       SUBROUTINE old_COMPT
       implicit none
@@ -22508,9 +22612,9 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -22569,24 +22673,24 @@ C*****************************************************************************
         IF((rng_seed .GT. 128))call ranmar_get
         rnno17 = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
-        DO 15101 i=1,n_shell(medium)
+        DO 15171 i=1,n_shell(medium)
           rnno17 = rnno17 - eno_array(i,medium)
-          IF((rnno17 .LE. 0))GO TO15102
-15101   CONTINUE
-15102   CONTINUE
+          IF((rnno17 .LE. 0))GO TO15172
+15171   CONTINUE
+15172   CONTINUE
         j = shell_array(i,medium)
         Uj = be_array(j)
         IF (( ko .LE. Uj )) THEN
-          goto 15110
+          goto 15180
         END IF
       END IF
-15120 CONTINUE
+15190 CONTINUE
       IF (( ko .GT. 2 )) THEN
         broi2 = broi*broi
         alph1 = Log(broi)
         alph2 = ko*(broi+1)/broi2
         alpha = alph1/(alph1+alph2)
-15131   CONTINUE
+15201   CONTINUE
           IF((rng_seed .GT. 128))call ranmar_get
           rnno15 = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
@@ -22604,14 +22708,14 @@ C*****************************************************************************
           IF((rng_seed .GT. 128))call ranmar_get
           rnno19 = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
-          IF((rnno19.le.rejf3))GO TO15132
-        GO TO 15131
-15132   CONTINUE
+          IF((rnno19.le.rejf3))GO TO15202
+        GO TO 15201
+15202   CONTINUE
       ELSE
         bro = 1./broi
         bro1 = 1 - bro
         rejmax = broi + bro
-15141   CONTINUE
+15211   CONTINUE
           IF((rng_seed .GT. 128))call ranmar_get
           rnno15 = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
@@ -22622,9 +22726,9 @@ C*****************************************************************************
           temp = (1-br)/ko/br
           sinthe = Max(0.,temp*(2-temp))
           rejf3 = (br + 1./br - sinthe)/rejmax
-          IF((rnno16.le.rejf3))GO TO15142
-        GO TO 15141
-15142   CONTINUE
+          IF((rnno16.le.rejf3))GO TO15212
+        GO TO 15211
+15212   CONTINUE
       END IF
       IF ((br .LT. 1./broi .OR. br .GT. 1)) THEN
         IF (( br .LT. 0.99999/broi .OR. br .GT. 1.00001 )) THEN
@@ -22632,19 +22736,19 @@ C*****************************************************************************
           write(i_log,*) ' sampled br outside of allowed range! ',ko,1./
      *    broi,br
         END IF
-        goto 15120
+        goto 15190
       END IF
       IF (( ibcmp .EQ. 0 )) THEN
         Uj = 0
         costhe = 1 - temp
-        goto 15150
+        goto 15220
       END IF
       br2 = br*br
       costhe = 1 - temp
       aux = ko*(ko-Uj)*temp
       aux1 = aux-Uj
       pzmax2 = aux1*aux1/(2*aux+Uj*Uj)
-15160 CONTINUE
+15230 CONTINUE
       IF((rng_seed .GT. 128))call ranmar_get
       rnno18 = rng_array(rng_seed)*twom24
       rng_seed = rng_seed + 1
@@ -22653,20 +22757,20 @@ C*****************************************************************************
         pz = 0.5*(1-Sqrt(1-2*Log(rnno18)))/Jo_array(j)
         pz2 = pz*pz
         IF (( (pz2 .LE. pzmax2) .AND. (aux1 .LT. 0) )) THEN
-          goto 15110
+          goto 15180
         END IF
       ELSE
         IF (( aux1 .LT. 0 )) THEN
-          goto 15110
+          goto 15180
         END IF
         rnno18 = 2*(1-rnno18)
         pz = 0.5*(Sqrt(1-2*Log(rnno18))-1)/Jo_array(j)
         pz2 = pz*pz
         IF (( pz2 .GE. pzmax2 )) THEN
-          goto 15110
+          goto 15180
         END IF
       END IF
-      IF((abs(pz) .GT. 1))goto 15160
+      IF((abs(pz) .GT. 1))goto 15230
       aux = 1 - pz2*br*costhe
       aux1 = 1 - pz2*br2
       aux2 = 1-2*br*costhe+br2*(1-pz2*sinthe)
@@ -22674,7 +22778,7 @@ C*****************************************************************************
         br = br/aux1*(aux+pz*Sqrt(aux2))
       END IF
       Uj = Uj*prm
-15150 pesg = br*peig
+15220 pesg = br*peig
       pese = peig - pesg - Uj + prm
       sinthe = Sqrt(sinthe)
       call uphi(2,1)
@@ -22693,10 +22797,10 @@ C*****************************************************************************
         sinthe = -1
       END IF
       np = np + 1
-      IF (( np .GT. 10000 )) THEN
+      IF (( np .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','COMPT', ' st
-     *ack size exceeded! ',' $MAXSTACK = ',10000,' np = ',np
+     *ack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -22723,13 +22827,13 @@ C*****************************************************************************
         IF (( prob_RR .LE. 0 )) THEN
           IF (( n_RR_warning .LT. 50 )) THEN
             n_RR_warning = n_RR_warning + 1
-            WRITE(6,15170)prob_RR
-15170       FORMAT('**** Warning, attempt to play Roussian Roulette with
+            WRITE(6,15240)prob_RR
+15240       FORMAT('**** Warning, attempt to play Roussian Roulette with
      * prob_RR<=0! ',g14.6)
           END IF
         ELSE
           ip = NPold+1
-15181     CONTINUE
+15251     CONTINUE
             IF (( iq(ip) .NE. 0 )) THEN
               IF((rng_seed .GT. 128))call ranmar_get
               rnno_RR = rng_array(rng_seed)*twom24
@@ -22752,9 +22856,9 @@ C*****************************************************************************
             ELSE
               ip = ip+1
             END IF
-            IF(((ip .GT. np)))GO TO15182
-          GO TO 15181
-15182     CONTINUE
+            IF(((ip .GT. np)))GO TO15252
+          GO TO 15251
+15252     CONTINUE
           IF (( np .EQ. 0 )) THEN
             np = 1
             e(np) = 0
@@ -22764,7 +22868,7 @@ C*****************************************************************************
         END IF
       END IF
       return
-15110 return
+15180 return
       end
       SUBROUTINE ELECTR(IRCODE)
       implicit none
@@ -22817,9 +22921,9 @@ C*****************************************************************************
       real*8 DUNIT,  RHOR
       integer*4 KMPI,  KMPO
       integer*2 MED,  IRAYLR,  IPHOTONUCR
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -22919,20 +23023,20 @@ C*****************************************************************************
       irold = ir(np)
       irl = irold
       medium = med(irl)
-15190 CONTINUE
-15191   CONTINUE
+15260 CONTINUE
+15261   CONTINUE
         lelec = iq(np)
         qel = (1+lelec)/2
         peie = e(np)
         eie = peie
         IF ((eie .LE. ECUT)) THEN
-          go to 15200
+          go to 15270
         END IF
         IF ((WT(NP) .EQ. 0.0)) THEN
-          go to 15210
+          go to 15280
         END IF
-15220   CONTINUE
-15221     CONTINUE
+15290   CONTINUE
+15291     CONTINUE
           compute_tstep = .true.
           eke = eie - rm
           IF ((medium .NE. 0)) THEN
@@ -22964,8 +23068,8 @@ C*****************************************************************************
               END IF
             END IF
           END IF
-15230     CONTINUE
-15231       CONTINUE
+15300     CONTINUE
+15301       CONTINUE
             IF ((medium .EQ. 0)) THEN
               tstep = vacdst
               ustep = tstep
@@ -23098,7 +23202,7 @@ C*****************************************************************************
      *        EQ.irmax+1.OR..NOT.howfarless))) THEN
                 IF ((tperp .GE. range)) THEN
                   idisc = 50 + 49*iq(np)
-                  go to 15210
+                  go to 15280
                 END IF
               END IF
               IF (( IREJECT .EQ. 1 .AND. MED(IR(NP)) .NE. 0 .AND. E(NP)
@@ -23110,7 +23214,7 @@ C*****************************************************************************
                 ELSE
                   IDISC=99
                 END IF
-                GOTO 15210
+                GOTO 15280
               END IF
               blccl = rhof*blcc(medium)
               xccl = rhof*xcc(medium)
@@ -23159,10 +23263,10 @@ C*****************************************************************************
                   IF (( tuss .LE. 0 )) THEN
                     de = eke - TE(medium)*0.99
                   ELSE
-15241               IF(tuss.GE.range_ep(qel,lelktmp,medium))GO TO 15242
+15311               IF(tuss.GE.range_ep(qel,lelktmp,medium))GO TO 15312
                       lelktmp = lelktmp - 1
-                    GO TO 15241
-15242               CONTINUE
+                    GO TO 15311
+15312               CONTINUE
                     elktmp = (lelktmp+1-eke0(medium))/eke1(medium)
                     eketmp = E_array(lelktmp+1,medium)
                     tuss = (range_ep(qel,lelktmp+1,medium) - tuss)/rhof
@@ -23281,18 +23385,18 @@ C*****************************************************************************
               call howfar
             END IF
             IF ((idisc .GT. 0)) THEN
-              go to 15210
+              go to 15280
             END IF
             IF ((ustep .LE. 0)) THEN
               IF ((ustep .LT. -1e-4)) THEN
                 ierust = ierust + 1
-                WRITE(6,15250)ierust,ustep,dedx,e(np)-prm, ir(np),irnew,
+                WRITE(6,15320)ierust,ustep,dedx,e(np)-prm, ir(np),irnew,
      *          irold,x(np),y(np),z(np)
-15250           FORMAT(i4,' Negative ustep = ',e12.5,' dedx=',F8.4,' ke=
+15320           FORMAT(i4,' Negative ustep = ',e12.5,' dedx=',F8.4,' ke=
      *',F8.4, ' ir,irnew,irold =',3i4,' x,y,z =',4e10.3)
                 IF ((ierust .GT. 1000)) THEN
-                  WRITE(6,15260)
-15260             FORMAT(////' Called exit---too many ustep errors'///)
+                  WRITE(6,15330)
+15330             FORMAT(////' Called exit---too many ustep errors'///)
                   call exit(1)
                 END IF
               END IF
@@ -23331,12 +23435,12 @@ C*****************************************************************************
                 IF((IARG.LT.0))RETURN
               END IF
               IF ((eie .LE. ECUT)) THEN
-                go to 15200
+                go to 15270
               END IF
               IF ((ustep .NE. 0 .AND. idisc .LT. 0)) THEN
-                go to 15210
+                go to 15280
               END IF
-              GO TO 15221
+              GO TO 15291
             END IF
             vstep = ustep
             IF ((callhowfar)) THEN
@@ -23421,10 +23525,10 @@ C*****************************************************************************
                 IF (( tuss .LE. 0 )) THEN
                   de = eke - TE(medium)*0.99
                 ELSE
-15271             IF(tuss.GE.range_ep(qel,lelktmp,medium))GO TO 15272
+15341             IF(tuss.GE.range_ep(qel,lelktmp,medium))GO TO 15342
                     lelktmp = lelktmp - 1
-                  GO TO 15271
-15272             CONTINUE
+                  GO TO 15341
+15342             CONTINUE
                   elktmp = (lelktmp+1-eke0(medium))/eke1(medium)
                   eketmp = E_array(lelktmp+1,medium)
                   tuss = (range_ep(qel,lelktmp+1,medium) - tuss)/rhof
@@ -23468,10 +23572,10 @@ C*****************************************************************************
                   IF (( tuss .LE. 0 )) THEN
                     de = eke - TE(medium)*0.99
                   ELSE
-15281               IF(tuss.GE.range_ep(qel,lelktmp,medium))GO TO 15282
+15351               IF(tuss.GE.range_ep(qel,lelktmp,medium))GO TO 15352
                       lelktmp = lelktmp - 1
-                    GO TO 15281
-15282               CONTINUE
+                    GO TO 15351
+15352               CONTINUE
                     elktmp = (lelktmp+1-eke0(medium))/eke1(medium)
                     eketmp = E_array(lelktmp+1,medium)
                     tuss = (range_ep(qel,lelktmp+1,medium) - tuss)/rhof
@@ -23581,7 +23685,7 @@ C*****************************************************************************
             eie = peie
             e(np) = peie
             IF (( irnew .EQ. irl .AND. eie .LE. ECUT)) THEN
-              go to 15200
+              go to 15270
             END IF
             medold = medium
             IF ((medium .NE. 0)) THEN
@@ -23601,21 +23705,21 @@ C*****************************************************************************
             END IF
             IF((IARG.LT.0))RETURN
             IF ((eie .LE. ECUT)) THEN
-              go to 15200
+              go to 15270
             END IF
             IF ((idisc .LT. 0)) THEN
-              go to 15210
+              go to 15280
             END IF
-            IF((medium .NE. medold))GO TO 15221
+            IF((medium .NE. medold))GO TO 15291
             demfp = demfp - save_de*sig
             total_de = total_de - save_de
             total_tstep = total_tstep - tvstep*rhof
             IF (( total_tstep .LT. 1e-9 )) THEN
               demfp = 0
             END IF
-            IF(((demfp .LT. 1.E-8)))GO TO15232
-          GO TO 15231
-15232     CONTINUE
+            IF(((demfp .LT. 1.E-8)))GO TO15302
+          GO TO 15301
+15302     CONTINUE
           IF ((lelec .LT. 0)) THEN
             sigf=esig1(Lelke,MEDIUM)*elke+esig0(Lelke,MEDIUM)
             dedx0=ededx1(Lelke,MEDIUM)*elke+ededx0(Lelke,MEDIUM)
@@ -23629,22 +23733,22 @@ C*****************************************************************************
           IF((rng_seed .GT. 128))call ranmar_get
           rfict = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
-          IF(((rfict .LE. sigratio)))GO TO15222
-        GO TO 15221
-15222   CONTINUE
+          IF(((rfict .LE. sigratio)))GO TO15292
+        GO TO 15291
+15292   CONTINUE
         IF ((lelec .LT. 0)) THEN
           ebr1=ebr11(Lelke,MEDIUM)*elke+ebr10(Lelke,MEDIUM)
           IF((rng_seed .GT. 128))call ranmar_get
           rnno24 = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
           IF ((rnno24 .LE. ebr1)) THEN
-            go to 15290
+            go to 15360
           ELSE
             IF ((e(np) .LE. thmoll(medium) .AND. eii_flag .EQ. 0)) THEN
               IF ((ebr1 .LE. 0)) THEN
-                go to 15190
+                go to 15260
               END IF
-              go to 15290
+              go to 15360
             END IF
             IARG=8
             IF ((IAUSFL(IARG+1).NE.0)) THEN
@@ -23659,14 +23763,14 @@ C*****************************************************************************
             IF((IARG.LT.0))RETURN
             IF((iq(np) .EQ. 0))return
           END IF
-          go to 15190
+          go to 15260
         END IF
         pbr1=pbr11(Lelke,MEDIUM)*elke+pbr10(Lelke,MEDIUM)
         IF((rng_seed .GT. 128))call ranmar_get
         rnno25 = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
         IF ((rnno25 .LT. pbr1)) THEN
-          go to 15290
+          go to 15360
         END IF
         pbr2=pbr21(Lelke,MEDIUM)*elke+pbr20(Lelke,MEDIUM)
         IF ((rnno25 .LT. pbr2)) THEN
@@ -23694,12 +23798,12 @@ C*****************************************************************************
             CALL AUSGAB(IARG)
           END IF
           IF((IARG.LT.0))RETURN
-          GO TO 15192
+          GO TO 15262
         END IF
-      GO TO 15191
-15192 CONTINUE
+      GO TO 15261
+15262 CONTINUE
       return
-15290 IARG=6
+15360 IARG=6
       IF ((IAUSFL(IARG+1).NE.0)) THEN
         CALL AUSGAB(IARG)
       END IF
@@ -23713,9 +23817,9 @@ C*****************************************************************************
       IF ((iq(np) .EQ. 0)) THEN
         return
       ELSE
-        go to 15190
+        go to 15260
       END IF
-15200 IF (( medium .GT. 0 )) THEN
+15270 IF (( medium .GT. 0 )) THEN
         IF ((eie .GT. ae(medium))) THEN
           idr = 1
           IF ((lelec .LT. 0)) THEN
@@ -23736,7 +23840,7 @@ C*****************************************************************************
         CALL AUSGAB(IARG)
       END IF
       IF((IARG.LT.0))RETURN
-15300 CONTINUE
+15370 CONTINUE
       IF ((lelec .GT. 0)) THEN
         IF ((edep .LT. peie)) THEN
           IARG=28
@@ -23756,7 +23860,7 @@ C*****************************************************************************
       np = np - 1
       ircode = 2
       return
-15210 idisc = abs(idisc)
+15280 idisc = abs(idisc)
       IF (((lelec .LT. 0) .OR. (idisc .EQ. 99))) THEN
         edep = e(np) - prm
       ELSE
@@ -23767,7 +23871,7 @@ C*****************************************************************************
         CALL AUSGAB(IARG)
       END IF
       IF((IARG.LT.0))RETURN
-      IF((idisc .EQ. 99))goto 15300
+      IF((idisc .EQ. 99))goto 15370
       np = np - 1
       ircode = 2
       return
@@ -23835,9 +23939,9 @@ C*****************************************************************************
       integer*4
      *                  MPGEM,
      *                          NGR
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -24106,17 +24210,17 @@ C*****************************************************************************
      *U','HG','TL','PB','BI','PO','AT','RN', 'FR','RA','AC','TH','PA','U
      *','NP','PU','AM','CM','BK','CF','ES', 'FM'/
       DATA EPSTFLP/0/,IEPST/1/,IAPRIMP/1/,IAPRFL/0/
-15310 FORMAT(1X,14I5)
-15320 FORMAT(1X,1PE14.5,4E14.5)
-15330 FORMAT(72A1)
+15380 FORMAT(1X,14I5)
+15390 FORMAT(1X,1PE14.5,4E14.5)
+15400 FORMAT(72A1)
       IF ((I1ST.NE.0)) THEN
         I1ST=0
-        DO 15341 J=1, 2097154
+        DO 15411 J=1, 2097154
           IF ((SMAXIR.LE.0.0)) THEN
             SMAXIR=1E10
           END IF
-15341   CONTINUE
-15342   CONTINUE
+15411   CONTINUE
+15412   CONTINUE
         NISUB=MXSINC-2
         FNSSS=NSINSS
         WID=PI5D2/FLOAT(NISUB)
@@ -24124,7 +24228,7 @@ C*****************************************************************************
         ZEROS(1)=0.
         ZEROS(2)=PI
         ZEROS(3)=TWOPI
-        DO 15351 ISUB=1,MXSINC
+        DO 15421 ISUB=1,MXSINC
           SX=0.
           SY=0.
           SXX=0.
@@ -24132,27 +24236,27 @@ C*****************************************************************************
           XS0=WID*FLOAT(ISUB-2)
           XS1=XS0+WID
           IZ=0
-          DO 15361 IZZ=1,3
+          DO 15431 IZZ=1,3
             IF (((XS0.LE.ZEROS(IZZ)).AND.(ZEROS(IZZ).LE.XS1))) THEN
               IZ=IZZ
-              GO TO15362
+              GO TO15432
             END IF
-15361     CONTINUE
-15362     CONTINUE
+15431     CONTINUE
+15432     CONTINUE
           IF ((IZ.EQ.0)) THEN
             XSI=XS0
           ELSE
             XSI=ZEROS(IZ)
           END IF
-          DO 15371 ISS=1,NSINSS
+          DO 15441 ISS=1,NSINSS
             XS=WID*FLOAT(ISUB-2)+WSS*FLOAT(ISS-1)-XSI
             YS=SIN(XS+XSI)
             SX=SX+XS
             SY=SY+YS
             SXX=SXX+XS*XS
             SXY=SXY+XS*YS
-15371     CONTINUE
-15372     CONTINUE
+15441     CONTINUE
+15442     CONTINUE
           IF ((IZ.NE.0)) THEN
             SIN1(ISUB)=SXY/SXX
             SIN0(ISUB)=-SIN1(ISUB)*XSI
@@ -24161,8 +24265,8 @@ C*****************************************************************************
             SIN1(ISUB)=(FNSSS*SXY-SY*SX)/DEL
             SIN0(ISUB)=(SY*SXX-SX*SXY)/DEL - SIN1(ISUB)*XSI
           END IF
-15351   CONTINUE
-15352   CONTINUE
+15421   CONTINUE
+15422   CONTINUE
         SINC0=2.0
         SINC1=1.0/WID
         IF ((ISTEST.NE.0)) THEN
@@ -24170,8 +24274,8 @@ C*****************************************************************************
           RDEV=0.
           S2C2MN=10.
           S2C2MX=0.
-          DO 15381 ISUB=1,NISUB
-            DO 15391 ISS=1,NSINSS
+          DO 15451 ISUB=1,NISUB
+            DO 15461 ISS=1,NSINSS
               THETA=WID*FLOAT(ISUB-1)+WSS*FLOAT(ISS-1)
               CTHET=PI5D2-THETA
               SINTHE=sin(THETA)
@@ -24190,10 +24294,10 @@ C*****************************************************************************
                 write(i_log,'(1PE20.7,4E20.7)') THETA,SINTHE,SINT,COSTHE
      *          ,COST
               END IF
-15391       CONTINUE
-15392       CONTINUE
-15381     CONTINUE
-15382     CONTINUE
+15461       CONTINUE
+15462       CONTINUE
+15451     CONTINUE
+15452     CONTINUE
           write(i_log,'(a,2i5)') ' SINE TESTS,MXSINC,NSINSS=',MXSINC,NSI
      *    NSS
           write(i_log,'(a,1PE16.8,3e16.8)') ' ADEV,RDEV,S2C2(MN,MX) =',
@@ -24202,7 +24306,7 @@ C*****************************************************************************
           RDEV=0.
           S2C2MN=10.
           S2C2MX=0.
-          DO 15401 IRN=1,NRNA
+          DO 15471 IRN=1,NRNA
             IF((rng_seed .GT. 128))call ranmar_get
             THETA = rng_array(rng_seed)*twom24
             rng_seed = rng_seed + 1
@@ -24220,114 +24324,114 @@ C*****************************************************************************
             S2C2=SINTHE**2+COSTHE**2
             S2C2MN=min(S2C2MN,S2C2)
             S2C2MX=max(S2C2MX,S2C2)
-15401     CONTINUE
-15402     CONTINUE
+15471     CONTINUE
+15472     CONTINUE
           write(i_log,'(a,i7,a)') ' TEST AT ',NRNA,' RANDOM ANGLES IN (0
      *,5*PI/2)'
           write(i_log,'(1PE16.8,3E16.8)') ' ADEV,RDEV,S2C2(MN,MX) =', AD
      *    EV,RDEV,S2C2MN,S2C2MX
         END IF
         P=1.
-        DO 15411 I=1,50
+        DO 15481 I=1,50
           PWR2I(I)=P
           P=P/2.
-15411   CONTINUE
-15412   CONTINUE
+15481   CONTINUE
+15482   CONTINUE
       END IF
-      DO 15421 J=1,NMED
-15430   CONTINUE
-          DO 15431 I=1, 2097154
+      DO 15491 J=1,NMED
+15500   CONTINUE
+          DO 15501 I=1, 2097154
           IF ((IRAYLR.EQ.1.AND.MED(I).EQ.J)) THEN
             IRAYLM(J)=1
-            GO TO 15432
+            GO TO 15502
           END IF
-15431   CONTINUE
-15432   CONTINUE
-15421 CONTINUE
-15422 CONTINUE
+15501   CONTINUE
+15502   CONTINUE
+15491 CONTINUE
+15492 CONTINUE
       IPHOTONUC=0
-      DO 15441 J=1,NMED
-15450   CONTINUE
-          DO 15451 I=1, 2097154
+      DO 15511 J=1,NMED
+15520   CONTINUE
+          DO 15521 I=1, 2097154
           IF ((IPHOTONUCR(I).EQ.1.AND.MED(I).EQ.J)) THEN
             IPHOTONUCM(J)=1
             IPHOTONUC=1
-            GO TO 15452
+            GO TO 15522
           END IF
-15451   CONTINUE
-15452   CONTINUE
-15441 CONTINUE
-15442 CONTINUE
+15521   CONTINUE
+15522   CONTINUE
+15511 CONTINUE
+15512 CONTINUE
       write(i_log,'(a,i3)') ' ===> Photonuclear flag: ', iphotonuc
       IF((.NOT.is_pegsless))REWIND KMPI
       NM=0
-      DO 15461 IM=1,NMED
+      DO 15531 IM=1,NMED
         LOK(IM)=0
         IF ((IRAYLM(IM).EQ.1)) THEN
           write(i_log,'(a,i3/)') ' RAYLEIGH OPTION REQUESTED FOR MEDIUM
      *NUMBER',IM
         END IF
-15461 CONTINUE
-15462 CONTINUE
-      DO 15471 IM=1,NMED
+15531 CONTINUE
+15532 CONTINUE
+      DO 15541 IM=1,NMED
         IF ((IPHOTONUCM(IM).EQ.1)) THEN
           write(i_log,'(a,i3/)') ' PHOTONUCLEAR REQUESTED FOR MEDIUM NUM
      *BER',IM
         END IF
-15471 CONTINUE
-15472 CONTINUE
+15541 CONTINUE
+15542 CONTINUE
       IF ((.NOT.is_pegsless)) THEN
-15480   CONTINUE
-15481     CONTINUE
-15490     CONTINUE
-15491       CONTINUE
-            READ(KMPI,15330,END=15500)MBUF
-            DO 15511 IB=1,LMDL
-              IF((MBUF(IB).NE.MDLABL(IB)))GO TO 15491
-15511       CONTINUE
-15512       CONTINUE
-15520       CONTINUE
-              DO 15521 IM=1,NMED
-              DO 15531 IB=1,LMDN
+15550   CONTINUE
+15551     CONTINUE
+15560     CONTINUE
+15561       CONTINUE
+            READ(KMPI,15400,END=15570)MBUF
+            DO 15581 IB=1,LMDL
+              IF((MBUF(IB).NE.MDLABL(IB)))GO TO 15561
+15581       CONTINUE
+15582       CONTINUE
+15590       CONTINUE
+              DO 15591 IM=1,NMED
+              DO 15601 IB=1,LMDN
                 IL=LMDL+IB
-                IF((MBUF(IL).NE.MEDIA(IB,IM)))GO TO 15521
-                IF((IB.EQ.LMDN))GO TO 15492
-15531         CONTINUE
-15532         CONTINUE
-15521       CONTINUE
-15522       CONTINUE
-          GO TO 15491
-15492     CONTINUE
-          IF((LOK(IM).NE.0))GO TO 15490
+                IF((MBUF(IL).NE.MEDIA(IB,IM)))GO TO 15591
+                IF((IB.EQ.LMDN))GO TO 15562
+15601         CONTINUE
+15602         CONTINUE
+15591       CONTINUE
+15592       CONTINUE
+          GO TO 15561
+15562     CONTINUE
+          IF((LOK(IM).NE.0))GO TO 15560
           LOK(IM)=1
           NM=NM+1
-          read(kmpi,'(a)',err=15540) tmp_string
-          goto 15550
-15540     write(i_log,'(/a)') '***************** Error: '
+          read(kmpi,'(a)',err=15610) tmp_string
+          goto 15620
+15610     write(i_log,'(/a)') '***************** Error: '
           write(i_log,*) 'Error while reading pegs4 file'
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
-15550     CONTINUE
-          read(tmp_string,1,ERR=15560)  (MBUF(I),I=1,5),RHO(IM),NNE(IM),
+15620     CONTINUE
+          read(tmp_string,1,ERR=15630)  (MBUF(I),I=1,5),RHO(IM),NNE(IM),
      *    IUNRST(IM),EPSTFL(IM),IAPRIM(IM)
 1         FORMAT(5A1,5X,F11.0,4X,I2,9X,I1,9X,I1,9X,I1)
-          GO TO 15570
-15560     CONTINUE
+          GO TO 15640
+15630     CONTINUE
           write(i_log,*) 'Found medium with gas pressure'
           read(tmp_string,2) (MBUF(I),I=1,5),RHO(IM),NNE(IM),IUNRST(IM),
      *    EPSTFL(IM), IAPRIM(IM)
 2         FORMAT(5A1,5X,F11.0,4X,I2,26X,I1,9X,I1,9X,I1)
-15570     CONTINUE
-            DO 15571 IE=1,NNE(IM)
-            READ(KMPI,15580)(MBUF(I),I=1,6),(ASYM(IM,IE,I),I=1,2), ZELEM
+15640     CONTINUE
+            DO 15641 IE=1,NNE(IM)
+            READ(KMPI,15650)(MBUF(I),I=1,6),(ASYM(IM,IE,I),I=1,2), ZELEM
      *      (IM,IE),WA(IM,IE),PZ(IM,IE),RHOZ(IM,IE)
-15580       FORMAT (6A1,2A1,3X,F3.0,3X,F9.0,4X,F12.0,6X,F12.0)
-15571     CONTINUE
-15572     CONTINUE
-          READ(KMPI,15320) RLC(IM),AE(IM),AP(IM),UE(IM),UP(IM)
+15650       FORMAT (6A1,2A1,3X,F3.0,3X,F9.0,4X,F12.0,6X,F12.0)
+15641     CONTINUE
+15642     CONTINUE
+          READ(KMPI,15390) RLC(IM),AE(IM),AP(IM),UE(IM),UP(IM)
           TE(IM)=AE(IM)-RM
           THMOLL(IM)=TE(IM)*2. + RM
-          READ(KMPI,15310) MSGE(IM),MGE(IM),MSEKE(IM),MEKE(IM),MLEKE(IM)
+          READ(KMPI,15380) MSGE(IM),MGE(IM),MSEKE(IM),MEKE(IM),MLEKE(IM)
      *    ,MCMFP(IM),MRANGE(IM),IRAYL
           NSGE=MSGE(IM)
           NGE=MGE(IM)
@@ -24336,25 +24440,25 @@ C*****************************************************************************
           NLEKE=MLEKE(IM)
           NCMFP=MCMFP(IM)
           NRANGE=MRANGE(IM)
-          READ(KMPI,15320)(DL1(I,IM),DL2(I,IM),DL3(I,IM),DL4(I,IM),DL5(I
+          READ(KMPI,15390)(DL1(I,IM),DL2(I,IM),DL3(I,IM),DL4(I,IM),DL5(I
      *    ,IM),DL6(I,IM),I=1,6)
-          READ(KMPI,15320)DELCM(IM),(ALPHI(I,IM),BPAR(I,IM),DELPOS(I,IM)
+          READ(KMPI,15390)DELCM(IM),(ALPHI(I,IM),BPAR(I,IM),DELPOS(I,IM)
      *    ,I=1,2)
-          READ(KMPI,15320)XR0(IM),TEFF0(IM),BLCC(IM),XCC(IM)
-          READ(KMPI,15320)EKE0(IM),EKE1(IM)
-          READ(KMPI,15320) (ESIG0(I,IM),ESIG1(I,IM),PSIG0(I,IM),PSIG1(I,
+          READ(KMPI,15390)XR0(IM),TEFF0(IM),BLCC(IM),XCC(IM)
+          READ(KMPI,15390)EKE0(IM),EKE1(IM)
+          READ(KMPI,15390) (ESIG0(I,IM),ESIG1(I,IM),PSIG0(I,IM),PSIG1(I,
      *    IM),EDEDX0(I,IM),EDEDX1(I,IM),PDEDX0(I,IM),PDEDX1(I,IM),EBR10(
      *    I,IM),EBR11(I,IM),PBR10(I,IM),PBR11(I,IM),PBR20(I,IM),PBR21(I,
      *    IM),TMXS0(I,IM),TMXS1(I,IM),I=1,NEKE)
-          READ(KMPI,15320)EBINDA(IM),GE0(IM),GE1(IM)
-          READ(KMPI,15320)(GMFP0(I,IM),GMFP1(I,IM),GBR10(I,IM),GBR11(I,I
+          READ(KMPI,15390)EBINDA(IM),GE0(IM),GE1(IM)
+          READ(KMPI,15390)(GMFP0(I,IM),GMFP1(I,IM),GBR10(I,IM),GBR11(I,I
      *    M),GBR20(I,IM),GBR21(I,IM),I=1,NGE)
           IF ((IRAYL.EQ.1)) THEN
-            READ(KMPI,15310) NGR(IM)
+            READ(KMPI,15380) NGR(IM)
             NGRIM=NGR(IM)
-            READ(KMPI,15320)RCO0(IM),RCO1(IM)
-            READ(KMPI,15320)(RSCT0(I,IM),RSCT1(I,IM),I=1,NGRIM)
-            READ(KMPI,15320)(COHE0(I,IM),COHE1(I,IM),I=1,NGE)
+            READ(KMPI,15390)RCO0(IM),RCO1(IM)
+            READ(KMPI,15390)(RSCT0(I,IM),RSCT1(I,IM),I=1,NGRIM)
+            READ(KMPI,15390)(COHE0(I,IM),COHE1(I,IM),I=1,NGE)
             write(i_log,'(a,i3,a)') ' Rayleigh data available for medium
      *', IM, ' in PEGS4 data set.'
           END IF
@@ -24382,9 +24486,9 @@ C*****************************************************************************
               END IF
             END IF
           END IF
-          IF((NM.GE.NMED))GO TO15482
-        GO TO 15481
-15482   CONTINUE
+          IF((NM.GE.NMED))GO TO15552
+        GO TO 15551
+15552   CONTINUE
         CLOSE (UNIT=KMPI)
         DUNITR=DUNIT
         IF ((DUNIT.LT.0.0)) THEN
@@ -24395,13 +24499,13 @@ C*****************************************************************************
           write(i_log,'(a,1PE14.5,E14.5,a)') ' DUNIT REQUESTED&USED ARE:
      * ', DUNITR,DUNIT,'(CM.)'
         END IF
-        DO 15591 IM=1,NMED
+        DO 15661 IM=1,NMED
           DFACT=RLC(IM)/DUNIT
           DFACTI=1.0/DFACT
           I=1
-            GO TO 15603
-15601       I=I+1
-15603       IF(I-(MEKE(IM)).GT.0)GO TO 15602
+            GO TO 15673
+15671       I=I+1
+15673       IF(I-(MEKE(IM)).GT.0)GO TO 15672
             ESIG0(I,IM)=ESIG0(I,IM)*DFACTI
             ESIG1(I,IM)=ESIG1(I,IM)*DFACTI
             PSIG0(I,IM)=PSIG0(I,IM)*DFACTI
@@ -24412,29 +24516,29 @@ C*****************************************************************************
             PDEDX1(I,IM)=PDEDX1(I,IM)*DFACTI
             TMXS0(I,IM)=TMXS0(I,IM)*DFACT
             TMXS1(I,IM)=TMXS1(I,IM)*DFACT
-          GO TO 15601
-15602     CONTINUE
+          GO TO 15671
+15672     CONTINUE
           TEFF0(IM)=TEFF0(IM)*DFACT
           BLCC(IM)=BLCC(IM)*DFACTI
           XCC(IM)=XCC(IM)*SQRT(DFACTI)
           RLDU(IM)=RLC(IM)/DUNIT
           I=1
-            GO TO 15613
-15611       I=I+1
-15613       IF(I-(MGE(IM)).GT.0)GO TO 15612
+            GO TO 15683
+15681       I=I+1
+15683       IF(I-(MGE(IM)).GT.0)GO TO 15682
             GMFP0(I,IM)=GMFP0(I,IM)*DFACT
             GMFP1(I,IM)=GMFP1(I,IM)*DFACT
-          GO TO 15611
-15612     CONTINUE
-15591   CONTINUE
-15592   CONTINUE
+          GO TO 15681
+15682     CONTINUE
+15661   CONTINUE
+15662   CONTINUE
         VACDST=VACDST*DUNITO/DUNIT
         DUNITO=DUNIT
       ELSE
         write(i_log,*) ' PEGSLESS INPUT.  CALCULATING ELECTRON CROSS-SEC
      *TIONS.'
         call get_media_inputs(-1)
-        DO 15621 IM=1,NMED
+        DO 15691 IM=1,NMED
           AEP=AE(IM)
           UEP=UE(IM)
           APP=AP(IM)
@@ -24445,17 +24549,17 @@ C*****************************************************************************
           EPSTFLP=EPSTFL(IM)
           GASPP=INPGASP(IM)
           RHOP=RHO(IM)
-          DO 15631 J=1,NEP
+          DO 15701 J=1,NEP
             ZELEMP(J)=ZELEM(IM,J)
             PZP(J)=PZ4(IM,J)
             RHOZP(J)=RHOZ4(IM,J)
             WAP(J)=WA4(IM,J)
-15631     CONTINUE
-15632     CONTINUE
-          DO 15641 IB=1,LMDN
+15701     CONTINUE
+15702     CONTINUE
+          DO 15711 IB=1,LMDN
             IDSTRN(IB)=INPSTRN(IB,IM)
-15641     CONTINUE
-15642     CONTINUE
+15711     CONTINUE
+15712     CONTINUE
           TEP=AEP-RMP
           THMOLLP=AEP+TEP
           IF ((UEP.LE.AEP)) THEN
@@ -24480,21 +24584,21 @@ C*****************************************************************************
           XR0(IM)=XR0P
           TEFF0(IM)=TEFF0P
           DELCM(IM)=DELCMP
-          DO 15651 I=1,2
+          DO 15721 I=1,2
             ALPHI(I,IM)=ALPHIP(I)
             BPAR(I,IM)=BPARP(I)
             DELPOS(I,IM)=DELPOSP(I)
-15651     CONTINUE
-15652     CONTINUE
-          DO 15661 I=1,6
+15721     CONTINUE
+15722     CONTINUE
+          DO 15731 I=1,6
             DL1(I,IM)=DLP1(I)
             DL2(I,IM)=DLP2(I)
             DL3(I,IM)=DLP3(I)
             DL4(I,IM)=DLP4(I)
             DL5(I,IM)=DLP5(I)
             DL6(I,IM)=DLP6(I)
-15661     CONTINUE
-15662     CONTINUE
+15731     CONTINUE
+15732     CONTINUE
           MSGE(IM)=0
           MSEKE(IM)=0
           MLEKE(IM)=0
@@ -24511,7 +24615,7 @@ C*****************************************************************************
           NRANGE=MRANGE(IM)
           EKE0(IM)=BXE
           EKE1(IM)=AXE
-          DO 15671 I=1,NEKE
+          DO 15741 I=1,NEKE
             ESIG0(I,IM)=BFE(I,1)
             ESIG1(I,IM)=AFE(I,1)
             PSIG0(I,IM)=BFE(I,2)
@@ -24528,10 +24632,10 @@ C*****************************************************************************
             PBR21(I,IM)=AFE(I,7)
             TMXS0(I,IM)=BFE(I,8)
             TMXS1(I,IM)=AFE(I,8)
-15671     CONTINUE
-15672     CONTINUE
-15621   CONTINUE
-15622   CONTINUE
+15741     CONTINUE
+15742     CONTINUE
+15691   CONTINUE
+15692   CONTINUE
         DUNITR=DUNIT
         IF ((DUNIT.LT.0.0)) THEN
           ID=MAX0(1,MIN0(20,int(-DUNIT)))
@@ -24541,13 +24645,13 @@ C*****************************************************************************
           write(i_log,'(a,1PE14.5,E14.5,a)') ' DUNIT REQUESTED&USED ARE:
      * ', DUNITR,DUNIT,'(CM.)'
         END IF
-        DO 15681 IM=1,NMED
+        DO 15751 IM=1,NMED
           DFACT=RLC(IM)/DUNIT
           DFACTI=1.0/DFACT
           I=1
-            GO TO 15693
-15691       I=I+1
-15693       IF(I-(MEKE(IM)).GT.0)GO TO 15692
+            GO TO 15763
+15761       I=I+1
+15763       IF(I-(MEKE(IM)).GT.0)GO TO 15762
             ESIG0(I,IM)=ESIG0(I,IM)*DFACTI
             ESIG1(I,IM)=ESIG1(I,IM)*DFACTI
             PSIG0(I,IM)=PSIG0(I,IM)*DFACTI
@@ -24558,27 +24662,27 @@ C*****************************************************************************
             PDEDX1(I,IM)=PDEDX1(I,IM)*DFACTI
             TMXS0(I,IM)=TMXS0(I,IM)*DFACT
             TMXS1(I,IM)=TMXS1(I,IM)*DFACT
-          GO TO 15691
-15692     CONTINUE
+          GO TO 15761
+15762     CONTINUE
           TEFF0(IM)=TEFF0(IM)*DFACT
           BLCC(IM)=BLCC(IM)*DFACTI
           XCC(IM)=XCC(IM)*SQRT(DFACTI)
           RLDU(IM)=RLC(IM)/DUNIT
           I=1
-            GO TO 15703
-15701       I=I+1
-15703       IF(I-(MGE(IM)).GT.0)GO TO 15702
+            GO TO 15773
+15771       I=I+1
+15773       IF(I-(MGE(IM)).GT.0)GO TO 15772
             GMFP0(I,IM)=GMFP0(I,IM)*DFACT
             GMFP1(I,IM)=GMFP1(I,IM)*DFACT
-          GO TO 15701
-15702     CONTINUE
-15681   CONTINUE
-15682   CONTINUE
+          GO TO 15771
+15772     CONTINUE
+15751   CONTINUE
+15752   CONTINUE
         VACDST=VACDST*DUNITO/DUNIT
         DUNITO=DUNIT
         call show_media_parameters(i_log)
       END IF
-      DO 15711 JR=1, 2097154
+      DO 15781 JR=1, 2097154
         MD=MED(JR)
         IF (((MD.GE.1).AND.(MD.LE.NMED))) THEN
           ECUT=max(ECUT,AE(MD))
@@ -24587,36 +24691,36 @@ C*****************************************************************************
             RHOR(JR)=RHO(MD)
           END IF
         END IF
-15711 CONTINUE
-15712 CONTINUE
+15781 CONTINUE
+15782 CONTINUE
       IF ((IBRDST.EQ.1)) THEN
-        DO 15721 IM=1,NMED
+        DO 15791 IM=1,NMED
           ZBRANG(IM)=0.0
           PZNORM=0.0
-          DO 15731 IE=1,NNE(IM)
+          DO 15801 IE=1,NNE(IM)
             ZBRANG(IM)= ZBRANG(IM)+PZ(IM,IE)*ZELEM(IM,IE)*(ZELEM(IM,IE)+
      *      1.0)
             PZNORM=PZNORM+PZ(IM,IE)
-15731     CONTINUE
-15732     CONTINUE
+15801     CONTINUE
+15802     CONTINUE
           ZBRANG(IM)=(8.116224E-05)*(ZBRANG(IM)/PZNORM)**(1./3.)
           LZBRANG(IM)=-log(ZBRANG(IM))
-15721   CONTINUE
-15722   CONTINUE
+15791   CONTINUE
+15792   CONTINUE
       END IF
       IF ((IPRDST.GT.0)) THEN
-        DO 15741 IM=1,NMED
+        DO 15811 IM=1,NMED
           ZBRANG(IM)=0.0
           PZNORM=0.0
-          DO 15751 IE=1,NNE(IM)
+          DO 15821 IE=1,NNE(IM)
             ZBRANG(IM)= ZBRANG(IM)+PZ(IM,IE)*ZELEM(IM,IE)*(ZELEM(IM,IE)+
      *      1.0)
             PZNORM=PZNORM+PZ(IM,IE)
-15751     CONTINUE
-15752     CONTINUE
+15821     CONTINUE
+15822     CONTINUE
           ZBRANG(IM)=(8.116224E-05)*(ZBRANG(IM)/PZNORM)**(1./3.)
-15741   CONTINUE
-15742   CONTINUE
+15811   CONTINUE
+15812   CONTINUE
       END IF
       IF ((toUpper(photon_xsections(:lnblnk1(photon_xsections))) .EQ. 'P
      *EGS4')) THEN
@@ -24658,15 +24762,15 @@ C*****************************************************************************
      *  MED,' MEDIA.'
       END IF
       RETURN
-15500 write(i_log,'(a,i2//,a/,a/)') ' END OF FILE ON UNIT ',KMPI, ' PROG
+15570 write(i_log,'(a,i2//,a/,a/)') ' END OF FILE ON UNIT ',KMPI, ' PROG
      *RAM STOPPED IN HATCH BECAUSE THE', ' FOLLOWING NAMES WERE NOT RECO
      *GNIZED:'
-      DO 15761 IM=1,NMED
+      DO 15831 IM=1,NMED
         IF ((LOK(IM).NE.1)) THEN
           write(i_log,'(40x,a,24a1,a)') '''',(MEDIA(I,IM),I=1,LMDN),''''
         END IF
-15761 CONTINUE
-15762 CONTINUE
+15831 CONTINUE
+15832 CONTINUE
       STOP
       END
       subroutine fix_brems
@@ -24703,12 +24807,12 @@ C*****************************************************************************
       real*8 RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
       integer*4 medium,i
       real*8 Zt,Zb,Zf,Zg,Zv,fmax1,fmax2,Zi,pi,fc,xi,aux, XSIF,FCOULC
-      DO 15771 medium=1,nmed
+      DO 15841 medium=1,nmed
         log_ap(medium) = log(ap(medium))
         Zt = 0
         Zb = 0
         Zf = 0
-        DO 15781 i=1,NNE(medium)
+        DO 15851 i=1,NNE(medium)
           Zi = ZELEM(medium,i)
           pi = PZ(medium,i)
           fc = FCOULC(Zi)
@@ -24717,8 +24821,8 @@ C*****************************************************************************
           Zt = Zt + aux
           Zb = Zb - aux*Log(Zi)/3
           Zf = Zf + aux*fc
-15781   CONTINUE
-15782   CONTINUE
+15851   CONTINUE
+15852   CONTINUE
         Zv = (Zb - Zf)/Zt
         Zg = Zb/Zt
         fmax1 = 2*(20.863 + 4*Zg) - 2*(20.029 + 4*Zg)/3
@@ -24774,8 +24878,8 @@ C*****************************************************************************
         bpar(2,medium) = dl1(7,medium)/(3*dl1(8,medium) + dl1(7,medium))
         bpar(1,medium) = 12*dl1(8,medium)/(3*dl1(8,medium) + dl1(7,mediu
      *  m))
-15771 CONTINUE
-15772 CONTINUE
+15841 CONTINUE
+15842 CONTINUE
       return
       end
       real*8 function FCOULC(Z)
@@ -24885,16 +24989,16 @@ C*****************************************************************************
         radc_flag = 0
       END IF
       getd = .false.
-      DO 15791 j=1, 2097154
+      DO 15861 j=1, 2097154
         medium = med(j)
         IF (( medium .GT. 0 .AND. medium .LE. nmed)) THEN
           IF (( ibcmp .GT. 0 )) THEN
             getd = .true.
-            GO TO15792
+            GO TO15862
           END IF
         END IF
-15791 CONTINUE
-15792 CONTINUE
+15861 CONTINUE
+15862 CONTINUE
       IF (( .NOT.getd )) THEN
         IF (( eadl_relax .AND. photon_xsections .EQ. 'xcom' )) THEN
           write(i_log,'(/a)') '***************** Error: '
@@ -24910,12 +25014,12 @@ C*****************************************************************************
       write(i_log,'(/a$)') 'Bound Compton scattering requested, reading
      *data ......'
       rewind(i_incoh)
-      DO 15801 j=1,18
+      DO 15871 j=1,18
         read(i_incoh,*)
-15801 CONTINUE
-15802 CONTINUE
+15871 CONTINUE
+15872 CONTINUE
       iz = 0
-      DO 15811 j=1,1538
+      DO 15881 j=1,1538
         read(i_incoh,*) iz_array(j),shn_array(j),ne_array(j), Jo_array(j
      *  ),be_array(j)
         Jo_array(j) = Jo_array(j)*137.
@@ -24935,17 +25039,17 @@ C*****************************************************************************
             binding_energies(shn_array(j),iz_array(j)) = be_array(j)*PRM
           END IF
         END IF
-15811 CONTINUE
-15812 CONTINUE
+15881 CONTINUE
+15882 CONTINUE
       write(i_log,*) ' Done'
       write(i_log,'(/a)') ' Initializing Bound Compton scattering ......
      *'
-      DO 15821 medium=1,nmed
+      DO 15891 medium=1,nmed
         pztot = 0
         nsh = 0
-        DO 15831 i=1,nne(medium)
+        DO 15901 i=1,nne(medium)
           iz = int(zelem(medium,i))
-          DO 15841 j=1,1538
+          DO 15911 j=1,1538
             IF (( iz .EQ. iz_array(j) )) THEN
               nsh = nsh + 1
               IF (( nsh .GT. 200 )) THEN
@@ -24961,10 +25065,10 @@ C*****************************************************************************
               eno_array(nsh,medium) = aux
               pztot = pztot + aux
             END IF
-15841     CONTINUE
-15842     CONTINUE
-15831   CONTINUE
-15832   CONTINUE
+15911     CONTINUE
+15912     CONTINUE
+15901   CONTINUE
+15902   CONTINUE
         IF (( nsh .EQ. 0 )) THEN
           write(i_log,'(/a)') '***************** Error: '
           write(i_log,'(a,i3,a)') ' Medium ',medium,' has zero shells! '
@@ -24974,53 +25078,53 @@ C*****************************************************************************
         n_shell(medium) = nsh
         write(i_log,'(a,i3,a,i3,a)') ' Medium ',medium,' has ',nsh,' she
      *lls: '
-        DO 15851 i=1,nsh
+        DO 15921 i=1,nsh
           j = shell_array(i,medium)
           eno_array(i,medium) = eno_array(i,medium)/pztot
           write(i_log,'(i4,i5,i4,f9.5,e10.3,f10.3)') i,j,shn_array(j),en
      *    o_array(i,medium), Jo_array(j),be_array(j)*PRM*1000.
           eno_array(i,medium) = -eno_array(i,medium)
           eno_atbin_array(i,medium) = i
-15851   CONTINUE
-15852   CONTINUE
+15921   CONTINUE
+15922   CONTINUE
         atav = 1./nsh
-        DO 15861 i=1,nsh-1
-          DO 15871 j_h=1,nsh-1
+        DO 15931 i=1,nsh-1
+          DO 15941 j_h=1,nsh-1
             IF (( eno_array(j_h,medium) .LT. 0 )) THEN
-              IF((abs(eno_array(j_h,medium)) .GT. atav))GO TO15872
+              IF((abs(eno_array(j_h,medium)) .GT. atav))GO TO15942
             END IF
-15871     CONTINUE
-15872     CONTINUE
-          DO 15881 j_l=1,nsh-1
+15941     CONTINUE
+15942     CONTINUE
+          DO 15951 j_l=1,nsh-1
             IF (( eno_array(j_l,medium) .LT. 0 )) THEN
-              IF((abs(eno_array(j_l,medium)) .LT. atav))GO TO15882
+              IF((abs(eno_array(j_l,medium)) .LT. atav))GO TO15952
             END IF
-15881     CONTINUE
-15882     CONTINUE
+15951     CONTINUE
+15952     CONTINUE
           aux = atav - abs(eno_array(j_l,medium))
           eno_array(j_h,medium) = eno_array(j_h,medium) + aux
           eno_array(j_l,medium) = -eno_array(j_l,medium)/atav + j_l
           eno_atbin_array(j_l,medium) = j_h
           IF((i .EQ. nsh-1))eno_array(j_h,medium) = 1 + j_h
-15861   CONTINUE
-15862   CONTINUE
-        DO 15891 i=1,nsh
+15931   CONTINUE
+15932   CONTINUE
+        DO 15961 i=1,nsh
           IF (( eno_array(i,medium) .LT. 0 )) THEN
             eno_array(i,medium) = 1 + i
           END IF
-15891   CONTINUE
-15892   CONTINUE
-15821 CONTINUE
-15822 CONTINUE
+15961   CONTINUE
+15962   CONTINUE
+15891 CONTINUE
+15892 CONTINUE
       write(i_log,'(a/)') ' ...... Done.'
       getd = .false.
-      DO 15901 j=1, 2097154
+      DO 15971 j=1, 2097154
         IF (( IEDGFL .GT. 0 .AND. IEDGFL .LE. 100 )) THEN
           getd = .true.
-          GO TO15902
+          GO TO15972
         END IF
-15901 CONTINUE
-15902 CONTINUE
+15971 CONTINUE
+15972 CONTINUE
       IF((getd))return
       write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(/a,/a,/a,/a)') ' In subroutine init_compton: ', '
@@ -25035,9 +25139,9 @@ C*****************************************************************************
       implicit none
       COMMON/QDEBUG/QDEBUG
       LOGICAL QDEBUG
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -25149,12 +25253,12 @@ C*****************************************************************************
         rsh = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
         rsh = sigm*rsh
-        DO 15911 iele=1,nne(medium)
+        DO 15981 iele=1,nne(medium)
           iZ = int(zelem(medium,iele)+0.5)
           nsh = eii_no(medium,iele)
           IF (( nsh .GT. 0 )) THEN
             ifirst = eii_first(medium,iele)
-            DO 15921 ish=1,nsh
+            DO 15991 ish=1,nsh
               Uj = binding_energies(ish,iZ)
               IF (( ekin .GT. Uj .AND. (Uj .GT. te(medium) .OR. Uj .GT.
      *        ap(medium)) )) THEN
@@ -25178,11 +25282,11 @@ C*****************************************************************************
                   return
                 END IF
               END IF
-15921       CONTINUE
-15922       CONTINUE
+15991       CONTINUE
+15992       CONTINUE
           END IF
-15911   CONTINUE
-15912   CONTINUE
+15981   CONTINUE
+15982   CONTINUE
       END IF
       IF((ekin .LE. 2*te(medium)))return
       T0=EKIN/RM
@@ -25193,7 +25297,7 @@ C*****************************************************************************
       G2=T0*T0/E02
       G3=(2.*T0+1.)/E02
       GMAX=(1.+1.25*G2)
-15931 CONTINUE
+16001 CONTINUE
         IF((rng_seed .GT. 128))call ranmar_get
         RNNO27 = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
@@ -25204,19 +25308,19 @@ C*****************************************************************************
         rng_seed = rng_seed + 1
         REJF4=(1.+G2*BR*BR+R*(R-G3))
         RNNO28=GMAX*RNNO28
-        IF((RNNO28.LE.REJF4))GO TO15932
-      GO TO 15931
-15932 CONTINUE
+        IF((RNNO28.LE.REJF4))GO TO16002
+      GO TO 16001
+16002 CONTINUE
       PEKSE2=BR*EKIN
       PESE1=PEIE-PEKSE2
       PESE2=PEKSE2+PRM
       ESE1=PESE1
       ESE2=PESE2
       E(NP)=PESE1
-      IF (( np+1 .GT. 10000 )) THEN
+      IF (( np+1 .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','MOLLER', ' s
-     *tack size exceeded! ',' $MAXSTACK = ',10000,' np = ',np+1
+     *tack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np+1
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -25333,23 +25437,23 @@ C*****************************************************************************
           write(i_log,*) ' old PRESTA calculates default min. step-size
      *for BCA: '
           ecutmn = 1e30
-          DO 15941 i=1, 2097154
+          DO 16011 i=1, 2097154
             IF (( med(i) .GT. 0 .AND. med(i) .LE. nmed )) THEN
               ecutmn = Min(ecutmn,ECUT)
             END IF
-15941     CONTINUE
-15942     CONTINUE
+16011     CONTINUE
+16012     CONTINUE
           write(i_log,*) '     minimum ECUT found: ',ecutmn
           tstbmn = 1e30
-          DO 15951 medium=1,nmed
+          DO 16021 medium=1,nmed
             tstbm = (ecutmn-prm)*(ecutmn+prm)/ecutmn**2
             tstbm = blcc(medium)*tstbm*(ecutmn/xcc(medium))**2
             aux = Log(tstbm)
             IF((aux .GT. 300))write(i_log,*) 'aux > 300 ? ',aux
             tstbm = Log(tstbm/aux)
             tstbmn = Min(tstbmn,tstbm)
-15951     CONTINUE
-15952     CONTINUE
+16021     CONTINUE
+16022     CONTINUE
           write(i_log,*) '     default BLCMIN is: ',tstbmn
           skindepth_for_bca = Exp(tstbmn)
           write(i_log,*) '     this corresponds to ',skindepth_for_bca,
@@ -25359,18 +25463,18 @@ C*****************************************************************************
         END IF
       END IF
       call init_ms_SR
-      DO 15961 medium=1,nmed
+      DO 16031 medium=1,nmed
         blcc(medium) = 1.16699413758864573*blcc(medium)
         xcc(medium) = xcc(medium)**2
-15961 CONTINUE
-15962 CONTINUE
+16031 CONTINUE
+16032 CONTINUE
       IF (( spin_effects )) THEN
         call init_spin
       END IF
       write(i_log,*) ' '
       esige_max = 0
       psige_max = 0
-      DO 15971 medium=1,nmed
+      DO 16041 medium=1,nmed
         sigee = 1E-15
         sigep = 1E-15
         neke = meke(medium)
@@ -25378,7 +25482,7 @@ C*****************************************************************************
         isp_monoton = .true.
         sige_old = -1
         sigp_old = -1
-        DO 15981 i=1,neke
+        DO 16051 i=1,neke
           ei = exp((float(i) - eke0(medium))/eke1(medium))
           eil = log(ei)
           leil = i
@@ -25394,8 +25498,8 @@ C*****************************************************************************
           IF((sig .GT. sigep))sigep = sig
           IF((sig .LT. sigp_old))isp_monoton = .false.
           sigp_old = sig
-15981   CONTINUE
-15982   CONTINUE
+16051   CONTINUE
+16052   CONTINUE
         write(i_log,*) ' Medium ',medium,' sige = ',sigee,sigep,' monoto
      *ne = ', ise_monoton,isp_monoton
         sig_ismonotone(0,medium) = ise_monoton
@@ -25404,13 +25508,13 @@ C*****************************************************************************
         psig_e(medium) = sigep
         IF((sigee .GT. esige_max))esige_max = sigee
         IF((sigep .GT. psige_max))psige_max = sigep
-15971 CONTINUE
-15972 CONTINUE
+16041 CONTINUE
+16042 CONTINUE
       write(i_log,*) ' '
       write(i_log,*) ' Initializing tmxs for estepe = ',estepe,' and xim
      *ax = ',ximax
       write(i_log,*) ' '
-      DO 15991 medium=1,nmed
+      DO 16061 medium=1,nmed
         ei = exp((1 - eke0(medium))/eke1(medium))
         eil = log(ei)
         leil = 1
@@ -25419,7 +25523,7 @@ C*****************************************************************************
         range_ep(0,1,medium) = 0
         range_ep(1,1,medium) = 0
         neke = meke(medium)
-        DO 16001 i=1,neke - 1
+        DO 16071 i=1,neke - 1
           eip1 = exp((float(i + 1) - eke0(medium))/eke1(medium))
           E_array(i+1,medium) = eip1
           eke = 0.5*(eip1+ei)
@@ -25434,8 +25538,8 @@ C*****************************************************************************
           range_ep(0,i+1,medium) = range_ep(0,i,medium) + (eip1-ei)/eded
      *    x*(1+aux*(1+2*aux)*((eip1-ei)/eke)**2/24)
           ei = eip1
-16001   CONTINUE
-16002   CONTINUE
+16071   CONTINUE
+16072   CONTINUE
         eil = (1 - eke0(medium))/eke1(medium)
         ei = Exp(eil)
         leil = 1
@@ -25450,7 +25554,7 @@ C*****************************************************************************
           estepx = estepe
         END IF
         si = estepx*ei/dedx0
-        DO 16011 i=1,neke - 1
+        DO 16081 i=1,neke - 1
           elke = (i + 1 - eke0(medium))/eke1(medium)
           eke = Exp(elke)
           lelke = i+1
@@ -25491,12 +25595,12 @@ C*****************************************************************************
           tmxs1(i,medium) = (sip1 - si)*eke1(medium)
           tmxs0(i,medium) = sip1 - tmxs1(i,medium)*elke
           si = sip1
-16011   CONTINUE
-16012   CONTINUE
+16081   CONTINUE
+16082   CONTINUE
         tmxs0(neke,medium) = tmxs0(neke - 1,medium)
         tmxs1(neke,medium) = tmxs1(neke - 1,medium)
-15991 CONTINUE
-15992 CONTINUE
+16061 CONTINUE
+16062 CONTINUE
       return
       end
       subroutine mscat(lambda,chia2,q1,elke,beta2,qel,medium, spin_effec
@@ -25545,7 +25649,7 @@ C*****************************************************************************
         END IF
         wsum = (1+lambda)*explambda
         IF (( sprob .LT. wsum )) THEN
-16020     CONTINUE
+16090     CONTINUE
           IF((rng_seed .GT. 128))call ranmar_get
           xi = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
@@ -25558,7 +25662,7 @@ C*****************************************************************************
             rnno = rng_array(rng_seed)*twom24
             rng_seed = rng_seed + 1
             IF (( rnno .GT. rejf )) THEN
-              GOTO 16020
+              GOTO 16090
             END IF
           END IF
           sint = sqrt(xi*(2 - xi))
@@ -25570,12 +25674,12 @@ C*****************************************************************************
           cost = 1
           sint = 0
           icount = 0
-16031     CONTINUE
+16101     CONTINUE
             icount = icount + 1
-            IF((icount .GT. 20))GO TO16032
+            IF((icount .GT. 20))GO TO16102
             wprob = wprob*lambda/icount
             wsum = wsum + wprob
-16040       CONTINUE
+16110       CONTINUE
             IF((rng_seed .GT. 128))call ranmar_get
             xi = rng_array(rng_seed)*twom24
             rng_seed = rng_seed + 1
@@ -25588,7 +25692,7 @@ C*****************************************************************************
               rnno = rng_array(rng_seed)*twom24
               rng_seed = rng_seed + 1
               IF (( rnno .GT. rejf )) THEN
-                GOTO 16040
+                GOTO 16110
               END IF
             END IF
             sinz = xi*(2 - xi)
@@ -25601,9 +25705,9 @@ C*****************************************************************************
               cost = cost*cosz - sint*sinz*Cos(phi)
               sint = Sqrt(Max(0.0,(1-cost)*(1+cost)))
             END IF
-            IF((( wsum .GT. sprob)))GO TO16032
-          GO TO 16031
-16032     CONTINUE
+            IF((( wsum .GT. sprob)))GO TO16102
+          GO TO 16101
+16102     CONTINUE
           return
         END IF
       END IF
@@ -25639,7 +25743,7 @@ C*****************************************************************************
           END IF
           find_index = .false.
         END IF
-16050   CONTINUE
+16120   CONTINUE
         IF((rng_seed .GT. 128))call ranmar_get
         xi = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
@@ -25671,7 +25775,7 @@ C*****************************************************************************
           rnno = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
           IF (( rnno .GT. rejf )) THEN
-            GOTO 16050
+            GOTO 16120
           END IF
         END IF
         sint = sqrt(xi*(2-xi))
@@ -25769,7 +25873,7 @@ C*****************************************************************************
       real*8 xi,rnno,rejf,spin_rejection,qzero
       logical spin_index
       spin_index = .true.
-16060 CONTINUE
+16130 CONTINUE
       IF((rng_seed .GT. 128))call ranmar_get
       xi = rng_array(rng_seed)*twom24
       rng_seed = rng_seed + 1
@@ -25782,7 +25886,7 @@ C*****************************************************************************
         IF((rng_seed .GT. 128))call ranmar_get
         rnno = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
-        IF((rnno .GT. rejf))goto 16060
+        IF((rnno .GT. rejf))goto 16130
       END IF
       sint = sqrt(xi*(2 - xi))
       return
@@ -25812,22 +25916,22 @@ C*****************************************************************************
       write(i_log,'(/a,$)') 'Reading screened Rutherford MS data .......
      *........ '
       rewind(i_mscat)
-      DO 16071 i=0,63
-        DO 16081 j=0,7
+      DO 16141 i=0,63
+        DO 16151 j=0,7
           read(i_mscat,*) (ums_array(i,j,k),k=0,31)
           read(i_mscat,*) (fms_array(i,j,k),k=0,31)
           read(i_mscat,*) (wms_array(i,j,k),k=0,31-1)
           read(i_mscat,*) (ims_array(i,j,k),k=0,31-1)
-          DO 16091 k=0,31-1
+          DO 16161 k=0,31-1
             fms_array(i,j,k) = fms_array(i,j,k+1)/fms_array(i,j,k)-1
             ims_array(i,j,k) = ims_array(i,j,k)-1
-16091     CONTINUE
-16092     CONTINUE
+16161     CONTINUE
+16162     CONTINUE
           fms_array(i,j,31)=fms_array(i,j,31-1)
-16081   CONTINUE
-16082   CONTINUE
-16071 CONTINUE
-16072 CONTINUE
+16151   CONTINUE
+16152   CONTINUE
+16141 CONTINUE
+16142 CONTINUE
       write(i_log,'(a)') ' done '
       llammin = Log(1.)
       llammax = Log(1e5)
@@ -25929,10 +26033,10 @@ C*****************************************************************************
       real*4 tmp_4
       character c_2(2), c_4(4)
       equivalence (ii2,c_2), (tmp_4,c_4)
-      DO 16101 i=1,len(spin_file)
+      DO 16171 i=1,len(spin_file)
         spin_file(i:i) = ' '
-16101 CONTINUE
-16102 CONTINUE
+16171 CONTINUE
+16172 CONTINUE
       spin_file = hen_house(:lnblnk1(hen_house)) // 'data' // '/' // 'sp
      *inms.data'
       want_spin_unit = 61
@@ -25945,8 +26049,8 @@ C*****************************************************************************
       END IF
       rec_length = 276*4
       open(spin_unit,file=spin_file,form='unformatted',access='direct',
-     *status='old',recl=rec_length,err=16110)
-      read(spin_unit,rec=1,err=16120) data_version,endianess, espin_min,
+     *status='old',recl=rec_length,err=16180)
+      read(spin_unit,rec=1,err=16190) data_version,endianess, espin_min,
      *espin_max,b2spin_min,b2spin_max
       swap = endianess.ne.'1234'
       IF (( swap )) THEN
@@ -25981,18 +26085,18 @@ C*****************************************************************************
       IF (( fool_intel_optimizer )) THEN
         write(25,*) 'Energy grid:'
       END IF
-      DO 16131 i=1,n_ener
+      DO 16201 i=1,n_ener
         eloge = eloge + dloge
         earray(i) = exp(eloge)
         IF (( fool_intel_optimizer )) THEN
           write(25,*) i,earray(i)
         END IF
-16131 CONTINUE
-16132 CONTINUE
+16201 CONTINUE
+16202 CONTINUE
       dbeta2 = (b2spin_max - b2spin_min)/n_ener
       beta2 = b2spin_min
       earray(n_ener+1) = espin_max
-      DO 16141 i=n_ener+2,2*n_ener+1
+      DO 16211 i=n_ener+2,2*n_ener+1
         beta2 = beta2 + dbeta2
         IF (( beta2 .LT. 0.999 )) THEN
           earray(i) = prm*1000.0*(1/sqrt(1-beta2)-1)
@@ -26002,8 +26106,8 @@ C*****************************************************************************
         IF (( fool_intel_optimizer )) THEN
           write(25,*) i,earray(i)
         END IF
-16141 CONTINUE
-16142 CONTINUE
+16211 CONTINUE
+16212 CONTINUE
       espin_min = espin_min/1000
       espin_max = espin_max/1000
       dlener = Log(espin_max/espin_min)/15
@@ -26013,30 +26117,30 @@ C*****************************************************************************
       dbeta2i = 1/dbeta2
       dqq1 = 0.5/15
       dqq1i = 1/dqq1
-      DO 16151 medium=1,NMED
+      DO 16221 medium=1,NMED
         write(i_log,'(a,i4,a,$)') '  medium ',medium,' .................
      *.... '
-        DO 16161 iq=0,1
-          DO 16171 i=0, 31
+        DO 16231 iq=0,1
+          DO 16241 i=0, 31
             eta_array(iq,i)=0
             c_array(iq,i)=0
             g_array(iq,i)=0
-            DO 16181 j=0,15
-              DO 16191 k=0,31
+            DO 16251 j=0,15
+              DO 16261 k=0,31
                 spin_rej(medium,iq,i,j,k) = 0
-16191         CONTINUE
-16192         CONTINUE
-16181       CONTINUE
-16182       CONTINUE
-16171     CONTINUE
-16172     CONTINUE
-16161   CONTINUE
-16162   CONTINUE
+16261         CONTINUE
+16262         CONTINUE
+16251       CONTINUE
+16252       CONTINUE
+16241     CONTINUE
+16242     CONTINUE
+16231   CONTINUE
+16232   CONTINUE
         sum_Z2=0
         sum_A=0
         sum_pz=0
         sum_Z=0
-        DO 16201 i_ele=1,NNE(medium)
+        DO 16271 i_ele=1,NNE(medium)
           Z = ZELEM(medium,i_ele)
           iZ = int(Z+0.5)
           IF (( fool_intel_optimizer )) THEN
@@ -26048,13 +26152,13 @@ C*****************************************************************************
           sum_A = sum_A + PZ(medium,i_ele)*WA(medium,i_ele)
           sum_pz = sum_pz + PZ(medium,i_ele)
           Z23 = Z**0.6666667
-          DO 16211 iq=0,1
-            DO 16221 i=0, 31
+          DO 16281 iq=0,1
+            DO 16291 i=0, 31
               irec = 1 + (iz-1)*4*(n_ener+1) + 2*iq*(n_ener+1) + i+1
               IF (( fool_intel_optimizer )) THEN
                 write(25,*) '**** energy ',i,earray(i),irec
               END IF
-              read(spin_unit,rec=irec,err=16120) dum1,dum2,dum3,aux_o,fm
+              read(spin_unit,rec=irec,err=16190) dum1,dum2,dum3,aux_o,fm
      *        ax_array,i2_array
               IF (( swap )) THEN
                 tmp_4 = dum1
@@ -26077,10 +26181,10 @@ C*****************************************************************************
               c_array(iq,i)=c_array(iq,i)+ tmp*(Log(1+1/eta)-1/(1+eta))*
      *        dum1*dum3
               g_array(iq,i)=g_array(iq,i)+tmp*dum2
-              DO 16231 j=0,15
+              DO 16301 j=0,15
                 tmp_4 = fmax_array(j)
                 IF((swap))call egs_swap_4(c_4)
-                DO 16241 k=0,31
+                DO 16311 k=0,31
                   ii2 = i2_array((n_point+1)*j + k+1)
                   IF((swap))call egs_swap_2(c_2)
                   ii4 = ii2
@@ -26089,44 +26193,44 @@ C*****************************************************************************
                   dum1 = dum1*tmp_4/65535
                   spin_rej(medium,iq,i,j,k) = spin_rej(medium,iq,i,j,k)
      *            + tmp*dum1
-16241           CONTINUE
-16242           CONTINUE
-16231         CONTINUE
-16232         CONTINUE
-16221       CONTINUE
-16222       CONTINUE
-16211     CONTINUE
-16212     CONTINUE
-16201   CONTINUE
-16202   CONTINUE
-        DO 16251 iq=0,1
-          DO 16261 i=0, 31
-            DO 16271 j=0,15
+16311           CONTINUE
+16312           CONTINUE
+16301         CONTINUE
+16302         CONTINUE
+16291       CONTINUE
+16292       CONTINUE
+16281     CONTINUE
+16282     CONTINUE
+16271   CONTINUE
+16272   CONTINUE
+        DO 16321 iq=0,1
+          DO 16331 i=0, 31
+            DO 16341 j=0,15
               fmax = 0
-              DO 16281 k=0,31
+              DO 16351 k=0,31
                 IF (( spin_rej(medium,iq,i,j,k) .GT. fmax )) THEN
                   fmax = spin_rej(medium,iq,i,j,k)
                 END IF
-16281         CONTINUE
-16282         CONTINUE
-              DO 16291 k=0,31
+16351         CONTINUE
+16352         CONTINUE
+              DO 16361 k=0,31
                 spin_rej(medium,iq,i,j,k) = spin_rej(medium,iq,i,j,k)/fm
      *          ax
-16291         CONTINUE
-16292         CONTINUE
-16271       CONTINUE
-16272       CONTINUE
-16261     CONTINUE
-16262     CONTINUE
-16251   CONTINUE
-16252   CONTINUE
+16361         CONTINUE
+16362         CONTINUE
+16341       CONTINUE
+16342       CONTINUE
+16331     CONTINUE
+16332     CONTINUE
+16321   CONTINUE
+16322   CONTINUE
         IF (( fool_intel_optimizer )) THEN
           write(25,*) 'Spin corrections as read in from file'
         END IF
-        DO 16301 i=0, 31
+        DO 16371 i=0, 31
           tau = earray(i)/prm*0.001
           beta2 = tau*(tau+2)/(tau+1)**2
-          DO 16311 iq=0,1
+          DO 16381 iq=0,1
             aux_o = Exp(eta_array(iq,i)/sum_Z2)/(fine*TF_constant)**2
             eta_array(iq,i) = 0.26112447*aux_o*blcc(medium)/xcc(medium)
             eta = aux_o/4/tau/(tau+2)
@@ -26135,14 +26239,14 @@ C*****************************************************************************
             g_array(iq,i) = g_array(iq,i)/sum_Z2/gamma
             c_array(iq,i) = c_array(iq,i)/sum_Z2/(Log(1+1/eta)-1/(1+eta)
      *      )
-16311     CONTINUE
-16312     CONTINUE
+16381     CONTINUE
+16382     CONTINUE
           IF (( fool_intel_optimizer )) THEN
             write(25,*) i,earray(i),eta_array(0,i),eta_array(1,i), c_arr
      *      ay(0,i),c_array(1,i),g_array(0,i),g_array(1,i)
           END IF
-16301   CONTINUE
-16302   CONTINUE
+16371   CONTINUE
+16372   CONTINUE
         eil = (1 - eke0(medium))/eke1(medium)
         e = Exp(eil)
         IF (( e .LE. espin_min )) THEN
@@ -26168,7 +26272,7 @@ C*****************************************************************************
         IF (( fool_intel_optimizer )) THEN
           write(25,*) 'Interpolation table for eta correction'
         END IF
-        DO 16321 i=1,neke - 1
+        DO 16391 i=1,neke - 1
           eil = (i+1 - eke0(medium))/eke1(medium)
           e = Exp(eil)
           IF (( e .LE. espin_min )) THEN
@@ -26200,8 +26304,8 @@ C*****************************************************************************
           END IF
           si1e = si2e
           si1p = si2p
-16321   CONTINUE
-16322   CONTINUE
+16391   CONTINUE
+16392   CONTINUE
         etae_ms1(neke,medium) = etae_ms1(neke-1,medium)
         etae_ms0(neke,medium) = etae_ms0(neke-1,medium)
         etap_ms1(neke,medium) = etap_ms1(neke-1,medium)
@@ -26209,22 +26313,22 @@ C*****************************************************************************
         IF (( fool_intel_optimizer )) THEN
           write(25,*) 'elarray:'
         END IF
-        DO 16331 i=0,15
+        DO 16401 i=0,15
           elarray(i) = Log(earray(i)/1000)
           farray(i) = c_array(0,i)
           IF (( fool_intel_optimizer )) THEN
             write(25,*) elarray(i),earray(i)
           END IF
-16331   CONTINUE
-16332   CONTINUE
-        DO 16341 i=15+1, 31-1
+16401   CONTINUE
+16402   CONTINUE
+        DO 16411 i=15+1, 31-1
           elarray(i) = Log(earray(i+1)/1000)
           farray(i) = c_array(0,i+1)
           IF (( fool_intel_optimizer )) THEN
             write(25,*) elarray(i),earray(i+1)
           END IF
-16341   CONTINUE
-16342   CONTINUE
+16411   CONTINUE
+16412   CONTINUE
         ndata =  31+1
         IF (( ue(medium) .GT. 1e5 )) THEN
           elarray(ndata-1) = Log(ue(medium))
@@ -26238,7 +26342,7 @@ C*****************************************************************************
         IF (( fool_intel_optimizer )) THEN
           write(25,*) 'Interpolation table for q1 correction (e-)'
         END IF
-        DO 16351 i=1,neke-1
+        DO 16421 i=1,neke-1
           eil = (i+1 - eke0(medium))/eke1(medium)
           si2e = spline(eil,elarray,af,bf,cf,df,ndata)
           q1ce_ms1(i,medium) = (si2e - si1e)*eke1(medium)
@@ -26248,28 +26352,28 @@ C*****************************************************************************
      *      ium)
           END IF
           si1e = si2e
-16351   CONTINUE
-16352   CONTINUE
+16421   CONTINUE
+16422   CONTINUE
         q1ce_ms1(neke,medium) = q1ce_ms1(neke-1,medium)
         q1ce_ms0(neke,medium) = q1ce_ms0(neke-1,medium)
         IF (( fool_intel_optimizer )) THEN
           write(25,*) 'Postrons:'
         END IF
-        DO 16361 i=0,15
+        DO 16431 i=0,15
           farray(i) = c_array(1,i)
-16361   CONTINUE
-16362   CONTINUE
-        DO 16371 i=15+1, 31-1
+16431   CONTINUE
+16432   CONTINUE
+        DO 16441 i=15+1, 31-1
           farray(i) = c_array(1,i+1)
-16371   CONTINUE
-16372   CONTINUE
+16441   CONTINUE
+16442   CONTINUE
         call set_spline(elarray,farray,af,bf,cf,df,ndata)
         eil = (1 - eke0(medium))/eke1(medium)
         si1e = spline(eil,elarray,af,bf,cf,df,ndata)
         IF (( fool_intel_optimizer )) THEN
           write(25,*) 'Interpolation table for q1 correction (e+)'
         END IF
-        DO 16381 i=1,neke-1
+        DO 16451 i=1,neke-1
           eil = (i+1 - eke0(medium))/eke1(medium)
           si2e = spline(eil,elarray,af,bf,cf,df,ndata)
           q1cp_ms1(i,medium) = (si2e - si1e)*eke1(medium)
@@ -26279,25 +26383,25 @@ C*****************************************************************************
      *      ium)
           END IF
           si1e = si2e
-16381   CONTINUE
-16382   CONTINUE
+16451   CONTINUE
+16452   CONTINUE
         q1cp_ms1(neke,medium) = q1cp_ms1(neke-1,medium)
         q1cp_ms0(neke,medium) = q1cp_ms0(neke-1,medium)
-        DO 16391 i=0,15
+        DO 16461 i=0,15
           farray(i) = g_array(0,i)
-16391   CONTINUE
-16392   CONTINUE
-        DO 16401 i=15+1, 31-1
+16461   CONTINUE
+16462   CONTINUE
+        DO 16471 i=15+1, 31-1
           farray(i) = g_array(0,i+1)
-16401   CONTINUE
-16402   CONTINUE
+16471   CONTINUE
+16472   CONTINUE
         call set_spline(elarray,farray,af,bf,cf,df,ndata)
         eil = (1 - eke0(medium))/eke1(medium)
         si1e = spline(eil,elarray,af,bf,cf,df,ndata)
         IF (( fool_intel_optimizer )) THEN
           write(25,*) 'Interpolation table for q2 correction (e-)'
         END IF
-        DO 16411 i=1,neke-1
+        DO 16481 i=1,neke-1
           eil = (i+1 - eke0(medium))/eke1(medium)
           si2e = spline(eil,elarray,af,bf,cf,df,ndata)
           q2ce_ms1(i,medium) = (si2e - si1e)*eke1(medium)
@@ -26307,25 +26411,25 @@ C*****************************************************************************
      *      ium)
           END IF
           si1e = si2e
-16411   CONTINUE
-16412   CONTINUE
+16481   CONTINUE
+16482   CONTINUE
         q2ce_ms1(neke,medium) = q2ce_ms1(neke-1,medium)
         q2ce_ms0(neke,medium) = q2ce_ms0(neke-1,medium)
-        DO 16421 i=0,15
+        DO 16491 i=0,15
           farray(i) = g_array(1,i)
-16421   CONTINUE
-16422   CONTINUE
-        DO 16431 i=15+1, 31-1
+16491   CONTINUE
+16492   CONTINUE
+        DO 16501 i=15+1, 31-1
           farray(i) = g_array(1,i+1)
-16431   CONTINUE
-16432   CONTINUE
+16501   CONTINUE
+16502   CONTINUE
         call set_spline(elarray,farray,af,bf,cf,df,ndata)
         eil = (1 - eke0(medium))/eke1(medium)
         si1e = spline(eil,elarray,af,bf,cf,df,ndata)
         IF (( fool_intel_optimizer )) THEN
           write(25,*) 'Interpolation table for q2 correction (e+)'
         END IF
-        DO 16441 i=1,neke-1
+        DO 16511 i=1,neke-1
           eil = (i+1 - eke0(medium))/eke1(medium)
           si2e = spline(eil,elarray,af,bf,cf,df,ndata)
           q2cp_ms1(i,medium) = (si2e - si1e)*eke1(medium)
@@ -26335,13 +26439,13 @@ C*****************************************************************************
      *      ium)
           END IF
           si1e = si2e
-16441   CONTINUE
-16442   CONTINUE
+16511   CONTINUE
+16512   CONTINUE
         q2cp_ms1(neke,medium) = q2cp_ms1(neke-1,medium)
         q2cp_ms0(neke,medium) = q2cp_ms0(neke-1,medium)
         tauc = te(medium)/prm
         si1e = 1
-        DO 16451 i=1,neke-1
+        DO 16521 i=1,neke-1
           eil = (i+1 - eke0(medium))/eke1(medium)
           e = Exp(eil)
           leil=i+1
@@ -26373,21 +26477,21 @@ C*****************************************************************************
           blcce1(i,medium) = (si2e - si1e)*eke1(medium)
           blcce0(i,medium) = si2e - blcce1(i,medium)*eil
           si1e = si2e
-16451   CONTINUE
-16452   CONTINUE
+16521   CONTINUE
+16522   CONTINUE
         blcce1(neke,medium) = blcce1(neke-1,medium)
         blcce0(neke,medium) = blcce0(neke-1,medium)
         write(i_log,'(a)') ' done'
-16151 CONTINUE
-16152 CONTINUE
+16221 CONTINUE
+16222 CONTINUE
       close(spin_unit)
       return
-16110 write(i_log,'(/a)') '***************** Error: '
+16180 write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(a,a)') 'Failed to open spin data file ',spin_file(:l
      *nblnk1(spin_file))
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
-16120 write(i_log,'(/a)') '***************** Error: '
+16190 write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'Error while reading spin data file for element',iZ
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
@@ -26475,37 +26579,37 @@ C*****************************************************************************
       integer*4 lnblnk1
       real*8 fine,TF_constant
       parameter (fine=137.03604,TF_constant=0.88534138)
-      DO 16461 i=1,len(spin_file)
+      DO 16531 i=1,len(spin_file)
         spin_file(i:i) = ' '
-16461 CONTINUE
-16462 CONTINUE
+16531 CONTINUE
+16532 CONTINUE
       spin_file = hen_house(:lnblnk1(hen_house)) // 'data' // '/' // 'sp
      *inms' // '/' // 'z000'
       length = lnblnk1(spin_file)
-      DO 16471 medium=1,NMED
+      DO 16541 medium=1,NMED
         write(i_log,'(a,i4,a,$)') '  Initializing spin data for medium '
      *  ,medium, ' ..................... '
-        DO 16481 iq=0,1
-          DO 16491 i=0, 31
+        DO 16551 iq=0,1
+          DO 16561 i=0, 31
             eta_array(iq,i)=0
             c_array(iq,i)=0
             g_array(iq,i)=0
-            DO 16501 j=0,15
-              DO 16511 k=0,31
+            DO 16571 j=0,15
+              DO 16581 k=0,31
                 spin_rej(medium,iq,i,j,k) = 0
-16511         CONTINUE
-16512         CONTINUE
-16501       CONTINUE
-16502       CONTINUE
-16491     CONTINUE
-16492     CONTINUE
-16481   CONTINUE
-16482   CONTINUE
+16581         CONTINUE
+16582         CONTINUE
+16571       CONTINUE
+16572       CONTINUE
+16561     CONTINUE
+16562     CONTINUE
+16551   CONTINUE
+16552   CONTINUE
         sum_Z2=0
         sum_A=0
         sum_pz=0
         sum_Z=0
-        DO 16521 i_ele=1,NNE(medium)
+        DO 16591 i_ele=1,NNE(medium)
           Z = ZELEM(medium,i_ele)
           iZ = int(Z+0.5)
           tmp = PZ(medium,i_ele)*Z*(Z+1)
@@ -26525,7 +26629,7 @@ C*****************************************************************************
             write(i_log,'(/a)') '***************** Quiting now.'
             call exit(1)
           END IF
-          open(spin_unit,file=spin_file,status='old',err=16530)
+          open(spin_unit,file=spin_file,status='old',err=16600)
           read(spin_unit,*) espin_min,espin_max,b2spin_min,b2spin_max
           read(spin_unit,*) n_ener,n_q,n_point
           IF (( n_ener .NE. 15 .OR. n_q .NE. 15 .OR. n_point .NE. 31)) T
@@ -26540,10 +26644,10 @@ C*****************************************************************************
           sum_A = sum_A + PZ(medium,i_ele)*WA(medium,i_ele)
           sum_pz = sum_pz + PZ(medium,i_ele)
           Z23 = Z**0.6666667
-          DO 16541 iq=0,1
+          DO 16611 iq=0,1
             read(spin_unit,*)
             read(spin_unit,*)
-            DO 16551 i=0, 31
+            DO 16621 i=0, 31
               read(spin_unit,'(a,g14.6)') string,earray(i)
               read(spin_unit,*) dum1,dum2,dum3,aux_o
               eta_array(iq,i)=eta_array(iq,i)+tmp*Log(Z23*aux_o)
@@ -26553,47 +26657,47 @@ C*****************************************************************************
               c_array(iq,i)=c_array(iq,i)+ tmp*(Log(1+1/eta)-1/(1+eta))*
      *        dum1*dum3
               g_array(iq,i)=g_array(iq,i)+tmp*dum2
-              DO 16561 j=0,15
+              DO 16631 j=0,15
                 read(spin_unit,*) tmp_array
-                DO 16571 k=0,31
+                DO 16641 k=0,31
                   spin_rej(medium,iq,i,j,k) = spin_rej(medium,iq,i,j,k)
      *            + tmp*tmp_array(k)
-16571           CONTINUE
-16572           CONTINUE
-16561         CONTINUE
-16562         CONTINUE
-16551       CONTINUE
-16552       CONTINUE
-16541     CONTINUE
-16542     CONTINUE
+16641           CONTINUE
+16642           CONTINUE
+16631         CONTINUE
+16632         CONTINUE
+16621       CONTINUE
+16622       CONTINUE
+16611     CONTINUE
+16612     CONTINUE
           close(spin_unit)
-16521   CONTINUE
-16522   CONTINUE
-        DO 16581 iq=0,1
-          DO 16591 i=0, 31
-            DO 16601 j=0,15
+16591   CONTINUE
+16592   CONTINUE
+        DO 16651 iq=0,1
+          DO 16661 i=0, 31
+            DO 16671 j=0,15
               fmax = 0
-              DO 16611 k=0,31
+              DO 16681 k=0,31
                 IF (( spin_rej(medium,iq,i,j,k) .GT. fmax )) THEN
                   fmax = spin_rej(medium,iq,i,j,k)
                 END IF
-16611         CONTINUE
-16612         CONTINUE
-              DO 16621 k=0,31
+16681         CONTINUE
+16682         CONTINUE
+              DO 16691 k=0,31
                 spin_rej(medium,iq,i,j,k) = spin_rej(medium,iq,i,j,k)/fm
      *          ax
-16621         CONTINUE
-16622         CONTINUE
-16601       CONTINUE
-16602       CONTINUE
-16591     CONTINUE
-16592     CONTINUE
-16581   CONTINUE
-16582   CONTINUE
-        DO 16631 i=0, 31
+16691         CONTINUE
+16692         CONTINUE
+16671       CONTINUE
+16672       CONTINUE
+16661     CONTINUE
+16662     CONTINUE
+16651   CONTINUE
+16652   CONTINUE
+        DO 16701 i=0, 31
           tau = earray(i)/prm*0.001
           beta2 = tau*(tau+2)/(tau+1)**2
-          DO 16641 iq=0,1
+          DO 16711 iq=0,1
             aux_o = Exp(eta_array(iq,i)/sum_Z2)/(fine*TF_constant)**2
             eta_array(iq,i) = 0.26112447*aux_o*blcc(medium)/xcc(medium)
             eta = aux_o/4/tau/(tau+2)
@@ -26602,10 +26706,10 @@ C*****************************************************************************
             g_array(iq,i) = g_array(iq,i)/sum_Z2/gamma
             c_array(iq,i) = c_array(iq,i)/sum_Z2/(Log(1+1/eta)-1/(1+eta)
      *      )
-16641     CONTINUE
-16642     CONTINUE
-16631   CONTINUE
-16632   CONTINUE
+16711     CONTINUE
+16712     CONTINUE
+16701   CONTINUE
+16702   CONTINUE
         espin_min = espin_min/1000
         espin_max = espin_max/1000
         dlener = Log(espin_max/espin_min)/15
@@ -26637,7 +26741,7 @@ C*****************************************************************************
           si1p = (1-aae)*eta_array(1,je) + aae*eta_array(1,je+1)
         END IF
         neke = meke(medium)
-        DO 16651 i=1,neke - 1
+        DO 16721 i=1,neke - 1
           eil = (i+1 - eke0(medium))/eke1(medium)
           e = Exp(eil)
           IF (( e .LE. espin_min )) THEN
@@ -26665,22 +26769,22 @@ C*****************************************************************************
           etap_ms0(i,medium) = si2p - etap_ms1(i,medium)*eil
           si1e = si2e
           si1p = si2p
-16651   CONTINUE
-16652   CONTINUE
+16721   CONTINUE
+16722   CONTINUE
         etae_ms1(neke,medium) = etae_ms1(neke-1,medium)
         etae_ms0(neke,medium) = etae_ms0(neke-1,medium)
         etap_ms1(neke,medium) = etap_ms1(neke-1,medium)
         etap_ms0(neke,medium) = etap_ms0(neke-1,medium)
-        DO 16661 i=0,15
+        DO 16731 i=0,15
           elarray(i) = Log(earray(i)/1000)
           farray(i) = c_array(0,i)
-16661   CONTINUE
-16662   CONTINUE
-        DO 16671 i=15+1, 31-1
+16731   CONTINUE
+16732   CONTINUE
+        DO 16741 i=15+1, 31-1
           elarray(i) = Log(earray(i+1)/1000)
           farray(i) = c_array(0,i+1)
-16671   CONTINUE
-16672   CONTINUE
+16741   CONTINUE
+16742   CONTINUE
         ndata =  31+1
         IF (( ue(medium) .GT. 1e5 )) THEN
           elarray(ndata-1) = Log(ue(medium))
@@ -26691,81 +26795,81 @@ C*****************************************************************************
         call set_spline(elarray,farray,af,bf,cf,df,ndata)
         eil = (1 - eke0(medium))/eke1(medium)
         si1e = spline(eil,elarray,af,bf,cf,df,ndata)
-        DO 16681 i=1,neke-1
+        DO 16751 i=1,neke-1
           eil = (i+1 - eke0(medium))/eke1(medium)
           si2e = spline(eil,elarray,af,bf,cf,df,ndata)
           q1ce_ms1(i,medium) = (si2e - si1e)*eke1(medium)
           q1ce_ms0(i,medium) = si2e - q1ce_ms1(i,medium)*eil
           si1e = si2e
-16681   CONTINUE
-16682   CONTINUE
+16751   CONTINUE
+16752   CONTINUE
         q1ce_ms1(neke,medium) = q1ce_ms1(neke-1,medium)
         q1ce_ms0(neke,medium) = q1ce_ms0(neke-1,medium)
-        DO 16691 i=0,15
+        DO 16761 i=0,15
           farray(i) = c_array(1,i)
-16691   CONTINUE
-16692   CONTINUE
-        DO 16701 i=15+1, 31-1
+16761   CONTINUE
+16762   CONTINUE
+        DO 16771 i=15+1, 31-1
           farray(i) = c_array(1,i+1)
-16701   CONTINUE
-16702   CONTINUE
+16771   CONTINUE
+16772   CONTINUE
         call set_spline(elarray,farray,af,bf,cf,df,ndata)
         eil = (1 - eke0(medium))/eke1(medium)
         si1e = spline(eil,elarray,af,bf,cf,df,ndata)
-        DO 16711 i=1,neke-1
+        DO 16781 i=1,neke-1
           eil = (i+1 - eke0(medium))/eke1(medium)
           si2e = spline(eil,elarray,af,bf,cf,df,ndata)
           q1cp_ms1(i,medium) = (si2e - si1e)*eke1(medium)
           q1cp_ms0(i,medium) = si2e - q1cp_ms1(i,medium)*eil
           si1e = si2e
-16711   CONTINUE
-16712   CONTINUE
+16781   CONTINUE
+16782   CONTINUE
         q1cp_ms1(neke,medium) = q1cp_ms1(neke-1,medium)
         q1cp_ms0(neke,medium) = q1cp_ms0(neke-1,medium)
-        DO 16721 i=0,15
+        DO 16791 i=0,15
           farray(i) = g_array(0,i)
-16721   CONTINUE
-16722   CONTINUE
-        DO 16731 i=15+1, 31-1
+16791   CONTINUE
+16792   CONTINUE
+        DO 16801 i=15+1, 31-1
           farray(i) = g_array(0,i+1)
-16731   CONTINUE
-16732   CONTINUE
+16801   CONTINUE
+16802   CONTINUE
         call set_spline(elarray,farray,af,bf,cf,df,ndata)
         eil = (1 - eke0(medium))/eke1(medium)
         si1e = spline(eil,elarray,af,bf,cf,df,ndata)
-        DO 16741 i=1,neke-1
+        DO 16811 i=1,neke-1
           eil = (i+1 - eke0(medium))/eke1(medium)
           si2e = spline(eil,elarray,af,bf,cf,df,ndata)
           q2ce_ms1(i,medium) = (si2e - si1e)*eke1(medium)
           q2ce_ms0(i,medium) = si2e - q2ce_ms1(i,medium)*eil
           si1e = si2e
-16741   CONTINUE
-16742   CONTINUE
+16811   CONTINUE
+16812   CONTINUE
         q2ce_ms1(neke,medium) = q2ce_ms1(neke-1,medium)
         q2ce_ms0(neke,medium) = q2ce_ms0(neke-1,medium)
-        DO 16751 i=0,15
+        DO 16821 i=0,15
           farray(i) = g_array(1,i)
-16751   CONTINUE
-16752   CONTINUE
-        DO 16761 i=15+1, 31-1
+16821   CONTINUE
+16822   CONTINUE
+        DO 16831 i=15+1, 31-1
           farray(i) = g_array(1,i+1)
-16761   CONTINUE
-16762   CONTINUE
+16831   CONTINUE
+16832   CONTINUE
         call set_spline(elarray,farray,af,bf,cf,df,ndata)
         eil = (1 - eke0(medium))/eke1(medium)
         si1e = spline(eil,elarray,af,bf,cf,df,ndata)
-        DO 16771 i=1,neke-1
+        DO 16841 i=1,neke-1
           eil = (i+1 - eke0(medium))/eke1(medium)
           si2e = spline(eil,elarray,af,bf,cf,df,ndata)
           q2cp_ms1(i,medium) = (si2e - si1e)*eke1(medium)
           q2cp_ms0(i,medium) = si2e - q2cp_ms1(i,medium)*eil
-16771   CONTINUE
-16772   CONTINUE
+16841   CONTINUE
+16842   CONTINUE
         q2cp_ms1(neke,medium) = q2cp_ms1(neke-1,medium)
         q2cp_ms0(neke,medium) = q2cp_ms0(neke-1,medium)
         tauc = te(medium)/prm
         si1e = 1
-        DO 16781 i=1,neke-1
+        DO 16851 i=1,neke-1
           eil = (i+1 - eke0(medium))/eke1(medium)
           e = Exp(eil)
           leil=i+1
@@ -26797,15 +26901,15 @@ C*****************************************************************************
           blcce1(i,medium) = (si2e - si1e)*eke1(medium)
           blcce0(i,medium) = si2e - blcce1(i,medium)*eil
           si1e = si2e
-16781   CONTINUE
-16782   CONTINUE
+16851   CONTINUE
+16852   CONTINUE
         blcce1(neke,medium) = blcce1(neke-1,medium)
         blcce0(neke,medium) = blcce0(neke-1,medium)
         write(i_log,'(a)') ' done'
-16471 CONTINUE
-16472 CONTINUE
+16541 CONTINUE
+16542 CONTINUE
       return
-16530 write(i_log,*) ' ******************** Error in init_spin *********
+16600 write(i_log,*) ' ******************** Error in init_spin *********
      *********** '
       write(i_log,'(a,a)') '  could not open file ',spin_file
       write(i_log,'(/a)') '***************** Error: '
@@ -26922,7 +27026,7 @@ C*****************************************************************************
       spin_index = .true.
       call mscat(lambda,chia2,xi,elke,beta2,qel,medium, spin_effects,fin
      *d_index,spin_index, w1,sint1)
-16791 CONTINUE
+16861 CONTINUE
         IF((rng_seed .GT. 128))call ranmar_get
         xphi = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
@@ -26933,15 +27037,15 @@ C*****************************************************************************
         rng_seed = rng_seed + 1
         yphi2 = yphi*yphi
         rhophi2 = xphi2 + yphi2
-        IF(rhophi2.LE.1)GO TO16792
-      GO TO 16791
-16792 CONTINUE
+        IF(rhophi2.LE.1)GO TO16862
+      GO TO 16861
+16862 CONTINUE
       rhophi2 = 1/rhophi2
       cphi1 = (xphi2 - yphi2)*rhophi2
       sphi1 = 2*xphi*yphi*rhophi2
       call mscat(lambda,chia2,xi,elke,beta2,qel,medium, spin_effects,fin
      *d_index,spin_index, w2,sint2)
-16801 CONTINUE
+16871 CONTINUE
         IF((rng_seed .GT. 128))call ranmar_get
         xphi = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
@@ -26952,9 +27056,9 @@ C*****************************************************************************
         rng_seed = rng_seed + 1
         yphi2 = yphi*yphi
         rhophi2 = xphi2 + yphi2
-        IF(rhophi2.LE.1)GO TO16802
-      GO TO 16801
-16802 CONTINUE
+        IF(rhophi2.LE.1)GO TO16872
+      GO TO 16871
+16872 CONTINUE
       rhophi2 = 1/rhophi2
       cphi2 = (xphi2 - yphi2)*rhophi2
       sphi2 = 2*xphi*yphi*rhophi2
@@ -27098,7 +27202,7 @@ C*****************************************************************************
       spin_index = .true.
       call mscat(lambda,chia2,xi,elke,beta2,qel,medium, spin_effects,fin
      *d_index,spin_index, ws,sint)
-16811 CONTINUE
+16881 CONTINUE
         IF((rng_seed .GT. 128))call ranmar_get
         xphi = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
@@ -27109,9 +27213,9 @@ C*****************************************************************************
         rng_seed = rng_seed + 1
         yphi2 = yphi*yphi
         rhophi2 = xphi2 + yphi2
-        IF(rhophi2.LE.1)GO TO16812
-      GO TO 16811
-16812 CONTINUE
+        IF(rhophi2.LE.1)GO TO16882
+      GO TO 16881
+16882 CONTINUE
       rhophi2 = 1/rhophi2
       cphi = (xphi2 - yphi2)*rhophi2
       sphi = 2*xphi*yphi*rhophi2
@@ -27177,9 +27281,9 @@ C*****************************************************************************
       real*8 nrcp_fdata,nrcp_wdata,nrcp_xdata, nrcp_emin, nrcp_emax, nrc
      *p_dle, nrcp_dlei
       integer*4 nrcp_idata
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -27273,10 +27377,10 @@ C*****************************************************************************
           END IF
         END IF
       END IF
-      IF (( np+1 .GT. 10000 )) THEN
+      IF (( np+1 .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','PAIR', ' sta
-     *ck size exceeded! ',' $MAXSTACK = ',10000,' np = ',np+1
+     *ck size exceeded! ',' $MAXSTACK = ',900000,' np = ',np+1
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -27368,7 +27472,7 @@ C*****************************************************************************
           END IF
           del0 = eig*delcm(medium)
           Eavail = eig - rmt2
-16821     CONTINUE
+16891     CONTINUE
             IF((rng_seed .GT. 128))call ranmar_get
             RNNO30 = rng_array(rng_seed)*twom24
             rng_seed = rng_seed + 1
@@ -27403,9 +27507,9 @@ C*****************************************************************************
               rejf = dl4(l1,medium)+dl5(l1,medium)*log(delta+dl6(l1,medi
      *        um))
             END IF
-            IF((( rnno34*rejmax .LE. rejf )))GO TO16822
-          GO TO 16821
-16822     CONTINUE
+            IF((( rnno34*rejmax .LE. rejf )))GO TO16892
+          GO TO 16891
+16892     CONTINUE
           pese2 = Eminus
           pese1 = peig - pese2
           IF((rng_seed .GT. 128))call ranmar_get
@@ -27439,7 +27543,7 @@ C*****************************************************************************
         ELSE
           iprdst_use = iprdst
         END IF
-        DO 16831 ichrg=1,2
+        DO 16901 ichrg=1,2
           IF ((ICHRG.EQ.1)) THEN
             ESE=PESE1
           ELSE
@@ -27491,7 +27595,7 @@ C*****************************************************************************
      *      .0*(XIMID-0.5)**2)*( 1.0+0.25*LOG( ((1.0+ESEDER)*(1.0+ESEDEI
      *      )/(2.*TTEIG))**2+ZTARG*XIMID**2 ) )
             REJTOP=1.02*MAX(REJMIN,REJMID)
-16841       CONTINUE
+16911       CONTINUE
               IF((rng_seed .GT. 128))call ranmar_get
               XITST = rng_array(rng_seed)*twom24
               rng_seed = rng_seed + 1
@@ -27504,9 +27608,9 @@ C*****************************************************************************
               THETA=SQRT(1.0/XITST-1.0)/TTESE
               REJTST_on_REJTOP = REJTST/REJTOP
               IF((((RTEST .LE. REJTST_on_REJTOP) .AND. (THETA .LT. PI) )
-     *        ))GO TO16842
-            GO TO 16841
-16842       CONTINUE
+     *        ))GO TO16912
+            GO TO 16911
+16912       CONTINUE
             SINTHE=SIN(THETA)
             COSTHE=COS(THETA)
           ELSE IF(( iprdst_use .EQ. 3 )) THEN
@@ -27539,8 +27643,8 @@ C*****************************************************************************
             NP=NP+1
             CALL UPHI(3,2)
           END IF
-16831   CONTINUE
-16832   CONTINUE
+16901   CONTINUE
+16902   CONTINUE
         iq(np) = iq2
         iq(np-1) = iq1
         return
@@ -27565,9 +27669,9 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -27640,37 +27744,37 @@ C*****************************************************************************
       IF (( .NOT.is_initialized )) THEN
         is_initialized = .true.
         tiny_eta = 1e-6
-        DO 16851 i=1,250
+        DO 16921 i=1,250
           fmax_array(i) = -1
-16851   CONTINUE
-16852   CONTINUE
+16921   CONTINUE
+16922   CONTINUE
         kmax = 0
         kmin = 4.1*prm
-        DO 16861 i=1,nmed
+        DO 16931 i=1,nmed
           IF((up(i) .GT. kmax))kmax = UP(i)
-16861   CONTINUE
-16862   CONTINUE
+16931   CONTINUE
+16932   CONTINUE
         IF((kmax .LE. kmin))return
         dlogki = 250 - 1
         dlogki = dlogki/log(kmax/kmin)
         alogkm = 1 - dlogki*log(kmin)
         prmi = 1/prm
-        DO 16871 i=1,250
+        DO 16941 i=1,250
           k = 4.1*exp((i-1.)/dlogki)
           ebin_array(i) = k
           qmin = 4*k/(k*(k-1)+(k+1)*sqrt(k*(k-4)))
           qmax = (k*(k-1) + (k+1)*sqrt(k*(k-4)))/(2*k+1)
           qmin_array(i) = qmin
           wp_array(i) = log(qmax/qmin)
-16871   CONTINUE
-16872   CONTINUE
+16941   CONTINUE
+16942   CONTINUE
       END IF
       peig = e(np)
       IF((peig .LE. 4*prm))return
-      IF (( np+2 .GT. 10000 )) THEN
+      IF (( np+2 .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','sample_tripl
-     *et', ' stack size exceeded! ',' $MAXSTACK = ',10000,' np = ',np+2
+     *et', ' stack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np+2
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -27690,7 +27794,7 @@ C*****************************************************************************
         END IF
       END IF
       k = ebin_array(i)
-16880 CONTINUE
+16950 CONTINUE
       IF((rng_seed .GT. 128))call ranmar_get
       eta_pr = rng_array(rng_seed)*twom24
       rng_seed = rng_seed + 1
@@ -27749,7 +27853,7 @@ C*****************************************************************************
       pp_sntp2 = pp_sintp*pp_sintp
       D1 = pm2*(aux12+pp_sntp2)-b*b/4
       IF (( D1 .LE. 0 )) THEN
-        goto 16880
+        goto 16950
       END IF
       D = 2*pp_sintp*sqrt(D1)
       aux3 = 0.5/(aux12+pp_sntp2)
@@ -27770,7 +27874,7 @@ C*****************************************************************************
       pm_sintm = pm*sint_m
       cphi = (b + 2*pm*cost_m*aux1)/(2*pp_sintp*pm_sintm)
       IF (( abs(cphi) .GE. 1 )) THEN
-        goto 16880
+        goto 16950
       END IF
       sphi = sqrt(1-cphi*cphi)
       k3 = k*(pp*cost_p - Ep)
@@ -27858,7 +27962,7 @@ C*****************************************************************************
       pp_sntp2 = pp_sintp*pp_sintp
       D1 = pm2*(aux12+pp_sntp2)-b*b/4
       IF (( D1 .LE. 0 )) THEN
-        goto 16880
+        goto 16950
       END IF
       D = 2*pp_sintp*sqrt(D1)
       aux3 = 0.5/(aux12+pp_sntp2)
@@ -27872,7 +27976,7 @@ C*****************************************************************************
       pm_sintm = pm*sint_m
       cphi = (b + 2*pm*cost_m*aux1)/(2*pp_sintp*pm_sintm)
       IF (( abs(cphi) .GE. 1 )) THEN
-        goto 16880
+        goto 16950
       END IF
       sphi = sqrt(1-cphi*cphi)
       IF((rng_seed .GT. 128))call ranmar_get
@@ -28050,9 +28154,9 @@ C*****************************************************************************
       integer*4 urndm, crndm, cdrndm, cmrndm, i4opt, ixx, jxx, fool_opti
      *mizer,rng_seed,rng_array
       real*4 twom24
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -28124,16 +28228,16 @@ C*****************************************************************************
       IF (( IEDGFL .NE. 0 )) THEN
         IF (( nne(medium) .EQ. 1 )) THEN
           iZ = int( zelem(medium,1) + 0.5 )
-          DO 16891 j=1,edge_number(iZ)
-            IF((peig .GE. edge_energies(j,iZ)))GO TO16892
-16891     CONTINUE
-16892     CONTINUE
+          DO 16961 j=1,edge_number(iZ)
+            IF((peig .GE. edge_energies(j,iZ)))GO TO16962
+16961     CONTINUE
+16962     CONTINUE
         ELSE
           aux = peig*peig
           aux1 = aux*peig
           aux = aux*Sqrt(peig)
           sigtot = 0
-          DO 16901 k=1,nne(medium)
+          DO 16971 k=1,nne(medium)
             iZ = int( zelem(medium,k) + 0.5 )
             IF (( iZ .LT. 1 .OR. iZ .GT. 100 )) THEN
               write(i_log,*) ' Error in PHOTO: '
@@ -28148,10 +28252,10 @@ C*****************************************************************************
               sigma = (edge_a(1,iZ) + edge_b(1,iZ)/peig + edge_c(1,iZ)/a
      *        ux + edge_d(1,iZ)/aux1)/peig
             ELSE
-              DO 16911 j=2,edge_number(iZ)
-                IF((peig .GE. edge_energies(j,iZ)))GO TO16912
-16911         CONTINUE
-16912         CONTINUE
+              DO 16981 j=2,edge_number(iZ)
+                IF((peig .GE. edge_energies(j,iZ)))GO TO16982
+16981         CONTINUE
+16982         CONTINUE
               sigma = edge_a(j,iZ) + gle*(edge_b(j,iZ) + gle*(edge_c(j,i
      *        Z) + gle*edge_d(j,iZ) ))
               sigma = Exp(sigma)
@@ -28160,17 +28264,17 @@ C*****************************************************************************
             sigtot = sigtot + sigma
             probs(k) = sigma
             ints(k) = j
-16901     CONTINUE
-16902     CONTINUE
+16971     CONTINUE
+16972     CONTINUE
           IF((rng_seed .GT. 128))call ranmar_get
           br = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
           br = br*sigtot
-          DO 16921 k=1,nne(medium)
+          DO 16991 k=1,nne(medium)
             br = br - probs(k)
-            IF((br .LE. 0))GO TO16922
-16921     CONTINUE
-16922     CONTINUE
+            IF((br .LE. 0))GO TO16992
+16991     CONTINUE
+16992     CONTINUE
           iZ = int( zelem(medium,k) + 0.5 )
           j = ints(k)
         END IF
@@ -28181,14 +28285,14 @@ C*****************************************************************************
           IF((rng_seed .GT. 128))call ranmar_get
           br = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
-          DO 16931 k=1,5
+          DO 17001 k=1,5
             IF (( peig .GT. binding_energies(k,iZ) )) THEN
-              IF((br .LT. interaction_prob(k,iZ)))GO TO16932
+              IF((br .LT. interaction_prob(k,iZ)))GO TO17002
               br = (br - interaction_prob(k,iZ))/(1-interaction_prob(k,i
      *        Z))
             END IF
-16931     CONTINUE
-16932     CONTINUE
+17001     CONTINUE
+17002     CONTINUE
           IF ((eadl_relax .AND. k .GT. 4)) THEN
             iq(np) = -1
             e(np) = peig + prm
@@ -28211,7 +28315,7 @@ C*****************************************************************************
             GAMMA=EELEC/RM
             ALPHA=0.5*GAMMA-0.5+1./GAMMA
             RATIO=BETA/ALPHA
-16941       CONTINUE
+17011       CONTINUE
               IF((rng_seed .GT. 128))call ranmar_get
               RNPHT = rng_array(rng_seed)*twom24
               rng_seed = rng_seed + 1
@@ -28238,9 +28342,9 @@ C*****************************************************************************
               IF((rng_seed .GT. 128))call ranmar_get
               RNPHT2 = rng_array(rng_seed)*twom24
               rng_seed = rng_seed + 1
-              IF(RNPHT2.LE.0.5*(1.+GAMMA)*SINTH2*XI/GAMMA)GO TO16942
-            GO TO 16941
-16942       CONTINUE
+              IF(RNPHT2.LE.0.5*(1.+GAMMA)*SINTH2*XI/GAMMA)GO TO17012
+            GO TO 17011
+17012       CONTINUE
             SINTHE=SQRT(SINTH2)
             CALL UPHI(2,1)
           END IF
@@ -28261,13 +28365,13 @@ C*****************************************************************************
         IF (( prob_RR .LE. 0 )) THEN
           IF (( n_RR_warning .LT. 50 )) THEN
             n_RR_warning = n_RR_warning + 1
-            WRITE(6,16950)prob_RR
-16950       FORMAT('**** Warning, attempt to play Roussian Roulette with
+            WRITE(6,17020)prob_RR
+17020       FORMAT('**** Warning, attempt to play Roussian Roulette with
      * prob_RR<=0! ',g14.6)
           END IF
         ELSE
           ip = NPold
-16961     CONTINUE
+17031     CONTINUE
             IF (( iq(ip) .NE. 0 )) THEN
               IF((rng_seed .GT. 128))call ranmar_get
               rnno_RR = rng_array(rng_seed)*twom24
@@ -28290,9 +28394,9 @@ C*****************************************************************************
             ELSE
               ip = ip+1
             END IF
-            IF(((ip .GT. np)))GO TO16962
-          GO TO 16961
-16962     CONTINUE
+            IF(((ip .GT. np)))GO TO17032
+          GO TO 17031
+17032     CONTINUE
           IF (( np .EQ. 0 )) THEN
             np = 1
             e(np) = 0
@@ -28362,9 +28466,9 @@ C*****************************************************************************
       integer*4 urndm, crndm, cdrndm, cmrndm, i4opt, ixx, jxx, fool_opti
      *mizer,rng_seed,rng_array
       real*4 twom24
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -28450,7 +28554,7 @@ C*****************************************************************************
           br = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
           logE = log(peig)
-          DO 16971 k=nne(medium),1,-1
+          DO 17041 k=nne(medium),1,-1
             iz = int(pe_zsorted(k,medium)+0.5)
             zpos = pe_zpos(iZ)
             IF (( iZ .LT. 1 .OR. iZ .GT. 100 )) THEN
@@ -28468,9 +28572,9 @@ C*****************************************************************************
             int_prob = pe_elem_prob(j,k,medium)+slope*(logE-pe_energy(j,
      *      zpos))
             br = br - exp(int_prob)
-            IF((br .LE. 0))GO TO16972
-16971     CONTINUE
-16972     CONTINUE
+            IF((br .LE. 0))GO TO17042
+17041     CONTINUE
+17042     CONTINUE
         END IF
         IF (( peig .LT. pe_be(zpos,pe_nshell(zpos)) .OR. pe_nshell(zpos)
      *   .EQ. 0 )) THEN
@@ -28481,7 +28585,7 @@ C*****************************************************************************
           br = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
           sigtot = 0
-          DO 16981 k=1,pe_nshell(zpos)
+          DO 17051 k=1,pe_nshell(zpos)
             IF (( peig .GT. pe_be(zpos,k) )) THEN
               slope = pe_xsection(j+1,zpos,k) - pe_xsection(j,zpos,k)
               slope = slope/(pe_energy(j+1,zpos)-pe_energy(j,zpos))
@@ -28489,10 +28593,10 @@ C*****************************************************************************
      *        s))
               br = br - exp(int_prob)
               sigtot = sigtot + exp(int_prob)
-              IF((br .LE. 0))GO TO16982
+              IF((br .LE. 0))GO TO17052
             END IF
-16981     CONTINUE
-16982     CONTINUE
+17051     CONTINUE
+17052     CONTINUE
           IF ((k .GT. pe_nshell(zpos))) THEN
             iq(np) = -1
             e(np) = peig + prm
@@ -28515,7 +28619,7 @@ C*****************************************************************************
             GAMMA=EELEC/RM
             ALPHA=0.5*GAMMA-0.5+1./GAMMA
             RATIO=BETA/ALPHA
-16991       CONTINUE
+17061       CONTINUE
               IF((rng_seed .GT. 128))call ranmar_get
               RNPHT = rng_array(rng_seed)*twom24
               rng_seed = rng_seed + 1
@@ -28542,9 +28646,9 @@ C*****************************************************************************
               IF((rng_seed .GT. 128))call ranmar_get
               RNPHT2 = rng_array(rng_seed)*twom24
               rng_seed = rng_seed + 1
-              IF(RNPHT2.LE.0.5*(1.+GAMMA)*SINTH2*XI/GAMMA)GO TO16992
-            GO TO 16991
-16992       CONTINUE
+              IF(RNPHT2.LE.0.5*(1.+GAMMA)*SINTH2*XI/GAMMA)GO TO17062
+            GO TO 17061
+17062       CONTINUE
             SINTHE=SQRT(SINTH2)
             CALL UPHI(2,1)
           END IF
@@ -28565,13 +28669,13 @@ C*****************************************************************************
         IF (( prob_RR .LE. 0 )) THEN
           IF (( n_RR_warning .LT. 50 )) THEN
             n_RR_warning = n_RR_warning + 1
-            WRITE(6,17000)prob_RR
-17000       FORMAT('**** Warning, attempt to play Roussian Roulette with
+            WRITE(6,17070)prob_RR
+17070       FORMAT('**** Warning, attempt to play Roussian Roulette with
      * prob_RR<=0! ',g14.6)
           END IF
         ELSE
           ip = NPold
-17011     CONTINUE
+17081     CONTINUE
             IF (( iq(ip) .NE. 0 )) THEN
               IF((rng_seed .GT. 128))call ranmar_get
               rnno_RR = rng_array(rng_seed)*twom24
@@ -28594,9 +28698,9 @@ C*****************************************************************************
             ELSE
               ip = ip+1
             END IF
-            IF(((ip .GT. np)))GO TO17012
-          GO TO 17011
-17012     CONTINUE
+            IF(((ip .GT. np)))GO TO17082
+          GO TO 17081
+17082     CONTINUE
           IF (( np .EQ. 0 )) THEN
             np = 1
             e(np) = 0
@@ -28707,66 +28811,66 @@ C*****************************************************************************
         call exit(1)
       END IF
       open(pe_sw_unit,file=pe_sw_file,status='old', form='UNFORMATTED',A
-     *CCESS='direct',recl=1, err=17020)
-      GOTO 17030
-17020 write(i_log,'(/a)') '***************** Error: '
+     *CCESS='direct',recl=1, err=17090)
+      GOTO 17100
+17090 write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(2a)') 'egs_init_shellwise_pe: failed to open ', pe_s
      *w_file
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
-17030 is_open = .true.
-      DO 17041 medio=1,nmed
-        DO 17051 i=1,nne(medio)
+17100 is_open = .true.
+      DO 17111 medio=1,nmed
+        DO 17121 i=1,nne(medio)
           pe_nshell(i*medio) = 0
           pe_nge(i*medio) = 0
           pe_zsorted(i,medio) = 0
-17051   CONTINUE
-17052   CONTINUE
-17041 CONTINUE
-17042 CONTINUE
-      DO 17061 l=1,100
+17121   CONTINUE
+17122   CONTINUE
+17111 CONTINUE
+17112 CONTINUE
+      DO 17131 l=1,100
         pe_zpos(l) = -1
-        DO 17071 k=1,500
+        DO 17141 k=1,500
           pe_energy(k,l) = 0.0
-          DO 17081 m=1,16
+          DO 17151 m=1,16
             pe_xsection(k,l,m) = 0.0
-17081     CONTINUE
-17082     CONTINUE
-17071   CONTINUE
-17072   CONTINUE
-        DO 17091 k=1,16
+17151     CONTINUE
+17152     CONTINUE
+17141   CONTINUE
+17142   CONTINUE
+        DO 17161 k=1,16
           pe_be(l,k) = -99
-17091   CONTINUE
-17092   CONTINUE
-17061 CONTINUE
-17062 CONTINUE
+17161   CONTINUE
+17162   CONTINUE
+17131 CONTINUE
+17132 CONTINUE
       curr_rec = 1
       iZpos = 0
       nz = egs_read_short(pe_sw_unit,curr_rec)
-      DO 17101 medio=1,nmed
-        DO 17111 i=1,nne(medio)
+      DO 17171 medio=1,nmed
+        DO 17181 i=1,nne(medio)
           z_sorted(i) = zelem(medio,i)
-17111   CONTINUE
-17112   CONTINUE
+17181   CONTINUE
+17182   CONTINUE
         call egs_heap_sort(nne(medio),z_sorted,sorted)
-        DO 17121 i=1,nne(medio)
+        DO 17191 i=1,nne(medio)
           pe_zsorted(i,medio) = z_sorted(i)
-17121   CONTINUE
-17122   CONTINUE
-        DO 17131 i=1,nne(medio)
+17191   CONTINUE
+17192   CONTINUE
+        DO 17201 i=1,nne(medio)
           iZ = z_sorted(i)
           is_there = .false.
-          DO 17141 j=1,medio-1
-            DO 17151 k=1,nne(j)
+          DO 17211 j=1,medio-1
+            DO 17221 k=1,nne(j)
               IF (( iZ .EQ. pe_zsorted(k,j) )) THEN
                 is_there = .true.
-                GO TO17152
+                GO TO17222
               END IF
-17151       CONTINUE
-17152       CONTINUE
-17141     CONTINUE
-17142     CONTINUE
-          IF((is_there))GO TO17131
+17221       CONTINUE
+17222       CONTINUE
+17211     CONTINUE
+17212     CONTINUE
+          IF((is_there))GO TO17201
           iZpos = iZpos + 1
           zread(iZpos) = iZ
           pe_zpos(iZ) = iZpos
@@ -28778,40 +28882,40 @@ C*****************************************************************************
           pe_nshell(iZpos) = i_nshell
           e_old = -1.0
           ish = 0
-          DO 17161 j=1,i_nge
+          DO 17231 j=1,i_nge
             e_r = egs_read_real(pe_sw_unit,curr_rec)
             sigma_r = egs_read_real(pe_sw_unit,curr_rec)
             pe_energy(j,iZpos) = e_r
             pe_xsection(j,iZpos,0) = sigma_r
             rest_xs(j,iZpos) = sigma_r
-            DO 17171 k=1,i_nshell
+            DO 17241 k=1,i_nshell
               sigma_r = egs_read_real(pe_sw_unit,curr_rec)
               pe_xsection(j,iZpos,k) = sigma_r
               rest_xs(j,iZpos) = rest_xs(j,iZpos) - sigma_r
-17171       CONTINUE
-17172       CONTINUE
+17241       CONTINUE
+17242       CONTINUE
             IF ((e_r - e_old .LT. 1e-15)) THEN
               pe_be(iZpos,i_nshell-ish) = e_r
               ish = ish + 1
             END IF
             e_old = e_r
-17161     CONTINUE
-17162     CONTINUE
-17131   CONTINUE
-17132   CONTINUE
-17101 CONTINUE
-17102 CONTINUE
+17231     CONTINUE
+17232     CONTINUE
+17201   CONTINUE
+17202   CONTINUE
+17171 CONTINUE
+17172 CONTINUE
       pe_ne = iZpos
-      DO 17181 i=1,pe_ne
+      DO 17251 i=1,pe_ne
         iZ = zread(i)
         IF ((pe_nshell(i) .EQ. 0)) THEN
-          DO 17191 j=1,pe_nge(i)
+          DO 17261 j=1,pe_nge(i)
             pe_energy(j,i) = log(pe_energy(j,i))
-17191     CONTINUE
-17192     CONTINUE
-          GO TO17181
+17261     CONTINUE
+17262     CONTINUE
+          GO TO17251
         END IF
-        DO 17201 l=1,pe_nshell(i)
+        DO 17271 l=1,pe_nshell(i)
           IF (( pe_be(i,l) .NE. binding_energies(l,iZ))) THEN
             shift_required = .true.
             deltaEb = binding_energies(l,iZ)-pe_be(i,l)
@@ -28819,7 +28923,7 @@ C*****************************************************************************
             shift_required =.false.
           END IF
           is_there = .false.
-          DO 17211 j=1,pe_nge(i)
+          DO 17281 j=1,pe_nge(i)
             tmp_e(j,l) = pe_energy(j,i)
             tmp_xs(j,l) = pe_xsection(j,i,l)
             IF (( shift_required .AND. pe_energy(j,i) .GE. pe_be(i,l) ))
@@ -28836,13 +28940,13 @@ C*****************************************************************************
                 new_e(j) = tmp_e(j,l)
               END IF
             END IF
-17211     CONTINUE
-17212     CONTINUE
+17281     CONTINUE
+17282     CONTINUE
           pe_be(i,l) = binding_energies(l,iZ)
-17201   CONTINUE
-17202   CONTINUE
-        DO 17221 l=2,pe_nshell(i)
-          DO 17231 j=1,pe_nge(i)
+17271   CONTINUE
+17272   CONTINUE
+        DO 17291 l=2,pe_nshell(i)
+          DO 17301 j=1,pe_nge(i)
             IF (( new_e(j) .GE. pe_be(i,l-1) )) THEN
               m = ibsearch(new_e(j),pe_nge(i),tmp_e(1,l))
               slope = log(tmp_xs(m+1,l)/tmp_xs(m,l))
@@ -28852,11 +28956,11 @@ C*****************************************************************************
      *        j)/tmp_e(m,l))
               pe_xsection(j,i,l) = exp(pe_xsection(j,i,l))
             END IF
-17231     CONTINUE
-17232     CONTINUE
-17221   CONTINUE
-17222   CONTINUE
-        DO 17241 j=1,pe_nge(i)
+17301     CONTINUE
+17302     CONTINUE
+17291   CONTINUE
+17292   CONTINUE
+        DO 17311 j=1,pe_nge(i)
           IF (( j .LT. ib(pe_nshell(i)))) THEN
             new_e(j) = pe_energy(j,i)
           END IF
@@ -28867,23 +28971,23 @@ C*****************************************************************************
           pe_xsection(j,i,0) = pe_xsection(j,i,0) + slope*log(new_e(j)/p
      *    e_energy(m,i))
           pe_xsection(j,i,0) = exp(pe_xsection(j,i,0))
-          DO 17251 l=1,pe_nshell(i)
+          DO 17321 l=1,pe_nshell(i)
             pe_xsection(j,i,0) = pe_xsection(j,i,0) + pe_xsection(j,i,l)
-17251     CONTINUE
-17252     CONTINUE
-17241   CONTINUE
-17242   CONTINUE
-        DO 17261 j=1,pe_nge(i)
+17321     CONTINUE
+17322     CONTINUE
+17311   CONTINUE
+17312   CONTINUE
+        DO 17331 j=1,pe_nge(i)
           pe_energy(j,i) = log(new_e(j))
-          DO 17271 l=1,pe_nshell(i)
+          DO 17341 l=1,pe_nshell(i)
             pe_xsection(j,i,l) = log(pe_xsection(j,i,l)/pe_xsection(j,i,
      *      0))
-17271     CONTINUE
-17272     CONTINUE
-17261   CONTINUE
-17262   CONTINUE
-17181 CONTINUE
-17182 CONTINUE
+17341     CONTINUE
+17342     CONTINUE
+17331   CONTINUE
+17332   CONTINUE
+17251 CONTINUE
+17252 CONTINUE
       write(i_log,'(a/)') ' done'
       IF((is_open))close(pe_sw_unit)
       return
@@ -28908,9 +29012,9 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -28991,8 +29095,8 @@ C*****************************************************************************
       np_old = np
       e_check = 0
       e_array(n_vac) = energy
-17280 CONTINUE
-17281   CONTINUE
+17350 CONTINUE
+17351   CONTINUE
         shell = vac_array(n_vac)
         Ei = e_array(n_vac)
         n_vac = n_vac - 1
@@ -29004,19 +29108,19 @@ C*****************************************************************************
             CALL AUSGAB(IARG)
           END IF
           IF((IARG.LT.0))RETURN
-          IF((n_vac .GT. 0))goto 17280
-          GO TO17282
+          IF((n_vac .GT. 0))goto 17350
+          GO TO17352
         END IF
         ish_relax = shell
         u_relax = Ei
         IF (( shell .EQ. 6 )) THEN
           IF (( Ei .GT. ekcut )) THEN
             np = np + 1
-            IF (( np .GT. 10000 )) THEN
+            IF (( np .GT. 900000 )) THEN
               write(i_log,'(/a)') '***************** Error: '
               write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','RELAX'
-     *        , ' stack size exceeded! ',' $MAXSTACK = ',10000,' np = ',
-     *        np
+     *        , ' stack size exceeded! ',' $MAXSTACK = ',900000,' np = '
+     *        ,np
               write(i_log,'(/a)') '***************** Quiting now.'
               call exit(1)
             END IF
@@ -29037,7 +29141,7 @@ C*****************************************************************************
             eta = (1-eta)*(1+eta)
             IF (( eta .GT. 1e-20 )) THEN
               eta = Sqrt(eta)
-17291         CONTINUE
+17361         CONTINUE
                 IF((rng_seed .GT. 128))call ranmar_get
                 xphi = rng_array(rng_seed)*twom24
                 rng_seed = rng_seed + 1
@@ -29048,9 +29152,9 @@ C*****************************************************************************
                 rng_seed = rng_seed + 1
                 yphi2 = yphi*yphi
                 rhophi2 = xphi2 + yphi2
-                IF(rhophi2.LE.1)GO TO17292
-              GO TO 17291
-17292         CONTINUE
+                IF(rhophi2.LE.1)GO TO17362
+              GO TO 17361
+17362         CONTINUE
               rhophi2 = 1/rhophi2
               cphi = (xphi2 - yphi2)*rhophi2
               sphi = 2*xphi*yphi*rhophi2
@@ -29075,17 +29179,17 @@ C*****************************************************************************
             END IF
             IF((IARG.LT.0))RETURN
           END IF
-          IF((n_vac .GT. 0))goto 17280
-          GO TO17282
+          IF((n_vac .GT. 0))goto 17350
+          GO TO17352
         END IF
         IF((rng_seed .GT. 128))call ranmar_get
         eta = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
-        DO 17301 k=first_transition(shell),last_transition(shell)-1
+        DO 17371 k=first_transition(shell),last_transition(shell)-1
           eta = eta - relaxation_prob(k,iZ)
-          IF((eta .LE. 0))GO TO17302
-17301   CONTINUE
-17302   CONTINUE
+          IF((eta .LE. 0))GO TO17372
+17371   CONTINUE
+17372   CONTINUE
         final = final_state(k)
         finala = final
         IF (( final .LT. 100 )) THEN
@@ -29134,10 +29238,10 @@ C*****************************************************************************
           END IF
         ELSE
           np = np + 1
-          IF (( np .GT. 10000 )) THEN
+          IF (( np .GT. 900000 )) THEN
             write(i_log,'(/a)') '***************** Error: '
             write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','RELAX',
-     *      ' stack size exceeded! ',' $MAXSTACK = ',10000,' np = ',np
+     *      ' stack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np
             write(i_log,'(/a)') '***************** Quiting now.'
             call exit(1)
           END IF
@@ -29162,7 +29266,7 @@ C*****************************************************************************
           eta = (1-eta)*(1+eta)
           IF (( eta .GT. 1e-20 )) THEN
             eta = Sqrt(eta)
-17311       CONTINUE
+17381       CONTINUE
               IF((rng_seed .GT. 128))call ranmar_get
               xphi = rng_array(rng_seed)*twom24
               rng_seed = rng_seed + 1
@@ -29173,9 +29277,9 @@ C*****************************************************************************
               rng_seed = rng_seed + 1
               yphi2 = yphi*yphi
               rhophi2 = xphi2 + yphi2
-              IF(rhophi2.LE.1)GO TO17312
-            GO TO 17311
-17312       CONTINUE
+              IF(rhophi2.LE.1)GO TO17382
+            GO TO 17381
+17382       CONTINUE
             rhophi2 = 1/rhophi2
             cphi = (xphi2 - yphi2)*rhophi2
             sphi = 2*xphi*yphi*rhophi2
@@ -29206,8 +29310,8 @@ C*****************************************************************************
             IF((IARG.LT.0))RETURN
           END IF
         END IF
-      GO TO 17281
-17282 CONTINUE
+      GO TO 17351
+17352 CONTINUE
       return
       end
       subroutine egs_init_relax
@@ -29298,13 +29402,13 @@ C*****************************************************************************
       integer*4 nz, nshell, tr_type
       integer*4 ttype
       real*4 be_r, prob_r
-      DO 17321 iZ=1,100
-        DO 17331 k=1,30
+      DO 17391 iZ=1,100
+        DO 17401 k=1,30
           shell_eadl(iZ,k) = -1
-17331   CONTINUE
-17332   CONTINUE
-17321 CONTINUE
-17322 CONTINUE
+17401   CONTINUE
+17402   CONTINUE
+17391 CONTINUE
+17392 CONTINUE
       min_be = 0.001D0
       write(i_log,'(/a)') ' Reading EADL relaxation data ......'
       data_dir = hen_house(:lnblnk1(hen_house)) // 'data' // '/'
@@ -29318,34 +29422,34 @@ C*****************************************************************************
         call exit(1)
       END IF
       open(relax_unit,file=relax_file,status='old', form='UNFORMATTED',A
-     *CCESS='direct',recl=4, err=17340)
-      GOTO 17350
-17340 write(i_log,'(/a)') '***************** Error: '
+     *CCESS='direct',recl=4, err=17410)
+      GOTO 17420
+17410 write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(2a)') 'egs_init_relax: failed to open ', relax_file
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
-17350 is_open = .true.
+17420 is_open = .true.
       curr_rec = 1
       read(relax_unit,rec=curr_rec) nz
       shell_ntot = 0
       relax_ntot = 0
-      DO 17361 medio=1,nmed
-        DO 17371 i=1,nne(medio)
+      DO 17431 medio=1,nmed
+        DO 17441 i=1,nne(medio)
           z_sorted(i) = zelem(medio,i)
-17371   CONTINUE
-17372   CONTINUE
+17441   CONTINUE
+17442   CONTINUE
         call egs_heap_sort(nne(medio),z_sorted,sorted)
-        DO 17381 i=1,nne(medio)
+        DO 17451 i=1,nne(medio)
           iZ = z_sorted(i)
           is_there = .false.
-          DO 17391 j=1,shell_ntot
+          DO 17461 j=1,shell_ntot
             IF (( iZ .EQ. shell_Z(j) )) THEN
               is_there = .true.
-              GO TO17392
+              GO TO17462
             END IF
-17391     CONTINUE
-17392     CONTINUE
-          IF((is_there))GO TO17381
+17461     CONTINUE
+17462     CONTINUE
+          IF((is_there))GO TO17451
           pos = iZ + 1
           read(relax_unit,rec=pos) curr_rec
           read(relax_unit,rec=curr_rec) nshell
@@ -29359,7 +29463,7 @@ C*****************************************************************************
           END IF
           write(i_log,'(a,i3,a,i2,a)') '  Z = ',iZ,' has ',nshell,' shel
      *ls'
-          DO 17401 ish=shell_ntot+1,shell_ntot+nshell
+          DO 17471 ish=shell_ntot+1,shell_ntot+nshell
             curr_rec = curr_rec+1
             read(relax_unit,rec=curr_rec) shell_type(ish)
             curr_rec = curr_rec+1
@@ -29375,7 +29479,7 @@ C*****************************************************************************
             ELSE IF(( photon_xsections .EQ. 'epdl' )) THEN
               binding_energies(shell_num(ish),iZ) = shell_be(ish)
             END IF
-            DO 17411 k=1,ntran
+            DO 17481 k=1,ntran
               curr_rec = curr_rec+1
               read(relax_unit,rec=curr_rec) itmp(k)
               curr_rec = curr_rec+1
@@ -29386,22 +29490,22 @@ C*****************************************************************************
               ELSE
                 itmp(k) = itmp(k) + 65
               END IF
-17411       CONTINUE
-17412       CONTINUE
+17481       CONTINUE
+17482       CONTINUE
             IF (( shell_be(ish) .LT. min_be )) THEN
               relax_first(ish) = -1
               relax_ntran(ish) = -1
             ELSE
               sumw = 0
-              DO 17421 k=1,ntran
+              DO 17491 k=1,ntran
                 sumw = sumw + wtmp(k)
-17421         CONTINUE
-17422         CONTINUE
+17491         CONTINUE
+17492         CONTINUE
               IF (( sumw .GT. 1 )) THEN
-                DO 17431 k=1,ntran
+                DO 17501 k=1,ntran
                   wtmp(k) = wtmp(k)/sumw
-17431           CONTINUE
-17432           CONTINUE
+17501           CONTINUE
+17502           CONTINUE
               ELSE IF(( sumw .LT. 1 )) THEN
                 ntran = ntran + 1
                 itmp(ntran) = -1
@@ -29419,21 +29523,21 @@ C*****************************************************************************
               relax_ntran(ish) = ntran
               call prepare_alias_histogram(ntran,wtmp, relax_atbin(relax
      *        _ntot+1))
-              DO 17441 k=1,ntran
+              DO 17511 k=1,ntran
                 j = relax_ntot + k
                 relax_state(j) = itmp(k)
                 relax_prob(j) = wtmp(k)
-17441         CONTINUE
-17442         CONTINUE
+17511         CONTINUE
+17512         CONTINUE
               relax_ntot = relax_ntot + ntran
             END IF
-17401     CONTINUE
-17402     CONTINUE
+17471     CONTINUE
+17472     CONTINUE
           shell_ntot = shell_ntot + nshell
-17381   CONTINUE
-17382   CONTINUE
-17361 CONTINUE
-17362 CONTINUE
+17451   CONTINUE
+17452   CONTINUE
+17431 CONTINUE
+17432 CONTINUE
       write(i_log,'(a/)') ' ...... Done.'
       IF((is_open))close(relax_unit)
       return
@@ -29454,9 +29558,9 @@ C*****************************************************************************
      *000),  shell_Z(3000),  shell_eadl(100,30),  shell_ntot
       real*8 shell_be
       integer*4 shell_type,shell_Z,shell_ntot,shell_num,shell_eadl
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -29554,7 +29658,7 @@ C*****************************************************************************
       vac = shell
       Nvac = 0
       np_save = np
-17451 CONTINUE
+17521 CONTINUE
         IF (( Evac .LT. min_E .OR. relax_ntran(vac) .LT. 1 )) THEN
           edep = edep + Evac
           edep_local = Evac
@@ -29563,7 +29667,7 @@ C*****************************************************************************
             CALL AUSGAB(IARG)
           END IF
           IF((IARG.LT.0))RETURN
-          go to 17460
+          go to 17530
         END IF
         new_state = sample_alias_histogram(relax_ntran(vac), relax_prob(
      *  relax_first(vac)), relax_atbin(relax_first(vac)))
@@ -29600,14 +29704,14 @@ C*****************************************************************************
         edep_local = 0
         IF (( Ex .GT. Ecc )) THEN
           np = np + 1
-          IF (( np .GT. 10000 )) THEN
+          IF (( np .GT. 900000 )) THEN
             write(i_log,'(/a)') '***************** Warning: '
             write(i_log,'(3(a,f10.6),a,i2)') 'Evac = ',Evac, ' Ef = ',Ef
      *      ,  ' min_E = ', min_E,' iq = ',iqf
             write(i_log,'(/a)') '***************** Error: '
             write(i_log,'(//,3a,/,2(a,i9),/,a)') ' In subroutine ','new_
-     *relax', ' stack size exceeded! ',' $MXSTACK = ',10000,' np = ',np,
-     *       ' Increase $MXSTACK and try again '
+     *relax', ' stack size exceeded! ',' $MXSTACK = ',900000,' np = ',np
+     *      , ' Increase $MXSTACK and try again '
             write(i_log,'(/a)') '***************** Quiting now.'
             call exit(1)
           END IF
@@ -29626,7 +29730,7 @@ C*****************************************************************************
           sint = 1-cost*cost
           IF (( sint .GT. 0 )) THEN
             sint = sqrt(sint)
-17471       CONTINUE
+17541       CONTINUE
               IF((rng_seed .GT. 128))call ranmar_get
               xphi = rng_array(rng_seed)*twom24
               rng_seed = rng_seed + 1
@@ -29637,9 +29741,9 @@ C*****************************************************************************
               rng_seed = rng_seed + 1
               yphi2 = yphi*yphi
               rhophi2 = xphi2 + yphi2
-              IF(rhophi2.LE.1)GO TO17472
-            GO TO 17471
-17472       CONTINUE
+              IF(rhophi2.LE.1)GO TO17542
+            GO TO 17541
+17542       CONTINUE
             rhophi2 = 1/rhophi2
             cphi = (xphi2 - yphi2)*rhophi2
             sphi = 2*xphi*yphi*rhophi2
@@ -29688,13 +29792,13 @@ C*****************************************************************************
             IF((IARG.LT.0))RETURN
           END IF
         END IF
-17460   CONTINUE
-        IF((Nvac .EQ. 0))GO TO17452
+17530   CONTINUE
+        IF((Nvac .EQ. 0))GO TO17522
         vac = vacs(Nvac)
         Evac = shell_be(vac)
         Nvac = Nvac - 1
-      GO TO 17451
-17452 CONTINUE
+      GO TO 17521
+17522 CONTINUE
       return
       end
       subroutine init_triplet
@@ -29751,10 +29855,10 @@ C*****************************************************************************
      *irst
       real*8 logE, f_new, f_old, spline
       IF((itriplet .EQ. 0))return
-      DO 17481 i=1,len(triplet_data_file)
+      DO 17551 i=1,len(triplet_data_file)
         triplet_data_file(i:i) = ' '
-17481 CONTINUE
-17482 CONTINUE
+17551 CONTINUE
+17552 CONTINUE
       triplet_data_file = hen_house(:lnblnk1(hen_house)) // 'data' // '/
      *' // 'triplet.data'
       want_triplet_unit = 63
@@ -29766,7 +29870,7 @@ C*****************************************************************************
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
-      open(triplet_unit,file=triplet_data_file,err=17490)
+      open(triplet_unit,file=triplet_data_file,err=17560)
       write(i_log,'(a,$)') ' init_triplet: reading triplet data ... '
       read(triplet_unit,*) ntrip
       IF (( ntrip .GT. 55 )) THEN
@@ -29775,70 +29879,70 @@ C*****************************************************************************
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
-      read(triplet_unit,*,err=17500) (energies(i),i=1,ntrip)
-      DO 17511 iel=1,100
+      read(triplet_unit,*,err=17570) (energies(i),i=1,ntrip)
+      DO 17581 iel=1,100
         read(triplet_unit,*)
-        read(triplet_unit,*,err=17500) (sig_pair(iel,i),i=1,ntrip)
-        read(triplet_unit,*,err=17500) (sig_triplet(iel,i),i=1,ntrip)
-17511 CONTINUE
-17512 CONTINUE
+        read(triplet_unit,*,err=17570) (sig_pair(iel,i),i=1,ntrip)
+        read(triplet_unit,*,err=17570) (sig_triplet(iel,i),i=1,ntrip)
+17581 CONTINUE
+17582 CONTINUE
       write(i_log,*) 'OK'
       ifirst = 0
-      DO 17521 i=1,ntrip
+      DO 17591 i=1,ntrip
         IF((ifirst .EQ. 0 .AND. energies(i) .GT. 4.01*rm))ifirst = i
         energies(i) = log(energies(i))
-17521 CONTINUE
-17522 CONTINUE
+17591 CONTINUE
+17592 CONTINUE
       log_4rm = log(4*rm)
       energies(ifirst-1) = log_4rm
       dl_triplet = (energies(ntrip) - log_4rm)/250
       dli_triplet = 1/dl_triplet
       bli_triplet = 1 - log_4rm/dl_triplet
-      DO 17531 imed=1,nmed
+      DO 17601 imed=1,nmed
         write(i_log,'(a,i3,a,$)') '   Preparing triplet fraction data fo
      *r medium ',imed,' ... '
         iz1 = zelem(imed,1) + 0.1
-        DO 17541 i=1,ntrip
+        DO 17611 i=1,ntrip
           sigp(i) = pz(imed,1)*sig_pair(iz1,i)
           sigt(i) = pz(imed,1)*sig_triplet(iz1,i)
-          DO 17551 iel=2,nne(imed)
+          DO 17621 iel=2,nne(imed)
             izi = zelem(imed,iel) + 0.1
             sigp(i) = sigp(i) + pz(imed,iel)*sig_pair(izi,i)
             sigt(i) = sigt(i) + pz(imed,iel)*sig_triplet(izi,i)
-17551     CONTINUE
-17552     CONTINUE
-17541   CONTINUE
-17542   CONTINUE
-        DO 17561 i=ifirst,ntrip
+17621     CONTINUE
+17622     CONTINUE
+17611   CONTINUE
+17612   CONTINUE
+        DO 17631 i=ifirst,ntrip
           f_triplet(i-ifirst+2) = sigt(i)/(sigp(i) + sigt(i))
-17561   CONTINUE
-17562   CONTINUE
+17631   CONTINUE
+17632   CONTINUE
         f_triplet(1) = 0
         call set_spline(energies(ifirst-1),f_triplet,as,bs,cs,ds,ntrip-i
      *  first+2)
         logE = log_4rm
         f_old = 0
-        DO 17571 i=1,250-1
+        DO 17641 i=1,250-1
           logE = logE + dl_triplet
           f_new = spline(logE,energies(ifirst-1),as,bs,cs,ds,ntrip-ifirs
      *    t+2)
           a_triplet(i,imed) = (f_new - f_old)*dli_triplet
           b_triplet(i,imed) = f_new - a_triplet(i,imed)*logE
           f_old = f_new
-17571   CONTINUE
-17572   CONTINUE
+17641   CONTINUE
+17642   CONTINUE
         write(i_log,*) 'OK'
-17531 CONTINUE
-17532 CONTINUE
+17601 CONTINUE
+17602 CONTINUE
       close(triplet_unit)
       return
-17490 CONTINUE
+17560 CONTINUE
       write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(a,a)') ' init_triplet: failed to open the data file
      *', triplet_data_file(:lnblnk1(triplet_data_file))
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
-17500 CONTINUE
+17570 CONTINUE
       write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) ' init_triplet: error while reading triplet data '
       write(i_log,'(/a)') '***************** Quiting now.'
@@ -29880,13 +29984,13 @@ C*****************************************************************************
       write(i_log,'(a/,a)') 'Output from subroutine EDGSET:', '=========
      *====================='
       do_relax = .false.
-      DO 17581 j=1, 2097154
+      DO 17651 j=1, 2097154
         IF (( IEDGFL .GT. 0 .AND. IEDGFL .LE. 100 )) THEN
           do_relax = .true.
-          GO TO17582
+          GO TO17652
         END IF
-17581 CONTINUE
-17582 CONTINUE
+17651 CONTINUE
+17652 CONTINUE
       IF (( .NOT.do_relax )) THEN
         IF ((eadl_relax)) THEN
           write(i_log,'(/a)') '***************** Error: '
@@ -29903,64 +30007,64 @@ C*****************************************************************************
      *..'
       got_data = .true.
       rewind(i_photo_relax)
-      DO 17591 i=1,100
+      DO 17661 i=1,100
         IF ((eadl_relax)) THEN
           read(i_photo_relax,*)
         ELSE
           read(i_photo_relax,*) j,(binding_energies(k,i),k=1,6)
-          DO 17601 k=1,6
+          DO 17671 k=1,6
             binding_energies(k,i) = binding_energies(k,i)*1e-6
-17601     CONTINUE
-17602     CONTINUE
+17671     CONTINUE
+17672     CONTINUE
         END IF
-17591 CONTINUE
-17592 CONTINUE
+17661 CONTINUE
+17662 CONTINUE
       read(i_photo_relax,*)
-      DO 17611 i=1,100
+      DO 17681 i=1,100
         read(i_photo_relax,*) j,(interaction_prob(k,i),k=1,5)
         interaction_prob(6,i)=1.01
-17611 CONTINUE
-17612 CONTINUE
+17681 CONTINUE
+17682 CONTINUE
       write(i_log,'(a)') ' Done'
       write(i_log,'(/a$)') ' Reading simplified relaxation data .....'
       read(i_photo_relax,*)
-      DO 17621 i=1,100
+      DO 17691 i=1,100
         read(i_photo_relax,*) j,(relaxation_prob(k,i),k=1,19)
-17621 CONTINUE
-17622 CONTINUE
+17691 CONTINUE
+17692 CONTINUE
       read(i_photo_relax,*)
-      DO 17631 i=1,100
+      DO 17701 i=1,100
         read(i_photo_relax,*) j,(relaxation_prob(k,i),k=20,26)
-17631 CONTINUE
-17632 CONTINUE
+17701 CONTINUE
+17702 CONTINUE
       read(i_photo_relax,*)
-      DO 17641 i=1,100
+      DO 17711 i=1,100
         read(i_photo_relax,*) j,(relaxation_prob(k,i),k=27,32)
-17641 CONTINUE
-17642 CONTINUE
+17711 CONTINUE
+17712 CONTINUE
       read(i_photo_relax,*)
-      DO 17651 i=1,100
+      DO 17721 i=1,100
         read(i_photo_relax,*) j,(relaxation_prob(k,i),k=33,37)
-17651 CONTINUE
-17652 CONTINUE
+17721 CONTINUE
+17722 CONTINUE
       read(i_photo_relax,*)
-      DO 17661 i=1,100
+      DO 17731 i=1,100
         read(i_photo_relax,*) j,relaxation_prob(38,i)
-17661 CONTINUE
-17662 CONTINUE
+17731 CONTINUE
+17732 CONTINUE
       write(i_log,'(a)') ' Done'
       write(i_log,'(/a$)') ' Reading parametrized XCOM photo cross secti
      *on data .....'
       rewind(i_photo_cs)
-      DO 17671 i=1,100
+      DO 17741 i=1,100
         read(i_photo_cs,*) j,edge_number(i)
-        DO 17681 j=1,edge_number(i)
+        DO 17751 j=1,edge_number(i)
           read(i_photo_cs,*) edge_a(j,i),edge_b(j,i),edge_c(j,i), edge_d
      *    (j,i),edge_energies(j,i)
-17681   CONTINUE
-17682   CONTINUE
-17671 CONTINUE
-17672 CONTINUE
+17751   CONTINUE
+17752   CONTINUE
+17741 CONTINUE
+17742 CONTINUE
       write(i_log,'(a)') ' Done'
       IF ((eadl_relax)) THEN
         call egs_init_relax
@@ -30010,9 +30114,9 @@ C*****************************************************************************
       integer*4
      *                  MPGEM,
      *                          NGR
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -30058,12 +30162,14 @@ C*****************************************************************************
       logical is_batch, is_pegsless, is_uniform_run
       common/score/endep( 2097153), endep2( 2097153), temp2, planarefe,
      *planarefp,planarfe,planarfp, nestep, endep_tmp( 2097153), i_phsp_o
-     *ut,i_muidx_out,i_unit_out,IWATCH,mxnp, endep_last( 2097153)
+     *ut,i_muidx_out,i_unit_out,IWATCH,mxnp,i_bindos, endep_last( 209715
+     *3)
       REAL*8 endep, endep2, temp2,planarefe, planarefp, planarfe, planar
      *fp
       integer*8 nestep
       real endep_tmp
-      integer i_phsp_out,   i_muidx_out,    i_unit_out,  IWATCH,mxnp
+      integer i_phsp_out,   i_muidx_out,    i_unit_out,  i_bindos,  IWAT
+     *CH,mxnp
       integer*2 endep_last
       DOUBLE PRECISION PEIG
       real*8 EIG,  RNNO35,  GMFPR0,  GMFP,  COHFAC,  RNNO37,  XXX,  X2,
@@ -30079,16 +30185,16 @@ C*****************************************************************************
       IRL=IR(NP)
       medium = med(irl)
       IF ((EIG .LE. PCUT)) THEN
-        GO TO 17690
+        GO TO 17760
       END IF
-17700 CONTINUE
-17701   CONTINUE
+17770 CONTINUE
+17771   CONTINUE
         IF ((WT(NP) .EQ. 0.0)) THEN
-          go to 17710
+          go to 17780
         END IF
         GLE=LOG(EIG)
         IF (( n_split .GT. 1 )) THEN
-17720     CONTINUE
+17790     CONTINUE
           IF((rng_seed .GT. 128))call ranmar_get
           RNNO35 = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
@@ -30113,17 +30219,17 @@ C*****************************************************************************
           dpmfp_old = 0
           eta_prime = 1 - rnno35 + d_eta
           IF ((IWATCH .NE.0 .AND. IWATCH.NE.4)) THEN
-            WRITE(6,17730)n_split,wt_save
-17730       FORMAT(' Splitting photon into ',I4,' photons with weight ',
+            WRITE(6,17800)n_split,wt_save
+17800       FORMAT(' Splitting photon into ',I4,' photons with weight ',
      *1PE10.3)
           END IF
-          DO 17741 i_split=1,n_split
+          DO 17811 i_split=1,n_split
             eta_prime = eta_prime - d_eta
-            IF((eta_prime .LE. 0))goto 17750
+            IF((eta_prime .LE. 0))goto 17820
             dpmfp = -log(eta_prime) - dpmfp_old
             dpmfp_old = dpmfp_old + dpmfp
             np = np+1
-            IF (( np .GT. 10000 )) THEN
+            IF (( np .GT. 900000 )) THEN
               write(6,*) ' Stack overflow in $SELECT-PHOTON-MFP '
               stop
             END IF
@@ -30141,7 +30247,7 @@ C*****************************************************************************
             irl = ir(np)
             irold = irl
             medium = med(irl)
-17761       CONTINUE
+17831       CONTINUE
               IF (( medium .NE. 0 )) THEN
                 LGLE=GE1(MEDIUM)*GLE+GE0(MEDIUM)
                 GMFPR0=GMFP1(LGLE,MEDIUM)*GLE+GMFP0(LGLE,MEDIUM)
@@ -30174,7 +30280,7 @@ C*****************************************************************************
                   ircode = 2
                   return
                 END IF
-                goto 17750
+                goto 17820
               END IF
               IF((medium .NE. 0))dpmfp = dpmfp - ustep/gmfp
               IF (( irnew .NE. irold )) THEN
@@ -30189,9 +30295,9 @@ C*****************************************************************************
               IF((IARG.LT.0))RETURN
               irold = ir(np)
               IF((IWATCH.GT.0))CALL WATCH(5,IWATCH)
-              IF(((medium .NE. 0 .AND. dpmfp .LT. 1.E-8)))GO TO17762
-            GO TO 17761
-17762       CONTINUE
+              IF(((medium .NE. 0 .AND. dpmfp .LT. 1.E-8)))GO TO17832
+            GO TO 17831
+17832       CONTINUE
             x_save = x(np)
             y_save = y(np)
             z_save = z(np)
@@ -30203,7 +30309,7 @@ C*****************************************************************************
               IF ((RNNO37.LE.(1.0-COHFAC))) THEN
                 IF (( i_split .NE. i_survive_s )) THEN
                   np = np-1
-                  goto 17770
+                  goto 17840
                 END IF
                 IF((IWATCH.GT.0))CALL WATCH(23,IWATCH)
                 IARG=23
@@ -30212,8 +30318,8 @@ C*****************************************************************************
                 END IF
                 IF((IARG.LT.0))RETURN
                 wt(np) = wt(np)*n_split
-17780           CONTINUE
-17781             CONTINUE
+17850           CONTINUE
+17851             CONTINUE
                   IF((rng_seed .GT. 128))call ranmar_get
                   XXX = rng_array(rng_seed)*twom24
                   rng_seed = rng_seed + 1
@@ -30221,19 +30327,19 @@ C*****************************************************************************
                   X2=RSCT1(LXXX,MEDIUM)*XXX+RSCT0(LXXX,MEDIUM)
                   Q2=X2*RMSQ/(20.60744*20.60744)
                   COSTHE=1.-Q2/(2.*E(NP)*E(NP))
-                  IF((ABS(COSTHE).GT.1.0))GO TO 17780
+                  IF((ABS(COSTHE).GT.1.0))GO TO 17850
                   CSQTHE=COSTHE*COSTHE
                   REJF=(1.0+CSQTHE)/2.0
                   IF((rng_seed .GT. 128))call ranmar_get
                   RNNORJ = rng_array(rng_seed)*twom24
                   rng_seed = rng_seed + 1
-                  IF(((RNNORJ .LE. REJF)))GO TO17782
-                GO TO 17781
-17782           CONTINUE
+                  IF(((RNNORJ .LE. REJF)))GO TO17852
+                GO TO 17851
+17852           CONTINUE
                 SINTHE=SQRT(1.0-CSQTHE)
                 CALL UPHI(2,1)
                 IF((IWATCH.GT.0))CALL WATCH(24,IWATCH)
-                goto 17770
+                goto 17840
               END IF
             END IF
             IF((rng_seed .GT. 128))call ranmar_get
@@ -30272,14 +30378,14 @@ C*****************************************************************************
               END IF
             END IF
             ip = NPold
-17791       CONTINUE
+17861       CONTINUE
               IF (( iq(ip) .EQ. 0 )) THEN
                 IF (( i_split .NE. i_survive_s )) THEN
                   IF (( ip .LT. np )) THEN
                     IF ((IWATCH.NE.0 .AND. IWATCH.NE.4)) THEN
-                      WRITE(6,17800)ip,e(ip),iq(ip),ir(ip),x(ip),y(ip),
+                      WRITE(6,17870)ip,e(ip),iq(ip),ir(ip),x(ip),y(ip),
      *                z(ip),u(ip),v(ip),w(ip),latch(ip),wt(ip)
-17800                 FORMAT(' Eliminating scattered photon',T36,':', I5
+17870                 FORMAT(' Eliminating scattered photon',T36,':', I5
      *,F9.3,2I4,3F8.3,3F7.3,I10,1PE10.3)
                     END IF
                     e(ip) = e(np)
@@ -30298,13 +30404,13 @@ C*****************************************************************************
               ELSE
                 ip = ip+1
               END IF
-              IF(((ip .GT. np)))GO TO17792
-            GO TO 17791
-17792       CONTINUE
-17770       CONTINUE
-17741     CONTINUE
-17742     CONTINUE
-17750     CONTINUE
+              IF(((ip .GT. np)))GO TO17862
+            GO TO 17861
+17862       CONTINUE
+17840       CONTINUE
+17811     CONTINUE
+17812     CONTINUE
+17820     CONTINUE
           IF (( np .LE. 0 )) THEN
             ircode = 2
             return
@@ -30315,10 +30421,10 @@ C*****************************************************************************
             irl = ir(np)
             medium = med(irl)
             IF ((EIG.LE.PCUT)) THEN
-              GO TO 17690
+              GO TO 17760
             END IF
             gle = log(eig)
-            goto 17720
+            goto 17790
           END IF
           return
         ELSE
@@ -30331,14 +30437,14 @@ C*****************************************************************************
           DPMFP=-LOG(RNNO35)
         END IF
         IROLD=IR(NP)
-17810   CONTINUE
-17811     CONTINUE
+17880   CONTINUE
+17881     CONTINUE
           IF ((MEDIUM.NE.0)) THEN
             LGLE=GE1(MEDIUM)*GLE+GE0(MEDIUM)
             GMFPR0=GMFP1(LGLE,MEDIUM)*GLE+GMFP0(LGLE,MEDIUM)
           END IF
-17820     CONTINUE
-17821       CONTINUE
+17890     CONTINUE
+17891       CONTINUE
             IF ((MEDIUM.EQ.0)) THEN
               TSTEP=VACDST
             ELSE
@@ -30363,7 +30469,7 @@ C*****************************************************************************
               call howfar
             END IF
             IF ((IDISC.GT.0)) THEN
-              GO TO 17710
+              GO TO 17780
             END IF
             VSTEP=USTEP
             TVSTEP=VSTEP
@@ -30396,17 +30502,17 @@ C*****************************************************************************
             END IF
             IF((IARG.LT.0))RETURN
             IF ((EIG.LE.PCUT)) THEN
-              GO TO 17690
+              GO TO 17760
             END IF
-            IF((IDISC.LT.0))GO TO 17710
-            IF((MEDIUM.NE.MEDOLD))GO TO 17822
+            IF((IDISC.LT.0))GO TO 17780
+            IF((MEDIUM.NE.MEDOLD))GO TO 17892
             IF ((MEDIUM.NE.0.AND.DPMFP.LE.1.E-8)) THEN
-              GO TO 17812
+              GO TO 17882
             END IF
-          GO TO 17821
-17822     CONTINUE
-        GO TO 17811
-17812   CONTINUE
+          GO TO 17891
+17892     CONTINUE
+        GO TO 17881
+17882   CONTINUE
         IF ((IRAYLR.EQ.1)) THEN
           IF((rng_seed .GT. 128))call ranmar_get
           RNNO37 = rng_array(rng_seed)*twom24
@@ -30426,7 +30532,7 @@ C*****************************************************************************
               CALL AUSGAB(IARG)
             END IF
             IF((IARG.LT.0))RETURN
-            GOTO 17700
+            GOTO 17770
           END IF
         END IF
         IF ((IPHOTONUCR(IRL).EQ.1)) THEN
@@ -30445,7 +30551,7 @@ C*****************************************************************************
               CALL AUSGAB(IARG)
             END IF
             IF((IARG.LT.0))RETURN
-            GOTO 17700
+            GOTO 17770
           END IF
         END IF
         IF((rng_seed .GT. 128))call ranmar_get
@@ -30465,9 +30571,9 @@ C*****************************************************************************
           END IF
           IF((IARG.LT.0))RETURN
           IF (( iq(np) .NE. 0 )) THEN
-            GO TO 17702
+            GO TO 17772
           ELSE
-            goto 17830
+            goto 17900
           END IF
         END IF
         GBR2=GBR21(LGLE,MEDIUM)*GLE+GBR20(LGLE,MEDIUM)
@@ -30483,7 +30589,7 @@ C*****************************************************************************
             CALL AUSGAB(IARG)
           END IF
           IF((IARG.LT.0))RETURN
-          IF((IQ(NP).NE.0))GO TO 17702
+          IF((IQ(NP).NE.0))GO TO 17772
         ELSE
           IARG=19
           IF ((IAUSFL(IARG+1).NE.0)) THEN
@@ -30499,15 +30605,15 @@ C*****************************************************************************
             CALL AUSGAB(IARG)
           END IF
           IF((IARG.LT.0))RETURN
-          IF((IQ(NP) .NE. 0))GO TO 17702
+          IF((IQ(NP) .NE. 0))GO TO 17772
         END IF
-17830   PEIG=E(NP)
+17900   PEIG=E(NP)
         EIG=PEIG
-        IF((EIG.LT.PCUT))GO TO 17690
-      GO TO 17701
-17702 CONTINUE
+        IF((EIG.LT.PCUT))GO TO 17760
+      GO TO 17771
+17772 CONTINUE
       RETURN
-17690 IF (( medium .GT. 0 )) THEN
+17760 IF (( medium .GT. 0 )) THEN
         IF ((EIG.GT.AP(MEDIUM))) THEN
           IDR=1
         ELSE
@@ -30525,7 +30631,7 @@ C*****************************************************************************
       IRCODE=2
       NP=NP-1
       RETURN
-17710 EDEP=PEIG
+17780 EDEP=PEIG
       IARG=3
       IF ((IAUSFL(IARG+1).NE.0)) THEN
         CALL AUSGAB(IARG)
@@ -30539,9 +30645,9 @@ C*****************************************************************************
       implicit none
       COMMON/QDEBUG/QDEBUG
       LOGICAL QDEBUG
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -30619,15 +30725,15 @@ C*****************************************************************************
         E(2)=DEG/2.
         CALL UPHI(3,2)
       END IF
-17841 CONTINUE
-        IF((np .LE. 0))GO TO17842
+17911 CONTINUE
+        IF((np .LE. 0))GO TO17912
         IF (( iq(np) .EQ. 0 )) THEN
           call photon(ircode)
         ELSE
           call electr(ircode)
         END IF
-      GO TO 17841
-17842 CONTINUE
+      GO TO 17911
+17912 CONTINUE
       RETURN
       END
       SUBROUTINE UPHI(IENTRY,LVL)
@@ -30642,9 +30748,9 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -30681,14 +30787,14 @@ C*****************************************************************************
         CALL AUSGAB(IARG)
       END IF
       IF((IARG.LT.0))RETURN
-      GO TO (17850,17860,17870),IENTRY
-      GO TO 17880
-17850 CONTINUE
+      GO TO (17920,17930,17940),IENTRY
+      GO TO 17950
+17920 CONTINUE
       SINTHE=sin(THETA)
       CTHET=PI5D2-THETA
       COSTHE=sin(CTHET)
-17860 CONTINUE
-17891 CONTINUE
+17930 CONTINUE
+17961 CONTINUE
         IF((rng_seed .GT. 128))call ranmar_get
         xphi = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
@@ -30699,29 +30805,29 @@ C*****************************************************************************
         rng_seed = rng_seed + 1
         yphi2 = yphi*yphi
         rhophi2 = xphi2 + yphi2
-        IF(rhophi2.LE.1)GO TO17892
-      GO TO 17891
-17892 CONTINUE
+        IF(rhophi2.LE.1)GO TO17962
+      GO TO 17961
+17962 CONTINUE
       rhophi2 = 1/rhophi2
       cosphi = (xphi2 - yphi2)*rhophi2
       sinphi = 2*xphi*yphi*rhophi2
-17870 GO TO (17900,17910,17920),LVL
-      GO TO 17880
-17900 A=U(NP)
+17940 GO TO (17970,17980,17990),LVL
+      GO TO 17950
+17970 A=U(NP)
       B=V(NP)
       C=W(NP)
-      GO TO 17930
-17920 A=U(NP-1)
+      GO TO 18000
+17990 A=U(NP-1)
       B=V(NP-1)
       C=W(NP-1)
-17910 X(NP)=X(NP-1)
+17980 X(NP)=X(NP-1)
       Y(NP)=Y(NP-1)
       Z(NP)=Z(NP-1)
       IR(NP)=IR(NP-1)
       WT(NP)=WT(NP-1)
       DNEAR(NP)=DNEAR(NP-1)
       LATCH(NP)=LATCH(NP-1)
-17930 SINPS2=A*A+B*B
+18000 SINPS2=A*A+B*B
       IF ((SINPS2.LT.1.0E-20)) THEN
         U(NP)=SINTHE*COSPHI
         V(NP)=SINTHE*SINPHI
@@ -30742,7 +30848,7 @@ C*****************************************************************************
       END IF
       IF((IARG.LT.0))RETURN
       RETURN
-17880 write(i_log,'(/a)') '***************** Error: '
+17950 write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(a,2i6)') ' STOPPED IN UPHI WITH IENTRY,LVL=',IENTRY,
      *LVL
       write(i_log,'(/a)') '***************** Quiting now.'
@@ -30846,16 +30952,16 @@ C*****************************************************************************
      *_chunk, file_units, n_files,i_input,i_log,i_incoh, i_nist_data,i_m
      *scat,i_photo_cs,i_photo_relax, xsec_out
       logical is_batch, is_pegsless, is_uniform_run
-      DO 17941 i=1,len(tmp_string)
+      DO 18011 i=1,len(tmp_string)
         tmp_string(i:i) = ' '
-17941 CONTINUE
-17942 CONTINUE
+18011 CONTINUE
+18012 CONTINUE
       tmp_string = hen_house(:lnblnk1(hen_house)) // 'data' // '/'
       IF (( ibr_nist .EQ. 1 )) THEN
-        DO 17951 i=1,len(tmp1_string)
+        DO 18021 i=1,len(tmp1_string)
           tmp1_string(i:i) = ' '
-17951   CONTINUE
-17952   CONTINUE
+18021   CONTINUE
+18022   CONTINUE
         tmp1_string = tmp_string(:lnblnk1(tmp_string)) // 'nist_brems.da
      *ta'
         inquire(file=tmp1_string,exist=ex,opened=is_opened,number=itmp)
@@ -30875,15 +30981,15 @@ C*****************************************************************************
             write(i_log,'(/a)') '***************** Quiting now.'
             call exit(1)
           END IF
-          open(i_nist_data,file=tmp1_string,status='old',err=12900)
+          open(i_nist_data,file=tmp1_string,status='old',err=12970)
         ELSE
           i_nist_data = itmp
         END IF
       ELSE IF((ibr_nist .EQ. 2)) THEN
-        DO 17961 i=1,len(tmp1_string)
+        DO 18031 i=1,len(tmp1_string)
           tmp1_string(i:i) = ' '
-17961   CONTINUE
-17962   CONTINUE
+18031   CONTINUE
+18032   CONTINUE
         tmp1_string = tmp_string(:lnblnk1(tmp_string)) // 'nrc_brems.dat
      *a'
         inquire(file=tmp1_string,exist=ex,opened=is_opened,number=itmp)
@@ -30903,7 +31009,7 @@ C*****************************************************************************
             write(i_log,'(/a)') '***************** Quiting now.'
             call exit(1)
           END IF
-          open(i_nist_data,file=tmp1_string,status='old',err=12900)
+          open(i_nist_data,file=tmp1_string,status='old',err=12970)
         ELSE
           i_nist_data = itmp
         END IF
@@ -30932,24 +31038,24 @@ C*****************************************************************************
         call exit(1)
       END IF
       read(i_nist_data,*) (energy_array(n),n=1,nmix)
-      DO 17971 n=1,nmix
+      DO 18041 n=1,nmix
         energy_array(n) = 1.0*energy_array(n)
-17971 CONTINUE
-17972 CONTINUE
+18041 CONTINUE
+18042 CONTINUE
       read(i_nist_data,*) (x_array(k),k=1,kmix)
       read(i_nist_data,*)
-      DO 17981 i=1,100
+      DO 18051 i=1,100
         read(i_nist_data,*) ((cs_array(n,k,i),n=1,nmix),k=1,kmix)
-17981 CONTINUE
-17982 CONTINUE
+18051 CONTINUE
+18052 CONTINUE
       close(i_nist_data)
-      DO 17991 k=1,kmix
+      DO 18061 k=1,kmix
         xi_array(k)=Log(1-x_array(k)+1e-6)
         IF (( fool_intel_optimizer )) THEN
           write(i_log,*) 'xi_array(k): ',xi_array(k)
         END IF
-17991 CONTINUE
-17992 CONTINUE
+18061 CONTINUE
+18062 CONTINUE
       ngauss = 64
       call gauss_legendre(0d0,1d0,x_gauss,w_gauss,ngauss)
       write(i_log,*) ' '
@@ -30959,20 +31065,20 @@ C*****************************************************************************
         write(i_log,*) 'Using NRC brems cross sections! '
       END IF
       write(i_log,*) ' '
-      DO 18001 medium=1,nmed
+      DO 18071 medium=1,nmed
         log_ap(medium) = log(ap(medium))
         write(i_log,*) ' Initializing brems data for medium ',medium,'..
      *.'
         emin = max(ae(medium) - rm, ap(medium))
-        DO 18011 i=1,nmix
-          IF((energy_array(i) .GE. emin))GO TO18012
-18011   CONTINUE
-18012   CONTINUE
+        DO 18081 i=1,nmix
+          IF((energy_array(i) .GE. emin))GO TO18082
+18081   CONTINUE
+18082   CONTINUE
         ifirst = i
-        DO 18021 i=nmix,1,-1
-          IF((energy_array(i) .LT. ue(medium) - rm))GO TO18022
-18021   CONTINUE
-18022   CONTINUE
+        DO 18091 i=nmix,1,-1
+          IF((energy_array(i) .LT. ue(medium) - rm))GO TO18092
+18091   CONTINUE
+18092   CONTINUE
         ilast = i+1
         IF (( ifirst .LT. 1 .OR. ilast .GT. nmix )) THEN
           write(i_log,*) ' init_nist_brems: data available only for '
@@ -30984,46 +31090,46 @@ C*****************************************************************************
           IF((ifirst .LT. 1))ifirst=1
           IF((ilast .GT. nmix))ilast = nmix
         END IF
-        DO 18031 i=ifirst,ilast
+        DO 18101 i=ifirst,ilast
           ii = i+1 - ifirst
           ee(ii) = energy_array(i)
           ele(ii) = log(ee(ii))
           sumA = 0
-          DO 18041 j=1,NNE(medium)
+          DO 18111 j=1,NNE(medium)
             sumA = sumA + pz(medium,j)*wa(medium,j)
-18041     CONTINUE
-18042     CONTINUE
+18111     CONTINUE
+18112     CONTINUE
           sumA = sumA*amu
-          DO 18051 k=1,kmix
+          DO 18121 k=1,kmix
             cs(ii,k) = 0
-            DO 18061 j=1,NNE(medium)
+            DO 18131 j=1,NNE(medium)
               Z = zelem(medium,j)
               iz = int(Z+0.1)
               Z = Z*Z/sumA
               cs(ii,k) = cs(ii,k) + pz(medium,j)*Z*cs_array(i,k,iz)
-18061       CONTINUE
-18062       CONTINUE
+18131       CONTINUE
+18132       CONTINUE
             csx(k) = Log(cs(ii,k))
-18051     CONTINUE
-18052     CONTINUE
+18121     CONTINUE
+18122     CONTINUE
           call set_spline(xi_array,csx,afx,bfx,cfx,dfx,kmix)
           cse(ii) = 0
           aux = Log(ee(ii)/ap(medium))
-          DO 18071 i_gauss=1,ngauss
+          DO 18141 i_gauss=1,ngauss
             xi = log(1 - ap(medium)/ee(ii)*exp(x_gauss(i_gauss)*aux)+1e-
      *      6)
             res = spline(xi,xi_array,afx,bfx,cfx,dfx,kmix)
             cse(ii) = cse(ii) + w_gauss(i_gauss)*exp(res)
-18071     CONTINUE
-18072     CONTINUE
-18031   CONTINUE
-18032   CONTINUE
+18141     CONTINUE
+18142     CONTINUE
+18101   CONTINUE
+18102   CONTINUE
         nener = ilast - ifirst + 1
         call set_spline(ele,cse,afe,bfe,cfe,dfe,nener)
         neke = meke(medium)
         sigee = 1E-15
         sigep = 1E-15
-        DO 18081 i=1,neke
+        DO 18151 i=1,neke
           eil = (float(i) - eke0(medium))/eke1(medium)
           ei = exp(eil)
           leil = i
@@ -31086,8 +31192,8 @@ C*****************************************************************************
           ededx=pdedx1(Leil,MEDIUM)*eil+pdedx0(Leil,MEDIUM)
           sige = si1_psig/ededx
           IF((sige .GT. sigep))sigep = sige
-18081   CONTINUE
-18082   CONTINUE
+18151   CONTINUE
+18152   CONTINUE
         esig1(neke,medium) = esig1(neke-1,medium)
         esig0(neke,medium) = esig0(neke-1,medium)
         ebr11(neke,medium) = ebr11(neke-1,medium)
@@ -31114,22 +31220,22 @@ C*****************************************************************************
         nb_dle(medium) = (nb_lemax(medium) - nb_lemin(medium))/(100-1)
         nb_dlei(medium) = 1/nb_dle(medium)
         eil = nb_lemin(medium) - nb_dle(medium)
-        DO 18091 i=1,100
+        DO 18161 i=1,100
           eil = eil + nb_dle(medium)
           ei = exp(eil)
-          DO 18101 ii=1,nener
-            IF((ei .LT. ee(ii)))GO TO18102
-18101     CONTINUE
-18102     CONTINUE
+          DO 18171 ii=1,nener
+            IF((ei .LT. ee(ii)))GO TO18172
+18171     CONTINUE
+18172     CONTINUE
           ii = ii-1
           IF((ii .LT. 1))ii = 1
           IF((ii .GT. nener-1))ii = nener-1
           ple = (eil - ele(ii))/(ele(ii+1)-ele(ii))
           qle = 1 - ple
-          DO 18111 k=1,kmix
+          DO 18181 k=1,kmix
             csx(k) = log(qle*cs(ii,k) + ple*cs(ii+1,k))
-18111     CONTINUE
-18112     CONTINUE
+18181     CONTINUE
+18182     CONTINUE
           call set_spline(xi_array,csx,afx,bfx,cfx,dfx,kmix)
           x = ap(medium)/ei
           aux = -log(x)
@@ -31137,13 +31243,13 @@ C*****************************************************************************
           res = spline(xi,xi_array,afx,bfx,cfx,dfx,kmix)
           nb_xdata(0,i,medium) = 0
           nb_fdata(0,i,medium) = exp(res)
-          DO 18121 k=1,kmix
-            IF((x_array(k) .GT. x))GO TO18122
-18121     CONTINUE
-18122     CONTINUE
+          DO 18191 k=1,kmix
+            IF((x_array(k) .GT. x))GO TO18192
+18191     CONTINUE
+18192     CONTINUE
           IF((k .GT. kmix))k = kmix
           ndat = 0
-          DO 18131 j=k+1,kmix-1
+          DO 18201 j=k+1,kmix-1
             ndat = ndat+1
             nb_xdata(ndat,i,medium) = log(x_array(j)/x)/aux
             nb_fdata(ndat,i,medium) = exp(csx(j))
@@ -31151,18 +31257,18 @@ C*****************************************************************************
               write(i_log,*) 'nb_xdata(ndat,i,medium): ', nb_xdata(ndat,
      *        i,medium)
             END IF
-18131     CONTINUE
-18132     CONTINUE
+18201     CONTINUE
+18202     CONTINUE
           ndat = ndat+1
           nb_xdata(ndat,i,medium) = 1
           nb_fdata(ndat,i,medium) = exp(csx(kmix))
-          IF((ndat .GE. 50))goto 18140
-18151     CONTINUE
+          IF((ndat .GE. 50))goto 18210
+18221     CONTINUE
             x_max_error = 0
             f_max_error = 0
             k_max_error = 0
             max_error = 0
-            DO 18161 k=0,ndat-1
+            DO 18231 k=0,ndat-1
               x = 0.5*(nb_xdata(k,i,medium) + nb_xdata(k+1,i,medium))
               f = 0.5*(nb_fdata(k,i,medium) + nb_fdata(k+1,i,medium))
               xi = log(1 - ap(medium)/ei*exp(x*aux)+1e-6)
@@ -31175,29 +31281,29 @@ C*****************************************************************************
                 max_error = error
                 k_max_error = k
               END IF
-18161       CONTINUE
-18162       CONTINUE
+18231       CONTINUE
+18232       CONTINUE
             ndat = ndat+1
-            DO 18171 k=ndat,k_max_error+2,-1
+            DO 18241 k=ndat,k_max_error+2,-1
               nb_xdata(k,i,medium) = nb_xdata(k-1,i,medium)
               nb_fdata(k,i,medium) = nb_fdata(k-1,i,medium)
-18171       CONTINUE
-18172       CONTINUE
+18241       CONTINUE
+18242       CONTINUE
             nb_xdata(k_max_error+1,i,medium) = x_max_error
             nb_fdata(k_max_error+1,i,medium) = f_max_error
-            IF(((ndat .EQ. 50)))GO TO18152
-          GO TO 18151
-18152     CONTINUE
-18140     call prepare_alias_table(50,nb_xdata(0,i,medium), nb_fdata(0,i
+            IF(((ndat .EQ. 50)))GO TO18222
+          GO TO 18221
+18222     CONTINUE
+18210     call prepare_alias_table(50,nb_xdata(0,i,medium), nb_fdata(0,i
      *    ,medium),nb_wdata(1,i,medium),nb_idata(1,i,medium))
-18091   CONTINUE
-18092   CONTINUE
-18001 CONTINUE
-18002 CONTINUE
+18161   CONTINUE
+18162   CONTINUE
+18071 CONTINUE
+18072 CONTINUE
       write(i_log,*) ' '
       write(i_log,*) ' '
       return
-12900 write(i_log,'(/a)') '***************** Error: '
+12970 write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'failed to open EGSnrc data file ',tmp1_string(:lnb
      *lnk1(tmp1_string))
       write(i_log,'(/a)') '***************** Quiting now.'
@@ -31287,10 +31393,10 @@ C*****************************************************************************
       integer*4 itmp_4
       character c_4(4), ic_4(4)
       equivalence (tmp_4,c_4), (itmp_4, ic_4)
-      DO 18181 i=1,len(nrcp_file)
+      DO 18251 i=1,len(nrcp_file)
         nrcp_file(i:i) = ' '
-18181 CONTINUE
-18182 CONTINUE
+18251 CONTINUE
+18252 CONTINUE
       nrcp_file = hen_house(:lnblnk1(hen_house)) // 'data' // '/' // 'pa
      *ir_nrc1.data'
       want_nrcp_unit = 62
@@ -31304,8 +31410,8 @@ C*****************************************************************************
       END IF
       rec_length = 65*4
       open(nrcp_unit,file=nrcp_file,form='unformatted',access='direct',
-     *status='old',recl=rec_length,err=18190)
-      read(nrcp_unit,rec=1,err=18200) emin, emax, ne, nb, endian, cdum
+     *status='old',recl=rec_length,err=18260)
+      read(nrcp_unit,rec=1,err=18270) emin, emax, ne, nb, endian, cdum
       IF (( ichar(endian) .EQ. 0 )) THEN
         endianess = '1234'
       ELSE
@@ -31353,63 +31459,63 @@ C*****************************************************************************
       nrcp_dlei = 1/nrcp_dle
       nbb = nb/2
       ddx = sqrt(0.5)/nbb
-      DO 18211 ix=0,nbb
+      DO 18281 ix=0,nbb
         xx = ddx*ix
         nrcp_xdata(ix+1) = xx*xx
-18211 CONTINUE
-18212 CONTINUE
+18281 CONTINUE
+18282 CONTINUE
       do ix=nbb-1,0,-1
         xx = ddx*ix
         nrcp_xdata(nb-ix) = 1 - xx*xx
       end do
-      DO 18231 medium=1,NMED
+      DO 18301 medium=1,NMED
         write(i_log,'(a,i4,a,$)') '  medium ',medium,' .................
      *.... '
-        DO 18241 ie=1,84
-          DO 18251 ix=1,65
+        DO 18311 ie=1,84
+          DO 18321 ix=1,65
             nrcp_fdata(ix,ie,medium) = 0
-18251     CONTINUE
-18252     CONTINUE
-18241   CONTINUE
-18242   CONTINUE
-        DO 18261 i_ele=1,NNE(medium)
+18321     CONTINUE
+18322     CONTINUE
+18311   CONTINUE
+18312   CONTINUE
+        DO 18331 i_ele=1,NNE(medium)
           Z = ZELEM(medium,i_ele)
           iz = int(Z+0.5)
           tmp = PZ(medium,i_ele)*Z*Z
           irec = (iz-1)*ne + 2
-          DO 18271 ie=1,84
-            read(nrcp_unit,rec=irec,err=18200) tarray
-            DO 18281 ix=1,65
+          DO 18341 ie=1,84
+            read(nrcp_unit,rec=irec,err=18270) tarray
+            DO 18351 ix=1,65
               tmp_4 = tarray(ix)
               IF (( swap )) THEN
                 call egs_swap_4(c_4)
               END IF
               nrcp_fdata(ix,ie,medium)=nrcp_fdata(ix,ie,medium)+tmp*tmp_
      *        4
-18281       CONTINUE
-18282       CONTINUE
+18351       CONTINUE
+18352       CONTINUE
             irec = irec + 1
-18271     CONTINUE
-18272     CONTINUE
-18261   CONTINUE
-18262   CONTINUE
-        DO 18291 ie=1,84
+18341     CONTINUE
+18342     CONTINUE
+18331   CONTINUE
+18332   CONTINUE
+        DO 18361 ie=1,84
           call prepare_alias_table(nb-1,nrcp_xdata,nrcp_fdata(1,ie,mediu
      *    m), nrcp_wdata(1,ie,medium),nrcp_idata(1,ie,medium))
-18291   CONTINUE
-18292   CONTINUE
+18361   CONTINUE
+18362   CONTINUE
         write(i_log,'(a)') ' done'
-18231 CONTINUE
-18232 CONTINUE
+18301 CONTINUE
+18302 CONTINUE
       write(i_log,*) ' '
       close(nrcp_unit)
       return
-18190 CONTINUE
+18260 CONTINUE
       write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'Failed to open NRC pair data file'
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
-18200 CONTINUE
+18270 CONTINUE
       write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'I/O error while reading NRC pair data file'
       write(i_log,'(/a)') '***************** Quiting now.'
@@ -31483,13 +31589,13 @@ C*****************************************************************************
       real*8 rtmp
       integer*4 i
       IF((n .LT. 1))return
-      DO 18301 i=1,n
+      DO 18371 i=1,n
         IF((rng_seed .GT. 128))call ranmar_get
         rtmp = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
         rarray(i) = rtmp
-18301 CONTINUE
-18302 CONTINUE
+18371 CONTINUE
+18372 CONTINUE
       return
       end
       subroutine eii_init
@@ -31596,25 +31702,25 @@ C*****************************************************************************
       real*8 cons
       parameter (cons = 0.153536)
       data occn_numbers/2,2,2,4/
-      DO 18311 j=1,100
+      DO 18381 j=1,100
         eii_nshells(j) = 0
-18311 CONTINUE
-18312 CONTINUE
-      DO 18321 j=1,20
+18381 CONTINUE
+18382 CONTINUE
+      DO 18391 j=1,20
         eii_nsh(j) = 0
-18321 CONTINUE
-18322 CONTINUE
+18391 CONTINUE
+18392 CONTINUE
       IF (( eii_flag .EQ. 0 )) THEN
         return
       END IF
       getd = .false.
-      DO 18331 j=1, 2097154
+      DO 18401 j=1, 2097154
         IF (( IEDGFL .GT. 0 .AND. IEDGFL .LE. 100 )) THEN
           getd = .true.
-          GO TO18332
+          GO TO18402
         END IF
-18331 CONTINUE
-18332 CONTINUE
+18401 CONTINUE
+18402 CONTINUE
       IF (( .NOT.getd )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(/a,/a,/a,/a)') ' In subroutine eii_init: ', '   Sc
@@ -31625,34 +31731,34 @@ C*****************************************************************************
         call exit(1)
       END IF
       e_eii_min = 1e30
-      DO 18341 imed=1,nmed
+      DO 18411 imed=1,nmed
         IF((ae(imed)-rm .LT. e_eii_min))e_eii_min = ae(imed) - rm
         IF((ap(imed) .LT. e_eii_min))e_eii_min = ap(imed)
-18341 CONTINUE
-18342 CONTINUE
+18411 CONTINUE
+18412 CONTINUE
       write(i_log,*) ' '
       write(i_log,*) 'eii_init: minimum threshold energy found: ',e_eii_
      *min
-      DO 18351 imed=1,nmed
-        DO 18361 iele=1,nne(imed)
+      DO 18421 imed=1,nmed
+        DO 18431 iele=1,nne(imed)
           iZ = int(zelem(imed,iele)+0.5)
           IF (( eii_nshells(iZ) .EQ. 0 )) THEN
             nsh = 0
-            DO 18371 ish=1,4
+            DO 18441 ish=1,4
               IF((binding_energies(ish,iZ) .GT. e_eii_min))nsh = nsh+1
-18371       CONTINUE
-18372       CONTINUE
+18441       CONTINUE
+18442       CONTINUE
             eii_nshells(iZ) = nsh
           END IF
-18361   CONTINUE
-18362   CONTINUE
-18351 CONTINUE
-18352 CONTINUE
+18431   CONTINUE
+18432   CONTINUE
+18421 CONTINUE
+18422 CONTINUE
       nsh = 0
-      DO 18381 iZ=1,100
+      DO 18451 iZ=1,100
         nsh = nsh + eii_nshells(iZ)
-18381 CONTINUE
-18382 CONTINUE
+18451 CONTINUE
+18452 CONTINUE
       IF (( nsh .EQ. 0 )) THEN
         write(i_log,*) '*** EII requested but no shells with binding ene
      *rgies '
@@ -31675,13 +31781,13 @@ C*****************************************************************************
       write(i_log,*) 'eii_init: number of shells to simulate EII: ',nsh
       nsh_tot = nsh
       tmp_array(1) = 0
-      DO 18391 j=2,100
+      DO 18461 j=2,100
         tmp_array(j) = tmp_array(j-1) + eii_nshells(j-1)
-18391 CONTINUE
-18392 CONTINUE
-      DO 18401 imed=1,nmed
+18461 CONTINUE
+18462 CONTINUE
+      DO 18471 imed=1,nmed
         nsh = 0
-        DO 18411 iele=1,nne(imed)
+        DO 18481 iele=1,nne(imed)
           iZ = int(zelem(imed,iele)+0.5)
           eii_no(imed,iele) = eii_nshells(iZ)
           nsh = nsh + eii_nshells(iZ)
@@ -31690,15 +31796,15 @@ C*****************************************************************************
           ELSE
             eii_first(imed,iele) = 0
           END IF
-18411   CONTINUE
-18412   CONTINUE
+18481   CONTINUE
+18482   CONTINUE
         eii_nsh(imed) = nsh
-18401 CONTINUE
-18402 CONTINUE
-      DO 18421 i=1,len(eii_file)
+18471 CONTINUE
+18472 CONTINUE
+      DO 18491 i=1,len(eii_file)
         eii_file(i:i) = ' '
-18421 CONTINUE
-18422 CONTINUE
+18491 CONTINUE
+18492 CONTINUE
       eii_file = hen_house(:lnblnk1(hen_house)) // 'data' // '/' // 'eii
      *_'// eii_xfile(:lnblnk1(eii_xfile)) //'.data'
       want_eii_unit = 62
@@ -31710,16 +31816,16 @@ C*****************************************************************************
         call exit(1)
       END IF
       open(eii_unit,file=eii_file(:lnblnk1(eii_file)),status='old',err=1
-     *8430)
+     *8500)
       write(i_log,'(//a,a)') 'Opened EII data file ',eii_file(:lnblnk1(e
      *ii_file))
       write(i_log,'(a,$)') ' eii_init: reading EII data ... '
-      read(eii_unit,*,err=18440,end=18440) nskip
-      DO 18451 j=1,nskip
-        read(eii_unit,*,err=18440,end=18440)
-18451 CONTINUE
-18452 CONTINUE
-      read(eii_unit,*,err=18440,end=18440) emax,nbin
+      read(eii_unit,*,err=18510,end=18510) nskip
+      DO 18521 j=1,nskip
+        read(eii_unit,*,err=18510,end=18510)
+18521 CONTINUE
+18522 CONTINUE
+      read(eii_unit,*,err=18510,end=18510) emax,nbin
       IF (( nbin .NE. 250 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,*) 'Inconsistent EII data file'
@@ -31730,8 +31836,8 @@ C*****************************************************************************
         eii_out = egs_open_file(93,0,1,'.eiixsec')
       END IF
       ii = 0
-      DO 18461 j=1,100
-        read(eii_unit,*,err=18440,end=18440) iZ,nsh
+      DO 18531 j=1,100
+        read(eii_unit,*,err=18510,end=18510) iZ,nsh
         IF ((xsec_out .EQ. 1 .AND. eii_nshells(iZ) .GT. 0)) THEN
           write(eii_out,*) '================================='
           write(eii_out,'(a,i3)') 'EII xsections for element Z = ',iZ
@@ -31749,9 +31855,9 @@ C*****************************************************************************
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
-        DO 18471 ish=1,nsh
-          read(eii_unit,*,err=18440,end=18440) fmax
-          read(eii_unit,*,err=18440,end=18440) aux_array
+        DO 18541 ish=1,nsh
+          read(eii_unit,*,err=18510,end=18510) fmax
+          read(eii_unit,*,err=18510,end=18510) aux_array
           IF ((ish.GT.1 .AND. ish .LT. 5)) THEN
             fmax = fmax*eii_L_factor
           END IF
@@ -31781,7 +31887,7 @@ C*****************************************************************************
             eii_a(ii) = nbin
             eii_a(ii) = eii_a(ii)/log(emax/binding_energies(ish,iZ))
             eii_b(ii) = 1 - eii_a(ii)*log(binding_energies(ish,iZ))
-            DO 18481 k=1,nbin
+            DO 18551 k=1,nbin
               IF (( k .GT. 1 )) THEN
                 sigo = fmax*aux_array(k-1)
               ELSE
@@ -31795,42 +31901,42 @@ C*****************************************************************************
                 write(eii_out,'(f12.2,2X,10f9.2)') Exp((k+1-eii_b(ii))/e
      *          ii_a(ii))*1000.0,fmax*aux_array(k)
               END IF
-18481       CONTINUE
-18482       CONTINUE
+18551       CONTINUE
+18552       CONTINUE
           END IF
-18471   CONTINUE
-18472   CONTINUE
+18541   CONTINUE
+18542   CONTINUE
         IF (( ii .EQ. nsh_tot )) THEN
-          GO TO18462
+          GO TO18532
         END IF
-18461 CONTINUE
-18462 CONTINUE
+18531 CONTINUE
+18532 CONTINUE
       close(eii_unit)
       IF ((xsec_out .EQ. 1)) THEN
         close(eii_out)
       END IF
       write(i_log,*) ' OK '
       write(i_log,*) ' '
-      DO 18491 imed=1,nmed
+      DO 18561 imed=1,nmed
         Ec = ae(imed) - rm
         Ecc = min(Ec,ap(imed))
         sum_z=0
         sum_pz=0
         sum_a=0
         sum_wa=0
-        DO 18501 iele=1,nne(imed)
+        DO 18571 iele=1,nne(imed)
           sum_z = sum_z + pz(imed,iele)*zelem(imed,iele)
           sum_pz = sum_pz + pz(imed,iele)
           sum_wa = sum_wa + rhoz(imed,iele)
           sum_a = sum_a + pz(imed,iele)*wa(imed,iele)
-18501   CONTINUE
-18502   CONTINUE
+18571   CONTINUE
+18572   CONTINUE
         con_med = rho(imed)/1.6605655/sum_a
         eii_cons(imed) = con_med
         IF (( eii_nsh(imed) .GT. 0 )) THEN
           is_monotone = .true.
           sigma_max = 0
-          DO 18511 j=1,meke(imed)
+          DO 18581 j=1,meke(imed)
             loge = (j - eke0(imed))/eke1(imed)
             e = Exp(loge)
             tau = e/rm
@@ -31854,10 +31960,10 @@ C*****************************************************************************
             sum_occn=0
             sum_sigma=0
             sum_dedx=0
-            DO 18521 iele=1,nne(imed)
+            DO 18591 iele=1,nne(imed)
               iZ = int(zelem(imed,iele)+0.5)
               sum_sh = 0
-              DO 18531 ish=1,eii_no(imed,iele)
+              DO 18601 ish=1,eii_no(imed,iele)
                 jj = eii_first(imed,iele) + ish - 1
                 jjj = eii_sh(jj)
                 U = binding_energies(jjj,iZ)
@@ -31882,11 +31988,11 @@ C*****************************************************************************
                   sum_sigma = sum_sigma + sig_j
                   sum_dedx = sum_dedx + sig_j*av_E
                 END IF
-18531         CONTINUE
-18532         CONTINUE
+18601         CONTINUE
+18602         CONTINUE
               sum_occn = sum_occn + sum_sh*pz(imed,iele)
-18521       CONTINUE
-18522       CONTINUE
+18591       CONTINUE
+18592       CONTINUE
             sigm = sigm + sum_sigma
             dedx = dedx - sum_dedx
             aux = Ec/e
@@ -31921,8 +32027,8 @@ C*****************************************************************************
             sigm_old = sigm
             sigma_old = sigma
             wbrem_old = wbrem
-18511     CONTINUE
-18512     CONTINUE
+18581     CONTINUE
+18582     CONTINUE
           ededx1(meke(imed),imed) = ededx1(meke(imed)-1,imed)
           ededx0(meke(imed),imed) = ededx0(meke(imed)-1,imed)
           esig1(meke(imed),imed) = esig1(meke(imed)-1,imed)
@@ -31934,14 +32040,14 @@ C*****************************************************************************
           sig_ismonotone(0,imed) = is_monotone
           esig_e(imed) = sigma_max
         END IF
-18491 CONTINUE
-18492 CONTINUE
+18561 CONTINUE
+18562 CONTINUE
       return
-18440 write(i_log,'(/a)') '***************** Error: '
+18510 write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'I/O error while reading EII data'
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
-18430 write(i_log,'(/a)') '***************** Error: '
+18500 write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(//a,a,/a,/a/)') 'Failed to open EII data file ',eii_
      *file(:lnblnk1(eii_file)), 'Make sure file exists in your $HEN_HOUS
      *E/data directory!', '****BEWARE of case sensitive file names!!!'
@@ -31981,9 +32087,9 @@ C*****************************************************************************
       integer*4 urndm, crndm, cdrndm, cmrndm, i4opt, ixx, jxx, fool_opti
      *mizer,rng_seed,rng_array
       real*4 twom24
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -32041,7 +32147,7 @@ C*****************************************************************************
       fm_h = 2 + c1 - c2
       IF((fm_h .LT. 1))fm_h = 1
       prob = fm_h + prob_s
-18541 CONTINUE
+18611 CONTINUE
         IF((rng_seed .GT. 128))call ranmar_get
         r1 = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
@@ -32060,9 +32166,9 @@ C*****************************************************************************
           wx = 1/(r2*xmax**3+1-r2)**0.333333333
           frej = 1 - log(wx)/fm_s
         END IF
-        IF((( r3 .LT. frej )))GO TO18542
-      GO TO 18541
-18542 CONTINUE
+        IF((( r3 .LT. frej )))GO TO18612
+      GO TO 18611
+18612 CONTINUE
       wx = wx*Uj
       h1 = (peie + prm)/T
       pese1 = peie - wx
@@ -32074,10 +32180,10 @@ C*****************************************************************************
       pese2 = wx - Uj + prm
       edep_local = 0
       IF (( pese2 .GT. ae(medium) )) THEN
-        IF (( np+1 .GT. 10000 )) THEN
+        IF (( np+1 .GT. 900000 )) THEN
           write(i_log,'(/a)') '***************** Error: '
           write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','eii_sample
-     *', ' stack size exceeded! ',' $MAXSTACK = ',10000,' np = ',np+1
+     *', ' stack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np+1
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
@@ -32166,19 +32272,19 @@ C*****************************************************************************
       END IF
       IF (( which .EQ. 1 )) THEN
         has_r = .false.
-        DO 18551 medium=ifirst,ilast
+        DO 18621 medium=ifirst,ilast
           IF (( iraylm(medium) .EQ. 1 )) THEN
             has_r = .true.
           END IF
-18551   CONTINUE
-18552   CONTINUE
+18621   CONTINUE
+18622   CONTINUE
         IF((.NOT.has_r))return
       END IF
       write(i_log,*) ' '
-      DO 18561 medium=ifirst,ilast
+      DO 18631 medium=ifirst,ilast
         write(i_log,'(a,a,a,i3,a,f9.5)') 'Scaling ',strings(which+1),' x
      *-section data for medium', medium,' with ',fac
-        DO 18571 j=1,mge(medium)
+        DO 18641 j=1,mge(medium)
           gle = (j - ge0(medium))/ge1(medium)
           gmfp = gmfp0(j,medium) + gmfp1(j,medium)*gle
           gbr1 = gbr10(j,medium) + gbr11(j,medium)*gle
@@ -32223,8 +32329,8 @@ C*****************************************************************************
           gbr1_old = gbr1
           gbr2_old = gbr2
           cohfac_old = cohfac
-18571   CONTINUE
-18572   CONTINUE
+18641   CONTINUE
+18642   CONTINUE
         gmfp1(mge(medium),medium) = gmfp1(mge(medium)-1,medium)
         gmfp0(mge(medium),medium) = gmfp0(mge(medium)-1,medium)
         gbr11(mge(medium),medium) = gbr11(mge(medium)-1,medium)
@@ -32233,8 +32339,8 @@ C*****************************************************************************
         gbr20(mge(medium),medium) = gbr20(mge(medium)-1,medium)
         cohe1(mge(medium),medium) = cohe1(mge(medium)-1,medium)
         cohe0(mge(medium),medium) = cohe0(mge(medium)-1,medium)
-18561 CONTINUE
-18562 CONTINUE
+18631 CONTINUE
+18632 CONTINUE
       return
       end
       subroutine egs_init_user_photon(prefix,comp_prefix,photonuc_prefix
@@ -32383,7 +32489,7 @@ C*****************************************************************************
         call exit(1)
       END IF
       tmp_string = photo_file
-      open(photo_unit,file=photo_file,status='old',err=18580)
+      open(photo_unit,file=photo_file,status='old',err=18650)
       pair_unit = 84
       pair_unit = egs_get_unit(pair_unit)
       IF (( pair_unit .LT. 1 )) THEN
@@ -32394,7 +32500,7 @@ C*****************************************************************************
         call exit(1)
       END IF
       tmp_string = pair_file
-      open(pair_unit,file=pair_file,status='old',err=18580)
+      open(pair_unit,file=pair_file,status='old',err=18650)
       triplet_unit = 85
       triplet_unit = egs_get_unit(triplet_unit)
       IF (( triplet_unit .LT. 1 )) THEN
@@ -32405,7 +32511,7 @@ C*****************************************************************************
         call exit(1)
       END IF
       tmp_string = triplet_file
-      open(triplet_unit,file=triplet_file,status='old',err=18580)
+      open(triplet_unit,file=triplet_file,status='old',err=18650)
       rayleigh_unit = 86
       rayleigh_unit = egs_get_unit(rayleigh_unit)
       IF (( rayleigh_unit .LT. 1 )) THEN
@@ -32416,7 +32522,7 @@ C*****************************************************************************
         call exit(1)
       END IF
       tmp_string = rayleigh_file
-      open(rayleigh_unit,file=rayleigh_file,status='old',err=18580)
+      open(rayleigh_unit,file=rayleigh_file,status='old',err=18650)
       IF (( ibcmp .GT. 1 )) THEN
         compton_unit = 88
         compton_unit = egs_get_unit(compton_unit)
@@ -32428,7 +32534,7 @@ C*****************************************************************************
           call exit(1)
         END IF
         tmp_string = compton_file
-        open(compton_unit,file=compton_file,status='old',err=18580)
+        open(compton_unit,file=compton_file,status='old',err=18650)
       END IF
       IF (( iphotonuc .EQ. 1 )) THEN
         photonuc_unit = 89
@@ -32441,7 +32547,7 @@ C*****************************************************************************
           call exit(1)
         END IF
         tmp_string = photonuc_file
-        open(photonuc_unit,file=photonuc_file,status='old',err=18580)
+        open(photonuc_unit,file=photonuc_file,status='old',err=18650)
       END IF
       IF (( out .EQ. 1 )) THEN
         ounit = egs_open_file(87,0,1,'.xsections')
@@ -32464,11 +32570,11 @@ C*****************************************************************************
      *leigh','(fraction)','(fraction)','with Rayleigh'
         END IF
       END IF
-      DO 18591 iz=1,100
+      DO 18661 iz=1,100
         read(photo_unit,*) ndat
         read(photo_unit,*) (etmp(k),ftmp(k),k=1,ndat)
         k = 0
-        DO 18601 j=ndat,2,-1
+        DO 18671 j=ndat,2,-1
           IF (( etmp(j)-etmp(j-1) .LT. 1e-5 )) THEN
             k = k+1
             IF (( k .LE. 30 )) THEN
@@ -32480,16 +32586,16 @@ C*****************************************************************************
               write(i_log,'(/a)') '***************** Quiting now.'
               call exit(1)
             END IF
-            IF((.NOT.eadl_relax .AND. k .GE. 4))GO TO18602
+            IF((.NOT.eadl_relax .AND. k .GE. 4))GO TO18672
           END IF
-18601   CONTINUE
-18602   CONTINUE
-18591 CONTINUE
-18592 CONTINUE
+18671   CONTINUE
+18672   CONTINUE
+18661 CONTINUE
+18662 CONTINUE
       IF ((mcdf_pe_xsections)) THEN
         call egs_read_shellwise_pe()
       END IF
-      DO 18611 medium=1,nmed
+      DO 18681 medium=1,nmed
         mge(medium) = 2000
         nge = 2000
         ge1(medium) = nge-1
@@ -32502,19 +32608,19 @@ C*****************************************************************************
         END IF
         sumZ=0
         sumA=0
-        DO 18621 i=1,nne(medium)
+        DO 18691 i=1,nne(medium)
           z_sorted(i) = zelem(medium,i)
           sumZ = sumZ + pz(medium,i)*zelem(medium,i)
           sumA = sumA + pz(medium,i)*wa(medium,i)
-18621   CONTINUE
-18622   CONTINUE
+18691   CONTINUE
+18692   CONTINUE
         con1 = sumZ*rho(medium)/(sumA*1.6605655)
         con2 = rho(medium)/(sumA*1.6605655)
         call egs_heap_sort(nne(medium),z_sorted,sorted)
-        DO 18631 i=1,nne(medium)
+        DO 18701 i=1,nne(medium)
           pz_sorted(i) = pz(medium,sorted(i))
-18631   CONTINUE
-18632   CONTINUE
+18701   CONTINUE
+18702   CONTINUE
         IF ((mcdf_pe_xsections)) THEN
           call egsi_get_shell_data(medium,nge,nne(medium),z_sorted,pz_so
      *    rted, ge1(medium),ge0(medium),sig_photo)
@@ -32547,32 +32653,32 @@ C*****************************************************************************
               call exit(1)
             END IF
             bc_dle = log(bc_emax/bc_emin)/(bc_ne-1)
-            DO 18641 j=1,bc_ne
+            DO 18711 j=1,bc_ne
               bc_data(j) = 0
-18641       CONTINUE
-18642       CONTINUE
+18711       CONTINUE
+18712       CONTINUE
             iz_old = 1
-            DO 18651 i=1,nne(medium)
+            DO 18721 i=1,nne(medium)
               iz = int(z_sorted(i)+0.5)
-              DO 18661 j=iz_old,iz
+              DO 18731 j=iz_old,iz
                 read(compton_unit,*) (bc_tmp(k),k=1,bc_ne)
-18661         CONTINUE
-18662         CONTINUE
-              DO 18671 j=1,bc_ne
+18731         CONTINUE
+18732         CONTINUE
+              DO 18741 j=1,bc_ne
                 bc_data(j)=bc_data(j)+pz_sorted(i)*z_sorted(i)*bc_tmp(j)
-18671         CONTINUE
-18672         CONTINUE
+18741         CONTINUE
+18742         CONTINUE
               iz_old = iz+1
-18651       CONTINUE
-18652       CONTINUE
-            DO 18681 j=1,bc_ne
+18721       CONTINUE
+18722       CONTINUE
+            DO 18751 j=1,bc_ne
               bc_data(j)=log(bc_data(j)/sumZ)
-18681       CONTINUE
-18682       CONTINUE
+18751       CONTINUE
+18752       CONTINUE
           END IF
         END IF
         call egs_init_rayleigh(medium,sig_rayleigh)
-        DO 18691 i=1,nge
+        DO 18761 i=1,nge
           gle = (i - ge0(medium))/ge1(medium)
           e = exp(gle)
           sig_KN = sumZ*egs_KN_sigma0(e)
@@ -32627,8 +32733,8 @@ C*****************************************************************************
           gbr2_old = gbr2
           cohe_old = cohe
           photonuc_old = photonuc
-18691   CONTINUE
-18692   CONTINUE
+18761   CONTINUE
+18762   CONTINUE
         gmfp1(nge,medium) = gmfp1(nge-1,medium)
         gmfp0(nge,medium) = gmfp - gmfp1(nge,medium)*gle
         gbr11(nge,medium) = gbr11(nge-1,medium)
@@ -32640,8 +32746,8 @@ C*****************************************************************************
         photonuc1(nge,medium) = photonuc1(nge-1,medium)
         photonuc0(nge,medium) = photonuc - photonuc1(nge,medium)*gle
         write(i_log,'(a)') 'OK'
-18611 CONTINUE
-18612 CONTINUE
+18681 CONTINUE
+18682 CONTINUE
       close(photo_unit)
       close(pair_unit)
       close(triplet_unit)
@@ -32656,7 +32762,7 @@ C*****************************************************************************
         close(ounit)
       END IF
       return
-18580 CONTINUE
+18650 CONTINUE
       write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(//a,a)') 'Failed to open data file ',tmp_string(:lnb
      *lnk1(tmp_string))
@@ -32742,18 +32848,18 @@ C*****************************************************************************
       ncustom=0
       write(dummy,'(24a1)')(media(j,medium),j=1,24)
       ff_file=' '
-      DO 18701 i=1,20
+      DO 18771 i=1,20
         IF ((lnblnk1(iray_ff_file(i)).NE.0)) THEN
           ncustom = ncustom + 1
         END IF
-18701 CONTINUE
-18702 CONTINUE
-      DO 18711 i=1,ncustom
+18771 CONTINUE
+18772 CONTINUE
+      DO 18781 i=1,ncustom
         IF ((dummy(:lnblnk1(dummy)) .EQ. iray_ff_media(i))) THEN
           ff_file = iray_ff_file(i)
         END IF
-18711 CONTINUE
-18712 CONTINUE
+18781 CONTINUE
+18782 CONTINUE
       ff_unit = egs_get_unit(0)
       IF (( ff_unit .LT. 1 )) THEN
         write(i_log,'(/a)') '***************** Error: '
@@ -32764,26 +32870,26 @@ C*****************************************************************************
       END IF
       IF (( lnblnk1(ff_file) .GT. 0)) THEN
         open(ff_unit,file=ff_file(:lnblnk1(ff_file)), status='old',err=1
-     *  8720)
-        GOTO 18730
-18720   write(i_log,'(/a)') '***************** Error: '
+     *  8790)
+        GOTO 18800
+18790   write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(2a)') 'egs_init_rayleigh: failed to open custom ff
      * file ', ff_file(:lnblnk1(ff_file))
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
-18730   write(i_log,'(/2a)') 'Opened custom ff file ',ff_file(:lnblnk1(f
+18800   write(i_log,'(/2a)') 'Opened custom ff file ',ff_file(:lnblnk1(f
      *  f_file))
         j = 0
-18741   CONTINUE
+18811   CONTINUE
           j = j + 1
           read(ff_unit,*,IOSTAT=EOF) xsc, fsc
-          IF((EOF .LT. 0))GO TO18742
+          IF((EOF .LT. 0))GO TO18812
           IF ((j .LE. 100)) THEN
             xgrid(j,medium)=xsc
             ff(j,medium)=fsc
           END IF
-        GO TO 18741
-18742   CONTINUE
+        GO TO 18811
+18812   CONTINUE
         nff = j-1
         IF ((nff .GT. 100)) THEN
           write(i_log,'(/a)') '***************** Error: '
@@ -32796,44 +32902,44 @@ C*****************************************************************************
         IF((xgrid(1,medium) .LT. 1e-6))xgrid(1,medium) = 1e-4
         write(*,*) '\n  -> ', nff, ' values of mol. ff read!'
         sumA = 0.0
-        DO 18751 j=1,nne(medium)
+        DO 18821 j=1,nne(medium)
           sumA=sumA+PZ(medium,j)*WA(medium,j)
-18751   CONTINUE
-18752   CONTINUE
-        DO 18761 j=1,MGE(medium)
+18821   CONTINUE
+18822   CONTINUE
+        DO 18831 j=1,MGE(medium)
           gle=(j-GE0(medium))/GE1(medium)
           e=exp(gle)
           sig_rayleigh(j)=egs_rayleigh_sigma(medium,e,nff, xgrid(1,mediu
      *    m),ff(1,medium))*sumA
-18761   CONTINUE
-18762   CONTINUE
+18831   CONTINUE
+18832   CONTINUE
       ELSE
-        DO 18771 i=1,len(afac_file)
+        DO 18841 i=1,len(afac_file)
           afac_file(i:i) = ' '
-18771   CONTINUE
-18772   CONTINUE
+18841   CONTINUE
+18842   CONTINUE
         afac_file = hen_house(:lnblnk1(hen_house))//'pegs4'//'/'//'pgs4f
      *orm.dat'
         open(ff_unit,file=afac_file(:lnblnk1(afac_file)), status='old',e
-     *  rr=18780)
-        GOTO 18790
-18780   write(i_log,'(/a)') '***************** Error: '
+     *  rr=18850)
+        GOTO 18860
+18850   write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(2a)') 'egs_init_rayleigh: failed to open atomic ff
      * file', afac_file(:lnblnk1(afac_file))
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
-18790   read(ff_unit,*) xval, aff
-        DO 18801 i=1,100
+18860   read(ff_unit,*) xval, aff
+        DO 18871 i=1,100
           ff(i,medium) = 0.0
           xgrid(i,medium)=xval(i)
-          DO 18811 j=1,nne(medium)
+          DO 18881 j=1,nne(medium)
             ff(i,medium)=ff(i,medium)+PZ(medium,j)*aff(i,int(zelem(mediu
      *      m,j)))**2
-18811     CONTINUE
-18812     CONTINUE
+18881     CONTINUE
+18882     CONTINUE
           ff(i,medium) = sqrt(ff(i,medium))
-18801   CONTINUE
-18802   CONTINUE
+18871   CONTINUE
+18872   CONTINUE
         nff = 100
         IF((xgrid(1,medium) .LT. 1e-6))xgrid(1,medium) = 1e-4
         write(i_log,'(/a,i4,a)') '  -> ', nff, ' atomic ff values comput
@@ -32848,13 +32954,13 @@ C*****************************************************************************
       ne=MGE(medium)
       dle=log(up(medium)/ap(medium))/(ne-1)
       dlei=1/dle
-      DO 18821 i=1,ne-1
+      DO 18891 i=1,ne-1
         gle = (i - ge0(medium))/ge1(medium)
         pmax1(i,medium)=(pe_array(i+1,medium)-pe_array(i,medium))*ge1(me
      *  dium)
         pmax0(i,medium)=pe_array(i,medium)-pmax1(i,medium)*gle
-18821 CONTINUE
-18822 CONTINUE
+18891 CONTINUE
+18892 CONTINUE
       pmax0(ne,medium)=pmax0(ne-1,medium)
       pmax1(ne,medium)=pmax1(ne-1,medium)
       return
@@ -32942,32 +33048,32 @@ C*****************************************************************************
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
-      DO 18831 i=1,len(afac_file)
+      DO 18901 i=1,len(afac_file)
         afac_file(i:i) = ' '
-18831 CONTINUE
-18832 CONTINUE
+18901 CONTINUE
+18902 CONTINUE
       afac_file = hen_house(:lnblnk1(hen_house))//'pegs4'//'/'//'pgs4for
      *m.dat'
       open(ff_unit,file=afac_file(:lnblnk1(afac_file)),status='old',err=
-     *18780)
-      GOTO 18790
-18780 write(i_log,'(/a)') '***************** Error: '
+     *18850)
+      GOTO 18860
+18850 write(i_log,'(/a)') '***************** Error: '
       write(i_log,'(2a)') 'egs_init_rayleigh_sampling: failed to open at
      *omic ff file ', afac_file(:lnblnk1(afac_file))
       write(i_log,'(/a)') '***************** Quiting now.'
       call exit(1)
-18790 read(ff_unit,*) xval, aff
-      DO 18841 i=1,100
+18860 read(ff_unit,*) xval, aff
+      DO 18911 i=1,100
         ff(i,medium) = 0.0
         xgrid(i,medium)=xval(i)
-        DO 18851 j=1,nne(medium)
+        DO 18921 j=1,nne(medium)
           ff(i,medium)=ff(i,medium)+PZ(medium,j)*aff(i,int(zelem(medium,
      *    j)))**2
-18851   CONTINUE
-18852   CONTINUE
+18921   CONTINUE
+18922   CONTINUE
         ff(i,medium) = sqrt(ff(i,medium))
-18841 CONTINUE
-18842 CONTINUE
+18911 CONTINUE
+18912 CONTINUE
       nff = 100
       IF((xgrid(1,medium) .LT. 1e-6))xgrid(1,medium) = 1e-4
       write(i_log,'(/a,i4,a)') '  -> ', nff, ' atomic ff values computed
@@ -32979,13 +33085,13 @@ C*****************************************************************************
      *edium),emin,emax, pe_array(1,medium),100, fcum(1,medium),i_array(1
      *,medium), b_array(1,medium),c_array(1,medium))
       ne=MGE(medium)
-      DO 18861 i=1,ne-1
+      DO 18931 i=1,ne-1
         gle = (i - ge0(medium))/ge1(medium)
         pmax1(i,medium)=(pe_array(i+1,medium)-pe_array(i,medium))*ge1(me
      *  dium)
         pmax0(i,medium)=pe_array(i,medium)-pmax1(i,medium)*gle
-18861 CONTINUE
-18862 CONTINUE
+18931 CONTINUE
+18932 CONTINUE
       pmax0(ne,medium)=pmax0(ne-1,medium)
       pmax1(ne,medium)=pmax1(ne-1,medium)
       return
@@ -33001,7 +33107,7 @@ C*****************************************************************************
       C2=C*C
       xmax=E/hc
       egs_rayleigh_sigma = 0.0
-      DO 18871 i=1,ndat-1
+      DO 18941 i=1,ndat-1
         IF((x(i) .EQ. 0.0))x(i) = zero()
         IF((x(i+1) .EQ. 0.0))x(i+1) = zero()
         IF((f(i) .EQ. 0.0))f(i) = zero()
@@ -33020,10 +33126,10 @@ C*****************************************************************************
         raysig = raysig*f(i)*f(i)/pow_x1
         egs_rayleigh_sigma = egs_rayleigh_sigma + raysig
         IF ((x(i+1).GT.xmax)) THEN
-          GO TO18872
+          GO TO18942
         END IF
-18871 CONTINUE
-18872 CONTINUE
+18941 CONTINUE
+18942 CONTINUE
       egs_rayleigh_sigma = 0.49893439187842413747*C*egs_rayleigh_sigma
       return
       end
@@ -33047,11 +33153,11 @@ C*****************************************************************************
       dwi = 100-1
       pmax=pmax1(Lgle,MEDIUM)*gle+pmax0(Lgle,MEDIUM)
       xmax = hc_i*e
-18881 CONTINUE
+18951 CONTINUE
         IF((rng_seed .GT. 128))call ranmar_get
         rnnray1 = rng_array(rng_seed)*twom24
         rng_seed = rng_seed + 1
-18891   CONTINUE
+18961   CONTINUE
           IF((rng_seed .GT. 128))call ranmar_get
           rnnray0 = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
@@ -33059,23 +33165,23 @@ C*****************************************************************************
           ibin = 1 + rnnray0*dwi
           ib = i_array(ibin,medium)
           IF (( i_array(ibin+1,medium) .GT. ib )) THEN
-18901       CONTINUE
-              IF((rnnray0.LT.fcum(ib+1,medium)))GO TO18902
+18971       CONTINUE
+              IF((rnnray0.LT.fcum(ib+1,medium)))GO TO18972
               ib=ib+1
-            GO TO 18901
-18902       CONTINUE
+            GO TO 18971
+18972       CONTINUE
           END IF
           rnnray0 = (rnnray0 - fcum(ib,medium))*c_array(ib,medium)
           xv = xgrid(ib,medium)*exp(log(1+rnnray0)*b_array(ib,medium))
-          IF(((xv .LT. xmax)))GO TO18892
-        GO TO 18891
-18892   CONTINUE
+          IF(((xv .LT. xmax)))GO TO18962
+        GO TO 18961
+18962   CONTINUE
         xv = xv/e
         costhe = 1 - twice_hc2*xv*xv
         csqthe=costhe*costhe
-        IF((( 2*rnnray1 .LT. 1 + csqthe )))GO TO18882
-      GO TO 18881
-18882 CONTINUE
+        IF((( 2*rnnray1 .LT. 1 + csqthe )))GO TO18952
+      GO TO 18951
+18952 CONTINUE
       sinthe=sqrt(1.0-csqthe)
       return
       end
@@ -33101,13 +33207,13 @@ C*****************************************************************************
       DATA RM,PRM,PRMT2,PZERO/0.5109989461,0.5109989461,1.0219978922,0.D
      *0/
       write(*,'(a$)') '      preparing data for Rayleigh sampling ... '
-      DO 18911 i=1,ndat
+      DO 18981 i=1,ndat
         IF((f(i) .EQ. 0.0))f(i) = zero()
-18911 CONTINUE
-18912 CONTINUE
+18981 CONTINUE
+18982 CONTINUE
       sum0=0
       fcum(1)=0
-      DO 18921 i=1,ndat-1
+      DO 18991 i=1,ndat-1
         b = log(f(i+1)/f(i))/log(x(i+1)/x(i))
         b_array(i) = b
         x1 = x(i)
@@ -33116,17 +33222,17 @@ C*****************************************************************************
         pow_x2 = x2**(2*b)
         sum0=sum0+f(i)*f(i)*(x2*x2*pow_x2-x1*x1*pow_x1)/((1+b)*pow_x1)
         fcum(i+1) = sum0
-18921 CONTINUE
-18922 CONTINUE
+18991 CONTINUE
+18992 CONTINUE
       dle = log(emax/emin)/(ne-1)
       i = 1
-      DO 18931 j=1,ne
+      DO 19001 j=1,ne
         e = emin*exp(dle*(j-1))
         xmax = 20.607544d0*2*e/prm
-        DO 18941 k=i,ndat-1
-          IF((xmax .GE. x(k) .AND. xmax .LT. x(k+1)))GO TO18942
-18941   CONTINUE
-18942   CONTINUE
+        DO 19011 k=i,ndat-1
+          IF((xmax .GE. x(k) .AND. xmax .LT. x(k+1)))GO TO19012
+19011   CONTINUE
+19012   CONTINUE
         i = k
         b = b_array(i)
         x1 = x(i)
@@ -33135,32 +33241,32 @@ C*****************************************************************************
         pow_x2 = x2**(2*b)
         pe_array(j) = fcum(i) + f(i)*f(i)*(x2*x2*pow_x2-x1*x1*pow_x1)/((
      *  1+b)*pow_x1)
-18931 CONTINUE
-18932 CONTINUE
+19001 CONTINUE
+19002 CONTINUE
       i_array(ncbin) = i
       anorm = 1d0/sqrt(pe_array(ne))
       anorm1 = 1.005d0/pe_array(ne)
       anorm2 = 1d0/pe_array(ne)
-      DO 18951 j=1,ne
+      DO 19021 j=1,ne
         pe_array(j) = pe_array(j)*anorm1
         IF((pe_array(j) .GT. 1))pe_array(j) = 1
-18951 CONTINUE
-18952 CONTINUE
-      DO 18961 j=1,ndat
+19021 CONTINUE
+19022 CONTINUE
+      DO 19031 j=1,ndat
         f(j) = f(j)*anorm
         fcum(j) = fcum(j)*anorm2
         c_array(j) = (1+b_array(j))/(x(j)*f(j))**2
-18961 CONTINUE
-18962 CONTINUE
+19031 CONTINUE
+19032 CONTINUE
       dw = 1d0/(ncbin-1)
       xold = x(1)
       ibin = 1
       b = b_array(1)
       pow_x1 = x(1)**(2*b)
       i_array(1) = 1
-      DO 18971 i=2,ncbin-1
+      DO 19041 i=2,ncbin-1
         w = dw
-18981   CONTINUE
+19051   CONTINUE
           x1 = xold
           x2 = x(ibin+1)
           t = x1*x1*x1**(2*b)
@@ -33169,21 +33275,21 @@ C*****************************************************************************
           IF (( aux .GT. w )) THEN
             xold = exp(log(t+w*(1+b)*pow_x1/f(ibin)/f(ibin))/(2+2*b))
             i_array(i) = ibin
-            GO TO18982
+            GO TO19052
           END IF
           w = w - aux
           xold = x2
           ibin = ibin+1
           b = b_array(ibin)
           pow_x1 = xold**(2*b)
-        GO TO 18981
-18982   CONTINUE
-18971 CONTINUE
-18972 CONTINUE
-      DO 18991 j=1,ndat
+        GO TO 19051
+19052   CONTINUE
+19041 CONTINUE
+19042 CONTINUE
+      DO 19061 j=1,ndat
         b_array(j) = 0.5/(1 + b_array(j))
-18991 CONTINUE
-18992 CONTINUE
+19061 CONTINUE
+19062 CONTINUE
       write(*,'(a /)') 'done'
       return
       end
@@ -33268,14 +33374,14 @@ C*****************************************************************************
      *0/
       rewind(iunit)
       iz_old = 0
-      DO 19001 k=1,n
+      DO 19071 k=1,n
         data(k) = 0
-19001 CONTINUE
-19002 CONTINUE
-      DO 19011 i=1,ne
+19071 CONTINUE
+19072 CONTINUE
+      DO 19081 i=1,ne
         iiz = int(zsorted(i)+0.5)
-        DO 19021 iz=iz_old+1,iiz
-          read(iunit,*,err=19030) ndat
+        DO 19091 iz=iz_old+1,iiz
+          read(iunit,*,err=19100) ndat
           IF (( ndat .GT. 2000 )) THEN
             write(i_log,'(/a)') '***************** Error: '
             write(i_log,*) 'Too many input data points. Max. is ',2000
@@ -33283,26 +33389,26 @@ C*****************************************************************************
             call exit(1)
           END IF
           IF (( flag .EQ. 0 .OR. flag .EQ. 3)) THEN
-            read(iunit,*,err=19030) (etmp(k),ftmp(k),k=1,ndat)
+            read(iunit,*,err=19100) (etmp(k),ftmp(k),k=1,ndat)
           ELSE
-            read(iunit,*,err=19030) (etmp(k+1),ftmp(k+1), k=1,ndat)
+            read(iunit,*,err=19100) (etmp(k+1),ftmp(k+1), k=1,ndat)
             IF (( flag .EQ. 1 )) THEN
               eth = 2*rm
             ELSE
               eth = 4*rm
             END IF
             ndat = ndat + 1
-            DO 19041 k=2,ndat
+            DO 19111 k=2,ndat
               ftmp(k) = ftmp(k) - 3*log(1-eth/exp(etmp(k)))
-19041       CONTINUE
-19042       CONTINUE
+19111       CONTINUE
+19112       CONTINUE
             ftmp(1) = ftmp(2)
             etmp(1) = log(eth)
           END IF
-19021   CONTINUE
-19022   CONTINUE
+19091   CONTINUE
+19092   CONTINUE
         iz_old = iiz
-        DO 19051 k=1,n
+        DO 19121 k=1,n
           gle = (k - ge0)/ge1
           e = exp(gle)
           IF (( gle .LT. etmp(1) .OR. gle .GE. etmp(ndat) )) THEN
@@ -33322,11 +33428,11 @@ C*****************************************************************************
               sig = 0
             END IF
           ELSE
-            DO 19061 kk=1,ndat-1
-              IF((gle .GE. etmp(kk) .AND. gle .LT. etmp(kk+1)))GO TO1906
+            DO 19131 kk=1,ndat-1
+              IF((gle .GE. etmp(kk) .AND. gle .LT. etmp(kk+1)))GO TO1913
      *        2
-19061       CONTINUE
-19062       CONTINUE
+19131       CONTINUE
+19132       CONTINUE
             IF (( flag .NE. 3)) THEN
               p = (gle - etmp(kk))/(etmp(kk+1) - etmp(kk))
               sig = exp(p*ftmp(kk+1) + (1-p)*ftmp(kk))
@@ -33338,12 +33444,12 @@ C*****************************************************************************
           IF(((flag .EQ. 1 .OR. flag .EQ. 2) .AND. e .GT. eth))sig = sig
      *    *(1-eth/e)**3
           data(k) = data(k) + pz_sorted(i)*sig
-19051   CONTINUE
-19052   CONTINUE
-19011 CONTINUE
-19012 CONTINUE
+19121   CONTINUE
+19122   CONTINUE
+19081 CONTINUE
+19082 CONTINUE
       return
-19030 CONTINUE
+19100 CONTINUE
       write(i_log,'(/a)') '***************** Error: '
       write(i_log,*) 'Error while reading user photon cross sections fro
      *m unit ', iunit
@@ -33405,25 +33511,25 @@ C*****************************************************************************
       real*4 etmp(2000),ftmp(2000)
       real*4 gle,sig,p
       integer*4 i,j,k,kk,iz,zpos,imed
-      DO 19071 k=1,n
+      DO 19141 k=1,n
         data(k) = 0
-19071 CONTINUE
-19072 CONTINUE
-      DO 19081 k=1,ne
+19141 CONTINUE
+19142 CONTINUE
+      DO 19151 k=1,ne
         sigma(k) = 0
-19081 CONTINUE
-19082 CONTINUE
-      DO 19091 i=1,ne
+19151 CONTINUE
+19152 CONTINUE
+      DO 19161 i=1,ne
         iz = int(zsorted(i)+0.5)
         zpos = pe_zpos(iz)
         ndat = pe_nge(zpos)
-        DO 19101 k=1,ndat
+        DO 19171 k=1,ndat
           pe_elem_prob(k,i,imed) = pz_sorted(i)*pe_xsection(k,zpos,0)
           etmp(k) = pe_energy(k,zpos)
           ftmp(k) = log(pe_xsection(k,zpos,0))
-19101   CONTINUE
-19102   CONTINUE
-        DO 19111 k=1,n
+19171   CONTINUE
+19172   CONTINUE
+        DO 19181 k=1,n
           gle = (k - ge0)/ge1
           IF (( gle .LT. etmp(1) .OR. gle .GE. etmp(ndat) )) THEN
             write(i_log,'(/a)') '***************** Error: '
@@ -33433,30 +33539,30 @@ C*****************************************************************************
             write(i_log,'(/a)') '***************** Quiting now.'
             call exit(1)
           ELSE
-            DO 19121 kk=1,ndat-1
-              IF((gle .GE. etmp(kk) .AND. gle .LT. etmp(kk+1)))GO TO1912
+            DO 19191 kk=1,ndat-1
+              IF((gle .GE. etmp(kk) .AND. gle .LT. etmp(kk+1)))GO TO1919
      *        2
-19121       CONTINUE
-19122       CONTINUE
+19191       CONTINUE
+19192       CONTINUE
             p = (gle - etmp(kk))/(etmp(kk+1) - etmp(kk))
             sig = exp(p*ftmp(kk+1) + (1-p)*ftmp(kk))
           END IF
           data(k) = data(k) + pz_sorted(i)*sig
-19111   CONTINUE
-19112   CONTINUE
-19091 CONTINUE
-19092 CONTINUE
-      DO 19131 i=1,ne
+19181   CONTINUE
+19182   CONTINUE
+19161 CONTINUE
+19162 CONTINUE
+      DO 19201 i=1,ne
         iz = int(zsorted(i)+0.5)
         zpos = pe_zpos(iz)
         ndat = pe_nge(zpos)
-        DO 19141 k=1,ndat
+        DO 19211 k=1,ndat
           sig = sigmaMedium(imed,pe_energy(k,zpos))
           pe_elem_prob(k,i,imed) = log(pe_elem_prob(k,i,imed)/sig)
-19141   CONTINUE
-19142   CONTINUE
-19131 CONTINUE
-19132 CONTINUE
+19211   CONTINUE
+19212   CONTINUE
+19201 CONTINUE
+19202 CONTINUE
       return
       end
       real*8 function sigmaMedium(imed, logE)
@@ -33478,7 +33584,7 @@ C*****************************************************************************
       real*8 logE, slope, sigma
       integer*4 k,imed,Z,zpos,m,ibsearch
       sigmaMedium = 0
-      DO 19151 k=1,nne(imed)
+      DO 19221 k=1,nne(imed)
         Z = int( zelem(imed,k) + 0.5 )
         zpos = pe_zpos(Z)
         m = ibsearch(logE,pe_nge(zpos),pe_energy(1,zpos))
@@ -33488,8 +33594,8 @@ C*****************************************************************************
         sigma = sigma + slope*(logE - pe_energy(m,zpos))
         sigma = exp(sigma)
         sigmaMedium = sigmaMedium + pz(imed,k)*sigma
-19151 CONTINUE
-19152 CONTINUE
+19221 CONTINUE
+19222 CONTINUE
       return
       end
       subroutine egs_heap_sort(n,rarray,jarray)
@@ -33498,14 +33604,14 @@ C*****************************************************************************
       real*8 rarray(*)
       integer*4 i,ir,j,l,ira
       real*8 rra
-      DO 19161 i=1,n
+      DO 19231 i=1,n
         jarray(i)=i
-19161 CONTINUE
-19162 CONTINUE
+19231 CONTINUE
+19232 CONTINUE
       IF((n .LT. 2))return
       l=n/2+1
       ir=n
-19171 CONTINUE
+19241 CONTINUE
         IF ((l .GT. 1)) THEN
           l=l-1
           rra=rarray(l)
@@ -33524,8 +33630,8 @@ C*****************************************************************************
         END IF
         i=l
         j=l+l
-19181   CONTINUE
-          IF((j .GT. ir))GO TO19182
+19251   CONTINUE
+          IF((j .GT. ir))GO TO19252
           IF ((j .LT. ir)) THEN
             IF((rarray(j) .LT. rarray(j+1)))j=j+1
           END IF
@@ -33537,19 +33643,19 @@ C*****************************************************************************
           ELSE
             j=ir+1
           END IF
-        GO TO 19181
-19182   CONTINUE
+        GO TO 19251
+19252   CONTINUE
         rarray(i)=rra
         jarray(i)=ira
-      GO TO 19171
-19172 CONTINUE
+      GO TO 19241
+19242 CONTINUE
       return
       end
       SUBROUTINE PHOTONUC
       implicit none
-      COMMON/STACK/ E(10000),X(10000),Y(10000),Z(10000),U(10000),V(10000
-     *),W(10000),DNEAR(10000),WT(10000),IQ(10000),IR(10000),LATCH(10000)
-     *, LATCHI,NP,NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold

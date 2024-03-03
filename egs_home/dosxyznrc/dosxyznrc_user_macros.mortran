@@ -88,7 +88,7 @@
 REPLACE {$STAT}    WITH {10}  "Number of batches to use in calcn of statistics"
                               "It works with $STAT = 1 but gives no stats"
 REPLACE {$MXMED}   WITH {20}   "Maximum number of media
-REPLACE {$MXSTACK} WITH {10000}  "Maximum particle stack size
+REPLACE {$MXSTACK} WITH {900000}  "Maximum particle stack size
 REPLACE {$IMAX}    WITH {128} "Maximum number of x cells
 REPLACE {$JMAX}    WITH {128} "Maximum number of y cells
 REPLACE {$KMAX}    WITH {128} "Maximum number of z cells
@@ -109,6 +109,10 @@ REPLACE {$MXANG} WITH {60000};
 
 "default directory in which to output phase space files"
 REPLACE {$DIRECTORY-FOR-PHSP} WITH {$cstring(egs_home)//$cstring(user_code)};
+
+"Encoding of the egsphant material types"
+REPLACE {$ENCODING} WITH {
+'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'};
 
 "*******************************************************************"
 "   These macros define the null macros related to BEAM MODELS      "

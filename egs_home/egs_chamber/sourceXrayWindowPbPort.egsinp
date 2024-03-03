@@ -10,8 +10,8 @@
 ################################
 :start run control:
     #ncase = 2.2E12
-    #ncase = 2E12
-    ncase = 3E11
+    ncase = 50000
+    #ncase = 3E11
     #calculation = combine
     #nchunk = 50
     nbatch = 3
@@ -80,7 +80,7 @@
     :start geometry:
         name = to_primary_collimator
         library = egs_gunion
-	geometries = anode phsp_plate window_and_pb_port
+		geometries = anode phsp_plate window_and_pb_port
     :stop geometry:
 
     ### Air between x-ray window and faceplate
@@ -287,7 +287,7 @@
 		name = tracks
 		library = egs_track_scoring
         score photons = yes
-		score electrons = no
+		score electrons = yes
 		score positrons = no
     	stop scoring   = 10000
 	:stop ausgab object:
@@ -355,11 +355,11 @@
 ##############################################################################
 ### VARIANCE REDUCTION
 ##############################################################################
-:start variance reduction:
+#:start variance reduction:
     #split brem photons = 100
     #bcse medium = anode 100
-    photon splitting = 100
-:stop variance reduction:
+    #photon splitting = 100
+#:stop variance reduction:
 
 
 ################################

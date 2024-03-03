@@ -193,16 +193,16 @@
     ### use the same geometry under two different names, for easier bookeeping
     :start calculation geometry:
         geometry name         = sphere_in_room_no_wall
-        cavity regions       = 2
+        scoring regions       = 2
         excluded regions      = 0     # exclude contribution from these regions
-        cavity mass = 0.631 # mass in g for each scoring region
+        scoring region masses = 0.631 # mass in g for each scoring region
         #scoring volume mass  = 0.631 # alternatively: mass for whole scoring volume
     :stop calculation geometry:
 
     :start calculation geometry:
         geometry name         = sphere_in_room_all
-        cavity regions       = 2
-        cavity mass = 0.631 # mass in g for each region
+        scoring regions       = 2
+        scoring region masses = 0.631 # mass in g for each region
         #scoring volume mass  = 0.631 # mass in g for whole scoring volume
     :stop calculation geometry:
 
@@ -219,7 +219,7 @@
 
     ### E*muen file (could also be E*mutr): absolute or relative file path
     ### Use absolute path when submitting parallel jobs!!!
-    emuen file = /home/miia/EGSnrc/egs_home/egs_kerma/emuen_icru90_1.5MeV.data
+    emuen file = $EGS_HOME/egs_kerma/emuen_icru90_1.5MeV.data
 
     ### geometry for forced-detection (if omitted, score ONLY when reaching scoring region)
     Default FD geometry = sphere

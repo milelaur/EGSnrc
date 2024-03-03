@@ -173,6 +173,8 @@ REPLACE {$DUMP#,#;} WITH
 
 "MORTRAN MACRO DEFINITIONS FOR EGS."
 
+REPLACE {$CONFIG_TIME} WITH {'unknown'}
+
 "FIRST SOME PARAMETERS"
 REPLACE {PARAMETER #=#;} WITH
    { REPLACE {{P1}} WITH {{P2}}}
@@ -1427,10 +1429,6 @@ DO J=1,$MXREG [
   IF(SMAXIR(J)<=0.0) [SMAXIR(J)=1E10;]
 ]
 ;}
-
-REPLACE {$KERMA-INSERT;} WITH {;}
-            "USED IN KERMA CALCULATIONS---DEFAULT IS NULL"
-;  "---------- BUFFER FLUSH SEMICOLON ----------"
 
 "MACRO FOR CONTROLLING NEGATIVE USTEP"
 REPLACE {$USER-CONTROLS-NEGATIVE-USTEP;} WITH {
@@ -3833,41 +3831,41 @@ REPLACE {$TIME_RESOLUTION} WITH {0.01}
 !INDENT F2;
 %C80
 %Q1
-"*************************************************************************
-"
-" EGSnrc machine dependent macro file for
-" linux64
-"
-" Created by :
-" EGSnrc-configure-linux version 1.0 on ti syysk. 27 2022
-"
-" You may add your own machine dependent macros to this file,
-" but be carefull to not overwrite it if you re-run
-" EGSnrc-configure-linux
-"
-"*************************************************************************
+"#############################################################################"
+"                                                                             "
+" EGSnrc machine dependent macro file for linux (linux_home)                  "
+"                                                                             "
+" Created by configure version 2.0 on su 3.3.2024 14.04.46 +0200              "
+"                                                                             "
+" You may add your own machine dependent macros to this file,                 "
+" but be carefull to not overwrite it if you re-run configure.                "
+"                                                                             "
+"#############################################################################"
 
 REPLACE {$MACHINE} WITH
-  {,'linux64',};
+  {,'linux (linux_home)',};
 REPLACE {$HEN_HOUSE} WITH
   {'/home/miia/EGSnrc/HEN_HOUSE/'};
 REPLACE {$CANONICAL_SYSTEM} WITH
-  {'linux64'};
+  {'x86_64-unknown-linux-gnu'};
 REPLACE {$CONFIGURATION_NAME} WITH
-  {'linux64'};
+  {'linux_home'};
 REPLACE {$EGS_CONFIG} WITH
-  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux64.conf'};
+  {'/home/miia/EGSnrc/HEN_HOUSE/specs/linux_home.conf'};
+
+REPLACE {$CONFIG_TIME} WITH
+  {'2024-03-03 12:04:46 UTC'};
 
 " System dependent stuff "
 "========================================"
 " Unfortunately, there appears to be no reliable way of copying files "
 " under Fortran => we use a system call for this"
-REPLACE {$copy_file} WITH {'cp  '};
+REPLACE {$copy_file} WITH {'cp '};
 
 " Although one can move files using Fortran's intrinsic rename, "
 " we don't know whether the user has not created additional files in "
 " the temporary working directory => it is easiest to use a system call "
-" to move all files from the temporary working directory to the user code "
+" to move all files from the temporary working directory to the user-code "
 " directory. "
 REPLACE {$move_file} WITH {'mv -f '};
 
@@ -3884,13 +3882,12 @@ REPLACE {$SHORT_INT} WITH { integer*2 };
 "The machine byte order"
 REPLACE {$BYTE_ORDER} WITH {'1234'};
 ;
-" Record Length for unformatted I/O "
 REPLACE {$RECL-FACTOR} WITH {4};
 ;
 REPLACE {$FLUSH_UNIT(#);} WITH {call flush({P1});}
 ;
-" If you want your user code to return an exit status, use the
-" following macro to terminate execution
+" If you want your user-code to return an exit status, use the "
+" following macro to terminate execution"
 REPLACE {$CALL_EXIT(#);} WITH {call exit({P1});}
 ;
 " mortran3 gets confused by the # char => we need to pass it as an "
@@ -4162,7 +4159,7 @@ REPLACE {$RNG-STRING-2} WITH {' 2nd initial random number seed: '}
 REPLACE {$STAT}    WITH {10}  "Number of batches to use in calcn of statistics"
                               "It works with $STAT = 1 but gives no stats"
 REPLACE {$MXMED}   WITH {20}   "Maximum number of media
-REPLACE {$MXSTACK} WITH {10000}  "Maximum particle stack size
+REPLACE {$MXSTACK} WITH {900000}  "Maximum particle stack size
 REPLACE {$IMAX}    WITH {128} "Maximum number of x cells
 REPLACE {$JMAX}    WITH {128} "Maximum number of y cells
 REPLACE {$KMAX}    WITH {128} "Maximum number of z cells
@@ -4183,6 +4180,10 @@ REPLACE {$MXANG} WITH {60000};
 
 "default directory in which to output phase space files"
 REPLACE {$DIRECTORY-FOR-PHSP} WITH {$cstring(egs_home)//$cstring(user_code)};
+
+"Encoding of the egsphant material types"
+REPLACE {$ENCODING} WITH {
+'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'};
 
 "*******************************************************************"
 "   These macros define the null macros related to BEAM MODELS      "
@@ -4399,6 +4400,7 @@ REPLACE {;COMIN/SOURCE/;} WITH {
     esrc_sp, "kinetic energy of source particle  (enflag=1)                    "
     SSD,     "Source to surface dist for point source particles ( isource=3)"
     einsrcold,"stores einsrc for source 20          (isource=20) "
+    iaea_SAD, "stores SAD for IAEA phase space sources         (isource=2,8,20)"
     NINCSRC,  "No. of particles incident from original source   (isource=2,8)  "
     r_dbs,    "DBS splitting radius used to generate phsp source (isource=2,8)"
     ssd_dbs,  "SSD at which above DBS radius defined            (isource=2,8)"
@@ -4476,7 +4478,7 @@ REPLACE {;COMIN/SOURCE/;} WITH {
     pang,angfixed,angmin,angmax,pgang,r_11, r_12, r_13, r_21,
     r_22, r_23, r_31, r_32, r_33,dsource,dsourcetemp,
     ein, eksrcm, esrc_sp, SSD, NINCSRC,
-    r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold;
+    r_dbs, ssd_dbs,z_dbs,survival_ratio,einsrcold,iaea_SAD;
     $INTEGER isource, iqin, iqphsp, iqinc,latchold,iqinold,MLCflag,SHLflag,
     calflag, ixinl, ixinu, jyinl, jyinu, kzinl, kzinu,
     klowx, khix, klowy, khiy, klowz, khiz,
@@ -7125,6 +7127,7 @@ ELSEIF(iaea_result=-2)[
 "                   Frederic Tessier                                          "
 "                   Ernesto Mainegra-Hing                                     "
 "                   Reid Townson                                              "
+"                   Marc-Andre Renaud                                         "
 "                                                                             "
 "#############################################################################"
 "                                                                             "
@@ -7379,7 +7382,7 @@ ELSEIF(iaea_result=-2)[
 "   Record 13 (9 if NMED=0)
 "            NCASE, IWATCH, TIMMAX, INSEED1, INSEED2,
 "       BEAM_SIZE, ISMOOTH,IRESTART,IDAT,IREJECT,ESAVE_GLOBAL,NRCYCL,IPARALLEL,
-"       PARNUM,n_split,ihowfarless,i_phsp_out
+"       PARNUM,n_split,ihowfarless,i_phsp_out,i_bindos
 "
 "            NCASE     Number of histories
 "            IWATCH    0=>no tracking output, 1=>list every interaction
@@ -7550,6 +7553,11 @@ ELSEIF(iaea_result=-2)[
 "                      output.  If you are using source 20 or source 21
 "                      (synchronized sources) then you also have the option of
 "                      storing frMU_indx in the file (see source inputs).
+"
+"          i_bindos    For outputting sparse binary dose data instead of the
+"                      dense ASCII .3ddose format. If i_bindos=0, then the
+"                      dose will be output in .3ddose format. Any other value
+"                      will output a .bindos file instead.
 "
 "----------------------------------------------------------------------------
 "----------------------------------------------------------------------------
@@ -8251,7 +8259,7 @@ REPLACE {;COMIN/SCORE/;} WITH {
     planarefp,planarfe,planarfp,
     nestep,
     endep_tmp($MAXDOSE),
-    i_phsp_out,i_muidx_out,i_unit_out,IWATCH,mxnp,
+    i_phsp_out,i_muidx_out,i_unit_out,IWATCH,mxnp,i_bindos,
     endep_last($MAXDOSE);
     REAL*8 endep, endep2, temp2,planarefe, planarefp, planarfe, planarfp;
     $LONG_INT nestep;
@@ -8262,6 +8270,7 @@ REPLACE {;COMIN/SCORE/;} WITH {
                         "in phase space data (phsp or BEAM simulation source"
                         "only)"
             i_unit_out, "unit no. for IAEA phsp output"
+            i_bindos,   "set to 1 to output sparse binary file"
             IWATCH,mxnp;
     $SHORT_INT endep_last;
 }
@@ -8442,6 +8451,9 @@ REAL z_score_tmp; "dummy variable passed to IAEA phsp file opening macro"
 
 external combine_results;
 
+character medChar($IMAX);
+character encoding*62;
+
 #ifdef HAVE_C_COMPILER;
 $REAL   part_dose, part2_dose, current_result, current_uncertainty;
 $LONG_INT n_run,n_tot,n_last,n_left,other_num_1,other_num_2,p_per_phsp_chunk;
@@ -8459,6 +8471,8 @@ $DECLARE_TIMING_VARIABLES;
 "cput1 is cputime at start of simulations"
 "cput2 is cputime when asked for so elapsed cpu is cput2-cput0 or -cput1"
 
+"define the ascii encoding string for media in egsphant file"
+encoding = $ENCODING;
 
 call egs_init; "initialize EGSnrc system"
 
@@ -8498,6 +8512,7 @@ MAX20=0;
 IPHANT=0;
 doseprint=1; "assume we want to output doses to .egslst unless using CT"
 i_phsp_out=0; "default is to not output phsp"
+i_bindos=0;
 
 
 CALL DATETIME(1);
@@ -8604,14 +8619,21 @@ IF(NMED = 0)[ "Input data from CT data file as processed by the code ctcreate"
     (/' x range : ',F12.5,' - ',F12.5,' cm'/
       ' y range : ',F12.5,' - ',F12.5,' cm'/
       ' z range : ',F12.5,' - ',F12.5,' cm');
+
     "input the media numbers"
     DO k=1,KMAX[
        DO j=1,JMAX[
-          read($CTUnitNumber,:medformat:) (med($IR(i,j,k)),i=1,IMAX);
+          "Read in the characters that correspond to medium numbers"
+          read($CTUnitNumber,:medformat:) (medChar(i),i=1,IMAX);
+          "Convert from ASCII to a number"
+          DO i=1,IMAX[
+            med($IR(i,j,k)) = index(encoding, medChar(i)) - 1;
+          ]
        ]
        read($CTUnitNumber,*);
     ]
-    :medformat: FORMAT($IMAXi1);
+    :medformat: FORMAT($IMAXa1);
+
     "input the densities"
     maxrhor=0.;
     minrhor=999.;
@@ -8887,11 +8909,12 @@ call srcinput(ieof);
 
 OUTPUT61;
 (//' NCASE,IWATCH,TIMMAX,INSEED1,INSEED2,BEAM_SIZE,ISMOOTH,IRESTART,IDAT,'/
-' IREJECT,ESAVE_GLOBAL,NRCYCL,IPARALLEL,PARNUM,n_split,ihowfarless,i_phsp_out'/
+' IREJECT,ESAVE_GLOBAL,NRCYCL,IPARALLEL,PARNUM,n_split,ihowfarless,i_phsp_out,'/
+' i_bindos '/
    ' : ',$);
-read(5,'(2I16,F15.0,2I10,F15.0,4I10,F15.0,6I10)')
+read(5,'(2I16,F15.0,2I10,F15.0,4I10,F15.0,7I10)')
 NCASE,IWATCH,TIMMAX,IXXIN,JXXIN,BEAM_SIZE,ISMOOTH,IRESTART,IDAT,IREJECT,
-ESAVE_GLOBAL,NRCYCL,IPARALLEL,PARNUM,n_split,ihowfarless,i_phsp_out;
+ESAVE_GLOBAL,NRCYCL,IPARALLEL,PARNUM,n_split,ihowfarless,i_phsp_out,i_bindos;
 
 IF(n_split<=1 & e_split>1)[
    OUTPUT;
@@ -9088,28 +9111,23 @@ call show_transport_parameter(iout); " print the transport parameter settings"
 "=========================================================================="
 
 "now check to see if ECUTIN>ECUT or PCUTIN>PCUT"
-"or, in the case where GUI inputs for ECUT/PCUT were left blank and"
-"ECUT/PCUT defaulted to AE/AP in hatch, ECUT>ECUTIN or PCUT>PCUTIN"
-IF(ECUTIN>ECUT)[ "reset ecut in all regions to ecutin"
-   OUTPUT ECUT;
-    (/' ****WARNING****'/
-      ' ECUTIN > ECUT input in EGSnrc parameters ( ',F10.4,' MeV).'/
-      ' ECUT defaults to ECUTIN.'/);
-   ECUT=ECUTIN;
+IF(ECUTIN > ECUT + 1e-10)[ "reset ecut in all regions to ecutin"
+  OUTPUT ECUTIN,ECUT;
+  (/' WARNING'/
+    ' ECUTIN(=',F13.9,') > ECUT(=',F13.9,') input in EGSnrc parameters'/
+    ' ECUT defaults to ECUTIN.'/);
+  ECUT=ECUTIN;
 ]
-ELSE[
-   ECUTIN=ECUT;
+ELSE[ ECUTIN=ECUT; ]
+
+IF(PCUTIN > PCUT + 1e-10)[ "reset pcut in all regions to pcutin"
+  OUTPUT PCUTIN,PCUT;
+  (/' WARNING'/
+    ' PCUTIN(=',F13.9,') > PCUT(=',F13.9,') input in EGSnrc parameters'/
+    ' PCUT defaults to PCUTIN.'/);
+  PCUT=PCUTIN;
 ]
-IF(PCUTIN>PCUT)[ "reset ecut in all regions to ecutin"
-   OUTPUT PCUT;
-    (/' ****WARNING****'/
-      ' PCUTIN > PCUT input in EGSnrc parameters ( ',F10.4,' MeV).'/
-      ' PCUT defaults to PCUTIN.'/);
-   PCUT=PCUTIN;
-]
-ELSE[
-   ECUTIN=ECUT;
-]
+ELSE[ PCUTIN=PCUT; ]
 
 "call this here so that BEAM simulation source can get i_parallel if"
 "pprocess is used"
@@ -10443,7 +10461,8 @@ IF(zerodose=1 & zerocount >0)[
 "subroutine call replaces a portion of code to write to .3ddose file"
 "do not call if we are doing a parallel run"
 IF((IPARALLEL <= 1 & n_parallel = 0) | (n_parallel > 0 & is_finished))[
-   call write_dose(IMAX,JMAX,KMAX,xbound,ybound,zbound,endep,endep2,idd,MAX20);
+   call write_dose(IMAX,JMAX,KMAX,xbound,ybound,zbound,endep,endep2,idd,MAX20
+                   ,i_bindos);
 ]
 ELSE [OUTPUT61;(//' No dose outputs since this is a parallel run '//);]
 
@@ -10812,6 +10831,11 @@ IF(iarg=5 & i_phsp_out~=0 & ir(np)=irmax+1 & irold<ir(np))[
                    r_32(k_field)*w_temp;
              w(np)=r_13(k_field)*u_temp + r_23(k_field)*v_temp +
                    r_33(k_field)*w_temp;
+
+           IF(i_iaea_in=1)[
+          "for IAEA phsp source we need to add SAD back to Z coordinate"
+                  z(np) = z(np) + iaea_SAD;
+           ]
 
            "Write the particle to a phsp"
            $DOSXYZ_WRITE_PHSP;
@@ -11386,12 +11410,12 @@ RETURN; end;
 "******************************************************************************
 
 subroutine write_dose(iimax,jjmax,kkmax,xbnd,ybnd,zbnd,dd,ddun,unitnum,
-                      writemax20);
+                      writemax20,bindos);
 
 
-"Writes dose to file designated by unitnum.  Currently the subroutine only
-"writes in the .3ddose format (unitnum=3) and replaces a portion of the
-"main code.  However, this subroutine will eventually output the dose in
+"Writes dose to file designated by unitnum.  Currently the subroutine writes
+"in the .3ddose format (unitnum=3) or the .bindos format and replaces a portion
+"of the main code.  However, this subroutine will eventually output the dose in
 "other formats as well.
 
 "3 possible methods of specifying the array sizes for dd and ddun, the
@@ -11448,23 +11472,29 @@ INTEGER iimax,                     "max number of x cells"
         jjmax,                     "max number of y cells"
         kkmax,                     "max number of z cells"
         ijkmax,                    "iimax*jjmax*kkmax"
-        irtmp,                    "tmp variable to hold ir"
+        irtmp,                     "tmp variable to hold ir"
         writemax20,                "1 for summary of max 20 doses"
+        bindos,                    "1 for binary file"
         unitnum,                   "unit number in which to write data"
         ii,jj,kk,mm,nn,            "indices"
         NUMFRAC,                   "number of voxels for av. rel. uncertainty"
         MAXI(20),MAXJ(20),MAXK(20),"indices for max 20 doses"
+        num_nonzero,               "number of nonzero voxels"
+        num_blocks,                "number of voxel blocks"
+        start_block,               "keep track of contiguous nonzero voxels"
+        voxel_blocks($MAXDOSE),    "indices of nonzero voxels"
         egs_open_file;
 REAL    xbnd($IMAX+1),             "voxel x boundaries"
         ybnd($JMAX+1),             "voxel y boundaries"
         zbnd($KMAX+1),             "voxel z boundaries"
+        dtemp,                     "float version of double dose"
         MAXDOS(20),                "maximum 20 doses"
         MAXDOSAVG,                 "average of max 20 doses"
         ERRMAXDOSAVG,              "average of error of max 20 doses"
         ERR50AVG,                  "average % error of doses > 50% of max dose"
         ERR50FRAC,                 "average error of doses > 50% of max"
                                    " dose as a fraction of max dose"
-        DOSEFRAC,                "fraction for calculating av. rel. uncertainty"
+        DOSEFRAC,                  "fraction for calculating av. rel. uncertainty"
         DOSEmin,                   "DOSEFRAC*MAXDOS(1)"
         ARUFRAC;                   "average relative uncertainty on all voxels"
                                    "with dose > DOSEFRAC*Dmax"
@@ -11472,22 +11502,82 @@ REAL    xbnd($IMAX+1),             "voxel x boundaries"
 REAL*8  dd($MAXDOSE),              "linear array of doses"
         ddun($MAXDOSE);            "linear array of dose uncertainties"
 
-REPLACE {$PLOTOUT#;} WITH {write(unitnum,*){P1};}
-REPLACE {$IRDWD(#,#,#)} WITH {({P1}+({P2}-1)*iimax+({P3}-1)*iimax*jjmax)}
+REPLACE {$PLOTOUT#;} WITH {write(unitnum,*){P1};};
+REPLACE {$BINOUT#;} WITH {write(unitnum){P1};};
+REPLACE {$IRDWD(#,#,#)} WITH {({P1}+({P2}-1)*iimax+({P3}-1)*iimax*jjmax)};
 
-"open the .3ddose file for output"
-unitnum=egs_open_file(unitnum,0,1,'.3ddose');
+num_nonzero = 0;
+num_blocks = 0;
+start_block = -1;
+ijkmax=iimax*jjmax*kkmax;
 
-$PLOTOUT iimax,jjmax,kkmax;
-$PLOTOUT (xbnd(ii),ii=1,iimax+1);
-$PLOTOUT (ybnd(jj),jj=1,jjmax+1);
-$PLOTOUT (zbnd(kk),kk=1,kkmax+1);
-$PLOTOUT (((dd($IRDWD(ii,jj,kk)),ii=1,iimax),jj=1,jjmax),kk=1,kkmax);
-$PLOTOUT (((ddun($IRDWD(ii,jj,kk)),ii=1,iimax),jj=1,jjmax),kk=1,kkmax);
+IF(bindos=0)[
+    "open the .3ddose file for output"
+    unitnum=egs_open_file(unitnum,0,1,'.3ddose');
+    $PLOTOUT iimax,jjmax,kkmax;
+    $PLOTOUT (xbnd(ii),ii=1,iimax+1);
+    $PLOTOUT (ybnd(jj),jj=1,jjmax+1);
+    $PLOTOUT (zbnd(kk),kk=1,kkmax+1);
+    $PLOTOUT (((dd($IRDWD(ii,jj,kk)),ii=1,iimax),jj=1,jjmax),kk=1,kkmax);
+    $PLOTOUT (((ddun($IRDWD(ii,jj,kk)),ii=1,iimax),jj=1,jjmax),kk=1,kkmax);
+]
+ELSE[
+    DO ii=1,ijkmax[
+        IF(dd(ii)>0.0)[
+            IF(start_block = -1) [
+                start_block = ii;
+            ]
+            num_nonzero = num_nonzero + 1;
+        ] ELSE [
+            IF(start_block ~= -1) [
+                "First 0 dose voxel after a block of nonzero voxels"
+                num_blocks = num_blocks + 1;
+                voxel_blocks(2*num_blocks) = start_block;
+                voxel_blocks(2*num_blocks+1) = ii;
+                start_block = -1;
+            ]
+        ]
+    ]
+    "Capture the final voxel block"
+    IF(start_block ~= -1) [
+        num_blocks = num_blocks + 1;
+        voxel_blocks(2*num_blocks) = start_block;
+        voxel_blocks(2*num_blocks+1) = ijkmax;
+    ]
+
+    "open the .bindos file for output"
+    unitnum=egs_open_file(unitnum,-1,1,'.bindos');
+    $BINOUT iimax,jjmax,kkmax;
+    $BINOUT (xbnd(ii),ii=1,iimax+1);
+    $BINOUT (ybnd(jj),jj=1,jjmax+1);
+    $BINOUT (zbnd(kk),kk=1,kkmax+1);
+
+    $BINOUT num_nonzero;
+    $BINOUT num_blocks;
+
+    "Writing start/end indices of contiguous non-zero voxel doses, 0-indexed"
+    "To be interpreted as [start, end)"
+    DO ii=1,num_blocks [
+        $BINOUT voxel_blocks(2*ii) - 1;
+        $BINOUT voxel_blocks(2*ii+1) - 1;
+    ]
+
+    DO ii=1,num_blocks [
+        DO jj=voxel_blocks(2*ii),voxel_blocks(2*ii+1)-1 [
+            dtemp = dd(jj);
+            $BINOUT dtemp;
+        ]
+    ]
+
+    DO ii=1,num_blocks [
+        DO jj=voxel_blocks(2*ii),voxel_blocks(2*ii+1)-1 [
+            dtemp = ddun(jj);
+            $BINOUT dtemp;
+        ]
+    ]
+]
 
 close(unitnum);
-
-ijkmax=iimax*jjmax*kkmax;
 
 IF(writemax20=1)["print out maximum 20 doses"
   DO mm=1,20 [ MAXDOS(mm)=0.0; ]
@@ -11616,6 +11706,8 @@ REAL    xbnd($IMAX+1),             "voxel x boundaries"
         estepe($MXMED);            "linear array of estepe values"
 $REAL rho($MXREG);
 
+character  encoding(62);
+encoding = $ENCODING;
 
 REPLACE {$IRWP(#,#,#)} WITH {(1 + {P1} + ({P2}-1)*iimax + ({P3}-1)*iimax*jjmax)}
 
@@ -11632,11 +11724,12 @@ WRITE(iunit,*) (ybnd(jj),jj=1,jjmax+1);
 WRITE(iunit,*) (zbnd(kk),kk=1,kkmax+1);
 DO kk=1,kkmax[
     DO jj=1,jjmax[
-        WRITE(iunit,1399) (med($IRWP(ii,jj,kk)),ii=1,iimax);
+        WRITE(iunit,1399)
+        (encoding(med($IRWP(ii,jj,kk))+1:med($IRWP(ii,jj,kk))+1),ii=1,iimax);
     ]
     WRITE(iunit,*);
 ]
-1399 FORMAT($IMAXi1);
+1399 FORMAT($IMAXa1);
 DO kk=1,kkmax[
     DO jj=1,jjmax[
         WRITE(iunit,*) (rho($IRWP(ii,jj,kk)),ii=1,iimax);
@@ -15686,17 +15779,16 @@ END;
 ;
 "---End of subroutine.---"
 %F
-C***************************************************************************
+C##############################################################################
 C
-C   This file was automatically generated by:
-C   EGSnrc-configure-linux version 1.0
+C   This file was automatically generated by configure version 2.0
 C   It contains various subroutines and functions for date, time,
 C   CPU time, host name, etc.
 C
-C   Attention: all changes will be lost the next time you run
-C   EGSnrc-configure-linux.
+C   Attention: all changes will be lost the next time you run configure!
 C
-C***************************************************************************
+C##############################################################################
+
 
 C##############################################################################
 C
@@ -16362,7 +16454,7 @@ C*****************************************************************************
 
       subroutine egs_print_canonical_system(ounit)
       integer ounit
-      write(6,'(a,$)') 'linux64'
+      write(6,'(a,$)') 'x86_64-unknown-linux-gnu'
       return
       end
 
@@ -16376,13 +16468,13 @@ C******************************************************************************
       subroutine egs_get_canonical_system(res)
       character*(*) res
       integer l1,l2
-      l1 = lnblnk1('linux64')
+      l1 = lnblnk1('x86_64-unknown-linux-gnu')
       l2 = len(res)
       res(:l2) = ' '
       if( l2.ge.l1 ) then
-        res(:l1) = 'linux64'
+        res(:l1) = 'x86_64-unknown-linux-gnu'
       else
-        res(:l2) = 'linux64'
+        res(:l2) = 'x86_64-unknown-linux-gnu'
       end if
       return
       end
@@ -16426,7 +16518,7 @@ C*****************************************************************************
 
       subroutine egs_print_configuration_name(ounit)
       integer ounit
-      write(6,'(a,$)') 'linux64'
+      write(6,'(a,$)') 'linux_home'
       return
       end
 
@@ -16440,13 +16532,13 @@ C******************************************************************************
       subroutine egs_get_configuration_name(res)
       character*(*) res
       integer l1,l2
-      l1 = lnblnk1('linux64')
+      l1 = lnblnk1('linux_home')
       l2 = len(res)
       res(:l2) = ' '
       if( l2.ge.l1 ) then
-        res(:l1) = 'linux64'
+        res(:l1) = 'linux_home'
       else
-        res(:l2) = 'linux64'
+        res(:l2) = 'linux_home'
       end if
       return
       end
@@ -19911,7 +20003,6 @@ $REAL xsrc,ysrc,zsrc, "X,Y,Z position of incident particle (isource=2,8,9)"
       uin,vin,win, "U,V,W of incident particle"
       enin,        "energy of incident particle"
       zsrcdum,     "dummy value of zsrc read in from BEAM sim (isource=9)"
-      SAD_s20,     "for source 20 if iaea phsp is read SAD is needed"
       r1,rnno1,rnno2, "random no.s"
       fw,
       rxyz, "radial position of incident particle"
@@ -19935,6 +20026,10 @@ $LONG_INT n_hist_dum;
 save wsrc; "in case of phsp particle recycling"
 
 zsrc = dsource;
+iaea_SAD = 0;
+IF(i_iaea_in = 1)[
+   iaea_SAD = -dsource; "save SAD for iaea phsp sources"
+]
 
 "----------------------------------------------------------------"
 IF(isource = 0)[ "Frontal parallel beam source"
@@ -20680,8 +20775,7 @@ IF(NofREPEAT > 0 & ISMOOTH = 1)[
 
 "Rotate/translate the source particle into position
 IF(isource<7 | isource=9)[
-  IF(i_iaea_in=1) zsrc = zsrc + dsource;
-  "this is zsrc - SAD, but dsource has been set -ve in srcinit"
+  IF(i_iaea_in=1) zsrc = zsrc - iaea_SAD;
 
   uin   = r_11(1)*usrc + r_12(1)*vsrc + r_13(1)*wsrc;
   vin   = r_21(1)*usrc + r_22(1)*vsrc + r_23(1)*wsrc;
@@ -20707,9 +20801,9 @@ ELSEIF(isource=20 | isource=21)[
    IF(i_iaea_in=1)[
         "for iaea phase space z is read from the particle"
         " dsourcetemp is now supposed to be SAD"
-        SAD_s20 = (dsourcetemp(K-1)+(dsourcetemp(K)-dsourcetemp(K-1))*
+        iaea_SAD = (dsourcetemp(K-1)+(dsourcetemp(K)-dsourcetemp(K-1))*
   (frMU_indx-muIndex(K-1))/(muIndex(K)-muIndex(K-1)));
-        zsrc = zsrc - SAD_s20;
+        zsrc = zsrc - iaea_SAD;
    ]  ELSE [
   zsrc = -1.0*(dsourcetemp(K-1)+(dsourcetemp(K)-dsourcetemp(K-1))*
   (frMU_indx-muIndex(K-1))/(muIndex(K)-muIndex(K-1)));
@@ -20756,6 +20850,7 @@ cosphi   = cos(phi(1)*3.141593/180.); sinphi   = sin(phi(1)*3.141593/180.);
 
 ]
 ELSE[ "choose an incident angle from the distribution"
+  IF(i_iaea_in=1) zsrc = zsrc - iaea_SAD; "in case we have IAEA isource=8"
   $RANDOMSET RNNO1;
   k_field=numang;"use global variable k_field so we can untransform"
                  "if scoring phsp in BEAM coordinate system"
@@ -21831,6 +21926,7 @@ end;
 "                   Blake Walters                                             "
 "                   Frederic Tessier                                          "
 "                   Reid Townson                                              "
+"                   Marc-Andre Renaud                                         "
 "                                                                             "
 "#############################################################################"
 "                                                                             "
@@ -22233,12 +22329,16 @@ IF( lnblnk1(tmp_string) > lnblnk1(pegs_file) ) [
 ]
 pos2 = min(pos2,80-lnblnk1(tmp_string));
 pos2 = min(pos2,80-lnblnk1(host_name));
+pos2 = min(pos2,80-lnblnk1($CONFIG_TIME));
 IF( have_input ) pos2 = min(pos2,80-lnblnk1(input_file));
 pos2 = min(pos2,80-lnblnk1(output_file));
 IF( pos2 < pos1+2 ) pos2 = pos1 + 2;
 
 $write_description('configuration'); $egs_info('(a)',$CONFIGURATION_NAME);
-$write_description('user code'); $egs_info('(a)',$cstring(user_code));
+$write_description('configuration time'); $egs_info('(a)',$CONFIG_TIME);
+$write_description('app compile time'); $egs_info('(a)',COMPILE_TIME);
+$write_description('git commit hash'); $egs_info('(a)',GIT_HASH);
+$write_description('application'); $egs_info('(a)',$cstring(user_code));
 $write_description('pegs file'); $egs_info('(a)',$cstring(tmp_string));
 $write_description('using host'); $egs_info('(a)',$cstring(host_name));
 IF( have_input ) [
@@ -22976,7 +23076,8 @@ integer function egs_open_file(iunit,rl,action,extension);
 " If extension is an absolute file name (including path), use extension
 " as a file name, otherwise use output_file.extension in the temporary
 " working directory as name. In both cases use status='unknown' to open the
-" file. If rl = 0, open the file for formatted sequential access, otherwise
+" file. If rl = -1, open the file with stream access to write C-style binary
+" files. If rl = 0, open the file for formatted sequential access, otherwise
 " open for unformatted direct access with record length = rl.
 "******************************************************************************
 implicit none;
@@ -23009,6 +23110,10 @@ IF( egs_is_absolute_path(extension) ) [
              ' Will not try to re-open this file, assuming it has been opened',
              ' by the .io file.');
     ]
+    ELSE IF ( rl = -1 ) [
+        open(the_unit,file=extension,status='unknown',form='unformatted',
+             access='stream');
+    ]
     ELSE IF( rl = 0 ) [
         open(the_unit,file=extension,status='unknown');
     ]
@@ -23036,6 +23141,10 @@ IF(is_open)[
              ' is already opened and connected to unit ',the_unit,
              ' Will not try to re-open this file, assuming it has been opened',
              ' by specifying it in the .io file.');
+]
+ELSE IF ( rl = -1 ) [
+    open(the_unit,file=tmp_string,status='unknown',form='unformatted',
+            access='stream');
 ]
 ELSE IF( rl = 0 ) [
     open(the_unit,file=tmp_string,status='unknown',err=:open_error:);
@@ -24119,7 +24228,6 @@ $INTEGER function ibsearch(a, nsh, b);
  ]
  ibsearch = min;
  return;end;
-
 %C80
 "#############################################################################"
 "                                                                             "
@@ -33573,30 +33681,9 @@ IF (IQI = 2) ["PI-ZERO OPTION"
   CALL UPHI(3,2);
 ]"end of pi-zero option"
 
-"The following convoluted logic is difficult to follow"
-"when one modifies the outcome of certain interactions"
-"using nbr_split, Russian Roulette, or one of the     "
-"particle selection macros. I'm simplifying it        "
-"so that ircode becomes irrelevant. IK, August 2002   "
-":TOPSTACK:"
-"LOOP["
-"   $KERMA-INSERT;"
-"   IF(IQ(NP) = 0) GO TO :PHOTON:;"
-"   LOOP ["
-"      :ELECTRON:"
-"      CALL ELECTR(IRCODE);"
-"      IF(IRCODE.EQ.2) EXIT; "
-"      :PHOTON:"
-"      CALL PHOTON(IRCODE);"
-"      IF(IRCODE.EQ.2) EXIT;"
-"   ]REPEAT"
-"   IF(NP <= 0) EXIT;"
-"]REPEAT "
-
 LOOP [
     ;
     IF( np <= 0 ) EXIT;
-    $KERMA-INSERT;  " DEFAULT FOR $KERMA-INSERT; IS ; (NULL)"
     IF( iq(np) = 0 ) [ call photon(ircode); ]
     ELSE             [ call electr(ircode); ]
 

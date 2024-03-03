@@ -44,6 +44,8 @@
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       common/randomm/ rng_array(128), rng_seed
       integer*4 rng_seed
       EGS_Float rng_array
@@ -1251,7 +1253,7 @@ C*****************************************************************************
       END IF
       pos2 = min(pos2,80-lnblnk1(tmp_string))
       pos2 = min(pos2,80-lnblnk1(host_name))
-      pos2 = min(pos2,80-lnblnk1('2024-02-04 11:11:53 UTC'))
+      pos2 = min(pos2,80-lnblnk1('2024-03-03 12:04:46 UTC'))
       IF((have_input))pos2 = min(pos2,80-lnblnk1(input_file))
       pos2 = min(pos2,80-lnblnk1(output_file))
       IF((pos2 .LT. pos1+2))pos2 = pos1 + 2
@@ -1262,7 +1264,7 @@ C*****************************************************************************
       write(i_log,'(a,$)') 'configuration time'
       l = pos2 - lnblnk1('configuration time')
       write(i_log,'(a,$)') line1(:l)
-      write(i_log,'(a)') '2024-02-04 11:11:53 UTC'
+      write(i_log,'(a)') '2024-03-03 12:04:46 UTC'
       write(i_log,'(a,$)') 'app compile time'
       l = pos2 - lnblnk1('app compile time')
       write(i_log,'(a,$)') line1(:l)
@@ -2082,6 +2084,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/THRESH/RMT2,RMSQ, AP(max_med),AE(max_med),UP(max_med),UE(ma
      *x_med),TE(max_med),THMOLL(max_med)
       EGS_Float RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
@@ -4208,6 +4212,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       common/useful/ pzero, prm, prmt2, rm, rhor, rhor_new, medium, medi
      *um_new, medold
       real*8 pzero, prm, prmt2
@@ -4478,6 +4484,7 @@ C*****************************************************************************
       WT(np+1)=WT(np)
       DNEAR(np+1)=DNEAR(np)
       LATCH(np+1)=LATCH(np)
+      nbr_splitting(np+1)=nbr_splitting(np)
       X(np+2)=X(np)
       Y(np+2)=Y(np)
       Z(np+2)=Z(np)
@@ -4485,6 +4492,7 @@ C*****************************************************************************
       WT(np+2)=WT(np)
       DNEAR(np+2)=DNEAR(np)
       LATCH(np+2)=LATCH(np)
+      nbr_splitting(np+2)=nbr_splitting(np)
       a = u(np)
       b = v(np)
       c = w(np)
@@ -10628,6 +10636,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       EGS_Float THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5
      *D2
@@ -10741,6 +10751,7 @@ C*****************************************************************************
         WT(np)=WT(ip)
         DNEAR(np)=DNEAR(ip)
         LATCH(np)=LATCH(ip)
+        nbr_splitting(np)=nbr_splitting(ip)
         COSTHE=MAX(-1.0,MIN(1.0,(ESG1-RM)*POT/ESG1))
         SINTHE=SQRT(1.0-COSTHE*COSTHE)
 5051    CONTINUE
@@ -10791,6 +10802,7 @@ C*****************************************************************************
         WT(np)=WT(np-1)
         DNEAR(np)=DNEAR(np-1)
         LATCH(np)=LATCH(np-1)
+        nbr_splitting(np)=nbr_splitting(np-1)
         COSTHE=MAX(-1.0,MIN(1.0,(ESG2-RM)*POT/ESG2))
         SINTHE=-SQRT(1.0-COSTHE*COSTHE)
         IF (( sinpsi .GE. 1e-10 )) THEN
@@ -10822,6 +10834,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       common/randomm/ rng_array(128), rng_seed
       integer*4 rng_seed
       EGS_Float rng_array
@@ -10913,6 +10927,7 @@ C*****************************************************************************
         WT(np)=WT(ip)
         DNEAR(np)=DNEAR(ip)
         LATCH(np)=LATCH(ip)
+        nbr_splitting(np)=nbr_splitting(ip)
         u(np) = sinthe*cphi
         v(np) = sinthe*sphi
         w(np) = costhe
@@ -10926,6 +10941,7 @@ C*****************************************************************************
         WT(np)=WT(np-1)
         DNEAR(np)=DNEAR(np-1)
         LATCH(np)=LATCH(np-1)
+        nbr_splitting(np)=nbr_splitting(np-1)
         u(np) = -u(np-1)
         v(np) = -v(np-1)
         w(np) = -w(np-1)
@@ -10949,6 +10965,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/THRESH/RMT2,RMSQ, AP(max_med),AE(max_med),UP(max_med),UE(ma
      *x_med),TE(max_med),THMOLL(max_med)
       EGS_Float RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
@@ -11097,6 +11115,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/THRESH/RMT2,RMSQ, AP(max_med),AE(max_med),UP(max_med),UE(ma
      *x_med),TE(max_med),THMOLL(max_med)
       EGS_Float RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
@@ -11285,6 +11305,7 @@ C*****************************************************************************
         WT(np)=WT(np-1)
         DNEAR(np)=DNEAR(np-1)
         LATCH(np)=LATCH(np-1)
+        nbr_splitting(np)=nbr_splitting(np-1)
         wt(np) = weight
         IF (( ibrdst .LT. 0 )) THEN
           u(np) = u(npold)
@@ -11415,6 +11436,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/THRESH/RMT2,RMSQ, AP(max_med),AE(max_med),UP(max_med),UE(ma
      *x_med),TE(max_med),THMOLL(max_med)
       EGS_Float RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
@@ -11902,6 +11925,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/THRESH/RMT2,RMSQ, AP(max_med),AE(max_med),UP(max_med),UE(ma
      *x_med),TE(max_med),THMOLL(max_med)
       EGS_Float RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
@@ -12256,6 +12281,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/THRESH/RMT2,RMSQ, AP(max_med),AE(max_med),UP(max_med),UE(ma
      *x_med),TE(max_med),THMOLL(max_med)
       EGS_Float RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
@@ -13314,6 +13341,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/THRESH/RMT2,RMSQ, AP(max_med),AE(max_med),UP(max_med),UE(ma
      *x_med),TE(max_med),THMOLL(max_med)
       EGS_Float RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
@@ -14492,6 +14521,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/THRESH/RMT2,RMSQ, AP(max_med),AE(max_med),UP(max_med),UE(ma
      *x_med),TE(max_med),THMOLL(max_med)
       EGS_Float RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
@@ -16778,6 +16809,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/THRESH/RMT2,RMSQ, AP(max_med),AE(max_med),UP(max_med),UE(ma
      *x_med),TE(max_med),THMOLL(max_med)
       EGS_Float RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
@@ -17253,6 +17286,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/MEDIA_p/ RLC(max_med),RLDU(max_med),MSGE(max_med),MGE(max_m
      *ed),MSEKE(max_med),MEKE(max_med),MLEKE(max_med),MCMFP(max_med),MRA
      *NGE(max_med),IRAYLM(max_med),IPHOTONUCM(max_med), MEDIA(24,max_med
@@ -17613,6 +17648,7 @@ C*****************************************************************************
       WT(np)=WT(np)
       DNEAR(np)=DNEAR(np)
       LATCH(np)=LATCH(np)
+      nbr_splitting(np)=nbr_splitting(np)
       X(np+1)=X(np)
       Y(np+1)=Y(np)
       Z(np+1)=Z(np)
@@ -17620,6 +17656,7 @@ C*****************************************************************************
       WT(np+1)=WT(np)
       DNEAR(np+1)=DNEAR(np)
       LATCH(np+1)=LATCH(np)
+      nbr_splitting(np+1)=nbr_splitting(np)
       X(np+2)=X(np+1)
       Y(np+2)=Y(np+1)
       Z(np+2)=Z(np+1)
@@ -17627,6 +17664,7 @@ C*****************************************************************************
       WT(np+2)=WT(np+1)
       DNEAR(np+2)=DNEAR(np+1)
       LATCH(np+2)=LATCH(np+1)
+      nbr_splitting(np+2)=nbr_splitting(np+1)
       pp = 1/pp
       pm = 1/pm
       pr = 1/pr
@@ -17770,6 +17808,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       EGS_Float THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5
      *D2
@@ -18111,6 +18151,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       EGS_Float THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5
      *D2
@@ -18694,6 +18736,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       common/bounds/ ecut, pcut, ecut_new, pcut_new, vacdst
       EGS_Float ecut, pcut, ecut_new, pcut_new, vacdst
       common/useful/ pzero, prm, prmt2, rm, rhor, rhor_new, medium, medi
@@ -18809,6 +18853,7 @@ C*****************************************************************************
             WT(np)=WT(np-1)
             DNEAR(np)=DNEAR(np-1)
             LATCH(np)=LATCH(np-1)
+            nbr_splitting(np)=nbr_splitting(np-1)
             IF (( rng_seed .GT. 128 )) THEN
               rng_seed = 128
               call egs_fill_rndm_array(rng_seed,rng_array)
@@ -18947,6 +18992,7 @@ C*****************************************************************************
           WT(np)=WT(np-1)
           DNEAR(np)=DNEAR(np-1)
           LATCH(np)=LATCH(np-1)
+          nbr_splitting(np)=nbr_splitting(np-1)
           IF (( rng_seed .GT. 128 )) THEN
             rng_seed = 128
             call egs_fill_rndm_array(rng_seed,rng_array)
@@ -19277,6 +19323,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/THRESH/RMT2,RMSQ, AP(max_med),AE(max_med),UP(max_med),UE(ma
      *x_med),TE(max_med),THMOLL(max_med)
       EGS_Float RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
@@ -19441,6 +19489,7 @@ C*****************************************************************************
           WT(np)=WT(np_save)
           DNEAR(np)=DNEAR(np_save)
           LATCH(np)=LATCH(np_save)
+          nbr_splitting(np)=nbr_splitting(np_save)
           IF (( rng_seed .GT. 128 )) THEN
             rng_seed = 128
             call egs_fill_rndm_array(rng_seed,rng_array)
@@ -19863,6 +19912,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/THRESH/RMT2,RMSQ, AP(max_med),AE(max_med),UP(max_med),UE(ma
      *x_med),TE(max_med),THMOLL(max_med)
       EGS_Float RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
@@ -20146,6 +20197,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
       EGS_Float THETA,  SINTHE,  COSTHE,  SINPHI,  COSPHI,  PI,TWOPI,PI5
      *D2
@@ -20186,6 +20239,7 @@ C*****************************************************************************
       WT(1)=WTI
       DNEAR(1)=DNEARI
       LATCH(1)=LATCHI
+      nbr_splitting(1)=nbr_splittingI
       IF ((IQI .EQ. 2)) THEN
         IF ((EI**2 .LE. PI0MSQ)) THEN
           write(i_log,'(/a)') '***************** Error: '
@@ -20254,6 +20308,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/UPHIIN/SINC0,SINC1,SIN0(1002),SIN1(1002)
       EGS_Float SINC0,SINC1,SIN0,SIN1
       COMMON/UPHIOT/THETA,SINTHE,COSTHE,SINPHI, COSPHI,PI,TWOPI,PI5D2
@@ -20333,6 +20389,7 @@ C*****************************************************************************
       WT(NP)=WT(NP-1)
       DNEAR(NP)=DNEAR(NP-1)
       LATCH(NP)=LATCH(NP-1)
+      nbr_splitting(NP)=nbr_splitting(NP-1)
 7910  SINPS2=A*A+B*B
       IF ((SINPS2.LT.1.0E-20)) THEN
         U(NP)=SINTHE*COSPHI
@@ -21633,6 +21690,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/THRESH/RMT2,RMSQ, AP(max_med),AE(max_med),UP(max_med),UE(ma
      *x_med),TE(max_med),THMOLL(max_med)
       EGS_Float RMT2,  RMSQ,  AP,  AE,  UP,  UE,  TE,  THMOLL
@@ -23261,6 +23320,8 @@ C*****************************************************************************
       DOUBLE PRECISION E
       EGS_Float X,Y,Z,U,V,W,DNEAR,WT
       integer*4 IQ,IR,LATCH,LATCHI,NP,NPold
+      common/extra_stack/ nbr_splitting(max_stack), nbr_splittingI
+      integer*4 nbr_splitting, nbr_splittingI
       COMMON/EPCONT/EDEP,EDEP_LOCAL,TSTEP,TUSTEP,USTEP,TVSTEP,VSTEP, RHO
      *F,EOLD,ENEW,EKE,ELKE,GLE,E_RANGE, x_final,y_final,z_final, u_final
      *,v_final,w_final, IDISC,IROLD,IRNEW,IAUSFL(35)

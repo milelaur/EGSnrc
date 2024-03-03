@@ -164,14 +164,14 @@ class APP_EXPORT Tutor7_Application : public EGS_AdvancedApplication
     bool  deflect_brems;
 
     EGS_Float*        ph_de;    // bin widths if the pulse height distributions.
-    int*              ph_regions; // region indeces of the ph-dsitributions
+    int*              ph_regions; // region indices of the ph-distributions
     static string revision;    // the CVS revision number
 
 public:
 
     /*! Constructor
      The command line arguments are passed to the EGS_AdvancedApplication
-     contructor, which determines the input file, the pegs file, if the
+     constructor, which determines the input file, the pegs file, if the
      simulation is a parallel run, etc.
     */
     Tutor7_Application(int argc, char** argv) :
@@ -321,7 +321,7 @@ void Tutor7_Application::describeUserCode() const
 
 int Tutor7_Application::initScoring()
 {
-    // Get the numner of regions in the geometry.
+    // Get the number of regions in the geometry.
     nreg = geometry->regions();
     score = new EGS_ScoringArray(nreg + 2);
     //i.e. we always score energy fractions
@@ -496,9 +496,9 @@ int Tutor7_Application::ausgab(int iarg)
         {
             EGS_ScoringArray* flu = the_stack->iq[np] ? eflu : gflu;
             EGS_Float r2 = the_stack->x[np] * the_stack->x[np] + the_stack->y[np] * the_stack->y[np];
-            if (r2 < 400)
+            int bin = (int)(sqrt(r2) * 10.);
+            if (bin < 200)
             {
-                int bin = (int)(sqrt(r2) * 10.);
 
                 aux = the_stack->wt[np] / the_stack->w[np];
                 if (aux > 0)

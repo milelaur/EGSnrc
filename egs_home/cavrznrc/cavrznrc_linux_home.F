@@ -172,9 +172,9 @@
      *), NENSRC
       integer*4 NENSRC
       real*8 CDFINV,ENSRCD,SRCPDF,SRCCDF
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -356,6 +356,8 @@
         iausfl(21) = 1
         iausfl(24) = 1
         iausfl(25) = 1
+        iausfl(30) = 1
+        iausfl(31) = 1
         iausfl(8) = 1
         iausfl(14) = 1
         iausfl(15) = 1
@@ -369,6 +371,8 @@
         iausfl(20) = 0
         iausfl(24) = 0
         iausfl(25) = 0
+        iausfl(30) = 0
+        iausfl(31) = 0
       END IF
       IF ((ifano .EQ. 2)) THEN
         iausfl(17) = 1
@@ -383,13 +387,15 @@
         iausfl(21) = 1
         iausfl(24) = 1
         iausfl(25) = 1
+        iausfl(30) = 1
+        iausfl(31) = 1
         iausfl(8) = 1
         iausfl(14) = 1
         iausfl(15) = 1
       END IF
       write(6,'(/a)') '************************ IAUSFL *****************
      ********** '
-      DO 1061 j=1,28
+      DO 1061 j=1,30
         IF((iausfl(j).ne.0))write(6,'(i3,$)') j
 1061  CONTINUE
 1062  CONTINUE
@@ -1355,9 +1361,9 @@
      *i_iaea_in,i_unit_in
       CHARACTER*1 FILSPC(256)
       EQUIVALENCE (SPCNAM,FILSPC)
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -1437,9 +1443,9 @@
       END IF
       IF (( use_enhance )) THEN
         IF ((iarg .EQ. 15 .OR. iarg .EQ. 17 .OR. iarg .EQ. 19 .OR. iarg
-     *  .EQ. 23)) THEN
+     *  .EQ. 23 .OR. iarg .EQ. 29)) THEN
           np = np + 1
-          IF ((np + 1 .GT. 4000)) THEN
+          IF ((np + 1 .GT. 900000)) THEN
             WRITE(6,1680)
 1680        FORMAT(' Calculation with CS-enhancement: unable to boost st
      *ack.'/ ' Stopping.'/ 1x,80('*')/)
@@ -1473,8 +1479,9 @@
           wt(np) = wt(np)/cs_enhance
           return
         END IF
-        IF (( iarg .EQ. 18 .OR. iarg .EQ. 20 .OR. iarg .EQ. 24 .OR.  iar
-     *  g .EQ. 7 .OR. iarg .EQ. 13 .OR. iarg .EQ. 14 )) THEN
+        IF (( iarg .EQ. 18 .OR. iarg .EQ. 20 .OR. iarg .EQ. 24 .OR. iarg
+     *   .EQ. 30 .OR.  iarg .EQ. 7 .OR. iarg .EQ. 13 .OR. iarg .EQ. 14 )
+     *  ) THEN
           IF((rng_seed .GT. 128))call ranmar_get
           xsi = rng_array(rng_seed)*twom24
           rng_seed = rng_seed + 1
@@ -1573,9 +1580,9 @@
       END IF
       IF ((ifano .EQ. 1)) THEN
         IF ((iarg .EQ. 15 .OR. iarg .EQ. 17 .OR. iarg .EQ. 19 .OR. iarg
-     *  .EQ. 23)) THEN
+     *  .EQ. 23 .OR. iarg .EQ. 29)) THEN
           np = np + 1
-          IF ((np + 1 .GT. 4000)) THEN
+          IF ((np + 1 .GT. 900000)) THEN
             WRITE(6,1720)
 1720        FORMAT(' Fano calculation unable to boost stack.'/ ' Stoppin
      *g.'/ 1x,80('*')/)
@@ -1596,7 +1603,8 @@
           return
         END IF
         IF (( iarg .EQ. 18  .OR. iarg .EQ. 20  .OR. iarg .EQ. 24  .OR. i
-     *  arg .EQ. 7  .OR. iarg .EQ. 13  .OR. iarg .EQ. 14)) THEN
+     *  arg .EQ. 30  .OR. iarg .EQ. 7  .OR. iarg .EQ. 13  .OR. iarg .EQ.
+     *   14)) THEN
           DO 1731 ip=NPold,NP
             IF (( iq(ip) .EQ. 0 )) THEN
               wt(ip) = 0
@@ -1833,9 +1841,9 @@
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -2835,7 +2843,7 @@
       NVALUE(IVAL)=1
       TYPE(IVAL)=0
       VALUE_MIN(ival)=1
-      VALUE_MAX(ival)=4000-2
+      VALUE_MAX(ival)=900000-2
       DEFAULT(ival)=1
       NMIN = ival
       NMAX = ival
@@ -13743,9 +13751,9 @@
       integer*4 ku,kr,ka
       COMMON/BOUNDS/ECUT(50),PCUT(50),VACDST
       real*8 ECUT,  PCUT,  VACDST
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -15583,7 +15591,7 @@ C*****************************************************************************
       END IF
       pos2 = min(pos2,80-lnblnk1(tmp_string))
       pos2 = min(pos2,80-lnblnk1(host_name))
-      pos2 = min(pos2,80-lnblnk1('2024-02-04 11:11:53 UTC'))
+      pos2 = min(pos2,80-lnblnk1('2024-03-03 12:04:46 UTC'))
       IF((have_input))pos2 = min(pos2,80-lnblnk1(input_file))
       pos2 = min(pos2,80-lnblnk1(output_file))
       IF((pos2 .LT. pos1+2))pos2 = pos1 + 2
@@ -15599,8 +15607,8 @@ C*****************************************************************************
       l = pos2 - lnblnk1('configuration time')
       write(6,'(a,$)') line1(:l)
       write(1,'(a,$)') line1(:l)
-      write(6,'(a)') '2024-02-04 11:11:53 UTC'
-      write(1,'(a)') '2024-02-04 11:11:53 UTC'
+      write(6,'(a)') '2024-03-03 12:04:46 UTC'
+      write(1,'(a)') '2024-03-03 12:04:46 UTC'
       write(6,'(a,$)') 'app compile time'
       write(1,'(a,$)') 'app compile time'
       l = pos2 - lnblnk1('app compile time')
@@ -16449,9 +16457,9 @@ C*****************************************************************************
      *(5), extra_rng_array(128,5)
       integer*4 extra_urndm,extra_crndm,extra_cdrndm,extra_cmrndm, extra
      *_ixx,extra_jxx,extra_rng_seed,extra_rng_array
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -20343,9 +20351,9 @@ C*****************************************************************************
       implicit none
       COMMON/QDEBUG/QDEBUG
       LOGICAL QDEBUG
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -20427,7 +20435,7 @@ C*****************************************************************************
         wt(np) = wt(np)/nbr_split
       END IF
       DO 10261 ibr=1,nbr_split
-        IF (( np+1 .GT. 4000 )) THEN
+        IF (( np+1 .GT. 900000 )) THEN
           write(i_log,'(/a)') '***************** Error: '
           write(i_log,'(//a,i6,a//)') ' Stack overflow in ANNIH! np = ',
      *    np+1, ' Increase $MXSTACK and try again'
@@ -20527,9 +20535,9 @@ C*****************************************************************************
       implicit none
       COMMON/QDEBUG/QDEBUG
       LOGICAL QDEBUG
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -20573,11 +20581,11 @@ C*****************************************************************************
       integer*4 ibr,ip
       real*8 xphi,xphi2,yphi,yphi2,rhophi2
       NPold = NP
-      IF (( np+2*nbr_split-1 .GT. 4000 )) THEN
+      IF (( np+2*nbr_split-1 .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','ANNIH_AT_RES
-     *T', ' stack size exceeded! ',' $MAXSTACK = ',4000,' np = ',np+2*nb
-     *  r_split-1
+     *T', ' stack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np+2*
+     *  nbr_split-1
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -20647,9 +20655,9 @@ C*****************************************************************************
       implicit none
       COMMON/QDEBUG/QDEBUG
       LOGICAL QDEBUG
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -20728,10 +20736,10 @@ C*****************************************************************************
         IF((RNNO04.LE.REJF2))GO TO10312
       GO TO 10311
 10312 CONTINUE
-      IF (( np+1 .GT. 4000 )) THEN
+      IF (( np+1 .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','BHABHA', ' s
-     *tack size exceeded! ',' $MAXSTACK = ',4000,' np = ',np+1
+     *tack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np+1
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -20788,9 +20796,9 @@ C*****************************************************************************
       real*8 nb_fdata,nb_xdata,nb_wdata,nb_emin,nb_emax,nb_lemin,nb_lema
      *x, nb_dle,nb_dlei,log_ap
       integer*4 nb_idata
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -20950,7 +20958,7 @@ C*****************************************************************************
 10332     CONTINUE
         END IF
         np=np+1
-        IF (( np .GT. 4000 )) THEN
+        IF (( np .GT. 900000 )) THEN
           write(i_log,'(/a)') '***************** Error: '
           write(i_log,'(//a,i6,a//)') ' Stack overflow in BREMS! np = ',
      *    np+1, ' Increase $MXSTACK and try again'
@@ -21067,9 +21075,9 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -21349,10 +21357,10 @@ C*****************************************************************************
         sinthe = -1
       END IF
       np = np + 1
-      IF (( np .GT. 4000 )) THEN
+      IF (( np .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','COMPT', ' st
-     *ack size exceeded! ',' $MAXSTACK = ',4000,' np = ',np
+     *ack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -21446,9 +21454,9 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -21636,10 +21644,10 @@ C*****************************************************************************
         sinthe = -1
       END IF
       np = np + 1
-      IF (( np .GT. 4000 )) THEN
+      IF (( np .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','COMPT', ' st
-     *ack size exceeded! ',' $MAXSTACK = ',4000,' np = ',np
+     *ack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -21758,9 +21766,9 @@ C*****************************************************************************
       real*8 DUNIT,  RHOR
       integer*4 KMPI,  KMPO
       integer*2 MED,  IRAYLR,  IPHOTONUCR
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -22777,9 +22785,9 @@ C*****************************************************************************
       integer*4
      *                  MPGEM,
      *                          NGR
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -24028,9 +24036,9 @@ C*****************************************************************************
       implicit none
       COMMON/QDEBUG/QDEBUG
       LOGICAL QDEBUG
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -24207,10 +24215,10 @@ C*****************************************************************************
       ESE1=PESE1
       ESE2=PESE2
       E(NP)=PESE1
-      IF (( np+1 .GT. 4000 )) THEN
+      IF (( np+1 .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','MOLLER', ' s
-     *tack size exceeded! ',' $MAXSTACK = ',4000,' np = ',np+1
+     *tack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np+1
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -26232,9 +26240,9 @@ C*****************************************************************************
       real*8 nrcp_fdata,nrcp_wdata,nrcp_xdata, nrcp_emin, nrcp_emax, nrc
      *p_dle, nrcp_dlei
       integer*4 nrcp_idata
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -26333,10 +26341,10 @@ C*****************************************************************************
           END IF
         END IF
       END IF
-      IF (( np+1 .GT. 4000 )) THEN
+      IF (( np+1 .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','PAIR', ' sta
-     *ck size exceeded! ',' $MAXSTACK = ',4000,' np = ',np+1
+     *ck size exceeded! ',' $MAXSTACK = ',900000,' np = ',np+1
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -26625,9 +26633,9 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -26741,10 +26749,10 @@ C*****************************************************************************
       END IF
       peig = e(np)
       IF((peig .LE. 4*prm))return
-      IF (( np+2 .GT. 4000 )) THEN
+      IF (( np+2 .GT. 900000 )) THEN
         write(i_log,'(/a)') '***************** Error: '
         write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','sample_tripl
-     *et', ' stack size exceeded! ',' $MAXSTACK = ',4000,' np = ',np+2
+     *et', ' stack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np+2
         write(i_log,'(/a)') '***************** Quiting now.'
         call exit(1)
       END IF
@@ -27127,9 +27135,9 @@ C*****************************************************************************
      *(5), extra_rng_array(128,5)
       integer*4 extra_urndm,extra_crndm,extra_cdrndm,extra_cmrndm, extra
      *_ixx,extra_jxx,extra_rng_seed,extra_rng_array
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -27447,9 +27455,9 @@ C*****************************************************************************
      *(5), extra_rng_array(128,5)
       integer*4 extra_urndm,extra_crndm,extra_cdrndm,extra_cmrndm, extra
      *_ixx,extra_jxx,extra_rng_seed,extra_rng_array
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -27999,9 +28007,9 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -28106,11 +28114,11 @@ C*****************************************************************************
         IF (( shell .EQ. 6 )) THEN
           IF (( Ei .GT. ekcut )) THEN
             np = np + 1
-            IF (( np .GT. 4000 )) THEN
+            IF (( np .GT. 900000 )) THEN
               write(i_log,'(/a)') '***************** Error: '
               write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','RELAX'
-     *        , ' stack size exceeded! ',' $MAXSTACK = ',4000,' np = ',n
-     *        p
+     *        , ' stack size exceeded! ',' $MAXSTACK = ',900000,' np = '
+     *        ,np
               write(i_log,'(/a)') '***************** Quiting now.'
               call exit(1)
             END IF
@@ -28224,10 +28232,10 @@ C*****************************************************************************
           END IF
         ELSE
           np = np + 1
-          IF (( np .GT. 4000 )) THEN
+          IF (( np .GT. 900000 )) THEN
             write(i_log,'(/a)') '***************** Error: '
             write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','RELAX',
-     *      ' stack size exceeded! ',' $MAXSTACK = ',4000,' np = ',np
+     *      ' stack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np
             write(i_log,'(/a)') '***************** Quiting now.'
             call exit(1)
           END IF
@@ -28540,9 +28548,9 @@ C*****************************************************************************
      *000),  shell_Z(3000),  shell_eadl(100,30),  shell_ntot
       real*8 shell_be
       integer*4 shell_type,shell_Z,shell_ntot,shell_num,shell_eadl
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -28688,14 +28696,14 @@ C*****************************************************************************
         edep_local = 0
         IF (( Ex .GT. Ecc )) THEN
           np = np + 1
-          IF (( np .GT. 4000 )) THEN
+          IF (( np .GT. 900000 )) THEN
             write(i_log,'(/a)') '***************** Warning: '
             write(i_log,'(3(a,f10.6),a,i2)') 'Evac = ',Evac, ' Ef = ',Ef
      *      ,  ' min_E = ', min_E,' iq = ',iqf
             write(i_log,'(/a)') '***************** Error: '
             write(i_log,'(//,3a,/,2(a,i9),/,a)') ' In subroutine ','new_
-     *relax', ' stack size exceeded! ',' $MXSTACK = ',4000,' np = ',np,
-     *      ' Increase $MXSTACK and try again '
+     *relax', ' stack size exceeded! ',' $MXSTACK = ',900000,' np = ',np
+     *      , ' Increase $MXSTACK and try again '
             write(i_log,'(/a)') '***************** Quiting now.'
             call exit(1)
           END IF
@@ -29107,9 +29115,9 @@ C*****************************************************************************
       integer*4
      *                  MPGEM,
      *                          NGR
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -29264,7 +29272,7 @@ C*****************************************************************************
             dpmfp = -log(eta_prime) - dpmfp_old
             dpmfp_old = dpmfp_old + dpmfp
             np = np+1
-            IF (( np .GT. 4000 )) THEN
+            IF (( np .GT. 900000 )) THEN
               write(6,*) ' Stack overflow in $SELECT-PHOTON-MFP '
               stop
             END IF
@@ -29747,9 +29755,9 @@ C*****************************************************************************
       implicit none
       COMMON/QDEBUG/QDEBUG
       LOGICAL QDEBUG
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -29855,9 +29863,9 @@ C*****************************************************************************
      *W,  EKE,  ELKE,  GLE,  E_RANGE, x_final,y_final,z_final,  u_final,
      *v_final,w_final
       integer*4 IDISC,  IROLD,  IRNEW,  IAUSFL
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -31262,9 +31270,9 @@ C*****************************************************************************
      *(5), extra_rng_array(128,5)
       integer*4 extra_urndm,extra_crndm,extra_cdrndm,extra_cmrndm, extra
      *_ixx,extra_jxx,extra_rng_seed,extra_rng_array
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold
@@ -31354,10 +31362,10 @@ C*****************************************************************************
       pese2 = wx - Uj + prm
       edep_local = 0
       IF (( pese2 .GT. ae(medium) )) THEN
-        IF (( np+1 .GT. 4000 )) THEN
+        IF (( np+1 .GT. 900000 )) THEN
           write(i_log,'(/a)') '***************** Error: '
           write(i_log,'(//,3a,/,2(a,i9))') ' In subroutine ','eii_sample
-     *', ' stack size exceeded! ',' $MAXSTACK = ',4000,' np = ',np+1
+     *', ' stack size exceeded! ',' $MAXSTACK = ',900000,' np = ',np+1
           write(i_log,'(/a)') '***************** Quiting now.'
           call exit(1)
         END IF
@@ -32833,9 +32841,9 @@ C*****************************************************************************
       end
       SUBROUTINE PHOTONUC
       implicit none
-      COMMON/STACK/ E(4000),X(4000),Y(4000),Z(4000),U(4000),V(4000),W(40
-     *00),DNEAR(4000),WT(4000),IQ(4000),IR(4000),LATCH(4000), LATCHI,NP,
-     *NPold
+      COMMON/STACK/ E(900000),X(900000),Y(900000),Z(900000),U(900000),V(
+     *900000),W(900000),DNEAR(900000),WT(900000),IQ(900000),IR(900000),L
+     *ATCH(900000), LATCHI,NP,NPold
       DOUBLE PRECISION E
       real*8 X,Y,Z,  U,V,W,  DNEAR,  WT
       integer*4 IQ,  IR,  LATCH,  LATCHI, NP,  NPold

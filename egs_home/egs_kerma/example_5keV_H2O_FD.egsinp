@@ -144,8 +144,8 @@
     ### use the same geometry under two different names, for easier bookeeping
      :start calculation geometry:
         geometry name          = the_phantom
-        cavity regions        = 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
-        cavity mass  = 0.0041804126 0.029263 0.079428 0.154675 0.255005 0.380418 0.530912 \
+        scoring regions        = 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
+        scoring region masses  = 0.0041804126 0.029263 0.079428 0.154675 0.255005 0.380418 0.530912 \
                                  0.70649 0.90715 1.132892 1.383717 1.659624 1.960614 2.286686 \
                                  2.63784 3.014078 3.415397 3.841799 4.293284 4.769851
         FD geometry            = fd_g
@@ -153,7 +153,7 @@
 
 
     ### E*muen file (could also be E*mutr): absolute or relative file path
-    emuen file = /home/miia/EGSnrc/egs_home/egs_kerma/emuen_rho_water_1keV-1.5MeV.data
+    emuen file = $EGS_HOME/egs_kerma/emuen_rho_water_1keV-1.5MeV.data
 
 :stop scoring options:
 

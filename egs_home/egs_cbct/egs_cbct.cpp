@@ -1410,6 +1410,7 @@ int EGS_CBCT::initScoring()
             if (err3) egsFatal(
                     "\n\n***  Wrong/missing 'muen file' input for a "
                     "kerma calculation\n    This is a fatal error\n\n");
+            muen_file = egsExpandPath(muen_file);
             ifstream muen_data(muen_file.c_str());
             if (!muen_data.is_open())
             {
@@ -1419,8 +1420,11 @@ int EGS_CBCT::initScoring()
             }
             else
             {
-                egsInformation("\nUsing E*muen file %s for air-kerma calculation\n",
-                               muen_file.c_str());
+                egsInformation(
+                    "\n\n=============== Kerma Scoring ===============\n"
+                    "E*muen/rho file: %s\n"
+                    "=============================================\n",
+                    muen_file.c_str());
             }
             int ndat;
             muen_data >> ndat;
@@ -1707,7 +1711,7 @@ void EGS_CBCT::initOutput()
             }
             else
             {
-                blank_scan = b_scan;
+                blank_scan = egsExpandPath(b_scan);
             }
             /*
               If no scan file name entry, a warning is issued.
@@ -1724,7 +1728,7 @@ void EGS_CBCT::initOutput()
             }
             else
             {
-                real_scan = the_scan;
+                real_scan = egsExpandPath(the_scan);
             }
             /* check what scans are requested by the user
                real => real scan simulation
@@ -1781,8 +1785,8 @@ void EGS_CBCT::initOutput()
                         delete bs;
                         egsFatal(
                             "\n\n***  Wrong blank scan file size = %d bytes\n"
-                            "     It should be %d bytes"
-                            "     This is a fatal error.\n\n",
+                            "     It should be %d bytes\n"
+                            "     Check that the blank scan 'z-rotation' is set to 0\n\n",
                             fileSize, Nx * Ny * sizeof(float));
                     }
                     else
@@ -4366,7 +4370,7 @@ do_interaction:
 
 bool EGS_CBCT::checkVector(const EGS_Vector& v, const string& msg)
 {
-    if (isnan(v.x) || isnan(v.y) || isnan(v.z))
+    if (std::isnan(v.x) || std::isnan(v.y) || std::isnan(v.z))
     {
         egsWarning("%s \n "
                    "=> NaN value: case = %d stack position = %d\n"
@@ -4374,7 +4378,7 @@ bool EGS_CBCT::checkVector(const EGS_Vector& v, const string& msg)
                    v.x, v.y, v.z);
         return false;
     }
-    if (isinf(v.x) || isinf(v.y) || isinf(v.z))
+    if (std::isinf(v.x) || std::isinf(v.y) || std::isinf(v.z))
     {
         egsWarning("%s \n"
                    "=> Infinite value in :\n case = %d stack position = %d\n"
