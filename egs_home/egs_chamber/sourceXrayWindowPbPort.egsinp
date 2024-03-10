@@ -283,14 +283,14 @@
 ################################
 :start ausgab object definition: # Only 1 ausgab definition block allowed
 	### Particle tracks
-	:start ausgab object:
-		name = tracks
-		library = egs_track_scoring
-        score photons = yes
-		score electrons = yes
-		score positrons = no
-    	stop scoring   = 10000
-	:stop ausgab object:
+	#:start ausgab object:
+	#	name = tracks
+	#	library = egs_track_scoring
+    #    score photons = yes
+	#	score electrons = yes
+	#	score positrons = no
+    #	stop scoring   = 10000
+	#:stop ausgab object:
 
     :start ausgab object:
         library = egs_radiative_splitting
@@ -358,7 +358,7 @@
 #:start variance reduction:
     #split brem photons = 100
     #bcse medium = anode 100
-    #photon splitting = 100
+    photon splitting = 100
 #:stop variance reduction:
 
 

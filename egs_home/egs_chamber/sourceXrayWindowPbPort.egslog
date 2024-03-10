@@ -1,0 +1,157 @@
+
+               *************************************************
+               *                                               *
+               *               egs_chamber CSE)                *
+               *                                               *
+               *************************************************
+
+This is EGS_ChamberApplication   based on
+      EGS_AdvancedApplication  
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = sourcePhsp
+ number of regions = 288
+ geometries:
+   to_primary_collimator (type EGS_UnionGeometry)
+   air (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ Transformed Transformed Parallel beam from a shape of type ellipse with monoenergetic 0.1 MeV, electrons
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 99
+  numbers used so far = 127488896
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+===========================================
+Radiative splitting Object (splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Phase Space Scoring Object (anodeXRayWPbPort)
+*******************************************
+
+ Will output phase space for particles crossing surfaces of geometry:
+phsp_plate
+ Particles scored on: entering phase space geometry
+ Data will be output in IAEA format.
+
+ Phase space file names:
+  Header file: /home/miia/EGSnrc/egs_home/egs_chamber/anodeXRayWPbPort_w3.1.IAEAheader
+  Data file: /home/miia/EGSnrc/egs_home/egs_chamber/anodeXRayWPbPort_w3.1.IAEAphsp
+ Data scored at constant Z = 5.6752 cm
+ Particles scored: all
+
+
+
+The following media are defined:
+================================
+
+  0  graphite                 AE= 0.5120 AP= 0.0010 0
+  1  target_material          AE= 0.5120 AP= 0.0010 1
+  2  molybdenum               AE= 0.5120 AP= 0.0010 2
+  3  beryllium                AE= 0.5120 AP= 0.0010 3
+  4  steel                    AE= 0.5120 AP= 0.0010 4
+  5  oil                      AE= 0.5120 AP= 0.0010 5
+  6  aluminum                 AE= 0.5120 AP= 0.0010 6
+  7  air                      AE= 0.5120 AP= 0.0010 7
+  8  pb                       AE= 0.5120 AP= 0.0010 8
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          Off
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+Variance reduction
+====================================================
+Photon splitting = off
+Range rejection = off
+
+
+photon cross-section enhancement = Off
+
+
+region by region ECUT = Off
+
+=============================================
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 sourceXrayWindowPbPort_w1.egsdat ncase=39996          cpu=6.27       
+ 2 sourceXrayWindowPbPort_w2.egsdat ncase=36663          cpu=5.44       
+ 3 sourceXrayWindowPbPort_w3.egsdat ncase=39996          cpu=6.50       
+ 4 sourceXrayWindowPbPort_w4.egsdat ncase=39996          cpu=6.13       
+ 5 sourceXrayWindowPbPort_w5.egsdat ncase=39996          cpu=6.07       
+ 6 sourceXrayWindowPbPort_w6.egsdat ncase=16665          cpu=3.18       
+ 7 sourceXrayWindowPbPort_w7.egsdat ncase=29997          cpu=5.74       
+ 8 sourceXrayWindowPbPort_w8.egsdat ncase=33330          cpu=5.89       
+ 9 sourceXrayWindowPbPort_w9.egsdat ncase=29997          cpu=6.07       
+10 sourceXrayWindowPbPort_w10.egsdat ncase=33330          cpu=5.94       
+11 sourceXrayWindowPbPort_w11.egsdat ncase=23331          cpu=4.47       
+12 sourceXrayWindowPbPort_w12.egsdat ncase=29997          cpu=5.09       
+13 sourceXrayWindowPbPort_w13.egsdat ncase=40041          cpu=5.96       
+14 sourceXrayWindowPbPort_w14.egsdat ncase=33330          cpu=6.33       
+15 sourceXrayWindowPbPort_w15.egsdat ncase=33330          cpu=5.69       
+=======================================================================
+                            Total ncase=499995         cpu=84.77      
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.00 (sec.) 0.0000(hours)
+CPU time including previous runs:       84.77 (sec.) 0.0235 (hours)
+Histories per hour:                     2.12337e+07   
+Number of random numbers used:          1595381987    
+Number of electron CH steps:            2.1676e+07    
+Number of all electron steps:           3.1848e+08    
