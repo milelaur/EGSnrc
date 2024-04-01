@@ -10,7 +10,7 @@
 ################################
 :start run control:
     ncase = 1.4E12
-    #ncase = 5E5
+    #ncase = 5E6
     #ncase = 3E11
     #calculation = combine
     #nchunk = 50
@@ -292,11 +292,11 @@
     #	stop scoring   = 10000
 	#:stop ausgab object:
 
-    :start ausgab object:
-        library = egs_radiative_splitting
-        name = splitting
-        splitting = 1000
-    :stop ausgab object:
+    #:start ausgab object:
+        #library = egs_radiative_splitting
+        #name = splitting
+        #splitting = 1000
+    #:stop ausgab object:
 
     :start ausgab object:
           library                  = egs_phsp_scoring
@@ -358,7 +358,7 @@
 #:start variance reduction:
     #split brem photons = 100
     #bcse medium = anode 100
-    photon splitting = 100
+    #photon splitting = 100
 #:stop variance reduction:
 
 
