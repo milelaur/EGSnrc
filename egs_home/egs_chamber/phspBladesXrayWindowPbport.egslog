@@ -1,0 +1,303 @@
+
+               *************************************************
+               *                                               *
+               *               egs_chamber CSE)                *
+               *                                               *
+               *************************************************
+
+This is EGS_ChamberApplication   based on
+      EGS_AdvancedApplication  
+
+
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 324
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ IAEA phase space source from anodeXRayWPbPort_egs_chamber_radiative_splitting.1
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 104
+  numbers used so far = 527998819456
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = NO
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 10000
+ - Track buffer size           = 1024
+ - Output file name            = /projappl/project_2008691/EGSnrc/egs_home/egs_chamber/phspBladesXrayWindowPbport_w8_w8.ptracks
+
+
+===========================================
+Radiative splitting Object (my_splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Dose Scoring Object (profilexFilm)
+*******************************************
+
+ - Regions in dose calculator :324
+
+
+--------------------------------------
+     medium  rho (g/cm^3)
+--------------------------------------
+     medium  rho (g/cm^3)
+  11.35000000
+11.35000000   8.06000040
+ 8.06000040   0.00120479
+ 0.00120479   1.05999990
+ 1.05999990   1.14000000
+--------------------------------------
+
+*******************************************
+
+
+ Will output dose to file:
+ EGS_XYZGeometry: profilex
+ file format:  3ddose
+ file name: /projappl/project_2008691/EGSnrc/egs_home/egs_chamber/profilexFilm.3ddose
+
+
+
+The following media are defined:
+================================
+
+  0  pb                       AE= 0.5120 AP= 0.0010 0
+  1  steel                    AE= 0.5120 AP= 0.0010 1
+  2  air                      AE= 0.5120 AP= 0.0010 2
+  3  polystyrene              AE= 0.5120 AP= 0.0010 3
+  4  film                     AE= 0.5120 AP= 0.0010 4
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                On
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          Off
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+Variance reduction
+====================================================
+Photon splitting = off
+Range rejection = off
+
+
+photon cross-section enhancement = Off
+
+
+region by region ECUT = Off
+
+=============================================
+
+                      Suming the following .egsdat files:
+=======================================================================
+ 1 phspBladesXrayWindowPbport_w1.egsdat ncase=180000000      cpu=53629.10   
+ 2 phspBladesXrayWindowPbport_w2.egsdat ncase=180000000      cpu=52085.50   
+ 3 phspBladesXrayWindowPbport_w3.egsdat ncase=180000000      cpu=52998.30   
+ 4 phspBladesXrayWindowPbport_w4.egsdat ncase=180000000      cpu=55198.70   
+ 5 phspBladesXrayWindowPbport_w5.egsdat ncase=180000000      cpu=53943.80   
+ 6 phspBladesXrayWindowPbport_w6.egsdat ncase=180000000      cpu=54229.50   
+ 7 phspBladesXrayWindowPbport_w7.egsdat ncase=180000000      cpu=53335.70   
+ 8 phspBladesXrayWindowPbport_w8.egsdat ncase=180000000      cpu=55211.60   
+ 9 phspBladesXrayWindowPbport_w9.egsdat ncase=180000000      cpu=51471.00   
+10 phspBladesXrayWindowPbport_w10.egsdat ncase=180000000      cpu=53610.40   
+11 phspBladesXrayWindowPbport_w11.egsdat ncase=180000000      cpu=53202.80   
+12 phspBladesXrayWindowPbport_w12.egsdat ncase=180000000      cpu=52453.40   
+13 phspBladesXrayWindowPbport_w13.egsdat ncase=180000000      cpu=53690.70   
+14 phspBladesXrayWindowPbport_w14.egsdat ncase=180000000      cpu=52349.60   
+15 phspBladesXrayWindowPbport_w15.egsdat ncase=180000000      cpu=53282.40   
+16 phspBladesXrayWindowPbport_w16.egsdat ncase=180000000      cpu=52918.70   
+17 phspBladesXrayWindowPbport_w17.egsdat ncase=180000000      cpu=53797.70   
+18 phspBladesXrayWindowPbport_w18.egsdat ncase=180000000      cpu=53414.40   
+19 phspBladesXrayWindowPbport_w19.egsdat ncase=180000000      cpu=53037.80   
+20 phspBladesXrayWindowPbport_w20.egsdat ncase=180000000      cpu=51929.20   
+21 phspBladesXrayWindowPbport_w21.egsdat ncase=180000000      cpu=51016.10   
+22 phspBladesXrayWindowPbport_w22.egsdat ncase=180000000      cpu=52608.40   
+23 phspBladesXrayWindowPbport_w23.egsdat ncase=180000000      cpu=51906.10   
+24 phspBladesXrayWindowPbport_w24.egsdat ncase=180000000      cpu=54424.00   
+25 phspBladesXrayWindowPbport_w25.egsdat ncase=180000000      cpu=52959.70   
+26 phspBladesXrayWindowPbport_w26.egsdat ncase=180000000      cpu=52300.60   
+27 phspBladesXrayWindowPbport_w27.egsdat ncase=180000000      cpu=53034.40   
+28 phspBladesXrayWindowPbport_w28.egsdat ncase=180000000      cpu=52666.40   
+29 phspBladesXrayWindowPbport_w29.egsdat ncase=180000000      cpu=53172.60   
+30 phspBladesXrayWindowPbport_w30.egsdat ncase=180000000      cpu=51186.00   
+31 phspBladesXrayWindowPbport_w31.egsdat ncase=180000000      cpu=52072.60   
+32 phspBladesXrayWindowPbport_w32.egsdat ncase=180000000      cpu=53652.10   
+33 phspBladesXrayWindowPbport_w33.egsdat ncase=180000000      cpu=53990.60   
+34 phspBladesXrayWindowPbport_w34.egsdat ncase=180000000      cpu=52114.50   
+35 phspBladesXrayWindowPbport_w35.egsdat ncase=180000000      cpu=52553.20   
+36 phspBladesXrayWindowPbport_w36.egsdat ncase=180000000      cpu=54505.00   
+37 phspBladesXrayWindowPbport_w37.egsdat ncase=180000000      cpu=51823.00   
+38 phspBladesXrayWindowPbport_w38.egsdat ncase=180000000      cpu=51377.90   
+39 phspBladesXrayWindowPbport_w39.egsdat ncase=180000000      cpu=51115.50   
+40 phspBladesXrayWindowPbport_w40.egsdat ncase=180000000      cpu=51480.20   
+=======================================================================
+                            Total ncase=7200000000     cpu=2115749.20 
+
+
+
+Finished simulation
+
+Total cpu time for this run:            0.01 (sec.) 0.0000(hours)
+CPU time including previous runs:       2115749.21 (sec.) 587.7081 (hours)
+Histories per hour:                     1.2251e+07    
+Number of random numbers used:          21122540774048
+Number of electron CH steps:            1.47177e+11   
+Number of all electron steps:           4.7017e+12    
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     10000
+   Total tracks scored:     233895
+   Still being scored:      0
+   Output file name:        /projappl/project_2008691/EGSnrc/egs_home/egs_chamber/phspBladesXrayWindowPbport_w8_w8.ptracks
+
+
+======================================================
+Dose Scoring Object(profilexFilm)
+======================================================
+=> last case = 654531096 fluence = 6.30539e+12
+
+==> Summary of region dosimetry (per fluence)
+ ir       medium  rho (g/cm^3)  Volume (cm^3)   Edep (MeV*cm^2)              D (Gy*cm^2)              
+------------------------------------------------------------------------------------------------------
+  0  film          1.14000000       1.000000    4.6834e-13  +/-  3.890  %    6.5814e-23  +/-  3.890  %
+  1  film          1.14000000       1.000000    5.7641e-13  +/-  3.049  %    8.1001e-23  +/-  3.049  %
+  2  film          1.14000000       1.000000    7.2587e-13  +/-  3.029  %    1.0200e-22  +/-  3.029  %
+  3  film          1.14000000       1.000000    8.6229e-13  +/-  2.585  %    1.2117e-22  +/-  2.585  %
+  4  film          1.14000000       1.000000    1.1158e-12  +/-  2.023  %    1.5681e-22  +/-  2.023  %
+  5  film          1.14000000       1.000000    1.4835e-12  +/-  1.755  %    2.0847e-22  +/-  1.755  %
+  6  film          1.14000000       1.000000    3.5607e-12  +/-  1.083  %    5.0037e-22  +/-  1.083  %
+  7  film          1.14000000       1.000000    7.2147e-12  +/-  0.744  %    1.0139e-21  +/-  0.744  %
+  8  film          1.14000000       1.000000    9.6982e-12  +/-  0.633  %    1.3629e-21  +/-  0.633  %
+  9  film          1.14000000       1.000000    9.9859e-12  +/-  0.642  %    1.4033e-21  +/-  0.642  %
+ 10  film          1.14000000       1.000000    1.0144e-11  +/-  0.621  %    1.4254e-21  +/-  0.621  %
+ 11  film          1.14000000       1.000000    1.0536e-11  +/-  0.614  %    1.4806e-21  +/-  0.614  %
+ 12  film          1.14000000       1.000000    1.0935e-11  +/-  0.604  %    1.5367e-21  +/-  0.604  %
+ 13  film          1.14000000       1.000000    1.0607e-11  +/-  0.608  %    1.4906e-21  +/-  0.608  %
+ 14  film          1.14000000       1.000000    1.0936e-11  +/-  0.605  %    1.5368e-21  +/-  0.605  %
+ 15  film          1.14000000       1.000000    1.0893e-11  +/-  0.601  %    1.5307e-21  +/-  0.601  %
+ 16  film          1.14000000       1.000000    1.0880e-11  +/-  0.607  %    1.5289e-21  +/-  0.607  %
+ 17  film          1.14000000       1.000000    1.0838e-11  +/-  0.612  %    1.5230e-21  +/-  0.612  %
+ 18  film          1.14000000       1.000000    1.0871e-11  +/-  0.603  %    1.5277e-21  +/-  0.603  %
+ 19  film          1.14000000       1.000000    1.1047e-11  +/-  0.602  %    1.5524e-21  +/-  0.602  %
+ 20  film          1.14000000       1.000000    1.0910e-11  +/-  0.608  %    1.5332e-21  +/-  0.608  %
+ 21  film          1.14000000       1.000000    1.0904e-11  +/-  0.605  %    1.5323e-21  +/-  0.605  %
+ 22  film          1.14000000       1.000000    1.0796e-11  +/-  0.605  %    1.5171e-21  +/-  0.605  %
+ 23  film          1.14000000       1.000000    1.0832e-11  +/-  0.608  %    1.5222e-21  +/-  0.608  %
+ 24  film          1.14000000       1.000000    1.0755e-11  +/-  0.609  %    1.5114e-21  +/-  0.609  %
+ 25  film          1.14000000       1.000000    1.0854e-11  +/-  0.607  %    1.5253e-21  +/-  0.607  %
+ 26  film          1.14000000       1.000000    1.0530e-11  +/-  0.609  %    1.4797e-21  +/-  0.609  %
+ 27  film          1.14000000       1.000000    1.0573e-11  +/-  0.615  %    1.4858e-21  +/-  0.615  %
+ 28  film          1.14000000       1.000000    1.0309e-11  +/-  0.623  %    1.4486e-21  +/-  0.623  %
+ 29  film          1.14000000       1.000000    1.0210e-11  +/-  0.622  %    1.4348e-21  +/-  0.622  %
+ 30  film          1.14000000       1.000000    1.0312e-11  +/-  0.620  %    1.4492e-21  +/-  0.620  %
+ 31  film          1.14000000       1.000000    9.7215e-12  +/-  0.643  %    1.3661e-21  +/-  0.643  %
+ 32  film          1.14000000       1.000000    7.4792e-12  +/-  0.733  %    1.0510e-21  +/-  0.733  %
+ 33  film          1.14000000       1.000000    3.5267e-12  +/-  1.078  %    4.9560e-22  +/-  1.078  %
+ 34  film          1.14000000       1.000000    1.4977e-12  +/-  1.728  %    2.1047e-22  +/-  1.728  %
+ 35  film          1.14000000       1.000000    1.1176e-12  +/-  2.018  %    1.5706e-22  +/-  2.018  %
+ 36  film          1.14000000       1.000000    8.8846e-13  +/-  2.344  %    1.2485e-22  +/-  2.344  %
+ 37  film          1.14000000       1.000000    7.0901e-13  +/-  2.527  %    9.9635e-23  +/-  2.527  %
+ 38  film          1.14000000       1.000000    5.8453e-13  +/-  3.067  %    8.2142e-23  +/-  3.067  %
+ 39  film          1.14000000       1.000000    4.8683e-13  +/-  3.398  %    6.8413e-23  +/-  3.398  %
+ 81  pb           11.35000000       1.000000    1.1647e-06  +/-  0.008  %    1.6440e-17  +/-  0.008  %
+ 82  air           0.00120479       1.000000    7.3023e-10  +/-  0.058  %    9.7098e-17  +/-  0.058  %
+ 83  pb           11.35000000       1.000000    2.0050e-06  +/-  0.005  %    2.8299e-17  +/-  0.005  %
+ 84  steel         8.06000040       1.000000    1.5764e-08  +/-  0.054  %    3.1331e-19  +/-  0.054  %
+ 85  air           0.00120479       1.000000    3.5839e-10  +/-  0.069  %    4.7654e-17  +/-  0.069  %
+ 86  steel         8.06000040       1.000000    1.6157e-08  +/-  0.053  %    3.2114e-19  +/-  0.053  %
+ 90  pb           11.35000000       1.000000    4.6192e-07  +/-  0.013  %    6.5198e-18  +/-  0.013  %
+ 91  air           0.00120479       1.000000    2.1827e-10  +/-  0.104  %    2.9023e-17  +/-  0.104  %
+ 92  pb           11.35000000       1.000000    4.6166e-07  +/-  0.013  %    6.5161e-18  +/-  0.013  %
+ 93  steel         8.06000040       1.000000    5.6725e-09  +/-  0.090  %    1.1275e-19  +/-  0.090  %
+ 94  air           0.00120479       1.000000    9.9348e-11  +/-  0.132  %    1.3210e-17  +/-  0.132  %
+ 95  steel         8.06000040       1.000000    5.6354e-09  +/-  0.090  %    1.1201e-19  +/-  0.090  %
+ 99  steel         8.06000040       1.000000    1.7212e-11  +/-  0.801  %    3.4211e-22  +/-  0.801  %
+100  steel         8.06000040       1.000000    3.8160e-10  +/-  0.150  %    7.5847e-21  +/-  0.150  %
+101  steel         8.06000040       1.000000    1.7470e-11  +/-  0.809  %    3.4724e-22  +/-  0.809  %
+102  steel         8.06000040       1.000000    5.4558e-08  +/-  0.037  %    1.0844e-18  +/-  0.037  %
+103  air           0.00120479       1.000000    8.0965e-10  +/-  0.053  %    1.0766e-16  +/-  0.053  %
+104  steel         8.06000040       1.000000    5.4678e-08  +/-  0.037  %    1.0868e-18  +/-  0.037  %
+105  steel         8.06000040       1.000000    1.7444e-11  +/-  0.801  %    3.4671e-22  +/-  0.801  %
+106  steel         8.06000040       1.000000    3.8419e-10  +/-  0.151  %    7.6362e-21  +/-  0.151  %
+107  steel         8.06000040       1.000000    1.7824e-11  +/-  0.802  %    3.5428e-22  +/-  0.802  %
+108  air           0.00120479       1.000000    7.1990e-09  +/-  0.027  %    9.5725e-16  +/-  0.027  %
+135  air           0.00120479       1.000000    4.4383e-09  +/-  0.023  %    5.9016e-16  +/-  0.023  %
+162  polystyrene   1.05999990       1.000000    5.1777e-07  +/-  0.009  %    7.8252e-17  +/-  0.009  %
+243  air           0.00120479       1.000000    6.5167e-09  +/-  0.044  %    8.6652e-16  +/-  0.044  %
+------------------------------------------------------------------------------------------------------
+
+ EGS_DoseScoring: Writing dose data for EGS_XYZGeometry profilex... 
+ Output file name: /projappl/project_2008691/EGSnrc/egs_home/egs_chamber/profilexFilm.3ddose
+
+======================================================
+
+
+ last case = 654531096 fluence = 6.30539e+12
+
+Geometry                        Cavity dose      
+-----------------------------------------------
+obi_system                1.7876e-22 +/- 2.023  % 
+
+
+
+
+End of run                                             Tue Apr  2 05:12:49 2024
+================================================================================

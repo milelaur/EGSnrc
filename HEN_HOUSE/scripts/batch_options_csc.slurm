@@ -38,7 +38,7 @@ batch_command=sbatch
 
 #generic_bo="-n1"
 #generic_bo="--ntasks=1 --cpus-per-task=1 --time=3-00:00:00 --mem=100M --mail-type=END,FAIL --mail-user=miia.nadhum@gmail.com"
-generic_bo="--ntasks=1 --cpus-per-task=1 --time=3-00:00:00 --mem=100M --mail-type=END,FAIL --mail-user=miia.nadhum@gmail.com --account=project_2008691"
+generic_bo="--ntasks=1 --cpus-per-task=1 --time=14-00:00:00 --mem=100M --mail-type=END,FAIL --mail-user=miia.nadhum@gmail.com --account=project_2008691"
 
 
 # Flag to specify where the output from this job should go.
@@ -67,7 +67,8 @@ rname_bo="-J"
 # on out system,
 #
 #batch_sleep_time=0
-batch_sleep_time=5
+#batch_sleep_time=1
+batch_sleep_time=0.2
 
 # Some queueing systems (e.g. PBS) have a limitation on the
 # maximum length of a job name (e.g. for PBS this is 15).

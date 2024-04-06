@@ -37,9 +37,8 @@
 batch_command=sbatch
 
 #generic_bo="-n1"
-#generic_bo="--ntasks=1 --cpus-per-task=1 --time=3-00:00:00 --mem=100M --mail-type=END,FAIL --mail-user=miia.nadhum@gmail.com"
-generic_bo="--ntasks=1 --cpus-per-task=1 --time=3-00:00:00 --mem=100M --mail-type=END,FAIL --mail-user=miia.nadhum@gmail.com --account=project_2008691"
-
+#generic_bo="--ntasks=1 --cpus-per-task=1 --time=7-00:00:00 --share --mem=1024M --mail-type=END,FAIL --mail-user=miia.nadhum@gmail.com"
+generic_bo="--ntasks=1 --cpus-per-task=1 --time=7-00:00:00 --mem=100M --mail-type=END,FAIL --mail-user=miia.nadhum@gmail.com"
 
 # Flag to specify where the output from this job should go.
 # If it is not empty, the job output will be send to input_file.eo
@@ -67,7 +66,7 @@ rname_bo="-J"
 # on out system,
 #
 #batch_sleep_time=0
-batch_sleep_time=5
+batch_sleep_time=0.5
 
 # Some queueing systems (e.g. PBS) have a limitation on the
 # maximum length of a job name (e.g. for PBS this is 15).
@@ -80,8 +79,8 @@ batch_mnl=100
 # Set the Slurm partition names used in your cluster.
 # Change these if you have defined different queues.
 #
-short_queue="-p small"
-long_queue="-p longrun"
+short_queue="-p short"
+long_queue="-p normal"
 user1_queue="-p user1"
 user2_queue="-p user2"
 user3_queue="-p user3"

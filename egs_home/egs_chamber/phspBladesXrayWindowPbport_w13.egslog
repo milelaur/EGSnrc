@@ -1,0 +1,742 @@
+================================================================================
+EGSnrc version 4 for x86_64-unknown-linux-gnu          Mon Apr  1 13:48:14 2024
+================================================================================
+configuration.........................................linux_puhti
+configuration time....................................2023-12-09 12:38:57 UTC
+app compile time......................................2024-04-01 10:06:34 UTC
+git commit hash.......................................27180f4
+application...........................................egs_chamber
+pegs file.............................................
+using host............................................r18c40.bullx
+input file............................................phspBladesXrayWindowPbport
+output file(s)........................................phspBladesXrayWindowPbport
+number of parallel jobs...............................40
+job number............................................13
+================================================================================
+
+               *************************************************
+               *                                               *
+               *               egs_chamber CSE)                *
+               *                                               *
+               *************************************************
+
+This is EGS_ChamberApplication   based on
+      EGS_AdvancedApplication  
+
+In initCrossSections(): spin effects = 1
+Property Photon cross-sections output: 0
+Property Photonuclear attenuation: 0
+Property Bound Compton scattering: 1
+Property Radiative Compton corrections: 1
+Property Rayleigh scattering: 1
+Property Atomic relaxations: 1
+Property Photoelectron angular sampling: 1
+Property Spin effects: 1
+Property Triplet production: 1
+Property Brems cross sections: 2
+Property Brems angular sampling: 1
+Property Pair cross sections: 1
+Property Pair angular sampling: 2
+Property Electron-step algorithm: 2
+Property Boundary crossing algorithm: 0
+ ===> Photonuclear flag:   0
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  1
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  2
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  3
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  4
+
+ RAYLEIGH OPTION REQUESTED FOR MEDIUM NUMBER  5
+
+  PEGSLESS INPUT.  CALCULATING ELECTRON CROSS-SECTIONS.
+  density_file lead                                                                                                                                                                                                                                                            
+  density_file steel_stainless_type302                                                                                                                                                                                                                                         
+  density_file air_dry_nearsealevel                                                                                                                                                                                                                                            
+  density_file polystyrene                                                                                                                                                                                                                                                     
+  density_file radiochromicdyefilm_nylonbase                                                                                                                                                                                                                                   
+
+  Medium data: 
+
+ AE =    5.12000E-01 MeV,  UE =    1.51100E+00 MeV
+ AP =    1.00000E-03 MeV,  UP =    1.00000E+00 MeV
+
+  No material data file supplied.  Material data obtained from
+  .egsinp file or density correction file.
+
+   Medium: pb                      
+ Sterncid: pb                      
+     rho:    1.13500E+01 g/cm^3
+ Elements: PB  
+    rhoz:    1.00000E+00
+      pz:    4.82649E-03
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /projappl/project_2008691/EGSnrc/HEN_HOUSE/pegs4/density_corrections/elements/lead.density
+
+   Medium: steel                   
+ Sterncid: steel                   
+     rho:    8.06000E+00 g/cm^3
+ Elements: C   SI  CR  MN  FE  NI  
+    rhoz:    1.00000E-03   7.00000E-03   1.80000E-01   1.00000E-02   7.12000E-01   9.00000E-02
+      pz:    8.32560E-05   2.49217E-04   3.46167E-03   1.82023E-04   1.27491E-02   1.53296E-03
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /projappl/project_2008691/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/steel_stainless_type302.density
+
+   Medium: air                     
+ Sterncid: air                     
+     rho:    1.20479E-03 g/cm^3
+ Elements: C   N   O   AR  
+    rhoz:    1.24000E-04   7.55267E-01   2.31781E-01   1.28270E-02
+      pz:    1.03237E-05   5.39218E-02   1.44869E-02   3.21092E-04
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /projappl/project_2008691/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/air_dry_nearsealevel.density
+
+   Medium: polystyrene             
+ Sterncid: polystyrene             
+     rho:    1.06000E+00 g/cm^3
+ Elements: H   C   
+    rhoz:    7.74180E-02   9.22582E-01
+      pz:    7.68059E-02   7.68105E-02
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /projappl/project_2008691/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/polystyrene.density
+
+   Medium: film                    
+ Sterncid: film                    
+     rho:    1.14000E+00 g/cm^3
+ Elements: H   C   N   O   
+    rhoz:    1.05000E-01   6.56000E-01   1.11000E-01   1.28000E-01
+      pz:    1.04170E-01   5.46159E-02   7.92478E-03   8.00030E-03
+  iunrst:     0
+  iaprim:     1
+    gasp:    0.00000E+00 atm.
+  density correction file: /projappl/project_2008691/EGSnrc/HEN_HOUSE/pegs4/density_corrections/compounds/radiochromicdyefilm_nylonbase.density
+
+
+(Re)-initializing photon cross sections with files from the series: xcom
+
+ Compton cross sections: default
+ Using Compton cross sections from /projappl/project_2008691/EGSnrc/HEN_HOUSE/data/compton_sigma.data
+
+ Reading renormalized photoelectric cross sections ...... done
+
+ Working on medium   1 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   2 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   3 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   4 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+ Working on medium   5 ... 
+  ->  100 atomic ff values computed!
+      preparing data for Rayleigh sampling ... done
+
+OK
+
+Reading screened Rutherford MS data ...............  done 
+
+
+Reading spin data base from /projappl/project_2008691/EGSnrc/HEN_HOUSE/data/spinms.data
+EGSnrc spin data, version 2.0   
+Data generated on a machine with 1234 endianess
+The endianess of this CPU is 1234
+Ranges:      1.00   100.00  0.30054  1.00000
+
+
+  medium    1 .....................  done
+  medium    2 .....................  done
+  medium    3 .....................  done
+  medium    4 .....................  done
+  medium    5 .....................  done
+  
+  Medium            1  sige =    172.75604562338430        235.60337980532134       monotone =  F F
+  Medium            2  sige =    123.18398574866285        151.05801028177109       monotone =  F F
+  Medium            3  sige =    89.591859601344183        103.21541676401796       monotone =  F F
+  Medium            4  sige =    85.799574936291847        98.126563048670249       monotone =  F F
+  Medium            5  sige =    84.596696459844324        96.521242628028816       monotone =  F F
+  
+  Initializing tmxs for estepe =   0.25000000000000000       and ximax =   0.50000000000000000     
+  
+  
+ Radiative Compton corrections requested:
+    Reading radiative Compton data ...  OK
+    Modifying cross sections and branching ratios ... OK
+
+Bound Compton scattering requested, reading data ......  Done
+
+ Initializing Bound Compton scattering ......
+ Medium   1 has  23 shells: 
+   1 1054   1  0.02439 0.121E+01    88.004
+   2 1055   2  0.02439 0.430E+01    15.861
+   3 1056   3  0.02439 0.210E+01    15.200
+   4 1057   4  0.04878 0.238E+01    13.035
+   5 1058   5  0.02439 0.944E+01     3.851
+   6 1059   6  0.02439 0.552E+01     3.554
+   7 1060   7  0.04878 0.600E+01     3.066
+   8 1061   8  0.04878 0.388E+01     2.586
+   9 1062   9  0.07317 0.397E+01     2.484
+  10 1063  10  0.02439 0.193E+02     0.894
+  11 1064  11  0.02439 0.121E+02     0.764
+  12 1065  12  0.04878 0.131E+02     0.645
+  13 1066  13  0.04878 0.984E+01     0.434
+  14 1067  14  0.07317 0.101E+02     0.412
+  15 1068  15  0.02439 0.445E+02     0.148
+  16 1069  16  0.02439 0.295E+02     0.105
+  17 1070  17  0.04878 0.325E+02     0.086
+  18 1071  18  0.07317 0.830E+01     0.141
+  19 1072  19  0.09756 0.841E+01     0.136
+  20 1073  20  0.04878 0.303E+02     0.020
+  21 1074  21  0.07317 0.311E+02     0.018
+  22 1075  22  0.02439 0.142E+03     0.007
+  23 1076  23  0.02439 0.111E+03     0.007
+ Medium   2 has  45 shells: 
+   1   10   1  0.00036 0.210E+02     0.285
+   2   11   2  0.00036 0.110E+03     0.011
+   3   12   3  0.00036 0.669E+02     0.011
+   4   45   1  0.00107 0.870E+01     1.839
+   5   46   2  0.00107 0.377E+02     0.149
+   6   47   3  0.00107 0.204E+02     0.100
+   7   48   4  0.00214 0.204E+02     0.099
+   8   49   5  0.00107 0.142E+03     0.008
+   9   50   6  0.00107 0.102E+03     0.008
+  10  120   1  0.01486 0.500E+01     5.989
+  11  121   2  0.01486 0.192E+02     0.698
+  12  122   3  0.01486 0.981E+01     0.585
+  13  123   4  0.02971 0.981E+01     0.576
+  14  124   5  0.01486 0.545E+02     0.075
+  15  125   6  0.01486 0.347E+02     0.043
+  16  126   7  0.02971 0.347E+02     0.043
+  17  127   8  0.02971 0.721E+02     0.007
+  18  128   9  0.01486 0.721E+02     0.007
+  19  129   1  0.00078 0.480E+01     6.539
+  20  130   2  0.00078 0.182E+02     0.769
+  21  131   3  0.00078 0.933E+01     0.651
+  22  132   4  0.00156 0.933E+01     0.639
+  23  133   5  0.00078 0.511E+02     0.082
+  24  134   6  0.00078 0.322E+02     0.047
+  25  135   7  0.00156 0.322E+02     0.047
+  26  136   8  0.00156 0.833E+02     0.007
+  27  137   9  0.00117 0.833E+02     0.007
+  28  138   1  0.05471 0.460E+01     7.112
+  29  139   2  0.05471 0.174E+02     0.848
+  30  140   3  0.05471 0.891E+01     0.721
+  31  141   4  0.10943 0.891E+01     0.708
+  32  142   5  0.05471 0.486E+02     0.092
+  33  143   6  0.05471 0.306E+02     0.053
+  34  144   7  0.10943 0.306E+02     0.053
+  35  145   8  0.10943 0.737E+02     0.008
+  36  146   9  0.10943 0.737E+02     0.008
+  37  156   1  0.00658 0.426E+01     8.333
+  38  157   2  0.00658 0.160E+02     1.008
+  39  158   3  0.00658 0.815E+01     0.871
+  40  159   4  0.01316 0.815E+01     0.854
+  41  160   5  0.00658 0.445E+02     0.111
+  42  161   6  0.00658 0.277E+02     0.067
+  43  162   7  0.01316 0.277E+02     0.067
+  44  163   8  0.01316 0.599E+02     0.008
+  45  164   9  0.01974 0.599E+02     0.008
+ Medium   3 has  18 shells: 
+   1   10   1  0.00004 0.210E+02     0.285
+   2   11   2  0.00004 0.110E+03     0.011
+   3   12   3  0.00004 0.669E+02     0.011
+   4   13   1  0.21604 0.178E+02     0.410
+   5   14   2  0.21604 0.921E+02     0.015
+   6   15   3  0.21604 0.558E+02     0.014
+   7   16   4  0.10802 0.558E+02     0.014
+   8   17   1  0.05804 0.155E+02     0.543
+   9   18   2  0.05804 0.793E+02     0.024
+  10   19   3  0.05804 0.479E+02     0.014
+  11   20   4  0.05804 0.479E+02     0.014
+  12   72   1  0.00129 0.671E+01     3.203
+  13   73   2  0.00129 0.271E+02     0.326
+  14   74   3  0.00129 0.142E+02     0.251
+  15   75   4  0.00257 0.142E+02     0.249
+  16   76   5  0.00129 0.889E+02     0.029
+  17   77   6  0.00129 0.606E+02     0.016
+  18   78   7  0.00257 0.606E+02     0.016
+ Medium   4 has   4 shells: 
+   1    1   1  0.14285 0.116E+03     0.014
+   2   10   1  0.28572 0.210E+02     0.285
+   3   11   2  0.28572 0.110E+03     0.011
+   4   12   3  0.28572 0.669E+02     0.011
+ Medium   5 has  12 shells: 
+   1    1   1  0.18894 0.116E+03     0.014
+   2   10   1  0.19812 0.210E+02     0.285
+   3   11   2  0.19812 0.110E+03     0.011
+   4   12   3  0.19812 0.669E+02     0.011
+   5   13   1  0.02875 0.178E+02     0.410
+   6   14   2  0.02875 0.921E+02     0.015
+   7   15   3  0.02875 0.558E+02     0.014
+   8   16   4  0.01437 0.558E+02     0.014
+   9   17   1  0.02902 0.155E+02     0.543
+  10   18   2  0.02902 0.793E+02     0.024
+  11   19   3  0.02902 0.479E+02     0.014
+  12   20   4  0.02902 0.479E+02     0.014
+ ...... Done.
+
+Output from subroutine EDGSET:
+==============================
+ Atomic relaxations requested! 
+
+ Reading simplified photo-absorption data ..... Done
+
+ Reading simplified relaxation data ..... Done
+
+ Reading parametrized XCOM photo cross section data ..... Done
+
+ Reading EADL relaxation data ......
+  Z =  82 has 24 shells
+  Z =   6 has  4 shells
+  Z =  14 has  7 shells
+  Z =  24 has 10 shells
+  Z =  25 has 10 shells
+  Z =  26 has 10 shells
+  Z =  28 has 10 shells
+  Z =   7 has  4 shells
+  Z =   8 has  4 shells
+  Z =  18 has  7 shells
+  Z =   1 has  1 shells
+ ...... Done.
+
+  
+ Using NRC brems cross sections! 
+  
+  Initializing brems data for medium            1 ...
+  Max. new cross sections per energy loss:    172.71375768187906        235.60728196646150     
+  Initializing brems data for medium            2 ...
+  Max. new cross sections per energy loss:    123.18850094771580        151.05910136475785     
+  Initializing brems data for medium            3 ...
+  Max. new cross sections per energy loss:    89.603754504395283        103.21767115908033     
+  Initializing brems data for medium            4 ...
+  Max. new cross sections per energy loss:    85.809486150447540        98.128639733994149     
+  Initializing brems data for medium            5 ...
+  Max. new cross sections per energy loss:    84.606352682595968        96.523228134703402     
+  
+  
+
+
+Reading NRC pair data base from /projappl/project_2008691/EGSnrc/HEN_HOUSE/data/pair_nrc1.data
+Data generated on a machine with 1234 endianess
+The endianess of this CPU is 1234
+Energy range of the data:     2.010  168.603
+  medium    1 .....................  done
+  medium    2 .....................  done
+  medium    3 .....................  done
+  medium    4 .....................  done
+  medium    5 .....................  done
+  
+  
+ eii_init: minimum threshold energy found:    1.0000000000000000E-003
+ eii_init: number of shells to simulate EII:           11
+
+
+Opened EII data file /projappl/project_2008691/EGSnrc/HEN_HOUSE/data/eii_ik.data
+ eii_init: reading EII data ...   OK 
+  
+ eii_init: for medium            1  adjusted sige =    172.18788716669485       monotone =  F
+ eii_init: for medium            2  adjusted sige =    114.81607084094414       monotone =  F
+ eii_init: for medium            3  adjusted sige =    89.567864113104150       monotone =  F
+ init_triplet: reading triplet data ...  OK
+   Preparing triplet fraction data for medium   1 ...  OK
+   Preparing triplet fraction data for medium   2 ...  OK
+   Preparing triplet fraction data for medium   3 ...  OK
+   Preparing triplet fraction data for medium   4 ...  OK
+   Preparing triplet fraction data for medium   5 ...  OK
+EGSnrc SUCCESSFULLY 'HATCHED' FOR     5 MEDIA.
+
+
+The following media are defined:
+================================
+
+  0  pb                       AE= 0.5120 AP= 0.0010 0
+  1  steel                    AE= 0.5120 AP= 0.0010 1
+  2  air                      AE= 0.5120 AP= 0.0010 2
+  3  polystyrene              AE= 0.5120 AP= 0.0010 3
+  4  film                     AE= 0.5120 AP= 0.0010 4
+
+
+Transport parameter and cross section options:
+==============================================
+Photon cross sections                             mcdf-xcom       
+Compton cross sections                            default         
+Global Pcut                                       0.001
+Pair cross sections                               NRC
+Pair angular sampling                             KM
+Triplet production                                On
+Bound Compton scattering                          On
+Radiative Compton corrections                     On
+Rayleigh scattering                               On
+Atomic relaxations                                eadl
+Photoelectron angular sampling                    On
+Photonuclear attenuation                          Off
+Photonuclear cross sections                       default         
+
+Global Ecut                                       0.512
+Brems cross sections                              NRC
+Brems angular sampling                            KM
+Spin effects                                      On
+Electron Impact Ionization                        ik              
+Global Smax                                       1e+10
+ESTEPE                                            0.25
+Ximax                                             0.5
+Boundary crossing algorithm                       Exact
+Skin depth for BCA                                3
+Electron-step algorithm                           EGSnrc
+==============================================
+
+
+initScoring: missing/wrong 'cavity geometry'  for geometry 'obi_system' 
+initScoring: missing/wrong 'enhance regions' input
+initScoring: missing/wrong 'enhancement' input
+initScoring: no 'cavity geometry' named  --> input ignored
+
+=========================positioning uncertainty=========================
+Isocenter positioning uncertainty option is set OFF.
+
+Cavity positioning uncertainty option is set OFF.
+
+Number of uncorrelated estimators is 0 among 1 geometries.
+Number of correlated estimators is 0 among 1 geometries.
+
+=========================================================================
+
+======================== geometry =====================
+ type = EGS_UnionGeometry
+ name = obi_system
+ number of regions = 324
+ geometries:
+   profilex (type EGS_XYZGeometry)
+   obi (type EGS_UnionGeometry)
+   styrox (type EGS_XYZGeometry)
+   air_prim_to_detector (type EGS_XYZGeometry)
+=======================================================
+
+
+The simulation uses the following source:
+=========================================
+ IAEA phase space source from anodeXRayWPbPort_egs_chamber_radiative_splitting.1
+
+
+Random number generator:
+============================================
+  type                = ranmar
+  high resolution     = no
+  initial seeds       = 33 109
+  numbers used so far = 0
+
+
+Run Control Object (RCO):
+=========================
+  type = balanced (JCF)
+
+
+The following ausgab objects are included in the simulation
+===========================================================
+
+
+Particle Track Scoring (tracks)
+======================================================
+ - Scoring photon tracks       = YES
+ - Scoring electron tracks     = NO
+ - Scoring positron tracks     = NO
+ - First event to score        = 0
+ - Last event to score         = 10000
+ - Track buffer size           = 1024
+ - Output file name            = /projappl/project_2008691/EGSnrc/egs_home/egs_chamber/phspBladesXrayWindowPbport_w13_w13.ptracks
+
+
+===========================================
+Radiative splitting Object (my_splitting)
+===========================================
+
+ - Splitting radiative events in 1000
+
+
+===========================================
+
+
+*******************************************
+Dose Scoring Object (profilexFilm)
+*******************************************
+
+ - Regions in dose calculator :324
+
+
+--------------------------------------
+     medium  rho (g/cm^3)
+--------------------------------------
+     medium  rho (g/cm^3)
+  11.35000000
+11.35000000   8.06000040
+ 8.06000040   0.00120479
+ 0.00120479   1.05999990
+ 1.05999990   1.14000000
+--------------------------------------
+
+*******************************************
+
+
+ Will output dose to file:
+ EGS_XYZGeometry: profilex
+ file format:  3ddose
+ file name: /projappl/project_2008691/EGSnrc/egs_home/egs_chamber/profilexFilm.3ddose
+
+Variance reduction
+====================================================
+Photon splitting = off
+Range rejection = off
+
+
+photon cross-section enhancement = Off
+
+
+region by region ECUT = Off
+
+=============================================
+
+
+Starting simulation on Mon Apr  1 13:48:17 2024
+
+    Fresh simulation of 7200000000 histories
+
+
+    Parallel run with 40 jobs and 10 chunks per job
+
+
+IAEA_PhspSource: using phsp portion between 18000001 and 36000000
+
+Running 18000000 histories
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1             1791.94     4.9308e-22          42.17
+      2             3588.00    3.14885e-22          35.97
+      3             5384.39     2.7796e-22          32.44
+IAEA_PhspSource::setSimulationChunk(): illegal attempt to set the simulation chunk between 1080000001 and 1098000000 ignored
+
+Running 18000000 histories
+    combined result from this and other parallel runs: 1.6248e-22 +/-   8.430%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1             7180.39    2.74975e-22          27.24
+      2             8979.06    2.37113e-22          25.93
+      3            10776.44    2.11398e-22          24.97
+IAEA_PhspSource::setSimulationChunk(): illegal attempt to set the simulation chunk between 1944000001 and 1962000000 ignored
+
+Running 18000000 histories
+    combined result from this and other parallel runs: 1.71631e-22 +/-   4.937%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            12574.28    2.51619e-22          21.24
+      2            14370.03    2.35519e-22          20.21
+      3            16168.07    2.38081e-22          19.23
+IAEA_PhspSource::setSimulationChunk(): illegal attempt to set the simulation chunk between 2682000001 and 2700000000 ignored
+
+Running 18000000 histories
+    combined result from this and other parallel runs: 1.66258e-22 +/-   3.832%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            17964.68    2.35646e-22          18.33
+      2            19763.78    2.42455e-22          17.18
+      3            21556.03     2.3831e-22          16.43
+IAEA_PhspSource::setSimulationChunk(): illegal attempt to set the simulation chunk between 3402000001 and 3420000000 ignored
+
+Running 18000000 histories
+    combined result from this and other parallel runs: 1.72192e-22 +/-   3.187%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            23349.70    2.32959e-22          15.77
+      2            25138.50    2.24933e-22          15.40
+      3            26927.08    2.17772e-22          15.00
+IAEA_PhspSource::setSimulationChunk(): illegal attempt to set the simulation chunk between 4122000001 and 4140000000 ignored
+
+Running 18000000 histories
+    combined result from this and other parallel runs: 1.76805e-22 +/-   2.773%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            28714.84    2.22979e-22          14.37
+      2            30502.78    2.19861e-22          14.02
+      3            32286.16    2.14085e-22          13.86
+IAEA_PhspSource::setSimulationChunk(): illegal attempt to set the simulation chunk between 4842000001 and 4860000000 ignored
+
+Running 18000000 histories
+    combined result from this and other parallel runs: 1.75818e-22 +/-   2.525%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            34071.82    2.20964e-22          13.42
+      2            35854.84    2.28094e-22          13.11
+      3            37642.40    2.21468e-22          12.88
+IAEA_PhspSource::setSimulationChunk(): illegal attempt to set the simulation chunk between 5562000001 and 5580000000 ignored
+
+Running 18000000 histories
+    combined result from this and other parallel runs: 1.79471e-22 +/-   2.422%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            39431.32    2.16009e-22          12.70
+      2            41220.59     2.1131e-22          12.53
+      3            43010.38    2.06767e-22          12.30
+IAEA_PhspSource::setSimulationChunk(): illegal attempt to set the simulation chunk between 6282000001 and 6300000000 ignored
+
+Running 18000000 histories
+    combined result from this and other parallel runs: 1.81191e-22 +/-   2.287%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            44797.23    1.99061e-22          12.26
+      2            46584.12     1.9921e-22          12.03
+      3            48370.61    2.01773e-22          11.79
+IAEA_PhspSource::setSimulationChunk(): illegal attempt to set the simulation chunk between 7020000001 and 7038000000 ignored
+
+Running 18000000 histories
+    combined result from this and other parallel runs: 1.79709e-22 +/-   2.132%
+
+  Batch             CPU time        Result   Uncertainty(%)
+==========================================================
+      1            50156.79    1.95779e-22          11.73
+      2            51947.74    1.95011e-22          11.51
+      3            53690.73    1.92795e-22          11.41
+
+
+Finished simulation
+
+Total cpu time for this run:            53690.73 (sec.) 14.9141(hours)
+Histories per hour:                     1.20691e+07   
+Number of random numbers used:          527988100411  
+Number of electron CH steps:            3.6779e+09    
+Number of all electron steps:           1.17529e+11   
+
+
+ last case = 16363283 fluence = 1.57635e+11
+
+Geometry                        Cavity dose      
+-----------------------------------------------
+obi_system                1.9279e-22 +/- 11.412 % 
+
+
+
+Particle Track Scoring (tracks)
+======================================================
+   Total events scored:     10000
+   Total tracks scored:     233524
+   Still being scored:      0
+   Output file name:        /projappl/project_2008691/EGSnrc/egs_home/egs_chamber/phspBladesXrayWindowPbport_w13_w13.ptracks
+
+
+======================================================
+Dose Scoring Object(profilexFilm)
+======================================================
+=> last case = 16363283 fluence = 1.57635e+11
+
+==> Summary of region dosimetry (per fluence)
+ ir       medium  rho (g/cm^3)  Volume (cm^3)   Edep (MeV*cm^2)              D (Gy*cm^2)              
+------------------------------------------------------------------------------------------------------
+  0  film          1.14000000       1.000000    4.8727e-13  +/-  18.606 %    6.8475e-23  +/-  18.606 %
+  1  film          1.14000000       1.000000    4.5240e-13  +/-  17.809 %    6.3574e-23  +/-  17.809 %
+  2  film          1.14000000       1.000000    5.4249e-13  +/-  15.875 %    7.6234e-23  +/-  15.875 %
+  3  film          1.14000000       1.000000    7.4461e-13  +/-  13.384 %    1.0464e-22  +/-  13.384 %
+  4  film          1.14000000       1.000000    1.2035e-12  +/-  11.412 %    1.6912e-22  +/-  11.412 %
+  5  film          1.14000000       1.000000    1.4929e-12  +/-  11.579 %    2.0979e-22  +/-  11.579 %
+  6  film          1.14000000       1.000000    3.7701e-12  +/-  6.967  %    5.2980e-22  +/-  6.967  %
+  7  film          1.14000000       1.000000    7.0884e-12  +/-  4.529  %    9.9611e-22  +/-  4.529  %
+  8  film          1.14000000       1.000000    1.0139e-11  +/-  3.963  %    1.4248e-21  +/-  3.963  %
+  9  film          1.14000000       1.000000    9.9381e-12  +/-  3.906  %    1.3966e-21  +/-  3.906  %
+ 10  film          1.14000000       1.000000    9.3943e-12  +/-  3.973  %    1.3202e-21  +/-  3.973  %
+ 11  film          1.14000000       1.000000    1.0123e-11  +/-  3.870  %    1.4225e-21  +/-  3.870  %
+ 12  film          1.14000000       1.000000    1.0957e-11  +/-  3.705  %    1.5397e-21  +/-  3.705  %
+ 13  film          1.14000000       1.000000    1.0887e-11  +/-  3.816  %    1.5299e-21  +/-  3.816  %
+ 14  film          1.14000000       1.000000    9.9480e-12  +/-  3.805  %    1.3980e-21  +/-  3.805  %
+ 15  film          1.14000000       1.000000    1.1062e-11  +/-  3.791  %    1.5544e-21  +/-  3.791  %
+ 16  film          1.14000000       1.000000    1.1207e-11  +/-  3.704  %    1.5748e-21  +/-  3.704  %
+ 17  film          1.14000000       1.000000    1.0412e-11  +/-  3.771  %    1.4631e-21  +/-  3.771  %
+ 18  film          1.14000000       1.000000    1.0583e-11  +/-  3.846  %    1.4872e-21  +/-  3.846  %
+ 19  film          1.14000000       1.000000    1.1683e-11  +/-  3.727  %    1.6417e-21  +/-  3.727  %
+ 20  film          1.14000000       1.000000    1.1203e-11  +/-  4.039  %    1.5743e-21  +/-  4.039  %
+ 21  film          1.14000000       1.000000    1.0208e-11  +/-  3.769  %    1.4345e-21  +/-  3.769  %
+ 22  film          1.14000000       1.000000    1.1017e-11  +/-  3.709  %    1.5482e-21  +/-  3.709  %
+ 23  film          1.14000000       1.000000    1.0333e-11  +/-  3.860  %    1.4520e-21  +/-  3.860  %
+ 24  film          1.14000000       1.000000    1.0752e-11  +/-  3.745  %    1.5109e-21  +/-  3.745  %
+ 25  film          1.14000000       1.000000    1.0338e-11  +/-  3.808  %    1.4528e-21  +/-  3.808  %
+ 26  film          1.14000000       1.000000    1.1162e-11  +/-  3.793  %    1.5685e-21  +/-  3.793  %
+ 27  film          1.14000000       1.000000    9.7937e-12  +/-  3.916  %    1.3763e-21  +/-  3.916  %
+ 28  film          1.14000000       1.000000    9.6759e-12  +/-  4.442  %    1.3597e-21  +/-  4.442  %
+ 29  film          1.14000000       1.000000    9.7927e-12  +/-  4.119  %    1.3761e-21  +/-  4.119  %
+ 30  film          1.14000000       1.000000    1.0304e-11  +/-  3.963  %    1.4480e-21  +/-  3.963  %
+ 31  film          1.14000000       1.000000    9.6135e-12  +/-  4.081  %    1.3510e-21  +/-  4.081  %
+ 32  film          1.14000000       1.000000    7.6120e-12  +/-  4.497  %    1.0697e-21  +/-  4.497  %
+ 33  film          1.14000000       1.000000    3.7547e-12  +/-  6.467  %    5.2763e-22  +/-  6.467  %
+ 34  film          1.14000000       1.000000    1.5169e-12  +/-  9.992  %    2.1317e-22  +/-  9.992  %
+ 35  film          1.14000000       1.000000    9.7738e-13  +/-  11.396 %    1.3735e-22  +/-  11.396 %
+ 36  film          1.14000000       1.000000    7.6644e-13  +/-  14.751 %    1.0771e-22  +/-  14.751 %
+ 37  film          1.14000000       1.000000    7.4104e-13  +/-  14.779 %    1.0414e-22  +/-  14.779 %
+ 38  film          1.14000000       1.000000    6.1508e-13  +/-  16.346 %    8.6435e-23  +/-  16.346 %
+ 39  film          1.14000000       1.000000    2.7108e-13  +/-  22.762 %    3.8093e-23  +/-  22.762 %
+ 81  pb           11.35000000       1.000000    1.1635e-06  +/-  0.049  %    1.6423e-17  +/-  0.049  %
+ 82  air           0.00120479       1.000000    7.2827e-10  +/-  0.368  %    9.6838e-17  +/-  0.368  %
+ 83  pb           11.35000000       1.000000    2.0040e-06  +/-  0.033  %    2.8285e-17  +/-  0.033  %
+ 84  steel         8.06000040       1.000000    1.5703e-08  +/-  0.341  %    3.1212e-19  +/-  0.341  %
+ 85  air           0.00120479       1.000000    3.5846e-10  +/-  0.437  %    4.7664e-17  +/-  0.437  %
+ 86  steel         8.06000040       1.000000    1.6108e-08  +/-  0.335  %    3.2016e-19  +/-  0.335  %
+ 90  pb           11.35000000       1.000000    4.6276e-07  +/-  0.082  %    6.5316e-18  +/-  0.082  %
+ 91  air           0.00120479       1.000000    2.1868e-10  +/-  0.657  %    2.9078e-17  +/-  0.657  %
+ 92  pb           11.35000000       1.000000    4.6214e-07  +/-  0.082  %    6.5230e-18  +/-  0.082  %
+ 93  steel         8.06000040       1.000000    5.6435e-09  +/-  0.573  %    1.1217e-19  +/-  0.573  %
+ 94  air           0.00120479       1.000000    9.7476e-11  +/-  0.834  %    1.2961e-17  +/-  0.834  %
+ 95  steel         8.06000040       1.000000    5.7073e-09  +/-  0.569  %    1.1344e-19  +/-  0.569  %
+ 99  steel         8.06000040       1.000000    1.7076e-11  +/-  4.947  %    3.3939e-22  +/-  4.947  %
+100  steel         8.06000040       1.000000    3.7515e-10  +/-  0.956  %    7.4565e-21  +/-  0.956  %
+101  steel         8.06000040       1.000000    1.5864e-11  +/-  5.486  %    3.1532e-22  +/-  5.486  %
+102  steel         8.06000040       1.000000    5.4790e-08  +/-  0.233  %    1.0890e-18  +/-  0.233  %
+103  air           0.00120479       1.000000    8.0859e-10  +/-  0.337  %    1.0752e-16  +/-  0.337  %
+104  steel         8.06000040       1.000000    5.4458e-08  +/-  0.234  %    1.0824e-18  +/-  0.234  %
+105  steel         8.06000040       1.000000    1.7764e-11  +/-  4.901  %    3.5307e-22  +/-  4.901  %
+106  steel         8.06000040       1.000000    3.8761e-10  +/-  0.950  %    7.7042e-21  +/-  0.950  %
+107  steel         8.06000040       1.000000    1.9258e-11  +/-  4.925  %    3.8277e-22  +/-  4.925  %
+108  air           0.00120479       1.000000    7.2098e-09  +/-  0.173  %    9.5868e-16  +/-  0.173  %
+135  air           0.00120479       1.000000    4.4362e-09  +/-  0.143  %    5.8988e-16  +/-  0.143  %
+162  polystyrene   1.05999990       1.000000    5.1787e-07  +/-  0.059  %    7.8267e-17  +/-  0.059  %
+243  air           0.00120479       1.000000    6.4839e-09  +/-  0.271  %    8.6216e-16  +/-  0.271  %
+------------------------------------------------------------------------------------------------------
+
+ EGS_DoseScoring:  This is one of a number of parallel jobs.  Will only output dose file on combining results.
+
+======================================================
+
+
+================================================================================
+Finished simulation
+
+  Elapsed time:                53881.6 s ( 14.967 h)
+  CPU time:                    53693.5 s ( 14.915 h)
+  Ratio:                          1.004
+
+
+End of run                                             Tue Apr  2 04:46:15 2024
+================================================================================
