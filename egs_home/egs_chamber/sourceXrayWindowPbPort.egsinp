@@ -12,7 +12,7 @@
     ncase = 1.4E12
     #ncase = 5E6
     #ncase = 3E11
-    #calculation = combine
+    calculation = combine
     #nchunk = 50
     nbatch = 3
 :stop run control:
@@ -292,11 +292,11 @@
     #	stop scoring   = 10000
 	#:stop ausgab object:
 
-    #:start ausgab object:
-        #library = egs_radiative_splitting
-        #name = splitting
-        #splitting = 1000
-    #:stop ausgab object:
+    :start ausgab object:
+        library = egs_radiative_splitting
+        name = splitting
+        splitting = 1000
+    :stop ausgab object:
 
     :start ausgab object:
           library                  = egs_phsp_scoring
